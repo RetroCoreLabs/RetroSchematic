@@ -27,7 +27,7 @@ namespace RetroSchematic.Model
             ReadCommentHandling = JsonCommentHandling.Skip,
             UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
             WriteIndented = true,
-            Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: false) },
+            Converters = { new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower, allowIntegerValues: false) },
         };
 
         /// <summary>Read and check a file.</summary>
@@ -91,6 +91,10 @@ namespace RetroSchematic.Model
             for (int i = 0; i < netlist.Nets.Count; i++)
             {
                 Net net = netlist.Nets[i];
+                if (net.PullUp != null && net.Drive != LineDrive.OpenCollector)
+                    throw new NetlistException($"Net {net.Name} has a pull-up but its drive is not open-collector.");
+                if (net.DriveConfidence != null && net.Drive == null)
+                    throw new NetlistException($"Net {net.Name} says how sure its drive is, but has no drive.");
                 for (int j = 0; j < net.Pins.Count; j++)
                 {
                     PinReference pin = net.Pins[j];

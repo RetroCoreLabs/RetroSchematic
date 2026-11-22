@@ -23,7 +23,9 @@ def stub(p, edge):
 ND_BODY = {
     "nand": '<rect x="12" y="4" width="18" height="32"/>',
     "nor":  '<rect x="12" y="4" width="18" height="32"/><line x1="12" y1="4" x2="30" y2="36"/><line x1="12" y1="36" x2="30" y2="4"/>',
-    "not":  '<rect x="18" y="10" width="20" height="20"/><polyline points="18,10 38,20 18,30"/>',
+    # 7404 in the manual: a tall narrow rectangle (taller than wide, like the NAND box) with the
+    # triangle filling it.
+    "not":  '<rect x="20" y="5" width="16" height="30"/><polyline points="20,5 36,20 20,35"/>',
     "and":  '<rect x="10" y="4" width="18" height="32"/><rect x="28" y="10" width="16" height="20"/><polyline points="28,10 44,20 28,30"/>',
     "or":   '<rect x="10" y="4" width="18" height="32"/><line x1="10" y1="4" x2="28" y2="36"/><line x1="10" y1="36" x2="28" y2="4"/><rect x="28" y="10" width="16" height="20"/><polyline points="28,10 44,20 28,30"/>',
     "xor":  '<rect x="12" y="4" width="18" height="32"/><line x1="16" y1="18" x2="26" y2="18"/><line x1="16" y1="22" x2="26" y2="22"/><line x1="21" y1="12" x2="21" y2="28"/>',
@@ -33,9 +35,9 @@ ND_BODY = {
 # diagonal box (7409). Modern: the plain shape with the open-collector mark (a small diamond with a
 # bar under it) inside, near the output.
 ND_BODY["nand-oc"] = '<rect x="12" y="4" width="18" height="32"/><line x1="21" y1="4" x2="21" y2="36"/>'
-ND_BODY["not-oc"] = '<rect x="18" y="10" width="20" height="20"/><line x1="18" y1="30" x2="38" y2="10"/>'
+ND_BODY["not-oc"] = '<rect x="20" y="5" width="16" height="30"/><line x1="20" y1="35" x2="36" y2="5"/>'
 ND_BODY["and-oc"] = '<rect x="10" y="4" width="18" height="32"/><rect x="28" y="10" width="16" height="20"/><line x1="28" y1="30" x2="44" y2="10"/>'
-ND_EDGE = {"nand-oc": (12, 30), "not-oc": (18, 38), "and-oc": (10, 44), "nand": (12, 30), "nor": (12, 30), "not": (18, 38), "and": (10, 44), "or": (10, 44), "xor": (12, 30)}
+ND_EDGE = {"nand-oc": (12, 30), "not-oc": (20, 36), "and-oc": (10, 44), "nand": (12, 30), "nor": (12, 30), "not": (20, 36), "and": (10, 44), "or": (10, 44), "xor": (12, 30)}
 
 MOD_BODY = {
     "and":  '<path d="M12,4 H28 A16,16 0 0 1 28,36 H12 Z"/>',

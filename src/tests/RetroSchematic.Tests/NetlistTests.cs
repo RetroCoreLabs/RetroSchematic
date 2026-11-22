@@ -75,6 +75,38 @@ namespace RetroSchematic.Tests
             Assert.Throws<NetlistException>(() => NetlistReader.Parse(Minimal.Replace("\"part\":\"1A\"", "\"part\":\"9Z\"", StringComparison.Ordinal)));
         }
 
+        [Test]
+        public void Drive_OpenCollectorWithPullUp_Parses()
+        {
+            string json = Minimal.Replace("\"active\":\"low\",", "\"active\":\"low\",\"drive\":\"open-collector\",\"driveConfidence\":\"read\",\"pullUp\":\"1k to +5V\",", StringComparison.Ordinal);
+            Netlist netlist = NetlistReader.Parse(json);
+            Assert.That(netlist.Nets[0].Drive, Is.EqualTo(LineDrive.OpenCollector));
+            Assert.That(netlist.Nets[0].PullUp, Is.EqualTo("1k to +5V"));
+            Assert.That(NetlistReader.Write(netlist), Does.Contain("\"open-collector\""));
+        }
+
+        [TestCase("totem-pole", LineDrive.TotemPole)]
+        [TestCase("three-state", LineDrive.ThreeState)]
+        [TestCase("none", LineDrive.None)]
+        public void Drive_EachValue_Parses(string text, LineDrive expected)
+        {
+            string json = Minimal.Replace("\"active\":\"low\",", "\"active\":\"low\",\"drive\":\"" + text + "\",", StringComparison.Ordinal);
+            Assert.That(NetlistReader.Parse(json).Nets[0].Drive, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Drive_Absent_IsNotReadYet()
+        {
+            Assert.That(NetlistReader.Parse(Minimal).Nets[0].Drive, Is.Null);
+        }
+
+        [Test]
+        public void PullUp_OnTotemPoleLine_IsRefused()
+        {
+            string json = Minimal.Replace("\"active\":\"low\",", "\"active\":\"low\",\"drive\":\"totem-pole\",\"pullUp\":\"1k\",", StringComparison.Ordinal);
+            Assert.Throws<NetlistException>(() => NetlistReader.Parse(json));
+        }
+
         [TestCase("13D", 13, 13, 3, 3)]
         [TestCase("7-8C-D", 7, 8, 2, 3)]
         [TestCase("1A", 1, 1, 0, 0)]

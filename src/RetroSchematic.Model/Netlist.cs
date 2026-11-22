@@ -34,6 +34,25 @@ namespace RetroSchematic.Model
         None,
     }
 
+    /// <summary>What kind of output drives a signal line.</summary>
+    public enum LineDrive
+    {
+        /// <summary>Normal TTL output: drives both high and low. Two on one line is a fault.</summary>
+        TotemPole,
+
+        /// <summary>
+        /// Open collector: can only pull low. Several may share the line; it needs a pull-up and
+        /// reads as the AND of all of them (low if any pulls low).
+        /// </summary>
+        OpenCollector,
+
+        /// <summary>Three-state bus driver: high, low or switched off.</summary>
+        ThreeState,
+
+        /// <summary>No output on the sheet drives it (supply, or an input from outside the sheet).</summary>
+        None,
+    }
+
     /// <summary>The logic function of one gate.</summary>
     public enum GateKind
     {
@@ -187,6 +206,15 @@ namespace RetroSchematic.Model
 
         /// <summary>The subscript.</summary>
         public ActiveLevel Active { get; set; }
+
+        /// <summary>What drives the line, or null when not read yet.</summary>
+        public LineDrive? Drive { get; set; }
+
+        /// <summary>How sure <see cref="Drive"/> is.</summary>
+        public Confidence? DriveConfidence { get; set; }
+
+        /// <summary>For an open-collector line: the pull-up as written on the drawing, or "open".</summary>
+        public string? PullUp { get; set; }
 
         /// <summary>The pins it joins.</summary>
         public List<PinReference> Pins { get; set; } = new();
