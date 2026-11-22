@@ -1,0 +1,14 @@
+{
+  "_note": "Formulas printed in ND-13.003.01 for parts that are not plain gates (gate formulas are in gate-symbols.json). Copied from the manual pages; a part missing here has no formula printed in the manual.",
+  "74H52": "Y = A·B + C·D + E·F + G·H·I",
+  "7453": "Y = NOT(A·B + C·D + E·F + G·H)",
+  "74H54": "Y = NOT(A·B + C·D + E·F + G·H·I)",
+  "74H55": "Y = NOT(A·B·C·D + E·F·G·H)",
+  "75322": "Y = A·E",
+  "75361": "Y = NOT(A·E)",
+  "8093": "Y = A",
+  "8095": "Y = A",
+  "8096": "Y = NOT A",
+  "8097": "Y = A",
+  "8098": "Y = NOT A"
+}
