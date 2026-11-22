@@ -57,6 +57,12 @@ def oc_mark(x, y):
             f'<line x1="{r(x-3)}" y1="{r(y+5)}" x2="{r(x+3)}" y2="{r(y+5)}"/>')
 
 
+def hv_mark(x, y):
+    """Our own label for a high-voltage open-collector output (7406/7407 up to 30 V, 7416/7417 up
+    to 15 V, per the TI datasheets). The common modern standard has no separate mark for it."""
+    return f'<text x="{r(x)}" y="{r(y)}" text-anchor="middle" font-size="5" fill="#000000" stroke="none">HV</text>'
+
+
 def buf_mark(x, y):
     return f'<path d="M{r(x-3)},{r(y-4)} L{r(x+4)},{r(y)} L{r(x-3)},{r(y+4)} Z"/>'
 
@@ -187,6 +193,8 @@ def mod_body(base, h, ys):
             out = 46
         if base in ("not-oc", "not-buf-ochv", "not-buf-ochv-bar", "buf-ochv"):
             svg += oc_mark(24, m - 2)
+        if base in ("not-buf-ochv", "not-buf-ochv-bar", "buf-ochv"):
+            svg += hv_mark(28, m + 18)  # below the triangle, clear of its edge
         if base == "not-schmitt":
             svg += hyst_mark(25, m)
         return svg, [16] * n, out
@@ -268,7 +276,8 @@ def hex_buffer():
     pins += [{"pin": "Y" + c, "x": w, "y": y, "dir": "out"} for c, y in zip("ABCDEF", ys)]
     nd = '<rect x="22" y="2" width="16" height="116"/>'
     nd_stubs = [stub(c, 22, y, 0, y) for c, y in zip("ABCDEF", ys)] + [stub("Y" + c, 38, y, w, y) for c, y in zip("ABCDEF", ys)]
-    mo = "".join(f'<path d="M22,{y - 7} L38,{y} L22,{y + 7} Z"/>' + oc_mark(27, y - 1).replace("+5", "") for y in ys)
+    mo = "".join(f'<path d="M22,{y - 7} L38,{y} L22,{y + 7} Z"/>' + oc_mark(27, y - 1).replace("+5", "")
+                 + f'<text x="44" y="{y - 2}" font-size="4" fill="#000000" stroke="none">HV</text>' for y in ys)
     mo_stubs = [stub(c, 22, y, 0, y) for c, y in zip("ABCDEF", ys)] + [stub("Y" + c, 38, y, w, y) for c, y in zip("ABCDEF", ys)]
     return w, h, pins, nd, nd_stubs, mo, mo_stubs
 

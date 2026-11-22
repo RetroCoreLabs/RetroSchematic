@@ -70,7 +70,7 @@ for name, k, text in rule:
     out.append(f"| {name} | ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) | "
                f"![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) | {text} |")
 out.append("\nMarks that change a symbol: a centre line, a bar before the point or a single diagonal = open "
-           "collector; a pointed right end = buffer/driver; edges running past the box = Schmitt trigger: an input with two switching points (about 1.7 V going up, 0.9 V going down) so a slow or noisy signal gives one clean change instead of flicker. "
+           "collector (in modern drawings, a diamond with a bar under it; HV beside it = high-voltage open collector, which stands up to 30 V or 15 V on its pull-up instead of 5.5 V - HV is our own label); a pointed right end = buffer/driver; edges running past the box = Schmitt trigger: an input with two switching points (about 1.7 V going up, 0.9 V going down) so a slow or noisy signal gives one clean change instead of flicker. "
            "Signal subscripts: 1 = active high, 0 = active low (manual page 2).\n")
 
 out.append("## Parts\n")

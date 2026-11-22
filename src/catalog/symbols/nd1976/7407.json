@@ -15,7 +15,7 @@
   "inputs": 1,
   "outputType": "open-collector-high-voltage",
   "formula": "Y = A",
-  "description": "One rectangle split down the middle: left half empty, right half holds one diagonal from its bottom left corner to the middle of the right edge.",
+  "description": "One rectangle split down the middle: left half empty, right half holds one diagonal from its bottom left corner to the middle of the right edge. High-voltage open collector: works like a plain open collector (it can only pull the line low; a pull-up resistor makes the 1, and several outputs may share one line), but the output transistor stands a higher voltage and a larger current. Per the TI datasheets: 7406/7407 up to 30 V, 7416/7417 up to 15 V, and up to 40 mA pulled low; a plain open collector such as 7405 stands only 5.5 V and 16 mA, so its pull-up must go to +5 V. High-voltage parts can switch a lamp, a relay or a 12 V line directly. The logic is the same. In the modern drawing it is marked HV beside the open-collector mark; that label is ours, not a standard symbol.",
   "tells": "Same split box as the open-collector AND (7409), but one input.",
   "confidence": "read"
 }
