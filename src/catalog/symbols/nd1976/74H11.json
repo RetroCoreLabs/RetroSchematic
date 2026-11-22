@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "74H11",
+  "partNumber": "74H11",
+  "title": "Triple 3-input AND gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 7,
+    "pdfPage": 13
+  },
+  "image": "74H11.png",
+  "symbolType": "gate",
+  "kind": "and",
+  "inputs": 3,
+  "outputType": "totem-pole",
+  "formula": "Y = A AND B AND C",
+  "description": "Three-input empty box followed by the inverter box (inner triangle).",
+  "tells": "As 7408 with three inputs.",
+  "confidence": "read"
+}

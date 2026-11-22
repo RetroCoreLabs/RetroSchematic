@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7402",
+  "partNumber": "7402",
+  "title": "Quadruple 2-input NOR gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 4,
+    "pdfPage": 10
+  },
+  "image": "7402.png",
+  "symbolType": "gate",
+  "kind": "nor",
+  "inputs": 2,
+  "outputType": "totem-pole",
+  "formula": "Y = NOT(A OR B)",
+  "description": "A rectangle with both diagonals drawn corner to corner (an X filling the box).",
+  "tells": "X across the whole box = NOR.",
+  "confidence": "read"
+}

@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7403",
+  "partNumber": "7403",
+  "title": "Quadruple 2-input NAND gate with open collector output",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 5,
+    "pdfPage": 11
+  },
+  "image": "7403.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 2,
+  "outputType": "open-collector",
+  "formula": "Y = NOT(A AND B)",
+  "description": "Same drawing as 7401: NAND rectangle with a double vertical bar at the output side.",
+  "tells": "Same symbol as 7401; only the parts list tells 7401 from 7403 (they have different pinouts).",
+  "confidence": "read"
+}

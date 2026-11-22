@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7440",
+  "partNumber": "7440",
+  "title": "Dual 4-input NAND buffer",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 11,
+    "pdfPage": 17
+  },
+  "image": "7440.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 4,
+  "outputType": "buffer",
+  "formula": "Y = NOT(A AND B AND C AND D)",
+  "description": "A tall empty box with a long point on the right, four inputs.",
+  "tells": "Four-input NAND buffer.",
+  "confidence": "read"
+}

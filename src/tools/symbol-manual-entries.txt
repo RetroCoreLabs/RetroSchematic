@@ -1,0 +1,128 @@
+4|7400|Quadruple 2-input NAND gate
+4|7401|Quadruple 2-input NAND gate with open collector output
+4|7402|Quadruple 2-input NOR gate
+5|7403|Quadruple 2-input NAND gate with open collector output
+5|7404|Hex inverter
+5|7405|Hex inverter with open collector output
+5|7406|Hex inverter buffer/driver with open-collector high-voltage output
+6|7407|Hex buffer/driver with open-collector high-voltage output
+6|7408|Quadruple 2-input AND gate
+6|7409|Quadruple 2-input positive AND gate with open-collector output
+6|7410|Triple 3-input NAND gate
+7|74H11|Triple 3-input AND gate
+7|7413|Dual 4-input NAND Schmitt trigger
+7|7414|Hex Schmitt-trigger inverter
+7|7416|Hex inverter buffer/driver with open-collector high-voltage output
+8|7417|Hex buffer/driver with open-collector high-voltage output
+8|7420|Dual 4-input NAND gate
+8|74H21|Dual 4-input AND gate
+9|7425|Dual 4-input NOR gate with strobe
+9|7427|Triple 3-input NOR gate
+9|7428|Quadruple 2-input NOR buffer
+10|7430|8-input NAND gate
+10|7432|Quadruple 2-input OR gate
+10|7433|Quadruple 2-input NOR buffer with open-collector
+10|7437|Quadruple 2-input NAND buffer
+11|7438|Quadruple 2-input NAND buffer with open-collector
+11|7440|Dual 4-input NAND buffer
+11|7442|4-line-to-10-line decoder (1-of-10)
+12|7445|BCD to decimal decoder/driver with open-collector outputs
+12|7450|2x2 AND-OR-INVERT (7450 - 7451 - 7460)
+13|74H52|Expandable 4-wide AND-OR gates
+13|7453|4x2 AND-OR-INVERT (7453 - 7454)
+14|74H54|Expandable 2-2-2-3-input AND-OR-INVERT gates
+14|74H55|2-wide 4-input AND-OR-INVERT gates
+15|74S64|4-2-3-2-input AND-OR-invert gates
+15|7470|J-K flip-flop
+16|7472|J-K master-slave flip-flop
+16|7473|Dual J-K master-slave flip-flop
+17|7474|Dual D-type edge-triggered flip-flop
+17|7475|Quadruple bistable latch
+18|7476|Dual J-K flip-flop with preset and clear
+18|7483|4-bit binary full-adder
+19|7485|4-bit comparator
+19|7486|Quadruple 2-input exclusive-OR element
+19|7489|64-bit read/write memory
+20|7490|Decade counter
+20|7493|4-bit binary counter
+21|7494|4-bit shift register
+21|7495|4-bit right-shift, left-shift register
+22|74L95|4-bit parallel-access shift register
+22|7496|5-bit shift register
+23|7497|Synchronous 6-bit binary rate multiplier
+23|74100|8-bit bistable latches
+24|74107|Dual J-K master-slave flip-flop
+24|74S112|Dual J-K negative-edge-triggered flip-flop with preset and clear
+24|74S114|Dual J-K negative-edge-triggered flip-flop with preset, common clear and common clock
+25|74118|6-bit set latch
+25|74120|Pulse synchronizer
+26|74121|Monostable multivibrator
+26|74123|Retriggerable monostable multivibrator with clear
+27|74132|Quadruple 2-input positive NAND Schmitt trigger
+27|74S133|13-input positive NAND gate
+28|74148|8-line-to-3-line priority encoder (equal to 9318)
+28|74150|Data selector/multiplexer 16-1
+29|74151|Data selector/multiplexer 8-1
+29|74153|Dual 4-line-to-1-line data selector/multiplexer
+30|74154|4-line-to-16-line decoder/demultiplexer
+30|74155|Dual 2-line-to-4-line decoder/demultiplexer (74156 is equal)
+31|74157|Quadruple 2-line-to-1-line data selector/multiplexer (74158 has inverted output)
+31|74161|Synchronous 4-bit counter
+32|74163|Fully synchronous binary counter
+32|74164|8-bit shift register
+33|74165|8-bit shift register
+33|74166|8-bit shift register
+34|74170|4-by-4 register file
+34|74173|4-bit D-type register with tri-state outputs
+35|74174|Hex D-flip-flop
+35|74175|Quadruple D-type flip-flop with clear
+36|74181|Arithmetic logic unit/function generator
+36|74182|Look-ahead carry generator
+37|74191|Synchronous up/down counter
+37|74193|Up/down binary counter
+38|74195|4-bit parallel-access shift register
+38|74198|8-bit shift register
+39|74199|8-bit shift register
+39|74200|256 bit RAM
+40|74221|Dual monostable multivibrator (pin compatible with 74123)
+40|74S258|Quadruple 2-line-to-1-line data selector multiplexer with tri-state outputs
+41|74279|Quadruple S-R latches
+41|74S280|9-bit odd/even parity generator/checker
+42|74298|Quadruple 2-input multiplexer with storage
+42|74393|Dual 4-bit binary ripple counter
+43|75107|Dual line receiver
+43|75108|Dual line receiver (open collector)
+43|75109|Dual line driver (75109-75110)
+44|75150|2-input line driver
+44|75154|Line driver
+44|75322|TTL to MOS driver
+45|75361|MOS driver
+45|75450|Dual peripheral driver
+45|75452|Dual peripheral driver (75452B)
+46|8093|Tri-state quad buffer
+46|8095|Tri-state hex buffer
+47|8096|Tri-state hex inverter
+47|8097|Tri-state hex buffer
+48|8098|Tri-state hex inverter
+48|8123|Tri-state quad 2-input multiplexer
+49|8160|6-bit comparator
+49|8214|Tri-state dual 4:1 multiplexer
+50|8551|Tri-state quad D flip flop (see 74173)
+50|8553|Tri-state 8 bit latch
+51|8599|Tri-state 64-bit random access read/write memory
+51|8820|Tri-state line receiver
+52|8831|Line driver, single-ended and differential use
+53|8833|Quad tri-state transceiver
+53|8835|Quad tri-state transceiver, inverting
+54|MC4007|Dual 1-of-4 decoder
+55|MCT2|Photo transistor coupler
+55|TIL113|Photo darlington coupler
+56|VP5|Voltage converter (VP 12 is equal)
+56|VP12/12|Voltage converter
+57|DC10-35T|100 ns delay line with 10 ns taps
+58|TMS4030|4 K MOS RAM
+59|TMS6010|Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)
+60|MK4096P|4 K dynamic RAM 16 pin package
+61|2107B|4 K dynamic RAM 22 pin package
+61|3101|64-bit read/write memory (equal to 7489)
+62|2532|Quad 80-bit static shift register

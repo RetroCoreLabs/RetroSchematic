@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7430",
+  "partNumber": "7430",
+  "title": "8-input NAND gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 10,
+    "pdfPage": 16
+  },
+  "image": "7430.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 8,
+  "outputType": "totem-pole",
+  "formula": "Y = NOT(A AND B AND C AND D AND E AND F AND G AND H)",
+  "description": "A very tall empty NAND rectangle with eight inputs.",
+  "tells": "Eight inputs.",
+  "confidence": "read"
+}

@@ -1,0 +1,18 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "74S114",
+  "partNumber": "74S114",
+  "title": "Dual J-K negative-edge-triggered flip-flop with preset, common clear and common clock",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 24,
+    "pdfPage": 30
+  },
+  "image": "74S114.png",
+  "symbolType": "block",
+  "description": "A rectangle for the whole function (or one section of it). Pin numbers are written on the lines where they meet the box; signal names are written beside them.",
+  "tells": "Read the part type from the parts list and compare the pin numbers against this cut-out.",
+  "pinsAsDrawn": "open",
+  "confidence": "read"
+}

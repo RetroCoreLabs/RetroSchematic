@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7437",
+  "partNumber": "7437",
+  "title": "Quadruple 2-input NAND buffer",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 10,
+    "pdfPage": 16
+  },
+  "image": "7437.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 2,
+  "outputType": "buffer",
+  "formula": "Y = NOT(A AND B)",
+  "description": "An empty box whose right side is a point (pentagon).",
+  "tells": "Empty + pointed end = NAND buffer.",
+  "confidence": "read"
+}

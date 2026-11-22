@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7486",
+  "partNumber": "7486",
+  "title": "Quadruple 2-input exclusive-OR element",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 19,
+    "pdfPage": 25
+  },
+  "image": "7486.png",
+  "symbolType": "gate",
+  "kind": "xor",
+  "inputs": 2,
+  "outputType": "totem-pole",
+  "formula": "Y = A XOR B",
+  "description": "A box with an equals-like mark (two short horizontal lines crossed by a vertical bar) inside.",
+  "tells": "Mark inside the box = exclusive OR.",
+  "confidence": "read"
+}

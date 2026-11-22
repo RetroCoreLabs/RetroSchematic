@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7417",
+  "partNumber": "7417",
+  "title": "Hex buffer/driver with open-collector high-voltage output",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 8,
+    "pdfPage": 14
+  },
+  "image": "7417.png",
+  "symbolType": "gate",
+  "kind": "buffer",
+  "inputs": 1,
+  "outputType": "open-collector-high-voltage",
+  "formula": "Y = A",
+  "description": "Drawn as a whole package: a tall rectangle with six inputs on the left and six outputs on the right.",
+  "tells": "Package drawing, not a gate symbol.",
+  "confidence": "read"
+}

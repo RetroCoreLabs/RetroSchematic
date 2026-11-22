@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7432",
+  "partNumber": "7432",
+  "title": "Quadruple 2-input OR gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 10,
+    "pdfPage": 16
+  },
+  "image": "7432.png",
+  "symbolType": "gate",
+  "kind": "or",
+  "inputs": 2,
+  "outputType": "totem-pole",
+  "formula": "Y = A OR B",
+  "description": "The X box (NOR) with the inverter box attached on its right.",
+  "tells": "X box + inverter box = OR, the same way AND is NAND + inverter.",
+  "confidence": "read"
+}

@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7410",
+  "partNumber": "7410",
+  "title": "Triple 3-input NAND gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 6,
+    "pdfPage": 12
+  },
+  "image": "7410.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 3,
+  "outputType": "totem-pole",
+  "formula": "Y = NOT(A AND B AND C)",
+  "description": "The empty NAND rectangle with three inputs.",
+  "tells": "Count the input lines: 3.",
+  "confidence": "read"
+}

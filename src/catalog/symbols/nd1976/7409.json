@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7409",
+  "partNumber": "7409",
+  "title": "Quadruple 2-input positive AND gate with open-collector output",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 6,
+    "pdfPage": 12
+  },
+  "image": "7409.png",
+  "symbolType": "gate",
+  "kind": "and",
+  "inputs": 2,
+  "outputType": "open-collector",
+  "formula": "Y = A AND B",
+  "description": "The empty NAND box with a second box on its right holding ONE diagonal (open-collector inverter).",
+  "tells": "NAND box + single-diagonal box = open-collector AND.",
+  "confidence": "read"
+}

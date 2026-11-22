@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 60 40">
+<title>xor, modern style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<path d="M14,4 Q36,4 46,20 Q36,36 14,36 Q22,20 14,4 Z"/><path d="M9,4 Q17,20 9,36"/>
+<line data-pin="A" x1="16" y1="12" x2="0" y2="12"/>
+<line data-pin="B" x1="16" y1="28" x2="0" y2="28"/>
+<line data-pin="Y" x1="46" y1="20" x2="60" y2="20"/>
+</g>
+</svg>

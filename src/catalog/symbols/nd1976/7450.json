@@ -1,0 +1,20 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7450",
+  "partNumber": "7450",
+  "title": "2x2 AND-OR-INVERT (7450 - 7451 - 7460)",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 12,
+    "pdfPage": 18
+  },
+  "image": "7450.png",
+  "symbolType": "gate",
+  "kind": "aoi",
+  "outputType": "totem-pole",
+  "formula": "2x2 AND-OR-INVERT",
+  "description": "Boxes stacked on the left (the AND parts) feeding an X box (the OR-invert). The manual notes the four-input gates are 7460 circuits (expanders). 7451 is drawn the same way.",
+  "tells": "Stacked boxes feeding an X box = AND-OR-INVERT.",
+  "confidence": "read"
+}

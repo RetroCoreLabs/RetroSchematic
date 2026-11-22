@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "74H21",
+  "partNumber": "74H21",
+  "title": "Dual 4-input AND gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 8,
+    "pdfPage": 14
+  },
+  "image": "74H21.png",
+  "symbolType": "gate",
+  "kind": "and",
+  "inputs": 4,
+  "outputType": "totem-pole",
+  "formula": "Y = A AND B AND C AND D",
+  "description": "A tall box with a triangle inside pointing right, reaching the full height.",
+  "tells": "Four-input AND.",
+  "confidence": "read"
+}

@@ -1,0 +1,22 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7414",
+  "partNumber": "7414",
+  "title": "Hex Schmitt-trigger inverter",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 7,
+    "pdfPage": 13
+  },
+  "image": "7414.png",
+  "symbolType": "gate",
+  "kind": "not",
+  "inputs": 1,
+  "outputType": "totem-pole",
+  "schmitt": true,
+  "formula": "Y = NOT A",
+  "description": "The inverter box (inner triangle) with the top and bottom edges extended past the right side.",
+  "tells": "Inverter + extended edges = Schmitt inverter.",
+  "confidence": "read"
+}

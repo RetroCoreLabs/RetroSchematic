@@ -1,0 +1,22 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7425",
+  "partNumber": "7425",
+  "title": "Dual 4-input NOR gate with strobe",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 9,
+    "pdfPage": 15
+  },
+  "image": "7425.png",
+  "symbolType": "gate",
+  "kind": "nor",
+  "inputs": 4,
+  "strobe": true,
+  "outputType": "totem-pole",
+  "formula": "Y = NOT(G AND (A OR B OR C OR D))",
+  "description": "A tall X box with four inputs, and a fifth input G entering from below the box (strobe).",
+  "tells": "X box with an input from underneath = NOR with strobe.",
+  "confidence": "read"
+}

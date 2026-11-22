@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7438",
+  "partNumber": "7438",
+  "title": "Quadruple 2-input NAND buffer with open-collector",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 11,
+    "pdfPage": 17
+  },
+  "image": "7438.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 2,
+  "outputType": "open-collector",
+  "formula": "Y = NOT(A AND B)",
+  "description": "An empty box with a double bar on the right, then a point.",
+  "tells": "Double bar + point = open-collector NAND buffer.",
+  "confidence": "read"
+}

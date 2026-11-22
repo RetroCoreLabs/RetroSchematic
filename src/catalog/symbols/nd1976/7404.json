@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7404",
+  "partNumber": "7404",
+  "title": "Hex inverter",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 5,
+    "pdfPage": 11
+  },
+  "image": "7404.png",
+  "symbolType": "gate",
+  "kind": "not",
+  "inputs": 1,
+  "outputType": "totem-pole",
+  "formula": "Y = NOT A",
+  "description": "A small rectangle with a triangle drawn inside it pointing right: two lines from the left corners meet at the middle of the right side.",
+  "tells": "Box with an inner right-pointing triangle = inverter.",
+  "confidence": "read"
+}

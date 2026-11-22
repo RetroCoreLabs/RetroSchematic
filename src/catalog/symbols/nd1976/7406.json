@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7406",
+  "partNumber": "7406",
+  "title": "Hex inverter buffer/driver with open-collector high-voltage output",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 5,
+    "pdfPage": 11
+  },
+  "image": "7406.png",
+  "symbolType": "gate",
+  "kind": "not",
+  "inputs": 1,
+  "outputType": "open-collector-high-voltage",
+  "formula": "Y = NOT A",
+  "description": "A box whose right side is drawn as a point (a pentagon, like a house on its side), with one diagonal inside.",
+  "tells": "Pointed right end = buffer/driver. Diagonal inside = open-collector, inverting.",
+  "confidence": "read"
+}

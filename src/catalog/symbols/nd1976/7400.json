@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7400",
+  "partNumber": "7400",
+  "title": "Quadruple 2-input NAND gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 4,
+    "pdfPage": 10
+  },
+  "image": "7400.png",
+  "symbolType": "gate",
+  "kind": "nand",
+  "inputs": 2,
+  "outputType": "totem-pole",
+  "formula": "Y = NOT(A AND B)",
+  "description": "A plain tall rectangle, empty inside. Inputs enter on the left, one output line leaves the middle of the right side.",
+  "tells": "Empty box = NAND. No X, no diagonal, no triangle, no second box.",
+  "confidence": "read"
+}

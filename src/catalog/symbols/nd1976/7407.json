@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7407",
+  "partNumber": "7407",
+  "title": "Hex buffer/driver with open-collector high-voltage output",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 6,
+    "pdfPage": 12
+  },
+  "image": "7407.png",
+  "symbolType": "gate",
+  "kind": "buffer",
+  "inputs": 1,
+  "outputType": "open-collector-high-voltage",
+  "formula": "Y = A",
+  "description": "Two boxes side by side: an empty box, then a box with one diagonal (the open-collector inverter).",
+  "tells": "Empty box followed by a diagonal box = non-inverting open-collector buffer.",
+  "confidence": "read"
+}

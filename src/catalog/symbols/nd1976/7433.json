@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7433",
+  "partNumber": "7433",
+  "title": "Quadruple 2-input NOR buffer with open-collector",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 10,
+    "pdfPage": 16
+  },
+  "image": "7433.png",
+  "symbolType": "gate",
+  "kind": "nor",
+  "inputs": 2,
+  "outputType": "open-collector",
+  "formula": "Y = NOT(A OR B)",
+  "description": "The X box ending in a point, with a vertical bar between box and point.",
+  "tells": "X + bar + point = open-collector NOR buffer.",
+  "confidence": "read"
+}

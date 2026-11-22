@@ -1,0 +1,18 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "74191",
+  "partNumber": "74191",
+  "title": "Synchronous up/down counter",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 37,
+    "pdfPage": 43
+  },
+  "image": "74191.png",
+  "symbolType": "block",
+  "description": "A rectangle for the whole function (or one section of it). Pin numbers are written on the lines where they meet the box; signal names are written beside them.",
+  "tells": "Read the part type from the parts list and compare the pin numbers against this cut-out.",
+  "pinsAsDrawn": "open",
+  "confidence": "read"
+}

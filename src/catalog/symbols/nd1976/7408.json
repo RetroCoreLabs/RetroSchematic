@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol",
+  "catalogFormatVersion": 1,
+  "id": "7408",
+  "partNumber": "7408",
+  "title": "Quadruple 2-input AND gate",
+  "source": {
+    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+    "printedPage": 6,
+    "pdfPage": 12
+  },
+  "image": "7408.png",
+  "symbolType": "gate",
+  "kind": "and",
+  "inputs": 2,
+  "outputType": "totem-pole",
+  "formula": "Y = A AND B",
+  "description": "The empty NAND box with a second box attached on its right holding an inner right-pointing triangle (the inverter symbol).",
+  "tells": "NAND box + inverter box = AND. The manual draws AND as NAND followed by NOT.",
+  "confidence": "read"
+}
