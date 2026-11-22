@@ -291,7 +291,10 @@ def aoi_2x2():
     pins.append({"pin": "Y", "x": w, "y": 18, "dir": "out"})
     nd = ('<rect x="18" y="2" width="10" height="32"/><rect x="28" y="2" width="10" height="32"/>'
           '<line x1="28" y1="2" x2="38" y2="34"/><line x1="28" y1="34" x2="38" y2="2"/>'
-          '<rect x="18" y="50" width="10" height="34"/><polyline points="28,67 33,67 33,34"/>')
+          '<rect x="18" y="50" width="10" height="34"/><polyline points="28,67 33,67 33,34"/>'
+          # 7450 cut-out, read at full size: the top-left box is split by a horizontal line (A,B
+          # above, C,D below), and a short vertical line joins its bottom to the top of the lower box.
+          '<line x1="18" y1="18" x2="28" y2="18"/><line x1="23" y1="34" x2="23" y2="50"/>')
     nd_stubs = [stub(c, 18, y, 0, y) for c, y in zip("ABCDEFGH", top + bot)] + [stub("Y", 38, 18, w, 18)]
     mo = ('<path d="M10,4 H16 A14,14 0 0 1 16,32 H10 Z"/><path d="M10,54 H16 A14,14 0 0 1 16,82 H10 Z"/>'
           '<polyline points="30,18 33,18 33,13 39,13"/><polyline points="30,68 35,68 35,23 39,23"/>'
