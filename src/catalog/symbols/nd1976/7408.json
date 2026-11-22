@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "totem-pole",
   "formula": "Y = A AND B",
-  "description": "The empty NAND box with a second box attached on its right holding an inner right-pointing triangle (the inverter symbol).",
-  "tells": "NAND box + inverter box = AND. The manual draws AND as NAND followed by NOT.",
+  "description": "One rectangle split down the middle by a vertical line: left half empty, right half holds a triangle pointing right (two lines from its left corners meeting at the middle of the right edge).",
+  "tells": "Split box with a triangle in the right half = AND. The manual draws AND as NAND followed by an inverter, in one box.",
   "confidence": "read"
 }

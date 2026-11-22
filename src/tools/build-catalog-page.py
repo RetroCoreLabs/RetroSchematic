@@ -7,21 +7,9 @@ Run from the src folder after build-symbol-catalog.py and build-gate-shapes.py:
 import glob, json, os
 import fitz
 
-KINDS = ["nand", "nor", "not", "and", "or", "xor", "nand-oc", "not-oc", "and-oc"]
-
-def shape_for(e):
-    """The drawing that matches this entry exactly, or None. A symbol with a mark we have no
-    drawing for (buffer point, Schmitt edges, strobe, high-voltage driver) gets NO drawing rather
-    than the plain gate, which would be wrong."""
-    k = e.get("kind")
-    out = e.get("outputType")
-    if e.get("schmitt") or e.get("strobe"):
-        return None
-    if out == "totem-pole" and k in ("nand", "nor", "not", "and", "or", "xor"):
-        return k
-    if out == "open-collector" and k in ("nand", "not", "and"):
-        return k + "-oc"
-    return None
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from shape_map import shape_for, shapes_needed
 
 def render(svg, png, zoom=4):
     doc = fitz.open(svg)
@@ -30,7 +18,7 @@ def render(svg, png, zoom=4):
     pix.save(png)
 
 for style in ("nd1976", "modern"):
-    for k in KINDS:
+    for k, _, _, _ in shapes_needed():
         base = f"catalog/symbols/{style}/shapes/{k}"
         render(base + ".svg", base + ".png")
 
@@ -64,15 +52,25 @@ for e in entries:
 out.append("")
 out.append("## How ND draws gates\n")
 out.append("| Kind | ND 1976 | Modern | How to recognise the ND symbol |\n|---|---|---|---|")
-rule = {"nand-oc": "NAND box with a vertical bar down the centre", "not-oc": "Box with one diagonal",
-        "and-oc": "NAND box followed by a one-diagonal box", "nand": "Empty box", "nor": "Box with an X", "not": "Box with a triangle inside",
-        "and": "Empty box followed by an inverter box", "or": "X box followed by an inverter box",
-        "xor": "Box with the exclusive-OR mark"}
-for k in KINDS:
-    out.append(f"| {k.upper().replace('-OC', ' open collector')} | ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) | "
-               f"![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) | {rule[k]} |")
-out.append("\nMarks that change a symbol: a double vertical bar or a single diagonal at the output = open "
-           "collector; a pointed right end = buffer/driver; edges running past the box = Schmitt trigger. "
+rule = [
+    ("NAND", "nand2", "Narrow upright rectangle, empty"),
+    ("NAND, open collector", "nand-oc2", "The same with a vertical line down the centre"),
+    ("NOR", "nor2", "Rectangle with an X corner to corner"),
+    ("NOT", "not1", "Rectangle with a triangle filling it"),
+    ("NOT, open collector", "not-oc1", "Rectangle with one diagonal, bottom left to top right"),
+    ("AND", "and2", "One rectangle split down the middle; the right half holds the triangle"),
+    ("AND, open collector", "and-oc2", "Split rectangle; the right half holds one diagonal from bottom left to the middle of the right edge"),
+    ("OR", "or2", "Split rectangle; X in the left half, triangle in the right half"),
+    ("XOR", "xor2", "Rectangle with a centre line and a short = across it"),
+    ("Schmitt trigger", "nand-schmitt4", "Top edge runs on to the right, bottom edge runs on to the left"),
+    ("Buffer", "nand-buf2", "The right end is a point"),
+    ("Line driver", "line-driver1", "Large open triangle"),
+]
+for name, k, text in rule:
+    out.append(f"| {name} | ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) | "
+               f"![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) | {text} |")
+out.append("\nMarks that change a symbol: a centre line, a bar before the point or a single diagonal = open "
+           "collector; a pointed right end = buffer/driver; edges running past the box = Schmitt trigger: an input with two switching points (about 1.7 V going up, 0.9 V going down) so a slow or noisy signal gives one clean change instead of flicker. "
            "Signal subscripts: 1 = active high, 0 = active low (manual page 2).\n")
 
 out.append("## Parts\n")
@@ -85,12 +83,9 @@ for e in entries:
     out.append(f"- **Manual page:** {src['printedPage']} (PDF page {src['pdfPage']})\n")
     out.append(f"![{e['partNumber']} as drawn in ND-13.003.01](../catalog/symbols/nd1976/{e['image']})\n")
     if e["symbolType"] == "gate":
-        k = shape_for(e)
-        if k is None:
-            out.append("No redrawn symbol for this one yet - see the cut-out.\n")
-        else:
-            out.append(f"| ND 1976 | Modern |\n|---|---|\n| ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) "
-                       f"| ![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) |\n")
+        k = shape_for(e)[0]
+        out.append(f"| ND 1976 | Modern |\n|---|---|\n| ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) "
+                   f"| ![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) |\n")
         out.append(f"- **Output:** {e['outputType']}")
         out.append(f"- **What it looks like:** {e['description']}")
         out.append(f"- **How to tell it apart:** {e['tells']}\n")

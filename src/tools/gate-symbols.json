@@ -61,24 +61,24 @@
     "inputs": 1,
     "outputType": "open-collector-high-voltage",
     "formula": "Y = A",
-    "description": "Two boxes side by side: an empty box, then a box with one diagonal (the open-collector inverter).",
-    "tells": "Empty box followed by a diagonal box = non-inverting open-collector buffer."
+    "description": "One rectangle split down the middle: left half empty, right half holds one diagonal from its bottom left corner to the middle of the right edge.",
+    "tells": "Same split box as the open-collector AND (7409), but one input."
   },
   "7408": {
     "kind": "and",
     "inputs": 2,
     "outputType": "totem-pole",
     "formula": "Y = A AND B",
-    "description": "The empty NAND box with a second box attached on its right holding an inner right-pointing triangle (the inverter symbol).",
-    "tells": "NAND box + inverter box = AND. The manual draws AND as NAND followed by NOT."
+    "description": "One rectangle split down the middle by a vertical line: left half empty, right half holds a triangle pointing right (two lines from its left corners meeting at the middle of the right edge).",
+    "tells": "Split box with a triangle in the right half = AND. The manual draws AND as NAND followed by an inverter, in one box."
   },
   "7409": {
     "kind": "and",
     "inputs": 2,
     "outputType": "open-collector",
     "formula": "Y = A AND B",
-    "description": "The empty NAND box with a second box on its right holding ONE diagonal (open-collector inverter).",
-    "tells": "NAND box + single-diagonal box = open-collector AND."
+    "description": "One rectangle split down the middle: left half empty, right half holds one diagonal from its bottom left corner up to the middle of the right edge.",
+    "tells": "Split box with a diagonal (not a triangle) in the right half = open-collector AND."
   },
   "7410": {
     "kind": "nand",
@@ -93,7 +93,7 @@
     "inputs": 3,
     "outputType": "totem-pole",
     "formula": "Y = A AND B AND C",
-    "description": "Three-input empty box followed by the inverter box (inner triangle).",
+    "description": "The split AND rectangle (triangle in the right half) with three inputs.",
     "tells": "As 7408 with three inputs."
   },
   "7413": {
@@ -102,8 +102,8 @@
     "outputType": "totem-pole",
     "schmitt": true,
     "formula": "Y = NOT(A AND B AND C AND D)",
-    "description": "The empty NAND rectangle with its top and bottom edges running on past the right side as short horizontal lines.",
-    "tells": "Edges extended past the box = Schmitt trigger input."
+    "description": "The empty NAND rectangle with four inputs; its top edge runs on to the right and its bottom edge runs on to the left. What a Schmitt trigger is: a normal TTL input switches at one voltage, so a slow or noisy signal near that voltage makes the output flicker between 0 and 1 several times. A Schmitt trigger input has two switching points instead: the input must rise above about 1.7 V before the output changes, and then fall below about 0.9 V before it changes back. The gap between them (the hysteresis) means noise and slow edges give one clean change. It is used on signals from cables, switches and RC delay circuits. The input still reads as plain logic 0 or 1; only its noise tolerance differs.",
+    "tells": "Edges running past the box (top to the right, bottom to the left) = Schmitt trigger input."
   },
   "7414": {
     "kind": "not",
@@ -111,7 +111,7 @@
     "outputType": "totem-pole",
     "schmitt": true,
     "formula": "Y = NOT A",
-    "description": "The inverter box (inner triangle) with the top and bottom edges extended past the right side.",
+    "description": "The inverter rectangle (triangle inside) with its top edge running on to the right and its bottom edge running on to the left. What a Schmitt trigger is: a normal TTL input switches at one voltage, so a slow or noisy signal near that voltage makes the output flicker between 0 and 1 several times. A Schmitt trigger input has two switching points instead: the input must rise above about 1.7 V before the output changes, and then fall below about 0.9 V before it changes back. The gap between them (the hysteresis) means noise and slow edges give one clean change. It is used on signals from cables, switches and RC delay circuits. The input still reads as plain logic 0 or 1; only its noise tolerance differs.",
     "tells": "Inverter + extended edges = Schmitt inverter."
   },
   "7416": {
@@ -143,7 +143,7 @@
     "inputs": 4,
     "outputType": "totem-pole",
     "formula": "Y = A AND B AND C AND D",
-    "description": "A tall box with a triangle inside pointing right, reaching the full height.",
+    "description": "The split AND rectangle (triangle in the right half) with four inputs.",
     "tells": "Four-input AND."
   },
   "7425": {
@@ -184,8 +184,8 @@
     "inputs": 2,
     "outputType": "totem-pole",
     "formula": "Y = A OR B",
-    "description": "The X box (NOR) with the inverter box attached on its right.",
-    "tells": "X box + inverter box = OR, the same way AND is NAND + inverter."
+    "description": "One rectangle split down the middle: X in the left half, triangle in the right half.",
+    "tells": "Split box, X left, triangle right = OR (NOR followed by an inverter)."
   },
   "7433": {
     "kind": "nor",
@@ -208,8 +208,8 @@
     "inputs": 2,
     "outputType": "open-collector",
     "formula": "Y = NOT(A AND B)",
-    "description": "An empty box with a double bar on the right, then a point.",
-    "tells": "Double bar + point = open-collector NAND buffer."
+    "description": "An empty box, a narrow bar, then a pointed right end.",
+    "tells": "Bar before the point = open-collector NAND buffer. Compare 7437 (point, no bar)."
   },
   "7440": {
     "kind": "nand",
@@ -224,7 +224,7 @@
     "inputs": 2,
     "outputType": "totem-pole",
     "formula": "Y = A XOR B",
-    "description": "A box with an equals-like mark (two short horizontal lines crossed by a vertical bar) inside.",
+    "description": "A rectangle with a vertical line down the centre and a short equals sign (two short horizontal lines) across that line.",
     "tells": "Mark inside the box = exclusive OR."
   },
   "7450": {

@@ -1,0 +1,63 @@
+{
+  "catalogFormat": "nd-symbol-pins",
+  "catalogFormatVersion": 1,
+  "kind": "nand8",
+  "width": 77,
+  "height": 90,
+  "pins": [
+    {
+      "pin": "A",
+      "x": 0,
+      "y": 9.12,
+      "dir": "in"
+    },
+    {
+      "pin": "B",
+      "x": 0,
+      "y": 19.38,
+      "dir": "in"
+    },
+    {
+      "pin": "C",
+      "x": 0,
+      "y": 29.62,
+      "dir": "in"
+    },
+    {
+      "pin": "D",
+      "x": 0,
+      "y": 39.88,
+      "dir": "in"
+    },
+    {
+      "pin": "E",
+      "x": 0,
+      "y": 50.12,
+      "dir": "in"
+    },
+    {
+      "pin": "F",
+      "x": 0,
+      "y": 60.38,
+      "dir": "in"
+    },
+    {
+      "pin": "G",
+      "x": 0,
+      "y": 70.62,
+      "dir": "in"
+    },
+    {
+      "pin": "H",
+      "x": 0,
+      "y": 80.88,
+      "dir": "in"
+    },
+    {
+      "pin": "Y",
+      "x": 77,
+      "y": 45,
+      "dir": "out"
+    }
+  ]
+}

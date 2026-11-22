@@ -1,0 +1,33 @@
+{
+  "catalogFormat": "nd-symbol-pins",
+  "catalogFormatVersion": 1,
+  "kind": "nor3",
+  "width": 60,
+  "height": 40,
+  "pins": [
+    {
+      "pin": "A",
+      "x": 0,
+      "y": 9.33,
+      "dir": "in"
+    },
+    {
+      "pin": "B",
+      "x": 0,
+      "y": 20,
+      "dir": "in"
+    },
+    {
+      "pin": "C",
+      "x": 0,
+      "y": 30.67,
+      "dir": "in"
+    },
+    {
+      "pin": "Y",
+      "x": 60,
+      "y": 20,
+      "dir": "out"
+    }
+  ]
+}

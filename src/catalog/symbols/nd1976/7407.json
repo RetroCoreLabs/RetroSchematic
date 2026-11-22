@@ -15,7 +15,7 @@
   "inputs": 1,
   "outputType": "open-collector-high-voltage",
   "formula": "Y = A",
-  "description": "Two boxes side by side: an empty box, then a box with one diagonal (the open-collector inverter).",
-  "tells": "Empty box followed by a diagonal box = non-inverting open-collector buffer.",
+  "description": "One rectangle split down the middle: left half empty, right half holds one diagonal from its bottom left corner to the middle of the right edge.",
+  "tells": "Same split box as the open-collector AND (7409), but one input.",
   "confidence": "read"
 }

@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "open-collector",
   "formula": "Y = A AND B",
-  "description": "The empty NAND box with a second box on its right holding ONE diagonal (open-collector inverter).",
-  "tells": "NAND box + single-diagonal box = open-collector AND.",
+  "description": "One rectangle split down the middle: left half empty, right half holds one diagonal from its bottom left corner up to the middle of the right edge.",
+  "tells": "Split box with a diagonal (not a triangle) in the right half = open-collector AND.",
   "confidence": "read"
 }

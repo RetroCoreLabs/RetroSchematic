@@ -15,7 +15,7 @@
   "inputs": 4,
   "outputType": "totem-pole",
   "formula": "Y = A AND B AND C AND D",
-  "description": "A tall box with a triangle inside pointing right, reaching the full height.",
+  "description": "The split AND rectangle (triangle in the right half) with four inputs.",
   "tells": "Four-input AND.",
   "confidence": "read"
 }

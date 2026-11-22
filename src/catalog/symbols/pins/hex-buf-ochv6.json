@@ -1,0 +1,81 @@
+{
+  "catalogFormat": "nd-symbol-pins",
+  "catalogFormatVersion": 1,
+  "kind": "hex-buf-ochv6",
+  "width": 60,
+  "height": 120,
+  "pins": [
+    {
+      "pin": "A",
+      "x": 0,
+      "y": 10,
+      "dir": "in"
+    },
+    {
+      "pin": "B",
+      "x": 0,
+      "y": 30,
+      "dir": "in"
+    },
+    {
+      "pin": "C",
+      "x": 0,
+      "y": 50,
+      "dir": "in"
+    },
+    {
+      "pin": "D",
+      "x": 0,
+      "y": 70,
+      "dir": "in"
+    },
+    {
+      "pin": "E",
+      "x": 0,
+      "y": 90,
+      "dir": "in"
+    },
+    {
+      "pin": "F",
+      "x": 0,
+      "y": 110,
+      "dir": "in"
+    },
+    {
+      "pin": "YA",
+      "x": 60,
+      "y": 10,
+      "dir": "out"
+    },
+    {
+      "pin": "YB",
+      "x": 60,
+      "y": 30,
+      "dir": "out"
+    },
+    {
+      "pin": "YC",
+      "x": 60,
+      "y": 50,
+      "dir": "out"
+    },
+    {
+      "pin": "YD",
+      "x": 60,
+      "y": 70,
+      "dir": "out"
+    },
+    {
+      "pin": "YE",
+      "x": 60,
+      "y": 90,
+      "dir": "out"
+    },
+    {
+      "pin": "YF",
+      "x": 60,
+      "y": 110,
+      "dir": "out"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "catalogFormat": "nd-symbol-pins",
+  "catalogFormatVersion": 1,
+  "kind": "nand-schmitt4",
+  "width": 60,
+  "height": 50,
+  "pins": [
+    {
+      "pin": "A",
+      "x": 0,
+      "y": 9.25,
+      "dir": "in"
+    },
+    {
+      "pin": "B",
+      "x": 0,
+      "y": 19.75,
+      "dir": "in"
+    },
+    {
+      "pin": "C",
+      "x": 0,
+      "y": 30.25,
+      "dir": "in"
+    },
+    {
+      "pin": "D",
+      "x": 0,
+      "y": 40.75,
+      "dir": "in"
+    },
+    {
+      "pin": "Y",
+      "x": 60,
+      "y": 25,
+      "dir": "out"
+    }
+  ]
+}

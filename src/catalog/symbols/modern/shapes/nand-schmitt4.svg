@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 60 50">
+<title>nand-schmitt4, modern style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<path d="M12,4 H22 A21,21 0 0 1 22,46 H12 Z"/><circle cx="46" cy="25" r="3"/><polyline points="16,28 24,28 24,22 28,22"/><polyline points="16,28 20,28 20,22 28,22"/>
+<line data-pin="A" x1="12" y1="9.25" x2="0" y2="9.25"/>
+<line data-pin="B" x1="12" y1="19.75" x2="0" y2="19.75"/>
+<line data-pin="C" x1="12" y1="30.25" x2="0" y2="30.25"/>
+<line data-pin="D" x1="12" y1="40.75" x2="0" y2="40.75"/>
+<line data-pin="Y" x1="49" y1="25" x2="60" y2="25"/>
+</g>
+</svg>

@@ -1,0 +1,45 @@
+{
+  "catalogFormat": "nd-symbol-pins",
+  "catalogFormatVersion": 1,
+  "kind": "nor-strobe4",
+  "width": 77,
+  "height": 64,
+  "pins": [
+    {
+      "pin": "A",
+      "x": 0,
+      "y": 9.25,
+      "dir": "in"
+    },
+    {
+      "pin": "B",
+      "x": 0,
+      "y": 19.75,
+      "dir": "in"
+    },
+    {
+      "pin": "C",
+      "x": 0,
+      "y": 30.25,
+      "dir": "in"
+    },
+    {
+      "pin": "D",
+      "x": 0,
+      "y": 40.75,
+      "dir": "in"
+    },
+    {
+      "pin": "G",
+      "x": 0,
+      "y": 60,
+      "dir": "in"
+    },
+    {
+      "pin": "Y",
+      "x": 77,
+      "y": 25,
+      "dir": "out"
+    }
+  ]
+}

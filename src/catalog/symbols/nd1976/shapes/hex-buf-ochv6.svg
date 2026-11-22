@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="120" viewBox="0 0 60 120">
+<title>hex-buf-ochv6, ND-13.003.01 style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<rect x="22" y="2" width="16" height="116"/>
+<line data-pin="A" x1="22" y1="10" x2="0" y2="10"/>
+<line data-pin="B" x1="22" y1="30" x2="0" y2="30"/>
+<line data-pin="C" x1="22" y1="50" x2="0" y2="50"/>
+<line data-pin="D" x1="22" y1="70" x2="0" y2="70"/>
+<line data-pin="E" x1="22" y1="90" x2="0" y2="90"/>
+<line data-pin="F" x1="22" y1="110" x2="0" y2="110"/>
+<line data-pin="YA" x1="38" y1="10" x2="60" y2="10"/>
+<line data-pin="YB" x1="38" y1="30" x2="60" y2="30"/>
+<line data-pin="YC" x1="38" y1="50" x2="60" y2="50"/>
+<line data-pin="YD" x1="38" y1="70" x2="60" y2="70"/>
+<line data-pin="YE" x1="38" y1="90" x2="60" y2="90"/>
+<line data-pin="YF" x1="38" y1="110" x2="60" y2="110"/>
+</g>
+</svg>

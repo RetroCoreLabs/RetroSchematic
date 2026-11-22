@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="90" viewBox="0 0 60 90">
+<title>aoi-2x28, modern style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<path d="M10,4 H16 A14,14 0 0 1 16,32 H10 Z"/><path d="M10,54 H16 A14,14 0 0 1 16,82 H10 Z"/><polyline points="30,18 33,18 33,13 39,13"/><polyline points="30,68 35,68 35,23 39,23"/><path d="M36,8 Q48,8 54,18 Q48,28 36,28 Q40,18 36,8 Z"/><circle cx="56.5" cy="18" r="2.5"/>
+<line data-pin="A" x1="10" y1="6" x2="0" y2="6"/>
+<line data-pin="B" x1="10" y1="14" x2="0" y2="14"/>
+<line data-pin="C" x1="10" y1="22" x2="0" y2="22"/>
+<line data-pin="D" x1="10" y1="30" x2="0" y2="30"/>
+<line data-pin="E" x1="10" y1="56" x2="0" y2="56"/>
+<line data-pin="F" x1="10" y1="64" x2="0" y2="64"/>
+<line data-pin="G" x1="10" y1="72" x2="0" y2="72"/>
+<line data-pin="H" x1="10" y1="80" x2="0" y2="80"/>
+<line data-pin="Y" x1="59" y1="18" x2="60" y2="18"/>
+</g>
+</svg>

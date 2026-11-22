@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-symbol-pins",
+  "catalogFormatVersion": 1,
+  "kind": "not-schmitt1",
+  "width": 60,
+  "height": 40,
+  "pins": [
+    {
+      "pin": "A",
+      "x": 0,
+      "y": 20,
+      "dir": "in"
+    },
+    {
+      "pin": "Y",
+      "x": 60,
+      "y": 20,
+      "dir": "out"
+    }
+  ]
+}

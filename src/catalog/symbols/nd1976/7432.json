@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "totem-pole",
   "formula": "Y = A OR B",
-  "description": "The X box (NOR) with the inverter box attached on its right.",
-  "tells": "X box + inverter box = OR, the same way AND is NAND + inverter.",
+  "description": "One rectangle split down the middle: X in the left half, triangle in the right half.",
+  "tells": "Split box, X left, triangle right = OR (NOR followed by an inverter).",
   "confidence": "read"
 }

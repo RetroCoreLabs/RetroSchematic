@@ -15,7 +15,7 @@
   "inputs": 3,
   "outputType": "totem-pole",
   "formula": "Y = A AND B AND C",
-  "description": "Three-input empty box followed by the inverter box (inner triangle).",
+  "description": "The split AND rectangle (triangle in the right half) with three inputs.",
   "tells": "As 7408 with three inputs.",
   "confidence": "read"
 }

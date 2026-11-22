@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 60 40">
+<title>line-driver2, ND-13.003.01 style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<path d="M16,4 L44,20 L16,36 Z"/>
+<line data-pin="A" x1="16" y1="12" x2="0" y2="12"/>
+<line data-pin="S" x1="16" y1="28" x2="0" y2="28"/>
+<line data-pin="Y" x1="44" y1="20" x2="60" y2="20"/>
+</g>
+</svg>

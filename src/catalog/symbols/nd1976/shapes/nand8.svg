@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="77" height="90" viewBox="0 0 77 90">
+<title>nand8, ND-13.003.01 style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<rect x="20" y="4" width="16" height="82"/>
+<line data-pin="A" x1="20" y1="9.12" x2="0" y2="9.12"/>
+<line data-pin="B" x1="20" y1="19.38" x2="0" y2="19.38"/>
+<line data-pin="C" x1="20" y1="29.62" x2="0" y2="29.62"/>
+<line data-pin="D" x1="20" y1="39.88" x2="0" y2="39.88"/>
+<line data-pin="E" x1="20" y1="50.12" x2="0" y2="50.12"/>
+<line data-pin="F" x1="20" y1="60.38" x2="0" y2="60.38"/>
+<line data-pin="G" x1="20" y1="70.62" x2="0" y2="70.62"/>
+<line data-pin="H" x1="20" y1="80.88" x2="0" y2="80.88"/>
+<line data-pin="Y" x1="36" y1="45" x2="77" y2="45"/>
+</g>
+</svg>

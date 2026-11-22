@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "open-collector",
   "formula": "Y = NOT(A AND B)",
-  "description": "An empty box with a double bar on the right, then a point.",
-  "tells": "Double bar + point = open-collector NAND buffer.",
+  "description": "An empty box, a narrow bar, then a pointed right end.",
+  "tells": "Bar before the point = open-collector NAND buffer. Compare 7437 (point, no bar).",
   "confidence": "read"
 }

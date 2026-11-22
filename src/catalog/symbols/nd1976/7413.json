@@ -16,7 +16,7 @@
   "outputType": "totem-pole",
   "schmitt": true,
   "formula": "Y = NOT(A AND B AND C AND D)",
-  "description": "The empty NAND rectangle with its top and bottom edges running on past the right side as short horizontal lines.",
-  "tells": "Edges extended past the box = Schmitt trigger input.",
+  "description": "The empty NAND rectangle with four inputs; its top edge runs on to the right and its bottom edge runs on to the left. What a Schmitt trigger is: a normal TTL input switches at one voltage, so a slow or noisy signal near that voltage makes the output flicker between 0 and 1 several times. A Schmitt trigger input has two switching points instead: the input must rise above about 1.7 V before the output changes, and then fall below about 0.9 V before it changes back. The gap between them (the hysteresis) means noise and slow edges give one clean change. It is used on signals from cables, switches and RC delay circuits. The input still reads as plain logic 0 or 1; only its noise tolerance differs.",
+  "tells": "Edges running past the box (top to the right, bottom to the left) = Schmitt trigger input.",
   "confidence": "read"
 }

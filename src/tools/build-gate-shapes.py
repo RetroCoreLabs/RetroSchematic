@@ -1,75 +1,300 @@
-"""Write the gate shapes in both styles and the one pin table they share.
+"""Write every gate-level symbol of ND-13.003.01 in two styles, plus the one pin table both share.
 
 Run from the src folder:  python -I tools/build-gate-shapes.py
 
-Each shape is 60 x 40 units. The pin table (catalog/symbols/pins/<kind>.json) gives where each
-pin's line ends. Both SVGs draw each pin as <line data-pin="..."> ending exactly there, so switching
-from ND symbols to modern ones never moves a signal line. The unit test GateShapeTests checks it.
+A shape is named <base><inputs>, e.g. nand2, nand8, and-oc2, line-driver1. tools/shape_map.py
+says which shape each manual entry uses. The pin table (catalog/symbols/pins/<shape>.json) gives
+where each pin's line ends; both SVGs draw every pin as <line data-pin="..."> ending exactly there,
+so switching from ND symbols to modern ones never moves a signal line. GateShapeTests checks it.
 
-ND shapes follow ND-13.003.01 (see catalog/symbols/nd1976/<part>.json for the description):
-NAND = empty box, NOR = box with an X, NOT = box with an inner triangle, AND = NAND box +
-inverter box, OR = NOR box + inverter box, XOR = box with the exclusive-OR mark.
+The ND drawings follow the manual's cut-outs (catalog/symbols/nd1976/<part>.png). Checked side by
+side against every cut-out on 2026-11-23. What the manual draws:
+  NAND      a narrow upright rectangle, empty
+  NAND o.c. the same with a vertical line down the centre (7401, 7403)
+  NOR       rectangle with an X corner to corner
+  NOT       rectangle with a triangle filling it (7404)
+  NOT o.c.  rectangle with ONE diagonal, bottom left to top right (7405)
+  AND       ONE rectangle split down the middle: left half empty, right half holds the triangle
+  AND o.c.  split rectangle, right half holds one diagonal from bottom left to the middle of the
+            right edge (7409; 7407 is the same with one input)
+  OR        split rectangle: left half X, right half triangle (7432)
+  XOR       rectangle with a centre line and a short "=" across it (7486)
+  Schmitt   top edge runs on to the right, bottom edge runs on to the left (7413, 7414)
+  buffer    the right end is a point (7437, 7440, 7428); a bar before the point = open collector
+            (7433, 7438, 7416); a diagonal in the pointed box = inverting open collector (7406)
+  strobe    the G input comes up into the bottom of the box (7425)
+  line drv. a large open triangle (75150, 75154)
 """
-import json, os
+import glob, json, os
 
-PINS2 = [{"pin": "A", "x": 0, "y": 12, "dir": "in"}, {"pin": "B", "x": 0, "y": 28, "dir": "in"},
-         {"pin": "Y", "x": 60, "y": 20, "dir": "out"}]
-PINS1 = [{"pin": "A", "x": 0, "y": 20, "dir": "in"}, {"pin": "Y", "x": 60, "y": 20, "dir": "out"}]
+T = 4  # top of a body
 
-def stub(p, edge):
-    # line from the pin end to the shape edge
-    return f'<line data-pin="{p["pin"]}" x1="{edge}" y1="{p["y"]}" x2="{p["x"]}" y2="{p["y"]}"/>'
 
-ND_BODY = {
-    "nand": '<rect x="12" y="4" width="18" height="32"/>',
-    "nor":  '<rect x="12" y="4" width="18" height="32"/><line x1="12" y1="4" x2="30" y2="36"/><line x1="12" y1="36" x2="30" y2="4"/>',
-    # 7404 in the manual: a tall narrow rectangle (taller than wide, like the NAND box) with the
-    # triangle filling it.
-    "not":  '<rect x="20" y="5" width="16" height="30"/><polyline points="20,5 36,20 20,35"/>',
-    "and":  '<rect x="10" y="4" width="18" height="32"/><rect x="28" y="10" width="16" height="20"/><polyline points="28,10 44,20 28,30"/>',
-    "or":   '<rect x="10" y="4" width="18" height="32"/><line x1="10" y1="4" x2="28" y2="36"/><line x1="10" y1="36" x2="28" y2="4"/><rect x="28" y="10" width="16" height="20"/><polyline points="28,10 44,20 28,30"/>',
-    "xor":  '<rect x="12" y="4" width="18" height="32"/><line x1="16" y1="18" x2="26" y2="18"/><line x1="16" y1="22" x2="26" y2="22"/><line x1="21" y1="12" x2="21" y2="28"/>',
-}
-# Open-collector variants. ND (manual page 4-6): NAND gets a vertical bar down the centre (7401,
-# 7403); the inverter gets ONE diagonal instead of the triangle (7405); AND = NAND box + that
-# diagonal box (7409). Modern: the plain shape with the open-collector mark (a small diamond with a
-# bar under it) inside, near the output.
-ND_BODY["nand-oc"] = '<rect x="12" y="4" width="18" height="32"/><line x1="21" y1="4" x2="21" y2="36"/>'
-ND_BODY["not-oc"] = '<rect x="20" y="5" width="16" height="30"/><line x1="20" y1="35" x2="36" y2="5"/>'
-ND_BODY["and-oc"] = '<rect x="10" y="4" width="18" height="32"/><rect x="28" y="10" width="16" height="20"/><line x1="28" y1="30" x2="44" y2="10"/>'
-ND_EDGE = {"nand-oc": (12, 30), "not-oc": (20, 36), "and-oc": (10, 44), "nand": (12, 30), "nor": (12, 30), "not": (20, 36), "and": (10, 44), "or": (10, 44), "xor": (12, 30)}
+def height_for(n):
+    return max(40, 10 * n + 10)
 
-MOD_BODY = {
-    "and":  '<path d="M12,4 H28 A16,16 0 0 1 28,36 H12 Z"/>',
-    "nand": '<path d="M12,4 H26 A16,16 0 0 1 26,36 H12 Z"/><circle cx="45" cy="20" r="3"/>',
-    "or":   '<path d="M10,4 Q34,4 46,20 Q34,36 10,36 Q18,20 10,4 Z"/>',
-    "nor":  '<path d="M8,4 Q32,4 42,20 Q32,36 8,36 Q16,20 8,4 Z"/><circle cx="45" cy="20" r="3"/>',
-    "xor":  '<path d="M14,4 Q36,4 46,20 Q36,36 14,36 Q22,20 14,4 Z"/><path d="M9,4 Q17,20 9,36"/>',
-    "not":  '<path d="M16,8 L40,20 L16,32 Z"/><circle cx="43" cy="20" r="3"/>',
-}
-OC_MARK = '<path d="M20,17 L23,20 L20,23 L17,20 Z"/><line x1="17" y1="25" x2="23" y2="25"/>'
-MOD_BODY["nand-oc"] = MOD_BODY["nand"] + OC_MARK
-MOD_BODY["not-oc"] = MOD_BODY["not"].replace('<path d="M16,8', '<path d="M16,8') + '<path d="M24,17 L27,20 L24,23 L21,20 Z"/><line x1="21" y1="25" x2="27" y2="25"/>'
-MOD_BODY["and-oc"] = MOD_BODY["and"] + OC_MARK
-# where each pin line meets the modern body: inputs, output
-MOD_EDGE = {"nand-oc": (12, 48), "not-oc": (16, 46), "and-oc": (12, 44), "and": (12, 44), "nand": (12, 48), "or": (13, 46), "nor": (11, 48), "xor": (16, 46), "not": (16, 46)}
 
-def svg(body, pins, edge_in, edge_out, title):
-    lines = [stub(p, edge_in if p["dir"] == "in" else edge_out) for p in pins]
-    return ('<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 60 40">\n'
+def input_ys(n, h):
+    b = h - T
+    return [T + (b - T) * (i + 0.5) / n for i in range(n)]
+
+
+def names(n, second=None):
+    out = [chr(ord("A") + i) for i in range(n)]
+    if second and n == 2:
+        out[1] = second
+    return out
+
+
+def r(v):
+    v = round(v, 2)
+    return int(v) if v == int(v) else v
+
+
+# ---- marks shared by the modern drawings ------------------------------------------------------
+def oc_mark(x, y):
+    return (f'<path d="M{r(x)},{r(y-3)} L{r(x+3)},{r(y)} L{r(x)},{r(y+3)} L{r(x-3)},{r(y)} Z"/>'
+            f'<line x1="{r(x-3)}" y1="{r(y+5)}" x2="{r(x+3)}" y2="{r(y+5)}"/>')
+
+
+def buf_mark(x, y):
+    return f'<path d="M{r(x-3)},{r(y-4)} L{r(x+4)},{r(y)} L{r(x-3)},{r(y+4)} Z"/>'
+
+
+def hyst_mark(x, y):
+    return (f'<polyline points="{r(x-6)},{r(y+3)} {r(x+2)},{r(y+3)} {r(x+2)},{r(y-3)} {r(x+6)},{r(y-3)}"/>'
+            f'<polyline points="{r(x-6)},{r(y+3)} {r(x-2)},{r(y+3)} {r(x-2)},{r(y-3)} {r(x+6)},{r(y-3)}"/>')
+
+
+# ---- ND bodies ---------------------------------------------------------------------------------
+def nd_body(base, h):
+    """Return (svg, x where input lines meet the body, x where the output line starts)."""
+    b, m = h - T, h / 2
+    box = lambda x0, x1: f'<rect x="{x0}" y="{T}" width="{x1 - x0}" height="{r(b - T)}"/>'
+    xline = lambda x0, x1: f'<line x1="{x0}" y1="{T}" x2="{x1}" y2="{r(b)}"/><line x1="{x0}" y1="{r(b)}" x2="{x1}" y2="{T}"/>'
+    tri = lambda x0, x1: f'<polyline points="{x0},{T} {x1},{r(m)} {x0},{r(b)}"/>'
+    vline = lambda x: f'<line x1="{x}" y1="{T}" x2="{x}" y2="{r(b)}"/>'
+    point = lambda x0, x1, tip: f'<path d="M{x0},{T} H{x1} L{tip},{r(m)} L{x1},{r(b)} H{x0} Z"/>'
+    # the pointed end alone, open on its left: the box edge it sits against is the only line there
+    tip_open = lambda x0, tip: f'<polyline points="{x0},{T} {tip},{r(m)} {x0},{r(b)}"/>'
+    schmitt = f'<line x1="36" y1="{T}" x2="46" y2="{T}"/><line x1="10" y1="{r(b)}" x2="20" y2="{r(b)}"/>'
+    if base == "nand":
+        return box(20, 36), 20, 36
+    if base == "nand-oc":
+        return box(20, 36) + vline(28), 20, 36
+    if base == "nor":
+        return box(20, 36) + xline(20, 36), 20, 36
+    if base == "not":
+        return box(20, 36) + tri(20, 36), 20, 36
+    if base == "not-oc":
+        return box(20, 36) + f'<line x1="20" y1="{r(b)}" x2="36" y2="{T}"/>', 20, 36
+    if base == "and":
+        return box(16, 40) + vline(28) + tri(28, 40), 16, 40
+    if base in ("and-oc", "buf-ochv"):
+        return box(16, 40) + vline(28) + f'<line x1="28" y1="{r(b)}" x2="40" y2="{r(m)}"/>', 16, 40
+    if base == "or":
+        return box(16, 40) + vline(28) + xline(16, 28) + tri(28, 40), 16, 40
+    if base == "xor":
+        return (box(20, 36) + vline(28) + f'<line x1="25" y1="{r(m - 2)}" x2="31" y2="{r(m - 2)}"/>'
+                f'<line x1="25" y1="{r(m + 2)}" x2="31" y2="{r(m + 2)}"/>'), 20, 36
+    if base == "nand-schmitt":
+        return box(20, 36) + schmitt, 20, 36
+    if base == "not-schmitt":
+        return box(20, 36) + tri(20, 36) + schmitt, 20, 36
+    if base == "nand-buf":
+        return point(16, 30, 38), 16, 38
+    if base == "nor-buf":
+        return box(16, 30) + xline(16, 30) + tip_open(30, 38), 16, 38
+    if base == "nor-buf-oc":
+        return point(16, 30, 38) + xline(16, 30) + vline(30), 16, 38
+    if base == "nand-buf-oc":
+        return point(16, 30, 38) + vline(30), 16, 38
+    if base == "not-buf-ochv":
+        return point(20, 32, 40) + f'<line x1="20" y1="{r(b)}" x2="32" y2="{T}"/>', 20, 40
+    if base == "not-buf-ochv-bar":
+        return point(20, 30, 38) + vline(30), 20, 38
+    if base == "line-driver":
+        return f'<path d="M16,{T} L44,{r(m)} L16,{r(b)} Z"/>', 16, 44
+    raise SystemExit("no ND body for " + base)
+
+
+# ---- modern bodies -----------------------------------------------------------------------------
+def mod_body(base, h, ys):
+    """Return (svg, list of x where each input meets the body, x where the output line starts)."""
+    b, m = h - T, h / 2
+    rad = (b - T) / 2
+    n = len(ys)
+
+    def and_shape(x0):
+        return f'<path d="M{x0},{T} H{x0 + 10} A{r(rad)},{r(rad)} 0 0 1 {x0 + 10},{r(b)} H{x0} Z"/>', x0 + 10 + rad
+
+    def or_shape(x0):
+        xr = x0 + 14 + rad
+        svg = (f'<path d="M{x0},{T} Q{r(x0 + (xr - x0) * 0.7)},{T} {r(xr)},{r(m)} Q{r(x0 + (xr - x0) * 0.7)},{r(b)} {x0},{r(b)} '
+               f'Q{x0 + 8},{r(m)} {x0},{T} Z"/>')
+        back = [x0 + 16 * ((y - T) / (b - T)) * (1 - (y - T) / (b - T)) for y in ys]
+        return svg, back, xr
+
+    def tri(x0, x1):
+        return f'<path d="M{x0},{r(m - 12)} L{x1},{r(m)} L{x0},{r(m + 12)} Z"/>'
+
+    bubble = lambda x: f'<circle cx="{r(x + 3)}" cy="{r(m)}" r="3"/>'
+    if base in ("and", "and-oc", "nand", "nand-oc", "nand-schmitt", "nand-buf", "nand-buf-oc"):
+        svg, xr = and_shape(12)
+        if base.startswith("nand"):
+            svg += bubble(xr)
+            out = xr + 6
+        else:
+            out = xr
+        if base.endswith("-oc"):
+            svg += oc_mark(20, m - 2)
+        if base == "nand-schmitt":
+            svg += hyst_mark(22, m)
+        if base in ("nand-buf", "nand-buf-oc"):
+            svg += buf_mark(28 if base == "nand-buf-oc" else 22, m)
+        return svg, [12] * n, out
+    if base in ("or", "nor", "nor-buf", "nor-buf-oc"):
+        svg, back, xr = or_shape(10)
+        out = xr
+        if base != "or":
+            svg += bubble(xr)
+            out = xr + 6
+        if base == "nor-buf":
+            svg += buf_mark(24, m)
+        if base == "nor-buf-oc":
+            svg += buf_mark(28, m) + oc_mark(20, m - 2)
+        return svg, back, out
+    if base == "xor":
+        svg, back, xr = or_shape(15)
+        svg += f'<path d="M10,{T} Q18,{r(m)} 10,{r(b)}"/>'
+        back = [10 + 16 * ((y - T) / (b - T)) * (1 - (y - T) / (b - T)) for y in ys]
+        return svg, back, xr
+    if base in ("not", "not-oc", "not-schmitt", "not-buf-ochv", "not-buf-ochv-bar", "buf-ochv", "line-driver"):
+        svg = tri(16, 40)
+        out = 40
+        if base != "buf-ochv":
+            svg += bubble(40)
+            out = 46
+        if base in ("not-oc", "not-buf-ochv", "not-buf-ochv-bar", "buf-ochv"):
+            svg += oc_mark(24, m - 2)
+        if base == "not-schmitt":
+            svg += hyst_mark(25, m)
+        return svg, [16] * n, out
+    raise SystemExit("no modern body for " + base)
+
+
+def svg_doc(w, h, body, stubs, title):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">\n'
             f'<title>{title}</title>\n<g fill="none" stroke="#000000" stroke-width="1.2">\n'
-            + body + "\n" + "\n".join(lines) + "\n</g>\n</svg>\n")
+            + body + "\n" + "\n".join(stubs) + "\n</g>\n</svg>\n")
 
-for style in ("nd1976", "modern"):
-    os.makedirs(f"catalog/symbols/{style}/shapes", exist_ok=True)
-os.makedirs("catalog/symbols/pins", exist_ok=True)
-for kind in ND_BODY:
-    pins = PINS1 if kind.startswith("not") else PINS2
+
+def stub(name, x1, y1, x2, y2):
+    return f'<line data-pin="{name}" x1="{r(x1)}" y1="{r(y1)}" x2="{r(x2)}" y2="{r(y2)}"/>'
+
+
+def simple(base, n, second=None):
+    """A gate with n inputs on the left and one output on the right."""
+    h = height_for(n)
+    ys = input_ys(n, h)
+    m = h / 2
+    nd, nd_in, nd_out = nd_body(base, h)
+    mo, mo_in, mo_out = mod_body(base, h, ys)
+    w = max(60, int(mo_out) + 8)
+    pins = [{"pin": p, "x": 0, "y": r(y), "dir": "in"} for p, y in zip(names(n, second), ys)]
+    pins.append({"pin": "Y", "x": w, "y": r(m), "dir": "out"})
+    nd_stubs = [stub(p["pin"], nd_in, p["y"], 0, p["y"]) for p in pins[:-1]] + [stub("Y", nd_out, m, w, m)]
+    mo_stubs = [stub(p["pin"], mo_in[i], p["y"], 0, p["y"]) for i, p in enumerate(pins[:-1])] + [stub("Y", mo_out, m, w, m)]
+    return w, h, pins, nd, nd_stubs, mo, mo_stubs
+
+
+def strobe4():
+    """7425: four inputs plus G coming up into the bottom of the box."""
+    w, h0, pins, nd, nd_stubs, mo, mo_stubs = simple("nor", 4)
+    h = h0 + 14
+    gy = h - 4
+    b = h0 - T
+    pins.insert(4, {"pin": "G", "x": 0, "y": gy, "dir": "in"})
+    nd += f'<line x1="28" y1="{r(b)}" x2="28" y2="{gy}"/>'
+    nd_stubs.append(stub("G", 28, gy, 0, gy))
+    # modern: the NOR is drawn as OR + NAND with G, Y = NOT(G AND (A OR B OR C OR D))
+    m = h0 / 2
+    mo, back, xr = mod_body("or", h0, input_ys(4, h0))[0], None, None
+    _, back, xr = mod_body("or", h0, input_ys(4, h0))
+    xr = xr  # OR tip
+    mo += (f'<polyline points="{r(xr)},{r(m)} {r(xr + 3)},{r(m)} {r(xr + 3)},{r(m - 5)} {r(xr + 6)},{r(m - 5)}"/>'
+           f'<polyline points="{r(xr + 4)},{gy} {r(xr + 4)},{r(m + 5)} {r(xr + 6)},{r(m + 5)}"/>'
+           f'<path d="M{r(xr + 6)},{r(m - 10)} H{r(xr + 10)} A10,10 0 0 1 {r(xr + 10)},{r(m + 10)} H{r(xr + 6)} Z"/>'
+           f'<circle cx="{r(xr + 23)}" cy="{r(m)}" r="3"/>')
+    w = max(w, int(xr + 26) + 6)
+    for p in pins:
+        if p["pin"] == "Y":
+            p["x"] = w
+    out_x = xr + 26
+    mo_stubs = [stub(p["pin"], back[i], p["y"], 0, p["y"]) for i, p in enumerate(pins[:4])]
+    mo_stubs += [stub("G", xr + 4, gy, 0, gy), stub("Y", out_x, m, w, m)]
+    nd_stubs = [s.replace(f'x2="60"', f'x2="{w}"') if 'data-pin="Y"' in s else s for s in nd_stubs]
+    return w, h, pins, nd, nd_stubs, mo, mo_stubs
+
+
+def hex_buffer():
+    """7417: the manual draws the whole package, six buffers in one tall box."""
+    w, h = 60, 120
+    ys = [10 + 20 * i for i in range(6)]
+    pins = [{"pin": c, "x": 0, "y": y, "dir": "in"} for c, y in zip("ABCDEF", ys)]
+    pins += [{"pin": "Y" + c, "x": w, "y": y, "dir": "out"} for c, y in zip("ABCDEF", ys)]
+    nd = '<rect x="22" y="2" width="16" height="116"/>'
+    nd_stubs = [stub(c, 22, y, 0, y) for c, y in zip("ABCDEF", ys)] + [stub("Y" + c, 38, y, w, y) for c, y in zip("ABCDEF", ys)]
+    mo = "".join(f'<path d="M22,{y - 7} L38,{y} L22,{y + 7} Z"/>' + oc_mark(27, y - 1).replace("+5", "") for y in ys)
+    mo_stubs = [stub(c, 22, y, 0, y) for c, y in zip("ABCDEF", ys)] + [stub("Y" + c, 38, y, w, y) for c, y in zip("ABCDEF", ys)]
+    return w, h, pins, nd, nd_stubs, mo, mo_stubs
+
+
+def aoi_2x2():
+    """7450/7451/7460: top AND box against the X box, bottom AND box feeds the X box from below."""
+    w, h = 60, 90
+    top = [6, 14, 22, 30]
+    bot = [56, 64, 72, 80]
+    pins = [{"pin": c, "x": 0, "y": y, "dir": "in"} for c, y in zip("ABCDEFGH", top + bot)]
+    pins.append({"pin": "Y", "x": w, "y": 18, "dir": "out"})
+    nd = ('<rect x="18" y="2" width="10" height="32"/><rect x="28" y="2" width="10" height="32"/>'
+          '<line x1="28" y1="2" x2="38" y2="34"/><line x1="28" y1="34" x2="38" y2="2"/>'
+          '<rect x="18" y="50" width="10" height="34"/><polyline points="28,67 33,67 33,34"/>')
+    nd_stubs = [stub(c, 18, y, 0, y) for c, y in zip("ABCDEFGH", top + bot)] + [stub("Y", 38, 18, w, 18)]
+    mo = ('<path d="M10,4 H16 A14,14 0 0 1 16,32 H10 Z"/><path d="M10,54 H16 A14,14 0 0 1 16,82 H10 Z"/>'
+          '<polyline points="30,18 33,18 33,13 39,13"/><polyline points="30,68 35,68 35,23 39,23"/>'
+          '<path d="M36,8 Q48,8 54,18 Q48,28 36,28 Q40,18 36,8 Z"/><circle cx="56.5" cy="18" r="2.5"/>')
+    mo_stubs = [stub(c, 10, y, 0, y) for c, y in zip("ABCDEFGH", top + bot)] + [stub("Y", 59, 18, w, 18)]
+    return w, h, pins, nd, nd_stubs, mo, mo_stubs
+
+
+def write(kind, spec):
+    w, h, pins, nd, nd_stubs, mo, mo_stubs = spec
     json.dump({"catalogFormat": "nd-symbol-pins", "catalogFormatVersion": 1, "kind": kind,
-               "width": 60, "height": 40, "pins": pins},
+               "width": w, "height": h, "pins": pins},
               open(f"catalog/symbols/pins/{kind}.json", "w", newline="\n"), indent=2)
-    a, b = ND_EDGE[kind]
-    open(f"catalog/symbols/nd1976/shapes/{kind}.svg", "w", newline="\n").write(svg(ND_BODY[kind], pins, a, b, f"{kind}, ND-13.003.01 style"))
-    a, b = MOD_EDGE[kind]
-    open(f"catalog/symbols/modern/shapes/{kind}.svg", "w", newline="\n").write(svg(MOD_BODY[kind], pins, a, b, f"{kind}, modern style"))
-print("ok")
+    open(f"catalog/symbols/nd1976/shapes/{kind}.svg", "w", newline="\n").write(svg_doc(w, h, nd, nd_stubs, f"{kind}, ND-13.003.01 style"))
+    open(f"catalog/symbols/modern/shapes/{kind}.svg", "w", newline="\n").write(svg_doc(w, h, mo, mo_stubs, f"{kind}, modern style"))
+
+
+if __name__ == "__main__":
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from shape_map import shapes_needed
+    # This script owns these three folders completely: clear them so no stale shape survives.
+    for d in ("catalog/symbols/pins", "catalog/symbols/nd1976/shapes", "catalog/symbols/modern/shapes"):
+        os.makedirs(d, exist_ok=True)
+        for f in glob.glob(d + "/*"):
+            os.remove(f)
+    done = []
+    for kind, base, n, second in shapes_needed():
+        if base == "nor-strobe":
+            write(kind, strobe4())
+        elif base == "hex-buf-ochv":
+            write(kind, hex_buffer())
+        elif base == "aoi-2x2":
+            write(kind, aoi_2x2())
+        else:
+            write(kind, simple(base, n, second))
+        done.append(kind)
+    print(len(done), "shapes:", " ".join(done))

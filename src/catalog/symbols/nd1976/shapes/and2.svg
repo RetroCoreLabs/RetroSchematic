@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40" viewBox="0 0 60 40">
+<title>and2, ND-13.003.01 style</title>
+<g fill="none" stroke="#000000" stroke-width="1.2">
+<rect x="16" y="4" width="24" height="32"/><line x1="28" y1="4" x2="28" y2="36"/><polyline points="28,4 40,20 28,36"/>
+<line data-pin="A" x1="16" y1="12" x2="0" y2="12"/>
+<line data-pin="B" x1="16" y1="28" x2="0" y2="28"/>
+<line data-pin="Y" x1="40" y1="20" x2="60" y2="20"/>
+</g>
+</svg>

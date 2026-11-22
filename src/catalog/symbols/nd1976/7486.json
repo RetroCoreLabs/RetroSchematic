@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "totem-pole",
   "formula": "Y = A XOR B",
-  "description": "A box with an equals-like mark (two short horizontal lines crossed by a vertical bar) inside.",
+  "description": "A rectangle with a vertical line down the centre and a short equals sign (two short horizontal lines) across that line.",
   "tells": "Mark inside the box = exclusive OR.",
   "confidence": "read"
 }
