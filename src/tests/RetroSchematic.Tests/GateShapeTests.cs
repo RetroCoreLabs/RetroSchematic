@@ -22,7 +22,9 @@ namespace RetroSchematic.Tests
     {
         private static readonly string CatalogRoot = Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog", "symbols");
 
-        private static readonly string[] Kinds = { "nand", "nor", "not", "and", "or", "xor", "nand-oc", "not-oc", "and-oc" };
+        // Every shape in the catalogue, read from the pin-table folder, so a new shape is checked
+        // without editing this list.
+        private static readonly string[] Kinds = ReadKinds();
 
         [Test]
         public void EveryKind_HasPinTableAndBothShapes()
@@ -67,6 +69,16 @@ namespace RetroSchematic.Tests
                 result.Add(p.GetProperty("pin").GetString()!, (p.GetProperty("x").GetDouble(), p.GetProperty("y").GetDouble()));
             }
             return result;
+        }
+
+        /// <summary>Every shape name that has a pin table.</summary>
+        private static string[] ReadKinds()
+        {
+            string[] files = Directory.GetFiles(Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog", "symbols", "pins"), "*.json");
+            string[] kinds = new string[files.Length];
+            for (int i = 0; i < files.Length; i++)
+                kinds[i] = Path.GetFileNameWithoutExtension(files[i]);
+            return kinds;
         }
 
         /// <summary>The far end (x2, y2) of every line carrying data-pin.</summary>
