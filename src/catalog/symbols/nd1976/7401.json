@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "open-collector",
   "formula": "Y = NOT(A AND B)",
-  "description": "The NAND rectangle with a second vertical line just inside the right edge, making a narrow double bar on the output side.",
-  "tells": "Double vertical bar on the output side = open collector. Otherwise the empty NAND box.",
+  "description": "The NAND rectangle with one vertical line down the centre of the box, dividing it into two halves.",
+  "tells": "Centre vertical bar = open collector. Without the bar it is the plain NAND (7400).",
   "confidence": "read"
 }

@@ -7,7 +7,21 @@ Run from the src folder after build-symbol-catalog.py and build-gate-shapes.py:
 import glob, json, os
 import fitz
 
-KINDS = ["nand", "nor", "not", "and", "or", "xor"]
+KINDS = ["nand", "nor", "not", "and", "or", "xor", "nand-oc", "not-oc", "and-oc"]
+
+def shape_for(e):
+    """The drawing that matches this entry exactly, or None. A symbol with a mark we have no
+    drawing for (buffer point, Schmitt edges, strobe, high-voltage driver) gets NO drawing rather
+    than the plain gate, which would be wrong."""
+    k = e.get("kind")
+    out = e.get("outputType")
+    if e.get("schmitt") or e.get("strobe"):
+        return None
+    if out == "totem-pole" and k in ("nand", "nor", "not", "and", "or", "xor"):
+        return k
+    if out == "open-collector" and k in ("nand", "not", "and"):
+        return k + "-oc"
+    return None
 
 def render(svg, png, zoom=4):
     doc = fitz.open(svg)
@@ -50,11 +64,12 @@ for e in entries:
 out.append("")
 out.append("## How ND draws gates\n")
 out.append("| Kind | ND 1976 | Modern | How to recognise the ND symbol |\n|---|---|---|---|")
-rule = {"nand": "Empty box", "nor": "Box with an X", "not": "Box with a triangle inside",
+rule = {"nand-oc": "NAND box with a vertical bar down the centre", "not-oc": "Box with one diagonal",
+        "and-oc": "NAND box followed by a one-diagonal box", "nand": "Empty box", "nor": "Box with an X", "not": "Box with a triangle inside",
         "and": "Empty box followed by an inverter box", "or": "X box followed by an inverter box",
         "xor": "Box with the exclusive-OR mark"}
 for k in KINDS:
-    out.append(f"| {k.upper()} | ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) | "
+    out.append(f"| {k.upper().replace('-OC', ' open collector')} | ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) | "
                f"![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) | {rule[k]} |")
 out.append("\nMarks that change a symbol: a double vertical bar or a single diagonal at the output = open "
            "collector; a pointed right end = buffer/driver; edges running past the box = Schmitt trigger. "
@@ -70,8 +85,10 @@ for e in entries:
     out.append(f"- **Manual page:** {src['printedPage']} (PDF page {src['pdfPage']})\n")
     out.append(f"![{e['partNumber']} as drawn in ND-13.003.01](../catalog/symbols/nd1976/{e['image']})\n")
     if e["symbolType"] == "gate":
-        k = e.get("kind")
-        if k in KINDS:
+        k = shape_for(e)
+        if k is None:
+            out.append("No redrawn symbol for this one yet - see the cut-out.\n")
+        else:
             out.append(f"| ND 1976 | Modern |\n|---|---|\n| ![{k} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) "
                        f"| ![{k} in modern style](../catalog/symbols/modern/shapes/{k}.png) |\n")
         out.append(f"- **Output:** {e['outputType']}")

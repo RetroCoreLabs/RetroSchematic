@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "open-collector",
   "formula": "Y = NOT(A AND B)",
-  "description": "Same drawing as 7401: NAND rectangle with a double vertical bar at the output side.",
-  "tells": "Same symbol as 7401; only the parts list tells 7401 from 7403 (they have different pinouts).",
+  "description": "The NAND rectangle with one vertical line down the centre of the box, dividing it into two halves.",
+  "tells": "Centre vertical bar = open collector. Without the bar it is the plain NAND (7400). Same symbol as 7401; only the parts list tells 7401 from 7403 (they have different pinouts).",
   "confidence": "read"
 }

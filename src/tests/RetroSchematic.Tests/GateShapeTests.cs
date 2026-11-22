@@ -22,7 +22,7 @@ namespace RetroSchematic.Tests
     {
         private static readonly string CatalogRoot = Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog", "symbols");
 
-        private static readonly string[] Kinds = { "nand", "nor", "not", "and", "or", "xor" };
+        private static readonly string[] Kinds = { "nand", "nor", "not", "and", "or", "xor", "nand-oc", "not-oc", "and-oc" };
 
         [Test]
         public void EveryKind_HasPinTableAndBothShapes()
