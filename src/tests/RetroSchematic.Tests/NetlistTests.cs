@@ -87,6 +87,7 @@ namespace RetroSchematic.Tests
 
         [TestCase("totem-pole", LineDrive.TotemPole)]
         [TestCase("three-state", LineDrive.ThreeState)]
+        [TestCase("open-collector-high-voltage", LineDrive.OpenCollectorHighVoltage)]
         [TestCase("none", LineDrive.None)]
         public void Drive_EachValue_Parses(string text, LineDrive expected)
         {

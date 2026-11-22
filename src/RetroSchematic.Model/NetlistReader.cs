@@ -91,7 +91,7 @@ namespace RetroSchematic.Model
             for (int i = 0; i < netlist.Nets.Count; i++)
             {
                 Net net = netlist.Nets[i];
-                if (net.PullUp != null && net.Drive != LineDrive.OpenCollector)
+                if (net.PullUp != null && net.Drive != LineDrive.OpenCollector && net.Drive != LineDrive.OpenCollectorHighVoltage)
                     throw new NetlistException($"Net {net.Name} has a pull-up but its drive is not open-collector.");
                 if (net.DriveConfidence != null && net.Drive == null)
                     throw new NetlistException($"Net {net.Name} says how sure its drive is, but has no drive.");

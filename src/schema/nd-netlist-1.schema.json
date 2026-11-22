@@ -216,10 +216,11 @@
             "enum": [
               "totem-pole",
               "open-collector",
+              "open-collector-high-voltage",
               "three-state",
               "none"
             ],
-            "description": "What kind of output drives the line: normal TTL (totem-pole), open collector (several outputs may share the line, it needs a pull-up and reads as the AND of them), three-state bus, or none (supply, input-only from outside the sheet). Absent = not read yet."
+            "description": "What kind of output drives the line: normal TTL (totem-pole), open collector (several outputs may share the line, it needs a pull-up and reads as the AND of them), three-state bus, or none (supply, input-only from outside the sheet). Absent = not read yet. open-collector-high-voltage: open collector rated for a higher pull-up voltage than 5 V (7406, 7407, 7416, 7417: up to 30 or 15 V), used to drive lamps, relays or lines."
           },
           "pullUp": {
             "type": "string",

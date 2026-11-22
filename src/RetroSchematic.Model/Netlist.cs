@@ -46,6 +46,12 @@ namespace RetroSchematic.Model
         /// </summary>
         OpenCollector,
 
+        /// <summary>
+        /// Open collector rated for a pull-up above 5 V (7406/7407 up to 30 V, 7416/7417 up to
+        /// 15 V). Same logic as <see cref="OpenCollector"/>; the pull-up voltage is in PullUp.
+        /// </summary>
+        OpenCollectorHighVoltage,
+
         /// <summary>Three-state bus driver: high, low or switched off.</summary>
         ThreeState,
 

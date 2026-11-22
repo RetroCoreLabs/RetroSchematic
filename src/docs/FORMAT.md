@@ -41,7 +41,7 @@ the scan while the other is smudged.
 | `parts[]` | one chip: `ref` = its position on the board as printed on the drawing (`13D`, `7-8C-D`), `type` (`7442`), `function`, `confidence`, `note` |
 | `gates[]` | one gate inside a part: `id` (`11D/1`), `part`, `kind` (`nand`, `nor`, `not`, `and`, `or`, `buffer`, `other`), `inputs` and `output` as pin numbers, optional `position` |
 | `nets[]` | one signal: `name` as on the drawing without subscript, `active` (`high` = subscript 1, `low` = subscript 0, `none`), `pins[]`, `note` |
-| `nets[].drive` | what drives the line: `totem-pole` (normal TTL output), `open-collector` (outputs that can only pull low; several may share the line, which then needs a pull-up and is the AND of them), `three-state` (bus driver that can switch off), or `none`. Absent means not read yet |
+| `nets[].drive` | what drives the line: `totem-pole` (normal TTL output), `open-collector` (outputs that can only pull low; several may share the line, which then needs a pull-up and is the AND of them), `open-collector-high-voltage` (open collector whose output may be pulled up above 5 V - 7406/7407 up to 30 V, 7416/7417 up to 15 V; the pull-up voltage goes in `pullUp`), `three-state` (bus driver that can switch off), or `none`. Absent means not read yet |
 | `nets[].driveConfidence` | how sure the `drive` value is |
 | `nets[].pullUp` | for an open-collector line: the pull-up as written on the drawing, or `open` |
 | `nets[].pins[]` | `at` = `<part ref>.<pin>`; `P.<n>` = backplane pin; `F.<n>` = front connector pin; plus `confidence` and `note` |
