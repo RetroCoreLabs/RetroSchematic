@@ -73,6 +73,16 @@ out.append("\nMarks that change a symbol: a centre line, a bar before the point 
            "collector (in modern drawings, a diamond with a bar under it; HV beside it = high-voltage open collector, which stands up to 30 V or 15 V on its pull-up instead of 5.5 V - HV is our own label); a pointed right end = buffer/driver; edges running past the box = Schmitt trigger: an input with two switching points (about 1.7 V going up, 0.9 V going down) so a slow or noisy signal gives one clean change instead of flicker. "
            "Signal subscripts: 1 = active high, 0 = active low (manual page 2).\n")
 
+out.append("### Where the modern marks come from\n")
+out.append("The small marks inside the modern drawings come from IEEE Std 91-1984 / IEC 617-12, as explained in "
+           "Texas Instruments' *Overview of IEEE Std 91-1984* (document SDYZ001A, checked 2026-11-23):\n")
+out.append("- **Triangle** (pointing in the signal direction): \"a buffer or element with more than usual output "
+           "capability\" (general qualifying symbols table). Used here on 7428, 7433, 7437, 7438 and 7440.")
+out.append("- **Diamond with a bar under it**: open-collector output, one of the \"symbols inside the outline\".")
+out.append("- **Step shape**: \"Schmitt trigger; element with hysteresis\" (general qualifying symbols table).")
+out.append("- **HV**: not in the standard. It is our own label for a high-voltage open-collector output.\n")
+out.append("The standard defines these marks for its rectangle-shaped symbols. Putting them inside the curved "
+           "(distinctive-shape) gates, as these drawings do, is our choice; the standard does not cover it.\n")
 out.append("## Parts\n")
 for e in entries:
     src = e["source"]
