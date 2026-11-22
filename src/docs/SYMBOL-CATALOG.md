@@ -259,7 +259,7 @@ Marks that change a symbol: a centre line, a bar before the point or a single di
 | ![not-oc1 in ND style](../catalog/symbols/nd1976/shapes/not-oc1.png) | ![not-oc1 in modern style](../catalog/symbols/modern/shapes/not-oc1.png) |
 
 - **Output:** open-collector
-- **What it looks like:** A small rectangle with ONE diagonal, from the bottom left corner to the top right corner. No triangle.
+- **What it looks like:** A narrow upright rectangle with ONE diagonal, from the bottom left corner to the middle of the right edge. No triangle.
 - **How to tell it apart:** Single diagonal, no triangle = open-collector inverter. Compare 7404 (two lines forming a triangle).
 
 ### 7406 - Hex inverter buffer/driver with open-collector high-voltage output
@@ -276,7 +276,7 @@ Marks that change a symbol: a centre line, a bar before the point or a single di
 | ![not-buf-ochv1 in ND style](../catalog/symbols/nd1976/shapes/not-buf-ochv1.png) | ![not-buf-ochv1 in modern style](../catalog/symbols/modern/shapes/not-buf-ochv1.png) |
 
 - **Output:** open-collector-high-voltage
-- **What it looks like:** A box whose right side is drawn as a point (a pentagon, like a house on its side), with one diagonal inside.
+- **What it looks like:** A box whose right side is drawn as a point, with one diagonal from the bottom left corner to the tip of the point.
 - **How to tell it apart:** Pointed right end = buffer/driver. Diagonal inside = open-collector, inverting.
 
 ### 7407 - Hex buffer/driver with open-collector high-voltage output
@@ -395,8 +395,8 @@ Marks that change a symbol: a centre line, a bar before the point or a single di
 | ![not-buf-ochv-bar1 in ND style](../catalog/symbols/nd1976/shapes/not-buf-ochv-bar1.png) | ![not-buf-ochv-bar1 in modern style](../catalog/symbols/modern/shapes/not-buf-ochv-bar1.png) |
 
 - **Output:** open-collector-high-voltage
-- **What it looks like:** A narrow box with a vertical bar inside, ending in a point on the right.
-- **How to tell it apart:** Same family as 7406 but drawn with a bar instead of a diagonal. The picture is small; confirm with the parts list.
+- **What it looks like:** A box with a pointed right end and one vertical bar about a third of the way in from the left edge.
+- **How to tell it apart:** Bar inside the pointed box = open collector, inverting driver (high voltage). Compare 7406 (diagonal instead of bar).
 
 ### 74H11 - Triple 3-input AND gate
 
@@ -599,7 +599,7 @@ Marks that change a symbol: a centre line, a bar before the point or a single di
 | ![nand-buf-oc2 in ND style](../catalog/symbols/nd1976/shapes/nand-buf-oc2.png) | ![nand-buf-oc2 in modern style](../catalog/symbols/modern/shapes/nand-buf-oc2.png) |
 
 - **Output:** open-collector
-- **What it looks like:** An empty box, a narrow bar, then a pointed right end.
+- **What it looks like:** A box with a pointed right end and one vertical bar about a third of the way in from the left edge; two inputs.
 - **How to tell it apart:** Bar before the point = open-collector NAND buffer. Compare 7437 (point, no bar).
 
 ### 7440 - Dual 4-input NAND buffer

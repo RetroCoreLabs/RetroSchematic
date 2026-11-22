@@ -15,7 +15,7 @@
   "inputs": 1,
   "outputType": "open-collector-high-voltage",
   "formula": "Y = NOT A",
-  "description": "A narrow box with a vertical bar inside, ending in a point on the right.",
-  "tells": "Same family as 7406 but drawn with a bar instead of a diagonal. The picture is small; confirm with the parts list.",
+  "description": "A box with a pointed right end and one vertical bar about a third of the way in from the left edge.",
+  "tells": "Bar inside the pointed box = open collector, inverting driver (high voltage). Compare 7406 (diagonal instead of bar).",
   "confidence": "read"
 }

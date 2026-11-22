@@ -15,7 +15,7 @@
   "inputs": 1,
   "outputType": "open-collector-high-voltage",
   "formula": "Y = NOT A",
-  "description": "A box whose right side is drawn as a point (a pentagon, like a house on its side), with one diagonal inside.",
+  "description": "A box whose right side is drawn as a point, with one diagonal from the bottom left corner to the tip of the point.",
   "tells": "Pointed right end = buffer/driver. Diagonal inside = open-collector, inverting.",
   "confidence": "read"
 }

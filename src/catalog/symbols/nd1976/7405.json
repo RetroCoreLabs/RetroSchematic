@@ -15,7 +15,7 @@
   "inputs": 1,
   "outputType": "open-collector",
   "formula": "Y = NOT A",
-  "description": "A small rectangle with ONE diagonal, from the bottom left corner to the top right corner. No triangle.",
+  "description": "A narrow upright rectangle with ONE diagonal, from the bottom left corner to the middle of the right edge. No triangle.",
   "tells": "Single diagonal, no triangle = open-collector inverter. Compare 7404 (two lines forming a triangle).",
   "confidence": "read"
 }

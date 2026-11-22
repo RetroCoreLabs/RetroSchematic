@@ -87,7 +87,8 @@ def nd_body(base, h):
     if base == "not":
         return box(20, 36) + tri(20, 36), 20, 36
     if base == "not-oc":
-        return box(20, 36) + f'<line x1="20" y1="{r(b)}" x2="36" y2="{T}"/>', 20, 36
+        # 7405 cut-out: the diagonal runs from the bottom left corner to the middle of the right edge
+        return box(20, 36) + f'<line x1="20" y1="{r(b)}" x2="36" y2="{r(m)}"/>', 20, 36
     if base == "and":
         return box(16, 40) + vline(28) + tri(28, 40), 16, 40
     if base in ("and-oc", "buf-ochv"):
@@ -112,11 +113,16 @@ def nd_body(base, h):
         # line down the centre of the box - the same centre-line open-collector mark as 7401.
         return point(16, 30, 38) + xline(16, 30) + vline(30) + vline(23), 16, 38
     if base == "nand-buf-oc":
-        return point(16, 30, 38) + vline(30), 16, 38
+        # 7438 cut-out: the bar sits about a third of the way in from the left; no line where the
+        # point starts
+        return point(16, 30, 38) + vline(23), 16, 38
     if base == "not-buf-ochv":
-        return point(20, 32, 40) + f'<line x1="20" y1="{r(b)}" x2="32" y2="{T}"/>', 20, 40
+        # 7406 cut-out: the diagonal runs from the bottom left corner to the tip of the point
+        return point(20, 32, 40) + f'<line x1="20" y1="{r(b)}" x2="40" y2="{r(m)}"/>', 20, 40
     if base == "not-buf-ochv-bar":
-        return point(20, 30, 38) + vline(30), 20, 38
+        # 7416 cut-out: the bar sits about a third of the way in from the left; no line where the
+        # point starts
+        return point(20, 31, 38) + vline(26), 20, 38
     if base == "line-driver":
         return f'<path d="M16,{T} L44,{r(m)} L16,{r(b)} Z"/>', 16, 44
     raise SystemExit("no ND body for " + base)
