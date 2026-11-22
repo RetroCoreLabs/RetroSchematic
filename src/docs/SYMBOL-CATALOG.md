@@ -514,8 +514,8 @@ Marks that change a symbol: a centre line, a bar before the point or a single di
 | ![nor-buf2 in ND style](../catalog/symbols/nd1976/shapes/nor-buf2.png) | ![nor-buf2 in modern style](../catalog/symbols/modern/shapes/nor-buf2.png) |
 
 - **Output:** buffer
-- **What it looks like:** The X box ending in a point on the right (pentagon shape).
-- **How to tell it apart:** X + pointed end = NOR buffer.
+- **What it looks like:** A rectangle with an X running into all four corners; the rectangle's right edge is followed by a pointed end.
+- **How to tell it apart:** X box + point = NOR buffer. Compare 7433, which adds a line down the centre of the box.
 
 ### 7430 - 8-input NAND gate
 
@@ -565,8 +565,8 @@ Marks that change a symbol: a centre line, a bar before the point or a single di
 | ![nor-buf-oc2 in ND style](../catalog/symbols/nd1976/shapes/nor-buf-oc2.png) | ![nor-buf-oc2 in modern style](../catalog/symbols/modern/shapes/nor-buf-oc2.png) |
 
 - **Output:** open-collector
-- **What it looks like:** The X box ending in a point, with a vertical bar between box and point.
-- **How to tell it apart:** X + bar + point = open-collector NOR buffer.
+- **What it looks like:** The 7428 symbol (X box running into all four corners, then a pointed end) with a vertical line down the centre of the box.
+- **How to tell it apart:** Centre line in the box = open collector, the same mark as on 7401/7403.
 
 ### 7437 - Quadruple 2-input NAND buffer
 

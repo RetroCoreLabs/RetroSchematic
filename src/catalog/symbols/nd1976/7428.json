@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "buffer",
   "formula": "Y = NOT(A OR B)",
-  "description": "The X box ending in a point on the right (pentagon shape).",
-  "tells": "X + pointed end = NOR buffer.",
+  "description": "A rectangle with an X running into all four corners; the rectangle's right edge is followed by a pointed end.",
+  "tells": "X box + point = NOR buffer. Compare 7433, which adds a line down the centre of the box.",
   "confidence": "read"
 }

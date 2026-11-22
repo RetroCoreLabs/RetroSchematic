@@ -15,7 +15,7 @@
   "inputs": 2,
   "outputType": "open-collector",
   "formula": "Y = NOT(A OR B)",
-  "description": "The X box ending in a point, with a vertical bar between box and point.",
-  "tells": "X + bar + point = open-collector NOR buffer.",
+  "description": "The 7428 symbol (X box running into all four corners, then a pointed end) with a vertical line down the centre of the box.",
+  "tells": "Centre line in the box = open collector, the same mark as on 7401/7403.",
   "confidence": "read"
 }

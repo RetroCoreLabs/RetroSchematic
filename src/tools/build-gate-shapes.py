@@ -104,13 +104,13 @@ def nd_body(base, h):
     if base == "nand-buf":
         return point(16, 30, 38), 16, 38
     if base == "nor-buf":
-        # 7428/7433 cut-outs: the X fills a box ending at x=28, a short gap follows (no line), then the ONE
-        # bar at x=31 where the point starts.
-        return point(16, 31, 39) + xline(16, 28) + vline(31), 16, 39
+        # 7428 cut-out: the X runs into all four corners of the box; the box's right edge is the
+        # bar; the point follows.
+        return point(16, 30, 38) + xline(16, 30) + vline(30), 16, 38
     if base == "nor-buf-oc":
-        # 7428/7433 cut-outs: the X fills a box ending at x=28, a short gap follows (no line), then the ONE
-        # bar at x=31 where the point starts.
-        return point(16, 31, 39) + xline(16, 28) + vline(31), 16, 39
+        # 7433 cut-out: the 7428 symbol (X into all four corners, box edge, point) plus a vertical
+        # line down the centre of the box - the same centre-line open-collector mark as 7401.
+        return point(16, 30, 38) + xline(16, 30) + vline(30) + vline(23), 16, 38
     if base == "nand-buf-oc":
         return point(16, 30, 38) + vline(30), 16, 38
     if base == "not-buf-ochv":
