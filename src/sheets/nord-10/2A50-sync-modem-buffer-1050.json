@@ -1,0 +1,588 @@
+{
+  "format": "nd-netlist",
+  "formatVersion": 1,
+  "sheet": {
+    "id": "2A50",
+    "title": "SYNCHRONOUS MODEM BUFFER 1050",
+    "machine": "NORD-10",
+    "company": "A/S Norsk Data-Elektronikk",
+    "drawn": "1973-11-06",
+    "updated": "1973-11-29",
+    "source": {
+      "document": "docs/sources/nord-10/NORD-10-drawings.pdf",
+      "pdfPage": 64,
+      "image": "docs/sources/nord-10/2A50-sync-modem-buffer-1050.png"
+    },
+    "note": "First pass. The chip list and the COM2601 pins are complete; most other chip-to-chip wires are not yet read pin by pin. The register-level reading is in docs/2A50-reading.md."
+  },
+  "parts": [
+    {
+      "ref": "7-8C-D",
+      "type": "COM2601",
+      "function": "USRT, synchronous receiver/transmitter",
+      "confidence": "read",
+      "note": "pin use matched against the SMC COM2601 datasheet"
+    },
+    {
+      "ref": "13E",
+      "type": "DM8160",
+      "function": "address comparator against the modem number switches 15E",
+      "confidence": "read"
+    },
+    {
+      "ref": "13D",
+      "type": "7442",
+      "function": "register decoder",
+      "confidence": "read"
+    },
+    {
+      "ref": "11C",
+      "type": "7404",
+      "function": "inverters for BA0, BA1",
+      "confidence": "read"
+    },
+    {
+      "ref": "11D",
+      "type": "7402",
+      "function": "sync register strobes ISCW, OSCW",
+      "confidence": "read",
+      "note": "type proved by pin numbers 2,3>1 5,6>4 8,9>10 and the parts-list count"
+    },
+    {
+      "ref": "3D",
+      "type": "74153",
+      "function": "status multiplexer",
+      "confidence": "read"
+    },
+    {
+      "ref": "3E",
+      "type": "74153",
+      "function": "status multiplexer",
+      "confidence": "read"
+    },
+    {
+      "ref": "5E",
+      "type": "74153",
+      "function": "status multiplexer",
+      "confidence": "read"
+    },
+    {
+      "ref": "5D",
+      "type": "74153",
+      "function": "status multiplexer",
+      "confidence": "read"
+    },
+    {
+      "ref": "1C",
+      "type": "74153",
+      "function": "clears the interrupt enable that answered IDENT",
+      "confidence": "read"
+    },
+    {
+      "ref": "5B",
+      "type": "8098",
+      "function": "status buffer",
+      "confidence": "read"
+    },
+    {
+      "ref": "7A",
+      "type": "8098",
+      "function": "status buffer, bits 10-15",
+      "confidence": "read"
+    },
+    {
+      "ref": "7E",
+      "type": "8097",
+      "function": "chip status buffer",
+      "confidence": "read"
+    },
+    {
+      "ref": "3C",
+      "type": "7474",
+      "function": "character interrupt enables IRFTIE, ORFTIE",
+      "confidence": "read"
+    },
+    {
+      "ref": "1D",
+      "type": "7474",
+      "function": "error interrupt enables IERRIE, OERRIE",
+      "confidence": "read"
+    },
+    {
+      "ref": "15C",
+      "type": "7474",
+      "function": "CDSTL and PRQTS",
+      "confidence": "read"
+    },
+    {
+      "ref": "11B",
+      "type": "74174",
+      "function": "input control latch",
+      "confidence": "read"
+    },
+    {
+      "ref": "15B",
+      "type": "74157",
+      "function": "test mode: swaps modem clocks and data for internal clock and loop-back",
+      "confidence": "read"
+    },
+    {
+      "ref": "17D",
+      "type": "74221",
+      "function": "one-shot for the receiver reset, and the timeout oscillator",
+      "confidence": "read"
+    },
+    {
+      "ref": "19C",
+      "type": "7497",
+      "function": "timeout counter",
+      "confidence": "read"
+    },
+    {
+      "ref": "3B",
+      "type": "7451",
+      "function": "level 12 interrupt request",
+      "confidence": "read"
+    },
+    {
+      "ref": "5A",
+      "type": "7451",
+      "function": "level 10 interrupt request",
+      "confidence": "read"
+    },
+    {
+      "ref": "9B",
+      "type": "7404",
+      "function": "inverter for bus bit 13 to POE",
+      "confidence": "inferred",
+      "note": "type not checked by pin numbers yet"
+    }
+  ],
+  "gates": [
+    {
+      "id": "11D/1",
+      "part": "11D",
+      "kind": "nor",
+      "inputs": [
+        2,
+        3
+      ],
+      "output": 1,
+      "confidence": "read"
+    },
+    {
+      "id": "11D/2",
+      "part": "11D",
+      "kind": "nor",
+      "inputs": [
+        5,
+        6
+      ],
+      "output": 4,
+      "confidence": "read"
+    },
+    {
+      "id": "11D/3",
+      "part": "11D",
+      "kind": "nor",
+      "inputs": [
+        8,
+        9
+      ],
+      "output": 10,
+      "confidence": "read"
+    }
+  ],
+  "nets": [
+    {
+      "name": "BD0",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.7",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD1",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.8",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD2",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.9",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD3",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.10",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD4",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.11",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD5",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.12",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD6",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.13",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "BD7",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.14",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus data bit; the backplane pin is not read yet"
+    },
+    {
+      "name": "IDATA0",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.35",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD1"
+    },
+    {
+      "name": "IDATA1",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.34",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD2"
+    },
+    {
+      "name": "IDATA2",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.33",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD3"
+    },
+    {
+      "name": "IDATA3",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.32",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD4"
+    },
+    {
+      "name": "IDATA4",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.31",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD5"
+    },
+    {
+      "name": "IDATA5",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.30",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD6"
+    },
+    {
+      "name": "IDATA6",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.29",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD7"
+    },
+    {
+      "name": "IDATA7",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.28",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RD8"
+    },
+    {
+      "name": "ODW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.20",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip TDS: writing register 5 loads the transmit buffer"
+    },
+    {
+      "name": "OSCW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.18",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip TSS: register 1 with bit 9 = 0 loads the transmit fill character"
+    },
+    {
+      "name": "ISCW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.21",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RSS: register 1 with bit 8 = 0 loads the receive sync character"
+    },
+    {
+      "name": "IDR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.24",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RDAR: reading register 0 resets RDA"
+    },
+    {
+      "name": "ICW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.39",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip CS: every write to register 3 strobes the control bits"
+    },
+    {
+      "name": "ORFT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.2",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip TBMT, transmit buffer empty"
+    },
+    {
+      "name": "IPE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.16",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RPE, parity error"
+    },
+    {
+      "name": "SCR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.17",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip SCR, sync character received"
+    },
+    {
+      "name": "IRFT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.26",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RDA, character available"
+    },
+    {
+      "name": "IOR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.27",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip ROR, overrun"
+    },
+    {
+      "name": "TSO",
+      "active": "none",
+      "pins": [
+        {
+          "at": "7-8C-D.3",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip TSO, transmitted serial data; the name on the drawing is not read yet"
+    },
+    {
+      "name": "BD11",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.38",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip NDB1 (character length)"
+    },
+    {
+      "name": "BD12",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.36",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip NDB2 (character length)"
+    },
+    {
+      "name": "BD14",
+      "active": "low",
+      "pins": [
+        {
+          "at": "7-8C-D.37",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip NPB (no parity bit)"
+    },
+    {
+      "name": "OERR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.5",
+          "confidence": "read"
+        },
+        {
+          "at": "7E.6",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip SCT, sync/fill character transmitted (underrun)"
+    },
+    {
+      "name": "RR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.15",
+          "confidence": "read"
+        }
+      ],
+      "note": "the pin on the other end is not read yet"
+    },
+    {
+      "name": "POE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.40",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus bit 13 through inverter 9B; the pin on the other end is not read yet"
+    },
+    {
+      "name": "+5V",
+      "active": "none",
+      "pins": [
+        {
+          "at": "7-8C-D.25",
+          "confidence": "read"
+        }
+      ],
+      "note": "chip RDE tied high"
+    },
+    {
+      "name": "BA2",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.13",
+          "confidence": "inferred",
+          "note": "the drawing shows BA2 into the 7442 without an inverter; pin 13 is input C on the 7442 pinout"
+        }
+      ],
+      "note": "goes to the decoder uninverted, so register offsets come out as in the reading document"
+    }
+  ]
+}

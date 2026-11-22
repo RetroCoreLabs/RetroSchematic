@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retrocorelabs.github.io/RetroSchematic/schema/nd-netlist-1.schema.json",
+  "title": "ND card sheet netlist, format version 1",
+  "type": "object",
+  "required": ["format", "formatVersion", "sheet", "parts", "nets"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "nd-netlist" },
+    "formatVersion": { "const": 1 },
+    "sheet": {
+      "type": "object",
+      "required": ["id", "title", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "machine": { "type": "string" },
+        "company": { "type": "string" },
+        "drawn": { "type": "string" },
+        "updated": { "type": "string" },
+        "source": {
+          "type": "object",
+          "required": ["document"],
+          "additionalProperties": false,
+          "properties": {
+            "document": { "type": "string" },
+            "pdfPage": { "type": "integer", "minimum": 1 },
+            "image": { "type": "string" }
+          }
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["ref", "type", "confidence"],
+        "additionalProperties": false,
+        "properties": {
+          "ref": { "type": "string" },
+          "type": { "type": "string" },
+          "function": { "type": "string" },
+          "confidence": { "$ref": "#/$defs/confidence" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "part", "kind", "inputs", "output", "confidence"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "part": { "type": "string" },
+          "kind": { "enum": ["nand", "nor", "not", "and", "or", "buffer", "other"] },
+          "inputs": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+          "output": { "type": "integer", "minimum": 1 },
+          "position": {
+            "type": "object",
+            "required": ["x", "y"],
+            "additionalProperties": false,
+            "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+          },
+          "confidence": { "$ref": "#/$defs/confidence" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "nets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "active", "pins"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "active": { "enum": ["high", "low", "none"] },
+          "pins": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["at", "confidence"],
+              "additionalProperties": false,
+              "properties": {
+                "at": { "type": "string", "pattern": "^.+\\.[0-9]+$" },
+                "confidence": { "$ref": "#/$defs/confidence" },
+                "note": { "type": "string" }
+              }
+            }
+          },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "confidence": { "enum": ["read", "inferred", "open"] }
+  }
+}

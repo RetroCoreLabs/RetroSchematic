@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RetroSchematic.Render</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
+  </ItemGroup>
+</Project>

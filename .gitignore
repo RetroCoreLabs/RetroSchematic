@@ -1,0 +1,10 @@
+## .NET
+[Bb]in/
+[Oo]bj/
+TestResults/
+*.user
+*.suo
+.vs/
+## renderer output
+src/out/
+README.template.md

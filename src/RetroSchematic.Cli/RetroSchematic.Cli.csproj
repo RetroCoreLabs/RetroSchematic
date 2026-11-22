@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>RetroSchematic.Cli</RootNamespace>
+    <AssemblyName>retroschematic</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
+    <ProjectReference Include="..\RetroSchematic.Render\RetroSchematic.Render.csproj" />
+  </ItemGroup>
+</Project>

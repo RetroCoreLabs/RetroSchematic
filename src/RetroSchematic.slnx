@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="RetroSchematic.Model/RetroSchematic.Model.csproj" />
+  <Project Path="RetroSchematic.Render/RetroSchematic.Render.csproj" />
+  <Project Path="RetroSchematic.Cli/RetroSchematic.Cli.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="tests/RetroSchematic.Tests/RetroSchematic.Tests.csproj" />
+  </Folder>
+</Solution>

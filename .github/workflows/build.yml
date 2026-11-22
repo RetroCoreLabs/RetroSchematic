@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      # The scans under src/docs/sources are Git LFS files and are not needed to build or test.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: src/global.json
+      - name: Test
+        run: dotnet test RetroSchematic.slnx -c Release -nodeReuse:false
+      - name: Check every sheet
+        run: |
+          for f in $(find sheets -name '*.json'); do
+            dotnet run --project RetroSchematic.Cli -c Release --no-build -- check "$f"
+          done
+      - name: Check the documentation
+        working-directory: .
+        run: python3 src/eng/check-docs.py

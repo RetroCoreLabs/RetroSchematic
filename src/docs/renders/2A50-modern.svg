@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4260" height="860" viewBox="0 0 4260 860" font-family="monospace" font-size="10">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="40" y="25" font-size="16">2A50  SYNCHRONOUS MODEM BUFFER 1050  (modern symbols)</text>
+<g id="part-7-8C-D"><rect x="1360" y="340" width="420" height="280" fill="none" stroke="#999999"/>
+<text x="1364" y="352" font-weight="bold">7-8C-D COM2601</text>
+<text x="1366" y="366"> 2: ORFT<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="377"> 3: TSO</text>
+<text x="1366" y="388"> 5: OERR<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="399"> 7: BD0<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="410"> 8: BD1<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="421"> 9: BD2<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="432">10: BD3<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="443">11: BD4<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="454">12: BD5<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="465">13: BD6<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="476">14: BD7<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="487">15: RR<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="498">16: IPE<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="509">17: SCR<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="520">18: OSCW<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="531">20: ODW<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="542">21: ISCW<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="553">24: IDR<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="1366" y="564">25: +5V</text>
+<text x="1366" y="575">26: IRFT<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="586">27: IOR<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="597">28: IDATA7<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="608">29: IDATA6<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+</g>
+<g id="part-13E"><rect x="2680" y="640" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="2684" y="652" font-weight="bold">13E DM8160</text>
+<text x="2686" y="764" fill="#666666">address comparator against the...</text>
+</g>
+<g id="part-13D"><rect x="2680" y="490" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="2684" y="502" font-weight="bold">13D 7442</text>
+<text x="2686" y="516">13: BA2<tspan baseline-shift="sub" font-size="7">0</tspan></text>
+<text x="2686" y="614" fill="#666666">register decoder</text>
+</g>
+<g id="part-11C"><rect x="2240" y="340" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="2244" y="352" font-weight="bold">11C 7404</text>
+<text x="2246" y="464" fill="#666666">inverters for BA0, BA1</text>
+</g>
+<g id="part-11D"><rect x="2240" y="490" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="2244" y="502" font-weight="bold">11D 7402</text>
+<g id="gate-11D/1" fill="none" stroke="#000000">
+<path d="M2300,512 Q2318,512 2330,524 Q2318,536 2300,536 Q2308,524 2300,512 Z"/>
+<circle cx="2333" cy="524" r="3"/>
+</g>
+<line x1="2288" y1="520" x2="2300" y2="520" stroke="#000000"/>
+<text x="2289" y="518" font-size="7">2</text>
+<line x1="2288" y1="528" x2="2300" y2="528" stroke="#000000"/>
+<text x="2289" y="526" font-size="7">3</text>
+<line x1="2330" y1="524" x2="2344" y2="524" stroke="#000000"/>
+<text x="2333" y="522" font-size="7">1</text>
+<g id="gate-11D/2" fill="none" stroke="#000000">
+<path d="M2300,546 Q2318,546 2330,558 Q2318,570 2300,570 Q2308,558 2300,546 Z"/>
+<circle cx="2333" cy="558" r="3"/>
+</g>
+<line x1="2288" y1="554" x2="2300" y2="554" stroke="#000000"/>
+<text x="2289" y="552" font-size="7">5</text>
+<line x1="2288" y1="562" x2="2300" y2="562" stroke="#000000"/>
+<text x="2289" y="560" font-size="7">6</text>
+<line x1="2330" y1="558" x2="2344" y2="558" stroke="#000000"/>
+<text x="2333" y="556" font-size="7">4</text>
+<g id="gate-11D/3" fill="none" stroke="#000000">
+<path d="M2300,580 Q2318,580 2330,592 Q2318,604 2300,604 Q2308,592 2300,580 Z"/>
+<circle cx="2333" cy="592" r="3"/>
+</g>
+<line x1="2288" y1="588" x2="2300" y2="588" stroke="#000000"/>
+<text x="2289" y="586" font-size="7">8</text>
+<line x1="2288" y1="596" x2="2300" y2="596" stroke="#000000"/>
+<text x="2289" y="594" font-size="7">9</text>
+<line x1="2330" y1="592" x2="2344" y2="592" stroke="#000000"/>
+<text x="2333" y="590" font-size="7">10</text>
+</g>
+<g id="part-3D"><rect x="480" y="490" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="484" y="502" font-weight="bold">3D 74153</text>
+<text x="486" y="614" fill="#666666">status multiplexer</text>
+</g>
+<g id="part-3E"><rect x="480" y="640" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="484" y="652" font-weight="bold">3E 74153</text>
+<text x="486" y="764" fill="#666666">status multiplexer</text>
+</g>
+<g id="part-5E"><rect x="920" y="640" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="924" y="652" font-weight="bold">5E 74153</text>
+<text x="926" y="764" fill="#666666">status multiplexer</text>
+</g>
+<g id="part-5D"><rect x="920" y="490" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="924" y="502" font-weight="bold">5D 74153</text>
+<text x="926" y="614" fill="#666666">status multiplexer</text>
+</g>
+<g id="part-1C"><rect x="40" y="340" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="44" y="352" font-weight="bold">1C 74153</text>
+<text x="46" y="464" fill="#666666">clears the interrupt enable th...</text>
+</g>
+<g id="part-5B"><rect x="920" y="190" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="924" y="202" font-weight="bold">5B 8098</text>
+<text x="926" y="314" fill="#666666">status buffer</text>
+</g>
+<g id="part-7A"><rect x="1360" y="40" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="1364" y="52" font-weight="bold">7A 8098</text>
+<text x="1366" y="164" fill="#666666">status buffer, bits 10-15</text>
+</g>
+<g id="part-7E"><rect x="1360" y="640" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="1364" y="652" font-weight="bold">7E 8097</text>
+<text x="1366" y="666"> 6: OERR<tspan baseline-shift="sub" font-size="7">1</tspan></text>
+<text x="1366" y="764" fill="#666666">chip status buffer</text>
+</g>
+<g id="part-3C"><rect x="480" y="340" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="484" y="352" font-weight="bold">3C 7474</text>
+<text x="486" y="464" fill="#666666">character interrupt enables IR...</text>
+</g>
+<g id="part-1D"><rect x="40" y="490" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="44" y="502" font-weight="bold">1D 7474</text>
+<text x="46" y="614" fill="#666666">error interrupt enables IERRIE...</text>
+</g>
+<g id="part-15C"><rect x="3120" y="340" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="3124" y="352" font-weight="bold">15C 7474</text>
+<text x="3126" y="464" fill="#666666">CDSTL and PRQTS</text>
+</g>
+<g id="part-11B"><rect x="2240" y="190" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="2244" y="202" font-weight="bold">11B 74174</text>
+<text x="2246" y="314" fill="#666666">input control latch</text>
+</g>
+<g id="part-15B"><rect x="3120" y="190" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="3124" y="202" font-weight="bold">15B 74157</text>
+<text x="3126" y="314" fill="#666666">test mode: swaps modem clocks ...</text>
+</g>
+<g id="part-17D"><rect x="3560" y="490" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="3564" y="502" font-weight="bold">17D 74221</text>
+<text x="3566" y="614" fill="#666666">one-shot for the receiver rese...</text>
+</g>
+<g id="part-19C"><rect x="4000" y="340" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="4004" y="352" font-weight="bold">19C 7497</text>
+<text x="4006" y="464" fill="#666666">timeout counter</text>
+</g>
+<g id="part-3B"><rect x="480" y="190" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="484" y="202" font-weight="bold">3B 7451</text>
+<text x="486" y="314" fill="#666666">level 12 interrupt request</text>
+</g>
+<g id="part-5A"><rect x="920" y="40" width="200" height="130" fill="none" stroke="#999999"/>
+<text x="924" y="52" font-weight="bold">5A 7451</text>
+<text x="926" y="164" fill="#666666">level 10 interrupt request</text>
+</g>
+<g id="part-9B"><rect x="1800" y="190" width="200" height="130" fill="none" stroke="#999999" stroke-dasharray="4 3"/>
+<text x="1804" y="202" font-weight="bold">9B 7404</text>
+<text x="1806" y="314" fill="#666666">inverter for bus bit 13 to POE</text>
+</g>
+</svg>
