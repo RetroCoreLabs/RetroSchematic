@@ -2,7 +2,7 @@
   "catalogFormat": "nd-symbol-pins",
   "catalogFormatVersion": 1,
   "kind": "aoi-2x28",
-  "width": 60,
+  "width": 70,
   "height": 90,
   "pins": [
     {
@@ -55,7 +55,7 @@
     },
     {
       "pin": "Y",
-      "x": 60,
+      "x": 70,
       "y": 18,
       "dir": "out"
     }

@@ -104,9 +104,13 @@ def nd_body(base, h):
     if base == "nand-buf":
         return point(16, 30, 38), 16, 38
     if base == "nor-buf":
-        return point(16, 30, 38) + xline(16, 30) + vline(30), 16, 38
+        # 7428/7433 cut-outs: the X fills a box ending at x=28, a short gap follows (no line), then the ONE
+        # bar at x=31 where the point starts.
+        return point(16, 31, 39) + xline(16, 28) + vline(31), 16, 39
     if base == "nor-buf-oc":
-        return point(16, 30, 38) + xline(16, 30) + vline(30), 16, 38
+        # 7428/7433 cut-outs: the X fills a box ending at x=28, a short gap follows (no line), then the ONE
+        # bar at x=31 where the point starts.
+        return point(16, 31, 39) + xline(16, 28) + vline(31), 16, 39
     if base == "nand-buf-oc":
         return point(16, 30, 38) + vline(30), 16, 38
     if base == "not-buf-ochv":
@@ -183,10 +187,23 @@ def mod_body(base, h, ys):
     raise SystemExit("no modern body for " + base)
 
 
-def svg_doc(w, h, body, stubs, title):
+def labels(pins):
+    """Pin names as the manual prints them, just above the outer end of each pin line. They come
+    from the pin table, so they cannot disagree with the lines."""
+    out = []
+    for p in pins:
+        if p["dir"] == "in":
+            out.append(f'<text x="{r(p["x"] + 1)}" y="{r(p["y"] - 1.5)}" data-label="{p["pin"]}">{p["pin"]}</text>')
+        else:
+            out.append(f'<text x="{r(p["x"] - 1)}" y="{r(p["y"] - 1.5)}" text-anchor="end" data-label="{p["pin"]}">{p["pin"]}</text>')
+    return "\n".join(out)
+
+
+def svg_doc(w, h, body, stubs, title, pins):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">\n'
             f'<title>{title}</title>\n<g fill="none" stroke="#000000" stroke-width="1.2">\n'
-            + body + "\n" + "\n".join(stubs) + "\n</g>\n</svg>\n")
+            + body + "\n" + "\n".join(stubs) + "\n</g>\n"
+            + '<g fill="#000000" font-family="sans-serif" font-size="5">\n' + labels(pins) + "\n</g>\n</svg>\n")
 
 
 def stub(name, x1, y1, x2, y2):
@@ -252,7 +269,7 @@ def hex_buffer():
 
 def aoi_2x2():
     """7450/7451/7460: top AND box against the X box, bottom AND box feeds the X box from below."""
-    w, h = 60, 90
+    w, h = 70, 90  # wider than 60 so the Y label clears the output circle
     top = [6, 14, 22, 30]
     bot = [56, 64, 72, 80]
     pins = [{"pin": c, "x": 0, "y": y, "dir": "in"} for c, y in zip("ABCDEFGH", top + bot)]
@@ -273,8 +290,8 @@ def write(kind, spec):
     json.dump({"catalogFormat": "nd-symbol-pins", "catalogFormatVersion": 1, "kind": kind,
                "width": w, "height": h, "pins": pins},
               open(f"catalog/symbols/pins/{kind}.json", "w", newline="\n"), indent=2)
-    open(f"catalog/symbols/nd1976/shapes/{kind}.svg", "w", newline="\n").write(svg_doc(w, h, nd, nd_stubs, f"{kind}, ND-13.003.01 style"))
-    open(f"catalog/symbols/modern/shapes/{kind}.svg", "w", newline="\n").write(svg_doc(w, h, mo, mo_stubs, f"{kind}, modern style"))
+    open(f"catalog/symbols/nd1976/shapes/{kind}.svg", "w", newline="\n").write(svg_doc(w, h, nd, nd_stubs, f"{kind}, ND-13.003.01 style", pins))
+    open(f"catalog/symbols/modern/shapes/{kind}.svg", "w", newline="\n").write(svg_doc(w, h, mo, mo_stubs, f"{kind}, modern style", pins))
 
 
 if __name__ == "__main__":

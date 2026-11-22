@@ -15,4 +15,18 @@
 <line data-pin="YE" x1="38" y1="90" x2="60" y2="90"/>
 <line data-pin="YF" x1="38" y1="110" x2="60" y2="110"/>
 </g>
+<g fill="#000000" font-family="sans-serif" font-size="5">
+<text x="1" y="8.5" data-label="A">A</text>
+<text x="1" y="28.5" data-label="B">B</text>
+<text x="1" y="48.5" data-label="C">C</text>
+<text x="1" y="68.5" data-label="D">D</text>
+<text x="1" y="88.5" data-label="E">E</text>
+<text x="1" y="108.5" data-label="F">F</text>
+<text x="59" y="8.5" text-anchor="end" data-label="YA">YA</text>
+<text x="59" y="28.5" text-anchor="end" data-label="YB">YB</text>
+<text x="59" y="48.5" text-anchor="end" data-label="YC">YC</text>
+<text x="59" y="68.5" text-anchor="end" data-label="YD">YD</text>
+<text x="59" y="88.5" text-anchor="end" data-label="YE">YE</text>
+<text x="59" y="108.5" text-anchor="end" data-label="YF">YF</text>
+</g>
 </svg>
