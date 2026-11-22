@@ -104,7 +104,7 @@ def nd_body(base, h):
     if base == "nand-buf":
         return point(16, 30, 38), 16, 38
     if base == "nor-buf":
-        return box(16, 30) + xline(16, 30) + tip_open(30, 38), 16, 38
+        return point(16, 30, 38) + xline(16, 30) + vline(30), 16, 38
     if base == "nor-buf-oc":
         return point(16, 30, 38) + xline(16, 30) + vline(30), 16, 38
     if base == "nand-buf-oc":
