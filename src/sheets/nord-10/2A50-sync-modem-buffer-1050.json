@@ -13,7 +13,7 @@
       "pdfPage": 64,
       "image": "docs/sources/nord-10/2A50-sync-modem-buffer-1050.png"
     },
-    "note": "First pass. The chip list and the COM2601 pins are complete; most other chip-to-chip wires are not yet read pin by pin. The register-level reading is in docs/2A50-reading.md."
+    "note": "First pass. The chip list and the COM2601 pins are complete; most other chip-to-chip wires are not yet read pin by pin. The register-level reading is in docs/2A50-reading.md. Parts and gates completed 2026-11-23 against the printed parts list (40 packages); see docs/2A50-catalogue-map.md."
   },
   "parts": [
     {
@@ -74,8 +74,15 @@
     },
     {
       "ref": "1C",
-      "type": "74153",
+      "type": "74157",
       "function": "clears the interrupt enable that answered IDENT",
+      "confidence": "read",
+      "note": "corrected 2026-11-23: the box is printed 74157 (earlier entry said 74153); pins 14,13>12 11,10>9 2,3>4 5,6>7, select 1 = BA1, strobe 15 = CL"
+    },
+    {
+      "ref": "13C",
+      "type": "74153",
+      "function": "bus answer multiplexer: INT (pins 6,5,4,3 > 7, LEV10/LEV12 selected by BA0/BA1) and DINPUT (pins 10,11,12,13 > 9, from DEQL)",
       "confidence": "read"
     },
     {
@@ -141,21 +148,124 @@
     {
       "ref": "3B",
       "type": "7451",
-      "function": "level 12 interrupt request",
-      "confidence": "read"
+      "function": "level 12 request (gate 1, pins 9,10,13,1>8) and level 10 request (gate 2, pins 3,2,5,4>6)",
+      "confidence": "read",
+      "note": "one 7451 holds both AND-OR-INVERT gates; the parts list has 1 x 7451"
     },
     {
       "ref": "5A",
-      "type": "7451",
-      "function": "level 10 interrupt request",
-      "confidence": "read"
+      "type": "7438",
+      "function": "open-collector NAND buffers driving LEV12, LEV10, INPUT and CONNECT onto the bus",
+      "confidence": "read",
+      "note": "corrected 2026-11-23: drawn as a pointed box with a bar (7438 shape), pins 9,10>8 1,2>3 4,5>6 12,13>11; the earlier entry said 7451. The parts list has one 7451 and one 7438."
     },
     {
       "ref": "9B",
       "type": "7404",
-      "function": "inverter for bus bit 13 to POE",
+      "function": "bus receivers (inverters) for BD2, BD8, BD9, BD13, BD15 and the TINPUT enable",
+      "confidence": "read",
+      "note": "box-with-triangle inverter shape; all six gates read: 1>2 3>4 5>6 9>8 11>10 13>12"
+    },
+    {
+      "ref": "11E",
+      "type": "7400",
+      "function": "NAND gates: BA7/BA8 decode, OSR/IDR and ISR/IDR status enables, IERR",
+      "confidence": "read"
+    },
+    {
+      "ref": "13B",
+      "type": "7400",
+      "function": "NAND gates: TRQTS (half duplex), OACTIVE path, test-mode clock selects",
+      "confidence": "read"
+    },
+    {
+      "ref": "17B",
+      "type": "7400",
+      "function": "NAND gates: clear (ICW and BD4, master clear MC), OACTIVE from RFS",
+      "confidence": "read",
+      "note": "gate 4 not found on the sheet"
+    },
+    {
+      "ref": "17C",
+      "type": "7400",
+      "function": "NAND gates: CL, timeout clear, timeout counter clear, CDSTL clear",
+      "confidence": "read"
+    },
+    {
+      "ref": "1B",
+      "type": "7400",
+      "function": "NAND gates: feed the IDENT clear multiplexer 1C",
+      "confidence": "read"
+    },
+    {
+      "ref": "9E",
+      "type": "7402",
+      "function": "NOR gates: address decode (BA6), receiver reset strobe, IERR",
+      "confidence": "read"
+    },
+    {
+      "ref": "3A",
+      "type": "7402",
+      "function": "NOR gates: interrupt level combine, constant H1, OUTIDENT",
+      "confidence": "read"
+    },
+    {
+      "ref": "7B",
+      "type": "7404",
+      "function": "bus receivers (inverters) for BD3-BD7 and the level 12 path",
+      "confidence": "read"
+    },
+    {
+      "ref": "11A",
+      "type": "7408",
+      "function": "AND gates: CARRERR, ISYNERR, SR (status read)",
+      "confidence": "read",
+      "note": "gate 3 not found on the sheet"
+    },
+    {
+      "ref": "1A",
+      "type": "74S157",
+      "function": "IDENT answer multiplexer: CLINT, TINPUT, TCONNECT, TINT",
+      "confidence": "read",
+      "note": "printed 74S157 in the box; the parts list has 1 x 745157 = 74S157"
+    },
+    {
+      "ref": "5C",
+      "type": "8098",
+      "function": "bus drivers for status bits 0, 1, 2, 6 (pins 2,4,6,10 > 3,5,7,9) and bus receivers BD0, BD1 (pins 12,14 > 11,13)",
+      "confidence": "read"
+    },
+    {
+      "ref": "13A",
+      "type": "75154",
+      "function": "line receivers: CALLING INDICATOR, TRANSMITTER TIMING, RECEIVER TIMING, CARR",
+      "confidence": "read"
+    },
+    {
+      "ref": "15A",
+      "type": "75154",
+      "function": "line receivers: RECEIVED DATA, READY FOR SENDING, DATA SET READY, SIGNAL DETECTOR",
+      "confidence": "read"
+    },
+    {
+      "ref": "17A",
+      "type": "75150",
+      "function": "line drivers: CONNECT TO LINE, REQUEST TO SEND",
+      "confidence": "read"
+    },
+    {
+      "ref": "19A",
+      "type": "75150",
+      "function": "line drivers: modem pin 93 and TRANSMITTED DATA",
       "confidence": "inferred",
-      "note": "type not checked by pin numbers yet"
+      "note": "position code read as 19A; the 9 could also be a 3, but 13A already holds four 75154 receivers, so it cannot be 13A"
+    },
+    {
+      "ref": "18-19E",
+      "type": "VP12/12",
+      "function": "voltage converter: +5 V in, +12 V and -12 V out (for the COM 2601 and the line drivers)",
+      "confidence": "read",
+      "note": "pins: 1,24 = +5V; 2,11,12,13,14,23 = GND; 3,22 = +12V; 10,15 = -12V"
     }
   ],
   "gates": [
@@ -191,6 +301,730 @@
       ],
       "output": 10,
       "confidence": "read"
+    },
+    {
+      "id": "11D/4",
+      "part": "11D",
+      "kind": "nor",
+      "inputs": [
+        11,
+        12
+      ],
+      "output": 13,
+      "confidence": "read",
+      "note": "ODW strobe to COM 2601 pin 20"
+    },
+    {
+      "id": "11E/1",
+      "part": "11E",
+      "kind": "nand",
+      "inputs": [
+        2,
+        1
+      ],
+      "output": 3,
+      "confidence": "read"
+    },
+    {
+      "id": "11E/2",
+      "part": "11E",
+      "kind": "nand",
+      "inputs": [
+        4,
+        5
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "11E/3",
+      "part": "11E",
+      "kind": "nand",
+      "inputs": [
+        9,
+        10
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "11E/4",
+      "part": "11E",
+      "kind": "nand",
+      "inputs": [
+        12,
+        13
+      ],
+      "output": 11,
+      "confidence": "read"
+    },
+    {
+      "id": "13B/1",
+      "part": "13B",
+      "kind": "nand",
+      "inputs": [
+        2,
+        1
+      ],
+      "output": 3,
+      "confidence": "read"
+    },
+    {
+      "id": "13B/2",
+      "part": "13B",
+      "kind": "nand",
+      "inputs": [
+        5,
+        4
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "13B/3",
+      "part": "13B",
+      "kind": "nand",
+      "inputs": [
+        9,
+        10
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "13B/4",
+      "part": "13B",
+      "kind": "nand",
+      "inputs": [
+        13,
+        12
+      ],
+      "output": 11,
+      "confidence": "read"
+    },
+    {
+      "id": "17B/1",
+      "part": "17B",
+      "kind": "nand",
+      "inputs": [
+        1,
+        2
+      ],
+      "output": 3,
+      "confidence": "read"
+    },
+    {
+      "id": "17B/2",
+      "part": "17B",
+      "kind": "nand",
+      "inputs": [
+        5,
+        4
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "17B/3",
+      "part": "17B",
+      "kind": "nand",
+      "inputs": [
+        10,
+        9
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "17C/1",
+      "part": "17C",
+      "kind": "nand",
+      "inputs": [
+        1,
+        2
+      ],
+      "output": 3,
+      "confidence": "read"
+    },
+    {
+      "id": "17C/2",
+      "part": "17C",
+      "kind": "nand",
+      "inputs": [
+        4,
+        5
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "17C/3",
+      "part": "17C",
+      "kind": "nand",
+      "inputs": [
+        9,
+        10
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "17C/4",
+      "part": "17C",
+      "kind": "nand",
+      "inputs": [
+        12,
+        13
+      ],
+      "output": 11,
+      "confidence": "read"
+    },
+    {
+      "id": "1B/1",
+      "part": "1B",
+      "kind": "nand",
+      "inputs": [
+        2,
+        1
+      ],
+      "output": 3,
+      "confidence": "read"
+    },
+    {
+      "id": "1B/2",
+      "part": "1B",
+      "kind": "nand",
+      "inputs": [
+        5,
+        4
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "1B/3",
+      "part": "1B",
+      "kind": "nand",
+      "inputs": [
+        9,
+        10
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "1B/4",
+      "part": "1B",
+      "kind": "nand",
+      "inputs": [
+        12,
+        13
+      ],
+      "output": 11,
+      "confidence": "read"
+    },
+    {
+      "id": "9E/1",
+      "part": "9E",
+      "kind": "nor",
+      "inputs": [
+        2,
+        3
+      ],
+      "output": 1,
+      "confidence": "read"
+    },
+    {
+      "id": "9E/2",
+      "part": "9E",
+      "kind": "nor",
+      "inputs": [
+        6,
+        5
+      ],
+      "output": 4,
+      "confidence": "read"
+    },
+    {
+      "id": "9E/3",
+      "part": "9E",
+      "kind": "nor",
+      "inputs": [
+        8,
+        9
+      ],
+      "output": 10,
+      "confidence": "read"
+    },
+    {
+      "id": "9E/4",
+      "part": "9E",
+      "kind": "nor",
+      "inputs": [
+        12,
+        11
+      ],
+      "output": 13,
+      "confidence": "read"
+    },
+    {
+      "id": "3A/1",
+      "part": "3A",
+      "kind": "nor",
+      "inputs": [
+        3,
+        2
+      ],
+      "output": 1,
+      "confidence": "read"
+    },
+    {
+      "id": "3A/2",
+      "part": "3A",
+      "kind": "nor",
+      "inputs": [
+        5,
+        6
+      ],
+      "output": 4,
+      "confidence": "read"
+    },
+    {
+      "id": "3A/3",
+      "part": "3A",
+      "kind": "nor",
+      "inputs": [
+        8,
+        9
+      ],
+      "output": 10,
+      "confidence": "read"
+    },
+    {
+      "id": "3A/4",
+      "part": "3A",
+      "kind": "nor",
+      "inputs": [
+        11,
+        12
+      ],
+      "output": 13,
+      "confidence": "read"
+    },
+    {
+      "id": "11C/1",
+      "part": "11C",
+      "kind": "not",
+      "inputs": [
+        1
+      ],
+      "output": 2,
+      "confidence": "read"
+    },
+    {
+      "id": "11C/2",
+      "part": "11C",
+      "kind": "not",
+      "inputs": [
+        3
+      ],
+      "output": 4,
+      "confidence": "read"
+    },
+    {
+      "id": "11C/3",
+      "part": "11C",
+      "kind": "not",
+      "inputs": [
+        5
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "11C/4",
+      "part": "11C",
+      "kind": "not",
+      "inputs": [
+        9
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "11C/6",
+      "part": "11C",
+      "kind": "not",
+      "inputs": [
+        13
+      ],
+      "output": 12,
+      "confidence": "read"
+    },
+    {
+      "id": "7B/1",
+      "part": "7B",
+      "kind": "not",
+      "inputs": [
+        1
+      ],
+      "output": 2,
+      "confidence": "read"
+    },
+    {
+      "id": "7B/2",
+      "part": "7B",
+      "kind": "not",
+      "inputs": [
+        3
+      ],
+      "output": 4,
+      "confidence": "read"
+    },
+    {
+      "id": "7B/3",
+      "part": "7B",
+      "kind": "not",
+      "inputs": [
+        5
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "7B/4",
+      "part": "7B",
+      "kind": "not",
+      "inputs": [
+        9
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "7B/5",
+      "part": "7B",
+      "kind": "not",
+      "inputs": [
+        11
+      ],
+      "output": 10,
+      "confidence": "read"
+    },
+    {
+      "id": "7B/6",
+      "part": "7B",
+      "kind": "not",
+      "inputs": [
+        13
+      ],
+      "output": 12,
+      "confidence": "read"
+    },
+    {
+      "id": "9B/1",
+      "part": "9B",
+      "kind": "not",
+      "inputs": [
+        1
+      ],
+      "output": 2,
+      "confidence": "read"
+    },
+    {
+      "id": "9B/2",
+      "part": "9B",
+      "kind": "not",
+      "inputs": [
+        3
+      ],
+      "output": 4,
+      "confidence": "read"
+    },
+    {
+      "id": "9B/3",
+      "part": "9B",
+      "kind": "not",
+      "inputs": [
+        5
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "9B/4",
+      "part": "9B",
+      "kind": "not",
+      "inputs": [
+        9
+      ],
+      "output": 8,
+      "confidence": "read"
+    },
+    {
+      "id": "9B/5",
+      "part": "9B",
+      "kind": "not",
+      "inputs": [
+        11
+      ],
+      "output": 10,
+      "confidence": "read"
+    },
+    {
+      "id": "9B/6",
+      "part": "9B",
+      "kind": "not",
+      "inputs": [
+        13
+      ],
+      "output": 12,
+      "confidence": "read"
+    },
+    {
+      "id": "11A/1",
+      "part": "11A",
+      "kind": "and",
+      "inputs": [
+        1,
+        2
+      ],
+      "output": 3,
+      "confidence": "read"
+    },
+    {
+      "id": "11A/2",
+      "part": "11A",
+      "kind": "and",
+      "inputs": [
+        5,
+        4
+      ],
+      "output": 6,
+      "confidence": "read"
+    },
+    {
+      "id": "11A/4",
+      "part": "11A",
+      "kind": "and",
+      "inputs": [
+        12,
+        13
+      ],
+      "output": 11,
+      "confidence": "read"
+    },
+    {
+      "id": "5A/1",
+      "part": "5A",
+      "kind": "nand",
+      "inputs": [
+        1,
+        2
+      ],
+      "output": 3,
+      "confidence": "read",
+      "note": "open collector"
+    },
+    {
+      "id": "5A/2",
+      "part": "5A",
+      "kind": "nand",
+      "inputs": [
+        4,
+        5
+      ],
+      "output": 6,
+      "confidence": "read",
+      "note": "open collector"
+    },
+    {
+      "id": "5A/3",
+      "part": "5A",
+      "kind": "nand",
+      "inputs": [
+        9,
+        10
+      ],
+      "output": 8,
+      "confidence": "read",
+      "note": "open collector"
+    },
+    {
+      "id": "5A/4",
+      "part": "5A",
+      "kind": "nand",
+      "inputs": [
+        12,
+        13
+      ],
+      "output": 11,
+      "confidence": "read",
+      "note": "open collector"
+    },
+    {
+      "id": "3B/1",
+      "part": "3B",
+      "kind": "other",
+      "inputs": [
+        9,
+        10,
+        13,
+        1
+      ],
+      "output": 8,
+      "confidence": "read",
+      "note": "AND-OR-INVERT: NOT((9 AND 10) OR (13 AND 1)), level 12"
+    },
+    {
+      "id": "3B/2",
+      "part": "3B",
+      "kind": "other",
+      "inputs": [
+        3,
+        2,
+        5,
+        4
+      ],
+      "output": 6,
+      "confidence": "read",
+      "note": "AND-OR-INVERT: NOT((3 AND 2) OR (5 AND 4)), level 10"
+    },
+    {
+      "id": "13A/1",
+      "part": "13A",
+      "kind": "not",
+      "inputs": [
+        4
+      ],
+      "output": 13,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "13A/2",
+      "part": "13A",
+      "kind": "not",
+      "inputs": [
+        5
+      ],
+      "output": 12,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "13A/3",
+      "part": "13A",
+      "kind": "not",
+      "inputs": [
+        6
+      ],
+      "output": 11,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "13A/4",
+      "part": "13A",
+      "kind": "not",
+      "inputs": [
+        7
+      ],
+      "output": 10,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "15A/1",
+      "part": "15A",
+      "kind": "not",
+      "inputs": [
+        4
+      ],
+      "output": 13,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "15A/2",
+      "part": "15A",
+      "kind": "not",
+      "inputs": [
+        5
+      ],
+      "output": 12,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "15A/3",
+      "part": "15A",
+      "kind": "not",
+      "inputs": [
+        6
+      ],
+      "output": 11,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "15A/4",
+      "part": "15A",
+      "kind": "not",
+      "inputs": [
+        7
+      ],
+      "output": 10,
+      "confidence": "read",
+      "note": "line receiver"
+    },
+    {
+      "id": "17A/1",
+      "part": "17A",
+      "kind": "nand",
+      "inputs": [
+        2,
+        3
+      ],
+      "output": 12,
+      "confidence": "read",
+      "note": "line driver, pin 2 = common strobe S"
+    },
+    {
+      "id": "17A/2",
+      "part": "17A",
+      "kind": "nand",
+      "inputs": [
+        2,
+        4
+      ],
+      "output": 11,
+      "confidence": "read",
+      "note": "line driver, pin 2 = common strobe S"
+    },
+    {
+      "id": "19A/1",
+      "part": "19A",
+      "kind": "nand",
+      "inputs": [
+        2,
+        3
+      ],
+      "output": 12,
+      "confidence": "inferred",
+      "note": "line driver, pin 2 = common strobe S"
+    },
+    {
+      "id": "19A/2",
+      "part": "19A",
+      "kind": "nand",
+      "inputs": [
+        2,
+        4
+      ],
+      "output": 11,
+      "confidence": "inferred",
+      "note": "line driver, pin 2 = common strobe S"
     }
   ],
   "nets": [
