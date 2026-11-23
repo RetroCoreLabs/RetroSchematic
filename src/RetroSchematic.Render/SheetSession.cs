@@ -127,7 +127,17 @@ namespace RetroSchematic.Render
             _options.Catalog = catalogFolder == null ? null : new ChipCatalog(catalogFolder);
             Editor = new SheetEditor(netlist, _options.Catalog);
             Editor.Changed += OnEdited;
-            Drawing = SheetLayout.Build(netlist, style, _options);
+            // the sheet's own display values win over the defaults (here: only the symbol
+            // style given; the window passes its full defaults with SetDefaults)
+            _defaults.Symbols = style;
+            Display = DisplaySettings.Resolve(_defaults, Editor.Root.Display);
+            Style = Display.Symbols;
+            _options.NameStyle = Display.NameStyle;
+            _options.ShowPinNumbers = Display.PinNumbers;
+            _options.ShowBoardPositions = Display.BoardPositions;
+            _options.ShowPortArrows = Display.PortArrows;
+            _options.ShowBuses = Display.Buses;
+            Drawing = SheetLayout.Build(netlist, Style, _options);
         }
 
         /// <summary>

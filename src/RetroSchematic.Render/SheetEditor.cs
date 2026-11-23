@@ -703,6 +703,21 @@ namespace RetroSchematic.Render
             }
         }
 
+        /// <summary>
+        /// Sets the sheet's own display values (the "display" section), or null to remove them.
+        /// Display only, so allowed in read-only mode; it is still a change to the file, so it is
+        /// marked as needing saving and can be undone.
+        /// </summary>
+        /// <param name="display">
+        /// The values, or null.
+        /// </param>
+        public void SetDisplay(SheetDisplay? display)
+        {
+            Snapshot();
+            Root.Display = display;
+            Done();
+        }
+
         private void Snapshot()
         {
             SyncBack();

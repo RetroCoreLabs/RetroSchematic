@@ -166,6 +166,12 @@ namespace RetroSchematic.Model
         public SheetLayoutSection? Layout { get; set; }
 
         /// <summary>
+        /// How this sheet likes to be shown, or null: each value overrides the viewer's own
+        /// default for this sheet only. Display only - it never changes what is connected.
+        /// </summary>
+        public SheetDisplay? Display { get; set; }
+
+        /// <summary>
         /// Block definitions (format version 2), or null for none. Each is a Verilog module.
         /// </summary>
         public List<BlockDefinition>? Blocks { get; set; }
@@ -677,5 +683,62 @@ namespace RetroSchematic.Model
         /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
         public int Pin => int.Parse(At.Substring(At.LastIndexOf('.') + 1), System.Globalization.CultureInfo.InvariantCulture);
+    }
+
+    /// <summary>
+    /// A sheet's own display settings (the optional "display" section). Every value is
+    /// optional: a missing one means "use the viewer's default".
+    /// </summary>
+    public sealed class SheetDisplay
+    {
+        /// <summary>
+        /// How active-low signals are written: "slash" (/NAME), "tilde" (~NAME) or "subscript"
+        /// (ND's 0 and 1).
+        /// </summary>
+        public string? NameStyle { get; set; }
+
+        /// <summary>
+        /// The symbol style: "nd" (the 1976 manual) or "modern".
+        /// </summary>
+        public string? Symbols { get; set; }
+
+        /// <summary>
+        /// The colour theme by name, such as "Light" or "Dark".
+        /// </summary>
+        public string? Theme { get; set; }
+
+        /// <summary>
+        /// Show pin numbers.
+        /// </summary>
+        public bool? PinNumbers { get; set; }
+
+        /// <summary>
+        /// Show board positions before chip types.
+        /// </summary>
+        public bool? BoardPositions { get; set; }
+
+        /// <summary>
+        /// Show direction arrows on block ports.
+        /// </summary>
+        public bool? PortArrows { get; set; }
+
+        /// <summary>
+        /// Draw the sheet's buses (off: every member on its own).
+        /// </summary>
+        public bool? Buses { get; set; }
+
+        /// <summary>
+        /// Make a traced signal pulse (off: it is shown still).
+        /// </summary>
+        public bool? TracePulse { get; set; }
+
+        /// <summary>
+        /// True when no value is set, so the section can be left out of the file.
+        /// </summary>
+        /// <returns>
+        /// True when empty.
+        /// </returns>
+        public bool IsEmpty() => NameStyle == null && Symbols == null && Theme == null && PinNumbers == null
+            && BoardPositions == null && PortArrows == null && Buses == null && TracePulse == null;
     }
 }

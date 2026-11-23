@@ -94,6 +94,23 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   is routed afresh between its two ends and the program says why. A pin that cannot reach its
   bus keeps its ordinary net label, and that is reported too.
 
+- `display` (2026-11-23): how this sheet likes to be shown. Display only - it never changes what
+  is connected. Every value is optional; a missing one means "use the viewer's default", and a
+  value here overrides that default for this sheet only. Both format versions accept it.
+
+  | Field | Values | Meaning |
+  |---|---|---|
+  | `nameStyle` | `slash`, `tilde`, `subscript` | Active-low names as /NAME, ~NAME, or NAME with ND's subscript 0/1 |
+  | `symbols` | `nd`, `modern` | ND 1976 symbols or modern ones |
+  | `theme` | a theme name | Colours, such as `Light` or `Dark` |
+  | `pinNumbers`, `boardPositions`, `portArrows` | true / false | Show them |
+  | `buses` | true / false | Draw the buses; false draws every member on its own |
+  | `tracePulse` | true / false | A traced signal pulses; false shows it still |
+
+  ```json
+  "display": { "nameStyle": "subscript", "buses": false }
+  ```
+
 ## How a sheet is drawn
 
 The file holds connections only; the drawing is worked out from them every time. The rules, so

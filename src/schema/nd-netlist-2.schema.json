@@ -94,6 +94,9 @@
       "items": {
         "$ref": "#/$defs/instance"
       }
+    },
+    "display": {
+      "$ref": "#/$defs/display"
     }
   },
   "$defs": {
@@ -520,6 +523,49 @@
           "items": {
             "$ref": "#/$defs/instance"
           }
+        }
+      }
+    },
+    "display": {
+      "type": "object",
+      "description": "How this sheet likes to be shown: each value overrides the viewer's default for this sheet. A missing value means use the default. Display only, never connections. Optional.",
+      "additionalProperties": false,
+      "properties": {
+        "nameStyle": {
+          "enum": [
+            "slash",
+            "tilde",
+            "subscript"
+          ],
+          "description": "Active-low names as /NAME, ~NAME, or NAME with ND's subscript 0/1."
+        },
+        "symbols": {
+          "enum": [
+            "nd",
+            "modern"
+          ],
+          "description": "ND 1976 symbols or modern ones."
+        },
+        "theme": {
+          "type": "string",
+          "description": "Colour theme by name, such as Light or Dark."
+        },
+        "pinNumbers": {
+          "type": "boolean"
+        },
+        "boardPositions": {
+          "type": "boolean"
+        },
+        "portArrows": {
+          "type": "boolean"
+        },
+        "buses": {
+          "type": "boolean",
+          "description": "Draw the buses; false draws every member on its own."
+        },
+        "tracePulse": {
+          "type": "boolean",
+          "description": "A traced signal pulses; false shows it still."
         }
       }
     }
