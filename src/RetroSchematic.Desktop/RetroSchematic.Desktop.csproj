@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>RetroSchematic</AssemblyName>
+    <RootNamespace>RetroSchematic.Desktop</RootNamespace>
+    <OutputType>WinExe</OutputType>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- the same Avalonia version as RetroCommander, so the two programs move together -->
+    <PackageReference Include="Avalonia" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.6" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.6" />
+    <!-- Avalonia 11.3.6 pulls Tmds.DBus.Protocol 0.21.2, which has a high-severity advisory
+         (GHSA-xrw6-gwf8-vvr9). 0.21.3 is the fix on the same line; referencing it directly makes
+         NuGet take it (RetroCommander pins it the same way). -->
+    <PackageReference Include="Tmds.DBus.Protocol" Version="0.21.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
+    <ProjectReference Include="..\RetroSchematic.Render\RetroSchematic.Render.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="RetroSchematic.Desktop.Tests" />
+  </ItemGroup>
+</Project>

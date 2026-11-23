@@ -1,0 +1,68 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="using:RetroSchematic.Desktop.Controls"
+        x:Class="RetroSchematic.Desktop.MainWindow"
+        Title="RetroSchematic"
+        Width="1400" Height="900"
+        Background="{DynamicResource FluentBackgroundPrimaryBrush}">
+  <!-- Layout and colours follow RetroCommander: every colour is a {DynamicResource} brush from
+       Themes/ThemeManager.cs, so View > Theme re-colours the window live. -->
+  <DockPanel>
+    <Menu DockPanel.Dock="Top" Background="{DynamicResource FluentSurfaceAltBrush}">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open sheet..." Click="OnOpen" InputGesture="Ctrl+O"/>
+        <MenuItem Header="Save as _SVG..." Click="OnSaveSvg" x:Name="SaveSvgItem" IsEnabled="False"/>
+        <Separator/>
+        <MenuItem Header="E_xit" Click="OnExit"/>
+      </MenuItem>
+      <MenuItem Header="_View">
+        <MenuItem Header="_ND 1976 symbols" x:Name="NdStyleItem" Click="OnNdStyle" ToggleType="Radio"/>
+        <MenuItem Header="_Modern symbols" x:Name="ModernStyleItem" Click="OnModernStyle" ToggleType="Radio"/>
+        <Separator/>
+        <MenuItem Header="_Fit to window" Click="OnFit" InputGesture="Ctrl+0"/>
+        <Separator/>
+        <MenuItem Header="_Theme" x:Name="ThemeMenu"/>
+      </MenuItem>
+    </Menu>
+
+    <Border DockPanel.Dock="Bottom" Classes="status-bar">
+      <TextBlock x:Name="StatusText" Text="Open a sheet (File > Open sheet)."/>
+    </Border>
+
+    <Grid ColumnDefinitions="260,4,*,4,320">
+      <!-- left: the sheet's parts and signals -->
+      <Border Grid.Column="0" Classes="panel-border" Margin="6,6,0,6">
+        <TabControl>
+          <TabItem Header="Parts">
+            <ListBox x:Name="PartsList" SelectionChanged="OnPartPicked"
+                     Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+          </TabItem>
+          <TabItem Header="Signals">
+            <ListBox x:Name="NetsList" SelectionChanged="OnNetPicked"
+                     Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+          </TabItem>
+        </TabControl>
+      </Border>
+      <GridSplitter Grid.Column="1" Background="Transparent"/>
+
+      <!-- middle: the drawing -->
+      <Border Grid.Column="2" Classes="panel-border" Margin="0,6" ClipToBounds="True">
+        <c:SchematicCanvas x:Name="Canvas"/>
+      </Border>
+      <GridSplitter Grid.Column="3" Background="Transparent"/>
+
+      <!-- right: what the picked item is -->
+      <Border Grid.Column="4" Classes="panel-border" Margin="0,6,6,6" Padding="10">
+        <DockPanel>
+          <TextBlock DockPanel.Dock="Top" Classes="fluent-text-header" Text="Details" Margin="0,0,0,8"/>
+          <ScrollViewer>
+            <SelectableTextBlock x:Name="DetailsText" TextWrapping="Wrap"
+                                 FontFamily="Consolas, Courier New, monospace" FontSize="12"
+                                 Foreground="{DynamicResource FluentTextPrimaryBrush}"
+                                 Text="Click a part, gate or signal on the drawing."/>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </DockPanel>
+</Window>

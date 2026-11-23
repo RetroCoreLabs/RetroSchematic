@@ -1,0 +1,13 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="RetroSchematic.Desktop.App">
+  <!-- The theme variant is chosen at run time by Themes/ThemeManager.cs (Light, Dark, Solarized
+       Dark, Nord, Retro Green, Amber CRT, Synthwave '84, High Contrast) from the saved
+       preference. Do NOT set RequestedThemeVariant here. -->
+  <Application.Styles>
+    <FluentTheme />
+    <!-- the DataGrid styles must be included or a DataGrid does not draw at all -->
+    <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+    <StyleInclude Source="avares://RetroSchematic/Styles/FluentTheme.axaml"/>
+  </Application.Styles>
+</Application>

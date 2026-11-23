@@ -1,0 +1,273 @@
+//
+// SPDX-License-Identifier: MIT
+// Copyright (c) 1985-2026 Ronny Hansen
+// RetroCore Labs — https://github.com/RetroCoreLabs
+//
+
+using System;
+using System.Collections.Generic;
+using RetroSchematic.Model;
+
+namespace RetroSchematic.Render
+{
+    /// <summary>
+    /// What a drawing step shows. Every output (SVG, the window) picks the colour from the role,
+    /// so the layout code never names a colour and every theme can recolour the whole sheet.
+    /// </summary>
+    public enum DrawRole
+    {
+        /// <summary>The sheet title line.</summary>
+        Title,
+
+        /// <summary>The frame around a chip at its board position.</summary>
+        PartOutline,
+
+        /// <summary>The chip's position code and type ("11D 7402").</summary>
+        PartLabel,
+
+        /// <summary>A gate symbol's own lines.</summary>
+        Symbol,
+
+        /// <summary>A pin line from a symbol out to its signal.</summary>
+        PinLine,
+
+        /// <summary>A small pin number beside a pin line.</summary>
+        PinNumber,
+
+        /// <summary>A signal name at a pin.</summary>
+        SignalName,
+
+        /// <summary>Lower-priority text such as a chip's function.</summary>
+        Note,
+    }
+
+    /// <summary>The kind of one drawing step.</summary>
+    public enum DrawKind
+    {
+        /// <summary>Straight line from (X1,Y1) to (X2,Y2).</summary>
+        Line,
+
+        /// <summary>Rectangle at (X1,Y1) with width X2 and height Y2.</summary>
+        Rect,
+
+        /// <summary>Circle centred on (X1,Y1) with radius X2.</summary>
+        Circle,
+
+        /// <summary>Outline built from <see cref="DrawItem.Path"/>.</summary>
+        Path,
+
+        /// <summary>Text with its baseline at (X1,Y1).</summary>
+        Text,
+
+        /// <summary>Starts a named group (a part or a gate); <see cref="DrawItem.Owner"/> names it.</summary>
+        GroupStart,
+
+        /// <summary>Ends the most recent group.</summary>
+        GroupEnd,
+    }
+
+    /// <summary>Where text sits relative to its anchor point.</summary>
+    public enum TextAnchor
+    {
+        /// <summary>Text starts at the point.</summary>
+        Start,
+
+        /// <summary>Text is centred on the point.</summary>
+        Middle,
+
+        /// <summary>Text ends at the point.</summary>
+        End,
+    }
+
+    /// <summary>One step of an outline path.</summary>
+    public enum PathOp
+    {
+        /// <summary>Start a new figure at (X,Y).</summary>
+        MoveTo,
+
+        /// <summary>Straight line to (X,Y).</summary>
+        LineTo,
+
+        /// <summary>Quadratic curve with control point (CX,CY) ending at (X,Y).</summary>
+        QuadTo,
+
+        /// <summary>Circular arc of radius R ending at (X,Y), turning clockwise.</summary>
+        ArcClockwiseTo,
+
+        /// <summary>Close the figure back to its start.</summary>
+        Close,
+    }
+
+    /// <summary>One step of a path outline.</summary>
+    public readonly struct PathSegment
+    {
+        /// <summary>What the step does.</summary>
+        public readonly PathOp Op;
+
+        /// <summary>End point X.</summary>
+        public readonly double X;
+
+        /// <summary>End point Y.</summary>
+        public readonly double Y;
+
+        /// <summary>Curve control point X (QuadTo) or the radius (ArcClockwiseTo).</summary>
+        public readonly double CX;
+
+        /// <summary>Curve control point Y (QuadTo).</summary>
+        public readonly double CY;
+
+        /// <summary>Creates a path step.</summary>
+        public PathSegment(PathOp op, double x, double y, double cx = 0, double cy = 0)
+        {
+            Op = op;
+            X = x;
+            Y = y;
+            CX = cx;
+            CY = cy;
+        }
+    }
+
+    /// <summary>
+    /// One drawing step: a shape or a piece of text, with its role, how sure the reading is, and
+    /// which part, gate or signal it belongs to (used to pick it with the mouse).
+    /// </summary>
+    public sealed class DrawItem
+    {
+        /// <summary>What kind of step this is.</summary>
+        public DrawKind Kind;
+
+        /// <summary>What it shows; chooses the colour.</summary>
+        public DrawRole Role;
+
+        /// <summary>How sure the reading behind it is. Inferred items are drawn in their own colour.</summary>
+        public Confidence Confidence;
+
+        /// <summary>First coordinate pair, see <see cref="DrawKind"/> for the meaning per kind.</summary>
+        public double X1, Y1;
+
+        /// <summary>Second coordinate pair, see <see cref="DrawKind"/> for the meaning per kind.</summary>
+        public double X2, Y2;
+
+        /// <summary>Dashed outline (a part whose type is not proved).</summary>
+        public bool Dashed;
+
+        /// <summary>The path steps for <see cref="DrawKind.Path"/>.</summary>
+        public PathSegment[]? Path;
+
+        /// <summary>The text for <see cref="DrawKind.Text"/>.</summary>
+        public string Text = "";
+
+        /// <summary>
+        /// Text written after <see cref="Text"/> as a lowered, smaller subscript - ND's 1 (active
+        /// high) or 0 (active low) on a signal name. Empty for none.
+        /// </summary>
+        public string Subscript = "";
+
+        /// <summary>Font size in drawing units.</summary>
+        public double FontSize = 10;
+
+        /// <summary>Bold text.</summary>
+        public bool Bold;
+
+        /// <summary>Where the text sits relative to (X1,Y1).</summary>
+        public TextAnchor Anchor;
+
+        /// <summary>
+        /// What this step belongs to, written as "part:11D", "gate:11D/1" or "net:BD0". Empty when
+        /// it belongs to nothing that can be picked (the title).
+        /// </summary>
+        public string Owner = "";
+    }
+
+    /// <summary>
+    /// A whole sheet as a list of drawing steps, in drawing units. Built once by
+    /// <see cref="SheetLayout"/>; written out by <see cref="SvgRenderer"/> and drawn on screen by the
+    /// desktop viewer, so the two always show the same thing.
+    /// </summary>
+    public sealed class SchematicDrawing
+    {
+        /// <summary>Creates an empty drawing of the given size.</summary>
+        public SchematicDrawing(double width, double height)
+        {
+            Width = width;
+            Height = height;
+        }
+
+        /// <summary>Width in drawing units.</summary>
+        public double Width { get; }
+
+        /// <summary>Height in drawing units.</summary>
+        public double Height { get; }
+
+        /// <summary>The steps, in drawing order.</summary>
+        public List<DrawItem> Items { get; } = new();
+
+        /// <summary>
+        /// The owner ("part:11D", "gate:11D/1", "net:BD0") of what lies under a point, or an empty
+        /// string. Signal names and gates win over the part frame around them, because they are
+        /// drawn on top of it and are the smaller target.
+        /// </summary>
+        public string HitTest(double x, double y)
+        {
+            string best = "";
+            int bestRank = int.MaxValue;
+            for (int i = 0; i < Items.Count; i++)
+            {
+                DrawItem it = Items[i];
+                if (it.Owner.Length == 0 || it.Kind == DrawKind.GroupStart || it.Kind == DrawKind.GroupEnd)
+                    continue;
+                Bounds(it, out double left, out double top, out double right, out double bottom);
+                if (x < left || x > right || y < top || y > bottom)
+                    continue;
+                int rank = it.Owner.StartsWith("net:", StringComparison.Ordinal) ? 0
+                    : it.Owner.StartsWith("gate:", StringComparison.Ordinal) ? 1 : 2;
+                if (rank < bestRank)
+                {
+                    bestRank = rank;
+                    best = it.Owner;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>
+        /// The box an item covers. Text width is estimated at 0.6 x the font size per character,
+        /// which is the monospace width the sheet is drawn with.
+        /// </summary>
+        public static void Bounds(DrawItem it, out double left, out double top, out double right, out double bottom)
+        {
+            switch (it.Kind)
+            {
+                case DrawKind.Rect:
+                    left = it.X1; top = it.Y1; right = it.X1 + it.X2; bottom = it.Y1 + it.Y2;
+                    return;
+                case DrawKind.Circle:
+                    left = it.X1 - it.X2; top = it.Y1 - it.X2; right = it.X1 + it.X2; bottom = it.Y1 + it.X2;
+                    return;
+                case DrawKind.Text:
+                    double w = 0.6 * it.FontSize * (it.Text.Length + (0.7 * it.Subscript.Length));
+                    left = it.Anchor == TextAnchor.Start ? it.X1 : it.Anchor == TextAnchor.Middle ? it.X1 - (w / 2) : it.X1 - w;
+                    right = left + w;
+                    top = it.Y1 - it.FontSize;
+                    bottom = it.Y1 + (0.3 * it.FontSize);
+                    return;
+                case DrawKind.Path:
+                    left = double.MaxValue; top = double.MaxValue; right = double.MinValue; bottom = double.MinValue;
+                    PathSegment[] p = it.Path!;
+                    for (int i = 0; i < p.Length; i++)
+                    {
+                        if (p[i].Op == PathOp.Close)
+                            continue;
+                        left = Math.Min(left, p[i].X); right = Math.Max(right, p[i].X);
+                        top = Math.Min(top, p[i].Y); bottom = Math.Max(bottom, p[i].Y);
+                    }
+                    return;
+                default:
+                    // a line: its box, widened by 2 units so a thin line can still be picked
+                    left = Math.Min(it.X1, it.X2) - 2; right = Math.Max(it.X1, it.X2) + 2;
+                    top = Math.Min(it.Y1, it.Y2) - 2; bottom = Math.Max(it.Y1, it.Y2) + 2;
+                    return;
+            }
+        }
+    }
+}

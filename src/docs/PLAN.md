@@ -2,8 +2,8 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** map sheet 2A50 with the catalogue (`docs/SYMBOL-CATALOG.md`), reading every wire pin by
-pin, and note every symbol on the sheet the catalogue cannot name.
+**Next:** read the wires of sheet 2A50 pin by pin into the netlist, so the viewer can draw them,
+and add the parts the catalogue cannot name yet (see `docs/2A50-catalogue-map.md`).
 
 ## 1. Symbol catalogue - what is still missing
 
@@ -12,9 +12,12 @@ gate symbols have a description, the marks that tell them apart, and the manual'
 NOR, NOT, AND, OR and XOR are drawn in both styles from one pin table, checked by `GateShapeTests`.
 `docs/SYMBOL-CATALOG.md` shows it all. Still missing:
 
-- pin numbers of the block parts (7442, 74153, 7474 ...) transcribed from the cut-outs;
-- drawings for buffer, open-collector, Schmitt, AND-OR-INVERT and line-driver symbols;
-- chip files (`catalog/chips/`) with pinouts, formulas, stored state and delays from datasheets;
+- a datasheet for 74118 (its chip file has the title only), VP5, VP12 and DC1035T, and a real
+  74H datasheet for 74H11 and 74H21 (they carry LS figures);
+- 75154: ND's symbol calls it a line driver, TI's datasheet a line receiver; sheet 2A50 uses it
+  as a receiver;
+- parts on sheet 2A50 with no catalogue entry: 7451 (only inside the 7450 entry), 74S157,
+  COM 2601, and VP12/12's pins;
 - the candidates folder and process for symbols found on drawings but not in the manual.
 
 ### Layout
@@ -80,12 +83,14 @@ The file layout must cover all of this from the start; adding it later rewrites 
 The window has no logic of its own: every action calls the shared libraries, and the
 command-line tool and an MCP tool can do the same.
 
-- File: open a sheet, save, export to KiCad, Logisim, SVG/PNG.
-- View: ND 1976 or modern symbols (signal lines stay put), zoom, fit, show or hide pin numbers
-  and board positions, show the original scan behind the drawing to compare.
-- READ, INFERRED and OPEN connections each in their own colour.
-- Click a part or signal: side panel with type, formula, pins, source (sheet, page) and sure
-  mark; clicking a signal lights every pin it reaches, across sheets.
+- File: save a sheet, export to KiCad, Logisim, PNG.
+- View: show or hide pin numbers and board positions; show the original scan behind the
+  drawing to compare; keep signal lines in place when switching symbol style (wires are not
+  drawn yet, see 1b).
+- OPEN connections in a colour of their own (today READ is ink and INFERRED its own colour;
+  OPEN is drawn like INFERRED).
+- Side panel for a picked part: pins and their signals, source (sheet, page). A picked signal
+  lights its pins on this sheet; across sheets is not done.
 - Simulation toolbar: run, pause, single step, reset; click an input to set 0 or 1; lines
   coloured by value (0, 1, not driven, unknown, driven twice).
 - Signal plot window (logic analyser view).

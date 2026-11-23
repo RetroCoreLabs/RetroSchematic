@@ -24,18 +24,34 @@ was read from, and the tools that check and draw it.
   version, an unknown field, a pin on two wires, or a gate in a chip that is not listed.
 - **Draw a sheet** - `retroschematic render` writes an SVG with every chip at its position on
   the board, in ND 1976 symbols or modern symbols.
+- **Look at a sheet in a window** - the viewer draws the sheet, switches between ND and modern
+  symbols, and shows what a clicked part, gate or signal is.
+- **Look up a symbol** - `src/docs/SYMBOL-CATALOG.md` shows every part in ND's 1976 symbol
+  manual, redrawn in ND style and in modern style, with its formula, pins and delays from the
+  chip's datasheet.
 - **Read the drawings** - the scans and the ND symbol manual are in `src/docs/sources/`.
+
+## Programs
+
+| Program | What it is |
+|---|---|
+| `RetroSchematic.Cli` (`retroschematic`) | command line: check a sheet file, write it as SVG |
+| [`RetroSchematic.Desktop`](src/RetroSchematic.Desktop/README.md) (`RetroSchematic`) | the viewer window |
 
 ## Status
 
 Version 0.1.0, no tagged release yet.
 
 - The file format, version 1, is defined (`src/docs/FORMAT.md`, `src/schema/nd-netlist-1.schema.json`).
-- One sheet is written: NORD-10 sheet 2A50, the synchronous modem buffer card 1050. Its 23 chips
-  and the COM2601 chip's pins are in; most chip-to-chip wires are not read pin by pin yet.
+- One sheet is written: NORD-10 sheet 2A50, the synchronous modem buffer card 1050. All 40 chips
+  and 69 gates are in, checked against the parts list printed on the sheet
+  (`src/docs/2A50-catalogue-map.md`); most chip-to-chip wires are not read pin by pin yet.
+- The symbol catalogue covers all 128 parts of ND-13.003.01, with chip files from datasheets
+  for all but one (74118: no datasheet found).
+- The viewer window shows a sheet with the RetroCommander themes.
 - The renderer places chips and draws gates, but not routed wires.
-- 16 unit tests, all passing (run 2026-11-23).
-- The outstanding work, including the Avalonia viewer, simulation, KiCad/Logisim converters
+- 42 tests, all passing (run 2026-11-23): 39 for the libraries, 3 for the viewer window.
+- The outstanding work, including the rest of the viewer, simulation, KiCad/Logisim converters
   and Verilog export, is in `src/docs/PLAN.md`.
 
 ## Prerequisites
@@ -52,6 +68,7 @@ Version 0.1.0, no tagged release yet.
 dotnet test RetroSchematic.slnx -nodeReuse:false
 dotnet run --project RetroSchematic.Cli -- check sheets\nord-10\2A50-sync-modem-buffer-1050.json
 dotnet run --project RetroSchematic.Cli -- render sheets\nord-10\2A50-sync-modem-buffer-1050.json 2A50.svg nd
+dotnet run --project RetroSchematic.Desktop -- sheets\nord-10\2A50-sync-modem-buffer-1050.json
 ```
 
 Use `modern` instead of `nd` for modern gate symbols.
@@ -75,6 +92,9 @@ Symbols" (July 1976), which is in `src/docs/sources/manuals/`.
 
 - [The file format](src/docs/FORMAT.md) - fields, the version rule, how sure a reading is
 - [Sheet 2A50 reading](src/docs/2A50-reading.md) - register-level reading of the sync modem card
+- [Sheet 2A50 against the catalogue](src/docs/2A50-catalogue-map.md) - every drawn element matched to its symbol and chip
+- [Symbol catalogue](src/docs/SYMBOL-CATALOG.md) - every ND symbol, both styles, with chip data
+- [The viewer](src/RetroSchematic.Desktop/README.md)
 - [Plan](src/docs/PLAN.md) - outstanding work
 
 ## Contributing
