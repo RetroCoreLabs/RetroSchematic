@@ -178,7 +178,8 @@ namespace RetroSchematic.Tests
         public void ChipOutlines_AreThickerThanWires()
         {
             // three times a wire: at 2.25 times the difference could not be seen at normal zoom
-            Assert.That(LineWidths.Outline, Is.GreaterThanOrEqualTo(3 * LineWidths.Wire));
+            Assert.That(LineWidths.Outline, Is.GreaterThan(LineWidths.Wire), "an outline stays thicker than a wire");
+            Assert.That(LineWidths.Outline, Is.EqualTo(1.7 * LineWidths.Wire).Within(1e-9));
             Assert.That(LineWidths.Bus, Is.GreaterThan(LineWidths.Outline), "a bus is thicker still");
             Assert.That(LineWidths.Of(new DrawItem { Role = DrawRole.Symbol }), Is.EqualTo(LineWidths.Outline));
             Assert.That(LineWidths.Of(new DrawItem { Role = DrawRole.PartOutline }), Is.EqualTo(LineWidths.Outline));

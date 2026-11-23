@@ -845,12 +845,18 @@ namespace RetroSchematic.Model
         public bool? TracePulse { get; set; }
 
         /// <summary>
+        /// How thick every line is drawn, as a factor of the normal widths (1 = normal, 0.5 =
+        /// half, 2 = twice). The viewer keeps it between 0.5 and 3.
+        /// </summary>
+        public double? LineWidth { get; set; }
+
+        /// <summary>
         /// True when no value is set, so the section can be left out of the file.
         /// </summary>
         /// <returns>
         /// True when empty.
         /// </returns>
         public bool IsEmpty() => NameStyle == null && Symbols == null && Theme == null && PinNumbers == null
-            && BoardPositions == null && PortArrows == null && Buses == null && TracePulse == null;
+            && BoardPositions == null && PortArrows == null && Buses == null && TracePulse == null && LineWidth == null;
     }
 }

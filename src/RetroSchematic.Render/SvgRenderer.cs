@@ -65,7 +65,7 @@ namespace RetroSchematic.Render
                 $"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{d.Width:0}\" height=\"{d.Height:0}\" viewBox=\"0 0 {d.Width:0} {d.Height:0}\" font-family=\"Courier New, Consolas, monospace\" font-size=\"10\">\n");
             svg.Append("<rect width=\"100%\" height=\"100%\" fill=\"").Append(theme.Get(SchematicColour.Paper)).Append("\"/>\n");
             for (int i = 0; i < d.Items.Count; i++)
-                WriteItem(svg, d.Items[i], theme);
+                WriteItem(svg, d.Items[i], theme, d.LineScale);
             svg.Append("</svg>\n");
             return svg.ToString();
         }
@@ -84,14 +84,16 @@ namespace RetroSchematic.Render
         /// </returns>
         public static string ColourOf(DrawItem it, SchematicTheme theme) => theme.Get(SchematicStyle.Of(it).Stroke);
 
-        private static void WriteItem(StringBuilder svg, DrawItem it, SchematicTheme theme)
+        private static void WriteItem(StringBuilder svg, DrawItem it, SchematicTheme theme, double scale)
         {
             ItemStyle st = SchematicStyle.Of(it);
+            // the "Line width" setting thickens or thins every line by the same factor
+            double width = st.Width * scale;
             string colour = theme.Get(st.Stroke);
             string fill = st.Fill == null ? "none" : theme.Get(st.Fill.Value);
             StringBuilder line = new();
-            line.Append(CultureInfo.InvariantCulture, $" stroke=\"{colour}\" stroke-width=\"{st.Width:0.##}\"");
-            double[] dash = ItemStyle.Dashes(st.Line, st.Width);
+            line.Append(CultureInfo.InvariantCulture, $" stroke=\"{colour}\" stroke-width=\"{width:0.##}\"");
+            double[] dash = ItemStyle.Dashes(st.Line, width);
             if (dash.Length > 0)
                 line.Append(CultureInfo.InvariantCulture, $" stroke-dasharray=\"{dash[0]:0.##} {dash[1]:0.##}\"");
             // dots need round ends to show at all; buses and outlines look better with round joins

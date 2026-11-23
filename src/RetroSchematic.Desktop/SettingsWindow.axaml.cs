@@ -27,16 +27,21 @@ namespace RetroSchematic.Desktop
         /// <summary>
         /// The keys of the rows, in order.
         /// </summary>
-        public static readonly string[] Keys = { "names", "symbols", "theme", "pins", "positions", "arrows", "buses", "pulse" };
+        public static readonly string[] Keys = { "names", "symbols", "theme", "pins", "positions", "arrows", "buses", "pulse", "width" };
 
         private static readonly string[] s_labels =
         {
             "Active-low signal names", "Symbol style", "Theme", "Show pin numbers", "Show board positions",
-            "Show port arrows", "Show buses", "Trace pulse",
+            "Show port arrows", "Show buses", "Trace pulse", "Line width",
         };
 
         private static readonly string[] s_nameChoices = { "/NAME (slash)", "~NAME (tilde)", "NAME with subscript 0/1 (ND)" };
         private static readonly string[] s_symbolChoices = { "ND (1976 manual)", "Modern" };
+        /// <summary>
+        /// The line width row's choices, in the order of <see cref="DisplaySettings.LineWidthChoices"/>.
+        /// </summary>
+        private static readonly string[] s_widthChoices = WidthTexts();
+
         private static readonly string[] s_busChoices = { "NORD-10", "ND-100", "Unknown (warning)" };
         private static readonly MachineBus[] s_buses = { MachineBus.Nord10, MachineBus.Nd100, MachineBus.Unknown };
         private const string UseDefault = "Use default";
@@ -87,7 +92,7 @@ namespace RetroSchematic.Desktop
             }
             AddHeader();
             for (int r = 0; r < Keys.Length; r++)
-                AddRow(r + 1, Keys[r], s_labels[r], r == 0 ? s_nameChoices : r == 1 ? s_symbolChoices : r == 2 ? themeNames.ToArray() : null);
+                AddRow(r + 1, Keys[r], s_labels[r], r == 0 ? s_nameChoices : r == 1 ? s_symbolChoices : r == 2 ? themeNames.ToArray() : Keys[r] == "width" ? s_widthChoices : null);
             AddBusRow(Keys.Length + 1);
             Fill();
         }
@@ -184,6 +189,7 @@ namespace RetroSchematic.Desktop
             DefaultControls["arrows"].SelectedIndex = d.PortArrows ? 0 : 1;
             DefaultControls["buses"].SelectedIndex = d.Buses ? 0 : 1;
             DefaultControls["pulse"].SelectedIndex = d.TracePulse ? 0 : 1;
+            DefaultControls["width"].SelectedIndex = WidthIndex(d.LineWidth);
 
             SheetDisplay s = _session?.SheetDisplay ?? new SheetDisplay();
             SheetControls["names"].SelectedIndex = SignalNames.TryParseStyle(s.NameStyle, out SignalNameStyle ns) ? (int)ns + 1 : 0;
@@ -194,6 +200,7 @@ namespace RetroSchematic.Desktop
             SheetControls["arrows"].SelectedIndex = OnOff(s.PortArrows);
             SheetControls["buses"].SelectedIndex = OnOff(s.Buses);
             SheetControls["pulse"].SelectedIndex = OnOff(s.TracePulse);
+            SheetControls["width"].SelectedIndex = s.LineWidth == null ? 0 : WidthIndex(s.LineWidth.Value) + 1;
             MachineBus bus = _session?.Bus ?? MachineBus.Unknown;
             for (int i = 0; i < s_buses.Length; i++)
             {
@@ -213,6 +220,7 @@ namespace RetroSchematic.Desktop
                 PortArrows = DefaultControls["arrows"].SelectedIndex == 0,
                 Buses = DefaultControls["buses"].SelectedIndex == 0,
                 TracePulse = DefaultControls["pulse"].SelectedIndex == 0,
+                LineWidth = DisplaySettings.LineWidthChoices[Math.Max(0, DefaultControls["width"].SelectedIndex)],
             };
             int t = (DefaultControls["theme"]).SelectedIndex;
             d.Theme = t >= 0 ? _themeIds[t] : "Light";
@@ -236,6 +244,9 @@ namespace RetroSchematic.Desktop
             s.PortArrows = ReadOnOff("arrows");
             s.Buses = ReadOnOff("buses");
             s.TracePulse = ReadOnOff("pulse");
+            i = SheetControls["width"].SelectedIndex;
+            if (i > 0)
+                s.LineWidth = DisplaySettings.LineWidthChoices[i - 1];
             return s;
         }
 
@@ -243,6 +254,33 @@ namespace RetroSchematic.Desktop
         {
             int i = SheetControls[key].SelectedIndex;
             return i <= 0 ? null : i == 1;
+        }
+
+        /// <summary>
+        /// The texts of the line width choices: "1 x (normal)", "1.5 x" and so on.
+        /// </summary>
+        private static string[] WidthTexts()
+        {
+            double[] w = DisplaySettings.LineWidthChoices;
+            string[] texts = new string[w.Length];
+            for (int i = 0; i < w.Length; i++)
+                texts[i] = w[i].ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) + " x" + (w[i] == 1 ? " (normal)" : "");
+            return texts;
+        }
+
+        /// <summary>
+        /// The choice nearest to a line width factor (a hand-written file may hold any value).
+        /// </summary>
+        private static int WidthIndex(double value)
+        {
+            double[] w = DisplaySettings.LineWidthChoices;
+            int best = 0;
+            for (int i = 1; i < w.Length; i++)
+            {
+                if (Math.Abs(w[i] - value) < Math.Abs(w[best] - value))
+                    best = i;
+            }
+            return best;
         }
 
         private static int OnOff(bool? v) => v == null ? 0 : v.Value ? 1 : 2;
@@ -259,7 +297,8 @@ namespace RetroSchematic.Desktop
 
         private static bool Same(SheetDisplay a, SheetDisplay b)
             => a.NameStyle == b.NameStyle && a.Symbols == b.Symbols && a.Theme == b.Theme && a.PinNumbers == b.PinNumbers
-            && a.BoardPositions == b.BoardPositions && a.PortArrows == b.PortArrows && a.Buses == b.Buses && a.TracePulse == b.TracePulse;
+            && a.BoardPositions == b.BoardPositions && a.PortArrows == b.PortArrows && a.Buses == b.Buses && a.TracePulse == b.TracePulse
+            && a.LineWidth == b.LineWidth;
 
         private void OnOk(object? sender, RoutedEventArgs e)
         {

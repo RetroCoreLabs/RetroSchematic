@@ -113,7 +113,7 @@
           "ref": {
             "type": "string",
             "description": "The connector as pin references name it: P or F (connector not known yet), or P.A, F.B ... with the connector letter.",
-            "pattern": "^[PF](\.[A-Za-z0-9]+)?$"
+            "pattern": "^[PF](\\.[A-Za-z0-9]+)?$"
           },
           "catalog": { "type": "string" },
           "note": { "type": "string" }
@@ -630,6 +630,12 @@
         "tracePulse": {
           "type": "boolean",
           "description": "A traced signal pulses; false shows it still."
+        },
+        "lineWidth": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 3,
+          "description": "How thick every line is drawn, as a factor of the normal widths (1 = normal)."
         }
       }
     }

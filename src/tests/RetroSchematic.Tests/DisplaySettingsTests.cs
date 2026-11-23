@@ -38,6 +38,34 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void LineWidth_ComesFromTheSheet_OrTheDefault_IsKeptInRange_AndThickensEveryLine()
+        {
+            DisplaySettings defaults = new() { LineWidth = 1.5 };
+            Assert.That(DisplaySettings.Resolve(defaults, null).LineWidth, Is.EqualTo(1.5), "use default");
+            Assert.That(DisplaySettings.Resolve(defaults, new SheetDisplay { LineWidth = 2 }).LineWidth, Is.EqualTo(2), "the sheet's value");
+            Assert.That(DisplaySettings.Resolve(defaults, new SheetDisplay { LineWidth = 40 }).LineWidth, Is.EqualTo(DisplaySettings.MaxLineWidth));
+            Assert.That(DisplaySettings.Resolve(defaults, new SheetDisplay { LineWidth = 0 }).LineWidth, Is.EqualTo(DisplaySettings.MinLineWidth));
+
+            // through the file and back
+            Netlist n = NetlistReader.ReadFile(Sheet2A50);
+            n.Display = new SheetDisplay { LineWidth = 2 };
+            Assert.That(NetlistReader.Parse(NetlistReader.Write(n)).Display!.LineWidth, Is.EqualTo(2));
+
+            // the drawing carries the factor and the SVG draws every line with it, wires and
+            // outlines alike; nothing moves
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog"));
+            int items = s.Drawing.Items.Count;
+            double width = s.Drawing.Width;
+            s.SetSheetDisplay(new SheetDisplay { LineWidth = 2 });
+            Assert.That(s.Drawing.LineScale, Is.EqualTo(2));
+            Assert.That(s.Drawing.Items.Count, Is.EqualTo(items));
+            Assert.That(s.Drawing.Width, Is.EqualTo(width));
+            string svg = SvgRenderer.Write(s.Drawing, SchematicTheme.Find("Light")!);
+            Assert.That(svg, Does.Contain(string.Create(System.Globalization.CultureInfo.InvariantCulture, $"stroke-width=\"{2 * LineWidths.Wire:0.##}\"")));
+            Assert.That(svg, Does.Contain(string.Create(System.Globalization.CultureInfo.InvariantCulture, $"stroke-width=\"{2 * LineWidths.Outline:0.##}\"")));
+        }
+
+        [Test]
         public void TheDisplaySection_GoesThroughTheFileAndBack()
         {
             Netlist n = NetlistReader.ReadFile(Sheet2A50);

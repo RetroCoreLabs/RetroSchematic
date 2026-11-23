@@ -126,9 +126,10 @@ namespace RetroSchematic.Render
         public const double Label = 1.2;
 
         /// <summary>
-        /// Chip, gate and block outlines: three times a wire, so a body stands out at normal zoom.
+        /// Chip, gate and block outlines: 1.7 times a wire, so a body stands out from its wires
+        /// without looking heavy (it was 3 times, which the owner found too thick).
         /// </summary>
-        public const double Outline = 3 * Wire;
+        public const double Outline = 1.7 * Wire;
 
         /// <summary>
         /// A virtual bus: much thicker than a wire, a little thicker than an outline.
@@ -528,6 +529,11 @@ namespace RetroSchematic.Render
         /// How the signal names in this drawing are written.
         /// </summary>
         public SignalNameStyle NameStyle { get; set; } = SignalNames.Default;
+
+        /// <summary>
+        /// The factor every line width is drawn with (the "Line width" setting; 1 = normal).
+        /// </summary>
+        public double LineScale { get; set; } = 1;
 
         /// <summary>
         /// Every wired signal's branches as laid (bend points in drawing units), so the editor can

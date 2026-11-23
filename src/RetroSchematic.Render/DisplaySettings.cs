@@ -58,6 +58,38 @@ namespace RetroSchematic.Render
         public bool TracePulse { get; set; } = true;
 
         /// <summary>
+        /// How thick every line is drawn, as a factor of the normal widths (1 = normal).
+        /// </summary>
+        public double LineWidth { get; set; } = 1;
+
+        /// <summary>
+        /// The smallest line width factor the viewer accepts.
+        /// </summary>
+        public const double MinLineWidth = 0.5;
+
+        /// <summary>
+        /// The largest line width factor the viewer accepts.
+        /// </summary>
+        public const double MaxLineWidth = 3;
+
+        /// <summary>
+        /// The line width factors the settings window offers.
+        /// </summary>
+        public static readonly double[] LineWidthChoices = { 0.5, 0.75, 1, 1.25, 1.5, 2, 3 };
+
+        /// <summary>
+        /// A line width factor kept inside <see cref="MinLineWidth"/> .. <see cref="MaxLineWidth"/>;
+        /// a value that is not a number gives 1.
+        /// </summary>
+        /// <param name="value">
+        /// The factor as asked for.
+        /// </param>
+        /// <returns>
+        /// The factor that is used.
+        /// </returns>
+        public static double ClampLineWidth(double value) => double.IsFinite(value) ? Math.Clamp(value, MinLineWidth, MaxLineWidth) : 1;
+
+        /// <summary>
         /// A copy.
         /// </summary>
         /// <returns>
@@ -95,6 +127,7 @@ namespace RetroSchematic.Render
             r.PortArrows = sheet.PortArrows ?? r.PortArrows;
             r.Buses = sheet.Buses ?? r.Buses;
             r.TracePulse = sheet.TracePulse ?? r.TracePulse;
+            r.LineWidth = ClampLineWidth(sheet.LineWidth ?? r.LineWidth);
             return r;
         }
 
@@ -282,6 +315,7 @@ namespace RetroSchematic.Render
             _options.ShowBoardPositions = Display.BoardPositions;
             _options.ShowPortArrows = Display.PortArrows;
             _options.ShowBuses = Display.Buses;
+            _options.LineScale = Display.LineWidth;
             Relayout();
         }
 
@@ -289,6 +323,7 @@ namespace RetroSchematic.Render
         {
             NameStyle = s.NameStyle, Symbols = s.Symbols, Theme = s.Theme, PinNumbers = s.PinNumbers,
             BoardPositions = s.BoardPositions, PortArrows = s.PortArrows, Buses = s.Buses, TracePulse = s.TracePulse,
+            LineWidth = s.LineWidth,
         };
     }
 }

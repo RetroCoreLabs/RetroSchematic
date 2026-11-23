@@ -410,22 +410,22 @@ namespace RetroSchematic.Desktop.Controls
                 {
                     // a soft glow that swells and fades, then the line itself on top
                     using (context.PushOpacity(0.15 + (0.35 * level)))
-                        DrawOne(context, it, trace, null, 3 + (4 * level));
-                    DrawOne(context, it, trace, fill, 1.5 + level);
+                        DrawOne(context, it, trace, null, 3 + (4 * level), d.LineScale);
+                    DrawOne(context, it, trace, fill, 1.5 + level, d.LineScale);
                     continue;
                 }
                 if (role == TraceRole.Joined)
                 {
-                    DrawOne(context, it, trace, fill, 1);
+                    DrawOne(context, it, trace, fill, 1, d.LineScale);
                     continue;
                 }
                 if (role == TraceRole.Dimmed)
                 {
                     using (context.PushOpacity(0.25))
-                        DrawOne(context, it, b, fill, 0);
+                        DrawOne(context, it, b, fill, 0, d.LineScale);
                     continue;
                 }
-                DrawOne(context, it, b, fill, isLit ? 1 : 0);
+                DrawOne(context, it, b, fill, isLit ? 1 : 0, d.LineScale);
             }
 
             // where the traced signal goes inside a block: a pulsing ring on the box edge
@@ -655,13 +655,16 @@ namespace RetroSchematic.Desktop.Controls
         /// <param name="extra">
         /// Added to its usual line width: 1 for the picked item, more for a traced signal.
         /// </param>
-        private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, IBrush? fill, double extra)
+        /// <param name="scale">
+        /// The "Line width" setting: the factor every usual width is drawn with.
+        /// </param>
+        private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, IBrush? fill, double extra, double scale)
         {
             // width, dashes and line ends from the shared style, plus the extra for a picked or
             // traced item
             ItemStyle st = SchematicStyle.Of(it);
-            double width = st.Width + extra;
-            double[] dash = ItemStyle.Dashes(st.Line, st.Width);
+            double width = (st.Width * scale) + extra;
+            double[] dash = ItemStyle.Dashes(st.Line, st.Width * scale);
             bool round = st.Round || st.Line == LineStyle.Dotted;
             Pen pen = new(brush, width, dash.Length == 0 ? null : new DashStyle(dash, 0),
                 round ? PenLineCap.Round : PenLineCap.Flat, round ? PenLineJoin.Round : PenLineJoin.Miter);

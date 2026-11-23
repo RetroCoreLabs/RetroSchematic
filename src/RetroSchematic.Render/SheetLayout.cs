@@ -64,6 +64,12 @@ namespace RetroSchematic.Render
         public bool ShowBuses { get; set; } = true;
 
         /// <summary>
+        /// The factor every line width is drawn with (the "Line width" setting; 1 = normal).
+        /// It changes only how thick lines are, never where anything goes.
+        /// </summary>
+        public double LineScale { get; set; } = 1;
+
+        /// <summary>
         /// How active-low and active-high signal names are written (default: /NAME).
         /// </summary>
         public SignalNameStyle NameStyle { get; set; } = SignalNames.Default;
@@ -224,6 +230,7 @@ namespace RetroSchematic.Render
             }
             SchematicDrawing d = new(Snap(right + Margin), Snap(bottom + Margin));
             d.NameStyle = options.NameStyle;
+            d.LineScale = options.LineScale;
             Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
                 netlist.Sheet.Id + "  " + netlist.Sheet.Title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
                 16, TextAnchor.Start);

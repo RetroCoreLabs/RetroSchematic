@@ -113,7 +113,8 @@ namespace RetroSchematic.Tests
             double[] w = { LineWidths.Pin, LineWidths.Wire, LineWidths.Label, LineWidths.Outline, LineWidths.Bus };
             for (int i = 1; i < w.Length; i++)
                 Assert.That(w[i], Is.GreaterThan(w[i - 1]), "pin < wire < label < outline < bus");
-            Assert.That(LineWidths.Outline, Is.GreaterThanOrEqualTo(3 * LineWidths.Wire));
+            Assert.That(LineWidths.Outline, Is.GreaterThan(LineWidths.Wire), "an outline stays thicker than a wire");
+            Assert.That(LineWidths.Outline, Is.EqualTo(1.7 * LineWidths.Wire).Within(1e-9));
         }
 
         [Test]

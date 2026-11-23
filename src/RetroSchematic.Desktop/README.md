@@ -103,6 +103,7 @@ is connected. The View switches change the defaults.
 | Machine bus | this sheet only: NORD-10, ND-100 or unknown (a warning) |
 | Show pin numbers, board positions, port arrows, buses | on / off |
 | Trace pulse | on: a traced signal pulses; off: it is shown still |
+| Line width | how thick every line is drawn: 0.5 x to 3 x the normal widths (chip and gate outlines are 1.7 x a wire) |
 
 The command line takes the same choices: `--theme <name>`, `--no-buses`,
 `--names slash|tilde|subscript`.

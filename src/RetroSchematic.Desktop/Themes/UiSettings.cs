@@ -72,6 +72,11 @@ namespace RetroSchematic.Desktop.Themes
         public bool TracePulse { get; set; } = true;
 
         /// <summary>
+        /// Default: how thick every line is drawn, as a factor of the normal widths (1 = normal).
+        /// </summary>
+        public double LineWidth { get; set; } = 1;
+
+        /// <summary>
         /// The defaults for all sheets as the library's settings.
         /// </summary>
         /// <returns>
@@ -88,6 +93,7 @@ namespace RetroSchematic.Desktop.Themes
                 PortArrows = PortArrows,
                 Buses = ShowBuses,
                 TracePulse = TracePulse,
+                LineWidth = RetroSchematic.Render.DisplaySettings.ClampLineWidth(LineWidth),
             };
             if (RetroSchematic.Render.SignalNames.TryParseStyle(NameStyle, out RetroSchematic.Render.SignalNameStyle ns))
                 d.NameStyle = ns;
@@ -109,6 +115,7 @@ namespace RetroSchematic.Desktop.Themes
             PortArrows = d.PortArrows;
             ShowBuses = d.Buses;
             TracePulse = d.TracePulse;
+            LineWidth = d.LineWidth;
             NameStyle = RetroSchematic.Render.DisplaySettings.NameStyleText(d.NameStyle);
         }
 
