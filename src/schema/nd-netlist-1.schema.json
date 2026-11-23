@@ -234,6 +234,49 @@
           }
         }
       }
+    },
+    "layout": {
+      "type": "object",
+      "description": "Drawing only, never connections: wire paths fixed by hand. Optional (added within version 1).",
+      "additionalProperties": false,
+      "properties": {
+        "wires": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "net",
+              "branches"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "net": {
+                "type": "string",
+                "description": "The signal's name."
+              },
+              "active": {
+                "enum": [
+                  "high",
+                  "low",
+                  "none"
+                ],
+                "description": "The signal's active level; tells apart two signals of the same name."
+              },
+              "branches": {
+                "type": "array",
+                "description": "The first branch joins two pins; each later one runs from a pin to the wire before it. Points in whole mm from the top left; every piece level or upright.",
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "$ref": "#/$defs/point"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {

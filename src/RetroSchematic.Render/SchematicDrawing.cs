@@ -462,6 +462,29 @@ namespace RetroSchematic.Render
         public Dictionary<string, PartFrame> Frames { get; } = new(StringComparer.Ordinal);
 
         /// <summary>
+        /// Every wired signal's branches as laid (bend points in drawing units), so the editor can
+        /// fix a wire's current path into the sheet's layout section.
+        /// </summary>
+        public Dictionary<string, List<List<DrawPoint>>> WireBranches { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// Signals whose stored wire path was kept as it was.
+        /// </summary>
+        public List<string> KeptWires { get; } = new();
+
+        /// <summary>
+        /// Signals whose stored wire path broke a routing rule (most often: a chip was moved onto
+        /// it) and was dropped; each got a fresh route, or labels.
+        /// </summary>
+        public List<string> Rerouted { get; } = new();
+
+        /// <summary>
+        /// For each signal in <see cref="Rerouted"/>, why its stored path was dropped ("CLK: branch
+        /// 2 runs through a chip ... at (300, 120)").
+        /// </summary>
+        public List<string> RerouteReasons { get; } = new();
+
+        /// <summary>
         /// The owner ("part:11D", "gate:11D/1", "net:BD0", "pin:11D.3") of what lies under a point,
         /// or an empty string. The smaller, deliberate target wins: a pin dot, then a signal name
         /// or part label, then a gate, then a wire, then the rest of the part frame. A wire that

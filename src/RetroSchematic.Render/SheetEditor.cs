@@ -315,7 +315,103 @@ namespace RetroSchematic.Render
             Net net = FindNet(name) ?? throw new SheetEditException($"There is no signal {name}.");
             Snapshot();
             Netlist.Nets.Remove(net);
+            RemoveWirePath(name, net.Active);
             Done();
+        }
+
+        /// <summary>
+        /// Fixes a signal's wire path in the sheet's layout section, so it is saved and drawn the
+        /// same way next time (as long as it still crosses nothing). Drawing only: what is
+        /// connected does not change.
+        /// </summary>
+        /// <param name="name">
+        /// The signal's name.
+        /// </param>
+        /// <param name="branches">
+        /// The branches, each a list of bend points in whole mm: the first joins two pins, each
+        /// later one runs from a pin to the wire before it.
+        /// </param>
+        /// <param name="active">
+        /// The signal's active level, when two signals share the name; null for the first of
+        /// that name.
+        /// </param>
+        public void SetWirePath(string name, List<List<Point>> branches, ActiveLevel? active = null)
+        {
+            CheckWritable();
+            if (FindNet(name, active) == null)
+                throw new SheetEditException($"There is no signal {name}" + (active == null ? "." : $" active {active}."));
+            if (branches.Count == 0)
+                throw new SheetEditException("A wire path needs at least one branch.");
+            for (int b = 0; b < branches.Count; b++)
+            {
+                List<Point> pts = branches[b];
+                if (pts.Count < 2)
+                    throw new SheetEditException($"Branch {b + 1} needs at least two points.");
+                for (int i = 1; i < pts.Count; i++)
+                {
+                    if (pts[i].X != pts[i - 1].X && pts[i].Y != pts[i - 1].Y)
+                        throw new SheetEditException($"Branch {b + 1} has a slanted piece; every piece must be level or upright.");
+                }
+            }
+            Snapshot();
+            RemoveWirePath(name, active);
+            Netlist.Layout ??= new SheetLayoutSection();
+            Netlist.Layout.Wires.Add(new WirePath { Net = name, Active = active, Branches = branches });
+            Done();
+        }
+
+        /// <summary>
+        /// Lets a signal's wire be routed automatically again (drops its fixed path).
+        /// </summary>
+        /// <param name="name">
+        /// The signal's name.
+        /// </param>
+        /// <param name="active">
+        /// The signal's active level, or null.
+        /// </param>
+        public void ClearWirePath(string name, ActiveLevel? active = null)
+        {
+            CheckWritable();
+            if (WirePathOf(name, active) == null)
+                throw new SheetEditException($"Signal {name} has no fixed wire path.");
+            Snapshot();
+            RemoveWirePath(name, active);
+            Done();
+        }
+
+        /// <summary>
+        /// A signal's fixed wire path, or null.
+        /// </summary>
+        /// <param name="name">
+        /// The signal's name.
+        /// </param>
+        /// <param name="active">
+        /// The signal's active level, or null for any.
+        /// </param>
+        /// <returns>
+        /// The stored path, or null when the signal is routed automatically.
+        /// </returns>
+        public WirePath? WirePathOf(string name, ActiveLevel? active = null)
+        {
+            List<WirePath>? wires = Netlist.Layout?.Wires;
+            for (int i = 0; wires != null && i < wires.Count; i++)
+            {
+                if (wires[i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active))
+                    return wires[i];
+            }
+            return null;
+        }
+
+        private void RemoveWirePath(string name, ActiveLevel? active = null)
+        {
+            List<WirePath>? wires = Netlist.Layout?.Wires;
+            for (int i = wires == null ? -1 : wires.Count - 1; i >= 0; i--)
+            {
+                if (wires![i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active))
+                    wires.RemoveAt(i);
+            }
+            if (Netlist.Layout != null && Netlist.Layout.Wires.Count == 0)
+                Netlist.Layout = null;
         }
 
         /// <summary>
@@ -441,6 +537,28 @@ namespace RetroSchematic.Render
             {
                 if (Netlist.Parts[i].Ref == reference)
                     return Netlist.Parts[i];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// A signal by name and, when given, active level (two signals may share a name).
+        /// </summary>
+        /// <param name="name">
+        /// The signal's name.
+        /// </param>
+        /// <param name="active">
+        /// Its active level, or null for the first of that name.
+        /// </param>
+        /// <returns>
+        /// The signal, or null.
+        /// </returns>
+        public Net? FindNet(string name, ActiveLevel? active)
+        {
+            for (int i = 0; i < Netlist.Nets.Count; i++)
+            {
+                if (Netlist.Nets[i].Name == name && (active == null || Netlist.Nets[i].Active == active))
+                    return Netlist.Nets[i];
             }
             return null;
         }

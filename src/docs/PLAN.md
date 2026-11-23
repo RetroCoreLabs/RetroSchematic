@@ -60,11 +60,11 @@ reasoning - about 6-8 workers.
 - Every net has a name: the printed one, or an automatic one from the driving output
   (`N_11D_1`), with a field saying which. Automatic names do not change when a chip is moved.
 - The driving output and the line type (normal, open-collector shared, three-state bus) are marked.
-- Layout is kept apart from connections: chip x/y, wire bend points and label positions go in a
-  layout section or file. Moving a chip never changes the netlist; one netlist can have several
-  layouts (the original sheet, a tidied one). The layout as on the scan is always kept, so the
-  scan can be shown behind the drawing.
-- Per wire: re-route automatically when a chip moves, or keep hand-placed bend points.
+- Layout: chip positions and fixed wire paths are saved (`parts[].position`, `layout.wires`).
+  Still missing: label positions, several layouts for one netlist (the original sheet, a tidied
+  one), and keeping the layout as on the scan so the scan can be shown behind the drawing.
+- Drawing a wire path by hand with the mouse (today a path is fixed from the current route, or
+  given as points through the MCP server).
 
 ## 2. Logic description of each part
 

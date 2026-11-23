@@ -324,6 +324,36 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// Fixes a signal's wire, as it is drawn now, into the sheet's layout section (see
+        /// <see cref="SheetEditor.SetWirePath"/>).
+        /// </summary>
+        /// <param name="net">
+        /// The signal's key on the drawing (<see cref="SheetLayout.NetKey"/>: BD15_0), or a name
+        /// that only one signal has.
+        /// </param>
+        public void FixWire(string net)
+        {
+            Net? n = null;
+            for (int i = 0; i < Netlist.Nets.Count && n == null; i++)
+            {
+                if (SheetLayout.NetKey(Netlist.Nets[i]) == net)
+                    n = Netlist.Nets[i];
+            }
+            n ??= Editor.FindNet(net) ?? throw new SheetEditException($"There is no signal {net}.");
+            if (!Drawing.WireBranches.TryGetValue(SheetLayout.NetKey(n), out List<List<DrawPoint>>? branches))
+                throw new SheetEditException($"Signal {net} has no wire on the drawing (it is shown with labels).");
+            List<List<Point>> mm = new();
+            for (int b = 0; b < branches.Count; b++)
+            {
+                List<Point> pts = new();
+                for (int i = 0; i < branches[b].Count; i++)
+                    pts.Add(new Point { X = SheetLayout.ToMm(branches[b][i].X), Y = SheetLayout.ToMm(branches[b][i].Y) });
+                mm.Add(pts);
+            }
+            Editor.SetWirePath(n.Name, mm, n.Active == ActiveLevel.None ? null : n.Active);
+        }
+
+        /// <summary>
         /// Where a pin is drawn: the middle of its pin line, for centring the view on it.
         /// </summary>
         /// <param name="at">

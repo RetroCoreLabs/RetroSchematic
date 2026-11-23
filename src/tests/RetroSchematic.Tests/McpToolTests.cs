@@ -38,6 +38,33 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void FixWire_ThenAPathThroughChips_IsReportedAndRoutedAfresh_ThenCleared()
+        {
+            SheetTools t = Tools();
+            t.OpenSheet(DemoSheetLayoutTests.Demo);
+            t.SetEditMode(true);
+            // a wired signal on the demo: the session says which
+            SheetSession s = new(DemoSheetLayoutTests.Demo, SymbolStyle.NorskData, DemoSheetLayoutTests.Catalog);
+            string key = new System.Collections.Generic.List<string>(s.Drawing.WireBranches.Keys)[0];
+            string name = key.Substring(0, key.Length - 2);
+            string level = key.Substring(key.Length - 1);
+            string fixedText = t.FixWire(name, level);
+            Assert.That(fixedText, Does.StartWith("Fixed the wire path of " + name + ": "));
+            // set the same path again: drawn exactly as given
+            string path = fixedText.Substring(fixedText.IndexOf(": ", System.StringComparison.Ordinal) + 2);
+            Assert.That(t.SetWirePath(name, level, path), Does.Contain("drawn exactly as given"));
+            // a path far out to the right edge and back runs through chips
+            string[] first = path.Split(';')[0].Trim().Split(' ');
+            string a = first[0], b = first[^1];
+            string ay = a.Split(',')[1], by = b.Split(',')[1];
+            string bad = a + " 2000," + ay + " 2000," + by + " " + b;
+            Assert.That(t.SetWirePath(name, level, bad), Does.Contain("NOT used as given"));
+            Assert.That(t.ClearWirePath(name, level), Does.Contain("routed automatically again"));
+            McpException ex = Assert.Throws<McpException>(() => t.SetWirePath(name, level, "1,1 5,9"))!;
+            Assert.That(ex.Message, Does.Contain("slanted"));
+        }
+
+        [Test]
         public void OpenedSheet_IsReadOnly_UntilEditModeIsOn()
         {
             SheetTools t = Tools();
@@ -99,7 +126,7 @@ namespace RetroSchematic.Tests
                 Assert.That(methods[i].GetCustomAttribute<System.ComponentModel.DescriptionAttribute>(), Is.Not.Null, methods[i].Name);
                 tools++;
             }
-            Assert.That(tools, Is.EqualTo(13));
+            Assert.That(tools, Is.EqualTo(16));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 

@@ -158,6 +158,47 @@ namespace RetroSchematic.Model
         /// Signal lines and the pins they join.
         /// </summary>
         public List<Net> Nets { get; set; } = new();
+
+        /// <summary>
+        /// How the sheet is laid out beyond the chip positions, or null: wire paths fixed by hand.
+        /// Drawing only - it never changes what is connected to what.
+        /// </summary>
+        public SheetLayoutSection? Layout { get; set; }
+    }
+
+    /// <summary>
+    /// The optional layout section (added within version 1, docs/FORMAT.md).
+    /// </summary>
+    public sealed class SheetLayoutSection
+    {
+        /// <summary>
+        /// Wire paths fixed by hand, one entry per signal.
+        /// </summary>
+        public List<WirePath> Wires { get; set; } = new();
+    }
+
+    /// <summary>
+    /// A signal's wire as fixed by hand: its branches, each a list of bend points. The first
+    /// branch joins two pins; each later one runs from a pin to the wire before it. A program
+    /// that finds the path crossing a chip (because a chip moved) routes the signal afresh.
+    /// </summary>
+    public sealed class WirePath
+    {
+        /// <summary>
+        /// The signal's name.
+        /// </summary>
+        public string Net { get; set; } = "";
+
+        /// <summary>
+        /// The signal's active level, which tells apart two signals of the same name (BD15 with
+        /// subscript 0 and with 1). Null matches the first signal of that name.
+        /// </summary>
+        public ActiveLevel? Active { get; set; }
+
+        /// <summary>
+        /// The branches; every point in whole mm from the top left, each piece level or upright.
+        /// </summary>
+        public List<List<Point>> Branches { get; set; } = new();
     }
 
     /// <summary>

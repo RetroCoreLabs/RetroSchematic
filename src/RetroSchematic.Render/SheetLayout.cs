@@ -204,7 +204,7 @@ namespace RetroSchematic.Render
             foreach (KeyValuePair<string, PinPlan> kv in pinPlans)
             {
                 PinPlan p = kv.Value;
-                if (p.Net == null || wired.Contains(p.Net.Name))
+                if (p.Net == null || wired.Contains(NetKey(p.Net)))
                     continue;
                 DrawLabel(d, p, pinRef[p.At].Confidence);
             }
@@ -640,9 +640,12 @@ namespace RetroSchematic.Render
                 else if (it.Kind == DrawKind.Text)
                     router.Block(l - 3, t - 2, r + 3, b + 2);
             }
-            Dictionary<string, int> netNumber = new(StringComparer.Ordinal);
+            // numbered by place in the file, not by name: two signals may share a name and differ
+            // only in their 0/1 level (2A50 has BD0..BD9 both ways), and they must never be
+            // taken for one signal
+            Dictionary<Net, int> netNumber = new(ReferenceEqualityComparer.Instance);
             for (int i = 0; i < netlist.Nets.Count; i++)
-                netNumber[netlist.Nets[i].Name] = i + 1;
+                netNumber[netlist.Nets[i]] = i + 1;
             foreach (KeyValuePair<string, PinPlan> kv in pinPlans)
             {
                 PinPlan p = kv.Value;
@@ -653,16 +656,67 @@ namespace RetroSchematic.Render
                 }
                 LabelBox(p, out double l, out double t, out double r, out double b);
                 // a little room round each label, so a wire passing by does not touch the text
-                router.Reserve(Math.Min(l, p.X) - 4, t - 2, Math.Max(r, p.X) + 4, b + 2, netNumber[p.Net.Name]);
+                router.Reserve(Math.Min(l, p.X) - 4, t - 2, Math.Max(r, p.X) + 4, b + 2, netNumber[p.Net]);
             }
 
             List<DrawPoint> ends = new();
             List<int> outward = new();
             List<double[]> segments = new();
             List<DrawPoint> junctions = new();
+
+            // wire paths fixed by hand come first and are kept as they are while they still obey
+            // every routing rule; one that now crosses a chip (or is broken) is dropped, and the
+            // signal is routed afresh below like any other
+            List<WirePath>? stored = netlist.Layout?.Wires;
+            for (int i = 0; stored != null && i < stored.Count; i++)
+            {
+                WirePath w = stored[i];
+                Net? net = null;
+                for (int j = 0; j < netlist.Nets.Count && net == null; j++)
+                {
+                    if (netlist.Nets[j].Name == w.Net && (w.Active == null || w.Active == netlist.Nets[j].Active))
+                        net = netlist.Nets[j];
+                }
+                if (net == null || wired.Contains(NetKey(net)))
+                    continue;
+                List<PinPlan> pins = new();
+                bool all = net.Pins.Count >= 2;
+                for (int j = 0; j < net.Pins.Count && all; j++)
+                {
+                    if (pinPlans.TryGetValue(net.Pins[j].At, out PinPlan? p))
+                        pins.Add(p);
+                    else
+                        all = false;
+                }
+                ends.Clear();
+                for (int j = 0; all && j < pins.Count; j++)
+                    ends.Add(new DrawPoint(pins[j].X, pins[j].Y));
+                List<List<DrawPoint>> branches = new();
+                for (int b = 0; b < w.Branches.Count; b++)
+                {
+                    List<DrawPoint> points = new();
+                    for (int k = 0; k < w.Branches[b].Count; k++)
+                        points.Add(new DrawPoint(FromMm(w.Branches[b][k].X), FromMm(w.Branches[b][k].Y)));
+                    branches.Add(points);
+                }
+                if (all && router.Keep(netNumber[net], ends, branches, segments, junctions))
+                {
+                    wired.Add(NetKey(net));
+                    d.KeptWires.Add(NetKey(net));
+                    AddWire(d, net, pins, segments, junctions);
+                }
+                else
+                {
+                    d.Rerouted.Add(NetKey(net));
+                    d.RerouteReasons.Add(NetKey(net) + ": " + (all ? router.Refusal : "not every pin is drawn on the sheet"));
+                }
+            }
+
             for (int i = 0; i < candidates.Count; i++)
             {
                 Net net = candidates[i];
+                if (wired.Contains(NetKey(net)))
+                    continue;
                 ends.Clear();
                 outward.Clear();
                 // start from the left-most pin, so a tree grows from one side
@@ -677,9 +731,39 @@ namespace RetroSchematic.Render
                     outward.Add(pins[j].Side);
                     worst = Worse(worst, PinConfidence(net, pins[j].At));
                 }
-                if (!router.Route(netNumber[net.Name], ends, outward, 120, segments, junctions))
+                if (!router.Route(netNumber[net], ends, outward, 120, segments, junctions))
                     continue;
-                wired.Add(net.Name);
+                wired.Add(NetKey(net));
+                AddWire(d, net, pins, segments, junctions);
+            }
+            return wired;
+        }
+
+        /// <summary>
+        /// Draws one signal's laid wire and keeps its branches for saving.
+        /// </summary>
+        /// <param name="d">
+        /// The drawing.
+        /// </param>
+        /// <param name="net">
+        /// The signal.
+        /// </param>
+        /// <param name="pins">
+        /// Its pins, in the order the router was given them.
+        /// </param>
+        /// <param name="segments">
+        /// The pieces, as filled by the router.
+        /// </param>
+        /// <param name="junctions">
+        /// The branch points.
+        /// </param>
+        private static void AddWire(SchematicDrawing d, Net net, List<PinPlan> pins, List<double[]> segments, List<DrawPoint> junctions)
+        {
+            {
+                Confidence worst = Confidence.Read;
+                for (int j = 0; j < pins.Count; j++)
+                    worst = Worse(worst, PinConfidence(net, pins[j].At));
+                d.WireBranches[NetKey(net)] = WireRouter.Branches(segments);
                 string owner = "net:" + net.Name;
                 for (int s = 0; s < segments.Count; s++)
                 {
@@ -699,7 +783,6 @@ namespace RetroSchematic.Render
                 for (int s = 0; s < junctions.Count; s++)
                     d.Items.Add(new DrawItem { Kind = DrawKind.Circle, Role = DrawRole.Wire, Confidence = worst, Owner = owner, X1 = junctions[s].X, Y1 = junctions[s].Y, X2 = 2 });
             }
-            return wired;
         }
 
         private static Confidence PinConfidence(Net net, string at)
@@ -984,6 +1067,18 @@ namespace RetroSchematic.Render
                     break;
             }
         }
+
+        /// <summary>
+        /// A signal's key on the drawing's wire lists: its name, plus "_0" or "_1" when it has an
+        /// active level, because two signals may share a name and differ only in that level.
+        /// </summary>
+        /// <param name="net">
+        /// The signal.
+        /// </param>
+        /// <returns>
+        /// BD15_0, BD15_1, or N_9B_2 for a signal without a level.
+        /// </returns>
+        public static string NetKey(Net net) => net.Active == ActiveLevel.None ? net.Name : net.Name + "_" + Subscript(net);
 
         /// <summary>
         /// ND's subscript on a signal name: 1 = active high, 0 = active low (manual page 2).

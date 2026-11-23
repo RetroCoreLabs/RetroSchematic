@@ -182,7 +182,7 @@ namespace RetroSchematic.Tests
             return dot < 0 ? s : s.Substring(0, dot);
         }
 
-        private static List<DrawItem> Wires(SchematicDrawing d)
+        internal static List<DrawItem> Wires(SchematicDrawing d)
         {
             List<DrawItem> list = new();
             for (int i = 0; i < d.Items.Count; i++)
@@ -196,7 +196,7 @@ namespace RetroSchematic.Tests
         /// <summary>
         /// Chip frames, and (unless partsOnly) the box round each gate symbol.
         /// </summary>
-        private static List<Box> Frames(SchematicDrawing d, bool partsOnly)
+        internal static List<Box> Frames(SchematicDrawing d, bool partsOnly)
         {
             List<Box> list = new();
             Dictionary<string, int> gate = new(StringComparer.Ordinal);
@@ -234,7 +234,7 @@ namespace RetroSchematic.Tests
         private static double Overlap(double a1, double a2, double b1, double b2)
             => Math.Min(Math.Max(a1, a2), Math.Max(b1, b2)) - Math.Max(Math.Min(a1, a2), Math.Min(b1, b2));
 
-        private readonly struct Box
+        internal readonly struct Box
         {
             public readonly double L, T, R, B;
             public readonly string Owner, Text;

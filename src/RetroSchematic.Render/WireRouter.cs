@@ -180,6 +180,200 @@ namespace RetroSchematic.Render
             return true;
         }
 
+        /// <summary>
+        /// Lays a stored wire path (one saved in the sheet's layout) when it still obeys every
+        /// routing rule: straight pieces on the grid, nothing through a frame, text or another
+        /// signal's label room, no running along or turning on another wire, the first branch
+        /// joining two pins, and every later branch running from a pin to the wire laid so far.
+        /// Nothing is kept when any rule is broken; the caller then routes the signal afresh.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's number, as given to <see cref="Reserve"/>.
+        /// </param>
+        /// <param name="pins">
+        /// The signal's pin ends.
+        /// </param>
+        /// <param name="branches">
+        /// The stored branches, each a list of bend points in drawing units.
+        /// </param>
+        /// <param name="segments">
+        /// Filled as by <see cref="Route"/>: (x1, y1, x2, y2, p), p the pin the branch starts at.
+        /// </param>
+        /// <param name="junctions">
+        /// Filled with the points where a branch joins the middle of a wire.
+        /// </param>
+        /// <returns>
+        /// True when the path was kept.
+        /// </returns>
+        public bool Keep(int net, List<DrawPoint> pins, List<List<DrawPoint>> branches, List<double[]> segments, List<DrawPoint> junctions)
+        {
+            Refusal = "";
+            segments.Clear();
+            junctions.Clear();
+            Dictionary<int, int> pinIndex = new();
+            for (int i = 0; i < pins.Count; i++)
+            {
+                // a pin end is taken to its nearest cell, exactly as Route does (some pin ends,
+                // such as the ND AND gate's output, are not on the grid)
+                int cx = (int)Math.Round(pins[i].X / Step), cy = (int)Math.Round(pins[i].Y / Step);
+                if (cx < 0 || cy < 0 || cx >= _width || cy >= _height)
+                    return false;
+                pinIndex[(cy * _width) + cx] = i;
+            }
+            HashSet<int> tree = new();
+            HashSet<int> reachedPins = new();
+            List<int> marked = new();
+            List<int> cells = new();
+            for (int b = 0; b < branches.Count; b++)
+            {
+                if (!Expand(branches[b], cells))
+                    return Fail(marked, segments, junctions, $"branch {b + 1} is off the grid, slanted or too short");
+                int first = cells[0], last = cells[^1];
+                bool firstPin = pinIndex.ContainsKey(first), lastPin = pinIndex.ContainsKey(last);
+                // the branch's own pin is the end that is a pin not yet wired
+                int start;
+                if (firstPin && !reachedPins.Contains(first))
+                    start = first;
+                else if (lastPin && !reachedPins.Contains(last))
+                    start = last;
+                else
+                    return Fail(marked, segments, junctions, $"branch {b + 1} does not start at a pin that is not yet wired");
+                int other = start == first ? last : first;
+                bool joins = b == 0 ? pinIndex.ContainsKey(other) && other != start : tree.Contains(other);
+                if (!joins)
+                    return Fail(marked, segments, junctions, b == 0 ? "the first branch does not join two pins" : $"branch {b + 1} does not end on the wire before it");
+                if (start == last)
+                    cells.Reverse();
+                // every cell between the ends: free of frames, of other labels, and of other wires
+                // except a right-angle crossing
+                for (int i = 1; i < cells.Count - 1; i++)
+                {
+                    int d = Direction(cells[i - 1], cells[i]);
+                    int next = Direction(cells[i], cells[i + 1]);
+                    if (!CanEnter(net, cells[i], d, d, tree))
+                        return Fail(marked, segments, junctions, $"branch {b + 1} runs through a chip, a text, another signal's label or along another wire at {Where(cells[i])}");
+                    if (d != next && !tree.Contains(cells[i]) && _used[cells[i]] != 0)
+                        return Fail(marked, segments, junctions, $"branch {b + 1} turns on another wire at {Where(cells[i])}");
+                }
+                // the far end: its own wire, or one of its own pins (a pin end may lie under its
+                // own pin number, which Route never checks either), or a free cell
+                if (!tree.Contains(cells[^1]) && !pinIndex.ContainsKey(cells[^1]) && !CanEnter(net, cells[^1], Direction(cells[^2], cells[^1]), 0, tree))
+                    return Fail(marked, segments, junctions, $"branch {b + 1} ends on something that is not its own pin or wire at {Where(cells[^1])}");
+                int end = cells[^1];
+                if (b > 0 && !pinIndex.ContainsKey(end))
+                    junctions.Add(new DrawPoint((end % _width) * Step, (end / _width) * Step));
+                Lay(net, cells, marked);
+                AddSegments(cells, segments, pinIndex[cells[0]]);
+                for (int i = 0; i < cells.Count; i++)
+                    tree.Add(cells[i]);
+                reachedPins.Add(cells[0]);
+                if (b == 0)
+                    reachedPins.Add(cells[^1]);
+            }
+            // every pin must be on the wire
+            if (reachedPins.Count != pinIndex.Count)
+                return Fail(marked, segments, junctions, $"only {reachedPins.Count} of the {pinIndex.Count} pins are on the wire");
+            return true;
+        }
+
+        /// <summary>
+        /// Why the last <see cref="Keep"/> refused its path, in plain words; empty when it kept it.
+        /// </summary>
+        public string Refusal { get; private set; } = "";
+
+        private string Where(int cell) => $"({(cell % _width) * Step}, {(cell / _width) * Step})";
+
+        private bool Fail(List<int> marked, List<double[]> segments, List<DrawPoint> junctions, string why)
+        {
+            Refusal = why;
+            Unmark(marked);
+            segments.Clear();
+            junctions.Clear();
+            return false;
+        }
+
+        private bool ToCell(double x, double y, out int cell)
+        {
+            double fx = x / Step, fy = y / Step;
+            int cx = (int)Math.Round(fx), cy = (int)Math.Round(fy);
+            cell = (cy * _width) + cx;
+            // on the grid and on the board
+            return Math.Abs(fx - cx) < 1e-6 && Math.Abs(fy - cy) < 1e-6 && cx >= 0 && cy >= 0 && cx < _width && cy < _height;
+        }
+
+        /// <summary>
+        /// Turns a list of bend points into the cells it passes through, refusing a slanted piece
+        /// or a point off the grid.
+        /// </summary>
+        /// <param name="points">
+        /// The bend points.
+        /// </param>
+        /// <param name="cells">
+        /// Filled with the cells, first point first.
+        /// </param>
+        /// <returns>
+        /// False for a broken path.
+        /// </returns>
+        private bool Expand(List<DrawPoint> points, List<int> cells)
+        {
+            cells.Clear();
+            if (points.Count < 2 || !ToCell(points[0].X, points[0].Y, out int c))
+                return false;
+            cells.Add(c);
+            for (int i = 1; i < points.Count; i++)
+            {
+                if (!ToCell(points[i].X, points[i].Y, out int to))
+                    return false;
+                int fx = c % _width, fy = c / _width, tx = to % _width, ty = to / _width;
+                if (fx != tx && fy != ty)
+                    return false; // slanted
+                if (to == c)
+                    continue;
+                int sx = Math.Sign(tx - fx), sy = Math.Sign(ty - fy);
+                while (c != to)
+                {
+                    fx += sx;
+                    fy += sy;
+                    c = (fy * _width) + fx;
+                    cells.Add(c);
+                }
+            }
+            return cells.Count >= 2;
+        }
+
+        private int Direction(int from, int to)
+        {
+            int d = to - from;
+            return d == 1 ? 0 : d == -1 ? 1 : d == _width ? 2 : 3;
+        }
+
+        /// <summary>
+        /// The bend points of the branches laid for a signal, in the order <see cref="Route"/>
+        /// or <see cref="Keep"/> laid them: each branch from its own pin to the wire before it.
+        /// </summary>
+        /// <param name="segments">
+        /// The pieces as filled by <see cref="Route"/> or <see cref="Keep"/>.
+        /// </param>
+        /// <returns>
+        /// One list of bend points per branch.
+        /// </returns>
+        public static List<List<DrawPoint>> Branches(List<double[]> segments)
+        {
+            List<List<DrawPoint>> list = new();
+            int current = -1;
+            for (int i = 0; i < segments.Count; i++)
+            {
+                double[] g = segments[i];
+                if ((int)g[4] != current)
+                {
+                    current = (int)g[4];
+                    list.Add(new List<DrawPoint> { new(g[0], g[1]) });
+                }
+                list[^1].Add(new DrawPoint(g[2], g[3]));
+            }
+            return list;
+        }
+
         private void Mark(double left, double top, double right, double bottom, int value)
         {
             int x0 = Math.Max(0, (int)Math.Ceiling(left / Step)), x1 = Math.Min(_width - 1, (int)Math.Floor(right / Step));

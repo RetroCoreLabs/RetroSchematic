@@ -60,6 +60,21 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
 
 - `nets[].drive`, `nets[].driveConfidence`, `nets[].pullUp` (2026-11-23). Older files without them
   are still valid: the drive of their lines is simply not read yet.
+- `layout.wires` (2026-11-23): wire paths fixed by hand. Drawing only - it never changes what is
+  connected. One entry per signal: `net` (its name), `active` (its level, needed when two signals
+  share a name, as BD15 with subscript 0 and with 1 do on 2A50), and `branches`. Each branch is a
+  list of points in whole mm from the top left, every piece level or upright. The first branch
+  joins two of the signal's pins; each later one runs from one more pin to the wire before it.
+
+  ```json
+  "layout": { "wires": [ { "net": "CLK", "active": "high",
+    "branches": [ [ {"x": 60, "y": 40}, {"x": 80, "y": 40}, {"x": 80, "y": 70} ] ] } ] }
+  ```
+
+  A program reading the file keeps a stored path exactly when it still obeys every routing rule
+  (see "How a sheet is drawn"). When it does not - most often because a chip was moved onto it -
+  the path is not used, the signal is routed afresh, and the program says why; the stored path
+  stays in the file until it is changed or cleared.
 
 ## How a sheet is drawn
 

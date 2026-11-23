@@ -5,6 +5,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -279,6 +280,88 @@ namespace RetroSchematic.Mcp
             });
 
         /// <summary>
+        /// Fixes a signal's wire path in the sheet's layout section.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's name.
+        /// </param>
+        /// <param name="level">
+        /// "0" or "1" when two signals share the name, else empty.
+        /// </param>
+        /// <param name="branches">
+        /// The branches as text.
+        /// </param>
+        /// <returns>
+        /// What was done, and whether the path was kept or had to be routed afresh.
+        /// </returns>
+        [McpServerTool(Name = "set_wire_path"), Description("Fix a signal's wire path (drawing only, never changes connections). branches: one branch per ';', each a list of x,y points in whole mm separated by spaces, every piece level or upright - e.g. \"60,40 80,40 80,70; 70,90 70,70\". The first branch joins two pins, each later one runs from a pin to the wire before it. If the path crosses a chip, the signal is routed afresh and the reason is given.")]
+        public string SetWirePath([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty: which of two same-named signals")] string level, [Description("The branches, see the tool description")] string branches)
+            => Run(e =>
+            {
+                ActiveLevel? active = Level(level);
+                e.SetWirePath(net, ParseBranches(branches), active);
+                return "Fixed the wire path of " + net + ". " + LayoutReport(e, net, active);
+            });
+
+        /// <summary>
+        /// Fixes a signal's wire as the automatic router lays it now.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's name.
+        /// </param>
+        /// <param name="level">
+        /// "0" or "1" when two signals share the name, else empty.
+        /// </param>
+        /// <returns>
+        /// The fixed path.
+        /// </returns>
+        [McpServerTool(Name = "fix_wire"), Description("Fix a signal's wire path as it is drawn now, so later changes elsewhere do not move it. Returns the stored path.")]
+        public string FixWire([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty")] string level)
+            => Run(e =>
+            {
+                ActiveLevel? active = Level(level);
+                Net n = e.FindNet(net, active) ?? throw new SheetEditException("There is no signal " + net + ".");
+                SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData);
+                if (!d.WireBranches.TryGetValue(SheetLayout.NetKey(n), out List<List<DrawPoint>>? laid))
+                    throw new SheetEditException("Signal " + net + " has no wire on the drawing (it is shown with labels).");
+                StringBuilder sb = new();
+                List<List<Point>> mm = new();
+                for (int b = 0; b < laid.Count; b++)
+                {
+                    List<Point> pts = new();
+                    for (int i = 0; i < laid[b].Count; i++)
+                    {
+                        Point p = new() { X = SheetLayout.ToMm(laid[b][i].X), Y = SheetLayout.ToMm(laid[b][i].Y) };
+                        pts.Add(p);
+                        sb.Append(i == 0 ? (b == 0 ? "" : "; ") : " ").Append(p.X.ToString(CultureInfo.InvariantCulture)).Append(',').Append(p.Y.ToString(CultureInfo.InvariantCulture));
+                    }
+                    mm.Add(pts);
+                }
+                e.SetWirePath(n.Name, mm, n.Active == ActiveLevel.None ? null : n.Active);
+                return "Fixed the wire path of " + net + ": " + sb;
+            });
+
+        /// <summary>
+        /// Lets a signal's wire be routed automatically again.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's name.
+        /// </param>
+        /// <param name="level">
+        /// "0" or "1" when two signals share the name, else empty.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "clear_wire_path"), Description("Drop a signal's fixed wire path; it is routed automatically again.")]
+        public string ClearWirePath([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty")] string level)
+            => Run(e =>
+            {
+                e.ClearWirePath(net, Level(level));
+                return "The wire of " + net + " is routed automatically again.";
+            });
+
+        /// <summary>
         /// Undoes the last change.
         /// </summary>
         /// <returns>
@@ -334,6 +417,59 @@ namespace RetroSchematic.Mcp
         {
             string? folder = (sheetPath == null ? null : ChipCatalog.Find(sheetPath)) ?? _catalogFolder;
             return folder == null ? null : new ChipCatalog(folder);
+        }
+
+        private static ActiveLevel? Level(string level) => level switch
+        {
+            "" => null,
+            "0" => ActiveLevel.Low,
+            "1" => ActiveLevel.High,
+            _ => throw new SheetEditException("level must be 0, 1 or empty, not \"" + level + "\"."),
+        };
+
+        /// <summary>
+        /// Reads "x,y x,y; x,y x,y" into branches of points.
+        /// </summary>
+        /// <param name="text">
+        /// The branches as text.
+        /// </param>
+        /// <returns>
+        /// The branches.
+        /// </returns>
+        private static List<List<Point>> ParseBranches(string text)
+        {
+            List<List<Point>> list = new();
+            string[] parts = text.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            for (int b = 0; b < parts.Length; b++)
+            {
+                List<Point> pts = new();
+                string[] pairs = parts[b].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < pairs.Length; i++)
+                {
+                    string[] xy = pairs[i].Split(',');
+                    if (xy.Length != 2 || !double.TryParse(xy[0], NumberStyles.Float, CultureInfo.InvariantCulture, out double x)
+                        || !double.TryParse(xy[1], NumberStyles.Float, CultureInfo.InvariantCulture, out double y))
+                        throw new SheetEditException("\"" + pairs[i] + "\" is not an x,y point in mm.");
+                    pts.Add(new Point { X = x, Y = y });
+                }
+                list.Add(pts);
+            }
+            return list;
+        }
+
+        private static string LayoutReport(SheetEditor e, string net, ActiveLevel? active)
+        {
+            Net? n = e.FindNet(net, active);
+            if (n == null)
+                return "";
+            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData);
+            string key = SheetLayout.NetKey(n);
+            for (int i = 0; i < d.RerouteReasons.Count; i++)
+            {
+                if (d.RerouteReasons[i].StartsWith(key + ":", StringComparison.Ordinal))
+                    return "It is NOT used as given and the signal was routed afresh - " + d.RerouteReasons[i];
+            }
+            return d.KeptWires.Contains(key) ? "It is drawn exactly as given." : "";
         }
 
         private SheetEditor Open() => _editor ?? throw new McpException("No sheet is open; use open_sheet or new_sheet first.");
