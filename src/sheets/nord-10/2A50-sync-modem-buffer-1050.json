@@ -1352,7 +1352,14 @@
           "at": "11D.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 5 (ODW): write the character to send.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "OSR",
@@ -1370,7 +1377,14 @@
           "at": "11A.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 6 (OSR): read the output status.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "OCW",
@@ -1392,7 +1406,14 @@
           "at": "15C.3",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 7 (OCW): write the output control word.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "IDR",
@@ -1418,7 +1439,14 @@
           "at": "11D.9",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 0 (IDR): read the received character.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "SCW",
@@ -1436,7 +1464,14 @@
           "at": "11D.5",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 1 (SCW): write the sync register.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "ISR",
@@ -1458,7 +1493,14 @@
           "at": "11A.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 2 (ISR): read the input status.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "ICW",
@@ -1480,7 +1522,14 @@
           "at": "15C.11",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 3 (ICW): write the input control word.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "ICW",
@@ -1510,7 +1559,14 @@
           "at": "11B.9",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 3 (ICW): write the input control word.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "IDR",
@@ -1524,7 +1580,14 @@
           "at": "7-8C-D.24",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Register select, offset 0 (IDR): read the received character.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Register decode (7442 at 13D)",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "ISCW",
@@ -1538,7 +1601,14 @@
           "at": "7-8C-D.21",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Strobe that loads the COM 2601's receiver sync character (chip pin 21): SCW selected and data bit 8 = 0.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "SCW, offset 1: sync character write",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "OSCW",
@@ -1552,7 +1622,14 @@
           "at": "7-8C-D.18",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Strobe that loads the COM 2601's transmitter fill character (chip pin 18): SCW selected and data bit 9 = 0.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "SCW, offset 1: sync character write",
+        "confidence": "read"
+      }
     },
     {
       "name": "N_11D_13",
@@ -2412,7 +2489,14 @@
           "at": "3C.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "One of the four lines (CLDI, CLEI, CLDO, CLEO) by which multiplexer 1C clears the interrupt enable that caused an answered IDENT: the data enable if the data condition was set, else the error enable.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "CLEI",
@@ -2426,7 +2510,14 @@
           "at": "1D.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "One of the four lines (CLDI, CLEI, CLDO, CLEO) by which multiplexer 1C clears the interrupt enable that caused an answered IDENT: the data enable if the data condition was set, else the error enable.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "CLDO",
@@ -2440,7 +2531,14 @@
           "at": "3C.1",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "One of the four lines (CLDI, CLEI, CLDO, CLEO) by which multiplexer 1C clears the interrupt enable that caused an answered IDENT: the data enable if the data condition was set, else the error enable.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "CLEO",
@@ -2454,7 +2552,14 @@
           "at": "1D.1",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "One of the four lines (CLDI, CLEI, CLDO, CLEO) by which multiplexer 1C clears the interrupt enable that caused an answered IDENT: the data enable if the data condition was set, else the error enable.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "IRFTIE",
@@ -2472,7 +2577,14 @@
           "at": "3D.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 0: enables the level-12 interrupt on 'character received' (7474 3C).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "IERRIE",
@@ -2490,7 +2602,14 @@
           "at": "3D.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 1: enables the level-12 interrupt on an input error (7474 1D).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "ORFTIE",
@@ -2508,7 +2627,14 @@
           "at": "3D.11",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Output control bit 0: enables the level-10 interrupt on 'ready for next character' (3C).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "OCW, offset 7: output control",
+        "confidence": "read"
+      }
     },
     {
       "name": "OERRIE",
@@ -2526,7 +2652,14 @@
           "at": "3D.5",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Output control bit 1: enables the level-10 interrupt on an output error (1D).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "OCW, offset 7: output control",
+        "confidence": "read"
+      }
     },
     {
       "name": "IRFT",
@@ -2548,7 +2681,14 @@
           "at": "3E.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Character ready (the chip's DA); input status bit 3.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "IERR",
@@ -2570,7 +2710,14 @@
           "at": "5E.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Any input error: IPE or IOR or ISYNERR or CARRERR (11E, 9E); input status bit 4.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "ORFT",
@@ -2592,7 +2739,14 @@
           "at": "3E.11",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Transmit buffer empty (the chip's TBMT); output status bit 3.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "OERR",
@@ -2618,7 +2772,14 @@
           "at": "5E.11",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Output error, from the chip's SCT pin (the transmitter ran empty and sent fill); output status bits 4 and 5. That it means underrun is inferred.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "inferred"
+      }
     },
     {
       "name": "N_3B_8",
@@ -2655,11 +2816,21 @@
           "at": "13C.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Level-12 interrupt = (IRFTIE and IRFT) or (IERRIE and IERR) (7451 3B, 5A).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "read"
+      }
     },
     {
       "name": "LEV12",
       "active": "low",
+      "drive": "open-collector",
+      "driveConfidence": "inferred",
+      "pullUp": "open",
       "pins": [
         {
           "at": "5A.8",
@@ -2670,9 +2841,13 @@
           "confidence": "read"
         }
       ],
-      "drive": "open-collector",
-      "driveConfidence": "inferred",
-      "pullUp": "open"
+      "description": "Level-12 interrupt = (IRFTIE and IRFT) or (IERRIE and IERR) (7451 3B, 5A).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "read"
+      }
     },
     {
       "name": "N_3B_6",
@@ -2713,11 +2888,21 @@
           "at": "13C.6",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Level-10 interrupt = (ORFTIE and ORFT) or (OERRIE and OERR).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "read"
+      }
     },
     {
       "name": "LEV10",
       "active": "low",
+      "drive": "open-collector",
+      "driveConfidence": "inferred",
+      "pullUp": "open",
       "pins": [
         {
           "at": "5A.3",
@@ -2728,9 +2913,13 @@
           "confidence": "read"
         }
       ],
-      "drive": "open-collector",
-      "driveConfidence": "inferred",
-      "pullUp": "open"
+      "description": "Level-10 interrupt = (ORFTIE and ORFT) or (OERRIE and OERR).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Interrupts",
+        "confidence": "read"
+      }
     },
     {
       "name": "CLINT",
@@ -3234,7 +3423,14 @@
           "at": "3D.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 0 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA1",
@@ -3248,7 +3444,14 @@
           "at": "3D.3",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 1 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA2",
@@ -3262,7 +3465,14 @@
           "at": "3E.3",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 2 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA3",
@@ -3276,7 +3486,14 @@
           "at": "3E.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 3 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA4",
@@ -3290,7 +3507,14 @@
           "at": "5E.3",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 4 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA5",
@@ -3304,7 +3528,14 @@
           "at": "5E.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 5 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA6",
@@ -3318,7 +3549,14 @@
           "at": "5D.3",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 6 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDATA7",
@@ -3332,7 +3570,14 @@
           "at": "5D.13",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received character bit 7 from the COM 2601 (RD pins 28-35), read through IDR.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDENT2",
@@ -3343,7 +3588,14 @@
           "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 1 with pull-up"
+      "note": "ident switch 1E position 1 with pull-up",
+      "description": "Ident switch 1E line, put on data bit 2 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Address and ident",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDENT3",
@@ -3354,7 +3606,14 @@
           "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 2 with pull-up"
+      "note": "ident switch 1E position 2 with pull-up",
+      "description": "Ident switch 1E line, put on data bit 3 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Address and ident",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDENT4",
@@ -3365,7 +3624,14 @@
           "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 3 with pull-up"
+      "note": "ident switch 1E position 3 with pull-up",
+      "description": "Ident switch 1E line, put on data bit 4 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Address and ident",
+        "confidence": "read"
+      }
     },
     {
       "name": "IDENT5",
@@ -3376,7 +3642,14 @@
           "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 4 with pull-up"
+      "note": "ident switch 1E position 4 with pull-up",
+      "description": "Ident switch 1E line, put on data bit 5 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Address and ident",
+        "confidence": "read"
+      }
     },
     {
       "name": "OACTIVE",
@@ -3394,7 +3667,14 @@
           "at": "3E.5",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Output active (= ready for sending from the modem); output status bit 2.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "IACTIVE",
@@ -3412,7 +3692,14 @@
           "at": "3E.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 2: input active (74174 11B).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "IPE",
@@ -3430,7 +3717,14 @@
           "at": "5D.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Received parity error; input status bit 6.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "IOR",
@@ -3448,7 +3742,14 @@
           "at": "5D.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Receiver overrun; input status bit 7.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "ISYNERR",
@@ -3466,7 +3767,14 @@
           "at": "5E.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input error 'sync character received', enabled by SCEE; input status bit 5.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "N_9E_10",
@@ -3512,7 +3820,14 @@
           "at": "5B.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input error 'carrier missing', enabled by CARREN; input status bit 8.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Status words",
+        "confidence": "read"
+      }
     },
     {
       "name": "CARREN",
@@ -3530,7 +3845,14 @@
           "at": "5B.14",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 9: enables 'carrier missing' as an input error (CARRERR).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "SCEE",
@@ -3544,7 +3866,14 @@
           "at": "11A.5",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 8: enables 'sync character received' as an input error (ISYNERR).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "SCR",
@@ -3558,7 +3887,14 @@
           "at": "11A.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "The COM 2601's SCR: set when a received character equals the receiver sync register.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "TDATA",
@@ -3586,7 +3922,14 @@
           "at": "7E.10",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "The COM 2601's TBMT: high when the data buffer may be loaded, low after ODW is written, high again when the character moves into the shift register.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "DA",
@@ -3642,7 +3985,14 @@
           "at": "7E.6",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "The COM 2601's SCT: high when the transmitter had no new character in time and sent the fill (sync) character instead.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "RR",
@@ -3657,7 +4007,14 @@
           "confidence": "read"
         }
       ],
-      "note": "74221 one-shot pulse"
+      "note": "74221 one-shot pulse",
+      "description": "Receiver reset pulse to the COM 2601 (one-shot 74221 17D to chip pin 15), from input control bit 10.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "TCLOCK",
@@ -3824,7 +4181,14 @@
           "at": "1C.15",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Clears the card: input control bit 4 with ICW (17B), the same line as master clear MC.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "CL1",
@@ -3856,7 +4220,14 @@
           "at": "17D.2",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Clears the card: input control bit 4 with ICW (17B), the same line as master clear MC.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "TIMEOUT",
@@ -3920,7 +4291,14 @@
           "at": "17C.12",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 2: connect data set to line (DTR, line driver to pin 20 of the modem plug). A timeout clears it.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "CDSTL",
@@ -3938,7 +4316,14 @@
           "at": "17A.4",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 2: connect data set to line (DTR, line driver to pin 20 of the modem plug). A timeout clears it.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "CARR",
@@ -4010,7 +4395,14 @@
           "at": "19C.11",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Output control bit 2: request to send (15C).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "OCW, offset 7: output control",
+        "confidence": "read"
+      }
     },
     {
       "name": "TIMEOUTEN",
@@ -4024,7 +4416,14 @@
           "at": "19C.10",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 7: enables the timeout counter (7497 19C); a timeout clears CDSTL.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "OSC",
@@ -4128,7 +4527,14 @@
           "at": "7A.10",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 15: half duplex. Request to send is blocked while the carrier is present (13B).",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "RFS",
@@ -4224,7 +4630,14 @@
           "at": "15B.14",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "The COM 2601's RDA: high when a whole received character is in the buffer; reading IDR resets it.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "The COM 2601",
+        "confidence": "read"
+      }
     },
     {
       "name": "TDA",
@@ -4256,7 +4669,14 @@
           "at": "15B.1",
           "confidence": "read"
         }
-      ]
+      ],
+      "description": "Input control bit 3: test mode. 74157 15B swaps the modem clocks and received data for an internal oscillator and a loop-back of the sent data.",
+      "descriptionSource": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "ICW, offset 3: input control",
+        "confidence": "read"
+      }
     },
     {
       "name": "RQTS",

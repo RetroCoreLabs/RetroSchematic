@@ -113,6 +113,26 @@ namespace RetroSchematic.Tests
             Assert.That(i.DescriptionFromCatalogue, Is.False);
         }
 
+        [Test]
+        public void Every2A50Description_SaysItComesFromTheReadingDocument()
+        {
+            Netlist n = NetlistReader.ReadFile(Sheet2A50);
+            int described = 0;
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                Net net = n.Nets[i];
+                if (net.Description == null)
+                    continue;
+                described++;
+                Assert.That(net.DescriptionSource, Is.Not.Null, net.Name);
+                Assert.That(net.DescriptionSource!.Kind, Is.EqualTo(SourceKind.Reading), net.Name);
+                Assert.That(net.DescriptionSource.Document, Is.EqualTo("docs/2A50-reading.md"), net.Name);
+                Assert.That(net.DescriptionSource.Place, Is.Not.Empty, net.Name);
+                Assert.That(net.DescriptionSource.Confidence, Is.Not.EqualTo(Confidence.Open), net.Name);
+            }
+            Assert.That(described, Is.EqualTo(60));
+        }
+
         private static SheetEditor Sheet()
         {
             Netlist n = SheetEditor.NewSheet("T", "t");
