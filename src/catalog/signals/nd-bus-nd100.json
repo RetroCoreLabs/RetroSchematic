@@ -35,6 +35,16 @@
       "id": "N100",
       "document": "ND-06.016.01 NORD-100 Input/Output System (1980)",
       "note": "Appendix F gives the full backplane table (connector C, rows a/b/c, pins 1-32) and a definition of each signal; section I.2.3 names the plugs A, B, C."
+    },
+    {
+      "id": "V120",
+      "document": "nd-120 repository, Verilog/CPU-BOARD-3202/circuit/ND3202D.v (module ND3202D, the ND-120 3202D CPU board in Verilog, port list 'BACKPLANE C-PLUG')",
+      "note": "A re-creation of the CPU card, not an ND document. Port names and the C-plug positions in its comments are recorded; the ND manual stays the authority."
+    },
+    {
+      "id": "KC",
+      "document": "KiCad project NDModulE-v3-reduced (kept outside this repository), sheet SystemBusC.kicad_sch, connector J1 'BUS-C' (DIN 41612 3x32, footprint DIN41612_R_3x32_Male_Horizontal_THT)",
+      "note": "A modern ND-bus card design, not an ND document. Net names were taken from a netlist exported with kicad-cli 9.0 from the root sheet NDModuleE-v3-reduced.kicad_sch."
     }
   ],
   "signals": [
@@ -126,6 +136,86 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "GND",
+            "NDGND_EURO5V"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A1",
+              "net": "NDGND_EURO5V",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "A11",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "A24",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "A32",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "B1",
+              "net": "NDGND_EURO5V",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "B11",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "B24",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "B32",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "C1",
+              "net": "NDGND_EURO5V",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "C11",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "C24",
+              "net": "GND",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "C32",
+              "net": "GND",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -186,6 +276,58 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "ND_VCC_5V",
+            "unconnected-(J1-PadA31)",
+            "unconnected-(J1-PadB31)",
+            "unconnected-(J1-PadC31)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A2",
+              "net": "ND_VCC_5V",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "A31",
+              "net": "unconnected-(J1-PadA31)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B2",
+              "net": "ND_VCC_5V",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "B31",
+              "net": "unconnected-(J1-PadB31)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C2",
+              "net": "ND_VCC_5V",
+              "noConnectOnCard": false
+            },
+            {
+              "pin": "C31",
+              "net": "unconnected-(J1-PadC31)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -230,6 +372,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[1] / BD_23_0_n_OUT[1]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD1",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A3",
+              "net": "BD1",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -274,6 +437,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[3] / BD_23_0_n_OUT[3]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD3",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A4",
+              "net": "BD3",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -318,6 +502,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[5] / BD_23_0_n_OUT[5]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD5",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A5",
+              "net": "BD5",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -362,6 +567,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[7] / BD_23_0_n_OUT[7]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD7",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A6",
+              "net": "BD7",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -406,6 +632,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[9] / BD_23_0_n_OUT[9]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD9",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A7",
+              "net": "BD9",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -450,6 +697,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[11] / BD_23_0_n_OUT[11]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD11",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A8",
+              "net": "BD11",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -494,6 +762,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[13] / BD_23_0_n_OUT[13]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD13",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A9",
+              "net": "BD13",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -538,6 +827,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[15] / BD_23_0_n_OUT[15]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD15",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A10",
+              "net": "BD15",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -580,6 +890,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BREF_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 72",
+          "confidence": "read",
+          "note": "comment gives C-plug position B12"
+        },
+        "kicadNet": {
+          "value": "BREF",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A12",
+              "net": "BREF",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -616,6 +948,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "PA1",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A13",
+              "net": "PA1",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -652,6 +1006,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "PA3",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A14",
+              "net": "PA3",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -695,6 +1071,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINT10_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 40",
+          "confidence": "read",
+          "note": "comment gives C-plug position A15"
+        },
+        "kicadNet": {
+          "value": "INT10",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A15",
+              "net": "INT10",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -738,6 +1136,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINT12_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 42",
+          "confidence": "read",
+          "note": "comment gives C-plug position A16"
+        },
+        "kicadNet": {
+          "value": "INT12",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A16",
+              "net": "INT12",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -781,6 +1201,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "SEMRQ_n_IN / SEMRQ_n_OUT",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 53-54",
+          "confidence": "read",
+          "note": "comment gives C-plug position A17"
+        },
+        "kicadNet": {
+          "value": "SEMREQ",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A17",
+              "net": "SEMREQ",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -824,6 +1266,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINPUT_n_IN / BINPUT_n_OUT",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 56-57",
+          "confidence": "read",
+          "note": "comment gives C-plug position A18"
+        },
+        "kicadNet": {
+          "value": "BINPUT",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A18",
+              "net": "BINPUT",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -868,6 +1332,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[RY] / BD_23_0_n_OUT[RY]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BDRY",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A19",
+              "net": "BDRY",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -911,6 +1396,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BAPR_n_IN / BAPR_n_OUT",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 65-66",
+          "confidence": "read",
+          "note": "comment gives C-plug position A20"
+        },
+        "kicadNet": {
+          "value": "BAPR",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A20",
+              "net": "BAPR",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -947,6 +1454,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "INCONTR",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A21",
+              "net": "INCONTR",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -983,6 +1512,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "INIDENT",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A22",
+              "net": "INIDENT",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1019,6 +1570,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "INGRANT",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A23",
+              "net": "INGRANT",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1064,6 +1637,42 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "unconnected-(J1-PadA25)",
+            "unconnected-(J1-PadB25)",
+            "unconnected-(J1-PadC25)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A25",
+              "net": "unconnected-(J1-PadA25)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B25",
+              "net": "unconnected-(J1-PadB25)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C25",
+              "net": "unconnected-(J1-PadC25)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1109,6 +1718,42 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "unconnected-(J1-PadA26)",
+            "unconnected-(J1-PadB26)",
+            "unconnected-(J1-PadC26)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A26",
+              "net": "unconnected-(J1-PadA26)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B26",
+              "net": "unconnected-(J1-PadB26)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C26",
+              "net": "unconnected-(J1-PadC26)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1154,6 +1799,42 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "unconnected-(J1-PadA27)",
+            "unconnected-(J1-PadB27)",
+            "unconnected-(J1-PadC27)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A27",
+              "net": "unconnected-(J1-PadA27)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B27",
+              "net": "unconnected-(J1-PadB27)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C27",
+              "net": "unconnected-(J1-PadC27)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1199,6 +1880,42 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "inferred"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "unconnected-(J1-PadA28)",
+            "unconnected-(J1-PadB28)",
+            "unconnected-(J1-PadC28)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A28",
+              "net": "unconnected-(J1-PadA28)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B28",
+              "net": "unconnected-(J1-PadB28)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C28",
+              "net": "unconnected-(J1-PadC28)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1243,6 +1960,42 @@
         "value": "open",
         "confidence": "open",
         "note": "Listed with the power lines (source P) but not described."
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "POWSENSE_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 45",
+          "confidence": "read",
+          "note": "comment gives C-plug position A29,B29,C29"
+        },
+        "kicadNet": {
+          "value": [
+            "unconnected-(J1-PadA29)",
+            "unconnected-(J1-PadB29)",
+            "unconnected-(J1-PadC29)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A29",
+              "net": "unconnected-(J1-PadA29)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B29",
+              "net": "unconnected-(J1-PadB29)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C29",
+              "net": "unconnected-(J1-PadC29)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1288,6 +2041,42 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": [
+            "unconnected-(J1-PadA30)",
+            "unconnected-(J1-PadB30)",
+            "unconnected-(J1-PadC30)"
+          ],
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "A30",
+              "net": "unconnected-(J1-PadA30)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "B30",
+              "net": "unconnected-(J1-PadB30)",
+              "noConnectOnCard": true
+            },
+            {
+              "pin": "C30",
+              "net": "unconnected-(J1-PadC30)",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1332,6 +2121,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[16] / BD_23_0_n_OUT[16]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD16",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B3",
+              "net": "BD16",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1376,6 +2186,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[17] / BD_23_0_n_OUT[17]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD17",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B4",
+              "net": "BD17",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1420,6 +2251,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[18] / BD_23_0_n_OUT[18]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD18",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B5",
+              "net": "BD18",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1464,6 +2316,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[19] / BD_23_0_n_OUT[19]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD19",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B6",
+              "net": "BD19",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1508,6 +2381,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[20] / BD_23_0_n_OUT[20]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD20",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B7",
+              "net": "BD20",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1552,6 +2446,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[21] / BD_23_0_n_OUT[21]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD21",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B8",
+              "net": "BD21",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1596,6 +2511,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[22] / BD_23_0_n_OUT[22]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD22",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B9",
+              "net": "BD22",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1640,6 +2576,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[23] / BD_23_0_n_OUT[23]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD23",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B10",
+              "net": "BD23",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -1683,6 +2640,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "LOAD_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 34",
+          "confidence": "read",
+          "note": "comment gives C-plug position B12"
+        },
+        "kicadNet": {
+          "value": "LOAD",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B12",
+              "net": "LOAD",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1726,6 +2705,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 36",
+          "confidence": "read",
+          "note": "No port. The comment says: C-PLUG B13 /RESTART pulled high on the panel side, not connected to any logic on this board."
+        },
+        "kicadNet": {
+          "value": "RESTART",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B13",
+              "net": "RESTART",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1769,6 +2770,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "RUN_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 71",
+          "confidence": "read",
+          "note": "comment gives C-plug position B14"
+        },
+        "kicadNet": {
+          "value": "RUN",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B14",
+              "net": "RUN",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1812,6 +2835,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "CONTINUE_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 37",
+          "confidence": "read",
+          "note": "comment gives C-plug position B15"
+        },
+        "kicadNet": {
+          "value": "CONTINUE",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B15",
+              "net": "CONTINUE",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1855,6 +2900,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "STOP_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 38",
+          "confidence": "read",
+          "note": "comment gives C-plug position B16"
+        },
+        "kicadNet": {
+          "value": "STOP",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B16",
+              "net": "STOP",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1891,6 +2958,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "BLANK",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B17",
+              "net": "BLANK",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1934,6 +3023,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "BPERR",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B18",
+              "net": "BPERR",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -1977,6 +3088,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINACK_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 74",
+          "confidence": "read",
+          "note": "comment gives C-plug position B19"
+        },
+        "kicadNet": {
+          "value": "BINACK",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B19",
+              "net": "BINACK",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2020,6 +3153,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "MCL",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 79",
+          "confidence": "read",
+          "note": "comment gives C-plug position B20"
+        },
+        "kicadNet": {
+          "value": "BMCL",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B20",
+              "net": "BMCL",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2063,6 +3218,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BERROR_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 73",
+          "confidence": "read",
+          "note": "comment gives C-plug position B21"
+        },
+        "kicadNet": {
+          "value": "BERROR",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B21",
+              "net": "BERROR",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -2099,6 +3276,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "BCRQ",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B22",
+              "net": "BCRQ",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -2142,6 +3341,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "BMINH",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "B23",
+              "net": "BMINH",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -2186,6 +3407,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[0] / BD_23_0_n_OUT[0]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD0",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C3",
+              "net": "BD0",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2230,6 +3472,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[2] / BD_23_0_n_OUT[2]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD2",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C4",
+              "net": "BD2",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2274,6 +3537,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[4] / BD_23_0_n_OUT[4]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD4",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C5",
+              "net": "BD4",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2318,6 +3602,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[6] / BD_23_0_n_OUT[6]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD6",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C6",
+              "net": "BD6",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2362,6 +3667,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[8] / BD_23_0_n_OUT[8]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD8",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C7",
+              "net": "BD8",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2406,6 +3732,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[10] / BD_23_0_n_OUT[10]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD10",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C8",
+              "net": "BD10",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2450,6 +3797,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[12] / BD_23_0_n_OUT[12]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD12",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C9",
+              "net": "BD12",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2494,6 +3862,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[14] / BD_23_0_n_OUT[14]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BD14",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C10",
+              "net": "BD14",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2537,6 +3926,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BREQ_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 35",
+          "confidence": "read",
+          "note": "comment gives C-plug position C12"
+        },
+        "kicadNet": {
+          "value": "BREQ",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C12",
+              "net": "BREQ",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2573,6 +3984,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "PA0",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C13",
+              "net": "PA0",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -2609,6 +4042,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "PA2",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C14",
+              "net": "PA2",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -2652,6 +4107,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINT11_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 41",
+          "confidence": "read",
+          "note": "comment gives C-plug position C15"
+        },
+        "kicadNet": {
+          "value": "INT11",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C15",
+              "net": "INT11",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2695,6 +4172,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINT13_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 43",
+          "confidence": "read",
+          "note": "comment gives C-plug position C16"
+        },
+        "kicadNet": {
+          "value": "INT13",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C16",
+              "net": "INT13",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2738,6 +4237,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BINT15_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 44",
+          "confidence": "read",
+          "note": "comment gives C-plug position C17"
+        },
+        "kicadNet": {
+          "value": "INT15",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C17",
+              "net": "INT15",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2782,6 +4303,27 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BD_23_0_n_IN[AP] / BD_23_0_n_OUT[AP]",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 49-50",
+          "confidence": "read"
+        },
+        "kicadNet": {
+          "value": "BDAP",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C18",
+              "net": "BDAP",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2825,6 +4367,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BIOXE_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 75",
+          "confidence": "read",
+          "note": "comment gives C-plug position C19"
+        },
+        "kicadNet": {
+          "value": "BIOXE",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C19",
+              "net": "BIOXE",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2868,6 +4432,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "BMEM_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 76",
+          "confidence": "read",
+          "note": "comment gives C-plug position C28"
+        },
+        "kicadNet": {
+          "value": "BMEM",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C20",
+              "net": "BMEM",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2904,6 +4490,28 @@
         "source": "N100",
         "page": "Appendix F.2 Logic Signals, Alphabetically, PDF/OCR pages 215-218",
         "confidence": "read"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "open",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v lines 28-80",
+          "confidence": "read",
+          "note": "no port for this signal in the ND3202D port list"
+        },
+        "kicadNet": {
+          "value": "OUTCONTR",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C21",
+              "net": "OUTCONTR",
+              "noConnectOnCard": true
+            }
+          ]
+        }
       }
     },
     {
@@ -2947,6 +4555,28 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "OUTIDENT_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 78",
+          "confidence": "read",
+          "note": "comment gives C-plug position C22"
+        },
+        "kicadNet": {
+          "value": "OUTIDENT",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C22",
+              "net": "OUTIDENT",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     },
     {
@@ -2990,7 +4620,52 @@
         "page": "sections 'Electrical Characteristics' and 'Bus Interface IC Summary'",
         "confidence": "read",
         "note": "secondary source; ND-120 3202D CPU card only"
+      },
+      "names": {
+        "nd120Verilog": {
+          "value": "OUTGRANT_n",
+          "source": "V120",
+          "page": "Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 77",
+          "confidence": "read",
+          "note": "comment gives C-plug position C23"
+        },
+        "kicadNet": {
+          "value": "OUTGRANT",
+          "source": "KC",
+          "page": "SystemBusC.kicad_sch, J1",
+          "confidence": "read",
+          "pins": [
+            {
+              "pin": "C23",
+              "net": "OUTGRANT",
+              "noConnectOnCard": false
+            }
+          ]
+        }
       }
     }
-  ]
+  ],
+  "disagreementsOtherSources": {
+    "value": [
+      "Verilog Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 72: BREF_n commented at B12, ND table has BREF at A12 (B12 is LOAD in the ND table)",
+      "KiCad J1 A15: net 'INT10', ND table 'BINT10'",
+      "KiCad J1 A16: net 'INT12', ND table 'BINT12'",
+      "name: ND 'PANREQ' is 'SEMRQ_n_IN / SEMRQ_n_OUT' in the Verilog",
+      "KiCad J1 A17: net 'SEMREQ', ND table 'PANREQ'",
+      "name: ND 'BMCL' is 'MCL' in the Verilog",
+      "KiCad J1 C15: net 'INT11', ND table 'BINT11'",
+      "KiCad J1 C16: net 'INT13', ND table 'BINT13'",
+      "KiCad J1 C17: net 'INT15', ND table 'BINT15'",
+      "Verilog Verilog/CPU-BOARD-3202/circuit/ND3202D.v line 76: BMEM_n commented at C28, ND table has BMEM at C20 (C28 is +12V in the ND table)",
+      "Verilog: ports drive BERROR_n (line 73) although the ND table marks BERROR source E / used E (future extensions only).",
+      "Verilog: no ports for BPERR, BMINH, BLANK, PA0-PA3, INIDENT, INGRANT, BCRQ, INCONTR, OUTCONTR, RESTART (see names.nd120Verilog per signal).",
+      "KiCad: pins 25-31 of all three rows are not connected on that card (+15V, An. Return, -15V, +12V, POW. SENSE, 5V St.by, and the second +5V pin 31); only pin 2 carries +5V. Not a disagreement with the table, a choice of that card.",
+      "KiCad: pin 1 of each row is on net NDGND_EURO5V while pins 11, 24, 32 are on net GND (two ground nets on that card; whether they join elsewhere was not checked).",
+      "KiCad: every J1 pin is of type passive, so the KiCad sheet gives no directions."
+    ],
+    "source": "N100",
+    "page": "Appendix F.2 table (PDF page 214)",
+    "confidence": "read",
+    "note": "Compared against the ND table, which stays the authority. Pin positions in the KiCad sheet agree with the ND table on every pin."
+  }
 }

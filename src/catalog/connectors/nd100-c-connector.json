@@ -14,6 +14,16 @@
       "id": "N100",
       "document": "ND-06.016.01 NORD-100 Input/Output System (1980)",
       "note": "Appendix F gives the full backplane table (connector C, rows a/b/c, pins 1-32) and a definition of each signal; section I.2.3 names the plugs A, B, C."
+    },
+    {
+      "id": "V120",
+      "document": "nd-120 repository, Verilog/CPU-BOARD-3202/circuit/ND3202D.v (module ND3202D, the ND-120 3202D CPU board in Verilog, port list 'BACKPLANE C-PLUG')",
+      "note": "A re-creation of the CPU card, not an ND document. Port names and the C-plug positions in its comments are recorded; the ND manual stays the authority."
+    },
+    {
+      "id": "KC",
+      "document": "KiCad project NDModulE-v3-reduced (kept outside this repository), sheet SystemBusC.kicad_sch, connector J1 'BUS-C' (DIN 41612 3x32, footprint DIN41612_R_3x32_Male_Horizontal_THT)",
+      "note": "A modern ND-bus card design, not an ND document. Net names were taken from a netlist exported with kicad-cli 9.0 from the root sheet NDModuleE-v3-reduced.kicad_sch."
     }
   ],
   "plugs": [
@@ -41,6 +51,13 @@
         "+12V": "a/b/c 28",
         "POW. SENSE": "a/b/c 29",
         "5V St.by": "a/b/c 30"
+      },
+      "kicadSymbol": {
+        "value": "DIN_41612_R_3x32, pins named A1-A32, B1-B32, C1-C32; footprint DIN41612_R_3x32_Male_Horizontal_THT",
+        "source": "KC",
+        "page": "SystemBusC.kicad_sch, J1",
+        "confidence": "read",
+        "note": "Row letters in KiCad are upper case; the ND table prints a, b, c. Positions agree with the ND table on every pin."
       }
     },
     {
