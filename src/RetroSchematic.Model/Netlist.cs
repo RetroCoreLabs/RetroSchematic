@@ -256,6 +256,12 @@ namespace RetroSchematic.Model
         /// Free text.
         /// </summary>
         public string? Note { get; set; }
+
+        /// <summary>
+        /// Where the top left corner of the chip's frame is drawn (mm from top left), or null when
+        /// not placed by hand. The editor writes it when a chip is placed or moved.
+        /// </summary>
+        public Point? Position { get; set; }
     }
 
     /// <summary>

@@ -29,6 +29,9 @@ namespace RetroSchematic.Model
             ReadCommentHandling = JsonCommentHandling.Skip,
             UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
             WriteIndented = true,
+            // an absent optional field is left out, not written as null, so a written file
+            // matches the schema (which has no null values)
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             Converters = { new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower, allowIntegerValues: false) },
         };
 

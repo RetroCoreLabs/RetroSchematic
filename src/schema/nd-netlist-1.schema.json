@@ -94,6 +94,9 @@
           },
           "note": {
             "type": "string"
+          },
+          "position": {
+            "$ref": "#/$defs/point"
           }
         }
       }
@@ -234,6 +237,22 @@
     }
   },
   "$defs": {
+    "point": {
+      "type": "object",
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
     "confidence": {
       "enum": [
         "read",
