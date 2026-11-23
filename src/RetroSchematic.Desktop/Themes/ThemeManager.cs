@@ -267,9 +267,15 @@ namespace RetroSchematic.Desktop.Themes
         private static ResourceDictionary BuildBrushDictionary(ThemeDefinition def)
         {
             ResourceDictionary rd = new();
-            string[] hex = def.Palette.ToArray();
+            // the drawing's colours come from the shared table in the Render library, the same
+            // one the SVG export uses, so screen and file always agree
+            SchematicTheme st = SchematicTheme.Find(def.Id) ?? SchematicTheme.Default;
+            string[] hex = def.Palette.ToArray(st);
             for (int i = 0; i < s_brushKeys.Length; i++)
                 rd[s_brushKeys[i]] = new SolidColorBrush(Color.Parse(hex[i]));
+            SchematicColour[] all = Enum.GetValues<SchematicColour>();
+            for (int i = 0; i < all.Length; i++)
+                rd[SchematicTheme.BrushKey(all[i])] = new SolidColorBrush(Color.Parse(st.Get(all[i])));
             return rd;
         }
 
@@ -298,14 +304,6 @@ namespace RetroSchematic.Desktop.Themes
                 ErrorBackground = "#FDE7E9",
                 ErrorBorder = "#E81123",
                 ErrorText = "#C42B1C",
-                // paper white and black ink, like the printed sheet
-                SchematicPaper = "#FFFFFF",
-                SchematicInk = "#000000",
-                SchematicFrame = "#A0A0A0",
-                SchematicInferred = "#B06000",
-                SchematicNote = "#666666",
-                SchematicSelection = "#0078D7",
-                SchematicOpen = "#D00000",
                 // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                 ValueUnknown = "#757575", ValueZero = "#006400", ValueOne = "#00A000", ValueNotDriven = "#2828FF", ValueConflict = "#E00000",
             }));
@@ -331,13 +329,6 @@ namespace RetroSchematic.Desktop.Themes
                 ErrorBackground = "#3A1D1D",
                 ErrorBorder = "#C44C4C",
                 ErrorText = "#FF99A4",
-                SchematicPaper = "#1E1E1E",
-                SchematicInk = "#E8E8E8",
-                SchematicFrame = "#555555",
-                SchematicInferred = "#E0A040",
-                SchematicNote = "#A0A0A0",
-                SchematicSelection = "#0A84FF",
-                SchematicOpen = "#FF5555",
                 // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                 ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
             }));
@@ -364,13 +355,6 @@ namespace RetroSchematic.Desktop.Themes
                     ErrorBackground = "#3A1F1A",
                     ErrorBorder = "#DC322F",
                     ErrorText = "#E8857F",
-                    SchematicPaper = "#002B36",
-                    SchematicInk = "#93A1A1",
-                    SchematicFrame = "#586E75",
-                    SchematicInferred = "#B58900",
-                    SchematicNote = "#657B83",
-                    SchematicSelection = "#268BD2",
-                    SchematicOpen = "#DC322F",
                     // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                     ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
@@ -397,13 +381,6 @@ namespace RetroSchematic.Desktop.Themes
                     ErrorBackground = "#43292C",
                     ErrorBorder = "#BF616A",
                     ErrorText = "#D99CA3",
-                    SchematicPaper = "#2E3440",
-                    SchematicInk = "#ECEFF4",
-                    SchematicFrame = "#4C566A",
-                    SchematicInferred = "#EBCB8B",
-                    SchematicNote = "#9AA4B5",
-                    SchematicSelection = "#88C0D0",
-                    SchematicOpen = "#BF616A",
                     // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                     ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
@@ -430,13 +407,6 @@ namespace RetroSchematic.Desktop.Themes
                     ErrorBackground = "#220000",
                     ErrorBorder = "#FF3300",
                     ErrorText = "#FF6644",
-                    SchematicPaper = "#001100",
-                    SchematicInk = "#00FF00",
-                    SchematicFrame = "#005500",
-                    SchematicInferred = "#FFFF00",
-                    SchematicNote = "#00AA00",
-                    SchematicSelection = "#FFFFFF",
-                    SchematicOpen = "#FF4040",
                     // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                     ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
@@ -463,13 +433,6 @@ namespace RetroSchematic.Desktop.Themes
                     ErrorBackground = "#220000",
                     ErrorBorder = "#FF3300",
                     ErrorText = "#FF6644",
-                    SchematicPaper = "#1A0F00",
-                    SchematicInk = "#FFB000",
-                    SchematicFrame = "#664400",
-                    SchematicInferred = "#FFFF00",
-                    SchematicNote = "#CC8800",
-                    SchematicSelection = "#FFFFFF",
-                    SchematicOpen = "#FF4040",
                     // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                     ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
@@ -496,13 +459,6 @@ namespace RetroSchematic.Desktop.Themes
                     ErrorBackground = "#351525",
                     ErrorBorder = "#FE4450",
                     ErrorText = "#F97E72",
-                    SchematicPaper = "#262335",
-                    SchematicInk = "#FFFFFF",
-                    SchematicFrame = "#614D85",
-                    SchematicInferred = "#FEDE5D",
-                    SchematicNote = "#B893CE",
-                    SchematicSelection = "#FF7EDB",
-                    SchematicOpen = "#FE4450",
                     // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                     ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
@@ -529,13 +485,6 @@ namespace RetroSchematic.Desktop.Themes
                     ErrorBackground = "#000000",
                     ErrorBorder = "#FF0000",
                     ErrorText = "#FF6666",
-                    SchematicPaper = "#000000",
-                    SchematicInk = "#FFFFFF",
-                    SchematicFrame = "#FFFFFF",
-                    SchematicInferred = "#FFFF00",
-                    SchematicNote = "#E0E0E0",
-                    SchematicSelection = "#00FFFF",
-                    SchematicOpen = "#FF0000",
                     // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
                     ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
@@ -692,40 +641,12 @@ namespace RetroSchematic.Desktop.Themes
         /// </summary>
         public string ErrorText = "#FFFFFF";
 
-        /// <summary>
-        /// Paper behind the drawing.
-        /// </summary>
-        public string SchematicPaper = "#FFFFFF";
 
-        /// <summary>
-        /// Lines and text read off the drawing.
-        /// </summary>
-        public string SchematicInk = "#000000";
 
-        /// <summary>
-        /// The frame round each chip.
-        /// </summary>
-        public string SchematicFrame = "#888888";
 
-        /// <summary>
-        /// Anything inferred, not read.
-        /// </summary>
-        public string SchematicInferred = "#B06000";
 
-        /// <summary>
-        /// Secondary drawing text.
-        /// </summary>
-        public string SchematicNote = "#666666";
 
-        /// <summary>
-        /// The picked item.
-        /// </summary>
-        public string SchematicSelection = "#0078D7";
 
-        /// <summary>
-        /// Anything OPEN, not known.
-        /// </summary>
-        public string SchematicOpen = "#D00000";
 
         /// <summary>
         /// A simulated signal with no value yet.
@@ -752,25 +673,9 @@ namespace RetroSchematic.Desktop.Themes
         /// </summary>
         public string ValueConflict = "#FF0000";
 
-        /// <summary>
-        /// The traced signal.
-        /// </summary>
-        public string SchematicTrace = "#FF8C00";
 
-        /// <summary>
-        /// A wire; null uses the theme's ink.
-        /// </summary>
-        public string? SchematicWire;
 
-        /// <summary>
-        /// A bus line; null uses the theme's ink.
-        /// </summary>
-        public string? SchematicBus;
 
-        /// <summary>
-        /// A net label; null uses the theme's ink.
-        /// </summary>
-        public string? SchematicNetLabel;
 
         /// <summary>
         /// An accent button under the pointer; null uses the accent colour.
@@ -783,7 +688,7 @@ namespace RetroSchematic.Desktop.Themes
         /// <returns>
         /// The hex colours, one per brush key, in the key list's order.
         /// </returns>
-        public string[] ToArray()
+        public string[] ToArray(SchematicTheme st)
         {
             return new[]
             {
@@ -791,9 +696,10 @@ namespace RetroSchematic.Desktop.Themes
                 TextPrimary, TextSecondary, SelectionHighlight, HoverHighlight, SidebarBackground,
                 SidebarSeparator, WarningBackground, WarningBorder, SuccessBackground, SuccessBorder,
                 ErrorBackground, ErrorBorder, ErrorText,
-                SchematicPaper, SchematicInk, SchematicFrame, SchematicInferred, SchematicNote, SchematicSelection, SchematicOpen,
-                ValueUnknown, ValueZero, ValueOne, ValueNotDriven, ValueConflict, SchematicTrace,
-                SchematicWire ?? SchematicInk, SchematicBus ?? SchematicInk, SchematicNetLabel ?? SchematicInk,
+                st.Get(SchematicColour.Paper), st.Get(SchematicColour.Title), st.Get(SchematicColour.ChipOutline),
+                st.Get(SchematicColour.Inferred), st.Get(SchematicColour.Note), st.Get(SchematicColour.Selection), st.Get(SchematicColour.Open),
+                ValueUnknown, ValueZero, ValueOne, ValueNotDriven, ValueConflict, st.Get(SchematicColour.Trace),
+                st.Get(SchematicColour.Wire), st.Get(SchematicColour.Bus), st.Get(SchematicColour.NetLabel),
                 AccentHover ?? AccentBlue,
             };
         }

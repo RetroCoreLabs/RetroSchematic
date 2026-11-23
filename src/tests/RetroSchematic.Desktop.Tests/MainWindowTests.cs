@@ -99,8 +99,10 @@ namespace RetroSchematic.Desktop.Tests
             ThemeManager.Instance.Apply("Light", persist: false);
             MainWindow w = new() { Width = 1400, Height = 900 };
             w.Show();
-            Palette light = ThemeManager.Instance.Themes[0].Palette;
-            Palette dark = ThemeManager.Instance.Themes[1].Palette;
+            // the drawing's colours are the shared table's; "ink" here is the chip outline colour,
+            // drawn round every chip
+            SchematicTheme light = SchematicTheme.Find(ThemeManager.Instance.Themes[0].Id)!;
+            SchematicTheme dark = SchematicTheme.Find(ThemeManager.Instance.Themes[1].Id)!;
 
             // Counted inside the drawing area only, so the window's own text (which in the Dark
             // theme is the same colour as the ink) cannot be mistaken for the sheet.
@@ -153,10 +155,10 @@ namespace RetroSchematic.Desktop.Tests
         /// <returns>
         /// How many pixels show each colour.
         /// </returns>
-        private static unsafe Counts Count(Window w, Palette p)
+        private static unsafe Counts Count(Window w, SchematicTheme p)
         {
-            Color paper = Color.Parse(p.SchematicPaper);
-            Color ink = Color.Parse(p.SchematicInk);
+            Color paper = Color.Parse(p.Get(SchematicColour.Paper));
+            Color ink = Color.Parse(p.Get(SchematicColour.ChipOutline));
             WriteableBitmap? frame = w.CaptureRenderedFrame() as WriteableBitmap;
             Assert.That(frame, Is.Not.Null, "no frame captured");
             // only the drawing area: the canvas's rectangle in window pixels

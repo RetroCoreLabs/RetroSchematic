@@ -18,7 +18,8 @@ namespace RetroSchematic.Cli
     {
         private const string Help =
             "retroschematic check <sheet.json>                          check a netlist file\n" +
-            "retroschematic render <sheet.json> <out.svg> [nd|modern]   draw it as SVG (default: nd symbols)\n";
+            "retroschematic render <sheet.json> <out.svg> [nd|modern] [--theme <name>]\n" +
+            "    draw it as SVG (default: nd symbols, the Light theme)\n";
 
         /// <summary>
         /// Entry point.
@@ -52,18 +53,34 @@ namespace RetroSchematic.Cli
                             Console.Error.Write(Help);
                             return 2;
                         }
-                        SymbolStyle style = args.Length > 3 && args[3] == "modern" ? SymbolStyle.Modern : SymbolStyle.NorskData;
-                        if (args.Length > 3 && args[3] != "modern" && args[3] != "nd")
+                        SymbolStyle style = SymbolStyle.NorskData;
+                        SchematicTheme theme = SchematicTheme.Default;
+                        for (int a = 3; a < args.Length; a++)
                         {
-                            Console.Error.WriteLine($"Unknown symbol style \"{args[3]}\": use nd or modern.");
-                            return 2;
+                            if (args[a] == "--theme" && a + 1 < args.Length)
+                            {
+                                SchematicTheme? t = SchematicTheme.Find(args[++a]);
+                                if (t == null)
+                                {
+                                    Console.Error.WriteLine($"Unknown theme \"{args[a]}\": use one of {ThemeNames()}.");
+                                    return 2;
+                                }
+                                theme = t;
+                            }
+                            else if (args[a] == "modern")
+                                style = SymbolStyle.Modern;
+                            else if (args[a] != "nd")
+                            {
+                                Console.Error.WriteLine($"Unknown option \"{args[a]}\": use nd, modern or --theme <name>.");
+                                return 2;
+                            }
                         }
                         // drawn with the chip catalogue when one is found above the sheet, exactly as the
                         // window draws it (a chip without gates then shows every pin)
                         string? catalog = ChipCatalog.Find(args[1]);
                         LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog) };
                         SchematicDrawing drawing = SheetLayout.Build(netlist, style, options);
-                        File.WriteAllText(args[2], SvgRenderer.Write(drawing));
+                        File.WriteAllText(args[2], SvgRenderer.Write(drawing, theme));
                         Console.WriteLine($"Wrote {args[2]}");
                         for (int i = 0; i < drawing.RerouteReasons.Count; i++)
                             Console.WriteLine("Wire routed afresh: " + drawing.RerouteReasons[i]);
@@ -86,6 +103,20 @@ namespace RetroSchematic.Cli
                 Console.Error.WriteLine(e.Message);
                 return 1;
             }
+        }
+
+        /// <summary>
+        /// The theme names, for the error message.
+        /// </summary>
+        /// <returns>
+        /// The names, separated by commas.
+        /// </returns>
+        private static string ThemeNames()
+        {
+            string names = "";
+            for (int i = 0; i < SchematicTheme.All.Count; i++)
+                names += (i == 0 ? "" : ", ") + SchematicTheme.All[i].Id;
+            return names;
         }
     }
 }

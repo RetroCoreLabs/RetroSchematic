@@ -248,12 +248,13 @@ namespace RetroSchematic.Desktop.Controls
         {
             SheetSession session = _session!;
 
-            IBrush ink = Brush(ThemeManager.SchematicInkKey);
-            IBrush frame = Brush(ThemeManager.SchematicFrameKey);
-            IBrush inferred = Brush(ThemeManager.SchematicInferredKey);
-            IBrush note = Brush(ThemeManager.SchematicNoteKey);
-            IBrush wire = Brush(ThemeManager.SchematicWireKey);
-            IBrush label = Brush(ThemeManager.SchematicNetLabelKey);
+            // one brush per schematic colour, looked up now so a theme change is followed; what
+            // colour, fill and line style a step gets is SchematicStyle's answer, the same one the
+            // SVG export uses
+            SchematicColour[] names = Enum.GetValues<SchematicColour>();
+            IBrush[] colours = new IBrush[names.Length];
+            for (int c = 0; c < names.Length; c++)
+                colours[c] = Brush(SchematicTheme.BrushKey(names[c]));
             IBrush lit = Brush(ThemeManager.SchematicSelectionKey);
             IBrush open = Brush(ThemeManager.SchematicOpenKey);
             IBrush trace = Brush(ThemeManager.SchematicTraceKey);
@@ -265,7 +266,9 @@ namespace RetroSchematic.Desktop.Controls
             {
                 DrawItem it = d.Items[i];
                 bool isLit = session.IsLit(it);
-                IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note, wire, label);
+                ItemStyle st = SchematicStyle.Of(it);
+                IBrush b = isLit ? lit : colours[(int)st.Stroke];
+                IBrush? fill = st.Fill == null ? null : colours[(int)st.Fill.Value];
                 // a simulated value colours the signal's wires, labels and names (none today)
                 string? valueKey = isLit ? null : ThemeManager.ValueKey(session.ValueOf(it));
                 if (valueKey != null)
@@ -277,22 +280,22 @@ namespace RetroSchematic.Desktop.Controls
                 {
                     // a soft glow that swells and fades, then the line itself on top
                     using (context.PushOpacity(0.15 + (0.35 * level)))
-                        DrawOne(context, it, trace, 3 + (4 * level));
-                    DrawOne(context, it, trace, 1.5 + level);
+                        DrawOne(context, it, trace, null, 3 + (4 * level));
+                    DrawOne(context, it, trace, fill, 1.5 + level);
                     continue;
                 }
                 if (role == TraceRole.Joined)
                 {
-                    DrawOne(context, it, trace, 1);
+                    DrawOne(context, it, trace, fill, 1);
                     continue;
                 }
                 if (role == TraceRole.Dimmed)
                 {
                     using (context.PushOpacity(0.25))
-                        DrawOne(context, it, b, 0);
+                        DrawOne(context, it, b, fill, 0);
                     continue;
                 }
-                DrawOne(context, it, b, isLit ? 1 : 0);
+                DrawOne(context, it, b, fill, isLit ? 1 : 0);
             }
 
             // where the traced signal goes inside a block: a pulsing ring on the box edge
@@ -502,53 +505,6 @@ namespace RetroSchematic.Desktop.Controls
         }
 
         /// <summary>
-        /// The colour of an item: what it is and whether its reading is proved.
-        /// </summary>
-        /// <param name="it">
-        /// The drawing step to colour.
-        /// </param>
-        /// <param name="ink">
-        /// Colour for what was read off the drawing.
-        /// </param>
-        /// <param name="frame">
-        /// Colour for the frame round a chip.
-        /// </param>
-        /// <param name="inferred">
-        /// Colour for what was inferred, not read.
-        /// </param>
-        /// <param name="open">
-        /// Colour for what is OPEN, not known.
-        /// </param>
-        /// <param name="note">
-        /// Colour for secondary text.
-        /// </param>
-        /// <param name="wire">
-        /// A sure wire's colour.
-        /// </param>
-        /// <param name="label">
-        /// A sure net label's colour.
-        /// </param>
-        /// <returns>
-        /// The brush to draw the step with.
-        /// </returns>
-        private static IBrush Pick(DrawItem it, IBrush ink, IBrush frame, IBrush inferred, IBrush open, IBrush note, IBrush wire, IBrush label)
-        {
-            if (it.Role == DrawRole.PartOutline || it.Role == DrawRole.PinDot)
-                return frame;
-            if (it.Role == DrawRole.Note)
-                return note;
-            if (it.Confidence == Confidence.Open)
-                return open;
-            if (it.Confidence != Confidence.Read)
-                return inferred;
-            if (it.Role == DrawRole.Wire)
-                return wire;
-            if (it.Role == DrawRole.NetLabel || it.Role == DrawRole.SignalName)
-                return label;
-            return ink;
-        }
-
-        /// <summary>
         /// One drawing step.
         /// </summary>
         /// <param name="context">
@@ -560,35 +516,43 @@ namespace RetroSchematic.Desktop.Controls
         /// <param name="brush">
         /// Its colour.
         /// </param>
+        /// <param name="fill">
+        /// The fill of a closed shape, or null for none.
+        /// </param>
         /// <param name="extra">
         /// Added to its usual line width: 1 for the picked item, more for a traced signal.
         /// </param>
-        private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, double extra)
+        private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, IBrush? fill, double extra)
         {
-            // the same widths as the SVG, plus the extra for a picked or traced item
-            Pen pen = new(brush, LineWidths.Of(it) + extra, it.Dashed ? new DashStyle(new double[] { 4, 3 }, 0) : null);
+            // width, dashes and line ends from the shared style, plus the extra for a picked or
+            // traced item
+            ItemStyle st = SchematicStyle.Of(it);
+            double width = st.Width + extra;
+            double[] dash = ItemStyle.Dashes(st.Line, st.Width);
+            bool round = st.Round || st.Line == LineStyle.Dotted;
+            Pen pen = new(brush, width, dash.Length == 0 ? null : new DashStyle(dash, 0),
+                round ? PenLineCap.Round : PenLineCap.Flat, round ? PenLineJoin.Round : PenLineJoin.Miter);
             switch (it.Kind)
             {
                 case DrawKind.Line:
                     context.DrawLine(pen, new Point(it.X1, it.Y1), new Point(it.X2, it.Y2));
                     break;
                 case DrawKind.Rect:
-                    context.DrawRectangle(null, pen, new Rect(it.X1, it.Y1, it.X2, it.Y2));
+                    context.DrawRectangle(fill, pen, new Rect(it.X1, it.Y1, it.X2, it.Y2));
                     break;
                 case DrawKind.Circle:
-                    context.DrawEllipse(null, pen, new Point(it.X1, it.Y1), it.X2, it.X2);
+                    context.DrawEllipse(fill, pen, new Point(it.X1, it.Y1), it.X2, it.X2);
                     break;
                 case DrawKind.Path:
-                    // a port arrow is a filled triangle in its own colour
-                    context.DrawGeometry(it.Role == DrawRole.PortArrow ? brush : null, pen, BuildPath(it.Path!));
+                    context.DrawGeometry(fill, pen, BuildPath(it.Path!, fill != null));
                     break;
                 case DrawKind.Text:
-                    DrawText(context, it, brush);
+                    DrawText(context, it, brush, st.Bold);
                     break;
             }
         }
 
-        private static StreamGeometry BuildPath(PathSegment[] p)
+        private static StreamGeometry BuildPath(PathSegment[] p, bool filled)
         {
             StreamGeometry g = new();
             using StreamGeometryContext c = g.Open();
@@ -601,7 +565,7 @@ namespace RetroSchematic.Desktop.Controls
                     case PathOp.MoveTo:
                         if (open)
                             c.EndFigure(false);
-                        c.BeginFigure(new Point(s.X, s.Y), false);
+                        c.BeginFigure(new Point(s.X, s.Y), filled);
                         open = true;
                         break;
                     case PathOp.LineTo:
@@ -626,7 +590,7 @@ namespace RetroSchematic.Desktop.Controls
 
         /// <summary>
         /// Text with its baseline at (X1,Y1) like SVG, and ND's subscript lowered and smaller
-        /// after it, as the SVG output writes it (baseline-shift sub, size 7).
+        /// after it, as the SVG output writes it (baseline-shift sub, at least size 8).
         /// </summary>
         /// <param name="context">
         /// Where to draw.
@@ -637,12 +601,17 @@ namespace RetroSchematic.Desktop.Controls
         /// <param name="brush">
         /// The colour.
         /// </param>
-        private static void DrawText(DrawingContext context, DrawItem it, IBrush brush)
+        /// <param name="bold">
+        /// True when the style asks for bold text.
+        /// </param>
+        private static void DrawText(DrawingContext context, DrawItem it, IBrush brush, bool bold)
         {
             FormattedText main = new(it.Text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
-                it.Bold ? s_monoBold : s_mono, it.FontSize, brush);
+                it.Bold || bold ? s_monoBold : s_mono, it.FontSize, brush);
+            // the 0/1 level subscript: big enough to read, the same size as in the SVG
             FormattedText? sub = it.Subscript.Length == 0 ? null
-                : new FormattedText(it.Subscript, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, s_mono, 7, brush);
+                : new FormattedText(it.Subscript, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, it.Bold || bold ? s_monoBold : s_mono,
+                    Math.Max(8, it.FontSize * 0.8), brush);
             double width = main.WidthIncludingTrailingWhitespace + (sub?.WidthIncludingTrailingWhitespace ?? 0);
             double left = it.Anchor == TextAnchor.Start ? it.X1 : it.Anchor == TextAnchor.Middle ? it.X1 - (width / 2) : it.X1 - width;
             context.DrawText(main, new Point(left, it.Y1 - main.Baseline));

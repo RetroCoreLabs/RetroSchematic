@@ -14,14 +14,15 @@ namespace RetroSchematic.Render
 {
     /// <summary>
     /// Writes a <see cref="SchematicDrawing"/> as SVG. The layout itself is made by
-    /// <see cref="SheetLayout"/>, the same layout the desktop viewer draws, so the file and the
-    /// screen always agree. Colours here are the fixed print colours (black on white); the viewer
-    /// takes them from its theme instead.
+    /// <see cref="SheetLayout"/>, the same layout the desktop viewer draws, and every step's
+    /// colour, fill, width and line style comes from <see cref="SchematicStyle"/> with the
+    /// colours of a <see cref="SchematicTheme"/>, the same answer the window uses, so the file
+    /// and the screen always agree.
     /// </summary>
     public static class SvgRenderer
     {
         /// <summary>
-        /// Lay out and render a sheet.
+        /// Lay out and render a sheet in the default theme.
         /// </summary>
         /// <param name="netlist">
         /// The sheet.
@@ -35,7 +36,7 @@ namespace RetroSchematic.Render
         public static string Render(Netlist netlist, SymbolStyle style) => Write(SheetLayout.Build(netlist, style));
 
         /// <summary>
-        /// Write an already laid-out drawing.
+        /// Write an already laid-out drawing in the default theme.
         /// </summary>
         /// <param name="d">
         /// The laid-out drawing.
@@ -43,46 +44,59 @@ namespace RetroSchematic.Render
         /// <returns>
         /// The SVG text.
         /// </returns>
-        public static string Write(SchematicDrawing d)
+        public static string Write(SchematicDrawing d) => Write(d, SchematicTheme.Default);
+
+        /// <summary>
+        /// Write an already laid-out drawing in a theme.
+        /// </summary>
+        /// <param name="d">
+        /// The laid-out drawing.
+        /// </param>
+        /// <param name="theme">
+        /// The colours to use.
+        /// </param>
+        /// <returns>
+        /// The SVG text.
+        /// </returns>
+        public static string Write(SchematicDrawing d, SchematicTheme theme)
         {
             StringBuilder svg = new();
             svg.Append(CultureInfo.InvariantCulture,
                 $"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{d.Width:0}\" height=\"{d.Height:0}\" viewBox=\"0 0 {d.Width:0} {d.Height:0}\" font-family=\"Courier New, Consolas, monospace\" font-size=\"10\">\n");
-            svg.Append("<rect width=\"100%\" height=\"100%\" fill=\"#ffffff\"/>\n");
+            svg.Append("<rect width=\"100%\" height=\"100%\" fill=\"").Append(theme.Get(SchematicColour.Paper)).Append("\"/>\n");
             for (int i = 0; i < d.Items.Count; i++)
-                WriteItem(svg, d.Items[i]);
+                WriteItem(svg, d.Items[i], theme);
             svg.Append("</svg>\n");
             return svg.ToString();
         }
 
         /// <summary>
-        /// The print colour of an item: what it is, and whether its reading is proved. Anything
-        /// OPEN is red, inferred symbols and wires are brown, the part frame is grey.
+        /// The colour of a step in a theme, as #RRGGBB.
         /// </summary>
         /// <param name="it">
         /// The drawing step.
         /// </param>
+        /// <param name="theme">
+        /// The theme.
+        /// </param>
         /// <returns>
-        /// The colour as #rrggbb.
+        /// Its line or text colour.
         /// </returns>
-        public static string PrintColour(DrawItem it)
-        {
-            if (it.Role == DrawRole.PartOutline)
-                return "#999999";
-            if (it.Role == DrawRole.Note)
-                return "#666666";
-            if (it.Confidence == Confidence.Open && it.Role != DrawRole.PinDot)
-                return "#d00000";
-            if (it.Confidence != Confidence.Read && (it.Role == DrawRole.Symbol || it.Role == DrawRole.Wire))
-                return "#b06000";
-            return "#000000";
-        }
+        public static string ColourOf(DrawItem it, SchematicTheme theme) => theme.Get(SchematicStyle.Of(it).Stroke);
 
-        private static void WriteItem(StringBuilder svg, DrawItem it)
+        private static void WriteItem(StringBuilder svg, DrawItem it, SchematicTheme theme)
         {
-            string colour = PrintColour(it);
-            string dash = (it.Dashed ? " stroke-dasharray=\"4 3\"" : "")
-                + (LineWidths.Of(it) == 1 ? "" : string.Create(CultureInfo.InvariantCulture, $" stroke-width=\"{LineWidths.Of(it):0.##}\""));
+            ItemStyle st = SchematicStyle.Of(it);
+            string colour = theme.Get(st.Stroke);
+            string fill = st.Fill == null ? "none" : theme.Get(st.Fill.Value);
+            StringBuilder line = new();
+            line.Append(CultureInfo.InvariantCulture, $" stroke=\"{colour}\" stroke-width=\"{st.Width:0.##}\"");
+            double[] dash = ItemStyle.Dashes(st.Line, st.Width);
+            if (dash.Length > 0)
+                line.Append(CultureInfo.InvariantCulture, $" stroke-dasharray=\"{dash[0]:0.##} {dash[1]:0.##}\"");
+            // dots need round ends to show at all; buses and outlines look better with round joins
+            if (st.Round || st.Line == LineStyle.Dotted)
+                line.Append(" stroke-linecap=\"round\" stroke-linejoin=\"round\"");
             switch (it.Kind)
             {
                 case DrawKind.GroupStart:
@@ -94,34 +108,32 @@ namespace RetroSchematic.Render
                     break;
                 case DrawKind.Line:
                     svg.Append(CultureInfo.InvariantCulture,
-                        $"<line x1=\"{it.X1:0.#}\" y1=\"{it.Y1:0.#}\" x2=\"{it.X2:0.#}\" y2=\"{it.Y2:0.#}\" stroke=\"{colour}\"{dash}/>\n");
+                        $"<line x1=\"{it.X1:0.#}\" y1=\"{it.Y1:0.#}\" x2=\"{it.X2:0.#}\" y2=\"{it.Y2:0.#}\"{line}/>\n");
                     break;
                 case DrawKind.Rect:
                     svg.Append(CultureInfo.InvariantCulture,
-                        $"<rect x=\"{it.X1:0.#}\" y=\"{it.Y1:0.#}\" width=\"{it.X2:0.#}\" height=\"{it.Y2:0.#}\" fill=\"none\" stroke=\"{colour}\"{dash}/>\n");
+                        $"<rect x=\"{it.X1:0.#}\" y=\"{it.Y1:0.#}\" width=\"{it.X2:0.#}\" height=\"{it.Y2:0.#}\" fill=\"{fill}\"{line}/>\n");
                     break;
                 case DrawKind.Circle:
                     svg.Append(CultureInfo.InvariantCulture,
-                        $"<circle cx=\"{it.X1:0.#}\" cy=\"{it.Y1:0.#}\" r=\"{it.X2:0.#}\" fill=\"none\" stroke=\"{colour}\"/>\n");
+                        $"<circle cx=\"{it.X1:0.#}\" cy=\"{it.Y1:0.#}\" r=\"{it.X2:0.#}\" fill=\"{fill}\"{line}/>\n");
                     break;
                 case DrawKind.Path:
                     svg.Append("<path d=\"");
                     PathSegment[] p = it.Path!;
                     for (int i = 0; i < p.Length; i++)
                         AppendSegment(svg, p[i]);
-                    // a port arrow is a filled triangle; every other path is a line
-                    string pathFill = it.Role == DrawRole.PortArrow ? colour : "none";
-                    svg.Append(CultureInfo.InvariantCulture, $"\" fill=\"{pathFill}\" stroke=\"{colour}\"{dash}/>\n");
+                    svg.Append("\" fill=\"").Append(fill).Append('"').Append(line).Append("/>\n");
                     break;
                 case DrawKind.Text:
                     string anchor = it.Anchor == TextAnchor.Start ? "" : it.Anchor == TextAnchor.Middle ? " text-anchor=\"middle\"" : " text-anchor=\"end\"";
                     string size = it.FontSize == 10 ? "" : string.Create(CultureInfo.InvariantCulture, $" font-size=\"{it.FontSize:0.#}\"");
-                    string bold = it.Bold ? " font-weight=\"bold\"" : "";
-                    string fill = colour == "#000000" ? "" : " fill=\"" + colour + "\"";
-                    svg.Append(CultureInfo.InvariantCulture, $"<text x=\"{it.X1:0.#}\" y=\"{it.Y1:0.#}\"{anchor}{size}{bold}{fill}>");
+                    string bold = it.Bold || st.Bold ? " font-weight=\"bold\"" : "";
+                    svg.Append(CultureInfo.InvariantCulture, $"<text x=\"{it.X1:0.#}\" y=\"{it.Y1:0.#}\"{anchor}{size}{bold} fill=\"{colour}\">");
                     svg.Append(Escape(it.Text));
+                    // the 0/1 level subscript: big enough to read, never smaller than 8
                     if (it.Subscript.Length > 0)
-                        svg.Append("<tspan baseline-shift=\"sub\" font-size=\"7\">").Append(Escape(it.Subscript)).Append("</tspan>");
+                        svg.Append(CultureInfo.InvariantCulture, $"<tspan baseline-shift=\"sub\" font-size=\"{Math.Max(8, it.FontSize * 0.8):0.#}\">").Append(Escape(it.Subscript)).Append("</tspan>");
                     svg.Append("</text>\n");
                     break;
             }

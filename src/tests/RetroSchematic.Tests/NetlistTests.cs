@@ -135,7 +135,7 @@ namespace RetroSchematic.Tests
             int start = svg.IndexOf("<g id=\"gate-", System.StringComparison.Ordinal);
             string gate = svg.Substring(start, svg.IndexOf("</g>", start, System.StringComparison.Ordinal) - start);
             Assert.That(gate, Does.Contain("<rect x=\"").And.Contain("<line x1=\"").And.Not.Contain("<path"));
-            Assert.That(svg, Does.Contain("S<tspan baseline-shift=\"sub\" font-size=\"7\">0</tspan>"));
+            Assert.That(svg, Does.Contain("S<tspan baseline-shift=\"sub\" font-size=\"8\">0</tspan>"));
         }
 
         [Test]

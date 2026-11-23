@@ -86,6 +86,21 @@ namespace RetroSchematic.Render
         /// The direction arrow on a block port pin, drawn filled.
         /// </summary>
         PortArrow,
+
+        /// <summary>
+        /// A chip's board position (11D) before its type: written muted.
+        /// </summary>
+        BoardPosition,
+
+        /// <summary>
+        /// The dot where a wire branches into three or more ways.
+        /// </summary>
+        Junction,
+
+        /// <summary>
+        /// The band across the top of a block instance box, behind its name.
+        /// </summary>
+        BlockHeader,
     }
 
     /// <summary>
@@ -96,31 +111,45 @@ namespace RetroSchematic.Render
     public static class LineWidths
     {
         /// <summary>
-        /// A wire, a pin line, a net-label diamond.
+        /// A wire: the reference width.
         /// </summary>
-        public const double Wire = 1;
+        public const double Wire = 1.1;
 
         /// <summary>
-        /// The outline of a chip frame or a gate symbol: 2.25 times a wire.
+        /// A pin line and a pin dot: a little thinner than a wire.
         /// </summary>
-        public const double Outline = 2.25;
+        public const double Pin = 0.9;
 
         /// <summary>
-        /// A virtual bus line: between a wire and a chip outline.
+        /// The outline of a net-label diamond.
         /// </summary>
-        public const double Bus = 1.75;
+        public const double Label = 1.2;
 
         /// <summary>
-        /// The width an item is drawn with.
+        /// Chip, gate and block outlines: three times a wire, so a body stands out at normal zoom.
+        /// </summary>
+        public const double Outline = 3 * Wire;
+
+        /// <summary>
+        /// A virtual bus: much thicker than a wire, a little thicker than an outline.
+        /// </summary>
+        public const double Bus = 4 * Wire;
+
+        /// <summary>
+        /// The radius of a junction dot.
+        /// </summary>
+        public const double JunctionRadius = 2.6;
+
+        /// <summary>
+        /// The line width of a drawing step (see <see cref="SchematicStyle.Of"/>).
         /// </summary>
         /// <param name="it">
-        /// The drawing step.
+        /// The step.
         /// </param>
         /// <returns>
-        /// Its line width in drawing units.
+        /// Its width.
         /// </returns>
-        public static double Of(DrawItem it)
-            => it.Role == DrawRole.Symbol || it.Role == DrawRole.PartOutline ? Outline : it.Role == DrawRole.Bus ? Bus : Wire;
+        public static double Of(DrawItem it) => SchematicStyle.Of(it).Width;
     }
 
     /// <summary>

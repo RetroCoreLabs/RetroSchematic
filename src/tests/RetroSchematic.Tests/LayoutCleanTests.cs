@@ -170,12 +170,16 @@ namespace RetroSchematic.Tests
         [Test]
         public void ChipOutlines_AreThickerThanWires()
         {
-            Assert.That(LineWidths.Outline, Is.GreaterThanOrEqualTo(2 * LineWidths.Wire));
+            // three times a wire: at 2.25 times the difference could not be seen at normal zoom
+            Assert.That(LineWidths.Outline, Is.GreaterThanOrEqualTo(3 * LineWidths.Wire));
+            Assert.That(LineWidths.Bus, Is.GreaterThan(LineWidths.Outline), "a bus is thicker still");
             Assert.That(LineWidths.Of(new DrawItem { Role = DrawRole.Symbol }), Is.EqualTo(LineWidths.Outline));
             Assert.That(LineWidths.Of(new DrawItem { Role = DrawRole.PartOutline }), Is.EqualTo(LineWidths.Outline));
             Assert.That(LineWidths.Of(new DrawItem { Role = DrawRole.Wire }), Is.EqualTo(LineWidths.Wire));
-            // the SVG writes the outline width on a symbol and leaves wires at the default 1
-            Assert.That(SvgRenderer.Write(Draw(DemoSheetLayoutTests.Demo, SymbolStyle.NorskData)), Does.Contain("stroke-width=\"2.25\""));
+            // the SVG writes each width as it is
+            string svg = SvgRenderer.Write(Draw(DemoSheetLayoutTests.Demo, SymbolStyle.NorskData));
+            Assert.That(svg, Does.Contain(string.Create(System.Globalization.CultureInfo.InvariantCulture, $"stroke-width=\"{LineWidths.Outline:0.##}\"")));
+            Assert.That(svg, Does.Contain(string.Create(System.Globalization.CultureInfo.InvariantCulture, $"stroke-width=\"{LineWidths.Wire:0.##}\"")));
         }
 
         private static SchematicDrawing Draw(string sheet, SymbolStyle style)

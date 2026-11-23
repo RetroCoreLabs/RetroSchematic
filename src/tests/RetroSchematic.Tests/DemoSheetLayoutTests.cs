@@ -117,8 +117,11 @@ namespace RetroSchematic.Tests
                 if (clk[i].Confidence == Confidence.Open)
                     openWire = clk[i];
             }
-            Assert.That(SvgRenderer.PrintColour(openWire), Is.EqualTo("#d00000"));
-            Assert.That(SvgRenderer.PrintColour(new DrawItem { Role = DrawRole.Wire, Confidence = Confidence.Inferred }), Is.EqualTo("#b06000"));
+            SchematicTheme t = SchematicTheme.Default;
+            Assert.That(SvgRenderer.ColourOf(openWire, t), Is.EqualTo(t.Get(SchematicColour.Open)));
+            Assert.That(SchematicStyle.Of(openWire).Line, Is.EqualTo(LineStyle.Dotted), "open is dotted, not only coloured");
+            DrawItem guessed = new() { Kind = DrawKind.Line, Role = DrawRole.Wire, Confidence = Confidence.Inferred };
+            Assert.That(SchematicStyle.Of(guessed).Line, Is.EqualTo(LineStyle.Dashed), "inferred is dashed");
         }
 
         [Test]
