@@ -4481,6 +4481,18 @@
       "note": "V.24 pin 2; 2200 pF to ground"
     }
   ],
+  "connectors": [
+    {
+      "ref": "P",
+      "catalog": "nord10-io-card-backplane",
+      "note": "The one backplane connector of a NORD-10 I/O card position; no document names it, so its letter stays unknown."
+    },
+    {
+      "ref": "F",
+      "catalog": "nord10-modem-front",
+      "note": "The modem (V.24) lines, circled pins 81-95; which connector they are on is not known."
+    }
+  ],
   "layout": {
     "wires": [],
     "buses": [

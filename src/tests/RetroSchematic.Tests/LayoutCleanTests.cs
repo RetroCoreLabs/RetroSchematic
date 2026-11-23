@@ -85,6 +85,10 @@ namespace RetroSchematic.Tests
                     if (texts[i].Role == DrawRole.PinName && texts[i].Owner.StartsWith("port:", System.StringComparison.Ordinal)
                         && frames[j].Owner == "inst:" + texts[i].Owner.Substring(5, texts[i].Owner.IndexOf(':', 5) - 5))
                         continue;
+                    // and everything of a connector box inside it: its title, pin numbers and names
+                    if (frames[j].Owner.StartsWith("conn:", System.StringComparison.Ordinal)
+                        && (texts[i].Owner == frames[j].Owner || frames[j].Owner == "conn:" + PartOf(texts[i].Owner)))
+                        continue;
                     // and an instance's title, written in the header band of its own box
                     if (texts[i].Role == DrawRole.PartLabel && texts[i].Owner.StartsWith("inst:", System.StringComparison.Ordinal) && frames[j].Owner == texts[i].Owner)
                         continue;

@@ -101,6 +101,24 @@
     },
     "display": {
       "$ref": "#/$defs/display"
+    },
+    "connectors": {
+      "type": "array",
+      "description": "Which catalogue entry (a file id in catalog/connectors, for the sheet's bus) describes each of the card's connectors. Optional; a connector without an entry is still drawn.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref"],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "The connector as pin references name it: P or F (connector not known yet), or P.A, F.B ... with the connector letter.",
+            "pattern": "^[PF](\.[A-Za-z0-9]+)?$"
+          },
+          "catalog": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
     }
   },
   "$defs": {

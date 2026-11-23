@@ -797,7 +797,7 @@ namespace RetroSchematic.Render
             for (int j = 0; j < n.Pins.Count; j++)
             {
                 string part = n.Pins[j].PartRef;
-                bool drives = part == "P" || part == "F" || IsOutput(part, n.Pins[j].Pin);
+                bool drives = ConnectorPins.IsConnector(part) || IsOutput(part, n.Pins[j].Pin);
                 if (parts.Contains(part))
                 {
                     inside++;

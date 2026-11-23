@@ -4,6 +4,7 @@
 // RetroCore Labs — https://github.com/RetroCoreLabs
 //
 
+using System.Collections.Generic;
 using RetroSchematic.Model;
 
 namespace RetroSchematic.Render
@@ -58,6 +59,42 @@ namespace RetroSchematic.Render
             MachineBus.Nd100 => "ND-100",
             _ => "unknown bus",
         };
+
+        /// <summary>
+        /// The side-panel text for a connector box: its name, the catalogue entry the sheet
+        /// names for it, and its pins with their signals.
+        /// </summary>
+        /// <param name="reference">
+        /// The connector, such as P or P.A.
+        /// </param>
+        /// <returns>
+        /// The text.
+        /// </returns>
+        private string DescribeConnector(string reference)
+        {
+            System.Text.StringBuilder sb = new();
+            sb.Append(ConnectorPins.Name(reference)).Append('\n');
+            List<ConnectorUse>? uses = Editor.Root.Connectors;
+            for (int i = 0; uses != null && i < uses.Count; i++)
+            {
+                if (uses[i].Ref != reference)
+                    continue;
+                if (uses[i].Catalog != null)
+                    sb.Append("Catalogue: ").Append(uses[i].Catalog).Append('\n');
+                if (!string.IsNullOrEmpty(uses[i].Note))
+                    sb.Append("Note: ").Append(uses[i].Note).Append('\n');
+            }
+            for (int i = 0; i < Netlist.Nets.Count; i++)
+            {
+                Net n = Netlist.Nets[i];
+                for (int j = 0; j < n.Pins.Count; j++)
+                {
+                    if (n.Pins[j].PartRef == reference)
+                        sb.Append(ConnectorPins.Show(reference, n.Pins[j].Pin)).Append("  ").Append(NameOf(n)).Append('\n');
+                }
+            }
+            return sb.ToString();
+        }
 
         /// <summary>
         /// Sets which bus the card is for. Marks the sheet as changed; can be undone.

@@ -82,19 +82,25 @@ namespace RetroSchematic.Tests
                         if (it.Role == DrawRole.NetLabel)
                             labels++;
                     }
-                    int drawnPins = 0, reported = 0;
+                    int drawnPins = 0, reported = 0, connectorPins = 0;
                     for (int j = 0; j < n.Pins.Count; j++)
                     {
                         if (!d.Pins.ContainsKey(n.Pins[j].At))
                             continue;
+                        // a connector pin never joins a bus: it keeps its label there
+                        if (ConnectorPins.IsConnector(n.Pins[j].PartRef))
+                        {
+                            connectorPins++;
+                            continue;
+                        }
                         drawnPins++;
                         if (d.BusProblems.Exists(p => p.Contains("pin " + n.Pins[j].At + " ", System.StringComparison.Ordinal)))
                             reported++;
                     }
                     // a pin that joined has a name at its entry; one that did not keeps its label
                     // (diamond and name) and is listed as a problem
-                    Assert.That(names, Is.EqualTo(drawnPins), owner);
-                    Assert.That(labels, Is.EqualTo(reported), owner);
+                    Assert.That(names, Is.EqualTo(drawnPins + connectorPins), owner);
+                    Assert.That(labels, Is.EqualTo(reported + connectorPins), owner);
                     joined += drawnPins - reported;
                 }
             }

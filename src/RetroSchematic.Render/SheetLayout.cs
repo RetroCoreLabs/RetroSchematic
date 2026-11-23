@@ -67,6 +67,18 @@ namespace RetroSchematic.Render
         /// How active-low and active-high signal names are written (default: /NAME).
         /// </summary>
         public SignalNameStyle NameStyle { get; set; } = SignalNames.Default;
+
+        /// <summary>
+        /// The bus-signal catalogue for the sheet's bus. Filled by the layout from the chip
+        /// catalogue's folder and kept here, so it is read once, not on every drawing.
+        /// </summary>
+        public BusCatalog? BusSignals { get; set; }
+
+        /// <summary>
+        /// The connector catalogue for the sheet's bus; filled and kept like
+        /// <see cref="BusSignals"/>.
+        /// </summary>
+        public ConnectorCatalog? ConnectorTypes { get; set; }
     }
 
     /// <summary>
@@ -202,6 +214,14 @@ namespace RetroSchematic.Render
                 right = Math.Max(right, boxes[i].X + boxes[i].Width + boxes[i].RightReach);
                 bottom = Math.Max(bottom, boxes[i].Y + boxes[i].Height + boxes[i].BottomReach + 12);
             }
+            // the card's connectors, as boxes right of everything else
+            LoadBusCatalogues(netlist, options);
+            List<ConnectorPlan> connectors = PlanConnectors(netlist, netByPin, options, right, 40);
+            for (int i = 0; i < connectors.Count; i++)
+            {
+                right = Math.Max(right, connectors[i].X + connectors[i].Width);
+                bottom = Math.Max(bottom, connectors[i].Y + connectors[i].Height + 12);
+            }
             SchematicDrawing d = new(Snap(right + Margin), Snap(bottom + Margin));
             d.NameStyle = options.NameStyle;
             Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
@@ -225,6 +245,11 @@ namespace RetroSchematic.Render
                 for (int j = 0; j < boxes[i].Pins.Count; j++)
                     pinPlans[boxes[i].Pins[j].At] = boxes[i].Pins[j];
             }
+            for (int i = 0; i < connectors.Count; i++)
+            {
+                for (int j = 0; j < connectors[i].Pins.Count; j++)
+                    pinPlans[connectors[i].Pins[j].At] = connectors[i].Pins[j];
+            }
             // signals on a virtual bus join the bus instead of getting their own wire
             HashSet<Net> onBus = options.ShowBuses ? BusMembers(netlist) : new HashSet<Net>(ReferenceEqualityComparer.Instance);
             List<Net> candidates = WireCandidates(netlist, pinPlans);
@@ -242,6 +267,8 @@ namespace RetroSchematic.Render
             }
             for (int i = 0; i < boxes.Count; i++)
                 DrawInstance(d, netlist, boxes[i], options);
+            for (int i = 0; i < connectors.Count; i++)
+                DrawConnector(d, connectors[i], options);
 
             // 5. route the short signals round everything drawn so far and every label's room
             HashSet<string> busPins = new(StringComparer.Ordinal);
@@ -644,7 +671,8 @@ namespace RetroSchematic.Render
                 bool all = true;
                 for (int j = 0; j < net.Pins.Count && all; j++)
                 {
-                    if (!pinPlans.TryGetValue(net.Pins[j].At, out PinPlan? p))
+                    // a signal that goes to a connector always gets labels (FORMAT.md)
+                    if (!pinPlans.TryGetValue(net.Pins[j].At, out PinPlan? p) || ConnectorPins.IsConnector(net.Pins[j].PartRef))
                     {
                         all = false;
                         break;

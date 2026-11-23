@@ -694,6 +694,8 @@ namespace RetroSchematic.Render
                 return DescribeBus(Selected.Substring(4));
             if (Selected.StartsWith("inst:", StringComparison.Ordinal))
                 return DescribeInstance(Selected.Substring(5));
+            if (Selected.StartsWith("conn:", StringComparison.Ordinal))
+                return DescribeConnector(Selected.Substring(5));
             if (Selected.StartsWith("port:", StringComparison.Ordinal))
             {
                 int colon = Selected.IndexOf(':', 5);
@@ -871,10 +873,26 @@ namespace RetroSchematic.Render
                 return "";
             string reference = at.Substring(0, dot);
             Part? part = Editor.FindPart(reference);
-            if (part == null && reference != "P" && reference != "F")
+            if (part == null && !ConnectorPins.IsConnector(reference))
                 return "";
             StringBuilder sb = new();
             sb.Append("Pin ").Append(at);
+            if (part == null && int.TryParse(at.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int cpin))
+            {
+                // a connector pin: which connector, and what the bus catalogue says of the pin
+                sb.Append(": ").Append(ConnectorPins.Name(reference)).Append(", pin ").Append(ConnectorPins.Show(reference, cpin)).Append('\n');
+                BusSignal? bs = ConnectorPins.Kind(reference) == 'P' ? BusSignals.ByPin(ConnectorPins.Letter(reference), cpin) : null;
+                if (bs != null)
+                {
+                    sb.Append("Backplane name: ").Append(bs.Name);
+                    if (bs.Direction != null)
+                        sb.Append(" (").Append(bs.Direction).Append(')');
+                    sb.Append('\n');
+                    if (bs.Description != null)
+                        sb.Append("Bus catalogue: ").Append(bs.Description).Append(" [").Append(ConfidenceText(bs.DescriptionConfidence)).Append("; ").Append(bs.DescriptionDocument).Append(']').Append('\n');
+                }
+                sb.Length--;
+            }
             ChipInfo? chip = part == null ? null : _options.Catalog?.Get(part.Type);
             if (chip != null && int.TryParse(at.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int number))
             {

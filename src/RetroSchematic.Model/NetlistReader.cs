@@ -268,11 +268,12 @@ namespace RetroSchematic.Model
                 for (int j = 0; j < net.Pins.Count; j++)
                 {
                     PinReference pin = net.Pins[j];
+                    // P.A.32: the connector is P.A, the pin 32 (see ConnectorPins)
                     int dot = pin.At.LastIndexOf('.');
                     if (dot <= 0 || dot == pin.At.Length - 1 || !int.TryParse(pin.At.AsSpan(dot + 1), out _))
                         throw new NetlistException($"Net {net.Name}: pin \"{pin.At}\" is not <part>.<pin number>.");
                     string partRef = pin.PartRef;
-                    if (partRef != "P" && partRef != "F" && !parts.Contains(partRef))
+                    if (!ConnectorPins.IsConnector(partRef) && !parts.Contains(partRef))
                         throw new NetlistException($"Net {net.Name}: pin {pin.At} names part {partRef}, which is not in the parts list.");
                     if (pinOwner.TryGetValue(pin.At, out string? other))
                         throw new NetlistException($"Pin {pin.At} is in two nets: {other} and {net.Name}.");

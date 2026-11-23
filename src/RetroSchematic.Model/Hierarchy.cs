@@ -255,7 +255,7 @@ namespace RetroSchematic.Model
                 {
                     PinReference p = n.Pins[j];
                     string part = p.PartRef;
-                    string at = part == "P" || part == "F" ? p.At : prefix + p.At;
+                    string at = ConnectorPins.IsConnector(part) ? p.At : prefix + p.At;
                     ids[k].Pins.Add(new PinReference { At = at, Confidence = p.Confidence, Note = p.Note });
                 }
             }

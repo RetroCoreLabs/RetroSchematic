@@ -44,7 +44,7 @@ the scan while the other is smudged.
 | `nets[].drive` | what drives the line: `totem-pole` (normal TTL output), `open-collector` (outputs that can only pull low; several may share the line, which then needs a pull-up and is the AND of them), `open-collector-high-voltage` (open collector whose output may be pulled up above 5 V - 7406/7407 up to 30 V, 7416/7417 up to 15 V; the pull-up voltage goes in `pullUp`), `three-state` (bus driver that can switch off), or `none`. Absent means not read yet |
 | `nets[].driveConfidence` | how sure the `drive` value is |
 | `nets[].pullUp` | for an open-collector line: the pull-up as written on the drawing, or `open` |
-| `nets[].pins[]` | `at` = `<part ref>.<pin>`; `P.<n>` = backplane pin; `F.<n>` = front connector pin; plus `confidence` and `note` |
+| `nets[].pins[]` | `at` = `<part ref>.<pin>`; `P.<n>` = backplane pin and `F.<n>` = front connector pin, the connector not known yet; `P.<letter>.<n>` / `F.<letter>.<n>` (such as `P.A.32`) when the connector is known - a card can have several edge connectors, and the drawing shows the pin as `A.32`; pin 0 is allowed on a connector; plus `confidence` and `note` |
 | `position` | on a gate: where the gate is drawn on the sheet, in millimetres from the top left of the scan. On a part: where the top left corner of the chip's frame is drawn, same units; the editor writes it when a chip is placed or moved. Optional on both: absent means not measured, and the renderer lays it out itself (a part with no position but measured gates gets a frame round its gates; otherwise it sits at its board position) |
 
 A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
@@ -113,6 +113,21 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   is on and the block levels it reaches are worked out when the sheet is read. When a stored
   `drive` disagrees with what the catalogue gives, both are shown and the difference is
   reported; the stored value is never overwritten.
+
+- `connectors` (2026-11-23): which catalogue entry describes each of the card's connectors, as
+  `{ "ref": "P", "catalog": "nord10-io-card-backplane", "note": ... }`. `ref` is the connector
+  as pin references name it (`P`, `F`, or `P.A` once the letter is known); `catalog` is a file id
+  in `catalog/connectors`, and only an entry for the sheet's `bus` is used. Optional: every
+  connector the signals use is drawn whether or not it has an entry. Both format versions
+  accept it.
+
+  **How a connector is drawn.** Each connector is a box right of the chips, headed with its
+  name ("Backplane (connector not known)" for `P`, "Backplane A" for `P.A`) and with the
+  catalogue's title above it. It has one row per pin the sheet uses, in pin order: the pin
+  number (`A.32` when the letter is known, else `32`), the signal's name in the chosen style,
+  and, when the catalogue names the pin differently, that name too (`IOXE = BIOXE`: the card
+  drawing's name, then the backplane name from the bus-signal catalogue). Each pin has a pin
+  line and a net label like a chip pin, so it is picked and traced the same way.
 
 - `display` (2026-11-23): how this sheet likes to be shown. Display only - it never changes what
   is connected. Every value is optional; a missing one means "use the viewer's default", and a

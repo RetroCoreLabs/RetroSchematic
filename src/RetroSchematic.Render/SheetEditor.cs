@@ -648,7 +648,7 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// A pin must name a part on the sheet (or P. / F. for backplane and front pins) and a
+        /// A pin must name a part on the sheet (or a connector: P.32, P.A.32, F.81 - see ConnectorPins) and a
         /// pin number the chip has: from the chip file when the catalogue has it, else one of the
         /// part's gate pins.
         /// </summary>
@@ -658,11 +658,14 @@ namespace RetroSchematic.Render
         private void CheckPin(string pin)
         {
             int dot = pin.LastIndexOf('.');
-            if (dot <= 0 || !int.TryParse(pin.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int number) || number < 1)
+            if (dot <= 0 || !int.TryParse(pin.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int number))
                 throw new SheetEditException($"\"{pin}\" is not a pin: write the part, a dot and the pin number (11D.3).");
             string reference = pin.Substring(0, dot);
-            if (reference == "P" || reference == "F")
+            // a connector pin may be 0 (NORD-10 backplane pins run 0-99); a chip pin starts at 1
+            if (ConnectorPins.IsConnector(reference))
                 return;
+            if (number < 1)
+                throw new SheetEditException($"\"{pin}\" is not a pin: write the part, a dot and the pin number (11D.3).");
             Part part = FindPart(reference) ?? throw new SheetEditException($"Pin {pin}: there is no part {reference} on the sheet.");
             ChipInfo? chip = Catalog?.Get(part.Type);
             if (chip != null)

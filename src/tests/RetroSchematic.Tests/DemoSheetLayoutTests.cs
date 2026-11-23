@@ -91,7 +91,7 @@ namespace RetroSchematic.Tests
                 if (d.Items[i].Role == DrawRole.NetLabel && d.Items[i].Owner == "net:IRQ_0")
                     irqLabels++;
             }
-            Assert.That(irqLabels, Is.EqualTo(2), "a diamond at 5A.3 and at 5A.6");
+            Assert.That(irqLabels, Is.EqualTo(3), "a diamond at 5A.3, at 5A.6 and at backplane pin 20");
         }
 
         private static bool OnRing(double x, double y, DrawPoint at)

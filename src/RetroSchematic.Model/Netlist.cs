@@ -166,6 +166,12 @@ namespace RetroSchematic.Model
         public SheetLayoutSection? Layout { get; set; }
 
         /// <summary>
+        /// Which catalogue entry describes each of the card's connectors (P, F, P.A ...), or
+        /// null. A connector with no entry is still drawn, with its pins and signal names.
+        /// </summary>
+        public List<ConnectorUse>? Connectors { get; set; }
+
+        /// <summary>
         /// How this sheet likes to be shown, or null: each value overrides the viewer's own
         /// default for this sheet only. Display only - it never changes what is connected.
         /// </summary>
