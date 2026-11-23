@@ -10,38 +10,74 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top" Background="{DynamicResource FluentSurfaceAltBrush}">
       <MenuItem Header="_File">
-        <MenuItem Header="_Open sheet..." Click="OnOpen" InputGesture="Ctrl+O"/>
-        <MenuItem Header="Save as _SVG..." Click="OnSaveSvg" x:Name="SaveSvgItem" IsEnabled="False"/>
+        <MenuItem Header="_New sheet" Click="OnNew" HotKey="Ctrl+N" InputGesture="Ctrl+N"/>
+        <MenuItem Header="_Open sheet..." Click="OnOpen" HotKey="Ctrl+O" InputGesture="Ctrl+O"/>
+        <MenuItem Header="Open the _demo sheet" Click="OnOpenDemo" x:Name="OpenDemoItem"/>
+        <Separator/>
+        <MenuItem Header="_Save sheet" Click="OnSave" x:Name="SaveItem" IsEnabled="False" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
+        <MenuItem Header="Save sheet _as..." Click="OnSaveAs" x:Name="SaveAsItem" IsEnabled="False"/>
+        <MenuItem Header="Save as S_VG..." Click="OnSaveSvg" x:Name="SaveSvgItem" IsEnabled="False"/>
+        <MenuItem Header="Export _PNG..." Click="OnExportPng" x:Name="ExportPngItem" IsEnabled="False"/>
         <Separator/>
         <MenuItem Header="E_xit" Click="OnExit"/>
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="_Edit mode (off = read-only)" x:Name="EditModeItem" Click="OnToggleEditMode" ToggleType="CheckBox"
+                  IsEnabled="False" HotKey="Ctrl+E" InputGesture="Ctrl+E"/>
+        <Separator/>
+        <MenuItem Header="_Undo" Click="OnUndo" x:Name="UndoItem" IsEnabled="False" HotKey="Ctrl+Z" InputGesture="Ctrl+Z"/>
+        <MenuItem Header="_Redo" Click="OnRedo" x:Name="RedoItem" IsEnabled="False" HotKey="Ctrl+Y" InputGesture="Ctrl+Y"/>
+        <MenuItem Header="_Delete picked item" Click="OnDelete" x:Name="DeleteItem" IsEnabled="False" InputGesture="Delete"/>
       </MenuItem>
       <MenuItem Header="_View">
         <MenuItem Header="_ND 1976 symbols" x:Name="NdStyleItem" Click="OnNdStyle" ToggleType="Radio"/>
         <MenuItem Header="_Modern symbols" x:Name="ModernStyleItem" Click="OnModernStyle" ToggleType="Radio"/>
         <Separator/>
-        <MenuItem Header="_Fit to window" Click="OnFit" InputGesture="Ctrl+0"/>
+        <MenuItem Header="Show _pin numbers" x:Name="PinNumbersItem" Click="OnTogglePinNumbers" ToggleType="CheckBox" IsChecked="True"/>
+        <MenuItem Header="Show _board positions" x:Name="BoardPositionsItem" Click="OnToggleBoardPositions" ToggleType="CheckBox" IsChecked="True"/>
+        <Separator/>
+        <MenuItem Header="_Fit to window" Click="OnFit" HotKey="Ctrl+D0" InputGesture="Ctrl+0"/>
         <Separator/>
         <MenuItem Header="_Theme" x:Name="ThemeMenu"/>
       </MenuItem>
     </Menu>
 
+    <!-- edit bar: the chip to place; only usable in edit mode -->
+    <Border DockPanel.Dock="Top" Classes="app-toolbar" Padding="6,4">
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <TextBlock x:Name="ModeText" Classes="fluent-text" VerticalAlignment="Center" Text="Read-only"/>
+        <TextBlock Classes="fluent-text-secondary" VerticalAlignment="Center" Text="Chip to place:"/>
+        <ComboBox x:Name="ChipBox" Classes="fluent-combobox" Width="140" IsEnabled="False" SelectionChanged="OnChipPicked"/>
+        <TextBlock Classes="fluent-text-secondary" VerticalAlignment="Center"
+                   Text="Click to place it (Esc stops). Drag pin to pin to wire. Drag a chip to move it. Delete removes the pick."/>
+      </StackPanel>
+    </Border>
+
     <Border DockPanel.Dock="Bottom" Classes="status-bar">
-      <TextBlock x:Name="StatusText" Text="Open a sheet (File > Open sheet)."/>
+      <TextBlock x:Name="StatusText" Text="Open a sheet (File > Open sheet), or File > New sheet."/>
     </Border>
 
     <Grid ColumnDefinitions="260,4,*,4,320">
-      <!-- left: the sheet's parts and signals -->
+      <!-- left: search, and the sheet's parts and signals -->
       <Border Grid.Column="0" Classes="panel-border" Margin="6,6,0,6">
-        <TabControl>
-          <TabItem Header="Parts">
-            <ListBox x:Name="PartsList" SelectionChanged="OnPartPicked"
-                     Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
-          </TabItem>
-          <TabItem Header="Signals">
-            <ListBox x:Name="NetsList" SelectionChanged="OnNetPicked"
-                     Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
-          </TabItem>
-        </TabControl>
+        <DockPanel>
+          <TextBox x:Name="SearchBox" DockPanel.Dock="Top" Classes="fluent-textbox" Margin="4"
+                   Watermark="Search part, signal or pin (11D.3)" TextChanged="OnSearchChanged"/>
+          <TabControl x:Name="ListTabs">
+            <TabItem Header="Parts">
+              <ListBox x:Name="PartsList" SelectionChanged="OnPartPicked"
+                       Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+            </TabItem>
+            <TabItem Header="Signals">
+              <ListBox x:Name="NetsList" SelectionChanged="OnNetPicked"
+                       Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+            </TabItem>
+            <TabItem Header="Found" x:Name="FoundTab">
+              <ListBox x:Name="FoundList" SelectionChanged="OnFoundPicked"
+                       Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+            </TabItem>
+          </TabControl>
+        </DockPanel>
       </Border>
       <GridSplitter Grid.Column="1" Background="Transparent"/>
 
@@ -59,7 +95,7 @@
             <SelectableTextBlock x:Name="DetailsText" TextWrapping="Wrap"
                                  FontFamily="Consolas, Courier New, monospace" FontSize="12"
                                  Foreground="{DynamicResource FluentTextPrimaryBrush}"
-                                 Text="Click a part, gate or signal on the drawing."/>
+                                 Text="Click a part, gate, signal or pin on the drawing."/>
           </ScrollViewer>
         </DockPanel>
       </Border>

@@ -22,6 +22,12 @@
     <ProjectReference Include="..\RetroSchematic.Render\RetroSchematic.Render.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <!-- File > Open the demo sheet finds this copy next to the program; the chip files let a
+         copy of the program outside the repository place chips and list their pins -->
+    <None Include="..\sheets\demo\demo-gates.json" Link="sheets\demo\demo-gates.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\catalog\chips\*.json" Link="catalog\chips\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
     <InternalsVisibleTo Include="RetroSchematic.Desktop.Tests" />
   </ItemGroup>
 </Project>

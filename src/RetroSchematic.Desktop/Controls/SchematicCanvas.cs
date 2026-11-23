@@ -11,6 +11,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.Styling;
 using RetroSchematic.Desktop.Themes;
 using RetroSchematic.Model;
@@ -23,12 +24,15 @@ namespace RetroSchematic.Desktop.Controls
     /// <summary>
     /// Draws a <see cref="SheetSession"/>'s drawing - the same drawing steps the SVG output
     /// writes - with the colours of the current theme. Mouse wheel zooms round the pointer, the
-    /// left button picks, dragging with the right or middle button moves the sheet.
-    /// It holds no sheet logic: picking, the selection and the descriptions are the session's.
+    /// left button goes to the <see cref="EditTool"/> (which picks in read-only mode, and places,
+    /// wires and moves in edit mode), dragging with the right or middle button moves the view.
+    /// It holds no sheet logic: picking, editing, the selection and the descriptions are the
+    /// library's; this control only turns screen points into drawing units and paints.
     /// </summary>
     public sealed class SchematicCanvas : Control
     {
         private SheetSession? _session;
+        private EditTool? _tool;
         private double _zoom = 1;
         private Vector _offset;
         private Point? _dragFrom;
@@ -38,6 +42,19 @@ namespace RetroSchematic.Desktop.Controls
 
         private static readonly Typeface s_mono = new("Consolas, Courier New, monospace");
         private static readonly Typeface s_monoBold = new(new FontFamily("Consolas, Courier New, monospace"), FontStyle.Normal, FontWeight.Bold);
+
+        /// <summary>
+        /// Called after the edit tool did something or refused to; the window shows the message.
+        /// </summary>
+        /// <param name="message">
+        /// What happened, in plain words.
+        /// </param>
+        public delegate void ToolMessageHandler(string message);
+
+        /// <summary>
+        /// The edit tool has a message for the status bar.
+        /// </summary>
+        public event ToolMessageHandler? ToolMessage;
 
         /// <summary>
         /// Creates the canvas; it repaints when the theme changes.
@@ -55,6 +72,11 @@ namespace RetroSchematic.Desktop.Controls
         public double Zoom => _zoom;
 
         /// <summary>
+        /// The mouse and key handling for the session shown, or null when none is shown.
+        /// </summary>
+        public EditTool? Tool => _tool;
+
+        /// <summary>
         /// The session shown, or null for an empty canvas.
         /// </summary>
         public SheetSession? Session
@@ -68,6 +90,7 @@ namespace RetroSchematic.Desktop.Controls
                     _session.SelectionChanged -= OnSelectionChanged;
                 }
                 _session = value;
+                _tool = value == null ? null : new EditTool(value);
                 if (_session != null)
                 {
                     _session.DrawingChanged += OnDrawingChanged;
@@ -113,6 +136,31 @@ namespace RetroSchematic.Desktop.Controls
             InvalidateVisual();
         }
 
+        /// <summary>
+        /// Writes the whole sheet, in the current theme's colours, as a PNG file.
+        /// </summary>
+        /// <param name="path">
+        /// The file to write.
+        /// </param>
+        /// <param name="scale">
+        /// Pixels per drawing unit; 2 gives a sharp print of an A3 sheet.
+        /// </param>
+        public void ExportPng(string path, double scale)
+        {
+            if (_session == null)
+                return;
+            SchematicDrawing d = _session.Drawing;
+            PixelSize size = new((int)Math.Ceiling(d.Width * scale), (int)Math.Ceiling(d.Height * scale));
+            using RenderTargetBitmap bitmap = new(size, new Vector(96, 96));
+            using (DrawingContext context = bitmap.CreateDrawingContext())
+            {
+                context.FillRectangle(Brush(ThemeManager.SchematicPaperKey), new Rect(0, 0, size.Width, size.Height));
+                using (context.PushTransform(Matrix.CreateScale(scale, scale)))
+                    DrawSheet(context, false);
+            }
+            bitmap.Save(path);
+        }
+
         /// <inheritdoc/>
         public override void Render(DrawingContext context)
         {
@@ -120,6 +168,23 @@ namespace RetroSchematic.Desktop.Controls
             context.FillRectangle(paper, new Rect(Bounds.Size));
             if (_session == null)
                 return;
+            using (context.PushTransform(Matrix.CreateScale(_zoom, _zoom) * Matrix.CreateTranslation(_offset.X, _offset.Y)))
+                DrawSheet(context, true);
+        }
+
+        /// <summary>
+        /// The drawing steps, then (on screen only) the line of a wire being drawn or the outline
+        /// of a chip being moved.
+        /// </summary>
+        /// <param name="context">
+        /// Where to draw, already scaled to drawing units.
+        /// </param>
+        /// <param name="withGesture">
+        /// True to draw the edit tool's drag preview.
+        /// </param>
+        private void DrawSheet(DrawingContext context, bool withGesture)
+        {
+            SheetSession session = _session!;
 
             IBrush ink = Brush(ThemeManager.SchematicInkKey);
             IBrush frame = Brush(ThemeManager.SchematicFrameKey);
@@ -128,15 +193,30 @@ namespace RetroSchematic.Desktop.Controls
             IBrush lit = Brush(ThemeManager.SchematicSelectionKey);
             IBrush open = Brush(ThemeManager.SchematicOpenKey);
 
-            using (context.PushTransform(Matrix.CreateScale(_zoom, _zoom) * Matrix.CreateTranslation(_offset.X, _offset.Y)))
+            SchematicDrawing d = session.Drawing;
+            for (int i = 0; i < d.Items.Count; i++)
             {
-                SchematicDrawing d = _session.Drawing;
-                for (int i = 0; i < d.Items.Count; i++)
+                DrawItem it = d.Items[i];
+                bool isLit = session.IsLit(it);
+                IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note);
+                DrawOne(context, it, b, isLit);
+            }
+
+            if (!withGesture || _tool == null)
+                return;
+            Pen preview = new(lit, 1.5, new DashStyle(new double[] { 3, 3 }, 0));
+            if (_tool.Gesture == EditGesture.Wire)
+                context.DrawLine(preview, new Point(_tool.Start.X, _tool.Start.Y), new Point(_tool.Current.X, _tool.Current.Y));
+            else if (_tool.Gesture == EditGesture.Move && session.Selected.Length > 0)
+            {
+                string reference = session.Selected.Substring(session.Selected.IndexOf(':') + 1);
+                int slash = reference.IndexOf('/');
+                if (slash >= 0)
+                    reference = reference.Substring(0, slash);
+                if (d.Frames.TryGetValue(reference, out PartFrame f))
                 {
-                    DrawItem it = d.Items[i];
-                    bool isLit = _session.IsLit(it);
-                    IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note);
-                    DrawOne(context, it, b, isLit);
+                    double dx = _tool.Current.X - _tool.Start.X, dy = _tool.Current.Y - _tool.Start.Y;
+                    context.DrawRectangle(null, preview, new Rect(f.X + dx, f.Y + dy, f.Width, f.Height));
                 }
             }
         }
@@ -163,9 +243,13 @@ namespace RetroSchematic.Desktop.Controls
             base.OnPointerPressed(e);
             Focus();
             PointerPoint p = e.GetCurrentPoint(this);
-            if (p.Properties.IsLeftButtonPressed && _session != null)
+            if (p.Properties.IsLeftButtonPressed && _tool != null)
             {
-                _session.PickAt((p.Position.X - _offset.X) / _zoom, (p.Position.Y - _offset.Y) / _zoom);
+                _tool.PointerDown(ToDrawingX(p.Position.X), ToDrawingY(p.Position.Y));
+                if (_tool.Gesture != EditGesture.None)
+                    e.Pointer.Capture(this);
+                Report();
+                InvalidateVisual();
                 e.Handled = true;
             }
             else if (p.Properties.IsRightButtonPressed || p.Properties.IsMiddleButtonPressed)
@@ -180,6 +264,13 @@ namespace RetroSchematic.Desktop.Controls
         protected override void OnPointerMoved(PointerEventArgs e)
         {
             base.OnPointerMoved(e);
+            if (_tool != null && _tool.Gesture != EditGesture.None)
+            {
+                Point at = e.GetPosition(this);
+                _tool.PointerMove(ToDrawingX(at.X), ToDrawingY(at.Y));
+                InvalidateVisual();
+                return;
+            }
             if (_dragFrom is not Point from)
                 return;
             Point now = e.GetPosition(this);
@@ -192,8 +283,45 @@ namespace RetroSchematic.Desktop.Controls
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
         {
             base.OnPointerReleased(e);
+            if (_tool != null && _tool.Gesture != EditGesture.None)
+            {
+                Point at = e.GetPosition(this);
+                _tool.PointerUp(ToDrawingX(at.X), ToDrawingY(at.Y));
+                Report();
+                InvalidateVisual();
+            }
             _dragFrom = null;
             e.Pointer.Capture(null);
+        }
+
+        /// <inheritdoc/>
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            if (_tool == null)
+                return;
+            if (e.Key == Key.Delete)
+            {
+                _tool.DeleteSelected();
+                Report();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Escape)
+            {
+                _tool.Cancel();
+                InvalidateVisual();
+                e.Handled = true;
+            }
+        }
+
+        private double ToDrawingX(double screenX) => (screenX - _offset.X) / _zoom;
+
+        private double ToDrawingY(double screenY) => (screenY - _offset.Y) / _zoom;
+
+        private void Report()
+        {
+            if (_tool != null && _tool.Message.Length > 0)
+                ToolMessage?.Invoke(_tool.Message);
         }
 
         /// <summary>
