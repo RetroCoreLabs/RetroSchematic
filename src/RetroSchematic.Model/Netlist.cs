@@ -178,6 +178,26 @@ namespace RetroSchematic.Model
         public List<ConnectorUse>? Connectors { get; set; }
 
         /// <summary>
+        /// What the printed circuit board is (machine, board number, versions, size), or null.
+        /// </summary>
+        public BoardSection? Board { get; set; }
+
+        /// <summary>
+        /// The original schematic pages the sheet was read from, or null.
+        /// </summary>
+        public List<SourcePage>? Sources { get; set; }
+
+        /// <summary>
+        /// Photos of the board's component and solder sides, or null.
+        /// </summary>
+        public List<BoardPhoto>? Photos { get; set; }
+
+        /// <summary>
+        /// The switch blocks on the card and what each lever sets, or null.
+        /// </summary>
+        public List<SwitchBlock>? Switches { get; set; }
+
+        /// <summary>
         /// How this sheet likes to be shown, or null: each value overrides the viewer's own
         /// default for this sheet only. Display only - it never changes what is connected.
         /// </summary>

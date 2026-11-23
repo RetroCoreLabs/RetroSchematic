@@ -106,7 +106,8 @@ namespace RetroSchematic.Mcp
             {
                 throw new McpException("Could not open " + path + ": " + e.Message, e);
             }
-            _editor = new SheetEditor(n, Catalog(path)) { ReadOnly = !edit };
+            // the source pages and photos: inside the zip of a .rsx, linked from a .rsc
+            _editor = new SheetEditor(n, Catalog(path)) { ReadOnly = !edit, Files = SheetAttachments.Load(path) };
             _path = path;
             return string.Create(CultureInfo.InvariantCulture,
                 $"Opened {n.Sheet.Id} {n.Sheet.Title}: {n.Parts.Count} parts, {n.Gates.Count} gates, {n.Nets.Count} signals, {(edit ? "edit mode" : "read-only")}.");

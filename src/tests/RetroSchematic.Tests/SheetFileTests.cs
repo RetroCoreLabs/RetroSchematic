@@ -30,19 +30,22 @@ namespace RetroSchematic.Tests
             string rsc = Scratch(".rsc"), rsx = Scratch(".rsx"), json = Scratch(".json");
             try
             {
-                SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), null);
+                SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), null) { Files = SheetAttachments.Load(Sheet2A50) };
                 e.Save(rsc);
                 e.Save(rsx);
                 File.Copy(rsc, json, overwrite: true);
-                string a = NetlistReader.Write(NetlistReader.ReadFile(rsc));
-                string b = NetlistReader.Write(NetlistReader.ReadFile(rsx));
-                string c = NetlistReader.Write(NetlistReader.ReadFile(json));
+                // the links differ (a path beside the sheet in .rsc, a zip entry in .rsx; see
+                // BoardFileTests), everything else is the same
+                string a = WithoutLinks(NetlistReader.ReadFile(rsc));
+                string b = WithoutLinks(NetlistReader.ReadFile(rsx));
+                string c = WithoutLinks(NetlistReader.ReadFile(json));
                 Assert.That(b, Is.EqualTo(a), ".rsx reads back as the same sheet as .rsc");
                 Assert.That(c, Is.EqualTo(a), "an old .json still reads");
                 Assert.That(File.ReadAllText(rsc).TrimStart()[0], Is.EqualTo('{'), ".rsc is plain JSON text");
                 Assert.That(SheetFile.IsZip(File.ReadAllBytes(rsx)), Is.True, ".rsx is a zip");
                 using ZipArchive zip = ZipFile.OpenRead(rsx);
-                Assert.That(zip.Entries.Count, Is.EqualTo(1));
+                // sheet.json first, then the source page and the two photos
+                Assert.That(zip.Entries.Count, Is.EqualTo(4));
                 Assert.That(zip.Entries[0].FullName, Is.EqualTo(SheetFile.ZipEntryName));
             }
             finally
@@ -60,13 +63,13 @@ namespace RetroSchematic.Tests
             string zipNamedRsc = Scratch(".rsc"), textNamedRsx = Scratch(".rsx"), real = Scratch("-z.rsx");
             try
             {
-                SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), null);
+                SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), null) { Files = SheetAttachments.Load(Sheet2A50) };
                 e.Save(real);
                 File.Copy(real, zipNamedRsc, overwrite: true);
                 File.Copy(Sheet2A50, textNamedRsx, overwrite: true);
-                string want = NetlistReader.Write(NetlistReader.ReadFile(Sheet2A50));
-                Assert.That(NetlistReader.Write(NetlistReader.ReadFile(zipNamedRsc)), Is.EqualTo(want));
-                Assert.That(NetlistReader.Write(NetlistReader.ReadFile(textNamedRsx)), Is.EqualTo(want));
+                string want = WithoutLinks(NetlistReader.ReadFile(Sheet2A50));
+                Assert.That(WithoutLinks(NetlistReader.ReadFile(zipNamedRsc)), Is.EqualTo(want));
+                Assert.That(WithoutLinks(NetlistReader.ReadFile(textNamedRsx)), Is.EqualTo(want));
             }
             finally
             {
@@ -74,6 +77,17 @@ namespace RetroSchematic.Tests
                 File.Delete(textNamedRsx);
                 File.Delete(real);
             }
+        }
+
+        /// <summary>
+        /// The sheet as JSON with the source and photo links taken out (they are rewritten by
+        /// every save to another place, by design).
+        /// </summary>
+        internal static string WithoutLinks(Netlist n)
+        {
+            n.Sources = null;
+            n.Photos = null;
+            return NetlistReader.Write(n);
         }
     }
 }

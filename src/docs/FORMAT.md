@@ -14,7 +14,7 @@ A sheet is stored in one of two endings; the content is the same JSON either way
 | Ending | What is in the file |
 |---|---|
 | `.rsc` | the JSON as plain UTF-8 text (no byte-order mark). Saving writes this unless `.rsx` is chosen. |
-| `.rsx` | the same JSON zipped: a normal zip archive holding exactly one entry, named `sheet.json`, compressed with deflate, with the JSON as UTF-8 text inside. No folders, no other entries. |
+| `.rsx` | the same JSON zipped: a normal zip archive whose first entry is `sheet.json`, compressed with deflate, with the JSON as UTF-8 text inside. The sheet's source pages and board photos are stored beside it as `sources/NAME` and `photos/NAME` (see "Board, sources, photos, switches"), so one file carries everything. No other entries. |
 | `.json` | the old ending, plain text like `.rsc`. Still read; renamed sheets in `sheets/` use `.rsc`. |
 
 A reader goes by the content, not the name: a file starting with the zip header bytes `PK 03 04`
@@ -170,6 +170,9 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   drawing's name, then the backplane name from the bus-signal catalogue). Each pin has a pin
   line and a net label like a chip pin, so it is picked and traced the same way.
 
+- `board`, `sources`, `photos`, `switches`, and more fields on `connectors` (2026-11-23): see
+  "Board, sources, photos, switches" below. Both format versions accept them.
+
 - `display` (2026-11-23): how this sheet likes to be shown. Display only - it never changes what
   is connected. Every value is optional; a missing one means "use the viewer's default", and a
   value here overrides that default for this sheet only. Both format versions accept it.
@@ -187,6 +190,90 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   ```json
   "display": { "nameStyle": "subscript", "buses": false }
   ```
+
+## Board, sources, photos, switches
+
+Facts about the printed circuit board itself, the pages the sheet was read from, and photos of
+the board. None of them changes what is connected. All are optional and belong to the whole
+sheet (the top level), whatever block is shown.
+
+**`board`** - what the board is. Every value is optional; a missing one is not known.
+
+| Field | What it is |
+|---|---|
+| `ndSystem` | `NORD-10` or `ND-100`: the machine the card plugs into |
+| `boardNumber` | the number printed on the board, such as `322049` |
+| `printVersion`, `ecoVersion` | the print (PCB) version (`I`) and the engineering change version (`3`) |
+| `size` | `{ "widthMm": 156, "heightMm": 149 }` |
+| `layers` | how many copper layers |
+| `note` | where the values were read |
+
+**More fields on `connectors[]`** - each connector of the card, documented:
+
+| Field | What it is |
+|---|---|
+| `use` | what it carries on this card, in words; `not used` is allowed |
+| `used` | `false` when the card has the plug position but uses no pin of it |
+| `standard` | such as `DIN 41612` |
+| `pins` | the pin numbers in words: `0-99` for the one NORD-10 card-edge connector |
+| `rows`, `pinsPerRow` | for a plug with rows: `["a", "b", "c"]` and `32` (DIN 41612) |
+
+A NORD-10 card has one backplane connector (`P`, pins 0-99, its letter not known; catalogue
+`nord10-io-card-backplane`) and, when it has one, a front connector (`F`, catalogue
+`nord10-modem-front` for the modem lines). An ND-100 card has the plugs A, B and C, each its own
+entry (`P.A`, `P.B`, `P.C`): C is the ND-100 bus (`nd100-c-connector`), A and B are card
+specific (the ND-120 CPU's are `nd120-cpu-a-plug` and `nd120-cpu-b-plug`), and either may be
+`"used": false`.
+
+A pin reference cannot name a row yet: `P.C.17` names plug C pin 17 but not whether it is row
+a, b or c. The planned form is `P.C.a.17` (row before the pin number); it changes the rule that
+a pin reference splits at its last dot into connector and pin, so it is left for its own step
+(`docs/PLAN.md`, section 8).
+
+**`sources[]`** - the original schematic pages, one or many:
+
+| Field | What it is |
+|---|---|
+| `file` | a picture (PNG, JPEG) or a PDF, relative to the sheet file, with `/` |
+| `pdfPage` | for a PDF: the page, 1 = first |
+| `title`, `note` | shown in the page picker and the Board window |
+| `original` | `{ file, pdfPage, dpi }`: the PDF and page a stored picture was rendered from |
+
+**`photos[]`** - photos of the board: `file` (relative to the sheet), `side` (`component` or
+`solder`) and `note`.
+
+**Where the files are.** In a `.rsc` the `file` fields are links, relative to the sheet file;
+the files stay where they are. In a `.rsx` the files are inside the zip, as `sources/NAME` and
+`photos/NAME`, and the `file` fields name those entries, so the one file carries everything.
+
+- Saving as `.rsx` packs every linked file into the zip. A PDF source does not go in whole:
+  only its one referenced page is stored, rendered as PNG at **300 dpi** (`sources/NAME-pN.png`),
+  and the entry keeps the PDF's name and page in `original` (`pdfPage` is then removed, since
+  the stored file is a picture). Pictures are stored without compressing them again.
+- Opening a `.rsx` reads the files from the zip; nothing is unpacked to disk.
+- Saving as `.rsc` writes links relative to the new sheet's folder. A file the sheet only holds
+  inside (it came from a `.rsx`, or it was imported into a sheet not saved yet) is written beside
+  the sheet in `SHEETNAME-files/sources/` or `SHEETNAME-files/photos/`.
+- A linked file that cannot be found stops the save with its name; nothing is written half.
+
+**`switches[]`** - the switch blocks on the card:
+
+| Field | What it is |
+|---|---|
+| `ref` | the board position, as for a chip (`15E`) |
+| `function` | what the block sets, in words |
+| `leverCount` | the number of levers |
+| `onMeans`, `onMeansConfidence` | the bit a lever that is on (closed) gives: `0`, `1` or `open`, and how sure that is |
+| `typical` | the usual setting, in words, with where it comes from |
+| `levers[]` | per lever: `number` (1 first), `signal` (as on the drawing), `bit` (what it sets: `BA9`, `ident bit 2`), `confidence`, `setting` (`on`, `off` or `open` = cannot be read) and `note` |
+| `source` | `{ kind, document, place, confidence }`, as a signal description's source |
+| `note` | how it was worked out |
+
+```json
+"switches": [ { "ref": "15E", "function": "device address", "leverCount": 4,
+  "onMeans": "1", "onMeansConfidence": "inferred",
+  "levers": [ { "number": 1, "signal": "SMN3", "bit": "BA9", "confidence": "read", "setting": "open" } ] } ]
+```
 
 ## How a sheet is drawn
 

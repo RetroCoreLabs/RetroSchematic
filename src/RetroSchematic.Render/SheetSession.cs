@@ -103,6 +103,8 @@ namespace RetroSchematic.Render
         public SheetSession(string sheetPath, SymbolStyle style, string? catalogFolder)
             : this(NetlistReader.ReadFile(sheetPath), sheetPath, style, catalogFolder)
         {
+            // the source pages and photos: inside the zip for a .rsx, linked for a .rsc
+            Editor.Files = SheetAttachments.Load(sheetPath);
         }
 
         /// <summary>

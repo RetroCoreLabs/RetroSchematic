@@ -1,0 +1,293 @@
+//
+// SPDX-License-Identifier: MIT
+// Copyright (c) 1985-2026 Ronny Hansen
+// RetroCore Labs — https://github.com/RetroCoreLabs
+//
+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Text;
+using ModelContextProtocol;
+using ModelContextProtocol.Server;
+using RetroSchematic.Model;
+using RetroSchematic.Render;
+
+namespace RetroSchematic.Mcp
+{
+    /// <summary>
+    /// The board tools: board facts and connectors, source pages, photos and switches
+    /// (docs/FORMAT.md, "Board, sources, photos, switches"). Values go in and out as JSON in
+    /// the file's own field names, so what a tool returns can be changed and sent back.
+    /// </summary>
+    public sealed partial class SheetTools
+    {
+        /// <summary>
+        /// The board section and the connectors, as JSON.
+        /// </summary>
+        /// <returns>
+        /// {"board": ..., "connectors": [...]}.
+        /// </returns>
+        [McpServerTool(Name = "get_board_info"), Description("The sheet's board facts (ND machine, board number, print and ECO versions, size in mm, layers) and its connectors (ref, catalog, use, used, standard, pins, rows, pinsPerRow, note), as JSON in the file's own field names. Allowed read-only.")]
+        public string GetBoardInfo()
+        {
+            Netlist n = Open().Root;
+            return "{\"board\": " + (n.Board == null ? "null" : NetlistReader.ToJson(n.Board))
+                + ",\n\"connectors\": " + (n.Connectors == null ? "[]" : NetlistReader.ToJson(n.Connectors)) + "}";
+        }
+
+        /// <summary>
+        /// Sets the board section.
+        /// </summary>
+        /// <param name="board">
+        /// The board section as JSON, or empty to remove it.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "set_board_info"), Description("Set the board facts (edit mode; undoable). JSON with any of: ndSystem (NORD-10 or ND-100), boardNumber, printVersion, ecoVersion, size {widthMm, heightMm}, layers, note. The whole section is replaced; empty text removes it.")]
+        public string SetBoardInfo([Description("The board section as JSON, e.g. {\"ndSystem\":\"NORD-10\",\"boardNumber\":\"322049\"}")] string board)
+            => Run(e =>
+            {
+                BoardSection? b = string.IsNullOrWhiteSpace(board) ? null : Parse<BoardSection>(board);
+                if (b?.NdSystem != null && b.NdSystem != "NORD-10" && b.NdSystem != "ND-100")
+                    throw new McpException("ndSystem is NORD-10 or ND-100.");
+                e.SetBoard(b);
+                return b == null ? "Removed the board section." : "Set the board section.";
+            });
+
+        /// <summary>
+        /// Adds or replaces one connector entry.
+        /// </summary>
+        /// <param name="connector">
+        /// The connector as JSON.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "set_connector"), Description("Add a connector entry, or replace the one with the same ref (edit mode; undoable). JSON: ref (P, F, or P.A, P.B, P.C ...), catalog (a file id in catalog/connectors for the sheet's bus), use (what it carries on this card, or \"not used\"), used (false = not used), standard (DIN 41612), pins (\"0-99\"), rows ([\"a\",\"b\",\"c\"]), pinsPerRow (32), note. A replaced entry keeps its hand-placed box position.")]
+        public string SetConnector([Description("The connector as JSON")] string connector)
+            => Run(e =>
+            {
+                ConnectorUse c = Parse<ConnectorUse>(connector);
+                e.SetConnector(c);
+                return "Set connector " + c.Ref + ".";
+            });
+
+        /// <summary>
+        /// Removes one connector entry.
+        /// </summary>
+        /// <param name="reference">
+        /// The connector.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "remove_connector"), Description("Remove a connector entry (edit mode; undoable). Its pins are still drawn; only the description goes.")]
+        public string RemoveConnector([Description("The connector, e.g. P.C")] string reference)
+            => Run(e =>
+            {
+                e.RemoveConnector(reference);
+                return "Removed connector " + reference + ".";
+            });
+
+        /// <summary>
+        /// The source pages and photos, numbered.
+        /// </summary>
+        /// <returns>
+        /// One line per entry.
+        /// </returns>
+        [McpServerTool(Name = "list_sources"), Description("List the sheet's original schematic pages and board photos, numbered from 1, with file, PDF page, title or side, whether the file is held inside the sheet (.rsx or imported) or linked on disk, and whether it can be found. Allowed read-only.")]
+        public string ListSources()
+        {
+            SheetEditor e = Open();
+            Netlist n = e.Root;
+            StringBuilder sb = new();
+            sb.Append("Source pages:\n");
+            for (int i = 0; n.Sources != null && i < n.Sources.Count; i++)
+            {
+                SourcePage s = n.Sources[i];
+                sb.Append(string.Create(CultureInfo.InvariantCulture, $"  {i + 1}. {s.File}"));
+                if (s.PdfPage != null)
+                    sb.Append(string.Create(CultureInfo.InvariantCulture, $" page {s.PdfPage}"));
+                if (s.Title != null)
+                    sb.Append(" - ").Append(s.Title);
+                if (s.Original != null)
+                    sb.Append(string.Create(CultureInfo.InvariantCulture, $" (from {s.Original.File} page {s.Original.PdfPage} at {s.Original.Dpi} dpi)"));
+                sb.Append(Where(e, s.File)).Append('\n');
+            }
+            if (n.Sources == null)
+                sb.Append("  none\n");
+            sb.Append("Photos:\n");
+            for (int i = 0; n.Photos != null && i < n.Photos.Count; i++)
+            {
+                BoardPhoto p = n.Photos[i];
+                sb.Append(string.Create(CultureInfo.InvariantCulture, $"  {i + 1}. {p.File} - {(p.Side == BoardSide.Component ? "component side" : "solder side")}"));
+                sb.Append(Where(e, p.File)).Append('\n');
+            }
+            if (n.Photos == null)
+                sb.Append("  none\n");
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Adds a source page from a file.
+        /// </summary>
+        /// <param name="path">
+        /// The file.
+        /// </param>
+        /// <param name="pdfPage">
+        /// The PDF page, or 0 for a picture.
+        /// </param>
+        /// <param name="title">
+        /// A title, or empty.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "add_source"), Description("Add an original schematic page from a file (edit mode; undoable): a picture, or a PDF with the page number. A .rsc links the file by a path relative to the sheet; a .rsx (or a sheet not saved yet) keeps the file inside and writes it into the zip on save (a PDF page as PNG at 300 dpi).")]
+        public string AddSource(
+            [Description("Full path of the picture or PDF")] string path,
+            [Description("For a PDF: the page, 1 = first; 0 for a picture")] int pdfPage = 0,
+            [Description("A title for the page picker")] string? title = null)
+            => Run(e =>
+            {
+                string link = e.ImportFile(path, "sources", Hold());
+                e.SetSource(new SourcePage { File = link, PdfPage = pdfPage > 0 ? pdfPage : null, Title = string.IsNullOrWhiteSpace(title) ? null : title });
+                return "Added source page " + link + ".";
+            });
+
+        /// <summary>
+        /// Removes a source page.
+        /// </summary>
+        /// <param name="number">
+        /// Its number in list_sources.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "remove_source"), Description("Remove a source page by its number in list_sources (edit mode; undoable). The file itself is not deleted.")]
+        public string RemoveSource([Description("Its number, 1 first")] int number)
+            => Run(e =>
+            {
+                e.RemoveSource(number - 1);
+                return "Removed source page " + number.ToString(CultureInfo.InvariantCulture) + ".";
+            });
+
+        /// <summary>
+        /// Adds a board photo from a file.
+        /// </summary>
+        /// <param name="path">
+        /// The picture.
+        /// </param>
+        /// <param name="side">
+        /// component or solder.
+        /// </param>
+        /// <param name="note">
+        /// A note, or empty.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "add_photo"), Description("Add a photo of the board from a picture file (edit mode; undoable): the component side or the solder side. Linked from a .rsc, kept inside a .rsx.")]
+        public string AddPhoto(
+            [Description("Full path of the picture")] string path,
+            [Description("component or solder")] string side,
+            [Description("What it shows")] string? note = null)
+            => Run(e =>
+            {
+                BoardSide s = side.Trim().ToLowerInvariant() switch
+                {
+                    "component" => BoardSide.Component,
+                    "solder" => BoardSide.Solder,
+                    _ => throw new McpException("side is component or solder."),
+                };
+                string link = e.ImportFile(path, "photos", Hold());
+                e.SetPhoto(new BoardPhoto { File = link, Side = s, Note = string.IsNullOrWhiteSpace(note) ? null : note });
+                return "Added photo " + link + ".";
+            });
+
+        /// <summary>
+        /// Removes a board photo.
+        /// </summary>
+        /// <param name="number">
+        /// Its number in list_sources.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "remove_photo"), Description("Remove a board photo by its number in list_sources (edit mode; undoable). The file itself is not deleted.")]
+        public string RemovePhoto([Description("Its number, 1 first")] int number)
+            => Run(e =>
+            {
+                e.RemovePhoto(number - 1);
+                return "Removed photo " + number.ToString(CultureInfo.InvariantCulture) + ".";
+            });
+
+        /// <summary>
+        /// The switch blocks, as JSON.
+        /// </summary>
+        /// <returns>
+        /// The switches list.
+        /// </returns>
+        [McpServerTool(Name = "get_switches"), Description("The card's switch blocks as JSON: ref (board position), function, leverCount, onMeans (0, 1 or open: the bit a lever that is on gives) and how sure, typical setting, and per lever its number, signal, bit, confidence, setting (on, off, open) and note. Allowed read-only.")]
+        public string GetSwitches()
+        {
+            List<SwitchBlock>? s = Open().Root.Switches;
+            return s == null ? "[]" : NetlistReader.ToJson(s);
+        }
+
+        /// <summary>
+        /// Adds or replaces one switch block.
+        /// </summary>
+        /// <param name="block">
+        /// The switch block as JSON.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "set_switch"), Description("Add a switch block, or replace the one at the same board position (edit mode; undoable). JSON as get_switches returns one entry. Mark every fact: confidence read, inferred or open; never guess a lever setting - use open.")]
+        public string SetSwitch([Description("The switch block as JSON")] string block)
+            => Run(e =>
+            {
+                SwitchBlock b = Parse<SwitchBlock>(block);
+                e.SetSwitch(b);
+                return "Set switch block " + b.Ref + ".";
+            });
+
+        /// <summary>
+        /// Removes a switch block.
+        /// </summary>
+        /// <param name="reference">
+        /// Its board position.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "remove_switch"), Description("Remove a switch block by its board position (edit mode; undoable).")]
+        public string RemoveSwitch([Description("Board position, e.g. 15E")] string reference)
+            => Run(e =>
+            {
+                e.RemoveSwitch(reference);
+                return "Removed switch block " + reference + ".";
+            });
+
+        // a sheet not saved yet, or a .rsx, keeps imported files inside; a .rsc links them
+        private bool Hold() => _path == null || SheetFile.IsZipPath(_path);
+
+        private static string Where(SheetEditor e, string file)
+            => e.Files.Holds(file) ? " [inside the sheet]" : e.Files.Read(file) != null ? " [linked]" : " [NOT FOUND]";
+
+        private static T Parse<T>(string json)
+        {
+            try
+            {
+                return NetlistReader.FromJson<T>(json);
+            }
+            catch (NetlistException ex)
+            {
+                throw new McpException(ex.Message, ex);
+            }
+        }
+    }
+}

@@ -4907,12 +4907,152 @@
     {
       "ref": "P",
       "catalog": "nord10-io-card-backplane",
-      "note": "The one backplane connector of a NORD-10 I/O card position; no document names it, so its letter stays unknown."
+      "note": "The one backplane connector of a NORD-10 I/O card position; no document names it, so its letter stays unknown.",
+      "use": "the NORD-10 I/O bus: address, data, IOX and interrupt lines, supply",
+      "pins": "0-99"
     },
     {
       "ref": "F",
       "catalog": "nord10-modem-front",
-      "note": "The modem (V.24) lines, circled pins 81-95; which connector they are on is not known."
+      "note": "The modem (V.24) lines, circled pins 81-95; which connector they are on is not known.",
+      "use": "the modem (V.24) lines: transmit and receive data and clocks, modem control and status",
+      "pins": "81-95"
+    }
+  ],
+  "board": {
+    "ndSystem": "NORD-10",
+    "boardNumber": "322049",
+    "printVersion": "I",
+    "ecoVersion": "3",
+    "size": {
+      "widthMm": 156,
+      "heightMm": 149
+    },
+    "layers": 2,
+    "note": "Values given by the owner (2026-11-23). The component-side photo shows the title \"SYNCHRONOUS MODEM BUFFER 1050\" etched on the board; the board number 322049 and print version I are from the photo file names."
+  },
+  "sources": [
+    {
+      "file": "2A50-files/sources/2A50-sync-modem-buffer-1050-p64.png",
+      "title": "2A50 Synchronous modem buffer 1050",
+      "note": "The only drawing page for card 1050: PDF pages 63 and 65 are sheets 2A49 and 2A51.",
+      "original": {
+        "file": "../../docs/sources/nord-10/NORD-10-drawings.pdf",
+        "pdfPage": 64,
+        "dpi": 300
+      }
+    }
+  ],
+  "photos": [
+    {
+      "file": "2A50-files/photos/322049-component-side-v1.jpg",
+      "side": "component",
+      "note": "Board 322049, print version I (an old card). Title on the board: SYNCHRONOUS MODEM BUFFER 1050. Two 4-lever switch blocks at the bottom edge: left one beside the 74153 status multiplexers, middle one beside the DM8160 comparator. COM 2601 in the middle."
+    },
+    {
+      "file": "2A50-files/photos/322049-solder-side-v1.jpg",
+      "side": "solder",
+      "note": "Board 322049, print version I, solder side."
+    }
+  ],
+  "switches": [
+    {
+      "ref": "15E",
+      "function": "device address: which of the 16 modem positions the card answers (IOX 100-177 or 1100-1177 octal, eight registers each)",
+      "leverCount": 4,
+      "onMeans": "1",
+      "onMeansConfidence": "inferred",
+      "typical": "Modem 1 (IOX 100-107 octal): every lever at 0, so off. Inferred from the 16-modem table quoted in docs/2A50-reading.md and the on-means reading.",
+      "levers": [
+        {
+          "number": 1,
+          "signal": "SMN3",
+          "bit": "BA9",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into DM8160 13E pin 4 (B2), compared with BA9 on pin 3 (A2): adds 1000 octal to the address."
+        },
+        {
+          "number": 2,
+          "signal": "SMN2",
+          "bit": "BA5",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into 13E pin 13 (A5), compared with BA5 on pin 12 (B5): adds 40 octal."
+        },
+        {
+          "number": 3,
+          "signal": "SMN1",
+          "bit": "BA4",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into 13E pin 10 (B4), compared with BA4 on pin 11 (A4): adds 20 octal."
+        },
+        {
+          "number": 4,
+          "signal": "SMN0",
+          "bit": "BA3",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into 13E pin 6 (B3), compared with BA3 on pin 5 (A3): adds 10 octal."
+        }
+      ],
+      "source": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Address and ident",
+        "confidence": "read"
+      },
+      "note": "Lever-to-signal from the net notes (\"switch 15E position 1\" = SMN3 ... position 4 = SMN0); lever-to-bit from the DM8160 pairs (A1/B1 .. A6/B6, National 1976 TTL Databook 3-17). The comparator gives a match when each SMN line has the same level as its BA line. SMN and BA are both active low (subscript 0). On means 1 is INFERRED: a lever that is on closes the line to ground against its pull-up (the switch and pull-up are not drawn as parts), so the line is low, which matches an active-low BA line carrying a 1. The other comparator pairs: BA6 through 9E (must be 1), IOXE against ground. Which block on the photo is 15E is inferred: the middle block sits beside the DM8160. Lever positions on the photo cannot be read (open)."
+    },
+    {
+      "ref": "1E",
+      "function": "ident code bits 2-5 (bits 0 and 1 are strapped to ground, so every ident code is a multiple of 4)",
+      "leverCount": 4,
+      "onMeans": "0",
+      "onMeansConfidence": "inferred",
+      "typical": "Modem 1 answers ident 4 (bit 2 = 1): lever 1 off, levers 2-4 on. Inferred from the 16-modem table quoted in docs/2A50-reading.md and the on-means reading.",
+      "levers": [
+        {
+          "number": 1,
+          "signal": "IDENT2",
+          "bit": "ident bit 2",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into status multiplexer 3E pin 6."
+        },
+        {
+          "number": 2,
+          "signal": "IDENT3",
+          "bit": "ident bit 3",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into 3E pin 10."
+        },
+        {
+          "number": 3,
+          "signal": "IDENT4",
+          "bit": "ident bit 4",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into 5E pin 6."
+        },
+        {
+          "number": 4,
+          "signal": "IDENT5",
+          "bit": "ident bit 5",
+          "confidence": "read",
+          "setting": "open",
+          "note": "Into 5E pin 10."
+        }
+      ],
+      "source": {
+        "kind": "reading",
+        "document": "docs/2A50-reading.md",
+        "place": "Address and ident",
+        "confidence": "read"
+      },
+      "note": "Lever-to-signal from the net notes (\"ident switch 1E position 1\" = IDENT2 ... position 4 = IDENT5). Bits 0-1: 3D pins 10 and 6 are marked (STRAP)(GND) on the drawing (read). The same ident answers on both interrupt levels (read). On means 0 is INFERRED: each IDENT line has a pull-up and is active high, so a lever that is on pulls it low, a 0; that the bus drivers after the multiplexers keep that sense is assumed. Which block on the photo is 1E is inferred: the bottom-left block sits beside the 74153 multiplexers. Lever positions on the photo cannot be read (open)."
     }
   ],
   "layout": {

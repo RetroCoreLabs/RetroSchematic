@@ -17,6 +17,6 @@
     <ProjectReference Include="..\..\RetroSchematic.Desktop\RetroSchematic.Desktop.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\sheets\**\*.rsc" Link="sheets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\sheets\**\*.rsc;..\..\sheets\**\*.rsx;..\..\sheets\**\*.png;..\..\sheets\**\*.jpg" Link="sheets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

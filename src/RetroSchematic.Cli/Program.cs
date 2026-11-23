@@ -18,6 +18,7 @@ namespace RetroSchematic.Cli
     {
         private const string Help =
             "retroschematic check <sheet.rsc>                          check a netlist file\n" +
+            "retroschematic pack <sheet.rsc> <sheet.rsx>                save as one zipped file with every source page and photo inside\n" +
             "retroschematic render <sheet.rsc> <out.svg> [nd|modern] [--theme <name>] [--no-buses] [--names slash|tilde|subscript]\n" +
             "    draw it as SVG (default: nd symbols, the Light theme, buses drawn, /NAME for active low)\n";
 
@@ -53,6 +54,21 @@ namespace RetroSchematic.Cli
                         SchematicDrawing measured = SheetLayout.Build(netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = cat == null ? null : new ChipCatalog(cat) });
                         WireStats st = WireStats.Measure(measured);
                         Console.WriteLine($"{args[1]}: wire length {st.Length / WireRouter.Step:0} grid steps in {st.Pieces} pieces, {st.Crossings} crossings");
+                        return 0;
+                    }
+
+                    case "pack":
+                    {
+                        if (args.Length < 3)
+                        {
+                            Console.Error.Write(Help);
+                            return 2;
+                        }
+                        // the same save as the window's Save As: a .rsx stores the linked files
+                        // inside the zip, a PDF source as the PNG of its page at 300 dpi
+                        SheetEditor packer = new(netlist, null) { Files = SheetAttachments.Load(args[1]) };
+                        packer.Save(args[2]);
+                        Console.WriteLine($"Wrote {args[2]}");
                         return 0;
                     }
 

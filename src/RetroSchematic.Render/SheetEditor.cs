@@ -556,7 +556,31 @@ namespace RetroSchematic.Render
         public void Save(string path)
         {
             SyncBack();
-            string json = NetlistReader.Write(Root);
+            // zipped with every source page and photo inside when the path ends in .rsx, else
+            // plain text with the files linked (.rsc, or an old .json kept as it is)
+            Netlist written = Files.Save(path, Root, Checked, Pdf);
+            // the links as written (entries of the zip, or paths relative to the new folder)
+            Root.Sources = written.Sources;
+            Root.Photos = written.Photos;
+            Modified = false;
+        }
+
+        /// <summary>
+        /// The sheet's source pages and photos: held in memory or linked on disk.
+        /// </summary>
+        public SheetAttachments Files { get; set; } = new();
+
+        /// <summary>
+        /// Renders a PDF page as a picture: used to show a PDF source page and to store it in a
+        /// .rsx. Null when no renderer is set; a PDF source then cannot be shown or packed.
+        /// </summary>
+        public static PdfPageRenderer? Pdf { get; set; } = PdfPages.Render;
+
+        // the JSON of a sheet, read back and checked first, so a sheet the reader would refuse
+        // is never saved
+        private static string Checked(Netlist sheet)
+        {
+            string json = NetlistReader.Write(sheet);
             try
             {
                 NetlistReader.Parse(json);
@@ -565,9 +589,7 @@ namespace RetroSchematic.Render
             {
                 throw new SheetEditException("The sheet is not valid and was not saved: " + e.Message, e);
             }
-            // zipped when the path ends in .rsx, else plain text (.rsc, or an old .json kept as it is)
-            SheetFile.WriteText(path, json + "\n");
-            Modified = false;
+            return json + "\n";
         }
 
         /// <summary>

@@ -5,6 +5,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace RetroSchematic.Model
 {
@@ -148,5 +149,38 @@ namespace RetroSchematic.Model
         /// faces the chips (pins on the right for a box left of the chips).
         /// </summary>
         public string? PinSide { get; set; }
+
+        /// <summary>
+        /// What this connector carries on this card, in words: "ND-100 bus", "modem (V.24)
+        /// lines", "not used".
+        /// </summary>
+        public string? Use { get; set; }
+
+        /// <summary>
+        /// False when the card has the connector position but uses no pin of it. Null or true:
+        /// used.
+        /// </summary>
+        public bool? Used { get; set; }
+
+        /// <summary>
+        /// The connector standard, such as "DIN 41612".
+        /// </summary>
+        public string? Standard { get; set; }
+
+        /// <summary>
+        /// The pin numbers in words, such as "0-99" for a NORD-10 card edge.
+        /// </summary>
+        public string? Pins { get; set; }
+
+        /// <summary>
+        /// The row letters of a plug with rows, such as a, b, c on a DIN 41612 plug. Null for a
+        /// connector with one row of numbered pins.
+        /// </summary>
+        public List<string>? Rows { get; set; }
+
+        /// <summary>
+        /// Pins in each row of a plug with rows (32 on a DIN 41612 plug).
+        /// </summary>
+        public int? PinsPerRow { get; set; }
     }
 }

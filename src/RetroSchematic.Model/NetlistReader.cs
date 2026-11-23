@@ -129,6 +129,49 @@ namespace RetroSchematic.Model
         public static T Clone<T>(T value) => JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(value, s_options), s_options)!;
 
         /// <summary>
+        /// Any part of a netlist as JSON, in the file's own style (field names and values as in
+        /// docs/FORMAT.md).
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type written, such as <see cref="BoardSection"/>.
+        /// </typeparam>
+        /// <param name="value">
+        /// The value.
+        /// </param>
+        /// <returns>
+        /// The JSON text.
+        /// </returns>
+        public static string ToJson<T>(T value) => JsonSerializer.Serialize(value, s_options);
+
+        /// <summary>
+        /// Reads any part of a netlist from JSON in the file's own style. An unknown field is
+        /// refused, as in a sheet file.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type read.
+        /// </typeparam>
+        /// <param name="json">
+        /// The JSON text.
+        /// </param>
+        /// <returns>
+        /// The value.
+        /// </returns>
+        /// <exception cref="NetlistException">
+        /// The text is not valid for the type.
+        /// </exception>
+        public static T FromJson<T>(string json)
+        {
+            try
+            {
+                return JsonSerializer.Deserialize<T>(json, s_options) ?? throw new NetlistException("Empty JSON.");
+            }
+            catch (JsonException e)
+            {
+                throw new NetlistException("Invalid JSON: " + e.Message, e);
+            }
+        }
+
+        /// <summary>
         /// The signal a reference names on a level, or null: the first of that name when no
         /// level is given.
         /// </summary>

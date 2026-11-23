@@ -38,7 +38,11 @@
         },
         "bus": {
           "description": "Which machine bus the card is for; picks the bus-signal and connector catalogues. Missing means unknown (shown as a warning).",
-          "enum": ["nord-10", "nd-100", "unknown"]
+          "enum": [
+            "nord-10",
+            "nd-100",
+            "unknown"
+          ]
         },
         "company": {
           "type": "string"
@@ -108,17 +112,267 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["ref"],
+        "required": [
+          "ref"
+        ],
         "properties": {
           "ref": {
             "type": "string",
             "description": "The connector as pin references name it: P or F (connector not known yet), or P.A, F.B ... with the connector letter.",
             "pattern": "^[PF](\\.[A-Za-z0-9]+)?$"
           },
-          "catalog": { "type": "string" },
-          "note": { "type": "string" },
-          "position": { "$ref": "#/$defs/point", "description": "Top-left corner of the connector box in millimetres, when it was put there by hand. Missing: placed where its wires are shortest." },
-          "pinSide": { "enum": ["left", "right"], "description": "Which side of the box the pins are on. Missing: the side facing the chips." }
+          "catalog": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "#/$defs/point",
+            "description": "Top-left corner of the connector box in millimetres, when it was put there by hand. Missing: placed where its wires are shortest."
+          },
+          "pinSide": {
+            "enum": [
+              "left",
+              "right"
+            ],
+            "description": "Which side of the box the pins are on. Missing: the side facing the chips."
+          },
+          "use": {
+            "type": "string",
+            "description": "What this connector carries on this card, or \"not used\"."
+          },
+          "used": {
+            "type": "boolean",
+            "description": "False when the card uses no pin of it."
+          },
+          "standard": {
+            "type": "string",
+            "description": "Such as DIN 41612."
+          },
+          "pins": {
+            "type": "string",
+            "description": "The pin numbers in words, such as 0-99."
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Row letters of a plug with rows (a, b, c)."
+          },
+          "pinsPerRow": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "board": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What the printed circuit board is. Every value optional; missing = not known.",
+      "properties": {
+        "ndSystem": {
+          "enum": [
+            "NORD-10",
+            "ND-100"
+          ],
+          "description": "The ND machine the card plugs into."
+        },
+        "boardNumber": {
+          "type": "string",
+          "description": "The board number printed on the card, such as 322049."
+        },
+        "printVersion": {
+          "type": "string",
+          "description": "The print (PCB) version, such as I."
+        },
+        "ecoVersion": {
+          "type": "string",
+          "description": "The ECO (engineering change) version."
+        },
+        "size": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "widthMm",
+            "heightMm"
+          ],
+          "properties": {
+            "widthMm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "heightMm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "layers": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "The original schematic pages. file is relative to the sheet; in a .rsx it is an entry inside the zip (sources/...).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "A picture (PNG, JPEG) or a PDF, relative to the sheet, forward slashes."
+          },
+          "pdfPage": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "For a PDF: the page, 1 = first."
+          },
+          "title": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "original": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "file"
+            ],
+            "description": "The PDF and page a stored picture was rendered from.",
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "pdfPage": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "dpi": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "photos": {
+      "type": "array",
+      "description": "Photos of the board. file is relative to the sheet; in a .rsx it is an entry inside the zip (photos/...).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file",
+          "side"
+        ],
+        "properties": {
+          "file": {
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "component",
+              "solder"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "switches": {
+      "type": "array",
+      "description": "The switch blocks on the card and what each lever sets.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "leverCount",
+          "levers"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "The board position, such as 15E."
+          },
+          "function": {
+            "type": "string"
+          },
+          "leverCount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "onMeans": {
+            "enum": [
+              "0",
+              "1",
+              "open"
+            ],
+            "description": "The bit value a lever that is on (closed) gives."
+          },
+          "onMeansConfidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "typical": {
+            "type": "string"
+          },
+          "levers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "number",
+                "confidence"
+              ],
+              "properties": {
+                "number": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "signal": {
+                  "type": "string"
+                },
+                "bit": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "$ref": "#/$defs/confidence"
+                },
+                "setting": {
+                  "enum": [
+                    "on",
+                    "off",
+                    "open"
+                  ]
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "source": {
+            "$ref": "#/$defs/boardSource"
+          },
+          "note": {
+            "type": "string"
+          }
         }
       }
     }
@@ -638,6 +892,34 @@
           "minimum": 0.5,
           "maximum": 3,
           "description": "How thick every line is drawn, as a factor of the normal widths (1 = normal)."
+        }
+      }
+    },
+    "boardSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "confidence"
+      ],
+      "description": "Where the facts come from.",
+      "properties": {
+        "kind": {
+          "enum": [
+            "drawing",
+            "manual",
+            "reading",
+            "inferred"
+          ]
+        },
+        "document": {
+          "type": "string"
+        },
+        "place": {
+          "type": "string"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
         }
       }
     }
