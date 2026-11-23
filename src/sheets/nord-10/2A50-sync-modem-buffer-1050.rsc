@@ -1552,6 +1552,11 @@
           "confidence": "read"
         },
         {
+          "at": "11D.11",
+          "confidence": "read",
+          "note": "corrected 2026-11-23: was on the H net; at 1200 dpi the mark above this wire is the pin number 11, and the ODW_0 wire's junction loops round the 12 box into the gate, so both inputs are ODW_0 (same pattern as IDR at 11D pins 8 and 9). Drawing PDF page 64."
+        },
+        {
           "at": "11D.12",
           "confidence": "read"
         }
@@ -1857,10 +1862,6 @@
       "pins": [
         {
           "at": "13E.1",
-          "confidence": "read"
-        },
-        {
-          "at": "11D.11",
           "confidence": "read"
         },
         {

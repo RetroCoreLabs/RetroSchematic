@@ -237,3 +237,11 @@ evidence the ND-100 card is this design, not proof of identical wiring. It confi
 4. Power-on state of the USRT transmitter.
 5. Modem 16's ident code 75 (impossible on this card).
 6. Whether the ND-100 card's wiring is identical (only the test program's "1050 card" so far).
+
+## Correction 2026-11-23: 11D pin 11
+
+11D pin 11 was read as tied to H. At 1200 dpi the mark above that wire is the pin number 11,
+and the ODW₀ wire's junction loops round the 12 box into the gate, so both inputs of that NOR
+are ODW₀ (the same pattern as IDR at 11D pins 8 and 9). With the old reading the transmit
+data strobe (COM 2601 pin 20, TDS) could never fire. Output status bits 4 and 5 were also
+confirmed: both are a live copy of the COM 2601 SCT pin (pin 5), not latched.
