@@ -28,6 +28,10 @@
         <MenuItem Header="_Undo" Click="OnUndo" x:Name="UndoItem" IsEnabled="False" HotKey="Ctrl+Z" InputGesture="Ctrl+Z"/>
         <MenuItem Header="_Redo" Click="OnRedo" x:Name="RedoItem" IsEnabled="False" HotKey="Ctrl+Y" InputGesture="Ctrl+Y"/>
         <MenuItem Header="_Delete picked item" Click="OnDelete" x:Name="DeleteItem" IsEnabled="False" InputGesture="Delete"/>
+        <Separator/>
+        <MenuItem Header="_Fix the picked signal's wire path" Click="OnFixWire" x:Name="FixWireItem" IsEnabled="False"
+                  ToolTip.Tip="Keep this wire exactly where it is now; it is saved with the sheet"/>
+        <MenuItem Header="Route the picked signal _automatically again" Click="OnFreeWire" x:Name="FreeWireItem" IsEnabled="False"/>
       </MenuItem>
       <MenuItem Header="_View">
         <MenuItem Header="_ND 1976 symbols" x:Name="NdStyleItem" Click="OnNdStyle" ToggleType="Radio"/>

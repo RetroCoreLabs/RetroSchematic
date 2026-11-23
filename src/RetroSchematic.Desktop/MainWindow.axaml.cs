@@ -149,6 +149,9 @@ namespace RetroSchematic.Desktop
             DeleteItem.IsEnabled = editing;
             SaveItem.IsEnabled = _session != null && _session.SheetPath != null;
             TbSave.IsEnabled = SaveItem.IsEnabled;
+            bool netPicked = editing && _session!.Selected.StartsWith("net:", StringComparison.Ordinal);
+            FixWireItem.IsEnabled = netPicked;
+            FreeWireItem.IsEnabled = netPicked;
             TbUndo.IsEnabled = UndoItem.IsEnabled;
             TbRedo.IsEnabled = RedoItem.IsEnabled;
             TbEditMode.IsChecked = editing;
@@ -177,8 +180,10 @@ namespace RetroSchematic.Desktop
             }
             for (int i = 0; i < n.Nets.Count; i++)
             {
-                nets.Add(n.Nets[i].Name);
-                _netOwners.Add("net:" + n.Nets[i].Name);
+                // with its subscript: two signals may share a name and differ only in level
+                string key = SheetLayout.NetKey(n.Nets[i]);
+                nets.Add(key);
+                _netOwners.Add("net:" + key);
             }
             PartsList.ItemsSource = parts;
             NetsList.ItemsSource = nets;
@@ -244,6 +249,7 @@ namespace RetroSchematic.Desktop
 
         private void OnSelectionChanged(SheetSession session, string owner)
         {
+            ShowEditState();
             DetailsText.Text = owner.Length == 0 ? "Nothing under the pointer." : session.Describe();
             // keep the lists in step with a pick made on the drawing
             _syncingLists = true;
@@ -452,6 +458,36 @@ namespace RetroSchematic.Desktop
             _session.SetShowBoardPositions(!_session.ShowBoardPositions);
             BoardPositionsItem.IsChecked = _session.ShowBoardPositions;
             TbBoardPositions.IsChecked = _session.ShowBoardPositions;
+        }
+
+        private void OnFixWire(object? sender, RoutedEventArgs e) => WireCommand(true);
+
+        private void OnFreeWire(object? sender, RoutedEventArgs e) => WireCommand(false);
+
+        private void WireCommand(bool fix)
+        {
+            if (_session == null || !_session.Selected.StartsWith("net:", StringComparison.Ordinal))
+                return;
+            string key = _session.Selected.Substring(4);
+            try
+            {
+                if (fix)
+                {
+                    _session.FixWire(key);
+                    StatusText.Text = "The wire of " + key + " is fixed; it is saved with the sheet.";
+                }
+                else
+                {
+                    Net n = _session.Editor.FindNetByKey(key)!;
+                    _session.Editor.ClearWirePath(n.Name, n.Active == ActiveLevel.None ? null : n.Active);
+                    StatusText.Text = "The wire of " + key + " is routed automatically again.";
+                }
+            }
+            catch (SheetEditException ex)
+            {
+                StatusText.Text = ex.Message;
+            }
+            ShowEditState();
         }
 
         private void OnExit(object? sender, RoutedEventArgs e) => Close();
