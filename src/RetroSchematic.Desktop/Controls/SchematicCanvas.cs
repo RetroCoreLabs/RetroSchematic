@@ -459,6 +459,12 @@ namespace RetroSchematic.Desktop.Controls
                 double l = Math.Min(_tool.Start.X, _tool.Current.X), t = Math.Min(_tool.Start.Y, _tool.Current.Y);
                 context.DrawRectangle(null, preview, new Rect(l, t, Math.Abs(_tool.Current.X - _tool.Start.X), Math.Abs(_tool.Current.Y - _tool.Start.Y)));
             }
+            else if (_tool.Gesture == EditGesture.MoveConnector && session.Selected.StartsWith("conn:", StringComparison.Ordinal)
+                && d.ConnectorFrames.TryGetValue(session.Selected.Substring(5), out PartFrame cbox))
+            {
+                double dx = _tool.Current.X - _tool.Start.X, dy = _tool.Current.Y - _tool.Start.Y;
+                context.DrawRectangle(null, preview, new Rect(cbox.X + dx, cbox.Y + dy, cbox.Width, cbox.Height));
+            }
             else if (_tool.Gesture == EditGesture.MoveInstance && session.Selected.StartsWith("inst:", StringComparison.Ordinal)
                 && d.InstanceFrames.TryGetValue(session.Selected.Substring(5), out PartFrame box))
             {

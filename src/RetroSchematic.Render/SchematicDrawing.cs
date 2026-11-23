@@ -520,6 +520,18 @@ namespace RetroSchematic.Render
         public Dictionary<string, PartFrame> InstanceFrames { get; } = new(StringComparer.Ordinal);
 
         /// <summary>
+        /// The box of each connector, by connector reference (P, F, P.A ...).
+        /// </summary>
+        public Dictionary<string, PartFrame> ConnectorFrames { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// How far right everything stored on the sheet (positions, wire and bus paths) is drawn,
+        /// in drawing units: the room made on the left for a connector box. A position read off
+        /// the drawing and written back takes it away again (<see cref="SheetLayout.XToMm"/>).
+        /// </summary>
+        public double ShiftX { get; set; }
+
+        /// <summary>
         /// Where each port pin of an instance meets its box, by "U1:PORT": the place a trace
         /// marks where a signal goes inside a block.
         /// </summary>

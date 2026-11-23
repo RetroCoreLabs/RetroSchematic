@@ -145,7 +145,7 @@ namespace RetroSchematic.Tests
             string signals = SignalsText(e.Netlist);
             double gx = e.Netlist.Gates[0].Position!.X;
             SchematicDrawing before = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData);
-            double fx = SheetLayout.ToMm(before.Frames["1A"].X);
+            double fx = SheetLayout.XToMm(before, before.Frames["1A"].X);
             e.MovePart("1A", fx + 10, SheetLayout.ToMm(before.Frames["1A"].Y));
             Assert.That(e.Netlist.Gates[0].Position!.X, Is.EqualTo(gx + 10), "measured gates move with their chip");
             Assert.That(e.Netlist.Parts[0].Position, Is.Null, "a chip framed by its measured gates stays that way");

@@ -135,5 +135,18 @@ namespace RetroSchematic.Model
         /// Free text.
         /// </summary>
         public string? Note { get; set; }
+
+        /// <summary>
+        /// Where the connector's box was put by hand: its top-left corner in millimetres, like a
+        /// chip's position. Null puts the box where its wires are shortest (left or right of the
+        /// chips, level with the chips its signals go to).
+        /// </summary>
+        public Point? Position { get; set; }
+
+        /// <summary>
+        /// Which side of the box the pins are on: "left" or "right". Null picks the side that
+        /// faces the chips (pins on the right for a box left of the chips).
+        /// </summary>
+        public string? PinSide { get; set; }
     }
 }

@@ -137,13 +137,32 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   reported; the stored value is never overwritten.
 
 - `connectors` (2026-11-23): which catalogue entry describes each of the card's connectors, as
-  `{ "ref": "P", "catalog": "nord10-io-card-backplane", "note": ... }`. `ref` is the connector
+  `{ "ref": "P", "catalog": "nord10-io-card-backplane", "note": ..., "position": { "x": 0, "y": 120 },
+  "pinSide": "right" }`. `ref` is the connector
   as pin references name it (`P`, `F`, or `P.A` once the letter is known); `catalog` is a file id
   in `catalog/connectors`, and only an entry for the sheet's `bus` is used. Optional: every
-  connector the signals use is drawn whether or not it has an entry. Both format versions
-  accept it.
+  connector the signals use is drawn whether or not it has an entry. `position` (top-left corner
+  in mm, like a chip's) is set when the box is moved by hand, and `pinSide` (`left` or `right`)
+  says which side of the box the pins are on; both are optional. Both format versions accept it.
 
-  **How a connector is drawn.** Each connector is a box right of the chips, headed with its
+  **Where a connector box goes.** Without a `position`, a box goes on the side of the chips
+  that its signals' chip pins are nearer to (by the mean X of those pins; supply lines and
+  signals with more than 6 chip pins keep their tags, so they do not count), level with the
+  mean height of those pins, with its pins on the side facing the chips. Boxes on one side are
+  pushed down so none covers another. When a box goes left of the chips, the whole sheet is
+  drawn further right by the box's room: every stored position, wire path and bus path moves
+  with it, and a position read off the drawing takes that room away again, so the stored
+  numbers do not change. Moving a box by hand never changes that room (the side is still
+  worked out from the chips), so it never moves the chips.
+
+  **A bus at a connector.** When two or more pins of one box belong to the same drawn bus
+  (BD0..BD15 on the backplane), they are not each wired to the long bus line. The box gets a
+  short upright piece of the bus just outside its pins, from the first member row to the last,
+  with a short wire and a 45-degree entry from each member pin and the bus name beside it. It
+  is the same bus, joined by name like a net label joins a signal. The piece stands far enough
+  out that the labels of other signals on rows between the members fit before it.
+
+  **How a connector is drawn.** Each connector is a box, headed with its
   name ("Backplane (connector not known)" for `P`, "Backplane A" for `P.A`) and with the
   catalogue's title above it. It has one row per pin the sheet uses, in pin order: the pin
   number (`A.32` when the letter is known, else `32`), the signal's name in the chosen style,

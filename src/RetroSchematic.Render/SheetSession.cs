@@ -468,7 +468,7 @@ namespace RetroSchematic.Render
             {
                 List<Point> pts = new();
                 for (int i = 0; i < branches[b].Count; i++)
-                    pts.Add(new Point { X = SheetLayout.ToMm(branches[b][i].X), Y = SheetLayout.ToMm(branches[b][i].Y) });
+                    pts.Add(new Point { X = SheetLayout.XToMm(Drawing, branches[b][i].X), Y = SheetLayout.ToMm(branches[b][i].Y) });
                 mm.Add(pts);
             }
             Editor.SetWirePath(n.Name, mm, n.Active == ActiveLevel.None ? null : n.Active);

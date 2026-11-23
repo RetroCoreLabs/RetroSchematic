@@ -233,6 +233,33 @@ namespace RetroSchematic.Mcp
             });
 
         /// <summary>
+        /// Moves a connector box.
+        /// </summary>
+        /// <param name="reference">
+        /// The connector: P, F, P.A ...
+        /// </param>
+        /// <param name="xMm">
+        /// New left edge in mm.
+        /// </param>
+        /// <param name="yMm">
+        /// New top edge in mm.
+        /// </param>
+        /// <param name="pinSide">
+        /// left or right, or empty to keep.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "move_connector"), Description("Move a connector box (P backplane, F front, P.A ...) to a place of its own (mm), kept in the sheet. Without this a box goes where its wires are shortest.")]
+        public string MoveConnector([Description("Connector, e.g. P")] string reference, [Description("New left edge in mm")] double xMm, [Description("New top edge in mm")] double yMm,
+            [Description("Pins on the left or right side of the box; empty to keep")] string? pinSide = null)
+            => Run(e =>
+            {
+                e.MoveConnector(reference, xMm, yMm, string.IsNullOrEmpty(pinSide) ? null : pinSide);
+                return "Moved connector " + reference + ".";
+            });
+
+        /// <summary>
         /// Connects two pins.
         /// </summary>
         /// <param name="pinA">
@@ -346,7 +373,7 @@ namespace RetroSchematic.Mcp
                     List<Point> pts = new();
                     for (int i = 0; i < laid[b].Count; i++)
                     {
-                        Point p = new() { X = SheetLayout.ToMm(laid[b][i].X), Y = SheetLayout.ToMm(laid[b][i].Y) };
+                        Point p = new() { X = SheetLayout.XToMm(d, laid[b][i].X), Y = SheetLayout.ToMm(laid[b][i].Y) };
                         pts.Add(p);
                         sb.Append(i == 0 ? (b == 0 ? "" : "; ") : " ").Append(p.X.ToString(CultureInfo.InvariantCulture)).Append(',').Append(p.Y.ToString(CultureInfo.InvariantCulture));
                     }

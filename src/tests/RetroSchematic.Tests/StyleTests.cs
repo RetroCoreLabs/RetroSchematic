@@ -65,8 +65,8 @@ namespace RetroSchematic.Tests
             // the demo sheet has every signal wired now, so it may have no tag at all
             if (sheet.StartsWith("nord-10", StringComparison.Ordinal))
                 Assert.That(tags, Is.GreaterThan(0));
-            if (sheet.StartsWith("nord-10/2A50-sync-modem-buffer-1050.rsc", StringComparison.Ordinal))
-                Assert.That(inferred, Is.GreaterThan(0), "the inferred front connector tags are among them");
+            // (the inferred front connector pins of 2A50 are wired since the front box sits beside
+            // its line chips, so that sheet has no inferred tag left to check)
         }
 
         // the colours a reader must tell apart at a glance

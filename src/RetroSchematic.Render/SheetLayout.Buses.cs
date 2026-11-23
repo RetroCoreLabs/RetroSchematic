@@ -110,7 +110,7 @@ namespace RetroSchematic.Render
                 }
                 List<DrawPoint> points = new();
                 for (int i = 0; i < bus.Path.Count; i++)
-                    points.Add(new DrawPoint(FromMm(bus.Path[i].X), FromMm(bus.Path[i].Y)));
+                    points.Add(new DrawPoint(FromMm(bus.Path[i].X) + d.ShiftX, FromMm(bus.Path[i].Y)));
                 if (!router.LayPath(busNumber, points))
                 {
                     string why = router.Refusal;
@@ -141,6 +141,8 @@ namespace RetroSchematic.Render
                 double widest = 0;
                 List<PinPlan> pins = new();
                 List<Net> pinNet = new();
+                List<PinPlan> connectorPins = new();
+                List<Net> connectorNets = new();
                 for (int m = 0; m < bus.Members.Count; m++)
                 {
                     Net? n = FindMember(netlist, bus.Members[m]);
@@ -152,12 +154,18 @@ namespace RetroSchematic.Render
                     widest = Math.Max(widest, NameWidth(n, d.NameStyle));
                     for (int j = 0; j < n.Pins.Count; j++)
                     {
-                        // a connector pin joins the bus like a chip pin, with its own named entry
-                        if (pinPlans.TryGetValue(n.Pins[j].At, out PinPlan? p))
+                        if (!pinPlans.TryGetValue(n.Pins[j].At, out PinPlan? p))
+                            continue;
+                        // connector pins are gathered into a short piece of the bus beside the
+                        // connector (see ConnectorStubs) instead of each running to the bus
+                        if (p.Owner.StartsWith("pin:", StringComparison.Ordinal) && ConnectorPins.IsConnector(PartOfPin(p.At)))
                         {
-                            pins.Add(p);
-                            pinNet.Add(n);
+                            connectorPins.Add(p);
+                            connectorNets.Add(n);
+                            continue;
                         }
+                        pins.Add(p);
+                        pinNet.Add(n);
                     }
                 }
                 List<BusSlot> slots = Slots(points, widest);
@@ -170,6 +178,128 @@ namespace RetroSchematic.Render
                     }
                     busPins.Add(pins[i].At);
                 }
+                ConnectorStubs(d, router, bus, connectorPins, connectorNets, pinPlans, busPins);
+            }
+        }
+
+        /// <summary>
+        /// The part reference of a pin reference: "P" for "P.12", "P.A" for "P.A.12", "5C" for "5C.3".
+        /// </summary>
+        /// <param name="at">
+        /// The pin reference.
+        /// </param>
+        /// <returns>
+        /// Everything before the last dot.
+        /// </returns>
+        private static string PartOfPin(string at)
+        {
+            int dot = at.LastIndexOf('.');
+            return dot < 0 ? at : at.Substring(0, dot);
+        }
+
+        /// <summary>
+        /// Gathers a bus's pins on a connector box into the bus right there: a box with two or
+        /// more member pins gets a short upright piece of bus outside its pin ends, from the first
+        /// member row to the last, a short wire from each member pin with a 45-degree entry onto
+        /// it, and the bus name beside it. The piece stands far enough out that the labels of the
+        /// other signals on rows in between fit before it. It is the same bus as the long line
+        /// elsewhere on the sheet, joined by its name the way a net label joins a signal; so the
+        /// bus lines do not each make a long run across the sheet. A box with one member pin
+        /// keeps that pin's ordinary label.
+        /// </summary>
+        /// <param name="d">
+        /// The drawing.
+        /// </param>
+        /// <param name="router">
+        /// The router; the pieces and entries are closed to every other wire.
+        /// </param>
+        /// <param name="bus">
+        /// The bus.
+        /// </param>
+        /// <param name="pins">
+        /// Its members' pins on connector boxes.
+        /// </param>
+        /// <param name="nets">
+        /// The signal of each of those pins.
+        /// </param>
+        /// <param name="all">
+        /// Every drawn pin, to find the other signals' rows between the members.
+        /// </param>
+        /// <param name="busPins">
+        /// Filled with the pins that joined the bus.
+        /// </param>
+        private static void ConnectorStubs(SchematicDrawing d, WireRouter router, BusLine bus, List<PinPlan> pins, List<Net> nets,
+            Dictionary<string, PinPlan> all, HashSet<string> busPins)
+        {
+            double s = WireRouter.Step;
+            // top to bottom, by box (pin X) first
+            int[] order = new int[pins.Count];
+            for (int i = 0; i < order.Length; i++)
+                order[i] = i;
+            Array.Sort(order, (a, b) => pins[a].X != pins[b].X ? pins[a].X.CompareTo(pins[b].X) : pins[a].Y.CompareTo(pins[b].Y));
+            int start = 0;
+            while (start < order.Length)
+            {
+                int end = start + 1;
+                while (end < order.Length && pins[order[end]].X == pins[order[start]].X)
+                    end++;
+                if (end - start >= 2)
+                {
+                    PinPlan first = pins[order[start]], last = pins[order[end - 1]];
+                    int side = first.Side;
+                    // room for the widest label of another signal on a row between the members
+                    HashSet<string> members = new(StringComparer.Ordinal);
+                    for (int k = start; k < end; k++)
+                        members.Add(pins[order[k]].At);
+                    double room = 0;
+                    foreach (KeyValuePair<string, PinPlan> kv in all)
+                    {
+                        PinPlan o = kv.Value;
+                        if (o.X != first.X || o.Y < first.Y || o.Y > last.Y || o.Net == null || members.Contains(o.At))
+                            continue;
+                        LabelBox(o, d.NameStyle, out double l, out _, out double r, out _);
+                        room = Math.Max(room, r - l);
+                    }
+                    double x = first.X + (side * Math.Max(3 * s, Snap(room + (2 * s))));
+                    double top = first.Y - (2 * s), bottom = last.Y + s;
+                    string owner = "bus:" + bus.Name;
+                    d.Items.Add(new DrawItem
+                    {
+                        Kind = DrawKind.Line, Role = DrawRole.Bus, Confidence = Confidence.Read, Owner = owner,
+                        X1 = x, Y1 = top, X2 = x, Y2 = bottom,
+                    });
+                    router.Block(x, top, x, bottom);
+                    for (int k = start; k < end; k++)
+                    {
+                        PinPlan p = pins[order[k]];
+                        Net n = nets[order[k]];
+                        Confidence c = PinConfidence(n, p.At);
+                        string wire = "net:" + NetKey(n);
+                        double bend = x - (side * s);
+                        router.Block(Math.Min(p.X, x), p.Y - s, Math.Max(p.X, x), p.Y);
+                        d.Items.Add(new DrawItem
+                        {
+                            Kind = DrawKind.Line, Role = DrawRole.Wire, Confidence = c, Owner = wire,
+                            X1 = p.X, Y1 = p.Y, X2 = bend, Y2 = p.Y, Dashed = c == Confidence.Open,
+                        });
+                        // the 45-degree entry onto the bus
+                        d.Items.Add(new DrawItem
+                        {
+                            Kind = DrawKind.Line, Role = DrawRole.Wire, Confidence = c, Owner = wire,
+                            X1 = bend, Y1 = p.Y, X2 = x, Y2 = p.Y - s, Dashed = c == Confidence.Open,
+                        });
+                        busPins.Add(p.At);
+                    }
+                    // the bus name on the far side of the piece, half way down, read the same way
+                    // as at the start of the long bus line
+                    double w = TextWidth(bus.Name, "", SignalFont);
+                    double ty = Snap((top + bottom) / 2) + (SignalFont / 2);
+                    double tx = side > 0 ? x + 4 : x - 4 - w;
+                    DrawItem title = Text(d, DrawRole.Bus, Confidence.Read, owner, tx, ty, bus.Name, SignalFont, TextAnchor.Start);
+                    title.Bold = true;
+                    router.Block(tx - 2, ty - SignalFont - 1, tx + w + 2, ty + 3);
+                }
+                start = end;
             }
         }
 

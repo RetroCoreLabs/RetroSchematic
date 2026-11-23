@@ -210,7 +210,7 @@ namespace RetroSchematic.Render
             Part part = FindPart(reference) ?? throw new SheetEditException($"There is no part {reference} on the sheet.");
             SchematicDrawing now = SheetLayout.Build(Netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = Catalog });
             PartFrame f = now.Frames[reference];
-            double dx = xMm - SheetLayout.ToMm(f.X), dy = yMm - SheetLayout.ToMm(f.Y);
+            double dx = xMm - SheetLayout.XToMm(now, f.X), dy = yMm - SheetLayout.ToMm(f.Y);
             if (dx == 0 && dy == 0)
                 return;
 
@@ -233,6 +233,49 @@ namespace RetroSchematic.Render
             }
             if (!(allGatesMeasured && hasGates))
                 part.Position = new Point { X = xMm, Y = yMm };
+            Done();
+        }
+
+        /// <summary>
+        /// Moves a connector box (P, F, P.A ...) to a place of its own, kept in the sheet's
+        /// <c>connectors</c> list like a chip's position. The connector gets an entry there if it
+        /// has none. Optionally sets which side of the box its pins are on.
+        /// </summary>
+        /// <param name="reference">
+        /// The connector as pin references name it, such as P.
+        /// </param>
+        /// <param name="xMm">
+        /// New left edge in millimetres.
+        /// </param>
+        /// <param name="yMm">
+        /// New top edge in millimetres.
+        /// </param>
+        /// <param name="pinSide">
+        /// "left" or "right" to set the pin side, null to keep it.
+        /// </param>
+        public void MoveConnector(string reference, double xMm, double yMm, string? pinSide = null)
+        {
+            CheckWritable();
+            if (!ConnectorPins.IsConnector(reference))
+                throw new SheetEditException($"{reference} is not a connector (P, F, P.A ...).");
+            if (pinSide != null && pinSide != "left" && pinSide != "right")
+                throw new SheetEditException("The pin side is left or right.");
+            Snapshot();
+            Netlist.Connectors ??= new List<ConnectorUse>();
+            ConnectorUse? use = null;
+            for (int i = 0; i < Netlist.Connectors.Count && use == null; i++)
+            {
+                if (Netlist.Connectors[i].Ref == reference)
+                    use = Netlist.Connectors[i];
+            }
+            if (use == null)
+            {
+                use = new ConnectorUse { Ref = reference };
+                Netlist.Connectors.Add(use);
+            }
+            use.Position = new Point { X = xMm, Y = yMm };
+            if (pinSide != null)
+                use.PinSide = pinSide;
             Done();
         }
 

@@ -50,9 +50,10 @@ namespace RetroSchematic.Tests
             Netlist n = NetlistReader.ReadFile(Demo);
             SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData);
             // 1A's gates are measured from (20 mm, 20 mm): its frame starts there, and the gates are
-            // stacked inside it
+            // stacked inside it. The whole sheet is drawn ShiftX further right when a connector box
+            // goes left of the chips
             PartFrame f = d.Frames["1A"];
-            Assert.That(f.X, Is.EqualTo(SheetLayout.FromMm(20)));
+            Assert.That(f.X, Is.EqualTo(SheetLayout.FromMm(20) + d.ShiftX));
             Assert.That(f.Y, Is.EqualTo(SheetLayout.FromMm(20)));
             DrawItem box = First(d, "gate:1A/1", DrawKind.Rect);
             Assert.That(box.X1, Is.GreaterThan(f.X));

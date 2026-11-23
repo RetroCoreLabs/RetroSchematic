@@ -205,8 +205,17 @@ namespace RetroSchematic.Render
             for (int i = 0; i < plans.Length; i++)
                 plans[i] = Measure(netlist, netlist.Parts[i], style, options, netByPin);
 
-            // 2. place them
-            Place(netlist, plans);
+            // 2. place them; a connector box that goes left of the chips moves the board grid
+            // right by its room (chips placed by hand stay where they are)
+            LoadBusCatalogues(netlist, options);
+            List<ConnectorPlan> connectors = MeasureConnectors(netlist, netByPin, options);
+            Place(netlist, plans, 0);
+            double shift = 0;
+            if (ChooseConnectorSides(connectors, plans, 0))
+            {
+                shift = LeftConnectorRoom(connectors);
+                Place(netlist, plans, shift);
+            }
             double right = 400, bottom = 200;
             for (int i = 0; i < plans.Length; i++)
             {
@@ -214,15 +223,14 @@ namespace RetroSchematic.Render
                 bottom = Math.Max(bottom, plans[i].Y + plans[i].Height + 12);
             }
             // instance boxes: at their position, or in a row below everything else
-            List<InstancePlan> boxes = PlaceInstances(netlist, plans, netByPin, bottom, options.NameStyle);
+            List<InstancePlan> boxes = PlaceInstances(netlist, plans, netByPin, bottom, options.NameStyle, shift);
             for (int i = 0; i < boxes.Count; i++)
             {
                 right = Math.Max(right, boxes[i].X + boxes[i].Width + boxes[i].RightReach);
                 bottom = Math.Max(bottom, boxes[i].Y + boxes[i].Height + boxes[i].BottomReach + 12);
             }
-            // the card's connectors, as boxes right of everything else
-            LoadBusCatalogues(netlist, options);
-            List<ConnectorPlan> connectors = PlanConnectors(netlist, netByPin, options, right, 40);
+            // the card's connectors, left or right of the chips, level with their chips
+            PlaceConnectors(connectors, plans, right, shift);
             for (int i = 0; i < connectors.Count; i++)
             {
                 right = Math.Max(right, connectors[i].X + connectors[i].Width);
@@ -231,6 +239,7 @@ namespace RetroSchematic.Render
             SchematicDrawing d = new(Snap(right + Margin), Snap(bottom + Margin));
             d.NameStyle = options.NameStyle;
             d.LineScale = options.LineScale;
+            d.ShiftX = shift;
             Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
                 netlist.Sheet.Id + "  " + netlist.Sheet.Title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
                 16, TextAnchor.Start);
@@ -309,6 +318,22 @@ namespace RetroSchematic.Render
         /// The same place in whole millimetres.
         /// </returns>
         public static double ToMm(double units) => Math.Round((units - Margin) / UnitsPerMm, MidpointRounding.AwayFromZero);
+
+        /// <summary>
+        /// Turns a drawing X coordinate into millimetres of a stored position, taking away the
+        /// room the drawing added on the left for a connector box (<see cref="SchematicDrawing.ShiftX"/>).
+        /// Use it for every X read off a drawing and written back to the sheet.
+        /// </summary>
+        /// <param name="d">
+        /// The drawing the coordinate was read from.
+        /// </param>
+        /// <param name="units">
+        /// X in drawing units.
+        /// </param>
+        /// <returns>
+        /// The same place in whole millimetres.
+        /// </returns>
+        public static double XToMm(SchematicDrawing d, double units) => ToMm(units - d.ShiftX);
 
         /// <summary>
         /// Turns millimetres of a measured position into a drawing coordinate.
@@ -533,7 +558,10 @@ namespace RetroSchematic.Render
         /// <param name="plans">
         /// The measured chips, given their X and Y here.
         /// </param>
-        private static void Place(Netlist netlist, PartPlan[] plans)
+        /// <param name="left">
+        /// Extra room left of the board grid, for connector boxes placed left of the chips.
+        /// </param>
+        private static void Place(Netlist netlist, PartPlan[] plans, double left)
         {
             int columns = 0, rows = 0;
             BoardPosition[] pos = new BoardPosition[plans.Length];
@@ -576,7 +604,7 @@ namespace RetroSchematic.Render
             }
             double[] colX = new double[columns + 2];
             double[] rowY = new double[rows + 2];
-            colX[1] = Margin;
+            colX[1] = Margin + left;
             for (int c = 1; c <= columns; c++)
                 colX[c + 1] = colX[c] + colWidth[c];
             rowY[0] = Margin + 24;
@@ -599,7 +627,9 @@ namespace RetroSchematic.Render
                 if (!byHand[i])
                     continue;
                 HandPosition(netlist, plans[i], out double x, out double y);
-                plans[i].X = Math.Max(Snap(x), Snap(Margin + plans[i].LeftReach));
+                // a stored position moves with the board grid: the whole sheet is shifted right
+                // by the room of a connector box on the left
+                plans[i].X = Math.Max(Snap(x + left), Snap(Margin + plans[i].LeftReach));
                 plans[i].Y = Math.Max(Snap(y), Snap(Margin + 42));
                 // pushed down past anything it would cover
                 for (bool moved = true; moved;)
@@ -854,7 +884,7 @@ namespace RetroSchematic.Render
                 {
                     List<DrawPoint> points = new();
                     for (int k = 0; k < w.Branches[b].Count; k++)
-                        points.Add(new DrawPoint(FromMm(w.Branches[b][k].X), FromMm(w.Branches[b][k].Y)));
+                        points.Add(new DrawPoint(FromMm(w.Branches[b][k].X) + d.ShiftX, FromMm(w.Branches[b][k].Y)));
                     branches.Add(points);
                 }
                 if (all && router.Keep(netNumber[net], ends, branches, segments, junctions))

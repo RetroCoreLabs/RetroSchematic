@@ -163,9 +163,10 @@ namespace RetroSchematic.Render
 
         /// <summary>
         /// Measures and places every instance box: at its position (pushed down past any chip it
-        /// would cover), or, without one, in a row below everything else.
+        /// would cover), or, without one, in a row below everything else. A stored position is
+        /// moved right by <paramref name="shift"/>, the room left for a connector box.
         /// </summary>
-        private static List<InstancePlan> PlaceInstances(Netlist netlist, PartPlan[] parts, Dictionary<string, Net> netByPin, double bottom, SignalNameStyle style)
+        private static List<InstancePlan> PlaceInstances(Netlist netlist, PartPlan[] parts, Dictionary<string, Net> netByPin, double bottom, SignalNameStyle style, double shift)
         {
             List<InstancePlan> list = new();
             double rowX = Margin, rowY = bottom + PartGap;
@@ -178,7 +179,7 @@ namespace RetroSchematic.Render
                 InstancePlan plan = Measure(inst, b, netlist, netByPin, style);
                 if (inst.Position != null)
                 {
-                    plan.X = Snap(Math.Max(FromMm(inst.Position.X), Margin + plan.LeftReach));
+                    plan.X = Snap(Math.Max(FromMm(inst.Position.X) + shift, Margin + plan.LeftReach));
                     plan.Y = Snap(Math.Max(FromMm(inst.Position.Y), Margin + 42 + plan.TopReach));
                     for (bool moved = true; moved;)
                     {

@@ -87,9 +87,13 @@ namespace RetroSchematic.Tests
                     {
                         if (!d.Pins.ContainsKey(n.Pins[j].At))
                             continue;
-                        // a connector pin joins the bus like a chip pin, with its own named entry
+                        // a connector pin joins a short piece of the bus beside its box; its name
+                        // is the box row's, so the entry has no name of its own
                         if (ConnectorPins.IsConnector(n.Pins[j].PartRef))
+                        {
                             connectorPins++;
+                            continue;
+                        }
                         drawnPins++;
                         if (d.BusProblems.Exists(p => p.Contains("pin " + n.Pins[j].At + " ", System.StringComparison.Ordinal)))
                             reported++;
@@ -99,6 +103,11 @@ namespace RetroSchematic.Tests
                     Assert.That(names, Is.EqualTo(drawnPins), owner);
                     Assert.That(labels, Is.EqualTo(reported), owner);
                     joined += drawnPins - reported;
+                    for (int j = 0; j < n.Pins.Count; j++)
+                    {
+                        if (ConnectorPins.IsConnector(n.Pins[j].PartRef) && d.Pins.ContainsKey(n.Pins[j].At))
+                            Assert.That(DemoSheetLayoutTests.Wires(d, owner).Count, Is.GreaterThan(0), n.Pins[j].At + " has its entry wire");
+                    }
                     connectorsJoined += connectorPins;
                 }
             }

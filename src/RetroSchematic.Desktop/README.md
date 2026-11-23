@@ -74,11 +74,15 @@ selection colour. A wire is as sure as the less sure of the two pins it joins.
 The title bar says which machine bus the sheet is for (NORD-10, ND-100 or unknown bus); that
 choice picks the bus-signal and connector catalogues.
 
-**Connectors.** The card's connectors are boxes right of the chips: the backplane (`P`) and a
+**Connectors.** The card's connectors are boxes beside the chips: the backplane (`P`) and a
 front connector (`F`), one row per pin in pin order with the pin number, the signal's name and,
 when the catalogue names that pin differently, its name too (`/IOXE = BIOXE`). A pin whose
 connector letter is not known shows a plain number and the box says "connector not known";
-`A.32` means connector A, pin 32. Click a pin to trace its signal like any chip pin.
+`A.32` means connector A, pin 32. Click a pin to trace its signal like any chip pin. Each box
+goes left or right of the chips, on the side and at the height where its wires are shortest,
+with its pins facing the chips; bus lines such as BD0..BD15 join a short piece of the bus right
+beside the box. In edit mode, drag a box by its body to put it somewhere else; the place is
+saved in the sheet (MCP: `move_connector`, which can also set the pin side).
 
 **Signal facts.** Picking a signal or one of its pins shows everything known about it on the
 right: what it does and where that is written (the sheet's own text, else the bus catalogue's),

@@ -207,6 +207,79 @@ namespace RetroSchematic.Tests
 
         private static bool Near(double x, double y, DrawPoint p) => System.Math.Abs(x - p.X) < 6 && System.Math.Abs(y - p.Y) < 0.5;
 
+        [Test]
+        public void On2A50_TheBackplaneBox_IsLeftOfTheChips_WithItsPinsFacingThem()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
+            SchematicDrawing d = s.Drawing;
+            PartFrame p = d.ConnectorFrames["P"], f = d.ConnectorFrames["F"];
+            double chipsLeft = double.MaxValue, chipsRight = 0;
+            foreach (KeyValuePair<string, PartFrame> kv in d.Frames)
+            {
+                chipsLeft = System.Math.Min(chipsLeft, kv.Value.X);
+                chipsRight = System.Math.Max(chipsRight, kv.Value.X + kv.Value.Width);
+            }
+            // the bus receivers and drivers that the backplane signals go to sit in the left half
+            Assert.That(p.X + p.Width, Is.LessThan(chipsLeft), "backplane box left of every chip");
+            Assert.That(d.ShiftX, Is.GreaterThan(0), "room was made on the left");
+            Assert.That(d.Pins["P.11"].X, Is.GreaterThan(p.X + p.Width), "its pins are on the side facing the chips");
+            // the 75150/75154 line chips are in the right half
+            Assert.That(f.X, Is.GreaterThan(chipsRight), "front box right of every chip");
+            Assert.That(d.Pins["F.81"].X, Is.LessThan(f.X), "its pins face the chips");
+        }
+
+        [Test]
+        public void On2A50_TheBackplaneBdPins_JoinAPieceOfTheBus_BesideTheBox()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
+            SchematicDrawing d = s.Drawing;
+            PartFrame p = d.ConnectorFrames["P"];
+            int near = 0;
+            for (int i = 0; i < d.Items.Count; i++)
+            {
+                DrawItem it = d.Items[i];
+                if (it.Kind == DrawKind.Line && it.Role == DrawRole.Bus && it.Owner == "bus:BD_0" && it.X1 == it.X2
+                    && it.X1 > p.X + p.Width && it.X1 < p.X + p.Width + 120)
+                    near++;
+            }
+            Assert.That(near, Is.EqualTo(1), "one upright piece of BD_0 just right of the backplane pins");
+        }
+
+        [Test]
+        public void MovingAConnectorBox_KeepsItsPlace_InTheSheet_AndCanBeUndone()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
+            s.Editor.ReadOnly = false;
+            EditTool tool = new(s);
+            PartFrame before = s.Drawing.ConnectorFrames["F"];
+            // press inside the box body (not on a pin), drag 20 grid steps down
+            double x = before.X + 4, y = before.Y + 4;
+            tool.PointerDown(x, y);
+            Assert.That(tool.Gesture, Is.EqualTo(EditGesture.MoveConnector));
+            tool.PointerUp(x, y + 120);
+            ConnectorUse? use = s.Editor.Root.Connectors!.Find(c => c.Ref == "F");
+            Assert.That(use?.Position, Is.Not.Null, tool.Message);
+            PartFrame after = s.Drawing.ConnectorFrames["F"];
+            Assert.That(after.X, Is.EqualTo(before.X));
+            Assert.That(after.Y, Is.EqualTo(before.Y + 120));
+            Assert.That(s.Drawing.ShiftX, Is.GreaterThan(0), "moving a box does not change the room on the left");
+            s.Editor.Undo();
+            Assert.That(s.Editor.Root.Connectors!.Find(c => c.Ref == "F")?.Position, Is.Null);
+        }
+
+        [Test]
+        public void AStoredPinSide_PutsThePinsOnThatSide()
+        {
+            SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), new ChipCatalog(Catalog)) { ReadOnly = false };
+            e.MoveConnector("P", 0, 200, "left");
+            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = e.Catalog });
+            PartFrame p = d.ConnectorFrames["P"];
+            Assert.That(d.Pins["P.11"].X, Is.LessThan(p.X));
+            Assert.That(p.Y, Is.EqualTo(SheetLayout.FromMm(200)));
+            Assert.Throws<SheetEditException>(() => e.MoveConnector("13C", 0, 0));
+            Assert.Throws<SheetEditException>(() => e.MoveConnector("P", 0, 0, "top"));
+        }
+
         private static List<string> Texts(SchematicDrawing d)
         {
             List<string> list = new();

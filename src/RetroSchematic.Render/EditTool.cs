@@ -44,6 +44,11 @@ namespace RetroSchematic.Render
         /// Dragging an instance box to a new place.
         /// </summary>
         MoveInstance,
+
+        /// <summary>
+        /// Dragging a connector box to a new place.
+        /// </summary>
+        MoveConnector,
     }
 
     /// <summary>
@@ -172,7 +177,7 @@ namespace RetroSchematic.Render
             }
             System.Collections.Generic.List<RetroSchematic.Model.Point> mm = new();
             for (int i = 0; i < _busPoints.Count; i++)
-                mm.Add(new RetroSchematic.Model.Point { X = SheetLayout.ToMm(_busPoints[i].X), Y = SheetLayout.ToMm(_busPoints[i].Y) });
+                mm.Add(new RetroSchematic.Model.Point { X = SheetLayout.XToMm(_session.Drawing, _busPoints[i].X), Y = SheetLayout.ToMm(_busPoints[i].Y) });
             _busPoints.Clear();
             Try(() =>
             {
@@ -290,7 +295,7 @@ namespace RetroSchematic.Render
             {
                 Try(() =>
                 {
-                    string reference = _session.Editor.PlacePart(PlaceType, SheetLayout.ToMm(x), SheetLayout.ToMm(y));
+                    string reference = _session.Editor.PlacePart(PlaceType, SheetLayout.XToMm(_session.Drawing, x), SheetLayout.ToMm(y));
                     _session.Select("part:" + reference);
                     Message = "Placed " + PlaceType + " as " + reference + ".";
                 });
@@ -299,7 +304,13 @@ namespace RetroSchematic.Render
             _session.Select(hit);
             Start = new DrawPoint(x, y);
             Current = Start;
-            if (whole.StartsWith("inst:", StringComparison.Ordinal) && !hit.StartsWith("pin:", StringComparison.Ordinal))
+            if (hit.StartsWith("conn:", StringComparison.Ordinal))
+            {
+                // a connector box (not one of its pins) is dragged like an instance box
+                _from = hit.Substring(5);
+                Gesture = EditGesture.MoveConnector;
+            }
+            else if (whole.StartsWith("inst:", StringComparison.Ordinal) && !hit.StartsWith("pin:", StringComparison.Ordinal))
             {
                 _from = whole.Substring(5);
                 Gesture = EditGesture.MoveInstance;
@@ -362,6 +373,18 @@ namespace RetroSchematic.Render
                 Message = _session.Picked.Count + " picked.";
                 return;
             }
+            if (g == EditGesture.MoveConnector)
+            {
+                double cx = x - Start.X, cy = y - Start.Y;
+                if ((Math.Abs(cx) < MoveThreshold && Math.Abs(cy) < MoveThreshold) || !_session.Drawing.ConnectorFrames.TryGetValue(_from, out PartFrame cbox))
+                    return;
+                Try(() =>
+                {
+                    _session.Editor.MoveConnector(_from, SheetLayout.XToMm(_session.Drawing, cbox.X + cx), SheetLayout.ToMm(cbox.Y + cy));
+                    Message = "Moved connector " + _from + ".";
+                });
+                return;
+            }
             if (g == EditGesture.MoveInstance)
             {
                 double mx = x - Start.X, my = y - Start.Y;
@@ -369,7 +392,7 @@ namespace RetroSchematic.Render
                     return;
                 Try(() =>
                 {
-                    _session.Editor.MoveInstance(_from, SheetLayout.ToMm(box.X + mx), SheetLayout.ToMm(box.Y + my));
+                    _session.Editor.MoveInstance(_from, SheetLayout.XToMm(_session.Drawing, box.X + mx), SheetLayout.ToMm(box.Y + my));
                     Message = "Moved " + _from + ".";
                 });
                 return;
@@ -410,7 +433,7 @@ namespace RetroSchematic.Render
                     return;
                 Try(() =>
                 {
-                    _session.Editor.MovePart(_from, SheetLayout.ToMm(f.X + dx), SheetLayout.ToMm(f.Y + dy));
+                    _session.Editor.MovePart(_from, SheetLayout.XToMm(_session.Drawing, f.X + dx), SheetLayout.ToMm(f.Y + dy));
                     Message = "Moved " + _from + ".";
                 });
             }

@@ -47,6 +47,15 @@ namespace RetroSchematic.Cli
                         Console.WriteLine($"{args[1]}: format version {netlist.FormatVersion}, {netlist.Parts.Count} parts, {netlist.Gates.Count} gates, {netlist.Nets.Count} nets - OK");
                         return 0;
 
+                    case "stats":
+                    {
+                        string? cat = ChipCatalog.Find(args[1]);
+                        SchematicDrawing measured = SheetLayout.Build(netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = cat == null ? null : new ChipCatalog(cat) });
+                        WireStats st = WireStats.Measure(measured);
+                        Console.WriteLine($"{args[1]}: wire length {st.Length / WireRouter.Step:0} grid steps in {st.Pieces} pieces, {st.Crossings} crossings");
+                        return 0;
+                    }
+
                     case "render":
                         if (args.Length < 3)
                         {

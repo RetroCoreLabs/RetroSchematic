@@ -389,7 +389,9 @@
             "pattern": "^[PF](\\.[A-Za-z0-9]+)?$"
           },
           "catalog": { "type": "string" },
-          "note": { "type": "string" }
+          "note": { "type": "string" },
+          "position": { "$ref": "#/$defs/point", "description": "Top-left corner of the connector box in millimetres, when it was put there by hand. Missing: placed where its wires are shortest." },
+          "pinSide": { "enum": ["left", "right"], "description": "Which side of the box the pins are on. Missing: the side facing the chips." }
         }
       }
     }

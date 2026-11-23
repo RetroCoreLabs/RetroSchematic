@@ -126,8 +126,8 @@ namespace RetroSchematic.Tests
                 Assert.That(methods[i].GetCustomAttribute<System.ComponentModel.DescriptionAttribute>(), Is.Not.Null, methods[i].Name);
                 tools++;
             }
-            // 16 sheet tools, 6 bus tools, 7 block tools and 2 signal tools
-            Assert.That(tools, Is.EqualTo(31));
+            // 17 sheet tools, 6 bus tools, 7 block tools and 2 signal tools
+            Assert.That(tools, Is.EqualTo(32));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 

@@ -149,9 +149,9 @@ command-line tool and an MCP tool can do the same.
 
 - Wires are routed again from scratch after every change; hand-placed bend points are not kept
   yet (see section 1b). A wire can still take a long way round a busy corner of a sheet.
-- Connector wires to the far right box make long runs across the sheet; supply pins (GND, +12V)
-  and signals with more than 6 chip pins keep their tags. Moving a connector box by hand is not
-  possible yet (section 8).
+- Connector boxes go left or right of the chips. On 2A50 the front connector's wires still loop
+  round the 75154 receivers, whose inputs are on their left side; the 75150/75154 chips would
+  need to be turned round (a mirrored chip) to fix that.
 - OR and buffer symbols in ND style are not transcribed from the manual yet; they are drawn as
   a labelled box.
 
@@ -188,8 +188,9 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
   81-95 (`F.n`).
 - ND-100 plug rows (a, b, c) have no place in a pin reference yet: `P.C.12` names plug C pin 12
   but not the row, so ND-100 backplane names are not looked up by pin (by name they are).
-- A connector box is always placed right of the chips; it cannot be moved by hand, and its
-  pins are always on its left side.
+- A connector box can be placed by hand anywhere and its pins put on its left or right side,
+  but not on its top or bottom edge (a box above or below the chips still has its pins on a
+  side).
 - Inside a block, a signal that reaches a connector only on the top level shows the connector
   box there; the block's own port is the way in.
 - Function tags on a signal are read, written and shown, but the window has no field for them.
