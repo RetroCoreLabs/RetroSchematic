@@ -138,6 +138,8 @@ namespace RetroSchematic.Desktop.Controls
             if (s.Net.PullUp != null)
                 AddRow(rows, "Pull-up", Text(s.Net.PullUp, "detail-value"));
             el.Children.Add(rows);
+            if (s.DriverInputs.Count > 0)
+                el.Children.Add(DriverInputRows(s.DriverInputs));
             if (s.MixedDrive)
                 el.Children.Add(Warning("Mixed drivers: outputs of different kinds drive this line."));
             if (s.Conflict != null)
@@ -449,6 +451,41 @@ namespace RetroSchematic.Desktop.Controls
             Grid.SetColumn(value, 1);
             g.Children.Add(l);
             g.Children.Add(value);
+        }
+
+        // "follow inputs": the driving gate's inputs as rows; a click traces that input's signal,
+        // so a backwards trace steps through the gate body
+        private StackPanel DriverInputRows(List<DriverInput> inputs)
+        {
+            StackPanel list = new() { Spacing = 0 };
+            list.Children.Add(Text("Inputs of the driving gate (click to follow)", "detail-label"));
+            for (int i = 0; i < inputs.Count; i++)
+            {
+                DriverInput d = inputs[i];
+                Grid g = new() { ColumnDefinitions = new ColumnDefinitions("62,*") };
+                TextBlock at = Text(d.At, "");
+                at.Classes.Add("detail-mono");
+                g.Children.Add(at);
+                TextBlock name = Text(d.Name.Length == 0 ? "not connected" : d.Name, "");
+                Grid.SetColumn(name, 1);
+                g.Children.Add(name);
+                Button row = new() { Content = g, Tag = d.NetKey };
+                // looks like a pin-table row (Styles/Details.axaml), but is not one
+                row.Classes.Add("driver-input");
+                if (i % 2 == 1)
+                    row.Classes.Add("alt");
+                if (d.NetKey.Length > 0)
+                {
+                    string key = d.NetKey;
+                    row.Click += (sender, e) => SignalClicked?.Invoke(key);
+                }
+                else
+                {
+                    row.IsEnabled = false;
+                }
+                list.Children.Add(row);
+            }
+            return list;
         }
 
         private static string DriverText(SignalInfo s)

@@ -108,6 +108,33 @@ namespace RetroSchematic.Render
     }
 
     /// <summary>
+    /// One input of the gate that drives a signal, so a backwards trace can step through the
+    /// gate body: the input pin and the signal on it.
+    /// </summary>
+    public sealed class DriverInput
+    {
+        /// <summary>
+        /// The gate (11D/1).
+        /// </summary>
+        public string GateId { get; init; } = "";
+
+        /// <summary>
+        /// The input pin (3B.9).
+        /// </summary>
+        public string At { get; init; } = "";
+
+        /// <summary>
+        /// The signal's key (IRFTIE_1), or empty when nothing is wired to the pin.
+        /// </summary>
+        public string NetKey { get; init; } = "";
+
+        /// <summary>
+        /// The signal's name in the chosen name style, or empty when nothing is wired to the pin.
+        /// </summary>
+        public string Name { get; init; } = "";
+    }
+
+    /// <summary>
     /// Everything known about one signal: what the file says (its description and where that
     /// came from, its notes) and what follows from the chip catalogue, worked out here and never
     /// stored (the drive type, the driving pins, the loads, the bus, the levels it reaches). When
@@ -140,6 +167,12 @@ namespace RetroSchematic.Render
         /// The pins that drive the signal (outputs).
         /// </summary>
         public List<SignalPin> Drivers { get; } = new();
+
+        /// <summary>
+        /// The inputs of the gates that drive this signal, in the gates' input order, so a reader
+        /// can follow the signal backwards through a gate. Empty when no gate drives it.
+        /// </summary>
+        public List<DriverInput> DriverInputs { get; } = new();
 
         /// <summary>
         /// How many pins only read it (inputs, clocks, enables).
@@ -324,6 +357,7 @@ namespace RetroSchematic.Render
             }
             if (s.Drivers.Count > 0 && !s.MixedDrive)
                 s.DerivedDrive = DriveOf(firstType!);
+            AddDriverInputs(editor.Netlist, net, style, s.DriverInputs);
             if (net.Drive.HasValue && s.DerivedDrive.HasValue && net.Drive.Value != s.DerivedDrive.Value)
                 s.Conflict = "The file says " + DriveText(net.Drive.Value) + ", the chip catalogue says " + DriveText(s.DerivedDrive.Value) + ".";
             BusLine? bus = editor.BusOf(net);
@@ -343,6 +377,48 @@ namespace RetroSchematic.Render
                 }
             }
             return s;
+        }
+
+        // every gate whose output is on this signal: its inputs and the signals on them
+        private static void AddDriverInputs(Netlist n, Net net, SignalNameStyle style, List<DriverInput> into)
+        {
+            for (int i = 0; i < net.Pins.Count; i++)
+            {
+                string part = net.Pins[i].PartRef;
+                int pin = net.Pins[i].Pin;
+                for (int g = 0; g < n.Gates.Count; g++)
+                {
+                    Gate gate = n.Gates[g];
+                    if (gate.Part != part || gate.Output != pin)
+                        continue;
+                    for (int k = 0; k < gate.Inputs.Count; k++)
+                    {
+                        string at = part + "." + gate.Inputs[k].ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        Net? on = NetOnPin(n, at);
+                        into.Add(new DriverInput
+                        {
+                            GateId = gate.Id,
+                            At = at,
+                            NetKey = on == null ? "" : SheetLayout.NetKey(on),
+                            Name = on == null ? "" : SignalNames.Line(on, style),
+                        });
+                    }
+                }
+            }
+        }
+
+        private static Net? NetOnPin(Netlist n, string at)
+        {
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                List<PinReference> pins = n.Nets[i].Pins;
+                for (int j = 0; j < pins.Count; j++)
+                {
+                    if (pins[j].At == at)
+                        return n.Nets[i];
+                }
+            }
+            return null;
         }
 
         /// <summary>

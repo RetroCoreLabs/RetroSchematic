@@ -99,6 +99,30 @@ namespace RetroSchematic.Desktop.Tests
             w.Close();
         }
 
+        [AvaloniaTest]
+        public void DrivenBy_ListsTheGatesInputs_AndAClickFollowsOne()
+        {
+            // N_3B_8 is driven by the 7451 AND-OR-INVERT 3B/1 (inputs 9, 10, 13, 1)
+            MainWindow w = Open();
+            w.PickFromList("net:N_3B_8");
+            Controls.DetailsPanel d = w.FindControl<Controls.DetailsPanel>("Details")!;
+            Assert.That(d.AllText(), Does.Contain("3B.9").And.Contain("3B.10").And.Contain("3B.13").And.Contain("3B.1"));
+            Save(w, "aoi-nd");
+            w.PickFromList("part:3B");
+            Save(w, "aoi-nd-part");
+            w.PickFromList("net:N_3B_8");
+            Button? input = Find(d, b => b.Classes.Contains("driver-input"));
+            Assert.That(input, Is.Not.Null);
+            string key = (string)input!.Tag!;
+            Assert.That(key, Is.Not.Empty);
+            input.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+            Assert.That(w.Session!.Traced, Is.EqualTo(key), "the input's signal is traced");
+            w.Session.SetStyle(RetroSchematic.Render.SymbolStyle.Modern);
+            w.PickFromList("net:N_3B_8");
+            Save(w, "aoi-modern");
+            w.Close();
+        }
+
         private static MainWindow Open()
         {
             MainWindow w = new() { Width = 1500, Height = 1000 };

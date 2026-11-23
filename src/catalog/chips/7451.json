@@ -1,0 +1,140 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7451",
+  "family": "74",
+  "title": "Dual 2-wide 2-input AND-OR-INVERT gate",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "5-16 (PDF page 16)",
+      "familyUsed": "SN7451 (J, N package)"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (AND-OR-INVERT gates with totem-pole outputs)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "6-30, 6-31 (PDF pages 30-31)",
+      "familyUsed": "SN7451"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2C",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "1C",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 12,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 13,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "8",
+      "formula": "1Y = NOT ((1A AND 1B) OR (1C AND 1D))",
+      "text": "Gate 1: 1Y is low when 1A and 1B are both high, or 1C and 1D are both high."
+    },
+    {
+      "output": "6",
+      "formula": "2Y = NOT ((2A AND 2B) OR (2C AND 2D))",
+      "text": "Gate 2: 2Y is low when 2A and 2B are both high, or 2C and 2D are both high."
+    }
+  ],
+  "state": null,
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "Same pinout as the 7450 without the expander: pins 11 and 12 are marked 'make no external connection' on page 5-16. Positive logic Y = NOT(AB + CD). Switching table on page 6-31 ('51): tPLH 13 typ / 22 max ns, tPHL 8 typ / 15 max ns; IOH -400 uA and IOL 16 mA (74 family) on page 6-30. No minimum delays given; the path-delay function uses 0 ns."
+}

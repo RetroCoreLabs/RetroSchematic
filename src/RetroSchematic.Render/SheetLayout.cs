@@ -477,7 +477,11 @@ namespace RetroSchematic.Render
         private static double GateHeight(Gate g) => Math.Max(24, (g.Inputs.Count + 1) * PinPitch);
 
         private static double SymbolWidth(Gate g, SymbolStyle style)
-            => GateWidth + (style == SymbolStyle.NorskData && g.Kind == GateKind.And ? AndTail : 0) + (style == SymbolStyle.Modern ? 6 : 0);
+            => GateWidth + (style == SymbolStyle.NorskData && g.Kind == GateKind.And ? AndTail : 0) + (style == SymbolStyle.Modern ? 6 : 0)
+                + (style == SymbolStyle.Modern && g.Kind == GateKind.AndOrInvert ? AoiExtra : 0);
+
+        // the modern AND-OR-INVERT is two AND shapes in front of a NOR, so it is wider
+        private const double AoiExtra = 20;
 
         /// <summary>
         /// Room a label takes beyond the pin end: the diamond, a gap, the name and its subscript.
@@ -1131,6 +1135,16 @@ namespace RetroSchematic.Render
                     Line(d, DrawRole.Symbol, c, owner, r, y + 3, r + AndTail, m);
                     Line(d, DrawRole.Symbol, c, owner, r + AndTail, m, r, b - 3);
                     break;
+                case GateKind.AndOrInvert:
+                    // ND-13.003.01 page 12 (PDF page 18), "7450 - 7451 - 7460 2x2 AND-OR-INVERT":
+                    // one box split down the middle; the left half split again into the two AND
+                    // sections (two inputs each), the right half crossed like the NOR box.
+                    double mid = x + (GateWidth / 2);
+                    Line(d, DrawRole.Symbol, c, owner, mid, y, mid, b);
+                    Line(d, DrawRole.Symbol, c, owner, x, m, mid, m);
+                    Line(d, DrawRole.Symbol, c, owner, mid, y, r, b);
+                    Line(d, DrawRole.Symbol, c, owner, mid, b, r, y);
+                    break;
                 default:
                     // Not drawn by this layout yet: the kind is written in the box, so it shows as
                     // unfinished instead of looking like a NAND.
@@ -1183,11 +1197,50 @@ namespace RetroSchematic.Render
                     if (gate.Kind == GateKind.Not)
                         Bubble(d, c, owner, r - 1, m);
                     break;
+                case GateKind.AndOrInvert:
+                    ModernAoi(d, gate, c, owner, x, y, h);
+                    break;
                 default:
                     d.Items.Add(new DrawItem { Kind = DrawKind.Rect, Role = DrawRole.Symbol, Confidence = c, Owner = owner, X1 = x, Y1 = y, X2 = GateWidth, Y2 = h });
                     Text(d, DrawRole.Symbol, c, owner, x + 3, m + 3, "?", 8, TextAnchor.Start);
                     break;
             }
+        }
+
+        // Two AND shapes, one per input pair (the pair's pins sit at y + 12 and y + 24, and
+        // y + 36 and y + 48), each joined by a short line to a NOR with its bubble. The NOR ends
+        // AoiExtra further right than a plain gate, so the output pin line starts after the bubble.
+        private static void ModernAoi(SchematicDrawing d, Gate gate, Confidence c, string owner, double x, double y, double h)
+        {
+            int pairs = Math.Max(1, gate.Inputs.Count / 2);
+            double andW = 18, half = 10;
+            double nx = x + andW + 6, nr = x + GateWidth + AoiExtra, m = y + (h / 2);
+            double top = y + PinPitch - 2, bottom = y + (pairs * 2 * PinPitch) + 2;
+            for (int i = 0; i < pairs; i++)
+            {
+                double cy = y + PinPitch + (i * 2 * PinPitch) + (PinPitch / 2);
+                double ay = cy - half, ab = cy + half;
+                Path(d, c, owner, new[]
+                {
+                    new PathSegment(PathOp.MoveTo, x, ay),
+                    new PathSegment(PathOp.LineTo, x + andW - half, ay),
+                    new PathSegment(PathOp.ArcClockwiseTo, x + andW - half, ab, half),
+                    new PathSegment(PathOp.LineTo, x, ab),
+                    new PathSegment(PathOp.Close, x, ay),
+                });
+                // into the NOR's curved back; nx + 4 is about where that curve is at this height
+                Line(d, DrawRole.Symbol, c, owner, x + andW, cy, nx + 4, cy);
+            }
+            double w = nr - nx;
+            Path(d, c, owner, new[]
+            {
+                new PathSegment(PathOp.MoveTo, nx, top),
+                new PathSegment(PathOp.QuadTo, nr, m, nx + (w * 0.6), top),
+                new PathSegment(PathOp.QuadTo, nx, bottom, nx + (w * 0.6), bottom),
+                new PathSegment(PathOp.QuadTo, nx, top, nx + 8, m),
+                new PathSegment(PathOp.Close, nx, top),
+            });
+            Bubble(d, c, owner, nr + 3, m);
         }
 
         /// <summary>

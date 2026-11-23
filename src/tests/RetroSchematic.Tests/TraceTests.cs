@@ -77,6 +77,61 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void EveryGateOutputOn2A50_IsDrawn_JoinedToItsSignal_AndTraceable([Values] SymbolStyle style)
+        {
+            // 3B (7451, AND-OR-INVERT) was drawn as an "OTHER" box; its output 3B.8 (N_3B_8 to
+            // 7B.11) must be drawn and reachable like every other gate output
+            string real = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            SheetSession s = new(real, style, DemoSheetLayoutTests.Catalog);
+            int checkedOutputs = 0;
+            for (int g = 0; g < s.Netlist.Gates.Count; g++)
+            {
+                Model.Gate gate = s.Netlist.Gates[g];
+                Assert.That(gate.Kind, Is.Not.EqualTo(Model.GateKind.Other), gate.Id + " has a real symbol");
+                string at = gate.Part + "." + gate.Output.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                Assert.That(s.Drawing.Pins.TryGetValue(at, out DrawPoint end), Is.True, at + " is drawn");
+                Model.Net? net = null;
+                for (int i = 0; i < s.Netlist.Nets.Count && net == null; i++)
+                {
+                    for (int j = 0; j < s.Netlist.Nets[i].Pins.Count; j++)
+                    {
+                        if (s.Netlist.Nets[i].Pins[j].At == at)
+                            net = s.Netlist.Nets[i];
+                    }
+                }
+                if (net == null)
+                    continue;
+                string key = SheetLayout.NetKey(net);
+                // a wire or a label's pin line of that signal starts at the pin end
+                bool joined = false;
+                for (int i = 0; i < s.Drawing.Items.Count && !joined; i++)
+                {
+                    DrawItem it = s.Drawing.Items[i];
+                    if (it.Kind != DrawKind.Line || it.Owner != "net:" + key)
+                        continue;
+                    joined = Near(it.X1, it.Y1, end) || Near(it.X2, it.Y2, end);
+                }
+                Assert.That(joined, Is.True, at + " is joined to " + key + " by a drawn line");
+                s.Trace(key);
+                Assert.That(s.TracedPins(), Does.Contain(at), at + " is lit by its trace");
+                checkedOutputs++;
+            }
+            Assert.That(checkedOutputs, Is.GreaterThan(60));
+            s.Trace("N_3B_8");
+            Assert.That(s.TracedPins(), Is.EquivalentTo(new[] { "3B.8", "7B.11" }));
+            // following it backwards: the 7451's four inputs, in the gate's input order
+            SignalInfo info = SignalInfo.Of(s.Editor, s.Editor.FindNetByKey("N_3B_8")!, SignalNameStyle.Slash);
+            Assert.That(info.DriverInputs.Count, Is.EqualTo(4));
+            Assert.That(info.DriverInputs[0].At, Is.EqualTo("3B.9"));
+            Assert.That(info.DriverInputs[3].At, Is.EqualTo("3B.1"));
+            for (int i = 0; i < 4; i++)
+                Assert.That(info.DriverInputs[i].NetKey, Is.Not.Empty, info.DriverInputs[i].At + " has a signal");
+        }
+
+        // a wire may stop at the pin dot's circle instead of its centre
+        private static bool Near(double x, double y, DrawPoint p) => System.Math.Abs(x - p.X) <= 5 && System.Math.Abs(y - p.Y) <= 5;
+
+        [Test]
         public void ClickingAPin_TracesItsSignal_AndEmptyPaperClears()
         {
             SheetSession s = Open();

@@ -185,14 +185,15 @@
     <Setter Property="TextWrapping" Value="Wrap"/>
   </Style>
 
-  <!-- the pin table: header, rows with alternating shading, the driver row marked -->
+  <!-- the pin table: header, rows with alternating shading, the driver row marked; the
+       "inputs of the driving gate" rows in a signal's Electrical card look the same -->
   <Style Selector="Grid.pin-head TextBlock">
     <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
     <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
     <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
     <Setter Property="FontWeight" Value="SemiBold"/>
   </Style>
-  <Style Selector="Button.pin-row">
+  <Style Selector="Button.pin-row, Button.driver-input">
     <Setter Property="Background" Value="Transparent"/>
     <Setter Property="BorderThickness" Value="2,0,0,0"/>
     <Setter Property="BorderBrush" Value="Transparent"/>
@@ -202,22 +203,22 @@
     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
     <Setter Property="Cursor" Value="Hand"/>
   </Style>
-  <Style Selector="Button.pin-row.alt">
+  <Style Selector="Button.pin-row.alt, Button.driver-input.alt">
     <Setter Property="Background" Value="{DynamicResource FluentBackgroundSecondaryBrush}"/>
   </Style>
   <Style Selector="Button.pin-row.driver">
     <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
   </Style>
-  <Style Selector="Button.pin-row:pointerover /template/ ContentPresenter">
+  <Style Selector="Button.pin-row:pointerover /template/ ContentPresenter, Button.driver-input:pointerover /template/ ContentPresenter">
     <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
   </Style>
-  <Style Selector="Button.pin-row TextBlock">
+  <Style Selector="Button.pin-row TextBlock, Button.driver-input TextBlock">
     <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
     <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
     <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
     <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
   </Style>
-  <Style Selector="Button.pin-row TextBlock.detail-mono">
+  <Style Selector="Button.pin-row TextBlock.detail-mono, Button.driver-input TextBlock.detail-mono">
     <Setter Property="FontFamily" Value="Consolas, Courier New, monospace"/>
   </Style>
   <Style Selector="Button.pin-row.driver TextBlock.dir">

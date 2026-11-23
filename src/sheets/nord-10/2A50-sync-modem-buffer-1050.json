@@ -866,7 +866,7 @@
     {
       "id": "3B/1",
       "part": "3B",
-      "kind": "other",
+      "kind": "and-or-invert",
       "inputs": [
         9,
         10,
@@ -880,7 +880,7 @@
     {
       "id": "3B/2",
       "part": "3B",
-      "kind": "other",
+      "kind": "and-or-invert",
       "inputs": [
         3,
         2,

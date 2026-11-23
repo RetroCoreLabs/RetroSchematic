@@ -119,6 +119,12 @@ namespace RetroSchematic.Model
         Buffer,
 
         /// <summary>
+        /// AND-OR-INVERT (7450, 7451): the inputs are taken in pairs, in the order listed, each
+        /// pair is ANDed and the output is the NOR of the pairs. Written "and-or-invert".
+        /// </summary>
+        AndOrInvert,
+
+        /// <summary>
         /// Anything else; drawn as a labelled box.
         /// </summary>
         Other,

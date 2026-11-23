@@ -133,6 +133,7 @@
               "and",
               "or",
               "buffer",
+              "and-or-invert",
               "other"
             ]
           },
