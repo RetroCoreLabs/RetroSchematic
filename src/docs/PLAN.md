@@ -2,7 +2,21 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** the owner's decision on the datasheet PDFs (415 MB, over the 300 MB limit); meanwhile pin function text (chip catalogue step 4).
+**Next:** pin function text (chip catalogue step 4).
+
+## Symbol boxes on the scanned page (training data for a symbol finder)
+
+Owner approved 2026-11-23. Plan item only, not built yet.
+
+- Each read part, gate, circled pin, passive part and label gets an optional box on its source
+  page: the source page id, x/y/width/height in page pixels at the stored dpi (or the four
+  corners), what it is (part ref, gate, circled pin, label text) and who drew the box (hand or
+  tool).
+- Window: in the Original view (F6) draw or move a box and link it to a part, like the chip
+  boxes on the PCB photos. An MCP tool to set one.
+- Later, once 10-20 cards are read: train a detector (symbols and printed text) on these boxes
+  and use it as a first pass on new cards, every result marked inferred and checked by a
+  reader. Measure it on a card it has never seen before trusting it.
 
 ## Queue from the 2026-11-23 session (in this order)
 
@@ -16,25 +30,16 @@ Outstanding work only. Finished items are deleted.
   is read.
 - Later, after the grid: find each chip's exact outline on the photo by analysis and fill in
   the boxes (still editable by hand).
-- Datasheets (owner's request): every chip file gets `datasheets` ({title, url checked to
-  answer, file, pages}); the PDFs committed under `datasheets/<maker>/` (one copy of a big data
-  book, chips point at pages; LFS rule exists), `datasheets/README.md` listing every file;
-  report the total size before committing (stop above 300 MB). The PCB catalogue's
-  `chipset[].url` entries give more sources, such as sintran.com's COM2601.pdf and VP12-12.pdf
-  (the VP12 chip file has none yet); check each answers first. Details row "Datasheet" with
-  Open PDF / Open web page; MCP `get_datasheet`; a test that every referenced file exists and
-  every chip with behaviour cites one. STOPPED 2026-11-23 before committing: every source
-  answered and is a PDF, but the 47 distinct files add up to 415 MB (the eight data books of
-  26-47 MB each make up most of it: Intel 1976 catalogue 46.8, National memory 1977 43.6,
-  National TTL 1976 40.5, Motorola TTL 1971 38.4, Mostek memory 1978 34.9, National interface
-  1975 32.7, TI interface 1974 31.2, TI interface 1981 26.4). Waits for the owner's choice
-  (cut the big books down to the cited pages, leave some books as links only, or raise the
-  limit). Nothing of it is in the repository.
-- Passive parts, follow-up: a reading agent adds 2A50's real resistors, capacitors, switch
-  blocks (15E, 1E as `SW-DIP-n` parts tied to the `switches` section) and straps; until then
-  the open-collector lines of 2A50 show the "no pull-up resistor" warning. Window: an edit-mode
-  menu entry to add a passive part (the MCP tool `add_passive` and `SheetEditor.AddPassive`
-  exist).
+- Datasheets (owner's decision 2026-11-23): no whole data books and no bulk PDF commit.
+  A datasheet is added only for a chip that a read card actually uses, as the cards are read.
+  Each one is stored as OCR'd text (Markdown) of the pages that chip needs, plus its figures
+  (pinout, function table, timing) made again as SVG from the original PDF, so it stays small
+  but useful. The web link to the original PDF is kept in the chip file. Not started.
+- Passive parts, follow-up: window, an edit-mode menu entry to add a passive part (the MCP
+  tool `add_passive` and `SheetEditor.AddPassive` exist). 2A50: the pull-ups of the
+  open-collector bus lines CONNECT, INPUT, LEV10 and LEV12 are not on the sheet (reading
+  question, docs/2A50-passives-and-pins.md); a passive serving a part that is not a chip (the
+  switch pull-ups R-15E-n) is drawn far from it.
 - ND-100 plug rows in pin references (`P.C.a.17`): see section 8.
 - Chip catalogue as data. Steps 1 and 2 are done: the formula reader
   (`RetroSchematic.Model/ChipFormula.cs`) and the structured `behaviour` of every chip file
