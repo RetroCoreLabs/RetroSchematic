@@ -528,6 +528,9 @@
     <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
     <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
     <Setter Property="BorderThickness" Value="1"/>
+    <!-- a text label (the view switcher) keeps the theme's text colour on the highlight;
+         Fluent would otherwise make it white, which cannot be read on the light highlight -->
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
   </Style>
   <Style Selector="ToggleButton.toolbar-button:disabled">
     <Setter Property="Opacity" Value="0.4"/>

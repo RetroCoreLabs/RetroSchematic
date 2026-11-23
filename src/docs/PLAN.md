@@ -2,11 +2,52 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** decide on 2A50's BD buses (section 7), then add the parts the catalogue cannot name
-yet (see `docs/2A50-catalogue-map.md`).
+**Next:** the board info import from the ND PCB catalogue (first item of the queue), then the
+PCB photo grid, then the datasheets.
 
 ## Queue from the 2026-11-23 session (in this order)
 
+- Board info from the ND PCB catalogue (owner, 2026-11-23). It lives outside the repository on
+  the owner's machine and is read only: `pcb.json` (522 boards scraped from norsk-data.com) and
+  one folder per part number with component- and solder-side photos and `MetaData.json`.
+  (1) Rename the sheet's `board` fields to the catalogue's names where they mean the same:
+  number (card number, 1050), partNumber (322049), title, ndSystem, printVersion, ecoVersion,
+  printVersions, specifications.size / layers, releaseDate, leds, straps, switches,
+  connectors, sourceUrl. The `board` section is new (2026-11-23) and only 2A50 uses it, so this
+  is the moment. (2) File > "Import board info from the ND PCB catalogue..." and an MCP tool:
+  pick pcb.json, match by card or part number, fill the facts with source = the catalogue and
+  its sourceUrl, copy the photos into `<sheet>-files/photos/`. Never copy the whole catalogue
+  into the repository. (3) 2A50 = 322049 there, with FOUR photos (old and new variant of both
+  sides): import all, and let the PCB views choose the variant. Its switch text agrees with our
+  reading ("IDENT (position E1), binary inverted value * 4", "First device number (position
+  E15), binary value * 8"): add it as a second source on both switches, noting that E1/E15
+  there are our 1E/15E written row first. "Inverted" there supports our inferred on = 0 for 1E.
+- PCB photo grid (owner's final design, 2026-11-23; replaces the earlier per-photo ideas):
+  (1) the grid is defined ONCE per board type, by analysis, in a board-format file
+  (`catalog/boards/nord10-card.json`, `nd100-card.json`): board size in mm and where each
+  column (1, 3, 5 ... as ND numbers them) and row (A, B, C ...) lies, measured from the board
+  edges. Work it out from several photos of each type in the PCB catalogue against the position
+  codes on our drawings (2A50: 13D, 7-8C-D, 19C ...), say how it was measured, mark it
+  inferred; leave a value open when the photos do not show it. (2) Placing the template on a
+  photo = the board outline in it (4 corners): found automatically if that is reliable on the
+  2A50 photos, else the whole image; the corners are dragged by hand and saved per photo; the
+  solder side uses the mirrored template. (3) A chip's area = the grid cell(s) its position code
+  names (7-8C-D spans columns 7-8, rows C-D): hover shows position, type and function; a click
+  picks the part (Details, trace, Back/Forward); an overlay switch draws a themed, see-through
+  named box on each such cell. (4) Each chip's box can be edited by hand (move, resize,
+  corners, rotate); the hand box is saved in the sheet and wins over the cell. Tests: template
+  -> cell rectangles, spanning codes, mirror, corner mapping, hand box over cell, hover -> part.
+- Later, after the grid: find each chip's exact outline on the photo by analysis and fill in
+  the boxes (still editable by hand).
+- Datasheets (owner's request): every chip file gets `datasheets` ({title, url checked to
+  answer, file, pages}); the PDFs committed under `datasheets/<maker>/` (one copy of a big data
+  book, chips point at pages; LFS rule exists), `datasheets/README.md` listing every file;
+  report the total size before committing (stop above 300 MB). The PCB catalogue's
+  `chipset[].url` entries give more sources, such as sintran.com's COM2601.pdf and VP12-12.pdf
+  (the VP12 chip file has none yet); check each answers first. Details row "Datasheet" with
+  Open PDF / Open web page; MCP `get_datasheet`; a test that every referenced file exists and
+  every chip with behaviour cites one.
+- ND-100 plug rows in pin references (`P.C.a.17`): see section 8.
 - Chip catalogue as data. Steps 1 and 2 are done: the formula reader
   (`RetroSchematic.Model/ChipFormula.cs`) and the structured `behaviour` of every chip file
   (`catalog/chips/FORMAT.md`, Behaviour; `RetroSchematic.Model/ChipBehaviour.cs`;
@@ -24,8 +65,13 @@ yet (see `docs/2A50-catalogue-map.md`).
   rising) end together; which wins is not on the drawing (`docs/2A50-interrupts.md`).
 - Front connector pins (circled 81-95 with V.24 names) are written `F.` as `inferred`; the
   supply pins circled 62/63 and 66/67 are taken as backplane pins, also `inferred`.
-- Switches 15E and 1E, resistors and capacitors have no place in format version 1; they are
-  described in net notes. Nine nets end at a switch or an RC part and so have one pin.
+- Resistors and capacitors have no place in the format; they are described in net notes. Nine
+  nets end at a switch or an RC part and so have one pin. (Switches 15E and 1E are now in the
+  sheet's `switches` section.)
+- The lever positions of 15E and 1E on the component-side photo cannot be read (rocker
+  switches, the pressed side is not clear); they are `open`. Which block is 15E and which 1E
+  on the photo is inferred from the chips beside them. The meaning of "on" is inferred for
+  both (switch to ground against a pull-up), not read.
 
 ## 1. Symbol catalogue - what is still missing
 
@@ -189,7 +235,10 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
   pins stay `P.n` and its box says "connector not known". The same holds for the modem pins
   81-95 (`F.n`).
 - ND-100 plug rows (a, b, c) have no place in a pin reference yet: `P.C.12` names plug C pin 12
-  but not the row, so ND-100 backplane names are not looked up by pin (by name they are).
+  but not the row, so ND-100 backplane names are not looked up by pin (by name they are). The
+  planned form is `P.C.a.17`. It breaks the rule "a pin reference splits at its last dot into
+  connector and pin" (`ConnectorPins`, the reader's checks, the layout), so it is its own step.
+  The sheet's `connectors` entries already record a plug's rows and pins per row.
 - A connector box can be placed by hand anywhere and its pins put on its left or right side,
   but not on its top or bottom edge (a box above or below the chips still has its pins on a
   side).
@@ -225,7 +274,11 @@ Built after the chip behaviour data in section 2, because it runs on it.
 
 ## 10. Web version (low priority - last)
 
-- A WebAssembly build of the same window code (Avalonia's browser target, or Blazor if that
-  turns out to fit better - not decided), published on GitHub Pages: pick a card from a list of
-  controllers, load its packed .rsx sheet, and show the same viewer as the desktop app.
+- How the tools split the work: content (cards, chips, signals, metadata) is made and edited
+  in the Avalonia desktop app, together with an LLM through the MCP server. The web version is
+  for looking only - read-only for now.
+- A WebAssembly build (Blazor, or Avalonia's browser target if that turns out to fit better -
+  not decided), reusing the same libraries, published on GitHub Pages: pick a card from a list
+  of controllers, load its packed .rsx sheet, and show the same viewer as the desktop app
+  (drawing, trace, Details, chips, signals, metadata, original page, PCB photos).
 

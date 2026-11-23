@@ -91,6 +91,36 @@ CONFLICT line when the file says something else), the driving pins, the loads, a
 like `13C.7  74153 1Y  output`. In edit mode the panel also has fields for the description, its
 source and the notes.
 
+## Views: drawing, original page, board photos
+
+The toolbar has four view buttons (also View menu, F5-F8):
+
+| Key | View | Shows |
+|---|---|---|
+| F5 | Drawing | the drawing worked out from the netlist |
+| F6 | Original | the original schematic page the sheet was read from; a page picker appears when there are several |
+| F7 | PCB front | the photo of the component side |
+| F8 | PCB back | the photo of the solder side |
+
+Every view zooms with the wheel, moves with a drag and fits with Ctrl+0 or the Fit button,
+and keeps its own zoom when you switch away and back. The pages and photos are the sheet's
+`sources` and `photos` (see `docs/FORMAT.md`): inside the file for a `.rsx`, linked beside it
+for a `.rsc`. A PDF page is shown at 150 dpi.
+
+## The board
+
+With nothing picked, Details shows the **Board** card: machine, board number, print and ECO
+versions, size, layers, connectors, pages, photos and switches. **File > Board info...** (or the
+card's button) opens the Board window, where in edit mode you change those facts, document each
+connector (for an ND-100 card the plugs A, B and C each on their own, "not used" allowed), and
+import, replace or remove original pages and photos (with thumbnails; for a PDF it asks which
+pages). A `.rsc` links an imported file where it is; a `.rsx` keeps it inside, and **Save as
+.rsx** packs every linked file into the one file (a PDF page as PNG at 300 dpi).
+
+The switch blocks (2A50: 15E device address, 1E ident code) are listed at the end of the
+Parts list. Picking one shows what each lever sets and what "on" means, each fact marked
+read, inferred or open; in edit mode an editor under Details changes them.
+
 ## Settings
 
 The Settings window has two columns. **Defaults for all sheets** are kept by the app.

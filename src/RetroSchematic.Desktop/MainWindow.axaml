@@ -3,6 +3,7 @@
         xmlns:c="using:RetroSchematic.Desktop.Controls"
         x:Class="RetroSchematic.Desktop.MainWindow"
         Title="RetroSchematic"
+        Icon="avares://RetroSchematic/Assets/RetroSchematic.ico"
         Width="1400" Height="900"
         Background="{DynamicResource FluentBackgroundPrimaryBrush}">
   <!-- Layout and colours follow RetroCommander: every colour is a {DynamicResource} brush from
@@ -20,6 +21,8 @@
         <Separator/>
         <MenuItem Header="_Save sheet" Click="OnSave" x:Name="SaveItem" IsEnabled="False" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
         <MenuItem Header="Save sheet _as..." Click="OnSaveAs" x:Name="SaveAsItem" IsEnabled="False"/>
+        <MenuItem Header="_Board info..." Click="OnBoardInfo" x:Name="BoardInfoItem" IsEnabled="False"
+                  ToolTip.Tip="The board: machine, board number, versions, size, connectors, original pages and photos"/>
         <MenuItem Header="Save as S_VG..." Click="OnSaveSvg" x:Name="SaveSvgItem" IsEnabled="False"/>
         <MenuItem Header="Export _PNG..." Click="OnExportPng" x:Name="ExportPngItem" IsEnabled="False"/>
         <Separator/>
@@ -64,6 +67,11 @@
         <MenuItem Header="_Settings..." x:Name="SettingsItem" Click="OnSettings" HotKey="Ctrl+OemComma" InputGesture="Ctrl+OemComma"/>
         <Separator/>
         <MenuItem Header="_Fit to window" Click="OnFit" HotKey="Ctrl+D0" InputGesture="Ctrl+0"/>
+        <Separator/>
+        <MenuItem Header="_Drawing" Tag="drawing" Click="OnViewItem" HotKey="F5" InputGesture="F5"/>
+        <MenuItem Header="_Original page" Tag="original" Click="OnViewItem" HotKey="F6" InputGesture="F6"/>
+        <MenuItem Header="PCB _front (component side)" Tag="front" Click="OnViewItem" HotKey="F7" InputGesture="F7"/>
+        <MenuItem Header="PCB b_ack (solder side)" Tag="back" Click="OnViewItem" HotKey="F8" InputGesture="F8"/>
         <Separator/>
         <MenuItem Header="_Theme" x:Name="ThemeMenu"/>
       </MenuItem>
@@ -113,6 +121,12 @@
         <Button x:Name="TbStep" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="One step (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconStep}"/></Button>
         <Button x:Name="TbReset" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Reset (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconReset}"/></Button>
         <Border Classes="toolbar-divider"/>
+        <!-- what the middle shows: the drawing, the original page, or a photo of either side of the board -->
+        <ToggleButton x:Name="TbViewDrawing" Classes="toolbar-button view-switch" Tag="drawing" Click="OnViewButton" Content="Drawing" ToolTip.Tip="The drawing (F5)"/>
+        <ToggleButton x:Name="TbViewOriginal" Classes="toolbar-button view-switch" Tag="original" Click="OnViewButton" Content="Original" IsEnabled="False" ToolTip.Tip="The original schematic page the sheet was read from (F6)" ToolTip.ShowOnDisabled="True"/>
+        <ToggleButton x:Name="TbViewFront" Classes="toolbar-button view-switch" Tag="front" Click="OnViewButton" Content="PCB front" IsEnabled="False" ToolTip.Tip="Photo of the component side of the board (F7)" ToolTip.ShowOnDisabled="True"/>
+        <ToggleButton x:Name="TbViewBack" Classes="toolbar-button view-switch" Tag="back" Click="OnViewButton" Content="PCB back" IsEnabled="False" ToolTip.Tip="Photo of the solder side of the board (F8)" ToolTip.ShowOnDisabled="True"/>
+        <Border Classes="toolbar-divider"/>
         <ComboBox x:Name="ChipBox" Classes="fluent-combobox" Width="140" IsEnabled="False" SelectionChanged="OnChipPicked"
                   VerticalAlignment="Center" ToolTip.Tip="The chip type the Place chip tool puts down"/>
         <TextBlock x:Name="ModeText" Classes="fluent-text" VerticalAlignment="Center" Margin="10,0,0,0" Text="Read-only"/>
@@ -159,8 +173,19 @@
       <DockPanel Grid.Column="2">
         <!-- where you are: Top > U2 (read-multiplexers); click a level to go back up to it -->
         <StackPanel x:Name="LevelBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2" Margin="0,6,0,0" IsVisible="False"/>
+        <!-- several original pages: pick which one the Original view shows -->
+        <StackPanel x:Name="PagePickerBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,6,0,0" IsVisible="False">
+          <TextBlock Classes="fluent-text" Text="Page" VerticalAlignment="Center"/>
+          <ComboBox x:Name="PagePicker" Classes="fluent-combobox" MinWidth="260" SelectionChanged="OnPagePicked"/>
+        </StackPanel>
         <Border Classes="panel-border" Margin="0,6" ClipToBounds="True">
-          <c:SchematicCanvas x:Name="Canvas"/>
+          <Grid>
+            <c:SchematicCanvas x:Name="Canvas"/>
+            <!-- the original page and the board photos, each with its own zoom -->
+            <c:ImageView x:Name="OriginalView" IsVisible="False" EmptyText="This sheet has no original page"/>
+            <c:ImageView x:Name="FrontView" IsVisible="False" EmptyText="This sheet has no photo of the component side"/>
+            <c:ImageView x:Name="BackView" IsVisible="False" EmptyText="This sheet has no photo of the solder side"/>
+          </Grid>
         </Border>
       </DockPanel>
       <GridSplitter Grid.Column="3" Background="Transparent"/>
@@ -177,6 +202,8 @@
           </DockPanel>
           <!-- the traced signal and its pins; clicking a pin centres the drawing on it -->
           <!-- the picked bus and its signals; every change goes through SheetEditor -->
+          <!-- the picked switch block, editable in edit mode; built in MainWindow.Board.cs -->
+          <StackPanel DockPanel.Dock="Bottom" x:Name="SwitchPanel" IsVisible="False" Margin="0,8,0,0" Spacing="4"/>
           <StackPanel DockPanel.Dock="Bottom" x:Name="BusPanel" IsVisible="False" Margin="0,8,0,0" Spacing="4">
             <TextBlock x:Name="BusTitle" Classes="fluent-text-header"/>
             <ListBox x:Name="BusMemberList" MaxHeight="220"

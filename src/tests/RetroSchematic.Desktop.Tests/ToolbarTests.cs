@@ -35,7 +35,12 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(buttons.Count, Is.GreaterThanOrEqualTo(25));
             for (int i = 0; i < buttons.Count; i++)
             {
-                Assert.That(buttons[i].Content, Is.InstanceOf<Path>(), buttons[i].Name + " has no vector icon");
+                // the view switcher (Drawing, Original, PCB front, PCB back) is labelled with words
+                // by the owner's design; every other button is an icon
+                if (buttons[i].Classes.Contains("view-switch"))
+                    Assert.That(buttons[i].Content as string, Is.Not.Null.And.Not.Empty, buttons[i].Name + " has no label");
+                else
+                    Assert.That(buttons[i].Content, Is.InstanceOf<Path>(), buttons[i].Name + " has no vector icon");
                 Assert.That(ToolTip.GetTip(buttons[i]) as string, Is.Not.Null.And.Not.Empty, buttons[i].Name + " has no tooltip");
             }
             w.Close();

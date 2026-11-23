@@ -137,7 +137,10 @@ namespace RetroSchematic.Desktop
             ApplyDisplay();
             FillLists();
             FillChipBox();
-            Details.ShowText("Details", "Click a part, gate, signal or pin on the drawing.");
+            _picturesFrom = "";
+            LoadPictures();
+            ShowView(ViewDrawing);
+            ShowDetails(s, "");
             Record(s);
             SaveAsItem.IsEnabled = true;
             SaveSvgItem.IsEnabled = true;
@@ -209,6 +212,14 @@ namespace RetroSchematic.Desktop
                 Part p = n.Parts[i];
                 parts.Add(new SideRow { Main = p.Ref, Second = p.Type, Muted = p.Function, Owner = "part:" + p.Ref });
                 _partOwners.Add("part:" + p.Ref);
+            }
+            // the switch blocks: not chips, so they are not on the drawing; picked here
+            List<SwitchBlock>? switches = _session.Editor.Root.Switches;
+            for (int i = 0; switches != null && i < switches.Count; i++)
+            {
+                SwitchBlock sw = switches[i];
+                parts.Add(new SideRow { Main = sw.Ref, Second = "switch", Muted = sw.Function, Owner = SwitchOwner + sw.Ref });
+                _partOwners.Add(SwitchOwner + sw.Ref);
             }
             for (int i = 0; i < n.Nets.Count; i++)
             {
@@ -508,9 +519,17 @@ namespace RetroSchematic.Desktop
         /// </param>
         private void ShowDetails(SheetSession session, string owner)
         {
+            SwitchPanel.IsVisible = false;
             if (owner.Length == 0)
             {
-                Details.ShowText("Details", "Nothing picked. Click a part, gate, signal or pin on the drawing.");
+                // nothing picked: what the board is, with a way into the Board window
+                Details.ShowBoard(session.Editor.Root, OpenBoardWindowFromDetails);
+                return;
+            }
+            if (owner.StartsWith(SwitchOwner, StringComparison.Ordinal) && session.Editor.FindSwitch(owner.Substring(SwitchOwner.Length)) is SwitchBlock sw)
+            {
+                Details.ShowSwitch(sw);
+                ShowSwitchEditor(sw);
                 return;
             }
             if (owner.StartsWith("part:", StringComparison.Ordinal) && session.PartInfoOf(owner.Substring(5)) is PartInfo part)
@@ -644,6 +663,7 @@ namespace RetroSchematic.Desktop
 
         private void OnSelectionChanged(SheetSession session, string owner)
         {
+            _pickedSwitch = "";
             Record(session);
             ShowEditState();
             ShowSignalEditor();
@@ -658,6 +678,11 @@ namespace RetroSchematic.Desktop
         private void OnDrawingChanged(SheetSession session)
         {
             FillLists();
+            LoadPictures();
+            if (session.Selected.Length == 0 && _pickedSwitch.Length == 0)
+                ShowDetails(session, "");
+            else if (_pickedSwitch.Length > 0)
+                ShowDetails(session, SwitchOwner + _pickedSwitch);
             if (session.Selected.Length > 0)
                 ShowDetails(session, session.Selected);
             ShowEditState();
@@ -691,7 +716,13 @@ namespace RetroSchematic.Desktop
         private void OnPartPicked(object? sender, SelectionChangedEventArgs e)
         {
             if (!_syncingLists && _session != null && PartsList.SelectedIndex >= 0)
-                PickFromList(_partOwners[PartsList.SelectedIndex]);
+            {
+                string owner = _partOwners[PartsList.SelectedIndex];
+                if (owner.StartsWith(SwitchOwner, StringComparison.Ordinal))
+                    PickSwitch(owner.Substring(SwitchOwner.Length));
+                else
+                    PickFromList(owner);
+            }
         }
 
         private void OnNetPicked(object? sender, SelectionChangedEventArgs e)
@@ -1038,11 +1069,30 @@ namespace RetroSchematic.Desktop
 
         private void OnModernStyle(object? sender, RoutedEventArgs e) => SetStyle(SymbolStyle.Modern);
 
-        private void OnFit(object? sender, RoutedEventArgs e) => Canvas.FitToWindow();
+        // zoom and fit act on the view shown: the drawing, or one of the pictures
+        private void OnFit(object? sender, RoutedEventArgs e)
+        {
+            if (ShownPicture() is ImageView v)
+                v.Fit();
+            else
+                Canvas.FitToWindow();
+        }
 
-        private void OnZoomIn(object? sender, RoutedEventArgs e) => Canvas.ZoomAt(new Avalonia.Point(Canvas.Bounds.Width / 2, Canvas.Bounds.Height / 2), 1.25);
+        private void OnZoomIn(object? sender, RoutedEventArgs e)
+        {
+            if (ShownPicture() is ImageView v)
+                v.ZoomCentre(1.25);
+            else
+                Canvas.ZoomAt(new Avalonia.Point(Canvas.Bounds.Width / 2, Canvas.Bounds.Height / 2), 1.25);
+        }
 
-        private void OnZoomOut(object? sender, RoutedEventArgs e) => Canvas.ZoomAt(new Avalonia.Point(Canvas.Bounds.Width / 2, Canvas.Bounds.Height / 2), 1 / 1.25);
+        private void OnZoomOut(object? sender, RoutedEventArgs e)
+        {
+            if (ShownPicture() is ImageView v)
+                v.ZoomCentre(1 / 1.25);
+            else
+                Canvas.ZoomAt(new Avalonia.Point(Canvas.Bounds.Width / 2, Canvas.Bounds.Height / 2), 1 / 1.25);
+        }
 
         private void OnToolSelect(object? sender, RoutedEventArgs e) => PickTool(TbSelect);
 

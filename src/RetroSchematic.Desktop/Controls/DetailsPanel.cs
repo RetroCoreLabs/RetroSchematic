@@ -217,6 +217,119 @@ namespace RetroSchematic.Desktop.Controls
         }
 
         /// <summary>
+        /// Shows the board when nothing is picked: the sheet, the board facts, connectors,
+        /// original pages, photos and switches, and a button into the Board window.
+        /// </summary>
+        /// <param name="n">
+        /// The whole sheet (its top level).
+        /// </param>
+        /// <param name="openBoard">
+        /// Opens the Board window.
+        /// </param>
+        public void ShowBoard(Netlist n, Action openBoard)
+        {
+            Clear();
+            StackPanel head = Body();
+            head.Children.Add(Text(n.Sheet.Id + "  " + n.Sheet.Title, "detail-name"));
+            head.Children.Add(Text("Nothing picked. Click a part, gate, signal or pin on the drawing.", "detail-muted"));
+            Grid rows = Rows();
+            BoardSection? b = n.Board;
+            AddRow(rows, "Machine", Value(b?.NdSystem));
+            AddRow(rows, "Board no.", Value(b?.BoardNumber));
+            AddRow(rows, "Print ver.", Value(b?.PrintVersion));
+            AddRow(rows, "ECO ver.", Value(b?.EcoVersion));
+            AddRow(rows, "Size", Value(b?.Size == null ? null
+                : b.Size.WidthMm.ToString(CultureInfo.InvariantCulture) + " x " + b.Size.HeightMm.ToString(CultureInfo.InvariantCulture) + " mm"));
+            AddRow(rows, "Layers", Value(b?.Layers?.ToString(CultureInfo.InvariantCulture)));
+            System.Text.StringBuilder conn = new();
+            for (int i = 0; n.Connectors != null && i < n.Connectors.Count; i++)
+            {
+                ConnectorUse c = n.Connectors[i];
+                if (conn.Length > 0)
+                    conn.Append('\n');
+                conn.Append(ConnectorPins.Name(c.Ref)).Append(c.Used == false ? ": not used" : c.Use == null ? "" : ": " + c.Use);
+            }
+            AddRow(rows, "Connectors", Value(conn.Length == 0 ? null : conn.ToString()));
+            AddRow(rows, "Originals", Value(Count(n.Sources?.Count, "page", "pages")));
+            int front = 0, back = 0;
+            for (int i = 0; n.Photos != null && i < n.Photos.Count; i++)
+            {
+                if (n.Photos[i].Side == BoardSide.Component)
+                    front++;
+                else
+                    back++;
+            }
+            AddRow(rows, "Photos", Value(n.Photos == null ? null
+                : front.ToString(CultureInfo.InvariantCulture) + " component side, " + back.ToString(CultureInfo.InvariantCulture) + " solder side"));
+            System.Text.StringBuilder sw = new();
+            for (int i = 0; n.Switches != null && i < n.Switches.Count; i++)
+            {
+                if (sw.Length > 0)
+                    sw.Append('\n');
+                sw.Append(n.Switches[i].Ref).Append(n.Switches[i].Function == null ? "" : ": " + n.Switches[i].Function);
+            }
+            AddRow(rows, "Switches", Value(sw.Length == 0 ? null : sw.ToString()));
+            head.Children.Add(rows);
+            Button edit = new() { Content = "Board info...", Margin = new Avalonia.Thickness(0, 6, 0, 0) };
+            edit.Classes.Add("fluent-button");
+            edit.Click += (s, e) => openBoard();
+            head.Children.Add(edit);
+            Card("IconBoardPositions", "Board", head);
+        }
+
+        /// <summary>
+        /// Shows a switch block: what it sets, what "on" means, the usual setting, and one row
+        /// per lever with its signal, bit, how sure the reading is and its setting.
+        /// </summary>
+        /// <param name="s">
+        /// The switch block.
+        /// </param>
+        public void ShowSwitch(SwitchBlock s)
+        {
+            Clear();
+            StackPanel head = Body();
+            head.Children.Add(Text(s.Ref + "  switch, " + s.LeverCount.ToString(CultureInfo.InvariantCulture) + " levers", "detail-name"));
+            if (s.Function != null)
+                head.Children.Add(Text(s.Function, "detail-value"));
+            Grid rows = Rows();
+            string on = s.OnMeans == null || s.OnMeans == "open" ? "not known" : "a lever that is on gives " + s.OnMeans;
+            if (s.OnMeansConfidence != null)
+                on += " (" + ConfidenceWord(s.OnMeansConfidence.Value) + ")";
+            AddRow(rows, "On means", Text(on, "detail-value"));
+            if (s.Typical != null)
+                AddRow(rows, "Typical", Text(s.Typical, "detail-value"));
+            if (s.Source != null)
+                AddRow(rows, "Read from", Text((s.Source.Document ?? s.Source.Kind.ToString()) + (s.Source.Place == null ? "" : ", " + s.Source.Place), "detail-value"));
+            if (s.Note != null)
+                AddRow(rows, "Notes", Text(s.Note, "detail-value"));
+            head.Children.Add(rows);
+            Card("IconSettings", "Switch", head);
+
+            StackPanel levers = Body();
+            for (int i = 0; i < s.Levers.Count; i++)
+            {
+                SwitchLever l = s.Levers[i];
+                Grid g = Rows();
+                WrapPanel line = new() { Orientation = Orientation.Horizontal };
+                TextBlock what = Text((l.Signal ?? "?") + "  ->  " + (l.Bit ?? "?") + "   ", "detail-value");
+                line.Children.Add(what);
+                line.Children.Add(Badge(ConfidenceWord(l.Confidence), ConfidenceWord(l.Confidence)));
+                AddRow(g, "Lever " + l.Number.ToString(CultureInfo.InvariantCulture), line);
+                AddRow(g, "Setting", Text(l.Setting == null || l.Setting == "open" ? "not known" : l.Setting, l.Setting == null || l.Setting == "open" ? "detail-muted" : "detail-value"));
+                if (l.Note != null)
+                    AddRow(g, "", Text(l.Note, "detail-muted"));
+                levers.Children.Add(g);
+            }
+            Card("IconPinTable", "Levers (" + s.Levers.Count.ToString(CultureInfo.InvariantCulture) + ")", levers);
+        }
+
+        // a board value, or "not known" in the muted colour
+        private static TextBlock Value(string? v) => v == null ? Text("not known", "detail-muted") : Text(v, "detail-value");
+
+        private static string? Count(int? n, string one, string many)
+            => n == null ? null : n.Value.ToString(CultureInfo.InvariantCulture) + " " + (n.Value == 1 ? one : many);
+
+        /// <summary>
         /// Shows a connector, a bus or a block: its facts and the signals on it, each row a link
         /// that traces its signal.
         /// </summary>

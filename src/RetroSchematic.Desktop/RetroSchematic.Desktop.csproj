@@ -4,7 +4,13 @@
     <RootNamespace>RetroSchematic.Desktop</RootNamespace>
     <OutputType>WinExe</OutputType>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <!-- the program's icon in Explorer; the .rsc/.rsx file association shows it too (DefaultIcon = the exe) -->
+    <ApplicationIcon>..\assets\RetroSchematic.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- the same icon for the windows' title bars -->
+    <AvaloniaResource Include="..\assets\RetroSchematic.ico" Link="Assets\RetroSchematic.ico" />
+  </ItemGroup>
   <ItemGroup>
     <!-- the same Avalonia version as RetroCommander, so the two programs move together -->
     <PackageReference Include="Avalonia" Version="11.3.6" />
