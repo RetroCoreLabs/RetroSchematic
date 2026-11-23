@@ -2,8 +2,9 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** add the parts the catalogue cannot name yet (see `docs/2A50-catalogue-map.md`), then
-follow the four 74153 select lines on 2A50 (3E, 5E, 5D pins 2 and 14 are `inferred`).
+**Next:** decide on 2A50's BD buses (section 7), then add the parts the catalogue cannot name
+yet (see `docs/2A50-catalogue-map.md`) and follow the four 74153 select lines on 2A50 (3E, 5E,
+5D pins 2 and 14 are `inferred`).
 
 ## 0. Sheet 2A50 - what the wire reading left open
 
@@ -138,25 +139,25 @@ command-line tool and an MCP tool can do the same.
 - OR and buffer symbols in ND style are not transcribed from the manual yet; they are drawn as
   a labelled box.
 
-## 7. Blocks (hierarchy) - the design is in FORMAT.md, "Format version 2"
+## 7. Virtual buses and blocks - what is still open
 
-Being built, in this order:
+Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.buses`.
 
-- Model and reader: `blocks[]`, `instances[]`, ports with `signals[]`; version 1 still read as
-  the top block; the checks listed in FORMAT.md; schema `schema/nd-netlist-2.schema.json`.
-- Flattening with hierarchical names (`U1/3C.9`), and a check that compares two designs by
-  their flattened connections.
-- Editor: make a block from a set of parts and instances (ports made for every signal that
-  crosses the edge, signals numbered alike grouped into bus ports), dissolve an instance, enter
-  and leave a level, set a port's side and place. Undo for all of it.
-- Drawing: an instance is a box with its name, its block's name, and a pin per port on its
-  edges with the port name and a direction arrow (in, out, both ways); a bus port is drawn
-  bus-thick.
-- Port direction arrows: a View menu switch and the toolbar button, on by default, saved with
-  the other view settings; SVG export draws what the screen shows.
-- Window: Ctrl-click to select several, right-click "Make block...", "Open", "Dissolve into this
-  level", double-click opens, a bar showing the path back up, Make block and Up one level
-  buttons.
-- MCP: make block, dissolve, enter, leave, list blocks and instances, set port position.
-- A demo file: 2A50 grouped into address decode, read multiplexers, interrupt logic and modem
-  interface. The 2A50 file itself stays the reading of one sheet.
+- 2A50's own BD buses (BD_0, BD_1): the owner decides whether they stay. With them the sheet
+  draws cleanly, but the long entry wires read worse than labels, and 7 pins cannot reach their
+  bus (the render lists them). The blocks demo has them deleted.
+- A bus port of an instance is not yet joined to a virtual bus on the level above: it shows
+  only the text of what it is connected to (BD0_0 .. BD15_0, 16).
+- Only single ports on the left and right edges of an instance get wires or labels on the
+  level above. A single port moved to the top or bottom edge shows only its connection text.
+- An instance with no position is put in a row below the chips, not among them; a block with
+  many ports (read multiplexers: 45) makes a tall box.
+- Make block makes ports for the supply lines too (GND, H); a rule for leaving them out (they
+  are the same signal everywhere) is not decided.
+- Making a block drops the fixed wire path of a signal that crosses the new edge (it joined
+  pins that are now on two levels); the wire is routed again.
+- The trace lights the ports a signal goes through and the Details panel lists every level it
+  reaches; the drawing of the other levels is lit only when that level is opened.
+- No test checks the written files against the JSON schemas; the blocks demo and 2A50 were
+  checked by hand (no problems).
+- Verilog export of blocks (one module per block) belongs with section 5.
