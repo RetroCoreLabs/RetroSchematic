@@ -296,7 +296,10 @@ namespace RetroSchematic.Render
                 PinPlan p = kv.Value;
                 if (p.Net == null || wired.Contains(NetKey(p.Net)) || busPins.Contains(p.At))
                     continue;
-                DrawLabel(d, p, pinRef[p.At].Confidence);
+                if (p.Passive && SupplyNets.IsSupply(p.Net.Name))
+                    DrawSupply(d, p, pinRef[p.At].Confidence);
+                else
+                    DrawLabel(d, p, pinRef[p.At].Confidence);
             }
 
             // 7. a dot wherever a wire branches
@@ -437,6 +440,11 @@ namespace RetroSchematic.Render
                 }
                 plan.Height = Snap(y - GateGap + FramePad);
             }
+            else if (PassiveParts.IsPassive(part.Type))
+            {
+                // a resistor, capacitor, switch block ...: its own small symbol (SheetLayout.Passives)
+                MeasurePassive(plan, part, netByPin);
+            }
             else
             {
                 // a box of pins in DIP order: 1..n/2 down the left, the rest up the right
@@ -571,11 +579,19 @@ namespace RetroSchematic.Render
             int columns = 0, rows = 0;
             BoardPosition[] pos = new BoardPosition[plans.Length];
             bool[] byHand = new bool[plans.Length];
+            // a passive part with no position of its own goes beside the chip it serves, after
+            // the chips are placed (its reference is not a board position)
+            bool[] nearChip = new bool[plans.Length];
             for (int i = 0; i < plans.Length; i++)
             {
                 byHand[i] = HandPosition(netlist, plans[i], out _, out _);
                 if (byHand[i])
                     continue;
+                if (PassiveParts.IsPassive(plans[i].Part.Type))
+                {
+                    nearChip[i] = true;
+                    continue;
+                }
                 pos[i] = BoardPosition.Parse(plans[i].Part.Ref);
                 columns = Math.Max(columns, pos[i].LastColumn);
                 rows = Math.Max(rows, pos[i].LastRow + 1);
@@ -588,7 +604,7 @@ namespace RetroSchematic.Render
             {
                 for (int i = 0; i < plans.Length; i++)
                 {
-                    if (byHand[i])
+                    if (byHand[i] || nearChip[i])
                         continue;
                     BoardPosition p = pos[i];
                     double w = plans[i].LeftReach + plans[i].Width + plans[i].RightReach + PartGap;
@@ -619,7 +635,7 @@ namespace RetroSchematic.Render
             List<PartPlan> placed = new();
             for (int i = 0; i < plans.Length; i++)
             {
-                if (byHand[i])
+                if (byHand[i] || nearChip[i])
                     continue;
                 // Columns are drawn left to right in rising order. Which edge of the real board
                 // column 1 is on has NOT been checked.
@@ -651,6 +667,7 @@ namespace RetroSchematic.Render
                 }
                 placed.Add(plans[i]);
             }
+            PlaceNearChips(netlist, plans, nearChip, placed, left);
         }
 
         /// <summary>
@@ -712,6 +729,9 @@ namespace RetroSchematic.Render
             {
                 Net net = netlist.Nets[i];
                 if (net.Pins.Count < 2)
+                    continue;
+                // a supply line at a resistor or capacitor gets its supply symbol, not a wire
+                if (SupplyNets.IsSupply(net.Name) && HasPassivePin(net, pinPlans))
                     continue;
                 double minX = double.MaxValue, minY = double.MaxValue, maxX = double.MinValue, maxY = double.MinValue;
                 bool all = true;
@@ -1023,6 +1043,12 @@ namespace RetroSchematic.Render
             Part part = plan.Part;
             string owner = "part:" + part.Ref;
             d.Items.Add(new DrawItem { Kind = DrawKind.GroupStart, Owner = owner });
+            if (PassiveParts.IsPassive(part.Type))
+            {
+                DrawPassive(d, plan, style, options);
+                d.Items.Add(new DrawItem { Kind = DrawKind.GroupEnd, Owner = owner });
+                return;
+            }
             d.Items.Add(new DrawItem
             {
                 Kind = DrawKind.Rect,
@@ -1386,6 +1412,9 @@ namespace RetroSchematic.Render
             public double X, Y;
             public string Owner = "";
             public string Name = "";
+
+            // true for a pin of a passive part: a supply line on it is drawn as a supply symbol
+            public bool Passive;
 
             // the small 0 after an inverted pin's name in subscript style, else empty
             public string NameSubscript = "";

@@ -1,0 +1,12 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "resistor-network-sip",
+  "title": "Resistor network, one row of pins (SIP), one common pin",
+  "type": "RN-SIP-n",
+  "pinRule": "pin 1 is the common pin; resistor k runs from pin 1 to pin k+1, so an RN-SIP-8 has 9 pins",
+  "pinNumberingConfidence": "inferred",
+  "values": "value per resistor as written on the drawing",
+  "datasheet": "none found yet; the pin rule above is the usual layout, not read from a datasheet",
+  "note": "The bussed SIP layout (common pin 1). The real part's numbering is not checked against a datasheet; a network with another layout needs its own kind."
+}

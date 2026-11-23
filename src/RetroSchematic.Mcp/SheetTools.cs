@@ -211,6 +211,34 @@ namespace RetroSchematic.Mcp
             => Run(e => "Placed " + type + " as " + e.PlacePart(type, xMm, yMm, string.IsNullOrEmpty(reference) ? null : reference) + ".");
 
         /// <summary>
+        /// Adds a passive part.
+        /// </summary>
+        /// <param name="type">
+        /// R, RN-SIP-n, C, C-POL, D, STRAP or SW-DIP-n.
+        /// </param>
+        /// <param name="reference">
+        /// The name on the drawing, or empty.
+        /// </param>
+        /// <param name="serves">
+        /// The chip it serves (needed without a name).
+        /// </param>
+        /// <param name="value">
+        /// The value as written on the drawing, or empty.
+        /// </param>
+        /// <param name="tolerance">
+        /// The tolerance as written on the drawing, or empty.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "add_passive"), Description("Add a passive part (edit mode; undoable): type R (resistor, pins 1-2), RN-SIP-n (n resistors from common pin 1 to pins 2..n+1), C, C-POL (pin 1 plus), D (pin 1 anode, 2 cathode), STRAP (wire link), SW-DIP-n (n levers, lever k = pins k and 2n+1-k). Give the reference the drawing writes (R1, C3); with none, give the chip it serves and an automatic name (R-13D-1, inferred) is made. Value and tolerance only as written on the drawing, never guessed. Wire its pins with the usual connect tools.")]
+        public string AddPassive([Description("R, RN-SIP-n, C, C-POL, D, STRAP or SW-DIP-n")] string type, [Description("Name on the drawing, e.g. R1; empty when the drawing gives none")] string? reference = null,
+            [Description("Board position of the chip it serves, e.g. 13D")] string? serves = null, [Description("Value as written, e.g. 1k")] string? value = null,
+            [Description("Tolerance as written, e.g. 5%")] string? tolerance = null)
+            => Run(e => "Added " + type + " as " + e.AddPassive(type, string.IsNullOrEmpty(reference) ? null : reference, string.IsNullOrEmpty(serves) ? null : serves,
+                string.IsNullOrEmpty(value) ? null : value, string.IsNullOrEmpty(tolerance) ? null : tolerance) + ".");
+
+        /// <summary>
         /// Moves a chip.
         /// </summary>
         /// <param name="reference">

@@ -12,11 +12,15 @@ The right-hand panel shows what is picked as cards with a header bar; click a he
 card, and the fold stays while you pick other things.
 
 - **A signal:** its name and active level, what it does (with where that is written and how sure:
-  read, inferred or open), the electrical facts (drive type, driver, loads, pull-up, and any
-  conflict in a red box), where else it goes (bus, connector, block levels), and a table of its
-  pins. Click a pin row to centre the drawing on that pin.
+  read, inferred or open), the electrical facts (drive type, driver, loads, pull-up, the
+  resistors that pull it up or down - "pulled up by R1 (1k) to +5V" - and any conflict in a red
+  box; an open-collector line with no pull-up resistor on the sheet gets a warning box), where
+  else it goes (bus, connector, block levels), and a table of its pins. Click a pin row to
+  centre the drawing on that pin.
 - **A part:** board position, type, function, catalogue title and where it was read, then every
-  pin with the signal on it.
+  pin with the signal on it. A passive part (resistor, capacitor, switch block, strap, diode)
+  also shows its kind, its value and tolerance as written on the drawing, and, for a part the
+  drawing gives no name, the chip it serves.
 - **A connector, a bus or a block:** its facts and the list of signals on it.
 
 In the part, connector, bus and block lists, clicking a row traces that row's signal, as a click

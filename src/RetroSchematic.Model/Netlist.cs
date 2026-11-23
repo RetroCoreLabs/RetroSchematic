@@ -613,6 +613,31 @@ namespace RetroSchematic.Model
         /// not placed by hand. The editor writes it when a chip is placed or moved.
         /// </summary>
         public Point? Position { get; set; }
+
+        /// <summary>
+        /// For a passive part (resistor, capacitor, see <see cref="PassiveParts"/>): the value as
+        /// written on the drawing, such as <c>1k</c> or <c>470p</c>; null when the drawing gives
+        /// none. Never filled in from anything but the drawing.
+        /// </summary>
+        public string? Value { get; set; }
+
+        /// <summary>
+        /// For a passive part: the tolerance as written on the drawing, such as <c>5%</c>, or null.
+        /// </summary>
+        public string? Tolerance { get; set; }
+
+        /// <summary>
+        /// How sure <see cref="Value"/> and <see cref="Tolerance"/> are; null means the same as the
+        /// part's own <see cref="Confidence"/>.
+        /// </summary>
+        public Confidence? ValueConfidence { get; set; }
+
+        /// <summary>
+        /// For a part the drawing gives no name (a pull-up drawn without a reference): the board
+        /// position of the chip it serves, such as <c>13D</c>. Its automatic name is made from it
+        /// (<see cref="PassiveParts.AutoName"/>). Null for a part the drawing names.
+        /// </summary>
+        public string? Serves { get; set; }
     }
 
     /// <summary>

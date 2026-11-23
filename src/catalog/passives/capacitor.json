@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "capacitor",
+  "title": "Capacitor",
+  "type": "C",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1"
+    },
+    {
+      "pin": 2,
+      "name": "2"
+    }
+  ],
+  "pinNumberingConfidence": "read",
+  "values": "value (farads as written on the drawing: 100n, 470p)",
+  "datasheet": "none needed: a plain part, no behaviour beyond what the kind says",
+  "note": "No polarity."
+}

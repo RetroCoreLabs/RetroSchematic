@@ -94,6 +94,31 @@ namespace RetroSchematic.Render
         public List<PartPinRow> Pins { get; } = new();
 
         /// <summary>
+        /// For a passive part: its kind in words ("resistor", "switch block"); null for a chip.
+        /// </summary>
+        public string? Kind { get; init; }
+
+        /// <summary>
+        /// For a passive part: the value as written on the drawing, or null.
+        /// </summary>
+        public string? Value { get; init; }
+
+        /// <summary>
+        /// For a passive part: the tolerance as written on the drawing, or null.
+        /// </summary>
+        public string? Tolerance { get; init; }
+
+        /// <summary>
+        /// How sure the value is, when the file says so apart from the part.
+        /// </summary>
+        public Confidence? ValueConfidence { get; init; }
+
+        /// <summary>
+        /// For a passive part with no name on the drawing: the chip it serves, or null.
+        /// </summary>
+        public string? Serves { get; init; }
+
+        /// <summary>
         /// Gathers the facts of a part on the level shown.
         /// </summary>
         /// <param name="editor">
@@ -131,6 +156,11 @@ namespace RetroSchematic.Render
                 Confidence = p.Confidence,
                 Note = string.IsNullOrEmpty(p.Note) ? null : p.Note,
                 Source = source,
+                Kind = PassiveParts.IsPassive(p.Type) ? PassiveParts.KindText(PassiveParts.KindOf(p.Type)) : null,
+                Value = p.Value,
+                Tolerance = p.Tolerance,
+                ValueConfidence = p.ValueConfidence,
+                Serves = p.Serves,
             };
             if (chip != null)
             {

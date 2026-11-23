@@ -2,7 +2,7 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** the datasheets (first item of the queue).
+**Next:** the owner's decision on the datasheet PDFs (415 MB, over the 300 MB limit); meanwhile pin function text (chip catalogue step 4).
 
 ## Queue from the 2026-11-23 session (in this order)
 
@@ -23,7 +23,18 @@ Outstanding work only. Finished items are deleted.
   `chipset[].url` entries give more sources, such as sintran.com's COM2601.pdf and VP12-12.pdf
   (the VP12 chip file has none yet); check each answers first. Details row "Datasheet" with
   Open PDF / Open web page; MCP `get_datasheet`; a test that every referenced file exists and
-  every chip with behaviour cites one.
+  every chip with behaviour cites one. STOPPED 2026-11-23 before committing: every source
+  answered and is a PDF, but the 47 distinct files add up to 415 MB (the eight data books of
+  26-47 MB each make up most of it: Intel 1976 catalogue 46.8, National memory 1977 43.6,
+  National TTL 1976 40.5, Motorola TTL 1971 38.4, Mostek memory 1978 34.9, National interface
+  1975 32.7, TI interface 1974 31.2, TI interface 1981 26.4). Waits for the owner's choice
+  (cut the big books down to the cited pages, leave some books as links only, or raise the
+  limit). Nothing of it is in the repository.
+- Passive parts, follow-up: a reading agent adds 2A50's real resistors, capacitors, switch
+  blocks (15E, 1E as `SW-DIP-n` parts tied to the `switches` section) and straps; until then
+  the open-collector lines of 2A50 show the "no pull-up resistor" warning. Window: an edit-mode
+  menu entry to add a passive part (the MCP tool `add_passive` and `SheetEditor.AddPassive`
+  exist).
 - ND-100 plug rows in pin references (`P.C.a.17`): see section 8.
 - Chip catalogue as data. Steps 1 and 2 are done: the formula reader
   (`RetroSchematic.Model/ChipFormula.cs`) and the structured `behaviour` of every chip file
@@ -42,9 +53,10 @@ Outstanding work only. Finished items are deleted.
   rising) end together; which wins is not on the drawing (`docs/2A50-interrupts.md`).
 - Front connector pins (circled 81-95 with V.24 names) are written `F.` as `inferred`; the
   supply pins circled 62/63 and 66/67 are taken as backplane pins, also `inferred`.
-- Resistors and capacitors have no place in the format; they are described in net notes. Nine
-  nets end at a switch or an RC part and so have one pin. (Switches 15E and 1E are now in the
-  sheet's `switches` section.)
+- Resistors, capacitors, switches and straps are described in net notes so far; the format
+  has passive parts now (docs/FORMAT.md, "Passive parts") and a reading agent adds them. Nine
+  nets end at a switch or an RC part and so have one pin until then. (Switches 15E and 1E are
+  in the sheet's `switches` section.)
 - The lever positions of 15E and 1E on the component-side photo cannot be read (rocker
   switches, the pressed side is not clear); they are `open`. Which block is 15E and which 1E
   on the photo is inferred from the chips beside them. The meaning of "on" is inferred for

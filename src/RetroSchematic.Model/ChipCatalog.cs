@@ -180,12 +180,44 @@ namespace RetroSchematic.Model
             if (_cache.TryGetValue(type, out ChipInfo? cached))
                 return cached;
             ChipInfo? info = null;
+            PassiveKind kind = PassiveParts.KindOf(type);
+            if (kind != PassiveKind.None)
+            {
+                // a passive part: its pins come from the type (PassiveParts), its title from the
+                // kind's file in catalog/passives/ when there is one
+                info = new ChipInfo { Id = type, Title = PassiveTitle(kind) };
+                info.Pins.AddRange(PassiveParts.Pins(type));
+                _cache[type] = info;
+                return info;
+            }
             string path = Path.Combine(Folder, "chips", type + ".json");
             // a type with a path character in it is not a chip name; never read outside the folder
             if (type.Length > 0 && type.IndexOfAny(Path.GetInvalidFileNameChars()) < 0 && File.Exists(path))
                 info = Parse(File.ReadAllText(path));
             _cache[type] = info;
             return info;
+        }
+
+        /// <summary>
+        /// The title of a passive kind from its <c>catalog/passives/</c> file, else the kind in
+        /// words.
+        /// </summary>
+        /// <param name="kind">
+        /// The kind.
+        /// </param>
+        /// <returns>
+        /// The title.
+        /// </returns>
+        public string PassiveTitle(PassiveKind kind)
+        {
+            string path = Path.Combine(Folder, "passives", PassiveParts.CatalogueId(kind) + ".json");
+            if (File.Exists(path))
+            {
+                using JsonDocument doc = JsonDocument.Parse(File.ReadAllText(path));
+                if (doc.RootElement.TryGetProperty("title", out JsonElement t) && t.ValueKind == JsonValueKind.String)
+                    return t.GetString()!;
+            }
+            return PassiveParts.KindText(kind);
         }
 
         /// <summary>

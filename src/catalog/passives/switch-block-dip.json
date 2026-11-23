@@ -1,0 +1,12 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "switch-block-dip",
+  "title": "Switch block in a DIP case",
+  "type": "SW-DIP-n",
+  "pinRule": "lever k joins pin k and pin 2n+1-k: pins 1..n down one side, n+1..2n back up the other, so lever 1 is pins 1 and 2n",
+  "pinNumberingConfidence": "inferred",
+  "values": "lever count is in the type: SW-DIP-4",
+  "datasheet": "none found yet; the pin rule above is the usual layout, not read from a datasheet",
+  "note": "The usual DIP switch layout; the real part on a board is not checked against a datasheet. The sheet's switches section (same ref) gives what each lever means; the two must agree (checked when a sheet is read)."
+}

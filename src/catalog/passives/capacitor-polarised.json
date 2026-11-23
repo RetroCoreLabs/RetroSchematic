@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "capacitor-polarised",
+  "title": "Capacitor, polarised (electrolytic or tantalum)",
+  "type": "C-POL",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "+"
+    },
+    {
+      "pin": 2,
+      "name": "-"
+    }
+  ],
+  "pinNumberingConfidence": "read",
+  "values": "value, voltage if written",
+  "datasheet": "none needed: a plain part, no behaviour beyond what the kind says",
+  "note": "Pin 1 is the plus end, pin 2 the minus end, as the drawing marks it."
+}

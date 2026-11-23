@@ -197,6 +197,74 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   "display": { "nameStyle": "subscript", "buses": false }
   ```
 
+- Passive parts (2026-11-23): resistors, resistor networks, capacitors, diodes, straps and
+  switch blocks are ordinary `parts[]` entries with pins in nets; see "Passive parts" below.
+  Both format versions accept them. Older files have none and stay valid.
+
+## Passive parts
+
+A pull-up resistor, a capacitor, a switch block or a strap is a normal part: it has a `ref`, a
+`type`, `confidence` and pins that nets name (`R1.1`, `15E.8`), so it is traced, picked and
+checked like a chip. The type says the kind and carries the count, so a reader needs no
+catalogue to check the pins:
+
+| Type | Kind | Pins |
+|---|---|---|
+| `R` | resistor | 1, 2 |
+| `RN-SIP-n` | resistor network in one row of pins | 1 = common, resistor k to pin k+1 (n+1 pins) |
+| `C` | capacitor | 1, 2 |
+| `C-POL` | polarised capacitor | 1 = plus, 2 = minus |
+| `D` | diode | 1 = anode, 2 = cathode |
+| `STRAP` | strap (wire link) | 1, 2 |
+| `SW-DIP-n` | switch block of n levers | lever k joins pin k and pin 2n+1-k |
+
+The pin rules for `RN-SIP-n` and `SW-DIP-n` are the usual layouts, not read from a datasheet
+(`catalog/passives/` says so in `pinNumberingConfidence`); a part laid out differently needs
+its own kind.
+
+Extra part fields, for passive parts only (a reader refuses them on a chip):
+
+| Field | What it is |
+|---|---|
+| `value` | the value as written on the drawing (`1k`, `470p`); absent when the drawing gives none. Never filled in from anything else |
+| `tolerance` | the tolerance as written on the drawing (`5%`) |
+| `valueConfidence` | how sure the value is, when that differs from the part's `confidence` |
+| `serves` | for a part the drawing gives no name: the board position of the chip it serves |
+
+**Names.** A part keeps the name ND wrote on the drawing (`R1`, `C3`), with `confidence`
+`read`. A part with no name gets an automatic one made from the chip it serves: the kind's
+letter, the chip and a running number (`R-13D-1`; letters R, C, D, S for a switch block, W for
+a strap), with `confidence` `inferred` and `serves` set. The dash tells it from ND's names.
+
+**Supply lines.** A resistor's far end on `+5V`, `H`, `H1`, `VCC` (or any `+n` name) is a
+pull-up; on `GND` or `0V` a pull-down. The signal's facts list it ("pulled up by R1 (1k) to
++5V"), and an open-collector line with no pull-up resistor on the sheet (and no `pullUp` text
+naming one) is shown with a warning.
+
+**Switch blocks and the `switches` section.** A `switches[]` entry and a `SW-DIP-n` part with
+the same `ref` are one thing: the part carries the pins, the section what each lever means. A
+reader refuses a sheet where they disagree: the part is not a switch block, `leverCount` is not
+n, a lever number is outside 1..n, or a lever's `signal` is not on either of that lever's pins
+(when those pins are wired). A `switches[]` entry with no part is still allowed (the pins are
+not read yet).
+
+**How they are drawn.** The ND symbol manual (ND-13.003.01) has no symbol for any of these, so
+the ND style here is a choice, not read from an ND drawing: a resistor is an oblong and a switch
+block has a frame round its levers. The modern style draws the zigzag resistor and the levers
+without a frame. A capacitor is two plates (a polarised one marked +, its minus plate curved in
+the modern style), a diode the triangle and bar, a strap two posts with an arch. The reference
+is written muted above, the value bold. A passive pin on a supply line ends in a supply symbol
+(a bar with the name for a high supply, the three shortening bars for ground, turned to point away from the part so it fits one pin row) instead of a net label or a
+wire. A part with no `position` is drawn just below the chip it serves (or the first chip it
+shares a signal with).
+
+```json
+{ "ref": "R1", "type": "R", "value": "1k", "confidence": "read" },
+{ "ref": "R-13D-1", "type": "R", "serves": "13D", "confidence": "inferred",
+  "note": "No name on the drawing; the name is made from the chip it serves." },
+{ "ref": "15E", "type": "SW-DIP-4", "function": "device address", "confidence": "read" }
+```
+
 ## Board, sources, photos, switches
 
 Facts about the printed circuit board itself, the pages the sheet was read from, and photos of

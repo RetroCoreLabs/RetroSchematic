@@ -190,6 +190,67 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// Adds a passive part (resistor, capacitor, switch block ..., see <see cref="PassiveParts"/>)
+        /// with no pins wired yet. A part the drawing names keeps that name (R1, C3) and is
+        /// <c>read</c>; a part the drawing does not name gets an automatic name made from the chip
+        /// it serves (<see cref="PassiveParts.AutoName"/>, such as R-13D-1) and is <c>inferred</c>.
+        /// It has no position: it is drawn beside the chip it serves.
+        /// </summary>
+        /// <param name="type">
+        /// The passive type: R, RN-SIP-n, C, C-POL, D, STRAP or SW-DIP-n.
+        /// </param>
+        /// <param name="reference">
+        /// The name on the drawing, or null when the drawing gives none.
+        /// </param>
+        /// <param name="serves">
+        /// The board position of the chip it serves; needed when <paramref name="reference"/> is null.
+        /// </param>
+        /// <param name="value">
+        /// The value as written on the drawing, or null.
+        /// </param>
+        /// <param name="tolerance">
+        /// The tolerance as written on the drawing, or null.
+        /// </param>
+        /// <returns>
+        /// The new part's reference.
+        /// </returns>
+        public string AddPassive(string type, string? reference, string? serves, string? value, string? tolerance)
+        {
+            CheckWritable();
+            PassiveKind kind = PassiveParts.KindOf(type);
+            if (kind == PassiveKind.None)
+                throw new SheetEditException($"{type} is not a passive part type (R, RN-SIP-n, C, C-POL, D, STRAP, SW-DIP-n).");
+            if (serves != null && FindPart(serves) == null)
+                throw new SheetEditException($"There is no part {serves} on the sheet to serve.");
+            Confidence confidence = Confidence.Read;
+            if (reference == null)
+            {
+                if (serves == null)
+                    throw new SheetEditException("A part with no name on the drawing needs the chip it serves, to make its name from.");
+                HashSet<string> taken = new(StringComparer.Ordinal);
+                for (int i = 0; i < Netlist.Parts.Count; i++)
+                    taken.Add(Netlist.Parts[i].Ref);
+                reference = PassiveParts.AutoName(kind, serves, taken);
+                confidence = Confidence.Inferred;
+            }
+            else if (FindPart(reference) != null)
+                throw new SheetEditException($"There is already a part {reference} on the sheet.");
+            Snapshot();
+            Netlist.Parts.Add(new Part
+            {
+                Ref = reference,
+                Type = type,
+                Confidence = confidence,
+                Note = confidence == Confidence.Inferred ? "No name on the drawing; the name is made from the chip it serves." : null,
+                Value = value,
+                Tolerance = tolerance,
+                Serves = confidence == Confidence.Inferred ? serves : null,
+            });
+            Done();
+            return reference;
+        }
+
+        /// <summary>
         /// Moves a chip's frame so its top left corner is at a new place. Only the drawing changes;
         /// the signals stay as they are. Gates with a measured position move with the frame. A
         /// part whose gates all have a position (and no position of its own) keeps it that way:

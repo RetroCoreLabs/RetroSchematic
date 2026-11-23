@@ -137,7 +137,11 @@ namespace RetroSchematic.Desktop.Controls
             AddRow(rows, "Loads", Text(s.Loads.ToString(CultureInfo.InvariantCulture), "detail-value"));
             if (s.Net.PullUp != null)
                 AddRow(rows, "Pull-up", Text(s.Net.PullUp, "detail-value"));
+            for (int i = 0; i < s.PullResistors.Count; i++)
+                AddRow(rows, i == 0 ? "Resistor" : "", Text(s.PullResistors[i], "detail-value"));
             el.Children.Add(rows);
+            if (s.PullUpWarning != null)
+                el.Children.Add(Warning(s.PullUpWarning));
             if (s.DriverInputs.Count > 0)
                 el.Children.Add(DriverInputRows(s.DriverInputs));
             if (s.MixedDrive)
@@ -194,6 +198,14 @@ namespace RetroSchematic.Desktop.Controls
             if (p.Function != null)
                 head.Children.Add(Text(p.Function, "detail-value"));
             Grid rows = Rows();
+            if (p.Kind != null)
+                AddRow(rows, "Kind", Text(p.Kind, "detail-value"));
+            if (p.Value != null)
+                AddRow(rows, "Value", Text(p.Value + (p.ValueConfidence is Confidence vc ? "  (" + ConfidenceWord(vc) + ")" : ""), "detail-value"));
+            if (p.Tolerance != null)
+                AddRow(rows, "Tolerance", Text(p.Tolerance, "detail-value"));
+            if (p.Serves != null)
+                AddRow(rows, "Serves", Text(p.Serves + " (no name on the drawing; the name is made from it)", "detail-value"));
             if (p.CatalogueTitle != null)
                 AddRow(rows, "Catalogue", Text(p.CatalogueTitle, "detail-value"));
             else

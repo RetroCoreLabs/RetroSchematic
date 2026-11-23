@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "resistor",
+  "title": "Resistor",
+  "type": "R",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1"
+    },
+    {
+      "pin": 2,
+      "name": "2"
+    }
+  ],
+  "pinNumberingConfidence": "read",
+  "values": "value (ohms as written on the drawing: 1k, 470), tolerance",
+  "datasheet": "none needed: a plain part, no behaviour beyond what the kind says",
+  "note": "A resistor has no polarity; which end is pin 1 does not matter."
+}

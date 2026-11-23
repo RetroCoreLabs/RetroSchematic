@@ -180,6 +180,20 @@ namespace RetroSchematic.Render
         public int Loads { get; private set; }
 
         /// <summary>
+        /// The resistors on this sheet that pull the line to a supply, in words: "pulled up by R1
+        /// (1k) to +5V", "pulled down by R-13D-1 to GND". Worked out from the resistor parts and
+        /// the supply line on their other end; empty when there are none.
+        /// </summary>
+        public List<string> PullResistors { get; } = new();
+
+        /// <summary>
+        /// A warning when the line is driven by open-collector outputs and no resistor on this
+        /// sheet pulls it up (and the file's <c>pullUp</c> text names none), else null. Such a
+        /// line never goes high on this sheet.
+        /// </summary>
+        public string? PullUpWarning { get; private set; }
+
+        /// <summary>
         /// The drive type the catalogue gives: the output type shared by every driver. Null
         /// when there is no driver, a driver's type is not in the catalogue, or the drivers
         /// differ (then <see cref="MixedDrive"/> is true).
@@ -358,6 +372,12 @@ namespace RetroSchematic.Render
             if (s.Drivers.Count > 0 && !s.MixedDrive)
                 s.DerivedDrive = DriveOf(firstType!);
             AddDriverInputs(editor.Netlist, net, style, s.DriverInputs);
+            bool pulledUp = AddPullResistors(editor, net, style, s.PullResistors);
+            LineDrive? drive = s.DerivedDrive ?? net.Drive;
+            bool openCollector = drive == LineDrive.OpenCollector || drive == LineDrive.OpenCollectorHighVoltage;
+            bool fileNamesOne = net.PullUp != null && net.PullUp != "open";
+            if (openCollector && !pulledUp && !fileNamesOne)
+                s.PullUpWarning = "Open-collector line with no pull-up resistor on this sheet: nothing here pulls it high.";
             if (net.Drive.HasValue && s.DerivedDrive.HasValue && net.Drive.Value != s.DerivedDrive.Value)
                 s.Conflict = "The file says " + DriveText(net.Drive.Value) + ", the chip catalogue says " + DriveText(s.DerivedDrive.Value) + ".";
             BusLine? bus = editor.BusOf(net);
@@ -405,6 +425,37 @@ namespace RetroSchematic.Render
                     }
                 }
             }
+        }
+
+        // every resistor with one end on this line and its other end on a supply line; true when
+        // one of them goes to a high supply (a pull-up)
+        private static bool AddPullResistors(SheetEditor editor, Net net, SignalNameStyle style, List<string> into)
+        {
+            bool up = false;
+            Netlist n = editor.Netlist;
+            for (int i = 0; i < net.Pins.Count; i++)
+            {
+                Part? part = editor.FindPart(net.Pins[i].PartRef);
+                if (part == null)
+                    continue;
+                PassiveKind kind = PassiveParts.KindOf(part.Type);
+                int pin = net.Pins[i].Pin;
+                int other;
+                if (kind == PassiveKind.Resistor)
+                    other = pin == 1 ? 2 : 1;
+                else if (kind == PassiveKind.ResistorNetwork && pin > 1)
+                    other = 1;
+                else
+                    continue;
+                Net? far = NetOnPin(n, part.Ref + "." + other.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                if (far == null || !SupplyNets.IsSupply(far.Name))
+                    continue;
+                bool high = SupplyNets.IsHigh(far.Name);
+                up |= high;
+                string value = part.Value == null ? "" : " (" + part.Value + ")";
+                into.Add((high ? "pulled up by " : "pulled down by ") + part.Ref + value + " to " + SignalNames.Line(far, style));
+            }
+            return up;
         }
 
         private static Net? NetOnPin(Netlist n, string at)
@@ -545,6 +596,10 @@ namespace RetroSchematic.Render
             sb.Append("Loads: ").Append(Loads).Append('\n');
             if (Net.PullUp != null)
                 sb.Append("Pull-up: ").Append(Net.PullUp).Append('\n');
+            for (int i = 0; i < PullResistors.Count; i++)
+                sb.Append("Resistor: ").Append(PullResistors[i]).Append('\n');
+            if (PullUpWarning != null)
+                sb.Append("WARNING: ").Append(PullUpWarning).Append('\n');
             if (Bus != null)
                 sb.Append("On bus: ").Append(Bus).Append('\n');
             if (Levels.Count > 0)

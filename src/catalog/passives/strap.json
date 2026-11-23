@@ -1,0 +1,21 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "strap",
+  "title": "Strap (wire link)",
+  "type": "STRAP",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1"
+    },
+    {
+      "pin": 2,
+      "name": "2"
+    }
+  ],
+  "pinNumberingConfidence": "read",
+  "values": "",
+  "datasheet": "none needed: a plain part, no behaviour beyond what the kind says",
+  "note": "Joins its two pins when it is fitted. Whether it is fitted goes in the part's note, with how sure."
+}

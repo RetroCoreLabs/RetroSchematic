@@ -707,6 +707,21 @@
           },
           "position": {
             "$ref": "#/$defs/point"
+          },
+          "value": {
+            "type": "string",
+            "description": "passive part: the value as written on the drawing (1k, 470p)"
+          },
+          "tolerance": {
+            "type": "string",
+            "description": "passive part: the tolerance as written on the drawing"
+          },
+          "valueConfidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "serves": {
+            "type": "string",
+            "description": "passive part with no name on the drawing: the chip it serves"
           }
         }
       }

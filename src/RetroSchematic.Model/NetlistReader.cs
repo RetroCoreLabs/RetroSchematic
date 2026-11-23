@@ -235,6 +235,76 @@ namespace RetroSchematic.Model
             // no block may contain itself, directly or through others
             for (int i = 0; blocks != null && i < blocks.Count; i++)
                 CheckNoLoop(blocks[i], byName, new List<string>());
+            CheckSwitches(netlist);
+        }
+
+        /// <summary>
+        /// A switch block in the <c>switches</c> section and a switch block part with the same
+        /// reference are one thing: the part carries the pins, the section the meaning of each
+        /// lever. They must agree: the part is a <c>SW-DIP-n</c> with n = <c>leverCount</c>, every
+        /// lever number is 1 to n, and a lever's signal is on one of that lever's two pins when
+        /// those pins are wired.
+        /// </summary>
+        private static void CheckSwitches(Netlist netlist)
+        {
+            for (int i = 0; netlist.Switches != null && i < netlist.Switches.Count; i++)
+            {
+                SwitchBlock s = netlist.Switches[i];
+                Part? part = null;
+                List<Net>? nets = null;
+                for (int j = 0; part == null && j < netlist.Parts.Count; j++)
+                {
+                    if (netlist.Parts[j].Ref == s.Ref)
+                    {
+                        part = netlist.Parts[j];
+                        nets = netlist.Nets;
+                    }
+                }
+                for (int b = 0; part == null && netlist.Blocks != null && b < netlist.Blocks.Count; b++)
+                {
+                    for (int j = 0; part == null && j < netlist.Blocks[b].Parts.Count; j++)
+                    {
+                        if (netlist.Blocks[b].Parts[j].Ref == s.Ref)
+                        {
+                            part = netlist.Blocks[b].Parts[j];
+                            nets = netlist.Blocks[b].Nets;
+                        }
+                    }
+                }
+                if (part == null)
+                    continue;
+                if (PassiveParts.KindOf(part.Type) != PassiveKind.SwitchBlock)
+                    throw new NetlistException($"Switch block {s.Ref}: part {s.Ref} is a {part.Type}, not a switch block (SW-DIP-n).");
+                int levers = PassiveParts.CountOf(part.Type);
+                if (levers != s.LeverCount)
+                    throw new NetlistException($"Switch block {s.Ref}: the switches section says {s.LeverCount} levers, the part {part.Type} has {levers}.");
+                for (int k = 0; k < s.Levers.Count; k++)
+                {
+                    SwitchLever lever = s.Levers[k];
+                    if (lever.Number < 1 || lever.Number > levers)
+                        throw new NetlistException($"Switch block {s.Ref}: lever {lever.Number} is not 1 to {levers}.");
+                    if (string.IsNullOrEmpty(lever.Signal))
+                        continue;
+                    PassiveParts.LeverPins(levers, lever.Number, out int first, out int second);
+                    Net? a = NetAt(nets!, s.Ref + "." + first.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    Net? z = NetAt(nets!, s.Ref + "." + second.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    if ((a != null || z != null) && (a == null || a.Name != lever.Signal) && (z == null || z.Name != lever.Signal))
+                        throw new NetlistException($"Switch block {s.Ref}: lever {lever.Number} is said to set {lever.Signal}, but its pins {first} and {second} carry {(a == null ? "nothing" : a.Name)} and {(z == null ? "nothing" : z.Name)}.");
+                }
+            }
+        }
+
+        private static Net? NetAt(List<Net> nets, string at)
+        {
+            for (int i = 0; i < nets.Count; i++)
+            {
+                for (int j = 0; j < nets[i].Pins.Count; j++)
+                {
+                    if (nets[i].Pins[j].At == at)
+                        return nets[i];
+                }
+            }
+            return null;
         }
 
         private static void CheckInstances(string where, List<BlockInstance>? instances, List<Net> nets, Dictionary<string, BlockDefinition> blocks)
@@ -288,10 +358,24 @@ namespace RetroSchematic.Model
         private static void CheckLevel(string where, List<Part> partList, List<Gate> gateList, List<Net> netList)
         {
             HashSet<string> parts = new(StringComparer.Ordinal);
+            // a passive part's pins are known from its type alone (PassiveParts)
+            Dictionary<string, int> passivePins = new(StringComparer.Ordinal);
             for (int i = 0; i < partList.Count; i++)
             {
                 if (!parts.Add(partList[i].Ref))
                     throw new NetlistException($"Part {partList[i].Ref} is listed twice in {where}.");
+                if (PassiveParts.IsPassive(partList[i].Type))
+                    passivePins[partList[i].Ref] = PassiveParts.Pins(partList[i].Type).Count;
+                else if (partList[i].Value != null || partList[i].Tolerance != null || partList[i].ValueConfidence != null)
+                    throw new NetlistException($"Part {partList[i].Ref} is a {partList[i].Type}; only a passive part has a value or tolerance.");
+                if (partList[i].Serves != null && !PassiveParts.IsPassive(partList[i].Type))
+                    throw new NetlistException($"Part {partList[i].Ref}: only a passive part names a chip it serves.");
+            }
+            for (int i = 0; i < partList.Count; i++)
+            {
+                string? serves = partList[i].Serves;
+                if (serves != null && !parts.Contains(serves))
+                    throw new NetlistException($"Part {partList[i].Ref} serves {serves}, which is not in the parts list of {where}.");
             }
 
             HashSet<string> gateIds = new(StringComparer.Ordinal);
@@ -322,6 +406,8 @@ namespace RetroSchematic.Model
                     string partRef = pin.PartRef;
                     if (!ConnectorPins.IsConnector(partRef) && !parts.Contains(partRef))
                         throw new NetlistException($"Net {net.Name}: pin {pin.At} names part {partRef}, which is not in the parts list.");
+                    if (passivePins.TryGetValue(partRef, out int count) && (pin.Pin < 1 || pin.Pin > count))
+                        throw new NetlistException($"Net {net.Name}: pin {pin.At} is not a pin of a {count}-pin passive part.");
                     if (pinOwner.TryGetValue(pin.At, out string? other))
                         throw new NetlistException($"Pin {pin.At} is in two nets: {other} and {net.Name}.");
                     pinOwner.Add(pin.At, net.Name);
