@@ -102,10 +102,13 @@ namespace RetroSchematic.Render
         /// <param name="title">
         /// The title.
         /// </param>
+        /// <param name="bus">
+        /// Which machine bus the card is for; it picks the bus catalogues.
+        /// </param>
         /// <returns>
         /// A sheet with no parts and no signals.
         /// </returns>
-        public static Netlist NewSheet(string id, string title)
+        public static Netlist NewSheet(string id, string title, MachineBus bus = MachineBus.Unknown)
         {
             return new Netlist
             {
@@ -115,6 +118,7 @@ namespace RetroSchematic.Render
                 {
                     Id = id,
                     Title = title,
+                    Bus = bus,
                     Source = new SourceReference { Document = "none - drawn in the editor" },
                     Note = "Drawn in the RetroSchematic editor, not read off a scan.",
                 },
@@ -715,6 +719,21 @@ namespace RetroSchematic.Render
         {
             Snapshot();
             Root.Display = display;
+            Done();
+        }
+
+        /// <summary>
+        /// Sets which machine bus the card is for (sheet.bus). Like the display values it does not
+        /// change a connection, so it is allowed in read-only mode; it is marked as needing saving
+        /// and can be undone.
+        /// </summary>
+        /// <param name="bus">
+        /// The bus.
+        /// </param>
+        public void SetBus(MachineBus bus)
+        {
+            Snapshot();
+            Root.Sheet.Bus = bus;
             Done();
         }
 

@@ -31,6 +31,12 @@ namespace RetroSchematic.Model
         /// The pin's role from catalog/chips/FORMAT.md (input, output, power, ground, clock, ...).
         /// </summary>
         public string Role { get; set; } = "";
+
+        /// <summary>
+        /// For an output: "totem-pole", "open-collector", "open-collector-high-voltage" or
+        /// "three-state"; empty when the file does not say or the pin is not an output.
+        /// </summary>
+        public string OutputType { get; set; } = "";
     }
 
     /// <summary>
@@ -182,6 +188,7 @@ namespace RetroSchematic.Model
                     Number = p.GetProperty("pin").GetInt32(),
                     Name = p.TryGetProperty("name", out JsonElement n) ? n.GetString() ?? "" : "",
                     Role = p.TryGetProperty("role", out JsonElement r) ? r.GetString() ?? "" : "",
+                    OutputType = p.TryGetProperty("outputType", out JsonElement ot) ? ot.GetString() ?? "" : "",
                 });
             }
             if (root.TryGetProperty("functions", out JsonElement fs) && fs.ValueKind == JsonValueKind.Array)

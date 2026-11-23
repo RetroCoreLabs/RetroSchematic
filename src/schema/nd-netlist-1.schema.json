@@ -36,6 +36,10 @@
         "machine": {
           "type": "string"
         },
+        "bus": {
+          "description": "Which machine bus the card is for; picks the bus-signal and connector catalogues. Missing means unknown (shown as a warning).",
+          "enum": ["nord-10", "nd-100", "unknown"]
+        },
         "company": {
           "type": "string"
         },
@@ -231,6 +235,47 @@
           },
           "driveConfidence": {
             "$ref": "#/$defs/confidence"
+          },
+          "description": {
+            "type": "string",
+            "description": "What the signal does, in plain words. Only what a source says; never made up. Optional (added within version 1)."
+          },
+          "descriptionSource": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "confidence"
+            ],
+            "description": "Where the description came from and how sure it is.",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "drawing",
+                  "manual",
+                  "reading",
+                  "inferred"
+                ]
+              },
+              "document": {
+                "type": "string",
+                "description": "The document, such as docs/2A50-reading.md or a manual number."
+              },
+              "place": {
+                "type": "string",
+                "description": "Where in it: a section heading or a page."
+              },
+              "confidence": {
+                "$ref": "#/$defs/confidence"
+              }
+            }
+          },
+          "function": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Short tags for what the signal is for, such as interrupt, status, clock."
           }
         }
       }

@@ -37,6 +37,8 @@ namespace RetroSchematic.Desktop
 
         private static readonly string[] s_nameChoices = { "/NAME (slash)", "~NAME (tilde)", "NAME with subscript 0/1 (ND)" };
         private static readonly string[] s_symbolChoices = { "ND (1976 manual)", "Modern" };
+        private static readonly string[] s_busChoices = { "NORD-10", "ND-100", "Unknown (warning)" };
+        private static readonly MachineBus[] s_buses = { MachineBus.Nord10, MachineBus.Nd100, MachineBus.Unknown };
         private const string UseDefault = "Use default";
 
         private readonly SheetSession? _session;
@@ -86,6 +88,7 @@ namespace RetroSchematic.Desktop
             AddHeader();
             for (int r = 0; r < Keys.Length; r++)
                 AddRow(r + 1, Keys[r], s_labels[r], r == 0 ? s_nameChoices : r == 1 ? s_symbolChoices : r == 2 ? themeNames.ToArray() : null);
+            AddBusRow(Keys.Length + 1);
             Fill();
         }
 
@@ -102,6 +105,9 @@ namespace RetroSchematic.Desktop
                 SheetDisplay next = ReadSheet();
                 if (!Same(next, _session.SheetDisplay))
                     _session.SetSheetDisplay(next);
+                MachineBus bus = s_buses[Math.Max(0, SheetControls["bus"].SelectedIndex)];
+                if (bus != _session.Bus)
+                    _session.SetBus(bus);
             }
             Applied?.Invoke();
         }
@@ -139,6 +145,23 @@ namespace RetroSchematic.Desktop
             AddCell(sheet, row, 2);
         }
 
+        /// <summary>
+        /// The machine bus row: a fact about the sheet, not a display choice, so it has no
+        /// default and no "use default".
+        /// </summary>
+        /// <param name="row">
+        /// The grid row.
+        /// </param>
+        private void AddBusRow(int row)
+        {
+            Rows.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+            AddCell(new TextBlock { Text = "Machine bus (picks the catalogues)", Classes = { "fluent-text" }, VerticalAlignment = VerticalAlignment.Center }, row, 0);
+            AddCell(new TextBlock { Text = "(each sheet says its own)", Classes = { "fluent-text" }, VerticalAlignment = VerticalAlignment.Center }, row, 1);
+            ComboBox sheet = new() { ItemsSource = s_busChoices, Width = 180, Classes = { "fluent-combobox" }, IsEnabled = _session != null };
+            SheetControls["bus"] = sheet;
+            AddCell(sheet, row, 2);
+        }
+
         private void AddCell(Control c, int row, int column)
         {
             c.Margin = new Avalonia.Thickness(2, 4);
@@ -171,6 +194,12 @@ namespace RetroSchematic.Desktop
             SheetControls["arrows"].SelectedIndex = OnOff(s.PortArrows);
             SheetControls["buses"].SelectedIndex = OnOff(s.Buses);
             SheetControls["pulse"].SelectedIndex = OnOff(s.TracePulse);
+            MachineBus bus = _session?.Bus ?? MachineBus.Unknown;
+            for (int i = 0; i < s_buses.Length; i++)
+            {
+                if (s_buses[i] == bus)
+                    SheetControls["bus"].SelectedIndex = i;
+            }
         }
 
         private DisplaySettings ReadDefaults()

@@ -443,6 +443,30 @@ namespace RetroSchematic.Model
     }
 
     /// <summary>
+    /// The machine bus a card is for. Written in the file as nord-10, nd-100 or unknown.
+    /// </summary>
+    public enum MachineBus
+    {
+        /// <summary>
+        /// Not said yet; no bus catalogue is used and the sheet shows a warning.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonStringEnumMemberName("unknown")]
+        Unknown,
+
+        /// <summary>
+        /// The NORD-10 I/O bus: one backplane connector per card, pins 0-99.
+        /// </summary>
+        [System.Text.Json.Serialization.JsonStringEnumMemberName("nord-10")]
+        Nord10,
+
+        /// <summary>
+        /// The NORD-100 / ND-100 bus: module plugs A, B and C (rows a, b, c).
+        /// </summary>
+        [System.Text.Json.Serialization.JsonStringEnumMemberName("nd-100")]
+        Nd100,
+    }
+
+    /// <summary>
     /// The drawing's title block and where the scan is.
     /// </summary>
     public sealed class Sheet
@@ -461,6 +485,13 @@ namespace RetroSchematic.Model
         /// Machine, e.g. NORD-10.
         /// </summary>
         public string? Machine { get; set; }
+
+        /// <summary>
+        /// Which machine bus the card is for. It picks the bus-signal and connector catalogues:
+        /// a NORD-10 sheet never looks in the ND-100 ones, and the other way round. Missing in
+        /// older files, which reads as <see cref="MachineBus.Unknown"/> (shown as a warning).
+        /// </summary>
+        public MachineBus? Bus { get; set; }
 
         /// <summary>
         /// Company in the title block.
@@ -644,9 +675,78 @@ namespace RetroSchematic.Model
         public List<PinReference> Pins { get; set; } = new();
 
         /// <summary>
-        /// Free text.
+        /// Free text: notes about the signal.
         /// </summary>
         public string? Note { get; set; }
+
+        /// <summary>
+        /// What the signal does, in plain words, or null when not known. Never made up: only
+        /// what a source says (see <see cref="DescriptionSource"/>).
+        /// </summary>
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// Where <see cref="Description"/> came from and how sure it is, or null.
+        /// </summary>
+        public DescriptionSource? DescriptionSource { get; set; }
+
+        /// <summary>
+        /// Short tags for what the signal is for (such as "interrupt", "status", "clock"), or
+        /// null for none.
+        /// </summary>
+        public List<string>? Function { get; set; }
+    }
+
+    /// <summary>
+    /// The kind of place a signal's description came from.
+    /// </summary>
+    public enum SourceKind
+    {
+        /// <summary>
+        /// The drawing itself.
+        /// </summary>
+        Drawing,
+
+        /// <summary>
+        /// A manual or data sheet.
+        /// </summary>
+        Manual,
+
+        /// <summary>
+        /// A reading document written from the drawing (such as docs/2A50-reading.md).
+        /// </summary>
+        Reading,
+
+        /// <summary>
+        /// Worked out from other facts plus an assumption.
+        /// </summary>
+        Inferred,
+    }
+
+    /// <summary>
+    /// Where a signal's description came from.
+    /// </summary>
+    public sealed class DescriptionSource
+    {
+        /// <summary>
+        /// The kind of source.
+        /// </summary>
+        public SourceKind Kind { get; set; }
+
+        /// <summary>
+        /// The document, such as "docs/2A50-reading.md" or a manual's number, or null.
+        /// </summary>
+        public string? Document { get; set; }
+
+        /// <summary>
+        /// Where in it: a section heading or a page, or null.
+        /// </summary>
+        public string? Place { get; set; }
+
+        /// <summary>
+        /// How sure the description is.
+        /// </summary>
+        public Confidence Confidence { get; set; }
     }
 
     /// <summary>

@@ -56,15 +56,30 @@ namespace RetroSchematic.Mcp
         /// <param name="title">
         /// The title.
         /// </param>
+        /// <param name="bus">
+        /// nord-10, nd-100 or unknown.
+        /// </param>
         /// <returns>
         /// What was done.
         /// </returns>
         [McpServerTool(Name = "new_sheet"), Description("Start a new, empty sheet (no parts, no signals), already in edit mode. Save it with save_sheet and a path.")]
-        public string NewSheet([Description("Sheet number, e.g. 2A51")] string id, [Description("Sheet title")] string title)
+        public string NewSheet(
+            [Description("Sheet number, e.g. 2A51")] string id,
+            [Description("Sheet title")] string title,
+            [Description("Which machine bus the card is for: nord-10, nd-100 or unknown. It picks the bus-signal and connector catalogues; unknown gives a warning.")] string bus = "unknown")
         {
-            _editor = new SheetEditor(SheetEditor.NewSheet(id, title), Catalog(null)) { ReadOnly = false };
+            MachineBus b = bus.Trim().ToLowerInvariant() switch
+            {
+                "nord-10" => MachineBus.Nord10,
+                "nd-100" => MachineBus.Nd100,
+                "unknown" => MachineBus.Unknown,
+                _ => throw new McpException("bus must be nord-10, nd-100 or unknown, not '" + bus + "'."),
+            };
+            _editor = new SheetEditor(SheetEditor.NewSheet(id, title, b), Catalog(null)) { ReadOnly = false };
             _path = null;
-            return "New sheet " + id + " in edit mode." + (_editor.Catalog == null ? " No chip catalogue was found, so no chip can be placed." : "");
+            return "New sheet " + id + " for the " + SheetSession.BusText(b) + " in edit mode."
+                + (b == MachineBus.Unknown ? " Warning: the bus is not known, so no bus catalogue is used." : "")
+                + (_editor.Catalog == null ? " No chip catalogue was found, so no chip can be placed." : "");
         }
 
         /// <summary>

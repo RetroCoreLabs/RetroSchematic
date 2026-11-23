@@ -67,7 +67,7 @@ namespace RetroSchematic.Desktop
             SymbolStyle style = UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern;
             Show(new SheetSession(path, style, ChipCatalog.Find(path)));
             StatusText.Text = path + "  -  " + _session!.Netlist.Parts.Count + " parts, " + _session.Netlist.Gates.Count + " gates, "
-                + _session.Netlist.Nets.Count + " signals";
+                + _session.Netlist.Nets.Count + " signals" + (_session.BusWarning == null ? "" : ".  " + _session.BusWarning);
             UiSettings.Instance.LastSheet = path;
             string? problem = UiSettings.Instance.Save();
             if (problem != null)
@@ -76,16 +76,20 @@ namespace RetroSchematic.Desktop
 
         /// <summary>
         /// Starts a new, empty design, already in edit mode. The catalogue is the one above the
-        /// program's folder.
+        /// program's folder. The bus picks the bus-signal and connector catalogues; a sheet
+        /// started without one shows a warning until it is set in Settings, This sheet.
         /// </summary>
-        public void NewSheet()
+        /// <param name="bus">
+        /// Which machine bus the card is for.
+        /// </param>
+        public void NewSheet(MachineBus bus = MachineBus.Unknown)
         {
             SymbolStyle style = UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern;
-            Show(new SheetSession(SheetEditor.NewSheet("NEW", "New design"), null, style, ChipCatalog.Find(AppContext.BaseDirectory)));
+            Show(new SheetSession(SheetEditor.NewSheet("NEW", "New design", bus), null, style, ChipCatalog.Find(AppContext.BaseDirectory)));
             SetEditMode(true);
-            StatusText.Text = _session!.Editor.Catalog == null
+            StatusText.Text = (_session!.Editor.Catalog == null
                 ? "New sheet - no chip catalogue found, so no chips can be placed."
-                : "New sheet. Pick a chip to place.";
+                : "New sheet. Pick a chip to place.") + (_session.BusWarning == null ? "" : " " + _session.BusWarning);
         }
 
         /// <summary>
@@ -174,6 +178,7 @@ namespace RetroSchematic.Desktop
                 PickTool(TbSelect);
             if (_session != null)
                 Title = "RetroSchematic - " + _session.Netlist.Sheet.Id + " " + _session.Netlist.Sheet.Title
+                    + " (" + SheetSession.BusText(_session.Bus) + ")"
                     + (_session.Editor.Modified ? " (changed)" : "") + (editing ? " [edit]" : "");
         }
 
@@ -440,6 +445,9 @@ namespace RetroSchematic.Desktop
         }
 
         private void OnNew(object? sender, RoutedEventArgs e) => NewSheet();
+
+        private void OnNewForBus(object? sender, RoutedEventArgs e)
+            => NewSheet((sender as MenuItem)?.Tag as string == "nd-100" ? MachineBus.Nd100 : MachineBus.Nord10);
 
         private async void OnOpen(object? sender, RoutedEventArgs e)
         {

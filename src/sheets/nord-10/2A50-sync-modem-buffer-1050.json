@@ -5,6 +5,7 @@
     "id": "2A50",
     "title": "SYNCHRONOUS MODEM BUFFER 1050",
     "machine": "NORD-10",
+    "bus": "nord-10",
     "company": "A/S Norsk Data-Elektronikk",
     "drawn": "1973-11-06",
     "updated": "1973-11-29",

@@ -10,7 +10,11 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top" Background="{DynamicResource FluentSurfaceAltBrush}">
       <MenuItem Header="_File">
-        <MenuItem Header="_New sheet" Click="OnNew" HotKey="Ctrl+N" InputGesture="Ctrl+N"/>
+        <MenuItem Header="_New sheet">
+          <MenuItem Header="NORD-10 card" Tag="nord-10" Click="OnNewForBus"/>
+          <MenuItem Header="ND-100 card" Tag="nd-100" Click="OnNewForBus"/>
+          <MenuItem Header="Bus not known yet" Click="OnNew" HotKey="Ctrl+N" InputGesture="Ctrl+N"/>
+        </MenuItem>
         <MenuItem Header="_Open sheet..." Click="OnOpen" HotKey="Ctrl+O" InputGesture="Ctrl+O"/>
         <MenuItem Header="Open the _demo sheet" Click="OnOpenDemo" x:Name="OpenDemoItem"/>
         <Separator/>

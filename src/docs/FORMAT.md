@@ -37,7 +37,7 @@ the scan while the other is smudged.
 
 | Field | What it is |
 |---|---|
-| `sheet` | the drawing: id (`2A50`), title, machine, drawing dates, and `source` (document file in `docs/sources/`, PDF page) |
+| `sheet` | the drawing: id (`2A50`), title, machine (free text), `bus` (`nord-10`, `nd-100` or `unknown`: which machine bus the card is for; it picks the bus-signal and connector catalogues, a NORD-10 sheet never uses the ND-100 ones and the other way round; missing reads as `unknown`, shown as a warning), drawing dates, and `source` (document file in `docs/sources/`, PDF page) |
 | `parts[]` | one chip: `ref` = its position on the board as printed on the drawing (`13D`, `7-8C-D`), `type` (`7442`), `function`, `confidence`, `note`, optional `position` |
 | `gates[]` | one gate inside a part: `id` (`11D/1`), `part`, `kind` (`nand`, `nor`, `not`, `and`, `or`, `buffer`, `other`), `inputs` and `output` as pin numbers, optional `position` |
 | `nets[]` | one signal: `name` as on the drawing without subscript, `active` (`high` = subscript 1, `low` = subscript 0, `none`), `pins[]`, `note` |
@@ -93,6 +93,26 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   at that entry. A stored bus path that crosses a chip, a text or a label is not used: the bus
   is routed afresh between its two ends and the program says why. A pin that cannot reach its
   bus keeps its ordinary net label, and that is reported too.
+
+- `nets[].description`, `nets[].descriptionSource`, `nets[].function` (2026-11-23): what the
+  signal does, in plain words, and where that came from. A description is only ever what a
+  source says; a signal no source explains has none. `descriptionSource` holds `kind`
+  (`drawing`, `manual`, `reading` for a reading document such as `docs/2A50-reading.md`, or
+  `inferred`), `document`, `place` (a section or page) and `confidence` (`read`, `inferred`,
+  `open`). `function` is a list of short tags such as `interrupt` or `status`. Notes go in the
+  existing `nets[].note`.
+
+  ```json
+  { "name": "IRFTIE", "active": "high", "description": "ICW bit 0: enable the level-12 interrupt on character received",
+    "descriptionSource": { "kind": "reading", "document": "docs/2A50-reading.md",
+                           "place": "ICW, offset 3: input control", "confidence": "read" }, "pins": [ ... ] }
+  ```
+
+  Facts that follow from the chips are NOT stored: the drive type (from each output pin's
+  `outputType` in the chip catalogue), the driving pins, the number of loads, the bus a signal
+  is on and the block levels it reaches are worked out when the sheet is read. When a stored
+  `drive` disagrees with what the catalogue gives, both are shown and the difference is
+  reported; the stored value is never overwritten.
 
 - `display` (2026-11-23): how this sheet likes to be shown. Display only - it never changes what
   is connected. Every value is optional; a missing one means "use the viewer's default", and a
