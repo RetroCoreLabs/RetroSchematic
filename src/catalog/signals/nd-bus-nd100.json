@@ -45,6 +45,11 @@
       "id": "KC",
       "document": "KiCad project NDModulE-v3-reduced (kept outside this repository), sheet SystemBusC.kicad_sch, connector J1 'BUS-C' (DIN 41612 3x32, footprint DIN41612_R_3x32_Male_Horizontal_THT)",
       "note": "A modern ND-bus card design, not an ND document. Net names were taken from a netlist exported with kicad-cli 9.0 from the root sheet NDModuleE-v3-reduced.kicad_sch."
+    },
+    {
+      "id": "XL",
+      "document": "Owner's spreadsheet 'ND-120 Commands' (kept outside this repository): sheets A-PLUG, B-PLUG, C-PLUG (ND-BUS), C-BUS, Signal Names",
+      "note": "Second-hand: the owner's notes, partly typed from ND-06.016.01 Appendix F and partly from the ND-120 3202D CPU schematics ('ND-120 schematics' is written under the A-PLUG sheet). The NDInsight C-connector note appears to be made from this spreadsheet (it names the same sheets as its source). Confidence of its facts is 'inferred'; ND manual facts are never replaced."
     }
   ],
   "signals": [
@@ -215,7 +220,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "GND",
+          "source": "XL",
+          "page": "sheet C-BUS A1",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "GND",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A1",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A1",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Logical ground return."
       }
     },
     {
@@ -327,7 +351,26 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "+5V",
+          "source": "XL",
+          "page": "sheet C-BUS A2",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "POWER 5V",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A2",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A2",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Main logic supply voltage."
       }
     },
     {
@@ -392,7 +435,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 1",
+          "source": "XL",
+          "page": "sheet C-BUS A3",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD1",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A3",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A3",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -457,7 +519,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 3",
+          "source": "XL",
+          "page": "sheet C-BUS A4",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD3",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A4",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A4",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -522,7 +603,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 5",
+          "source": "XL",
+          "page": "sheet C-BUS A5",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD5",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A5",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A5",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -587,7 +687,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 7",
+          "source": "XL",
+          "page": "sheet C-BUS A6",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD7",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A6",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A6",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -652,7 +771,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 9",
+          "source": "XL",
+          "page": "sheet C-BUS A7",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD9",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A7",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A7",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -717,7 +855,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 11",
+          "source": "XL",
+          "page": "sheet C-BUS A8",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD11",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A8",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A8",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -782,7 +939,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 13",
+          "source": "XL",
+          "page": "sheet C-BUS A9",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD13",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A9",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A9",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -847,7 +1023,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 15",
+          "source": "XL",
+          "page": "sheet C-BUS A10",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD15",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A10",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A10",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -911,6 +1106,18 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BREF",
+          "source": "XL",
+          "page": "sheet C-BUS A12",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BREF",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A12",
+          "confidence": "inferred"
         }
       }
     },
@@ -969,7 +1176,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "PA 1",
+          "source": "XL",
+          "page": "sheet C-BUS A13",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "PA 1",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A13",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A13",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Position Address 1",
+        "value": "Card position code and defines device numbers of analogue and digital process interfaces."
       }
     },
     {
@@ -1027,7 +1254,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "PA 3",
+          "source": "XL",
+          "page": "sheet C-BUS A14",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "PA 3",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A14",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A14",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Position Address 3",
+        "value": "Card position code and defines device numbers of analogue and digital process interfaces."
       }
     },
     {
@@ -1092,7 +1339,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINT 10",
+          "source": "XL",
+          "page": "sheet C-BUS A15",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INT 10",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A15",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A15",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "INT 10",
+        "value": "Interrupt lines. BINT10 has lowest priority. Wired OR lines."
       }
     },
     {
@@ -1157,7 +1424,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINT 12",
+          "source": "XL",
+          "page": "sheet C-BUS A16",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INT 12",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A16",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A16",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "INT 12",
+        "value": "Interrupt lines. BINT10 has lowest priority. Wired OR lines."
       }
     },
     {
@@ -1222,7 +1509,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "PANREQ",
+          "source": "XL",
+          "page": "sheet C-BUS A17",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "SEMRQ",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A17",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A17",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Panel Request",
+        "value": "Signal indicating that the control panel wants to communicate with the CPU"
       }
     },
     {
@@ -1287,7 +1594,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINPUT",
+          "source": "XL",
+          "page": "sheet C-BUS A18",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BINPUT",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A18",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A18",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Input",
+        "value": "Bus Input signalled by a unit which will transmit data. l/O interfaces must wait for BINACK before enabling data and BDRY. Wired OR line."
       }
     },
     {
@@ -1352,7 +1679,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BDRY",
+          "source": "XL",
+          "page": "sheet C-BUS A19",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BDRY",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A19",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A19",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Data Read",
+        "value": "Bus Data Ready signals that data are ready or have been accepted, given by answering device. Wired OR line."
       }
     },
     {
@@ -1417,7 +1764,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BAPR",
+          "source": "XL",
+          "page": "sheet C-BUS A20",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BAPR",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A20",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A20",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Address Present (Address strobe)",
+        "value": "Bus Address Present on multiplexed data and address bus. Wired OR line."
       }
     },
     {
@@ -1475,7 +1842,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "INCONTR",
+          "source": "XL",
+          "page": "sheet C-BUS A21",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INCONTR",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A21",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A21",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Input CONTROL",
+        "value": "Response to BCRQ indicating that a control over the bus is available. A unit which does not want to control the bus must issue OUTCONTR is response to INCONTR. INCONTR is generated as OUTCONTR by nearest unit in a less significant board position."
       }
     },
     {
@@ -1533,7 +1920,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "INIDENT",
+          "source": "XL",
+          "page": "sheet C-BUS A22",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INIDENT",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A22",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A22",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Input IDENT",
+        "value": "Response to BlNT10-13, together with address bits 0-5 which specify BINT number. An interface which issued BINT on the specified level prior to the last leading edge of BAPR shall respond by enabling its IDENT CODE onto the BD bus. Otherwise, INIDENT is passed on to OUTIDENT which is connected to INIDENT of the next lower priority card position (further removed from controlling unit). INIDENT originates in the OUTIDENT from controlling unit."
       }
     },
     {
@@ -1591,7 +1998,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "INGRANT",
+          "source": "XL",
+          "page": "sheet C-BUS A23",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INGRANT (DMA)",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A23",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A23",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Input GRANT",
+        "value": "Response to BREQ, indicating that the bus is available for a DMA cycle. An interface which issued BREQ prior to the last leading edge of BMEM may use the bus for a single memory read or write cycle. Otherwise, INGRANT is passed onto OUTGRANT which is connected to INGRANT of the next lower priority card position (further removed from controlling unit). INGRANT originates as OUTGRANT from controlling unit."
       }
     },
     {
@@ -1672,7 +2099,26 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "+15V",
+          "source": "XL",
+          "page": "sheet C-BUS A25",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "POWER +15V",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A25",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A25",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Supply voltage for analogue interface circuits. For customer use."
       }
     },
     {
@@ -1753,7 +2199,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "An. Return",
+          "source": "XL",
+          "page": "sheet C-BUS A26",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "Analog return (GND)",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A26",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A26",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Analog Return (GND)",
+        "value": "Separate ground line for analogue circuits. Connected to logic ground return (GND) in power supply end. (i 15V Power Supply)."
       }
     },
     {
@@ -1834,7 +2300,26 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "-15V",
+          "source": "XL",
+          "page": "sheet C-BUS A27",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "POWER -15V",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A27",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A27",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Supply voltage for analogue interface circuits. For customer use."
       }
     },
     {
@@ -1915,7 +2400,26 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "+12V",
+          "source": "XL",
+          "page": "sheet C-BUS A28",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "POWER 12V",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A28",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A28",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Supply voltage for memory. Requires battery backup."
       }
     },
     {
@@ -1995,6 +2499,18 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "POW. SENSE",
+          "source": "XL",
+          "page": "sheet C-BUS A29",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "Power Sense",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A29",
+          "confidence": "inferred"
         }
       }
     },
@@ -2076,7 +2592,26 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "5V St. by",
+          "source": "XL",
+          "page": "sheet C-BUS A30",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "POWER 5V (standby)",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) A30",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row A30",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Logic supply voltage for memory retention during power fail"
       }
     },
     {
@@ -2141,7 +2676,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 16",
+          "source": "XL",
+          "page": "sheet C-BUS B3",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD16",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B3",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B3",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2206,7 +2760,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 17",
+          "source": "XL",
+          "page": "sheet C-BUS B4",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD17",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B4",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B4",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2271,7 +2844,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 18",
+          "source": "XL",
+          "page": "sheet C-BUS B5",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD18",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B5",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B5",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2336,7 +2928,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 19",
+          "source": "XL",
+          "page": "sheet C-BUS B6",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD19",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B6",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B6",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2401,7 +3012,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 20",
+          "source": "XL",
+          "page": "sheet C-BUS B7",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD20",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B7",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B7",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2466,7 +3096,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 21",
+          "source": "XL",
+          "page": "sheet C-BUS B8",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD21",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B8",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B8",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2531,7 +3180,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 22",
+          "source": "XL",
+          "page": "sheet C-BUS B9",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD22",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B9",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B9",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2596,7 +3264,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 23",
+          "source": "XL",
+          "page": "sheet C-BUS B10",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD23",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B10",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B10",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -2661,7 +3348,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "LOAD",
+          "source": "XL",
+          "page": "sheet C-BUS B12",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "LOAD",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B12",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B12",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Load",
+        "value": "Activates the load microprogram if the CPU is in STOP mode. Wired OR line (only in CPU crate)."
       }
     },
     {
@@ -2726,7 +3433,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "RESTART",
+          "source": "XL",
+          "page": "sheet C-BUS B13",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "RESTART",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B13",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B13",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Restart",
+        "value": "Starts program execution in location 20 (octal) if the CPU is in STOP mode. Wired OR line (only in CPU crate)."
       }
     },
     {
@@ -2791,7 +3518,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "RUN",
+          "source": "XL",
+          "page": "sheet C-BUS B14",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "RUN",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B14",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B14",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Running",
+        "value": "Indicates that the CPU is active executing a program, i.e., not in STOP mode. Generated by CPU (only in CPU crate)."
       }
     },
     {
@@ -2856,7 +3603,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "CONTINUE",
+          "source": "XL",
+          "page": "sheet C-BUS B15",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "CONTINUE",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B15",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B15",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Continue",
+        "value": "May be used to start a CPU that is in STOP mode. Wired OR line. (Only in CPU crate.)"
       }
     },
     {
@@ -2921,7 +3688,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "STOP",
+          "source": "XL",
+          "page": "sheet C-BUS B16",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "STOP",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B16",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B16",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Stop",
+        "value": "Forces the CPU to enter STOP mode after completion of the current instruction. Wired OR line (only in CPU crate)."
       }
     },
     {
@@ -2979,7 +3766,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BLANK",
+          "source": "XL",
+          "page": "sheet C-BUS B17",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BLANK",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B17",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B17",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Output Blanking",
+        "value": "Output Blanking signal for process interface. Wired OR signal generated by monitoring device."
       }
     },
     {
@@ -3044,7 +3851,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BPERR",
+          "source": "XL",
+          "page": "sheet C-BUS B18",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BPERR",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B18",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B18",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Parity error",
+        "value": "Bus Parity error. Fatal or correctable error from memory, according to the ECC register."
       }
     },
     {
@@ -3109,7 +3936,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINACK",
+          "source": "XL",
+          "page": "sheet C-BUS B19",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BINACK",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B19",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B19",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Input Acknowled",
+        "value": "Bus Input Acknowledge signals that an interface requesting an input operation may enable data. Generated by controlling unit."
       }
     },
     {
@@ -3174,7 +4021,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BMCL",
+          "source": "XL",
+          "page": "sheet C-BUS B20",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BMCL",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B20",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B20",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Master Clear",
+        "value": "Bus Master Clear for logic initialization at power up and when Master Clear button is pushed. Wired OR line."
       }
     },
     {
@@ -3239,7 +4106,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BERROR",
+          "source": "XL",
+          "page": "sheet C-BUS B21",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BERROR",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B21",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B21",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Error",
+        "value": "Bus Error signals that an error was detected during a bus cycle, e.g., fatal memory error. Wired OR line."
       }
     },
     {
@@ -3297,7 +4184,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BCRQ",
+          "source": "XL",
+          "page": "sheet C-BUS B22",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BCRQ",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B22",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B22",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Control Request",
+        "value": "Bus Control Request from source wanting full control over bus (for future extensions). Wired OR line"
       }
     },
     {
@@ -3362,7 +4269,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "3MINH",
+          "source": "XL",
+          "page": "sheet C-BUS B23",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BMINH",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) B23",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row B23",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Memory Inhibit",
+        "value": "Bus Memory Inhibit used to inhibit memory accesses during power down and power up sequence in systems which have battery backup for memory only. Generated by controlling unit."
       }
     },
     {
@@ -3427,7 +4354,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 0",
+          "source": "XL",
+          "page": "sheet C-BUS C3",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD0",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C3",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C3",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3492,7 +4438,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 2",
+          "source": "XL",
+          "page": "sheet C-BUS C4",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD2",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C4",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C4",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3557,7 +4522,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 4",
+          "source": "XL",
+          "page": "sheet C-BUS C5",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD4",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C5",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C5",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3622,7 +4606,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 6",
+          "source": "XL",
+          "page": "sheet C-BUS C6",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD6",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C6",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C6",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3687,7 +4690,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 8",
+          "source": "XL",
+          "page": "sheet C-BUS C7",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD8",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C7",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C7",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3752,7 +4774,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 10",
+          "source": "XL",
+          "page": "sheet C-BUS C8",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD10",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C8",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C8",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3817,7 +4858,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 12",
+          "source": "XL",
+          "page": "sheet C-BUS C9",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD12",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C9",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C9",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3882,7 +4942,26 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BD 14",
+          "source": "XL",
+          "page": "sheet C-BUS C10",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BD14",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C10",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C10",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "value": "Multiplexed data and address bus."
       }
     },
     {
@@ -3947,7 +5026,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BREQ",
+          "source": "XL",
+          "page": "sheet C-BUS C12",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BREQ",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C12",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C12",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Request",
+        "value": "Request for a DMA cycle. Wired OR line"
       }
     },
     {
@@ -4005,7 +5104,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "PA 0",
+          "source": "XL",
+          "page": "sheet C-BUS C13",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "PA 0",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C13",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C13",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Position Address 0",
+        "value": "Card position code and defines device numbers of analogue and digital process interfaces."
       }
     },
     {
@@ -4063,7 +5182,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "PA 2",
+          "source": "XL",
+          "page": "sheet C-BUS C14",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "PA 2",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C14",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C14",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Position Address 2",
+        "value": "Card position code and defines device numbers of analogue and digital process interfaces."
       }
     },
     {
@@ -4128,7 +5267,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINT 11",
+          "source": "XL",
+          "page": "sheet C-BUS C15",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INT 11",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C15",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C15",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "INT 11",
+        "value": "Interrupt lines. BINT10 has lowest priority. Wired OR lines."
       }
     },
     {
@@ -4193,7 +5352,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINT 13",
+          "source": "XL",
+          "page": "sheet C-BUS C16",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INT 13",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C16",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C16",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "INT 13",
+        "value": "Interrupt lines. BINT10 has lowest priority. Wired OR lines."
       }
     },
     {
@@ -4258,7 +5437,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BINT 15",
+          "source": "XL",
+          "page": "sheet C-BUS C17",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "INT 15",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C17",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C17",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "INT 15",
+        "value": "Interrupt lines. BINT10 has lowest priority. Wired OR lines."
       }
     },
     {
@@ -4323,7 +5522,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BDAP",
+          "source": "XL",
+          "page": "sheet C-BUS C18",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BDAP",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C18",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C18",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Data Present",
+        "value": "Bus Data Present signals that data is present during DMA or memory cycles."
       }
     },
     {
@@ -4388,7 +5607,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BIOXE",
+          "source": "XL",
+          "page": "sheet C-BUS C19",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BIOXE",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C19",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C19",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Input/Output Enable",
+        "value": "Input/Output Enable. A strobe to enable data transfer to or from an I/O interface. Generated by controlling unit."
       }
     },
     {
@@ -4453,7 +5692,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "BMEM",
+          "source": "XL",
+          "page": "sheet C-BUS C20",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "BMEM",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C20",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C20",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Bus Memory",
+        "value": "Bus Memory Cycle signals that a bus cycle accesses memory. Generated by controlling unit."
       }
     },
     {
@@ -4511,7 +5770,27 @@
               "noConnectOnCard": true
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "OUTCONTR",
+          "source": "XL",
+          "page": "sheet C-BUS C21",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "OUTCONTR",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C21",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C21",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Out CONTROL",
+        "value": "See INCONTR"
       }
     },
     {
@@ -4576,7 +5855,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "OUTIDENT",
+          "source": "XL",
+          "page": "sheet C-BUS C22",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "OUTIDENT",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C22",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C22",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Out IDENT",
+        "value": "See INIDENT"
       }
     },
     {
@@ -4641,7 +5940,27 @@
               "noConnectOnCard": false
             }
           ]
+        },
+        "spreadsheetCPlug": {
+          "value": "OUTGRANT",
+          "source": "XL",
+          "page": "sheet C-BUS C23",
+          "confidence": "inferred"
+        },
+        "spreadsheetCPlugSheet": {
+          "value": "OUTGRANT (DMA)",
+          "source": "XL",
+          "page": "sheet C-PLUG (ND-BUS) C23",
+          "confidence": "inferred"
         }
+      },
+      "descriptionSpreadsheet": {
+        "source": "XL",
+        "page": "sheet Signal Names, row C23",
+        "confidence": "inferred",
+        "note": "second-hand; the ND manual fact in 'description' stays the authority",
+        "name": "Out GRANT",
+        "value": "See INGRANT"
       }
     }
   ],
@@ -4661,11 +5980,77 @@
       "Verilog: no ports for BPERR, BMINH, BLANK, PA0-PA3, INIDENT, INGRANT, BCRQ, INCONTR, OUTCONTR, RESTART (see names.nd120Verilog per signal).",
       "KiCad: pins 25-31 of all three rows are not connected on that card (+15V, An. Return, -15V, +12V, POW. SENSE, 5V St.by, and the second +5V pin 31); only pin 2 carries +5V. Not a disagreement with the table, a choice of that card.",
       "KiCad: pin 1 of each row is on net NDGND_EURO5V while pins 11, 24, 32 are on net GND (two ground nets on that card; whether they join elsewhere was not checked).",
-      "KiCad: every J1 pin is of type passive, so the KiCad sheet gives no directions."
+      "KiCad: every J1 pin is of type passive, so the KiCad sheet gives no directions.",
+      "spreadsheet sheet C-BUS a13 PA 1: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet Signal Names a13 PA 1: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet C-BUS a14 PA 3: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet Signal Names a14 PA 3: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet C-BUS a18 BINPUT: source/used CI/C, ND table CI/CM",
+      "spreadsheet sheet Signal Names a18 BINPUT: source/used CI/C, ND table CI/CM",
+      "spreadsheet sheet C-BUS a19 BDRY: source/used MI/C, ND table MI/CI",
+      "spreadsheet sheet Signal Names a19 BDRY: source/used MI/C, ND table MI/CI",
+      "spreadsheet sheet C-BUS a20 BAPR: source/used CI/CMI, ND table CI/MI",
+      "spreadsheet sheet Signal Names a20 BAPR: source/used CI/CMI, ND table CI/MI",
+      "spreadsheet sheet C-BUS a22 INIDENT: source/used CI/CI, ND table CI/I",
+      "spreadsheet sheet Signal Names a22 INIDENT: source/used CI/CI, ND table CI/I",
+      "spreadsheet sheet C-BUS a28 +12V: source/used P/CMI, ND table P/CI",
+      "spreadsheet sheet Signal Names a28 +12V: source/used P/CMI, ND table P/CI",
+      "spreadsheet sheet C-BUS a30 5V St. by: source/used P/CMI, ND table P/CM",
+      "spreadsheet sheet Signal Names a30 5V St. by: source/used P/CMI, ND table P/CM",
+      "spreadsheet sheet C-BUS a32 GND: source/used (blank)/(blank), ND table P/CMI",
+      "spreadsheet sheet C-BUS b13 RESTART: source/used I/I, ND table I/C",
+      "spreadsheet sheet Signal Names b13 RESTART: source/used I/I, ND table I/C",
+      "spreadsheet sheet C-BUS b14 RUN: source/used O/C, ND table C/I",
+      "spreadsheet sheet Signal Names b14 RUN: source/used I/C, ND table C/I",
+      "spreadsheet sheet C-BUS b19 BINACK: source/used C/C, ND table C/I",
+      "spreadsheet sheet Signal Names b19 BINACK: source/used C/C, ND table C/I",
+      "spreadsheet sheet C-BUS b23 3MINH: source/used P/CMI, ND table P/CM",
+      "spreadsheet sheet Signal Names b23 BMINH: source/used P/CMI, ND table P/CM",
+      "spreadsheet sheet C-BUS b29 POW. SENSE: source/used P/CMI, ND table P/CI",
+      "spreadsheet sheet Signal Names b29 POW. SENSE: source/used P/CMI, ND table P/CI",
+      "spreadsheet sheet C-BUS b30 5V St. by: source/used P/CMI, ND table P/CM",
+      "spreadsheet sheet Signal Names b30 5V St. by: source/used P/CMI, ND table P/CM",
+      "spreadsheet sheet C-BUS b32 GND: source/used (blank)/(blank), ND table P/CMI",
+      "spreadsheet sheet C-BUS c1 GND: source/used P/CMI, ND table (blank)/(blank)",
+      "spreadsheet sheet Signal Names c1 GND: source/used P/CMI, ND table (blank)/(blank)",
+      "spreadsheet sheet C-BUS c2 +5V: source/used P/CMI, ND table (blank)/(blank)",
+      "spreadsheet sheet Signal Names c2 +5V: source/used P/CMI, ND table (blank)/(blank)",
+      "spreadsheet sheet C-BUS c13 PA 0: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet Signal Names c13 PA 0: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet C-BUS c14 PA 2: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet Signal Names c14 PA 2: source/used I/I, ND table (blank)/I",
+      "spreadsheet sheet C-BUS c18 BDAP: source/used CI/CI, ND table CI/MI",
+      "spreadsheet sheet Signal Names c18 BDAP: source/used CI/CI, ND table CI/MI",
+      "spreadsheet sheet C-BUS c20 BMEM: source/used CMI/CMI, ND table C/MI",
+      "spreadsheet sheet Signal Names c20 BMEM: source/used CMI/CMI, ND table C/MI",
+      "spreadsheet sheet C-BUS c22 OUTIDENT: source/used CI/CI, ND table CI/I",
+      "spreadsheet sheet Signal Names c22 OUTIDENT: source/used CI/CI, ND table CI/I",
+      "spreadsheet sheet C-BUS c26 An. Return: source/used P/P, ND table P/I",
+      "spreadsheet sheet Signal Names c26 An. Return: source/used P/P, ND table P/I",
+      "spreadsheet sheet C-BUS c27 -15V: source/used P/CI, ND table P/CMI",
+      "spreadsheet sheet Signal Names c27 -15V: source/used P/CI, ND table P/CMI",
+      "spreadsheet sheet C-BUS c28 +12V: source/used P/P, ND table P/CI",
+      "spreadsheet sheet Signal Names c28 +12V: source/used P/P, ND table P/CI",
+      "spreadsheet sheet C-BUS c29 POW. SENSE: source/used P/P, ND table P/CI",
+      "spreadsheet sheet Signal Names c29 POW. SENSE: source/used P/P, ND table P/CI",
+      "spreadsheet sheet C-BUS c30 5V St. by: source/used P/P, ND table P/CM",
+      "spreadsheet sheet Signal Names c30 5V St. by: source/used P/P, ND table P/CM",
+      "spreadsheet sheet C-BUS c32 GND: source/used (blank)/(blank), ND table P/CMI",
+      "spreadsheet sheet C-BUS b23: name written '3MINH', ND table BMINH (typing slip)",
+      "spreadsheet sheet Signal Names b29 POW. SENSE: description 'Supply voltage for memory. Requires battery backup.' (copied from +12V); the ND manual gives no description for POW. SENSE"
     ],
     "source": "N100",
     "page": "Appendix F.2 table (PDF page 214)",
     "confidence": "read",
     "note": "Compared against the ND table, which stays the authority. Pin positions in the KiCad sheet agree with the ND table on every pin."
+  },
+  "spreadsheetNotes": {
+    "value": [
+      "C-BUS notes (second-hand): all BD lines have 4.7 kohm pull-up networks 4610X-101-472; data lines often go through 74LS240 (inverting) buffers, are latched in 74LS373 or 74S374, and are driven out through 74LS244 (the word 'often' is the spreadsheet's).",
+      "C-PLUG (ND-BUS) notes (second-hand): 'One bus cycle should not last longer than 8 uS'; 'BREQ - Bus Request - From CPU?'; 'RFRQ - Refresh Request - Same as BREQ but is given priority'; 'NOTE: All signals are inverted (active low)'."
+    ],
+    "source": "XL",
+    "page": "sheets C-BUS and C-PLUG (ND-BUS), side notes",
+    "confidence": "inferred"
   }
 }

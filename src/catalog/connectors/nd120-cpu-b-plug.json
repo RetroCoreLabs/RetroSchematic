@@ -1,0 +1,1077 @@
+{
+  "catalogFormat": "nd-connector",
+  "catalogFormatVersion": 1,
+  "id": "nd120-cpu-b-plug",
+  "machine": "ND-120 (CPU card 3202D)",
+  "title": "ND-120 CPU card 3202D, plug B: trace bus",
+  "sources": [
+    {
+      "id": "XL",
+      "document": "Owner's spreadsheet 'ND-120 Commands' (kept outside this repository): sheets A-PLUG, B-PLUG, C-PLUG (ND-BUS), C-BUS, Signal Names",
+      "note": "Second-hand: the owner's notes, partly typed from ND-06.016.01 Appendix F and partly from the ND-120 3202D CPU schematics ('ND-120 schematics' is written under the A-PLUG sheet). The NDInsight C-connector note appears to be made from this spreadsheet (it names the same sheets as its source). Confidence of its facts is 'inferred'; ND manual facts are never replaced."
+    }
+  ],
+  "pinNumbering": {
+    "value": "rows A, B, C x pins 1-32",
+    "source": "XL",
+    "page": "sheet B-PLUG",
+    "confidence": "inferred"
+  },
+  "pinCount": {
+    "value": 96,
+    "source": "XL",
+    "page": "sheet B-PLUG",
+    "confidence": "inferred"
+  },
+  "note": "Sheet title 'TRACE BUS'. Directions are not marked on any signal cell. 'VOLTAGE' means a supply pin whose voltage the sheet does not give. The signals are internal CPU buses brought out for tracing (XLUA, XIDB, XCA, XLA, XCOMM, INR, XPIL ...); their meaning is not in any ND document found here.",
+  "pins": [
+    {
+      "row": "A",
+      "pin": 1,
+      "signal": {
+        "value": "GND",
+        "source": "XL",
+        "page": "sheet B-PLUG A1",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 1,
+      "signal": {
+        "value": "GND",
+        "source": "XL",
+        "page": "sheet B-PLUG B1",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 1,
+      "signal": {
+        "value": "GND",
+        "source": "XL",
+        "page": "sheet B-PLUG C1",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 2,
+      "signal": {
+        "value": "VOLTAGE",
+        "source": "XL",
+        "page": "sheet B-PLUG A2",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 2,
+      "signal": {
+        "value": "VOLTAGE",
+        "source": "XL",
+        "page": "sheet B-PLUG B2",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 2,
+      "signal": {
+        "value": "VOLTAGE",
+        "source": "XL",
+        "page": "sheet B-PLUG C2",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 3,
+      "signal": {
+        "value": "XLUA4",
+        "source": "XL",
+        "page": "sheet B-PLUG A3",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 3,
+      "signal": {
+        "value": "EBUS_n",
+        "source": "XL",
+        "page": "sheet B-PLUG B3",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 3,
+      "signal": {
+        "value": "XLUA5",
+        "source": "XL",
+        "page": "sheet B-PLUG C3",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 4,
+      "signal": {
+        "value": "XLUA6",
+        "source": "XL",
+        "page": "sheet B-PLUG A4",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 4,
+      "signal": {
+        "value": "INR6",
+        "source": "XL",
+        "page": "sheet B-PLUG B4",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 4,
+      "signal": {
+        "value": "XLUA7",
+        "source": "XL",
+        "page": "sheet B-PLUG C4",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 5,
+      "signal": {
+        "value": "XLUA8",
+        "source": "XL",
+        "page": "sheet B-PLUG A5",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 5,
+      "signal": {
+        "value": "INR5",
+        "source": "XL",
+        "page": "sheet B-PLUG B5",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 5,
+      "signal": {
+        "value": "XLUA10",
+        "source": "XL",
+        "page": "sheet B-PLUG C5",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 6,
+      "signal": {
+        "value": "XLUA11",
+        "source": "XL",
+        "page": "sheet B-PLUG A6",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 6,
+      "signal": {
+        "value": "INR0",
+        "source": "XL",
+        "page": "sheet B-PLUG B6",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 6,
+      "signal": {
+        "value": "XLUA9",
+        "source": "XL",
+        "page": "sheet B-PLUG C6",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 7,
+      "signal": {
+        "value": "XLUA3",
+        "source": "XL",
+        "page": "sheet B-PLUG A7",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 7,
+      "signal": {
+        "value": "INR2",
+        "source": "XL",
+        "page": "sheet B-PLUG B7",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 7,
+      "signal": {
+        "value": "XLUA2",
+        "source": "XL",
+        "page": "sheet B-PLUG C7",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 8,
+      "signal": {
+        "value": "XLUA12",
+        "source": "XL",
+        "page": "sheet B-PLUG A8",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 8,
+      "signal": {
+        "value": "INR3",
+        "source": "XL",
+        "page": "sheet B-PLUG B8",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 8,
+      "signal": {
+        "value": "XLUA0",
+        "source": "XL",
+        "page": "sheet B-PLUG C8",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 9,
+      "signal": {
+        "value": "XLUA1",
+        "source": "XL",
+        "page": "sheet B-PLUG A9",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 9,
+      "signal": {
+        "value": "XPIL0",
+        "source": "XL",
+        "page": "sheet B-PLUG B9",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 9,
+      "signal": {
+        "value": "open",
+        "confidence": "open",
+        "note": "empty in the spreadsheet: unused or unknown"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 10,
+      "signal": {
+        "value": "XBGNT_n",
+        "source": "XL",
+        "page": "sheet B-PLUG A10",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 10,
+      "signal": {
+        "value": "XPIL1",
+        "source": "XL",
+        "page": "sheet B-PLUG B10",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 10,
+      "signal": {
+        "value": "XCLK",
+        "source": "XL",
+        "page": "sheet B-PLUG C10",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 11,
+      "signal": {
+        "value": "XCOMM2",
+        "source": "XL",
+        "page": "sheet B-PLUG A11",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 11,
+      "signal": {
+        "value": "XPIL3",
+        "source": "XL",
+        "page": "sheet B-PLUG B11",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 11,
+      "signal": {
+        "value": "XCOMM3",
+        "source": "XL",
+        "page": "sheet B-PLUG C11",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 12,
+      "signal": {
+        "value": "XLCS_n",
+        "source": "XL",
+        "page": "sheet B-PLUG A12",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 12,
+      "signal": {
+        "value": "XPIL2",
+        "source": "XL",
+        "page": "sheet B-PLUG B12",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 12,
+      "signal": {
+        "value": "XCOMM1",
+        "source": "XL",
+        "page": "sheet B-PLUG C12",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 13,
+      "signal": {
+        "value": "XCOMM0",
+        "source": "XL",
+        "page": "sheet B-PLUG A13",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 13,
+      "signal": {
+        "value": "INR1",
+        "source": "XL",
+        "page": "sheet B-PLUG B13",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 13,
+      "signal": {
+        "value": "XCOMM4",
+        "source": "XL",
+        "page": "sheet B-PLUG C13",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 14,
+      "signal": {
+        "value": "MIS0",
+        "source": "XL",
+        "page": "sheet B-PLUG A14",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 14,
+      "signal": {
+        "value": "SELM5MS_n",
+        "source": "XL",
+        "page": "sheet B-PLUG B14",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 14,
+      "signal": {
+        "value": "MIS1",
+        "source": "XL",
+        "page": "sheet B-PLUG C14",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 15,
+      "signal": {
+        "value": "XIDB7",
+        "source": "XL",
+        "page": "sheet B-PLUG A15",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 15,
+      "signal": {
+        "value": "INR7",
+        "source": "XL",
+        "page": "sheet B-PLUG B15",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 15,
+      "signal": {
+        "value": "XIDB6",
+        "source": "XL",
+        "page": "sheet B-PLUG C15",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 16,
+      "signal": {
+        "value": "XIDB5",
+        "source": "XL",
+        "page": "sheet B-PLUG A16",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 16,
+      "signal": {
+        "value": "XCGNT_n",
+        "source": "XL",
+        "page": "sheet B-PLUG B16",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 16,
+      "signal": {
+        "value": "XIDB4",
+        "source": "XL",
+        "page": "sheet B-PLUG C16",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 17,
+      "signal": {
+        "value": "XIDB0",
+        "source": "XL",
+        "page": "sheet B-PLUG A17",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 17,
+      "signal": {
+        "value": "INR4",
+        "source": "XL",
+        "page": "sheet B-PLUG B17",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 17,
+      "signal": {
+        "value": "XIDB1",
+        "source": "XL",
+        "page": "sheet B-PLUG C17",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 18,
+      "signal": {
+        "value": "XIDB2",
+        "source": "XL",
+        "page": "sheet B-PLUG A18",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 18,
+      "signal": {
+        "value": "XMOR_n",
+        "source": "XL",
+        "page": "sheet B-PLUG B18",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 18,
+      "signal": {
+        "value": "XIDB3",
+        "source": "XL",
+        "page": "sheet B-PLUG C18",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 19,
+      "signal": {
+        "value": "XIDB12",
+        "source": "XL",
+        "page": "sheet B-PLUG A19",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 19,
+      "signal": {
+        "value": "open",
+        "confidence": "open",
+        "note": "empty in the spreadsheet: unused or unknown"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 19,
+      "signal": {
+        "value": "XIDB13",
+        "source": "XL",
+        "page": "sheet B-PLUG C19",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 20,
+      "signal": {
+        "value": "XIDB9",
+        "source": "XL",
+        "page": "sheet B-PLUG A20",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 20,
+      "signal": {
+        "value": "open",
+        "confidence": "open",
+        "note": "empty in the spreadsheet: unused or unknown"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 20,
+      "signal": {
+        "value": "XIDB8",
+        "source": "XL",
+        "page": "sheet B-PLUG C20",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 21,
+      "signal": {
+        "value": "XIDB10",
+        "source": "XL",
+        "page": "sheet B-PLUG A21",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 21,
+      "signal": {
+        "value": "XLSHADOW",
+        "source": "XL",
+        "page": "sheet B-PLUG B21",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 21,
+      "signal": {
+        "value": "XIDB11",
+        "source": "XL",
+        "page": "sheet B-PLUG C21",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 22,
+      "signal": {
+        "value": "XIDB14",
+        "source": "XL",
+        "page": "sheet B-PLUG A22",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 22,
+      "signal": {
+        "value": "open",
+        "confidence": "open",
+        "note": "empty in the spreadsheet: unused or unknown"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 22,
+      "signal": {
+        "value": "XIDB15",
+        "source": "XL",
+        "page": "sheet B-PLUG C22",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 23,
+      "signal": {
+        "value": "XCA6",
+        "source": "XL",
+        "page": "sheet B-PLUG A23",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 23,
+      "signal": {
+        "value": "XLA18",
+        "source": "XL",
+        "page": "sheet B-PLUG B23",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 23,
+      "signal": {
+        "value": "XCA7",
+        "source": "XL",
+        "page": "sheet B-PLUG C23",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 24,
+      "signal": {
+        "value": "XCA24",
+        "source": "XL",
+        "page": "sheet B-PLUG A24",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 24,
+      "signal": {
+        "value": "XLA19",
+        "source": "XL",
+        "page": "sheet B-PLUG B24",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 24,
+      "signal": {
+        "value": "XCA5",
+        "source": "XL",
+        "page": "sheet B-PLUG C24",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 25,
+      "signal": {
+        "value": "XCA2",
+        "source": "XL",
+        "page": "sheet B-PLUG A25",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 25,
+      "signal": {
+        "value": "XLA20",
+        "source": "XL",
+        "page": "sheet B-PLUG B25",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 25,
+      "signal": {
+        "value": "XCA3",
+        "source": "XL",
+        "page": "sheet B-PLUG C25",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 26,
+      "signal": {
+        "value": "XCA0",
+        "source": "XL",
+        "page": "sheet B-PLUG A26",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 26,
+      "signal": {
+        "value": "XLA17",
+        "source": "XL",
+        "page": "sheet B-PLUG B26",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 26,
+      "signal": {
+        "value": "XCA1",
+        "source": "XL",
+        "page": "sheet B-PLUG C26",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 27,
+      "signal": {
+        "value": "XLA14",
+        "source": "XL",
+        "page": "sheet B-PLUG A27",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 27,
+      "signal": {
+        "value": "XLA16",
+        "source": "XL",
+        "page": "sheet B-PLUG B27",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 27,
+      "signal": {
+        "value": "XLA15",
+        "source": "XL",
+        "page": "sheet B-PLUG C27",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 28,
+      "signal": {
+        "value": "XLA12",
+        "source": "XL",
+        "page": "sheet B-PLUG A28",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 28,
+      "signal": {
+        "value": "XLA22",
+        "source": "XL",
+        "page": "sheet B-PLUG B28",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 28,
+      "signal": {
+        "value": "XLA13",
+        "source": "XL",
+        "page": "sheet B-PLUG C28",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 29,
+      "signal": {
+        "value": "XLA10",
+        "source": "XL",
+        "page": "sheet B-PLUG A29",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 29,
+      "signal": {
+        "value": "XLA23",
+        "source": "XL",
+        "page": "sheet B-PLUG B29",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 29,
+      "signal": {
+        "value": "XLA11",
+        "source": "XL",
+        "page": "sheet B-PLUG C29",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 30,
+      "signal": {
+        "value": "XCA8",
+        "source": "XL",
+        "page": "sheet B-PLUG A30",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 30,
+      "signal": {
+        "value": "XLA21",
+        "source": "XL",
+        "page": "sheet B-PLUG B30",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 30,
+      "signal": {
+        "value": "XCA9",
+        "source": "XL",
+        "page": "sheet B-PLUG C30",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 31,
+      "signal": {
+        "value": "VOLTAGE",
+        "source": "XL",
+        "page": "sheet B-PLUG A31",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 31,
+      "signal": {
+        "value": "VOLTAGE",
+        "source": "XL",
+        "page": "sheet B-PLUG B31",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 31,
+      "signal": {
+        "value": "VOLTAGE",
+        "source": "XL",
+        "page": "sheet B-PLUG C31",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "A",
+      "pin": 32,
+      "signal": {
+        "value": "GND",
+        "source": "XL",
+        "page": "sheet B-PLUG A32",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "B",
+      "pin": 32,
+      "signal": {
+        "value": "GND",
+        "source": "XL",
+        "page": "sheet B-PLUG B32",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    },
+    {
+      "row": "C",
+      "pin": 32,
+      "signal": {
+        "value": "GND",
+        "source": "XL",
+        "page": "sheet B-PLUG C32",
+        "confidence": "inferred",
+        "note": "second-hand"
+      }
+    }
+  ]
+}

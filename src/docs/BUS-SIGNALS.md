@@ -11,6 +11,8 @@ signal on a netlist sheet can be looked up and given a plain-words meaning.
 | `catalog/connectors/nord10-io-card-backplane.json` | NORD-10 I/O card connector to the backplane |
 | `catalog/connectors/nord10-modem-front.json` | the modem (V.24) lines of the 2A50 card |
 | `catalog/connectors/nd100-c-connector.json` | NORD-100 module plugs C (bus, 96 pins) and A, B (64 lines each) |
+| `catalog/connectors/nd120-cpu-a-plug.json` | ND-120 CPU card 3202D, plug A (console and panel), from the owner's spreadsheet |
+| `catalog/connectors/nd120-cpu-b-plug.json` | ND-120 CPU card 3202D, plug B (trace bus), from the owner's spreadsheet |
 
 **The two buses are different and are kept apart.** The NORD-10 I/O positions have separate
 address lines (BA0-BA17) and data lines (BD0-BD15) on plain pin numbers 0-99. The NORD-100 bus
@@ -269,3 +271,75 @@ Not disagreements, but worth knowing: every KiCad pin position agrees with the N
 card leaves pins 25-31 of all rows unconnected (so it takes +5 V on pin 2 only); pin 1 of each
 row is on a net NDGND_EURO5V, separate from net GND on pins 11, 24, 32; KiCad gives no directions
 (all pins are "passive").
+
+### The owner's spreadsheet "ND-120 Commands"
+
+A second-hand source, kept outside this repository (sheets A-PLUG, B-PLUG, C-PLUG (ND-BUS), C-BUS,
+Signal Names). Everything taken from it has confidence `inferred` and never replaces an ND manual
+fact. **The NDInsight C-connector note appears to be made from this spreadsheet**: it names the
+same file and sheets as its source, and its Source/Used cells match the spreadsheet's.
+
+- Plugs A and B of the ND-120 CPU card: `nd120-cpu-a-plug.json` (console and panel) and
+  `nd120-cpu-b-plug.json` (trace bus), rows A, B, C x pins 1-32, each pin's signal as written.
+  The owner's question marks and alternatives ("O2N (TXD?)", "DSR_n (DTR_n)", "(TXD)") are kept
+  and marked uncertain; empty cells are `open`. Cell colours give a direction for only a few A-plug
+  pins (RXD marked INPUT; three cells highlighted yellow, meaning not given).
+- In `nd-bus-nd100.json`: per signal `descriptionSpreadsheet` (the sheet's Name and Description),
+  `names.spreadsheetCPlug` (sheet C-BUS) and `names.spreadsheetCPlugSheet` (sheet C-PLUG, e.g.
+  "INT 10", "SEMRQ", "INGRANT (DMA)"), and `spreadsheetNotes` (BD pull-ups 4.7 kohm 4610X-101-472;
+  "BREQ ... From CPU?"; "RFRQ ... same as BREQ but given priority"; one bus cycle at most 8 us).
+- Its Source/Used codes were compared cell by cell with the ND table, for both sheets C-BUS and
+  Signal Names. The two sheets also disagree with each other on b14 RUN: O/C in one, I/C in the
+  other. All 57 differences are in `disagreementsOtherSources`. The ND table says, against the
+  sheets (sheet value in brackets): a13/a14/c13/c14 PA source blank (I); a18 BINPUT used CM (C);
+  a19 BDRY used CI (C); a20 BAPR used MI (CMI); a22 INIDENT and c22 OUTIDENT used I (CI); b13
+  RESTART used C (I); b14 RUN C/I (O/C or I/C); b19 BINACK used I (C); b23 BMINH used CM (CMI;
+  C-BUS also writes "3MINH"); c18 BDAP used MI (CI); c20 BMEM C/MI (CMI/CMI); c1/c2 blank (P/CMI);
+  pin 32 P/CMI (C-BUS blank); and the power pins 26-30 in several rows. Signal Names b29 POW. SENSE
+  carries the +12V description by mistake.
+
+## ND-120 Verilog check
+
+The ND-120 CPU board model (nd-120 repository, `Verilog/CPU-BOARD-3202/circuit/`, read only)
+checked against ND-06.016.01 Appendix F. The ND-120 CPU card carries its own memory, so it acts
+as C (CPU) **and** M (memory) in the table's Source/Used codes; directions are judged with both.
+File names below are relative to that folder.
+
+| # | Where | The Verilog says | The ND manual says | Verdict |
+|---|---|---|---|---|
+| 1 | ND3202D.v:72 | BREF_n comment: C-plug B12 | BREF is a12 (b12 is LOAD) | **wrong** (comment) |
+| 2 | ND3202D.v:76 | BMEM_n comment: C-plug C28 | BMEM is c20 (c28 is +12V) | **wrong** (comment) |
+| 3 | ND3202D.v:79, 768 | port `MCL` = ~s_mcl, "MCL~ (after negation)" | BMCL, active low | name lacks BMCL and `_n`; the port is low when s_mcl is high, which is right only if s_mcl is active high (IO_37.v:86, 317 passes it through) - cannot tell without the IO_37 logic |
+| 4 | ND3202D.v:79 | MCL is an output only | BMCL source CI, used CMI: other cards may also pull it (wired OR) and the CPU uses it | **wrong / missing**: the model cannot be master-cleared from the bus |
+| 5 | ND3202D.v:53-54 | SEMRQ_n_IN / SEMRQ_n_OUT at A17 | PANREQ at a17, source I, used C: the CPU only reads it | name differs; the CPU driving it (7438 per NDInsight) is not in the manual - cannot tell |
+| 6 | ND3202D.v:73; BIF_BCTL_BDRV_7.v:253 | BERROR_n driven low on bus timeout (TOUT) | BERROR source E / used E (future extensions only) | **differs from the manual**; the Verilog follows the 3202D schematic per its comments - cannot tell which is right for ND-120 |
+| 7 | ND3202D.v:36 | RESTART (b13) not connected to any logic | RESTART source I, used C | **differs**: the manual says the CPU uses it |
+| 8 | ND3202D.v:956 | BPERR not a port; the internal input is tied to 1, "DISABLE BUS PARITY ERROR" | BPERR source M, used C and X | **missing** (switched off on purpose) |
+| 9 | ND3202D.v:28-80 | no BMINH port | BMINH source P, used CM | **missing** (NDInsight says the 3202D drives it with a 7407; not in the model) |
+| 10 | ND3202D.v:76, 1178 | BMEM_n output only | BMEM source C, used MI: as memory the card must also see BMEM from a DMA master | cannot tell (no BMEM input to the on-board memory at the port) |
+| 11 | ND3202D.v:34-44 | LOAD, BREQ, CONTINUE, STOP, BINT10-13/15 inputs at B12, C12, B15, B16, A15, C15, A16, C16, C17 | same pins, source I, used C | correct |
+| 12 | ND3202D.v:550-554 | BINT10/12/13 ANDed with on-board I/O interrupts | wired OR, active low (AND of active-low lines = OR) | correct |
+| 13 | ND3202D.v:45 | POWSENSE_n input, A29/B29/C29 | POW. SENSE source P, used CI | correct |
+| 14 | ND3202D.v:49-50 | BD_23_0_n_IN / _OUT | BD0-23 CMI/CMI, active low | correct (direction, level) |
+| 15 | ND3202D.v:56-66 | BINPUT, BDAP, BDRY, BAPR both in and out at A18, C18, A19, A20 | BINPUT CI/CM, BDAP CI/MI, BDRY MI/CI, BAPR CI/MI | correct (C or M drives and reads each) |
+| 16 | ND3202D.v:71, 74, 75, 77, 78 | RUN, BINACK, BIOXE, OUTGRANT, OUTIDENT outputs at B14, B19, C19, C23, C22 | RUN C/I, BINACK C/I, BIOXE C/I, OUTGRANT CI/I, OUTIDENT CI/I | correct |
+| 17 | ND3202D.v:28-80 | no INIDENT, INGRANT, PA0-3, BLANK, BCRQ, INCONTR, OUTCONTR ports | none of these is used by C or M (I or E only) | correct |
+| 18 | all C-plug ports | every bus port name ends in `_n` except MCL | all logic signals active low | correct except #3 |
+| 19 | BIF_BCTL_BDRV_7.v:236-246 | the 74F241 is replaced by logic: OUTIDENT, BIOXE, BINACK driven HIGH when disabled ("Changed from the original schematic ... instead of three-state") | 3202D: 74F241 tri-state (NDInsight) | **differs from the chip** - drives high where the real part lets go; harmless only while nothing else drives those lines |
+| 20 | BIF_BCTL_BDRV_7.v:253-254 | BERROR and BDRY driven HIGH when TOUT is low (same change) | BDRY is wired OR (memory and I/O pull it low too) | **differs from the chip**: a real 74F241 lets go; the outside BDRY must be combined outside this module |
+| 21 | ND3202D.v:28-80 | open-collector outputs (7407, 7438, 7406) are plain outputs; the wired-OR bus is split into separate _IN and _OUT ports | 3202D chips are open collector (NDInsight) | not modelled at the port - the wired OR has to be made by whatever connects the ports; cannot tell from this file alone |
+| 22 | BIF_DPATH_BDLBD_10.v:60-75 | 74AS648 BD driver: released value all ones (fixed, with comment) | active-low BD, released = high | correct |
+| 23 | ND3202D.v:1066-1080 | the 74F244 receiver (CHIP_33C) is commented out; the inputs go straight in | 3202D: 74F244 receivers with pull-ups (NDInsight) | not modelled; pull-ups not modelled; cannot tell if it matters |
+
+**A and B plugs** (against the owner's spreadsheet, second-hand - no ND document for these plugs
+was found):
+
+| # | Where | The Verilog says | Spreadsheet says | Verdict |
+|---|---|---|---|---|
+| 24 | ND3202D.v:113 | LOCK_n at A-plug B12 | LOCK_n at C20; B12 empty | **wrong** (against the sheet) |
+| 25 | ND3202D.v:93 | XPIL3 at B-plug C8 | XPIL3 at B11; C8 is XLUA0 | **wrong** (against the sheet) |
+| 26 | ND3202D.v:88 | port EBUS (no `_n`), B-plug B3, "pulled high" | EBUS_n at B3 | pin right; name and level differ - cannot tell |
+| 27 | ND3202D.v:110-117, 134-135 | OSCCL_n B3, OC0 C6, OC1 A6, XTR B4/C23, CONSOLE_n C21/C30, SWMCL_n C16, EAUTO_n C19, RXD C8, TXD A10 and C7, DP_5_1_n C25-C29 | same positions | correct |
+| 28 | ND3202D.v:93, 97 | PIL0 B9, PIL1 B10, PIL2 B12; MIS0 A14, MIS1 C14 | same | correct |
+| 29 | ND3202D.v:120 | LOAD_n from the A plug "to consider" (SWLD_n); not a port | A15 SWLD, C15 LOAD_n; also STOP_n C17 and RUN_n C10 on the A plug | not modelled on the A plug (only on the C plug) |
+| 30 | ND3202D.v:87, 89 | INR_7_0 and SEL5MS_n without pin numbers | INR0-7 on row B; SELM5MS_n at B14 | cannot tell (no pins in the Verilog); the spelling differs (SEL5MS / SELM5MS) |
