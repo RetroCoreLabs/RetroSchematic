@@ -21,7 +21,7 @@ reading of a real drawing) with every kind of connection in it.
 
 | Do this | To get |
 |---|---|
-| File > New sheet | an empty design, in edit mode |
+| File > New sheet | an empty design, in edit mode, for a NORD-10 card, an ND-100 card, or a bus not known yet (a warning until it is set in Settings, This sheet) |
 | File > Open sheet | open another sheet file (`*.json`), read-only |
 | File > Save sheet / Save sheet as | write the sheet as nd-netlist JSON, with every position |
 | File > Save as SVG | the drawing as shown, as an SVG file |
@@ -38,11 +38,28 @@ reading of a real drawing) with every kind of connection in it.
 | Mouse wheel | zoom round the pointer |
 | Right or middle button drag | move the sheet |
 | Left click | pick a part, gate, signal or pin; its details show on the right |
-| Parts / Signals lists | pick by name |
+| Parts / Signals lists | pick by name: the same as a click on the drawing (a signal is traced), and the view moves to show it |
+| Rest the pointer on a signal | after about 400 ms: its name, what it does, its drive and the pin that drives it |
 
 Colours: what was READ off the drawing is in the theme's ink colour, anything INFERRED is in
 its own colour, anything OPEN (not known) in another, and the picked item is in the theme's
 selection colour. A wire is as sure as the less sure of the two pins it joins.
+
+The title bar says which machine bus the sheet is for (NORD-10, ND-100 or unknown bus); that
+choice picks the bus-signal and connector catalogues.
+
+**Connectors.** The card's connectors are boxes right of the chips: the backplane (`P`) and a
+front connector (`F`), one row per pin in pin order with the pin number, the signal's name and,
+when the catalogue names that pin differently, its name too (`/IOXE = BIOXE`). A pin whose
+connector letter is not known shows a plain number and the box says "connector not known";
+`A.32` means connector A, pin 32. Click a pin to trace its signal like any chip pin.
+
+**Signal facts.** Picking a signal or one of its pins shows everything known about it on the
+right: what it does and where that is written (the sheet's own text, else the bus catalogue's),
+the drive type worked out from the chip catalogue (with a warning for mixed drivers and a
+CONFLICT line when the file says something else), the driving pins, the loads, and every pin
+like `13C.7  74153 1Y  output`. In edit mode the panel also has fields for the description, its
+source and the notes.
 
 ## Settings
 
@@ -57,6 +74,7 @@ is connected. The View switches change the defaults.
 | Active-low signal names | /NAME (default), ~NAME, or NAME with ND's subscript 0/1. Active-high is plain NAME; a signal with no level is plain in every style. Search finds a signal typed in any style |
 | Symbol style | ND (1976 manual) or modern |
 | Theme | any of the themes |
+| Machine bus | this sheet only: NORD-10, ND-100 or unknown (a warning) |
 | Show pin numbers, board positions, port arrows, buses | on / off |
 | Trace pulse | on: a traced signal pulses; off: it is shown still |
 
@@ -111,10 +129,10 @@ All of this is done by `RetroSchematic.Render/SheetEditor.cs` (the changes) and 
 ## MCP server
 
 `RetroSchematic.Mcp` (`retroschematic-mcp.exe`) offers the same changes to an MCP client over
-standard input and output: `new_sheet`, `open_sheet` (read-only unless `edit` is true),
+standard input and output: `new_sheet` (with the machine bus: nord-10, nd-100 or unknown), `open_sheet` (read-only unless `edit` is true),
 `set_edit_mode`, `list_parts`, `list_nets`, `place_part`, `move_part`, `connect_pins`,
 `disconnect_pin`, `delete`, `create_bus`, `set_bus_path`, `add_bus_member`, `remove_bus_member`, `delete_bus`, `list_buses`, `make_block`, `dissolve_block`, `enter_block`, `leave_block`,
-`list_blocks`, `list_instances`, `set_port_position`, `undo`, `redo`, `save_sheet`. It uses the same `SheetEditor`, so the
+`list_blocks`, `list_instances`, `set_port_position`, `get_signal_info`, `set_signal_description`, `undo`, `redo`, `save_sheet`. It uses the same `SheetEditor`, so the
 rules are the same as in the window.
 
 ## Themes

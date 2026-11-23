@@ -164,3 +164,19 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
 - No test checks the written files against the JSON schemas; the blocks demo and 2A50 were
   checked by hand (no problems).
 - Verilog export of blocks (one module per block) belongs with section 5.
+
+## 8. Connectors and signal facts - what is still open
+
+- The NORD-10 card connector's letter is not known (no NORD-10 document names it), so 2A50's
+  pins stay `P.n` and its box says "connector not known". The same holds for the modem pins
+  81-95 (`F.n`).
+- ND-100 plug rows (a, b, c) have no place in a pin reference yet: `P.C.12` names plug C pin 12
+  but not the row, so ND-100 backplane names are not looked up by pin (by name they are).
+- A connector box is always placed right of the chips; it cannot be moved by hand, and its
+  pins are always on its left side.
+- Inside a block, a signal that reaches a connector only on the top level shows the connector
+  box there; the block's own port is the way in.
+- Function tags on a signal are read, written and shown, but the window has no field for them.
+- 2A50 signals the reading document does not explain (DEQL, OSC, the SMN switch lines, the
+  numbered N_ nets and others) have no description; a backplane signal among them shows the bus
+  catalogue's text.
