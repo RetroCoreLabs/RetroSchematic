@@ -287,7 +287,183 @@
   ],
   "unknown": [
     "Whether DOUT is the inverse of DIN is only implied by the bar on the pin name in the pin diagram; not stated in the text read.",
-    "Reference edges for tW and tCW (written as \"WE to CE off\" and \"CE to WE\") were taken from the parameter names; the waveform was only partly legible."
+    "Reference edges for tW and tCW (written as \"WE to CE off\" and \"CE to WE\") were taken from the parameter names; the waveform was only partly legible.",
+    "The datasheet only shows CS set up and held with the address at the rise of CE (2-61); a CS change later in the cycle is not described. The model uses CS as latched at the rise of CE."
   ],
-  "notes": "ND manual: \"4 K dynamic RAM 22 pin package\". Replacement for 2107A. Same pinout as TMS4030 (which uses VBB -3 V)."
+  "notes": "ND manual: \"4 K dynamic RAM 22 pin package\". Replacement for 2107A. Same pinout as TMS4030 (which uses VBB -3 V).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B",
+    "stored": [
+      {
+        "name": "LA0",
+        "kind": "flip-flop",
+        "next": "LA0 = A0",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA1",
+        "kind": "flip-flop",
+        "next": "LA1 = A1",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA2",
+        "kind": "flip-flop",
+        "next": "LA2 = A2",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA3",
+        "kind": "flip-flop",
+        "next": "LA3 = A3",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA4",
+        "kind": "flip-flop",
+        "next": "LA4 = A4",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA5",
+        "kind": "flip-flop",
+        "next": "LA5 = A5",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA6",
+        "kind": "flip-flop",
+        "next": "LA6 = A6",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA7",
+        "kind": "flip-flop",
+        "next": "LA7 = A7",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA8",
+        "kind": "flip-flop",
+        "next": "LA8 = A8",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA9",
+        "kind": "flip-flop",
+        "next": "LA9 = A9",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA10",
+        "kind": "flip-flop",
+        "next": "LA10 = A10",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA11",
+        "kind": "flip-flop",
+        "next": "LA11 = A11",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LCS",
+        "kind": "flip-flop",
+        "next": "LCS = CS",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: CS is set up and held with the address at the rise of CE"
+      }
+    ],
+    "memory": {
+      "name": "MEM",
+      "words": 4096,
+      "width": 1,
+      "address": [
+        "LA0",
+        "LA1",
+        "LA2",
+        "LA3",
+        "LA4",
+        "LA5",
+        "LA6",
+        "LA7",
+        "LA8",
+        "LA9",
+        "LA10",
+        "LA11"
+      ],
+      "dataIn": [
+        "DIN"
+      ],
+      "write": {
+        "when": "CE AND NOT WE AND NOT LCS",
+        "edge": "level-high"
+      },
+      "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: a write is WE low while CE is high, chip selected; DIN has no register. Refresh (the cells forget unless each row is cycled every 2 ms) is not part of the logic model."
+    },
+    "outputs": [
+      {
+        "pin": "DOUT",
+        "formula": "DOUT = NOT MEM1",
+        "type": "three-state",
+        "outputEnable": {
+          "when": "CE AND NOT LCS",
+          "disabled": "Z"
+        },
+        "source": "pdf 68-71 (printed 2-58..2-61) - Intel 1976 Data Catalog, 2107B: read cycle waveform (2-61): DOUT leaves high impedance after CE rises and stays valid until tCF after CE falls; chip selected only when CS was low at the rise of CE. Inverted: the pin is named D-OUT with a bar over it (pin names, 2-58); no sentence states it."
+      }
+    ]
+  }
 }

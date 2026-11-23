@@ -301,7 +301,183 @@
     "Output disable time tPHZ/tPLZ (30 ns) appears in the text layer under a MIN column heading; not recorded because min vs max is unclear.",
     "tPZL value (250 ns for the base grade) read from a jumbled text layer.",
     "The datasheet is marked \"PRELIMINARY DATA SHEET\".",
-    "Edge reference arrows in the timing tables were lost in the text layer; rising/falling CE references above follow the readable notes and waveform titles and should be checked against the page image."
+    "Edge reference arrows in the timing tables were lost in the text layer; rising/falling CE references above follow the readable notes and waveform titles and should be checked against the page image.",
+    "CS must be held high as long as CE is high in a cycle where the chip is not selected (page 2); what happens if CS falls during such a cycle is not stated. The model uses CS as latched at the rise of CE."
   ],
-  "notes": "ND manual title \"4 K MOS RAM\". Same 22-pin pinout as Intel 2107B, but VBB is -3 V here."
+  "notes": "ND manual title \"4 K MOS RAM\". Same 22-pin pinout as Intel 2107B, but VBB is -3 V here.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240",
+    "stored": [
+      {
+        "name": "LA0",
+        "kind": "flip-flop",
+        "next": "LA0 = A0",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA1",
+        "kind": "flip-flop",
+        "next": "LA1 = A1",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA2",
+        "kind": "flip-flop",
+        "next": "LA2 = A2",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA3",
+        "kind": "flip-flop",
+        "next": "LA3 = A3",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA4",
+        "kind": "flip-flop",
+        "next": "LA4 = A4",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA5",
+        "kind": "flip-flop",
+        "next": "LA5 = A5",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA6",
+        "kind": "flip-flop",
+        "next": "LA6 = A6",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA7",
+        "kind": "flip-flop",
+        "next": "LA7 = A7",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA8",
+        "kind": "flip-flop",
+        "next": "LA8 = A8",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA9",
+        "kind": "flip-flop",
+        "next": "LA9 = A9",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA10",
+        "kind": "flip-flop",
+        "next": "LA10 = A10",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LA11",
+        "kind": "flip-flop",
+        "next": "LA11 = A11",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: address latched on chip at the rise of CE"
+      },
+      {
+        "name": "LCS",
+        "kind": "flip-flop",
+        "next": "LCS = CS",
+        "clock": {
+          "pin": "CE",
+          "edge": "rising"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: CS is set up and held with the address at the rise of CE"
+      }
+    ],
+    "memory": {
+      "name": "MEM",
+      "words": 4096,
+      "width": 1,
+      "address": [
+        "LA0",
+        "LA1",
+        "LA2",
+        "LA3",
+        "LA4",
+        "LA5",
+        "LA6",
+        "LA7",
+        "LA8",
+        "LA9",
+        "LA10",
+        "LA11"
+      ],
+      "dataIn": [
+        "DIN"
+      ],
+      "write": {
+        "when": "CE AND NOT R/W AND NOT LCS",
+        "edge": "level-high"
+      },
+      "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: a write is R/W low while CE is high, chip selected; DIN has no register. Refresh (the cells forget unless each row is cycled every 2 ms) is not part of the logic model."
+    },
+    "outputs": [
+      {
+        "pin": "DOUT",
+        "formula": "DOUT = NOT MEM1",
+        "type": "three-state",
+        "outputEnable": {
+          "when": "CE AND NOT LCS",
+          "disabled": "Z"
+        },
+        "source": "1-6 (printed 41-46) - TI TMS 4030 bulletin DL-S 7512240: \"Data-out is inverted from data-in\"; the output floats while CE is low and drives while CE is high only if CS was low at the rise of CE."
+      }
+    ]
+  }
 }

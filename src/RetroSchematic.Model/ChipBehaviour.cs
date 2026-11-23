@@ -183,6 +183,14 @@ namespace RetroSchematic.Model
         public List<ActivePin> Pins { get; } = new();
 
         /// <summary>
+        /// A formula expression (no "target =") that must also be 1 for the output to drive, or
+        /// empty. Used when the enable is not a pin but a stored bit or a mix of pins and stored
+        /// bits: a RAM whose chip select is latched at the clock edge drives only while
+        /// <c>CE AND NOT LCS</c>.
+        /// </summary>
+        public string When { get; init; } = "";
+
+        /// <summary>
         /// "Z" (floats), "0" or "1": what the output does while not enabled.
         /// </summary>
         public string Disabled { get; init; } = "";
@@ -242,7 +250,8 @@ namespace RetroSchematic.Model
         public int Width { get; init; }
 
         /// <summary>
-        /// The read address pins, least significant first.
+        /// The read address, least significant first: pins, or the names of stored bits when the
+        /// chip latches its address (2107B at the rise of CE; MK4096 row and column at RAS and CAS).
         /// </summary>
         public List<string> Address { get; } = new();
 
@@ -378,7 +387,7 @@ namespace RetroSchematic.Model
                     OutputEnable? oe = null;
                     if (o.TryGetProperty("outputEnable", out JsonElement en) && en.ValueKind == JsonValueKind.Object)
                     {
-                        oe = new OutputEnable { Disabled = Str(en, "disabled") };
+                        oe = new OutputEnable { Disabled = Str(en, "disabled"), When = Str(en, "when") };
                         if (en.TryGetProperty("pins", out JsonElement ps) && ps.ValueKind == JsonValueKind.Array)
                         {
                             for (int k = 0; k < ps.GetArrayLength(); k++)
@@ -510,9 +519,17 @@ namespace RetroSchematic.Model
                     errors.Add("memory: " + m.Address.Count + " address pins do not give " + m.Words + " words");
                 if (m.DataIn.Count != 0 && m.DataIn.Count != m.Width)
                     errors.Add("memory: " + m.DataIn.Count + " data inputs for " + m.Width + " bits");
-                CheckPins("memory address", m.Address, pinNames, errors);
-                CheckPins("memory write address", m.WriteAddress, pinNames, errors);
-                CheckPins("memory data in", m.DataIn, pinNames, errors);
+                // an address latched on the chip (2107B: at the rise of CE; MK4096: row at RAS,
+                // column at CAS) is written as the stored bits that hold it, so a stored bit
+                // name is allowed here as well as a pin
+                List<string> pinsAndStored = new(pinNames.Count + Stored.Count);
+                for (int i = 0; i < pinNames.Count; i++)
+                    pinsAndStored.Add(pinNames[i]);
+                for (int i = 0; i < Stored.Count; i++)
+                    pinsAndStored.Add(Stored[i].Name);
+                CheckPins("memory address", m.Address, pinsAndStored, errors);
+                CheckPins("memory write address", m.WriteAddress, pinsAndStored, errors);
+                CheckPins("memory data in", m.DataIn, pinsAndStored, errors);
                 if (m.Write != null)
                     CheckClock("memory write", m.Write, pinNames, names, errors);
                 if (m.Source.Length == 0)
@@ -535,8 +552,10 @@ namespace RetroSchematic.Model
                 {
                     if (o.OutputEnable.Disabled is not ("Z" or "0" or "1"))
                         errors.Add(o.Pin + ": disabled output \"" + o.OutputEnable.Disabled + "\" is not Z, 0 or 1");
-                    if (o.OutputEnable.Pins.Count == 0)
-                        errors.Add(o.Pin + ": output enable without a pin");
+                    if (o.OutputEnable.Pins.Count == 0 && o.OutputEnable.When.Length == 0)
+                        errors.Add(o.Pin + ": output enable without a pin or an expression");
+                    if (o.OutputEnable.When.Length > 0)
+                        CheckExpression(o.Pin + " output enable", o.OutputEnable.When, names, errors);
                     for (int k = 0; k < o.OutputEnable.Pins.Count; k++)
                         CheckActive(o.Pin + " output enable", o.OutputEnable.Pins[k], pinNames, errors);
                 }
@@ -610,7 +629,7 @@ namespace RetroSchematic.Model
             for (int i = 0; i < pins.Count; i++)
             {
                 if (pinNames.IndexOf(pins[i]) < 0)
-                    errors.Add(who + ": " + pins[i] + " is not a pin of the chip");
+                    errors.Add(who + ": " + pins[i] + " is not a pin or stored bit of the chip");
             }
         }
 

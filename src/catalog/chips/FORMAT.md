@@ -156,11 +156,11 @@ every pin it names exists, every output pin has an entry, every fact has a `sour
 |---|---|
 | `kind` | `logic`, or `none` with a `reason` when there is no datasheet or no logic function (an optocoupler). A chip whose datasheet does describe a behaviour never gets `none`. |
 | `outputs[]` | one per output pin: `formula` (its value while it drives), `type` (`totem-pole`, `open-collector`, `open-collector-high-voltage`, `three-state`, `open-emitter`), `outputEnable` |
-| `outputEnable` | `pins`: every pin that must be at its `active` level (`high`/`low`) for the output to drive; `disabled`: `Z` (floats), `0` or `1` while it does not |
+| `outputEnable` | `pins`: every pin that must be at its `active` level (`high`/`low`) for the output to drive; `when` (optional): a formula expression that must also be 1, for an enable made from stored bits (a RAM drives only while `CE AND NOT LCS`, LCS being chip select latched at the rise of CE); at least one of the two; `disabled`: `Z` (floats), `0` or `1` while it does not |
 | `stored[]` | one per stored bit. `kind`: `flip-flop`, `latch`, `counter`, `one-shot`. `next`: the value it takes, as a formula with the bit's name as target. `clock`: `pin` or `when` (an expression, for a clock made of several pins or a ripple stage) and `edge`: `rising` (L->H), `falling` (H->L), `level-high`, `level-low` (a latch follows while the level holds). `set`/`clear`: a pin that forces 1/0 at once, with `whenSetAndClear` saying which wins. `async`: a list of `{when, value}` rules for an at-once load that needs more than one pin; the first that acts wins. A one-shot has `pulseWidth` (datasheet words) and `retriggerable` instead of `next`. |
 | `internal[]` | named steps (`formula` with the step's name as target), such as an adder's carries |
 | `conditions[]` | logic values made from analog levels (`name`, `meaning` with the datasheet's thresholds), such as a line receiver's input threshold |
-| `memory` | `name`, `words`, `width`, `address` (least significant first), `writeAddress` when it differs, `dataIn`, `write` (`when` + `edge`); formulas read the addressed word's bit n as name + n (`M1`) |
+| `memory` | `name`, `words`, `width`, `address` (least significant first; pins, or stored bits when the chip latches its address: the 2107B takes A0..A11 into LA0..LA11 at the rise of CE, the MK4096 takes A0..A5 into ROW0..ROW5 at the fall of RAS and into COL0..COL5 at the fall of CAS, and `address` lists those bits), `writeAddress` when it differs, `dataIn`, `write` (`when` + `edge`); formulas read the addressed word's bit n as name + n (`M1`) |
 
 Names of stored bits, internal steps, conditions and memory bits may be used in formulas like
 pin names, so they must not be the same as a pin name.

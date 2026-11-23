@@ -72,27 +72,27 @@ in the diamond's colour, the same colour as the name beside it. The test
 the gate demo, in both symbol styles: four equal 45-degree edges, closed, drawn solid. It fails
 on the old rule.
 
-## B3 - seven chip files have no structured behaviour yet (test red)
+## B3 - TMS6010 has no structured behaviour (test red)
 
-**What fails.** `ChipBehaviourTests.EveryChip_HasABehaviour_ThatTheReaderAccepts` for 2107B,
-MK4096P, TMS4030, TMS6010, 74181, 74120 and 8820. Each of these has a datasheet that DOES
-describe its behaviour, so `"kind": "none"` would be wrong; the test stays red until the real
-behaviour is written in.
+**What fails.** `ChipBehaviourTests.EveryChip_HasABehaviour_ThatTheReaderAccepts("TMS6010")`.
 
-**Cause, chip by chip.**
+**Cause.** No TMS6010 datasheet has been found (searched 2026-11-23: the TI 1975 Semiconductor
+Memory Data Book lists only the TMS 6011, and a web search found nothing). The chip file is
+written from the TMS 6011 sheet, which the ND manual names as equivalent, but the behaviour
+rule is "only from the chip's own datasheet", so the TMS 6011's behaviour is not copied in.
+`"kind": "none"` would be wrong too: the part does have a defined behaviour, we just do not
+hold its sheet.
 
-- **2107B, TMS4030** (4K x 1 dynamic RAM): the address and chip select are latched on the rise
-  of CE and the output has its own timing; the `memory` object has no address latch yet.
-- **MK4096P** (4K x 1 dynamic RAM): row and column address share six pins and are latched by
-  RAS and CAS; the `memory` object cannot express a multiplexed address.
-- **TMS6010** (UART): a serial transmitter/receiver with a control register; not expressible
-  as stored bits and formulas without a model of its own (as COM 2601 will need too).
-- **74181** (ALU): the chip file holds only the function tables; the gate equations on the
-  functional block diagram (TI 1976 book page 7-280) have not been transcribed.
-- **74120** (pulse synchronizer): the levels of Y and Y' while pulses are stopped, and the clock
-  edge each setup time refers to, are not in the pages read (Figures 2-5 on page 7-121).
-- **8820** (line receiver): the STROBE polarity and the level it forces are not in the pages
-  read.
+**What fixes it.** A TMS6010 datasheet (or a TI document that says the 6010 and 6011 behave the
+same), then a UART part model in the format: control register (word length, parity, stop bits)
+loaded by CRL, transmitter buffer and shift register clocked by TC, receiver by RC at 16 times
+the bit rate, status outputs and their output enables. The TMS 6011 sheet does not say which
+clock edge shifts, so that must come from the found sheet too.
 
-**What fixes it.** For each: read the missing datasheet page (or add the format piece named
-above), write the behaviour, and the test case for that chip turns green.
+**Fixed on 2026-11-23** (were in this entry): 74181 (gate equations from the block diagram,
+7-280, checked against Table 2 by `Alu74181_GateEquations_GiveTable2`), 74120 (Figures 2-5,
+7-121/7-122: Y rests low and Y' high while stopped, setup times are to the rising clock edge),
+8820 (STROBE low forces the output high, read from the transistor schematic on 3-22),
+2107B, TMS4030 (address and CS latched at the rise of CE) and MK4096P (row at RAS, column and
+CS at CAS, output latch), using two format additions: a memory address may name stored bits,
+and an output enable may be an expression (`outputEnable.when`).

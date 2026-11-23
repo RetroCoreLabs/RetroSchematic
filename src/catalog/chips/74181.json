@@ -6,44 +6,182 @@
   "title": "Arithmetic logic unit/function generator",
   "package": "DIP-24",
   "sources": [
-    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54181/SN74181 (bulletin DL-S 7611831, Dec 1972, rev. Oct 1976)",
-     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
-     "pages": "7-271 to 7-275 and 7-280 (PDF pages 270-274, 279)", "familyUsed": "SN74181"}
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54181/SN74181 (bulletin DL-S 7611831, Dec 1972, rev. Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-271 to 7-275 and 7-280 (PDF pages 270-274, 279)",
+      "familyUsed": "SN74181"
+    }
   ],
   "pins": [
-    {"pin": 24, "name": "VCC", "role": "power", "voltage": "+5 V"},
-    {"pin": 12, "name": "GND", "role": "ground"},
-    {"pin": 2,  "name": "A0'", "role": "input", "text": "operand A bit 0 (A0 with active-high data)"},
-    {"pin": 23, "name": "A1'", "role": "input"},
-    {"pin": 21, "name": "A2'", "role": "input"},
-    {"pin": 19, "name": "A3'", "role": "input"},
-    {"pin": 1,  "name": "B0'", "role": "input", "text": "operand B bit 0 (B0 with active-high data)"},
-    {"pin": 22, "name": "B1'", "role": "input"},
-    {"pin": 20, "name": "B2'", "role": "input"},
-    {"pin": 18, "name": "B3'", "role": "input"},
-    {"pin": 6,  "name": "S0",  "role": "input", "text": "function select"},
-    {"pin": 5,  "name": "S1",  "role": "input", "text": "function select"},
-    {"pin": 4,  "name": "S2",  "role": "input", "text": "function select"},
-    {"pin": 3,  "name": "S3",  "role": "input", "text": "function select"},
-    {"pin": 8,  "name": "M",   "role": "input", "text": "mode control: high = logic functions (internal carries disabled), low = arithmetic"},
-    {"pin": 7,  "name": "Cn",  "role": "input", "text": "ripple carry input (Cn' with active-high data)"},
-    {"pin": 9,  "name": "F0'", "role": "output", "outputType": "totem-pole"},
-    {"pin": 10, "name": "F1'", "role": "output", "outputType": "totem-pole"},
-    {"pin": 11, "name": "F2'", "role": "output", "outputType": "totem-pole"},
-    {"pin": 13, "name": "F3'", "role": "output", "outputType": "totem-pole"},
-    {"pin": 16, "name": "Cn+4", "role": "output", "outputType": "totem-pole", "text": "ripple carry output (Cn+4' with active-high data)"},
-    {"pin": 15, "name": "P'",  "role": "output", "outputType": "totem-pole", "text": "carry propagate output for the '182 (X with active-high data)"},
-    {"pin": 17, "name": "G'",  "role": "output", "outputType": "totem-pole", "text": "carry generate output for the '182 (Y with active-high data)"},
-    {"pin": 14, "name": "A=B", "role": "output", "outputType": "open-collector", "text": "comparator output; can be wire-ANDed"}
+    {
+      "pin": 24,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 2,
+      "name": "A0'",
+      "role": "input",
+      "text": "operand A bit 0 (A0 with active-high data)"
+    },
+    {
+      "pin": 23,
+      "name": "A1'",
+      "role": "input"
+    },
+    {
+      "pin": 21,
+      "name": "A2'",
+      "role": "input"
+    },
+    {
+      "pin": 19,
+      "name": "A3'",
+      "role": "input"
+    },
+    {
+      "pin": 1,
+      "name": "B0'",
+      "role": "input",
+      "text": "operand B bit 0 (B0 with active-high data)"
+    },
+    {
+      "pin": 22,
+      "name": "B1'",
+      "role": "input"
+    },
+    {
+      "pin": 20,
+      "name": "B2'",
+      "role": "input"
+    },
+    {
+      "pin": 18,
+      "name": "B3'",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "S0",
+      "role": "input",
+      "text": "function select"
+    },
+    {
+      "pin": 5,
+      "name": "S1",
+      "role": "input",
+      "text": "function select"
+    },
+    {
+      "pin": 4,
+      "name": "S2",
+      "role": "input",
+      "text": "function select"
+    },
+    {
+      "pin": 3,
+      "name": "S3",
+      "role": "input",
+      "text": "function select"
+    },
+    {
+      "pin": 8,
+      "name": "M",
+      "role": "input",
+      "text": "mode control: high = logic functions (internal carries disabled), low = arithmetic"
+    },
+    {
+      "pin": 7,
+      "name": "Cn",
+      "role": "input",
+      "text": "ripple carry input (Cn' with active-high data)"
+    },
+    {
+      "pin": 9,
+      "name": "F0'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "F1'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "F2'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "F3'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "Cn+4",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "ripple carry output (Cn+4' with active-high data)"
+    },
+    {
+      "pin": 15,
+      "name": "P'",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "carry propagate output for the '182 (X with active-high data)"
+    },
+    {
+      "pin": 17,
+      "name": "G'",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "carry generate output for the '182 (Y with active-high data)"
+    },
+    {
+      "pin": 14,
+      "name": "A=B",
+      "role": "output",
+      "outputType": "open-collector",
+      "text": "comparator output; can be wire-ANDed"
+    }
   ],
   "functions": [
-    {"output": "9,10,11,13", "formula": "F = function of A, B selected by S3..S0, M and Cn per Table 1 (active-low data) / Table 2 (active-high data), see state.rules",
-     "text": "Each F output is one bit of the result chosen by the function table. The gate-level formula per bit is in the datasheet's functional block diagram (page 7-280) and was not transcribed."},
-    {"output": "16", "formula": "Cn+4 = carry out of the 4-bit arithmetic operation selected by S3..S0 with M low",
-     "text": "Ripple carry output. With active-high data (Table 2) a low at Cn+4' means carry. Used as a magnitude comparator in subtract mode, see the last rule in state."},
-    {"output": "15", "formula": "P' = carry propagate of the 4-bit group (for the '182)", "text": "Group propagate output; feeds a P input of the SN74182."},
-    {"output": "17", "formula": "G' = carry generate of the 4-bit group (for the '182)", "text": "Group generate output; feeds a G input of the SN74182."},
-    {"output": "14", "formula": "A=B = F0 AND F1 AND F2 AND F3", "text": "Decoded from the function outputs (an AND of the four F lines in the block diagram); goes high (off) when all F outputs are high, i.e. A = B when the ALU is in subtract mode with Cn = H."}
+    {
+      "output": "9,10,11,13",
+      "formula": "F(i)' = U(i) XOR L(i) XOR K(i), see behaviour",
+      "text": "Each F output is one bit of the result chosen by the function table. The gate-level formulas are transcribed in behaviour from the functional block diagram (page 7-280) and checked against Table 2 for add, add with carry, subtract, XOR and AND on all 256 input pairs."
+    },
+    {
+      "output": "16",
+      "formula": "Cn+4 = carry out of the 4-bit arithmetic operation selected by S3..S0 with M low",
+      "text": "Ripple carry output. With active-high data (Table 2) a low at Cn+4' means carry. Used as a magnitude comparator in subtract mode, see the last rule in state."
+    },
+    {
+      "output": "15",
+      "formula": "P' = carry propagate of the 4-bit group (for the '182)",
+      "text": "Group propagate output; feeds a P input of the SN74182."
+    },
+    {
+      "output": "17",
+      "formula": "G' = carry generate of the 4-bit group (for the '182)",
+      "text": "Group generate output; feeds a G input of the SN74182."
+    },
+    {
+      "output": "14",
+      "formula": "A=B = F0 AND F1 AND F2 AND F3",
+      "text": "Decoded from the function outputs (an AND of the four F lines in the block diagram); goes high (off) when all F outputs are high, i.e. A = B when the ALU is in subtract mode with Cn = H."
+    }
   ],
   "state": {
     "bits": 0,
@@ -88,41 +226,342 @@
     ]
   },
   "electrical": {
-    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.8, "outputMaxVoltageV": 5.5,
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": 5.5,
     "inputSchmitt": false,
     "notes": "SN74181: VCC 4.75-5.25 V; IOH -800 uA for all outputs except A=B; IOL 16 mA. A=B is open collector: IOH max 250 uA at VOH 5.5 V (the 5.5 V is that test condition; no separate pull-up limit is printed). Input loads: IIL mode -1.6 mA, any A or B -4.8, any S -6.4, carry -8 mA."
   },
   "timing": [
-    {"from": "Cn", "to": "Cn+4", "edge": "PLH", "minNs": null, "typNs": 12, "maxNs": 18, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "Cn", "to": "Cn+4", "edge": "PHL", "minNs": null, "typNs": 13, "maxNs": 19, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "A or B", "to": "Cn+4", "edge": "PLH", "minNs": null, "typNs": 28, "maxNs": 43, "conditions": "M 0 V, S0=S3=4.5 V, S1=S2=0 V (SUM mode); CL 15 pF, RL 400 ohm, 25 C"},
-    {"from": "A or B", "to": "Cn+4", "edge": "PHL", "minNs": null, "typNs": 27, "maxNs": 41, "conditions": "SUM mode"},
-    {"from": "A or B", "to": "Cn+4", "edge": "PLH", "minNs": null, "typNs": 35, "maxNs": 50, "conditions": "M 0 V, S0=S3=0 V, S1=S2=4.5 V (DIFF mode)"},
-    {"from": "A or B", "to": "Cn+4", "edge": "PHL", "minNs": null, "typNs": 33, "maxNs": 50, "conditions": "DIFF mode"},
-    {"from": "Cn", "to": "F", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 19, "conditions": "M 0 V (SUM or DIFF mode)"},
-    {"from": "Cn", "to": "F", "edge": "PHL", "minNs": null, "typNs": 12, "maxNs": 18, "conditions": "M 0 V (SUM or DIFF mode)"},
-    {"from": "A or B", "to": "G'", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 19, "conditions": "SUM mode"},
-    {"from": "A or B", "to": "G'", "edge": "PHL", "minNs": null, "typNs": 13, "maxNs": 19, "conditions": "SUM mode"},
-    {"from": "A or B", "to": "G'", "edge": "PLH", "minNs": null, "typNs": 17, "maxNs": 25, "conditions": "DIFF mode"},
-    {"from": "A or B", "to": "G'", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 25, "conditions": "DIFF mode"},
-    {"from": "A or B", "to": "P'", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 19, "conditions": "SUM mode"},
-    {"from": "A or B", "to": "P'", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 25, "conditions": "SUM mode"},
-    {"from": "A or B", "to": "P'", "edge": "PLH", "minNs": null, "typNs": 17, "maxNs": 25, "conditions": "DIFF mode"},
-    {"from": "A or B", "to": "P'", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 25, "conditions": "DIFF mode"},
-    {"from": "Ai or Bi", "to": "Fi", "edge": "PLH", "minNs": null, "typNs": 28, "maxNs": 42, "conditions": "SUM mode"},
-    {"from": "Ai or Bi", "to": "Fi", "edge": "PHL", "minNs": null, "typNs": 21, "maxNs": 32, "conditions": "SUM mode"},
-    {"from": "Ai or Bi", "to": "Fi", "edge": "PLH", "minNs": null, "typNs": 32, "maxNs": 48, "conditions": "DIFF mode"},
-    {"from": "Ai or Bi", "to": "Fi", "edge": "PHL", "minNs": null, "typNs": 23, "maxNs": 34, "conditions": "DIFF mode"},
-    {"from": "Ai or Bi", "to": "Fi", "edge": "PLH", "minNs": null, "typNs": 32, "maxNs": 48, "conditions": "M 4.5 V (logic mode)"},
-    {"from": "Ai or Bi", "to": "Fi", "edge": "PHL", "minNs": null, "typNs": 23, "maxNs": 34, "conditions": "M 4.5 V (logic mode)"},
-    {"from": "A or B", "to": "A=B", "edge": "PLH", "minNs": null, "typNs": 35, "maxNs": 50, "conditions": "DIFF mode"},
-    {"from": "A or B", "to": "A=B", "edge": "PHL", "minNs": null, "typNs": 32, "maxNs": 48, "conditions": "DIFF mode"}
+    {
+      "from": "Cn",
+      "to": "Cn+4",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "Cn",
+      "to": "Cn+4",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 19,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A or B",
+      "to": "Cn+4",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 43,
+      "conditions": "M 0 V, S0=S3=4.5 V, S1=S2=0 V (SUM mode); CL 15 pF, RL 400 ohm, 25 C"
+    },
+    {
+      "from": "A or B",
+      "to": "Cn+4",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 41,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "A or B",
+      "to": "Cn+4",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 50,
+      "conditions": "M 0 V, S0=S3=0 V, S1=S2=4.5 V (DIFF mode)"
+    },
+    {
+      "from": "A or B",
+      "to": "Cn+4",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 33,
+      "maxNs": 50,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "Cn",
+      "to": "F",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 19,
+      "conditions": "M 0 V (SUM or DIFF mode)"
+    },
+    {
+      "from": "Cn",
+      "to": "F",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "M 0 V (SUM or DIFF mode)"
+    },
+    {
+      "from": "A or B",
+      "to": "G'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 19,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "A or B",
+      "to": "G'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 19,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "A or B",
+      "to": "G'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 25,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "A or B",
+      "to": "G'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 25,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "A or B",
+      "to": "P'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 19,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "A or B",
+      "to": "P'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 25,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "A or B",
+      "to": "P'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 25,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "A or B",
+      "to": "P'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 25,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "Ai or Bi",
+      "to": "Fi",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 42,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "Ai or Bi",
+      "to": "Fi",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "SUM mode"
+    },
+    {
+      "from": "Ai or Bi",
+      "to": "Fi",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 32,
+      "maxNs": 48,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "Ai or Bi",
+      "to": "Fi",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 34,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "Ai or Bi",
+      "to": "Fi",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 32,
+      "maxNs": 48,
+      "conditions": "M 4.5 V (logic mode)"
+    },
+    {
+      "from": "Ai or Bi",
+      "to": "Fi",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 34,
+      "conditions": "M 4.5 V (logic mode)"
+    },
+    {
+      "from": "A or B",
+      "to": "A=B",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 50,
+      "conditions": "DIFF mode"
+    },
+    {
+      "from": "A or B",
+      "to": "A=B",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 32,
+      "maxNs": 48,
+      "conditions": "DIFF mode"
+    }
   ],
   "timingLimits": [],
   "unknown": [
-    "Gate-level formulas for F0-F3, Cn+4, P' and G' were not transcribed from the functional block diagram (page 7-280); behaviour is given only by the function tables.",
     "No separate maximum pull-up voltage for the open-collector A=B output beyond the 5.5 V IOH test condition.",
     "No minimum propagation delays printed."
   ],
-  "notes": "Pin 2/1/23/... names are for active-low data (Table 1); with active-high data the same pins are A0, B0, ... F0..F3, Cn', Cn+4', X (pin 15), Y (pin 17) and Table 2 applies. Subtraction is 1's complement plus forced carry."
+  "notes": "Pin 2/1/23/... names are for active-low data (Table 1); with active-high data the same pins are A0, B0, ... F0..F3, Cn', Cn+4', X (pin 15), Y (pin 17) and Table 2 applies. Subtraction is 1's complement plus forced carry.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram",
+    "internal": [
+      {
+        "formula": "MN = NOT M",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (inverter on M, pin 8)"
+      },
+      {
+        "formula": "U0 = NOT((A0' AND B0' AND S3) OR (A0' AND NOT B0' AND S2))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 0: AND gates with S3 and S2)"
+      },
+      {
+        "formula": "L0 = NOT((NOT B0' AND S1) OR (B0' AND S0) OR A0')",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 0: AND gates with S1 and S0, and A alone)"
+      },
+      {
+        "formula": "U1 = NOT((A1' AND B1' AND S3) OR (A1' AND NOT B1' AND S2))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 1: AND gates with S3 and S2)"
+      },
+      {
+        "formula": "L1 = NOT((NOT B1' AND S1) OR (B1' AND S0) OR A1')",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 1: AND gates with S1 and S0, and A alone)"
+      },
+      {
+        "formula": "U2 = NOT((A2' AND B2' AND S3) OR (A2' AND NOT B2' AND S2))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 2: AND gates with S3 and S2)"
+      },
+      {
+        "formula": "L2 = NOT((NOT B2' AND S1) OR (B2' AND S0) OR A2')",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 2: AND gates with S1 and S0, and A alone)"
+      },
+      {
+        "formula": "U3 = NOT((A3' AND B3' AND S3) OR (A3' AND NOT B3' AND S2))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 3: AND gates with S3 and S2)"
+      },
+      {
+        "formula": "L3 = NOT((NOT B3' AND S1) OR (B3' AND S0) OR A3')",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 3: AND gates with S1 and S0, and A alone)"
+      },
+      {
+        "formula": "K0 = NOT(MN AND Cn)",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (the NAND/NOR that carries into bit 0; M low lets carries through)"
+      },
+      {
+        "formula": "K1 = NOT((MN AND U0 AND Cn) OR (MN AND L0))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (the NAND/NOR that carries into bit 1; M low lets carries through)"
+      },
+      {
+        "formula": "K2 = NOT((MN AND U0 AND U1 AND Cn) OR (MN AND U1 AND L0) OR (MN AND L1))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (the NAND/NOR that carries into bit 2; M low lets carries through)"
+      },
+      {
+        "formula": "K3 = NOT((MN AND U0 AND U1 AND U2 AND Cn) OR (MN AND U1 AND U2 AND L0) OR (MN AND U2 AND L1) OR (MN AND L2))",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (the NAND/NOR that carries into bit 3; M low lets carries through)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "F0'",
+        "formula": "F0' = U0 XOR L0 XOR K0",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 0)"
+      },
+      {
+        "pin": "F1'",
+        "formula": "F1' = U1 XOR L1 XOR K1",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 1)"
+      },
+      {
+        "pin": "F2'",
+        "formula": "F2' = U2 XOR L2 XOR K2",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 2)"
+      },
+      {
+        "pin": "F3'",
+        "formula": "F3' = U3 XOR L3 XOR K3",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 3)"
+      },
+      {
+        "pin": "P'",
+        "formula": "P' = NOT(U0 AND U1 AND U2 AND U3)",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (4-input NAND to pin 15)"
+      },
+      {
+        "pin": "G'",
+        "formula": "G' = NOT(L3 OR (U3 AND L2) OR (U3 AND U2 AND L1) OR (U3 AND U2 AND U1 AND L0))",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (AND-NOR to pin 17)"
+      },
+      {
+        "pin": "Cn+4",
+        "formula": "Cn+4 = NOT G' OR (U0 AND U1 AND U2 AND U3 AND Cn)",
+        "type": "totem-pole",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (OR with inverted inputs to pin 16: G' and a 5-input NAND)"
+      },
+      {
+        "pin": "A=B",
+        "formula": "A=B = F0' AND F1' AND F2' AND F3'",
+        "type": "open-collector",
+        "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (AND of the four F outputs to pin 14); open collector per 7-271"
+      }
+    ]
+  }
 }

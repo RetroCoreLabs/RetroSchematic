@@ -35,7 +35,8 @@
     {
       "pin": 4,
       "name": "STROBE1",
-      "role": "input"
+      "role": "input",
+      "text": "strobe, active low: low forces the output high; high (or open) lets the receiver work (read from the schematic, 3-22)"
     },
     {
       "pin": 5,
@@ -69,7 +70,8 @@
     {
       "pin": 10,
       "name": "STROBE2",
-      "role": "input"
+      "role": "input",
+      "text": "strobe, active low: low forces the output high; high (or open) lets the receiver work (read from the schematic, 3-22)"
     },
     {
       "pin": 11,
@@ -99,8 +101,8 @@
   "functions": [
     {
       "output": "6,8",
-      "formula": null,
-      "text": "Differential line receiver: the output is high when IN+ is above IN- by more than the threshold (0 V typ, +-0.5 V max with no common mode, +-1 V over +-15 V common mode), low when below. Input range +-15 V. The output state is defined for open inputs (level not read). STROBE gates the output; its polarity and the forced level are not given in the pages read."
+      "formula": "OUT = DIFF OR NOT STROBE",
+      "text": "Differential line receiver: the output is high when IN+ is above IN- by more than the threshold (0 V typ, +-0.5 V max with no common mode, +-1 V over +-15 V common mode), low when below. Input range +-15 V. The output state is defined for open inputs (level not read). STROBE low forces the output high (read from the schematic on 3-22; the text states no polarity)."
     }
   ],
   "state": null,
@@ -135,11 +137,41 @@
   ],
   "timingLimits": [],
   "unknown": [
-    "STROBE polarity and the output level it forces are not stated in the pages read (only strobe current: 1.0/1.4 mA at 0.4 V).",
+    "STROBE polarity is read from the transistor schematic (3-22); no sentence or truth table in the datasheet states it.",
     "Output level for open inputs not stated in the pages read.",
     "Output stage type: the schematic shows an emitter-follower pull-up with resistor and a transistor pull-down; recorded as totem-pole.",
     "The ND manual calls this part \"Tri-state line receiver\"; the DS8820 has no three-state output. The ND pinout (1 -, 2 terminate, 3 +, 4 strobe, 6 output) matches the DS8820 exactly.",
     "Only a typical response time is printed; no tPLH/tPHL split and no maximum."
   ],
-  "notes": "Two independent receivers. ND symbol shows one half with pin numbers of the other half in brackets."
+  "notes": "Two independent receivers. ND symbol shows one half with pin numbers of the other half in brackets.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 95-96 (printed 3-22, 3-23) - National 1975 Interface Integrated Circuits, DS7820/DS8820",
+    "conditions": [
+      {
+        "name": "DIFF1",
+        "meaning": "1 when IN+ is above IN- by more than the threshold, 0 when below (VTH 0 V typ, -0.5..+0.5 V with VIN 0, -1..+1 V over -15..+15 V common mode, 3-23). Polarity from the schematic (3-22): a higher non-inverting input turns Q2 on harder, which turns Q6, Q7, Q8 off and lets Q10 pull OUTPUT high.",
+        "source": "pdf 95-96 (printed 3-22, 3-23) - National 1975 Interface Integrated Circuits, DS7820/DS8820"
+      },
+      {
+        "name": "DIFF2",
+        "meaning": "1 when IN+ is above IN- by more than the threshold, 0 when below (VTH 0 V typ, -0.5..+0.5 V with VIN 0, -1..+1 V over -15..+15 V common mode, 3-23). Polarity from the schematic (3-22): a higher non-inverting input turns Q2 on harder, which turns Q6, Q7, Q8 off and lets Q10 pull OUTPUT high.",
+        "source": "pdf 95-96 (printed 3-22, 3-23) - National 1975 Interface Integrated Circuits, DS7820/DS8820"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "OUT1",
+        "formula": "OUT1 = DIFF1 OR NOT STROBE1",
+        "type": "totem-pole",
+        "source": "printed 3-22, schematic: STROBE is the emitter of Q5, whose base and collector sit on the node that drives Q6 (fed by R12 from V+ and pulled down by Q2). A low STROBE pulls that node low through Q5, so Q6, Q7 and Q8 turn off and Q10 pulls OUTPUT high; with STROBE high Q5 is off (strobe current -5 uA at 5.5 V, 3-23) and the receiver works normally. The strobe current of 1.0-1.4 mA at 0.4 V (3-23) is the R12 current this path takes. Read from the schematic; the text states no polarity."
+      },
+      {
+        "pin": "OUT2",
+        "formula": "OUT2 = DIFF2 OR NOT STROBE2",
+        "type": "totem-pole",
+        "source": "printed 3-22, schematic: STROBE is the emitter of Q5, whose base and collector sit on the node that drives Q6 (fed by R12 from V+ and pulled down by Q2). A low STROBE pulls that node low through Q5, so Q6, Q7 and Q8 turn off and Q10 pulls OUTPUT high; with STROBE high Q5 is off (strobe current -5 uA at 5.5 V, 3-23) and the receiver works normally. The strobe current of 1.0-1.4 mA at 0.4 V (3-23) is the R12 current this path takes. Read from the schematic; the text states no polarity."
+      }
+    ]
+  }
 }

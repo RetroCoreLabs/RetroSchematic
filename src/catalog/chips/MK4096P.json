@@ -347,8 +347,212 @@
   "unknown": [
     "The datasheet read is the 1978 MK4096(K/N) sheet; the \"P\" package suffix in the ND title is not covered by it. Speed grade of the ND parts is unknown, so all three grades are given.",
     "Pin 1 name was garbled in the text layer; set to VBB (-5 V) from the pin-name list (VBB, VCC, VDD, VSS) - check against the page image.",
-    "Whether data out is inverted relative to data in is not stated in the pages read.",
     "Read-modify-write and page-mode timing pages were not read."
   ],
-  "notes": "Two methods of chip select are mentioned in the description; only CS latched by CAS was read."
+  "notes": "Two methods of chip select are mentioned in the description; only CS latched by CAS was read.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096",
+    "stored": [
+      {
+        "name": "ROW0",
+        "kind": "flip-flop",
+        "next": "ROW0 = A0",
+        "clock": {
+          "pin": "RAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): RAS (negative going) latches the 6 row address bits"
+      },
+      {
+        "name": "ROW1",
+        "kind": "flip-flop",
+        "next": "ROW1 = A1",
+        "clock": {
+          "pin": "RAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): RAS (negative going) latches the 6 row address bits"
+      },
+      {
+        "name": "ROW2",
+        "kind": "flip-flop",
+        "next": "ROW2 = A2",
+        "clock": {
+          "pin": "RAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): RAS (negative going) latches the 6 row address bits"
+      },
+      {
+        "name": "ROW3",
+        "kind": "flip-flop",
+        "next": "ROW3 = A3",
+        "clock": {
+          "pin": "RAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): RAS (negative going) latches the 6 row address bits"
+      },
+      {
+        "name": "ROW4",
+        "kind": "flip-flop",
+        "next": "ROW4 = A4",
+        "clock": {
+          "pin": "RAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): RAS (negative going) latches the 6 row address bits"
+      },
+      {
+        "name": "ROW5",
+        "kind": "flip-flop",
+        "next": "ROW5 = A5",
+        "clock": {
+          "pin": "RAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): RAS (negative going) latches the 6 row address bits"
+      },
+      {
+        "name": "COL0",
+        "kind": "flip-flop",
+        "next": "COL0 = A0",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches the 6 column address bits plus Chip Select"
+      },
+      {
+        "name": "COL1",
+        "kind": "flip-flop",
+        "next": "COL1 = A1",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches the 6 column address bits plus Chip Select"
+      },
+      {
+        "name": "COL2",
+        "kind": "flip-flop",
+        "next": "COL2 = A2",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches the 6 column address bits plus Chip Select"
+      },
+      {
+        "name": "COL3",
+        "kind": "flip-flop",
+        "next": "COL3 = A3",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches the 6 column address bits plus Chip Select"
+      },
+      {
+        "name": "COL4",
+        "kind": "flip-flop",
+        "next": "COL4 = A4",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches the 6 column address bits plus Chip Select"
+      },
+      {
+        "name": "COL5",
+        "kind": "flip-flop",
+        "next": "COL5 = A5",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches the 6 column address bits plus Chip Select"
+      },
+      {
+        "name": "LCS",
+        "kind": "flip-flop",
+        "next": "LCS = CS",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, ADDRESSING (printed 96): CAS latches Chip Select"
+      },
+      {
+        "name": "EW",
+        "kind": "flip-flop",
+        "next": "EW = NOT WRITE",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, DATA INPUT/OUTPUT and DATA OUTPUT LATCH (printed 96-97): a write cycle is WRITE low before CAS goes low; then the output holds a logic 1"
+      },
+      {
+        "name": "ACT",
+        "kind": "flip-flop",
+        "next": "ACT = NOT RAS AND NOT CS",
+        "clock": {
+          "pin": "CAS",
+          "edge": "falling"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, DATA INPUT/OUTPUT and DATA OUTPUT LATCH (printed 96-97): at every falling CAS the output goes open; it drives again only if RAS is active and the chip is selected, and stays valid until the next falling CAS. RAS-only cycles do not change it."
+      },
+      {
+        "name": "OD",
+        "kind": "latch",
+        "next": "OD = EW OR MEM1",
+        "clock": {
+          "when": "NOT CAS AND WRITE",
+          "edge": "level-high"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, DATA INPUT/OUTPUT and DATA OUTPUT LATCH (printed 96-97): the output latch takes the data read while CAS is low (read part of the cycle, WRITE high); same polarity as the input; a write cycle gives a logic 1. It holds when WRITE falls (read-modify-write) and after CAS rises."
+      }
+    ],
+    "memory": {
+      "name": "MEM",
+      "words": 4096,
+      "width": 1,
+      "address": [
+        "ROW0",
+        "ROW1",
+        "ROW2",
+        "ROW3",
+        "ROW4",
+        "ROW5",
+        "COL0",
+        "COL1",
+        "COL2",
+        "COL3",
+        "COL4",
+        "COL5"
+      ],
+      "dataIn": [
+        "DIN"
+      ],
+      "write": {
+        "when": "NOT WRITE AND NOT CAS AND NOT RAS AND NOT LCS",
+        "edge": "rising"
+      },
+      "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, DATA INPUT/OUTPUT and DATA OUTPUT LATCH (printed 96-97): data in is latched by the later of WRITE and CAS to fall while RAS is active; not written when CS was high at CAS time. The order of row and column bits inside the 12-bit address is not stated (it does not change the logic). Refresh (the cells forget unless each row is cycled every 2 ms) is not part of the logic model."
+    },
+    "outputs": [
+      {
+        "pin": "DOUT",
+        "formula": "DOUT = OD",
+        "type": "three-state",
+        "outputEnable": {
+          "when": "ACT",
+          "disabled": "Z"
+        },
+        "source": "pdf 97-103 (printed 91-97) - Mostek 1978 Memory Data Book, MK4096, DATA INPUT/OUTPUT and DATA OUTPUT LATCH (printed 96-97)"
+      }
+    ]
+  }
 }
