@@ -55,6 +55,16 @@ namespace RetroSchematic.Render
         /// Lower-priority text such as a chip's function.
         /// </summary>
         Note,
+
+        /// <summary>
+        /// A routed wire between two pins of one signal.
+        /// </summary>
+        Wire,
+
+        /// <summary>
+        /// The small dot at the end of a pin line, where a wire starts; picks the pin itself.
+        /// </summary>
+        PinDot,
     }
 
     /// <summary>
@@ -209,6 +219,86 @@ namespace RetroSchematic.Render
     }
 
     /// <summary>
+    /// A point in drawing units.
+    /// </summary>
+    public readonly struct DrawPoint
+    {
+        /// <summary>
+        /// X in drawing units.
+        /// </summary>
+        public readonly double X;
+
+        /// <summary>
+        /// Y in drawing units.
+        /// </summary>
+        public readonly double Y;
+
+        /// <summary>
+        /// Creates a point.
+        /// </summary>
+        /// <param name="x">
+        /// X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Y in drawing units.
+        /// </param>
+        public DrawPoint(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+    }
+
+    /// <summary>
+    /// The frame round one chip, in drawing units.
+    /// </summary>
+    public readonly struct PartFrame
+    {
+        /// <summary>
+        /// Left edge.
+        /// </summary>
+        public readonly double X;
+
+        /// <summary>
+        /// Top edge.
+        /// </summary>
+        public readonly double Y;
+
+        /// <summary>
+        /// Width.
+        /// </summary>
+        public readonly double Width;
+
+        /// <summary>
+        /// Height.
+        /// </summary>
+        public readonly double Height;
+
+        /// <summary>
+        /// Creates a frame.
+        /// </summary>
+        /// <param name="x">
+        /// Left edge.
+        /// </param>
+        /// <param name="y">
+        /// Top edge.
+        /// </param>
+        /// <param name="width">
+        /// Width.
+        /// </param>
+        /// <param name="height">
+        /// Height.
+        /// </param>
+        public PartFrame(double x, double y, double width, double height)
+        {
+            X = x;
+            Y = y;
+            Width = width;
+            Height = height;
+        }
+    }
+
+    /// <summary>
     /// One drawing step: a shape or a piece of text, with its role, how sure the reading is, and
     /// which part, gate or signal it belongs to (used to pick it with the mouse).
     /// </summary>
@@ -276,7 +366,7 @@ namespace RetroSchematic.Render
         public TextAnchor Anchor;
 
         /// <summary>
-        /// What this step belongs to, written as "part:11D", "gate:11D/1" or "net:BD0". Empty when
+        /// What this step belongs to, written as "part:11D", "gate:11D/1", "net:BD0" or "pin:11D.3". Empty when
         /// it belongs to nothing that can be picked (the title).
         /// </summary>
         public string Owner = "";
@@ -320,9 +410,21 @@ namespace RetroSchematic.Render
         public List<DrawItem> Items { get; } = new();
 
         /// <summary>
-        /// The owner ("part:11D", "gate:11D/1", "net:BD0") of what lies under a point, or an empty
-        /// string. Signal names and gates win over the part frame around them, because they are
-        /// drawn on top of it and are the smaller target.
+        /// Where each drawn pin ends ("11D.3"), which is where its wires start. Pins that are not
+        /// drawn (backplane P., front F., or a chip with no catalogue file) are not in it.
+        /// </summary>
+        public Dictionary<string, DrawPoint> Pins { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// The frame of each chip, by part reference.
+        /// </summary>
+        public Dictionary<string, PartFrame> Frames { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// The owner ("part:11D", "gate:11D/1", "net:BD0", "pin:11D.3") of what lies under a point,
+        /// or an empty string. The smaller, deliberate target wins: a pin dot, then a signal name
+        /// or part label, then a gate, then a wire, then the rest of the part frame. A wire that
+        /// runs across a label therefore does not hide the label.
         /// </summary>
         /// <param name="x">
         /// Point X in drawing units.
@@ -345,8 +447,7 @@ namespace RetroSchematic.Render
                 Bounds(it, out double left, out double top, out double right, out double bottom);
                 if (x < left || x > right || y < top || y > bottom)
                     continue;
-                int rank = it.Owner.StartsWith("net:", StringComparison.Ordinal) ? 0
-                    : it.Owner.StartsWith("gate:", StringComparison.Ordinal) ? 1 : 2;
+                int rank = Rank(it);
                 if (rank < bestRank)
                 {
                     bestRank = rank;
@@ -354,6 +455,28 @@ namespace RetroSchematic.Render
                 }
             }
             return best;
+        }
+
+        /// <summary>
+        /// How strongly an item claims a click; lower wins. See <see cref="HitTest"/>.
+        /// </summary>
+        /// <param name="it">
+        /// The drawing step.
+        /// </param>
+        /// <returns>
+        /// 0 (pin dot) to 4 (part frame).
+        /// </returns>
+        private static int Rank(DrawItem it)
+        {
+            if (it.Role == DrawRole.PinDot)
+                return 0;
+            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.PartLabel)
+                return 1;
+            if (it.Owner.StartsWith("gate:", StringComparison.Ordinal))
+                return 2;
+            if (it.Role == DrawRole.Wire)
+                return 3;
+            return 4;
         }
 
         /// <summary>

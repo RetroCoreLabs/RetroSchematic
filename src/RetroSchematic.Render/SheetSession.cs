@@ -7,24 +7,24 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Text;
-using System.Text.Json;
 using RetroSchematic.Model;
 
 namespace RetroSchematic.Render
 {
     /// <summary>
-    /// One open sheet and what the user is looking at: the symbol style, the drawing laid out for
-    /// it, and the picked part, gate or signal. The desktop window only shows this object; every
-    /// action is a method here, so the command-line tool and tests can do the same things.
+    /// One open sheet and what the user is looking at: the symbol style, what is shown, the drawing
+    /// laid out for it, and the picked part, gate, signal or pin. Changes to the sheet go through
+    /// <see cref="Editor"/>; the drawing is laid out again after each one. The desktop window only
+    /// shows this object; every action is a method here or on the editor, so the command-line
+    /// tool, the MCP tool and tests can do the same things.
     /// </summary>
     public sealed class SheetSession
     {
-        private readonly string? _catalogFolder;
+        private readonly LayoutOptions _options = new();
 
         /// <summary>
-        /// Called after the drawing was laid out again (new sheet or new symbol style).
+        /// Called after the drawing was laid out again (new style, new options, or an edit).
         /// </summary>
         /// <param name="session">
         /// The session whose drawing changed.
@@ -53,8 +53,9 @@ namespace RetroSchematic.Render
         public event SelectionChangedHandler? SelectionChanged;
 
         /// <summary>
-        /// Opens a sheet file. <paramref name="catalogFolder"/> is the catalogue's folder (the one
-        /// holding <c>chips/</c>), used to show what a picked chip is; null leaves that out.
+        /// Opens a sheet file, read-only. <paramref name="catalogFolder"/> is the catalogue's folder
+        /// (the one holding <c>chips/</c>), used to show what a picked chip is, to list a gateless
+        /// chip's pins and to place chips; null leaves that out.
         /// </summary>
         /// <param name="sheetPath">
         /// The sheet file.
@@ -66,23 +67,49 @@ namespace RetroSchematic.Render
         /// The catalogue folder (the one holding chips), or null.
         /// </param>
         public SheetSession(string sheetPath, SymbolStyle style, string? catalogFolder)
+            : this(NetlistReader.ReadFile(sheetPath), sheetPath, style, catalogFolder)
         {
-            SheetPath = sheetPath;
-            Netlist = NetlistReader.ReadFile(sheetPath);
-            Style = style;
-            _catalogFolder = catalogFolder;
-            Drawing = SheetLayout.Build(Netlist, style);
         }
 
         /// <summary>
-        /// The sheet file.
+        /// Shows a sheet already in memory (a new design has no file yet), read-only.
         /// </summary>
-        public string SheetPath { get; }
+        /// <param name="netlist">
+        /// The sheet.
+        /// </param>
+        /// <param name="sheetPath">
+        /// The file it came from or will be saved to, or null for a new design not saved yet.
+        /// </param>
+        /// <param name="style">
+        /// The symbol set to start with.
+        /// </param>
+        /// <param name="catalogFolder">
+        /// The catalogue folder (the one holding chips), or null.
+        /// </param>
+        public SheetSession(Netlist netlist, string? sheetPath, SymbolStyle style, string? catalogFolder)
+        {
+            SheetPath = sheetPath;
+            Style = style;
+            _options.Catalog = catalogFolder == null ? null : new ChipCatalog(catalogFolder);
+            Editor = new SheetEditor(netlist, _options.Catalog);
+            Editor.Changed += OnEdited;
+            Drawing = SheetLayout.Build(netlist, style, _options);
+        }
 
         /// <summary>
-        /// The sheet's contents.
+        /// The sheet file, or null for a new design not saved yet.
         /// </summary>
-        public Netlist Netlist { get; }
+        public string? SheetPath { get; private set; }
+
+        /// <summary>
+        /// The sheet's contents as they are now.
+        /// </summary>
+        public Netlist Netlist => Editor.Netlist;
+
+        /// <summary>
+        /// Every change to the sheet goes through this. It starts read-only.
+        /// </summary>
+        public SheetEditor Editor { get; }
 
         /// <summary>
         /// The symbol set in use.
@@ -90,12 +117,22 @@ namespace RetroSchematic.Render
         public SymbolStyle Style { get; private set; }
 
         /// <summary>
+        /// True when pin numbers are drawn.
+        /// </summary>
+        public bool ShowPinNumbers => _options.ShowPinNumbers;
+
+        /// <summary>
+        /// True when the board position is written on each part label.
+        /// </summary>
+        public bool ShowBoardPositions => _options.ShowBoardPositions;
+
+        /// <summary>
         /// The laid-out drawing for <see cref="Style"/>.
         /// </summary>
         public SchematicDrawing Drawing { get; private set; }
 
         /// <summary>
-        /// The picked item ("part:11D", "gate:11D/1", "net:BD0"), or empty.
+        /// The picked item ("part:11D", "gate:11D/1", "net:BD0", "pin:11D.3"), or empty.
         /// </summary>
         public string Selected { get; private set; } = "";
 
@@ -110,8 +147,47 @@ namespace RetroSchematic.Render
             if (style == Style)
                 return;
             Style = style;
-            Drawing = SheetLayout.Build(Netlist, style);
-            DrawingChanged?.Invoke(this);
+            Relayout();
+        }
+
+        /// <summary>
+        /// Shows or hides the pin numbers.
+        /// </summary>
+        /// <param name="show">
+        /// True to show them.
+        /// </param>
+        public void SetShowPinNumbers(bool show)
+        {
+            if (show == _options.ShowPinNumbers)
+                return;
+            _options.ShowPinNumbers = show;
+            Relayout();
+        }
+
+        /// <summary>
+        /// Shows or hides the board positions on the part labels.
+        /// </summary>
+        /// <param name="show">
+        /// True to show them.
+        /// </param>
+        public void SetShowBoardPositions(bool show)
+        {
+            if (show == _options.ShowBoardPositions)
+                return;
+            _options.ShowBoardPositions = show;
+            Relayout();
+        }
+
+        /// <summary>
+        /// Saves the sheet (see <see cref="SheetEditor.Save"/>) and remembers the file for the next save.
+        /// </summary>
+        /// <param name="path">
+        /// The file to write.
+        /// </param>
+        public void SaveAs(string path)
+        {
+            Editor.Save(path);
+            SheetPath = path;
         }
 
         /// <summary>
@@ -140,8 +216,9 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// True if an item belongs to the picked thing. Picking a signal lights every pin label of
-        /// that signal; picking a gate lights the gate; picking a part lights the part and its gates.
+        /// True if an item belongs to the picked thing. Picking a signal lights its names, its
+        /// wires and the dots of its pins; picking a gate lights the gate; picking a part lights the
+        /// part and its gates.
         /// </summary>
         /// <param name="item">
         /// A drawing step.
@@ -157,12 +234,58 @@ namespace RetroSchematic.Render
                 return true;
             // a gate belongs to its part: "gate:11D/1" is lit when "part:11D" is picked
             if (Selected.StartsWith("part:", StringComparison.Ordinal) && item.Owner.StartsWith("gate:", StringComparison.Ordinal))
+                return OwnerStartsWithPart(item.Owner, 5, Selected.Substring(5), '/');
+            // a pin belongs to the picked signal when the signal joins it
+            if (Selected.StartsWith("net:", StringComparison.Ordinal) && item.Owner.StartsWith("pin:", StringComparison.Ordinal))
             {
-                string part = Selected.Substring(5);
-                return item.Owner.Length > 5 + part.Length && item.Owner[5 + part.Length] == '/'
-                    && string.CompareOrdinal(item.Owner, 5, part, 0, part.Length) == 0;
+                Net? net = Editor.NetOf(item.Owner.Substring(4));
+                return net != null && net.Name == Selected.Substring(4);
             }
             return false;
+        }
+
+        /// <summary>
+        /// Every part, signal and pin whose name contains the text (case does not matter): parts
+        /// by reference or type, signals by name, pins written as 11D.3. Parts first, then signals,
+        /// then pins, each in sheet order.
+        /// </summary>
+        /// <param name="text">
+        /// What to look for.
+        /// </param>
+        /// <returns>
+        /// The owner names found ("part:11D", "net:BD0", "pin:11D.3").
+        /// </returns>
+        public List<string> Search(string text)
+        {
+            List<string> found = new();
+            string t = text.Trim();
+            if (t.Length == 0)
+                return found;
+            Netlist n = Netlist;
+            for (int i = 0; i < n.Parts.Count; i++)
+            {
+                if (Has(n.Parts[i].Ref, t) || Has(n.Parts[i].Type, t))
+                    found.Add("part:" + n.Parts[i].Ref);
+            }
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                if (Has(n.Nets[i].Name, t))
+                    found.Add("net:" + n.Nets[i].Name);
+            }
+            // only text with a dot looks for pins, else "1" would list every pin 1
+            if (t.IndexOf('.') >= 0)
+            {
+                for (int i = 0; i < n.Nets.Count; i++)
+                {
+                    List<PinReference> pins = n.Nets[i].Pins;
+                    for (int j = 0; j < pins.Count; j++)
+                    {
+                        if (Has(pins[j].At, t))
+                            found.Add("pin:" + pins[j].At);
+                    }
+                }
+            }
+            return found;
         }
 
         /// <summary>
@@ -180,26 +303,99 @@ namespace RetroSchematic.Render
                 return DescribeGate(Selected.Substring(5));
             if (Selected.StartsWith("net:", StringComparison.Ordinal))
                 return DescribeNet(Selected.Substring(4));
+            if (Selected.StartsWith("pin:", StringComparison.Ordinal))
+                return DescribePin(Selected.Substring(4));
             return "";
+        }
+
+        private static bool Has(string value, string text) => value.Contains(text, StringComparison.OrdinalIgnoreCase);
+
+        private static bool OwnerStartsWithPart(string owner, int start, string part, char separator)
+            => owner.Length > start + part.Length && owner[start + part.Length] == separator
+                && string.CompareOrdinal(owner, start, part, 0, part.Length) == 0;
+
+        private void Relayout()
+        {
+            Drawing = SheetLayout.Build(Netlist, Style, _options);
+            DrawingChanged?.Invoke(this);
+        }
+
+        private void OnEdited(SheetEditor editor)
+        {
+            Relayout();
+            // a pick that no longer exists (a deleted part) is dropped
+            if (Selected.Length > 0 && Describe().Length == 0)
+                Select("");
         }
 
         private string DescribePart(string reference)
         {
             StringBuilder sb = new();
-            for (int i = 0; i < Netlist.Parts.Count; i++)
+            Part? p = Editor.FindPart(reference);
+            if (p == null)
+                return "";
+            sb.Append("Part ").Append(p.Ref).Append(": ").Append(p.Type).Append('\n');
+            if (!string.IsNullOrEmpty(p.Function))
+                sb.Append(p.Function).Append('\n');
+            sb.Append("Reading: ").Append(ConfidenceText(p.Confidence)).Append('\n');
+            if (!string.IsNullOrEmpty(p.Note))
+                sb.Append("Note: ").Append(p.Note).Append('\n');
+            AppendSource(sb);
+            ChipInfo? chip = _options.Catalog?.Get(p.Type);
+            if (_options.Catalog != null)
             {
-                Part p = Netlist.Parts[i];
-                if (p.Ref != reference)
-                    continue;
-                sb.Append("Part ").Append(p.Ref).Append(": ").Append(p.Type).Append('\n');
-                if (!string.IsNullOrEmpty(p.Function))
-                    sb.Append(p.Function).Append('\n');
-                sb.Append("Reading: ").Append(ConfidenceText(p.Confidence)).Append('\n');
-                if (!string.IsNullOrEmpty(p.Note))
-                    sb.Append("Note: ").Append(p.Note).Append('\n');
-                AppendChip(sb, p.Type);
+                if (chip == null)
+                    sb.Append("Catalogue: no chip file for ").Append(p.Type).Append('\n');
+                else
+                {
+                    sb.Append("Catalogue: ").Append(chip.Title).Append('\n');
+                    for (int i = 0; i < chip.Formulas.Count; i++)
+                        sb.Append("  ").Append(chip.Formulas[i]).Append('\n');
+                }
+            }
+
+            // the pins and their signals: every pin of the chip file, else the pins on a signal
+            sb.Append("Pins:\n");
+            if (chip != null)
+            {
+                for (int i = 0; i < chip.Pins.Count; i++)
+                    AppendPinLine(sb, p.Ref, chip.Pins[i].Number, chip.Pins[i].Name);
+            }
+            else
+            {
+                for (int pin = 1; pin <= 64; pin++)
+                {
+                    if (Editor.NetOf(p.Ref + "." + pin.ToString(CultureInfo.InvariantCulture)) != null)
+                        AppendPinLine(sb, p.Ref, pin, "");
+                }
             }
             return sb.ToString();
+        }
+
+        private void AppendPinLine(StringBuilder sb, string reference, int pin, string name)
+        {
+            string at = reference + "." + pin.ToString(CultureInfo.InvariantCulture);
+            Net? net = Editor.NetOf(at);
+            sb.Append("  ").Append(pin.ToString(CultureInfo.InvariantCulture).PadLeft(2));
+            if (name.Length > 0)
+                sb.Append(' ').Append(name.PadRight(5));
+            sb.Append("  ").Append(net == null ? "-" : net.Name);
+            if (net != null)
+            {
+                PinReference? r = FindPin(net, at);
+                if (r != null && r.Confidence != Confidence.Read)
+                    sb.Append("  (").Append(ConfidenceText(r.Confidence)).Append(')');
+            }
+            sb.Append('\n');
+        }
+
+        private void AppendSource(StringBuilder sb)
+        {
+            SourceReference s = Netlist.Sheet.Source;
+            sb.Append("Source: sheet ").Append(Netlist.Sheet.Id).Append(", ").Append(s.Document);
+            if (s.PdfPage.HasValue)
+                sb.Append(", page ").Append(s.PdfPage.Value.ToString(CultureInfo.InvariantCulture));
+            sb.Append('\n');
         }
 
         private string DescribeGate(string id)
@@ -225,57 +421,71 @@ namespace RetroSchematic.Render
         private string DescribeNet(string name)
         {
             StringBuilder sb = new();
-            for (int i = 0; i < Netlist.Nets.Count; i++)
+            Net? n = Editor.FindNet(name);
+            if (n == null)
+                return "";
+            sb.Append("Signal ").Append(n.Name);
+            if (n.Active != ActiveLevel.None)
+                sb.Append(n.Active == ActiveLevel.High ? " (active high, subscript 1)" : " (active low, subscript 0)");
+            sb.Append('\n');
+            if (n.Drive.HasValue)
+                sb.Append("Line type: ").Append(n.Drive.Value.ToString()).Append('\n');
+            if (n.PullUp != null)
+                sb.Append("Pull-up: ").Append(n.PullUp).Append('\n');
+            sb.Append("Pins:\n");
+            for (int j = 0; j < n.Pins.Count; j++)
+                sb.Append("  ").Append(n.Pins[j].At).Append("  (").Append(ConfidenceText(n.Pins[j].Confidence)).Append(")\n");
+            if (!string.IsNullOrEmpty(n.Note))
+                sb.Append("Note: ").Append(n.Note).Append('\n');
+            return sb.ToString();
+        }
+
+        private string DescribePin(string at)
+        {
+            int dot = at.LastIndexOf('.');
+            if (dot <= 0)
+                return "";
+            string reference = at.Substring(0, dot);
+            Part? part = Editor.FindPart(reference);
+            if (part == null && reference != "P" && reference != "F")
+                return "";
+            StringBuilder sb = new();
+            sb.Append("Pin ").Append(at);
+            ChipInfo? chip = part == null ? null : _options.Catalog?.Get(part.Type);
+            if (chip != null && int.TryParse(at.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int number))
             {
-                Net n = Netlist.Nets[i];
-                if (n.Name != name)
-                    continue;
-                sb.Append("Signal ").Append(n.Name);
-                if (n.Active != ActiveLevel.None)
-                    sb.Append(n.Active == ActiveLevel.High ? " (active high, subscript 1)" : " (active low, subscript 0)");
-                sb.Append('\n');
-                if (n.Drive.HasValue)
-                    sb.Append("Line type: ").Append(n.Drive.Value.ToString()).Append('\n');
-                sb.Append("Pins:\n");
-                for (int j = 0; j < n.Pins.Count; j++)
-                    sb.Append("  ").Append(n.Pins[j].At).Append("  (").Append(ConfidenceText(n.Pins[j].Confidence)).Append(")\n");
-                if (!string.IsNullOrEmpty(n.Note))
-                    sb.Append("Note: ").Append(n.Note).Append('\n');
+                for (int i = 0; i < chip.Pins.Count; i++)
+                {
+                    if (chip.Pins[i].Number == number)
+                        sb.Append(": ").Append(chip.Pins[i].Name).Append(" (").Append(chip.Pins[i].Role).Append(')');
+                }
+            }
+            sb.Append('\n');
+            Net? net = Editor.NetOf(at);
+            if (net == null)
+                sb.Append("Signal: none\n");
+            else
+            {
+                sb.Append("Signal: ").Append(net.Name).Append('\n');
+                PinReference? r = FindPin(net, at);
+                if (r != null)
+                {
+                    sb.Append("Reading: ").Append(ConfidenceText(r.Confidence)).Append('\n');
+                    if (!string.IsNullOrEmpty(r.Note))
+                        sb.Append("Note: ").Append(r.Note).Append('\n');
+                }
             }
             return sb.ToString();
         }
 
-        /// <summary>
-        /// The chip file's title and source, when the catalogue has the chip.
-        /// </summary>
-        /// <param name="sb">
-        /// The description being built.
-        /// </param>
-        /// <param name="type">
-        /// The chip type, such as 7442.
-        /// </param>
-        private void AppendChip(StringBuilder sb, string type)
+        private static PinReference? FindPin(Net net, string at)
         {
-            if (_catalogFolder == null)
-                return;
-            string path = Path.Combine(_catalogFolder, "chips", type + ".json");
-            if (!File.Exists(path))
+            for (int i = 0; i < net.Pins.Count; i++)
             {
-                sb.Append("Catalogue: no chip file for ").Append(type).Append('\n');
-                return;
+                if (net.Pins[i].At == at)
+                    return net.Pins[i];
             }
-            using JsonDocument doc = JsonDocument.Parse(File.ReadAllText(path));
-            JsonElement root = doc.RootElement;
-            if (root.TryGetProperty("title", out JsonElement title))
-                sb.Append("Catalogue: ").Append(title.GetString()).Append('\n');
-            if (root.TryGetProperty("functions", out JsonElement fs) && fs.ValueKind == JsonValueKind.Array)
-            {
-                for (int i = 0; i < fs.GetArrayLength(); i++)
-                {
-                    if (fs[i].TryGetProperty("formula", out JsonElement f) && f.ValueKind == JsonValueKind.String)
-                        sb.Append("  ").Append(f.GetString()).Append('\n');
-                }
-            }
+            return null;
         }
 
         private static string ConfidenceText(Confidence c) => c switch

@@ -1,0 +1,583 @@
+//
+// SPDX-License-Identifier: MIT
+// Copyright (c) 1985-2026 Ronny Hansen
+// RetroCore Labs — https://github.com/RetroCoreLabs
+//
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using RetroSchematic.Model;
+
+namespace RetroSchematic.Render
+{
+    /// <summary>
+    /// The one way a sheet is changed, used by the window and by the MCP tool alike: place, move
+    /// and delete chips, connect and disconnect pins, undo and redo, save. Every change is
+    /// checked first and either happens whole or not at all (a refused change throws
+    /// <see cref="SheetEditException"/> and leaves the sheet as it was).
+    /// <para>
+    /// A sheet opens READ-ONLY: every change is refused until <see cref="ReadOnly"/> is set to
+    /// false. Undo keeps a copy of the whole sheet before each change.
+    /// </para>
+    /// </summary>
+    public sealed class SheetEditor
+    {
+        private readonly List<string> _undo = new();
+        private readonly List<string> _redo = new();
+
+        /// <summary>
+        /// Called after the sheet changed (an edit, undo or redo).
+        /// </summary>
+        /// <param name="editor">
+        /// The editor whose sheet changed.
+        /// </param>
+        public delegate void ChangedHandler(SheetEditor editor);
+
+        /// <summary>
+        /// The sheet changed.
+        /// </summary>
+        public event ChangedHandler? Changed;
+
+        /// <summary>
+        /// Edits a sheet already read.
+        /// </summary>
+        /// <param name="netlist">
+        /// The sheet.
+        /// </param>
+        /// <param name="catalog">
+        /// The chip catalogue, needed to place chips and to check pin numbers; null refuses placing.
+        /// </param>
+        public SheetEditor(Netlist netlist, ChipCatalog? catalog)
+        {
+            Netlist = netlist;
+            Catalog = catalog;
+        }
+
+        /// <summary>
+        /// The sheet as it is now. Undo and redo replace this object.
+        /// </summary>
+        public Netlist Netlist { get; private set; }
+
+        /// <summary>
+        /// The chip catalogue, or null.
+        /// </summary>
+        public ChipCatalog? Catalog { get; }
+
+        /// <summary>
+        /// True (the default) refuses every change.
+        /// </summary>
+        public bool ReadOnly { get; set; } = true;
+
+        /// <summary>
+        /// True when there is a change to undo.
+        /// </summary>
+        public bool CanUndo => _undo.Count > 0;
+
+        /// <summary>
+        /// True when there is an undone change to do again.
+        /// </summary>
+        public bool CanRedo => _redo.Count > 0;
+
+        /// <summary>
+        /// True when the sheet changed since it was opened or last saved.
+        /// </summary>
+        public bool Modified { get; private set; }
+
+        /// <summary>
+        /// An empty sheet in format version 1, for a new design.
+        /// </summary>
+        /// <param name="id">
+        /// The sheet number, such as DEMO.
+        /// </param>
+        /// <param name="title">
+        /// The title.
+        /// </param>
+        /// <returns>
+        /// A sheet with no parts and no signals.
+        /// </returns>
+        public static Netlist NewSheet(string id, string title)
+        {
+            return new Netlist
+            {
+                Format = "nd-netlist",
+                FormatVersion = NetlistReader.SupportedFormatVersion,
+                Sheet = new Sheet
+                {
+                    Id = id,
+                    Title = title,
+                    Source = new SourceReference { Document = "none - drawn in the editor" },
+                    Note = "Drawn in the RetroSchematic editor, not read off a scan.",
+                },
+            };
+        }
+
+        /// <summary>
+        /// Places a chip from the catalogue. Its gates come from the chip file's formulas (see
+        /// <see cref="ChipCatalog.GateFromFormula"/>); a chip whose formulas are not plain gates
+        /// (a flip-flop, a counter) is placed with no gates and drawn with its pins listed.
+        /// </summary>
+        /// <param name="type">
+        /// The chip type, such as 7400.
+        /// </param>
+        /// <param name="xMm">
+        /// Where the frame's left edge goes, in millimetres.
+        /// </param>
+        /// <param name="yMm">
+        /// Where the frame's top edge goes, in millimetres.
+        /// </param>
+        /// <param name="reference">
+        /// The board position to give it (13D), or null for the first free one in row A, B, ...
+        /// </param>
+        /// <returns>
+        /// The new part's reference.
+        /// </returns>
+        public string PlacePart(string type, double xMm, double yMm, string? reference = null)
+        {
+            CheckWritable();
+            if (Catalog == null)
+                throw new SheetEditException("No chip catalogue is open, so no chip can be placed.");
+            ChipInfo? chip = Catalog.Get(type);
+            if (chip == null)
+                throw new SheetEditException($"The catalogue has no chip file with pins for {type}.");
+            if (reference != null)
+            {
+                CheckBoardPosition(reference);
+                if (FindPart(reference) != null)
+                    throw new SheetEditException($"There is already a part {reference} on the sheet.");
+            }
+            else
+                reference = FreeReference();
+
+            Snapshot();
+            Part part = new()
+            {
+                Ref = reference,
+                Type = type,
+                Confidence = Confidence.Read,
+                Note = "Placed in the editor.",
+                Position = new Point { X = xMm, Y = yMm },
+            };
+            Netlist.Parts.Add(part);
+            for (int i = 0; i < chip.Gates.Count; i++)
+            {
+                Gate from = chip.Gates[i];
+                Netlist.Gates.Add(new Gate
+                {
+                    Id = reference + "/" + (i + 1).ToString(CultureInfo.InvariantCulture),
+                    Part = reference,
+                    Kind = from.Kind,
+                    Inputs = new List<int>(from.Inputs),
+                    Output = from.Output,
+                    Confidence = Confidence.Read,
+                });
+            }
+            Done();
+            return reference;
+        }
+
+        /// <summary>
+        /// Moves a chip's frame so its top left corner is at a new place. Only the drawing changes;
+        /// the signals stay as they are. Gates with a measured position move with the frame. A
+        /// part whose gates all have a position (and no position of its own) keeps it that way:
+        /// only its gates move.
+        /// </summary>
+        /// <param name="reference">
+        /// The part, such as 13D.
+        /// </param>
+        /// <param name="xMm">
+        /// New left edge in millimetres.
+        /// </param>
+        /// <param name="yMm">
+        /// New top edge in millimetres.
+        /// </param>
+        public void MovePart(string reference, double xMm, double yMm)
+        {
+            CheckWritable();
+            Part part = FindPart(reference) ?? throw new SheetEditException($"There is no part {reference} on the sheet.");
+            SchematicDrawing now = SheetLayout.Build(Netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = Catalog });
+            PartFrame f = now.Frames[reference];
+            double dx = xMm - SheetLayout.ToMm(f.X), dy = yMm - SheetLayout.ToMm(f.Y);
+            if (dx == 0 && dy == 0)
+                return;
+
+            Snapshot();
+            bool allGatesMeasured = part.Position == null;
+            for (int i = 0; i < Netlist.Gates.Count && allGatesMeasured; i++)
+            {
+                if (Netlist.Gates[i].Part == reference && Netlist.Gates[i].Position == null)
+                    allGatesMeasured = false;
+            }
+            bool hasGates = false;
+            for (int i = 0; i < Netlist.Gates.Count; i++)
+            {
+                Gate g = Netlist.Gates[i];
+                if (g.Part != reference)
+                    continue;
+                hasGates = true;
+                if (g.Position != null)
+                    g.Position = new Point { X = g.Position.X + dx, Y = g.Position.Y + dy };
+            }
+            if (!(allGatesMeasured && hasGates))
+                part.Position = new Point { X = xMm, Y = yMm };
+            Done();
+        }
+
+        /// <summary>
+        /// Joins two pins. Two free pins make a new signal; a free pin joins the other pin's
+        /// signal. A pin can be on one signal only: two pins already on different signals are
+        /// refused, never merged.
+        /// </summary>
+        /// <param name="pinA">
+        /// One pin, such as 11D.3 (P.12 and F.3 for backplane and front pins).
+        /// </param>
+        /// <param name="pinB">
+        /// The other pin.
+        /// </param>
+        /// <param name="newNetName">
+        /// The name for a new signal; null names it N1, N2, ... Must be null or the existing
+        /// signal's name when a pin is already on one.
+        /// </param>
+        /// <returns>
+        /// The signal the two pins are now on.
+        /// </returns>
+        public string Connect(string pinA, string pinB, string? newNetName = null)
+        {
+            CheckWritable();
+            CheckPin(pinA);
+            CheckPin(pinB);
+            if (pinA == pinB)
+                throw new SheetEditException($"Pin {pinA} cannot be connected to itself.");
+            Net? netA = NetOf(pinA), netB = NetOf(pinB);
+            if (netA != null && netB != null)
+            {
+                if (netA == netB)
+                    throw new SheetEditException($"Pins {pinA} and {pinB} are already both on signal {netA.Name}.");
+                throw new SheetEditException($"Pin {pinA} is on signal {netA.Name} and pin {pinB} is on signal {netB.Name}. "
+                    + "A pin can be on one signal only; disconnect one of them first.");
+            }
+            Net? existing = netA ?? netB;
+            if (existing != null && newNetName != null && newNetName != existing.Name)
+                throw new SheetEditException($"Pin {(netA != null ? pinA : pinB)} is already on signal {existing.Name}, not {newNetName}.");
+            if (existing == null && newNetName != null && FindNet(newNetName) != null)
+                throw new SheetEditException($"There is already a signal {newNetName}.");
+            if (newNetName != null && newNetName.Trim().Length == 0)
+                throw new SheetEditException("A signal needs a name.");
+
+            Snapshot();
+            if (existing == null)
+            {
+                existing = new Net { Name = newNetName ?? FreeNetName(), Active = ActiveLevel.None };
+                existing.Pins.Add(new PinReference { At = pinA, Confidence = Confidence.Read });
+                Netlist.Nets.Add(existing);
+            }
+            // a new signal already holds pin A, so B is the one to add; else the free one of the two
+            bool fresh = netA == null && netB == null;
+            existing.Pins.Add(new PinReference { At = fresh || netA != null ? pinB : pinA, Confidence = Confidence.Read });
+            Done();
+            return existing.Name;
+        }
+
+        /// <summary>
+        /// Takes a pin off its signal. A signal left with no pins is removed.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin, such as 11D.3.
+        /// </param>
+        public void Disconnect(string pin)
+        {
+            CheckWritable();
+            Net net = NetOf(pin) ?? throw new SheetEditException($"Pin {pin} is not on any signal.");
+            Snapshot();
+            for (int i = 0; i < net.Pins.Count; i++)
+            {
+                if (net.Pins[i].At == pin)
+                {
+                    net.Pins.RemoveAt(i);
+                    break;
+                }
+            }
+            if (net.Pins.Count == 0)
+                Netlist.Nets.Remove(net);
+            Done();
+        }
+
+        /// <summary>
+        /// Removes a signal and every connection on it.
+        /// </summary>
+        /// <param name="name">
+        /// The signal's name.
+        /// </param>
+        public void DeleteNet(string name)
+        {
+            CheckWritable();
+            Net net = FindNet(name) ?? throw new SheetEditException($"There is no signal {name}.");
+            Snapshot();
+            Netlist.Nets.Remove(net);
+            Done();
+        }
+
+        /// <summary>
+        /// Removes a chip, its gates, and its pins from every signal. A signal left with no pins
+        /// is removed.
+        /// </summary>
+        /// <param name="reference">
+        /// The part, such as 13D.
+        /// </param>
+        public void DeletePart(string reference)
+        {
+            CheckWritable();
+            Part part = FindPart(reference) ?? throw new SheetEditException($"There is no part {reference} on the sheet.");
+            Snapshot();
+            Netlist.Parts.Remove(part);
+            for (int i = Netlist.Gates.Count - 1; i >= 0; i--)
+            {
+                if (Netlist.Gates[i].Part == reference)
+                    Netlist.Gates.RemoveAt(i);
+            }
+            for (int i = Netlist.Nets.Count - 1; i >= 0; i--)
+            {
+                List<PinReference> pins = Netlist.Nets[i].Pins;
+                for (int j = pins.Count - 1; j >= 0; j--)
+                {
+                    if (pins[j].PartRef == reference)
+                        pins.RemoveAt(j);
+                }
+                if (pins.Count == 0)
+                    Netlist.Nets.RemoveAt(i);
+            }
+            Done();
+        }
+
+        /// <summary>
+        /// Takes back the last change. Refused in read-only mode, like every change.
+        /// </summary>
+        public void Undo()
+        {
+            CheckWritable();
+            if (_undo.Count == 0)
+                throw new SheetEditException("There is nothing to undo.");
+            _redo.Add(NetlistReader.Write(Netlist));
+            Netlist = NetlistReader.Parse(_undo[^1]);
+            _undo.RemoveAt(_undo.Count - 1);
+            Modified = true;
+            Changed?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Does the last undone change again.
+        /// </summary>
+        public void Redo()
+        {
+            CheckWritable();
+            if (_redo.Count == 0)
+                throw new SheetEditException("There is nothing to redo.");
+            _undo.Add(NetlistReader.Write(Netlist));
+            Netlist = NetlistReader.Parse(_redo[^1]);
+            _redo.RemoveAt(_redo.Count - 1);
+            Modified = true;
+            Changed?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Writes the sheet as nd-netlist JSON, with every position. The text is read back and
+        /// checked before the file is written, so a sheet the reader would refuse is never saved.
+        /// Saving is allowed in read-only mode (it changes nothing in the sheet).
+        /// </summary>
+        /// <param name="path">
+        /// The file to write.
+        /// </param>
+        public void Save(string path)
+        {
+            string json = NetlistReader.Write(Netlist);
+            try
+            {
+                NetlistReader.Parse(json);
+            }
+            catch (NetlistException e)
+            {
+                throw new SheetEditException("The sheet is not valid and was not saved: " + e.Message, e);
+            }
+            File.WriteAllText(path, json + "\n");
+            Modified = false;
+        }
+
+        /// <summary>
+        /// The signal a pin is on, or null.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin, such as 11D.3.
+        /// </param>
+        /// <returns>
+        /// The signal, or null.
+        /// </returns>
+        public Net? NetOf(string pin)
+        {
+            for (int i = 0; i < Netlist.Nets.Count; i++)
+            {
+                List<PinReference> pins = Netlist.Nets[i].Pins;
+                for (int j = 0; j < pins.Count; j++)
+                {
+                    if (pins[j].At == pin)
+                        return Netlist.Nets[i];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// A part by reference, or null.
+        /// </summary>
+        /// <param name="reference">
+        /// The part, such as 13D.
+        /// </param>
+        /// <returns>
+        /// The part, or null.
+        /// </returns>
+        public Part? FindPart(string reference)
+        {
+            for (int i = 0; i < Netlist.Parts.Count; i++)
+            {
+                if (Netlist.Parts[i].Ref == reference)
+                    return Netlist.Parts[i];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// A signal by name, or null.
+        /// </summary>
+        /// <param name="name">
+        /// The signal's name.
+        /// </param>
+        /// <returns>
+        /// The signal, or null.
+        /// </returns>
+        public Net? FindNet(string name)
+        {
+            for (int i = 0; i < Netlist.Nets.Count; i++)
+            {
+                if (Netlist.Nets[i].Name == name)
+                    return Netlist.Nets[i];
+            }
+            return null;
+        }
+
+        private void CheckWritable()
+        {
+            if (ReadOnly)
+                throw new SheetEditException("The sheet is open read-only; switch to edit mode first.");
+        }
+
+        private static void CheckBoardPosition(string reference)
+        {
+            try
+            {
+                BoardPosition.Parse(reference);
+            }
+            catch (FormatException e)
+            {
+                throw new SheetEditException(e.Message, e);
+            }
+        }
+
+        /// <summary>
+        /// A pin must name a part on the sheet (or P. / F. for backplane and front pins) and a
+        /// pin number the chip has: from the chip file when the catalogue has it, else one of the
+        /// part's gate pins.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin, such as 11D.3.
+        /// </param>
+        private void CheckPin(string pin)
+        {
+            int dot = pin.LastIndexOf('.');
+            if (dot <= 0 || !int.TryParse(pin.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int number) || number < 1)
+                throw new SheetEditException($"\"{pin}\" is not a pin: write the part, a dot and the pin number (11D.3).");
+            string reference = pin.Substring(0, dot);
+            if (reference == "P" || reference == "F")
+                return;
+            Part part = FindPart(reference) ?? throw new SheetEditException($"Pin {pin}: there is no part {reference} on the sheet.");
+            ChipInfo? chip = Catalog?.Get(part.Type);
+            if (chip != null)
+            {
+                for (int i = 0; i < chip.Pins.Count; i++)
+                {
+                    if (chip.Pins[i].Number == number)
+                        return;
+                }
+                throw new SheetEditException($"Pin {pin}: a {part.Type} has no pin {number}.");
+            }
+            for (int i = 0; i < Netlist.Gates.Count; i++)
+            {
+                Gate g = Netlist.Gates[i];
+                if (g.Part == reference && (g.Output == number || g.Inputs.Contains(number)))
+                    return;
+            }
+            throw new SheetEditException($"Pin {pin}: the catalogue has no chip file for {part.Type}, and no gate of {reference} uses pin {number}.");
+        }
+
+        private string FreeReference()
+        {
+            for (int row = 0; row < 26; row++)
+            {
+                for (int column = 1; column <= 40; column++)
+                {
+                    string r = column.ToString(CultureInfo.InvariantCulture) + (char)('A' + row);
+                    if (FindPart(r) == null)
+                        return r;
+                }
+            }
+            throw new SheetEditException("Every board position from 1A to 40Z is taken.");
+        }
+
+        private string FreeNetName()
+        {
+            for (int n = 1; ; n++)
+            {
+                string name = "N" + n.ToString(CultureInfo.InvariantCulture);
+                if (FindNet(name) == null)
+                    return name;
+            }
+        }
+
+        private void Snapshot()
+        {
+            _undo.Add(NetlistReader.Write(Netlist));
+            _redo.Clear();
+        }
+
+        private void Done()
+        {
+            Modified = true;
+            Changed?.Invoke(this);
+        }
+    }
+
+    /// <summary>
+    /// A change to a sheet that was refused; the message says why in plain words. The sheet is
+    /// left as it was.
+    /// </summary>
+    public sealed class SheetEditException : Exception
+    {
+        /// <summary>
+        /// Create with a message.
+        /// </summary>
+        /// <param name="message">
+        /// Why the change was refused.
+        /// </param>
+        public SheetEditException(string message) : base(message) { }
+
+        /// <summary>
+        /// Create with a message and the cause.
+        /// </summary>
+        /// <param name="message">
+        /// Why the change was refused.
+        /// </param>
+        /// <param name="inner">
+        /// The error that showed it.
+        /// </param>
+        public SheetEditException(string message, Exception inner) : base(message, inner) { }
+    }
+}

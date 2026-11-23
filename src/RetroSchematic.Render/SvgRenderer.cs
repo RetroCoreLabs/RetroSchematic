@@ -56,8 +56,8 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// The print colour of an item: what it is, and whether its reading is proved. Inferred
-        /// symbols are drawn in brown, as before; the part frame is grey.
+        /// The print colour of an item: what it is, and whether its reading is proved. Anything
+        /// OPEN is red, inferred symbols and wires are brown, the part frame is grey.
         /// </summary>
         /// <param name="it">
         /// The drawing step.
@@ -71,7 +71,9 @@ namespace RetroSchematic.Render
                 return "#999999";
             if (it.Role == DrawRole.Note)
                 return "#666666";
-            if (it.Confidence != Confidence.Read && it.Role == DrawRole.Symbol)
+            if (it.Confidence == Confidence.Open && it.Role != DrawRole.PinDot)
+                return "#d00000";
+            if (it.Confidence != Confidence.Read && (it.Role == DrawRole.Symbol || it.Role == DrawRole.Wire))
                 return "#b06000";
             return "#000000";
         }

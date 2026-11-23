@@ -64,6 +64,7 @@ namespace RetroSchematic.Desktop.Themes
             SchematicInferredKey,
             SchematicNoteKey,
             SchematicSelectionKey,
+            SchematicOpenKey,
         };
 
         /// <summary>
@@ -95,6 +96,11 @@ namespace RetroSchematic.Desktop.Themes
         /// Brush key: the picked part, gate or signal.
         /// </summary>
         public const string SchematicSelectionKey = "SchematicSelectionBrush";
+
+        /// <summary>
+        /// Brush key: a connection that is OPEN, not known (its own colour, apart from INFERRED).
+        /// </summary>
+        public const string SchematicOpenKey = "SchematicOpenBrush";
 
         private ThemeManager()
         {
@@ -216,6 +222,7 @@ namespace RetroSchematic.Desktop.Themes
                 SchematicInferred = "#B06000",
                 SchematicNote = "#666666",
                 SchematicSelection = "#0078D7",
+                SchematicOpen = "#D00000",
             }));
 
             _themes.Add(new ThemeDefinition("Dark", "Dark", ThemeVariant.Dark, new Palette
@@ -245,6 +252,7 @@ namespace RetroSchematic.Desktop.Themes
                 SchematicInferred = "#E0A040",
                 SchematicNote = "#A0A0A0",
                 SchematicSelection = "#0A84FF",
+                SchematicOpen = "#FF5555",
             }));
 
             _themes.Add(new ThemeDefinition("SolarizedDark", "Solarized Dark",
@@ -275,6 +283,7 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicInferred = "#B58900",
                     SchematicNote = "#657B83",
                     SchematicSelection = "#268BD2",
+                    SchematicOpen = "#DC322F",
                 }));
 
             _themes.Add(new ThemeDefinition("Nord", "Nord",
@@ -305,6 +314,7 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicInferred = "#EBCB8B",
                     SchematicNote = "#9AA4B5",
                     SchematicSelection = "#88C0D0",
+                    SchematicOpen = "#BF616A",
                 }));
 
             _themes.Add(new ThemeDefinition("RetroGreen", "Retro Green",
@@ -335,6 +345,7 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicInferred = "#FFFF00",
                     SchematicNote = "#00AA00",
                     SchematicSelection = "#FFFFFF",
+                    SchematicOpen = "#FF4040",
                 }));
 
             _themes.Add(new ThemeDefinition("AmberCrt", "Amber CRT",
@@ -365,6 +376,7 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicInferred = "#FFFF00",
                     SchematicNote = "#CC8800",
                     SchematicSelection = "#FFFFFF",
+                    SchematicOpen = "#FF4040",
                 }));
 
             _themes.Add(new ThemeDefinition("Synthwave", "Synthwave '84",
@@ -395,6 +407,7 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicInferred = "#FEDE5D",
                     SchematicNote = "#B893CE",
                     SchematicSelection = "#FF7EDB",
+                    SchematicOpen = "#FE4450",
                 }));
 
             _themes.Add(new ThemeDefinition("HighContrast", "High Contrast",
@@ -425,6 +438,7 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicInferred = "#FFFF00",
                     SchematicNote = "#E0E0E0",
                     SchematicSelection = "#00FFFF",
+                    SchematicOpen = "#FF0000",
                 }));
         }
     }
@@ -610,6 +624,11 @@ namespace RetroSchematic.Desktop.Themes
         public string SchematicSelection = "#0078D7";
 
         /// <summary>
+        /// Anything OPEN, not known.
+        /// </summary>
+        public string SchematicOpen = "#D00000";
+
+        /// <summary>
         /// The colours in brush-key order.
         /// </summary>
         /// <returns>
@@ -623,7 +642,7 @@ namespace RetroSchematic.Desktop.Themes
                 TextPrimary, TextSecondary, SelectionHighlight, HoverHighlight, SidebarBackground,
                 SidebarSeparator, WarningBackground, WarningBorder, SuccessBackground, SuccessBorder,
                 ErrorBackground, ErrorBorder, ErrorText,
-                SchematicPaper, SchematicInk, SchematicFrame, SchematicInferred, SchematicNote, SchematicSelection,
+                SchematicPaper, SchematicInk, SchematicFrame, SchematicInferred, SchematicNote, SchematicSelection, SchematicOpen,
             };
         }
     }

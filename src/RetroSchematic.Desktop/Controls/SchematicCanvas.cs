@@ -126,6 +126,7 @@ namespace RetroSchematic.Desktop.Controls
             IBrush inferred = Brush(ThemeManager.SchematicInferredKey);
             IBrush note = Brush(ThemeManager.SchematicNoteKey);
             IBrush lit = Brush(ThemeManager.SchematicSelectionKey);
+            IBrush open = Brush(ThemeManager.SchematicOpenKey);
 
             using (context.PushTransform(Matrix.CreateScale(_zoom, _zoom) * Matrix.CreateTranslation(_offset.X, _offset.Y)))
             {
@@ -134,7 +135,7 @@ namespace RetroSchematic.Desktop.Controls
                 {
                     DrawItem it = d.Items[i];
                     bool isLit = _session.IsLit(it);
-                    IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, note);
+                    IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note);
                     DrawOne(context, it, b, isLit);
                 }
             }
@@ -210,18 +211,23 @@ namespace RetroSchematic.Desktop.Controls
         /// <param name="inferred">
         /// Colour for what was inferred, not read.
         /// </param>
+        /// <param name="open">
+        /// Colour for what is OPEN, not known.
+        /// </param>
         /// <param name="note">
         /// Colour for secondary text.
         /// </param>
         /// <returns>
         /// The brush to draw the step with.
         /// </returns>
-        private static IBrush Pick(DrawItem it, IBrush ink, IBrush frame, IBrush inferred, IBrush note)
+        private static IBrush Pick(DrawItem it, IBrush ink, IBrush frame, IBrush inferred, IBrush open, IBrush note)
         {
-            if (it.Role == DrawRole.PartOutline)
+            if (it.Role == DrawRole.PartOutline || it.Role == DrawRole.PinDot)
                 return frame;
             if (it.Role == DrawRole.Note)
                 return note;
+            if (it.Confidence == Confidence.Open)
+                return open;
             if (it.Confidence != Confidence.Read)
                 return inferred;
             return ink;
