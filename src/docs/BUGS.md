@@ -72,22 +72,30 @@ in the diamond's colour, the same colour as the name beside it. The test
 the gate demo, in both symbol styles: four equal 45-degree edges, closed, drawn solid. It fails
 on the old rule.
 
-## B3 - TMS6010 has no structured behaviour (test red)
+## B3 - TMS6010 had no structured behaviour (closed 2026-11-23)
 
-**What fails.** `ChipBehaviourTests.EveryChip_HasABehaviour_ThatTheReaderAccepts("TMS6010")`.
+**What failed.** `ChipBehaviourTests.EveryChip_HasABehaviour_ThatTheReaderAccepts("TMS6010")`.
 
 **Cause.** No TMS6010 datasheet has been found (searched 2026-11-23: the TI 1975 Semiconductor
-Memory Data Book lists only the TMS 6011, and a web search found nothing). The chip file is
-written from the TMS 6011 sheet, which the ND manual names as equivalent, but the behaviour
-rule is "only from the chip's own datasheet", so the TMS 6011's behaviour is not copied in.
-`"kind": "none"` would be wrong too: the part does have a defined behaviour, we just do not
-hold its sheet.
+Memory Data Book lists only the TMS 6011, and a web search found nothing), and the rule was
+"behaviour only from the chip's own datasheet".
 
-**What fixes it.** A TMS6010 datasheet (or a TI document that says the 6010 and 6011 behave the
-same), then a UART part model in the format: control register (word length, parity, stop bits)
-loaded by CRL, transmitter buffer and shift register clocked by TC, receiver by RC at 16 times
-the bit rate, status outputs and their output enables. The TMS 6011 sheet does not say which
-clock edge shifts, so that must come from the found sheet too.
+**The owner's ruling (2026-11-23).** The TMS6010 is described from the TMS 6011 datasheet. Every
+fact in `catalog/chips/TMS6010.json` now carries the mark "from the TMS 6011 sheet; the ND manual
+calls the 6010 equivalent", with the 6011 pages (TI 1975 Semiconductor Memory Data Book, printed
+152-157, PDF 153-158) and the ND manual statement (ND-13.003.01 printed page 59, PDF page 65:
+"TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)"). The file
+has an `equivalence` section that records the ruling. The page range is the whole 6011 sheet;
+which page holds each single fact has not been checked.
+
+**How it was closed.** The behaviour is `"kind": "none"` with a reason, the same as the COM 2601:
+the format has no serial shift engine (receiver sampling at 16 times the bit rate, transmitter
+shifting start, data, parity and stop bits), and the 6011 sheet does not say which edge of TC
+and RC shifts the data. The words the sheet gives are in `pins[].text`, `functions` and `state`.
+A runnable UART model needs a format addition and that clock edge; it is a plan item
+(`docs/PLAN.md`, section 2).
+
+## B3a - chip behaviours fixed the same day
 
 **Fixed on 2026-11-23** (were in this entry): 74181 (gate equations from the block diagram,
 7-280, checked against Table 2 by `Alu74181_GateEquations_GiveTable2`), 74120 (Figures 2-5,

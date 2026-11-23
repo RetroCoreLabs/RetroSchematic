@@ -10,7 +10,7 @@ yet (see `docs/2A50-catalogue-map.md`).
 - Chip catalogue as data. Steps 1 and 2 are done: the formula reader
   (`RetroSchematic.Model/ChipFormula.cs`) and the structured `behaviour` of every chip file
   (`catalog/chips/FORMAT.md`, Behaviour; `RetroSchematic.Model/ChipBehaviour.cs`;
-  `ChipBehaviourTests` checks every chip file). Only TMS6010 is still without it (no datasheet of its own found; `docs/BUGS.md` B3). Inverted pin names are done (base name + `inverted`, `/NAME` in formulas). Still to do, in this order: (4) function text per pin (hover + Details column); (5) the
+  `ChipBehaviourTests` checks every chip file). Inverted pin names are done (base name + `inverted`, `/NAME` in formulas). Still to do, in this order: (4) function text per pin (hover + Details column); (5) the
   generated "How it works" card in Details (sentence, truth table, output-enable row, clock row
   with up L->H / down H->L, async rows; muxes 74153/74157/74S157 with the sheet's own mapping
   and the two-halves box with the "select (both halves)" band); (6) tests: generated truth
@@ -93,6 +93,9 @@ In the symbol/part file, so the viewer and the MCP tool can work out signal valu
 - parts with memory (7474, counters, COM2601): stored state plus a rule for when it changes
   (rising clock edge). The COM2601 needs its own model; one exists in C# in RetroCore
   (`Emulated.HW/SMC/COM/COM2601/COM2601.cs`);
+- a serial engine for the UARTs (TMS6010 described from the TMS 6011 sheet, COM 2601): the
+  format has no way to say "shift at 16 times the bit rate"; it needs a format addition, and the
+  TMS 6011 sheet does not say which clock edge shifts (`docs/BUGS.md` B3);
 - an OPEN (unknown) connection gives "unknown", never a quiet 0;
 - a field for the datasheet delay of each part, even if the first simulator ignores it.
 

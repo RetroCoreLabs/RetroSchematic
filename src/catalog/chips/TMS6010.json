@@ -18,19 +18,22 @@
       "pin": 1,
       "name": "VSS",
       "role": "power",
-      "voltage": "+5 V"
+      "voltage": "+5 V",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 2,
       "name": "VGG",
       "role": "power",
-      "voltage": "-12 V"
+      "voltage": "-12 V",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 3,
       "name": "VDD",
       "role": "ground",
-      "text": "0 V reference"
+      "text": "0 V reference",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 4,
@@ -48,84 +51,96 @@
         "12"
       ],
       "whenInactive": "float",
-      "text": "receiver output disable"
+      "text": "receiver output disable",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 5,
       "name": "RO8",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 6,
       "name": "RO7",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 7,
       "name": "RO6",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 8,
       "name": "RO5",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 9,
       "name": "RO4",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 10,
       "name": "RO3",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 11,
       "name": "RO2",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 12,
       "name": "RO1",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "ROD"
+      "enabledBy": "ROD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 13,
       "name": "PE",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "SFD"
+      "enabledBy": "SFD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 14,
       "name": "FE",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "SFD"
+      "enabledBy": "SFD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 15,
       "name": "OE",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "SFD"
+      "enabledBy": "SFD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 16,
@@ -140,190 +155,223 @@
         "22"
       ],
       "whenInactive": "float",
-      "text": "status flags disable"
+      "text": "status flags disable",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 17,
       "name": "RC",
       "role": "clock",
       "edge": null,
-      "text": "receiver clock, 16 x baud rate"
+      "text": "receiver clock, 16 x baud rate",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 18,
       "name": "DRR",
       "role": "input",
       "active": "low",
-      "text": "data ready reset"
+      "text": "data ready reset",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 19,
       "name": "DR",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "SFD"
+      "enabledBy": "SFD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 20,
       "name": "RI",
       "role": "input",
-      "text": "serial receiver input; keep high when idle"
+      "text": "serial receiver input; keep high when idle",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 21,
       "name": "MR",
       "role": "input",
       "async": true,
-      "active": "high"
+      "active": "high",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 22,
       "name": "TBRE",
       "role": "output",
       "outputType": "three-state",
-      "enabledBy": "SFD"
+      "enabledBy": "SFD",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 23,
       "name": "TBRL",
       "role": "input",
       "active": "low",
-      "text": "transmitter buffer register load; data moves on to the transmitter register on the low-to-high edge"
+      "text": "transmitter buffer register load; data moves on to the transmitter register on the low-to-high edge",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 24,
       "name": "TRE",
       "role": "output",
       "outputType": "totem-pole",
-      "text": "not three-state"
+      "text": "not three-state",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 25,
       "name": "TO",
       "role": "output",
       "outputType": "totem-pole",
-      "text": "serial transmitter output, not three-state"
+      "text": "serial transmitter output, not three-state",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 26,
       "name": "TI1",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 27,
       "name": "TI2",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 28,
       "name": "TI3",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 29,
       "name": "TI4",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 30,
       "name": "TI5",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 31,
       "name": "TI6",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 32,
       "name": "TI7",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 33,
       "name": "TI8",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 34,
       "name": "CRL",
       "role": "input",
       "active": "high",
-      "text": "control register load"
+      "text": "control register load",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 35,
       "name": "PI",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 36,
       "name": "SBS",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 37,
       "name": "WLS2",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 38,
       "name": "WLS1",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 39,
       "name": "PS",
-      "role": "input"
+      "role": "input",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "pin": 40,
       "name": "TC",
       "role": "clock",
       "edge": null,
-      "text": "transmitter clock, 16 x baud rate"
+      "text": "transmitter clock, 16 x baud rate",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     }
   ],
   "functions": [
     {
       "output": "5,6,7,8,9,10,11,12",
       "formula": null,
-      "text": "Received word, right-justified (RO1 = LSB); unused high bits low. Float while ROD is high. Not affected by MR."
+      "text": "Received word, right-justified (RO1 = LSB); unused high bits low. Float while ROD is high. Not affected by MR.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "13",
       "formula": null,
-      "text": "PE high = parity error; forced low when PI is high. Floats while SFD is high."
+      "text": "PE high = parity error; forced low when PI is high. Floats while SFD is high.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "14",
       "formula": null,
-      "text": "FE high = framing error (missing or bad stop bit). Floats while SFD is high."
+      "text": "FE high = framing error (missing or bad stop bit). Floats while SFD is high.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "15",
       "formula": null,
-      "text": "OE high = overrun (DR not reset before the next word arrived). Floats while SFD is high."
+      "text": "OE high = overrun (DR not reset before the next word arrived). Floats while SFD is high.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "19",
       "formula": null,
-      "text": "DR high = a word is in the receiver buffer register. DRR low resets it. Floats while SFD is high."
+      "text": "DR high = a word is in the receiver buffer register. DRR low resets it. Floats while SFD is high.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "22",
       "formula": null,
-      "text": "TBRE high = transmitter buffer register empty, ready for a new word. Floats while SFD is high."
+      "text": "TBRE high = transmitter buffer register empty, ready for a new word. Floats while SFD is high.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "24",
       "formula": null,
-      "text": "TRE high = transmitter has sent a whole word including stop bits; stays high until the next word starts."
+      "text": "TRE high = transmitter has sent a whole word including stop bits; stays high until the next word starts.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     },
     {
       "output": "25",
       "formula": null,
-      "text": "Serial out: start bit, 5-8 data bits, optional parity, 1 or 2 stop bits. High when idle; MR sets it high."
+      "text": "Serial out: start bit, 5-8 data bits, optional parity, 1 or 2 stop bits. High when idle; MR sets it high.",
+      "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
     }
   ],
   "state": {
@@ -335,7 +383,8 @@
       "Word length WLS1/WLS2: L/L 5, H/L 6, L/H 7, H/H 8 bits.",
       "PS high = even parity, low = odd. PI high = no parity bit (PE forced low). SBS high = 2 stop bits, low = 1.",
       "TBRL low loads TI1..TI8 into the transmitter buffer; TBRL low-to-high moves it into the transmitter register (delayed until the current word is sent)."
-    ]
+    ],
+    "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')"
   },
   "electrical": {
     "outputLowMaxCurrentMa": 1.6,
@@ -474,9 +523,23 @@
     }
   ],
   "unknown": [
-    "No TMS6010 datasheet was found; the file uses the TMS6011 sheet, which the ND manual title names as equivalent. Differences between 6010 and 6011 are unknown.",
+    "No TMS6010 datasheet was found. By the owner's ruling (2026-11-23) the file uses the TMS 6011 sheet, which the ND manual names as equivalent. Differences between 6010 and 6011, if any, are unknown.",
     "Which clock edge shifts data on TC and RC is not stated in the pages read (edge null).",
     "Reference edges of TI setup/hold (arrows) were lost in the text layer."
   ],
-  "notes": "ND title also names AY-5-1012 and AY-5-1013 as equivalents."
+  "notes": "ND title also names AY-5-1012 and AY-5-1013 as equivalents.",
+  "equivalence": {
+    "ruling": "The owner ruled on 2026-11-23 that the TMS6010 is described from the TMS 6011 datasheet. Every fact in this file is from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)').",
+    "ndManual": {
+      "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+      "printedPage": 59,
+      "pdfPage": 65,
+      "text": "TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)"
+    }
+  },
+  "behaviour": {
+    "kind": "none",
+    "source": "from the TMS 6011 sheet (TI 1975 Semiconductor Memory Data Book, printed pages 152-157, PDF 153-158); the ND manual calls the 6010 equivalent (ND-13.003.01, printed page 59, PDF page 65: 'TMS6010 Universal asynchronous receiver/transmitter (TMS 6011, AY-5-1012, AY-5-1013)')",
+    "reason": "Described from the TMS 6011 sheet (owner's ruling; the ND manual calls the 6010 equivalent). The sheet describes the UART in words (pin functions, control register, word format), which are in pins[].text, functions and state. Two things stop a runnable model in this format: (1) the format has no serial shift engine (a receiver that samples RI at 16 times the bit rate, a transmitter that shifts out start, data, parity and stop bits) - it would need a format addition; (2) the TMS 6011 sheet does not state which edge of TC and RC shifts the data, so it cannot be written without guessing."
+  }
 }
