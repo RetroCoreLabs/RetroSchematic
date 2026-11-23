@@ -482,6 +482,12 @@ namespace RetroSchematic.Render
         public Dictionary<string, PartFrame> InstanceFrames { get; } = new(StringComparer.Ordinal);
 
         /// <summary>
+        /// Where each port pin of an instance meets its box, by "U1:PORT": the place a trace
+        /// marks where a signal goes inside a block.
+        /// </summary>
+        public Dictionary<string, DrawPoint> PortEdges { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
         /// Every wired signal's branches as laid (bend points in drawing units), so the editor can
         /// fix a wire's current path into the sheet's layout section.
         /// </summary>

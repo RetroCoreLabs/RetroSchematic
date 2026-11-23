@@ -360,6 +360,7 @@ namespace RetroSchematic.Render
             {
                 PortPlan pp = plan.Ports[i];
                 string portOwner = "port:" + plan.Instance.Name + ":" + pp.Port.Name;
+                d.PortEdges[plan.Instance.Name + ":" + pp.Port.Name] = new DrawPoint(pp.EdgeX, pp.EdgeY);
                 bool bus = pp.Port.Signals.Count > 1;
                 d.Items.Add(new DrawItem
                 {

@@ -89,6 +89,22 @@ namespace RetroSchematic.Desktop.Tests
         }
 
         [AvaloniaTest]
+        public void Tab_CentresTheViewOnEachPlaceOfTheTracedSignal()
+        {
+            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            MainWindow w = new();
+            w.Show();
+            w.OpenSheet(blocks);
+            Controls.SchematicCanvas canvas = w.FindControl<Controls.SchematicCanvas>("Canvas")!;
+            w.Session!.Trace("DEQL_1");
+            canvas.RaiseEvent(new Avalonia.Input.KeyEventArgs { RoutedEvent = Avalonia.Input.InputElement.KeyDownEvent, Key = Avalonia.Input.Key.Tab });
+            string first = w.FindControl<TextBlock>("StatusText")!.Text!;
+            Assert.That(first, Does.StartWith("At ").And.Contain("(DEQL_1)"));
+            canvas.RaiseEvent(new Avalonia.Input.KeyEventArgs { RoutedEvent = Avalonia.Input.InputElement.KeyDownEvent, Key = Avalonia.Input.Key.Tab });
+            Assert.That(w.FindControl<TextBlock>("StatusText")!.Text, Is.Not.EqualTo(first), "the next place");
+        }
+
+        [AvaloniaTest]
         public void ThePortArrowToggle_FollowsAndRemembersTheSetting()
         {
             MainWindow w = new();

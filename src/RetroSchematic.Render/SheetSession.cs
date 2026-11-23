@@ -258,19 +258,7 @@ namespace RetroSchematic.Render
         /// <param name="y">
         /// Point Y in drawing units.
         /// </param>
-        public void TraceAt(double x, double y)
-        {
-            string hit = Drawing.HitTest(x, y);
-            string net = "";
-            if (hit.StartsWith("net:", StringComparison.Ordinal))
-                net = hit.Substring(4);
-            else if (hit.StartsWith("pin:", StringComparison.Ordinal))
-            {
-                Net? n = Editor.NetOf(hit.Substring(4));
-                net = n == null ? "" : SheetLayout.NetKey(n);
-            }
-            Trace(net);
-        }
+        public void TraceAt(double x, double y) => TraceOwner(Drawing.HitTest(x, y));
 
         /// <summary>
         /// Shows one whole signal: its wires, labels and pins lit, the chips and gates it joins
@@ -284,6 +272,7 @@ namespace RetroSchematic.Render
             Net? n = net.Length == 0 ? null : Editor.FindNetByKey(net);
             _tracePins.Clear();
             _traceOwners.Clear();
+            _place = -1;
             Traced = n == null ? "" : SheetLayout.NetKey(n);
             if (n != null)
             {
@@ -301,6 +290,9 @@ namespace RetroSchematic.Render
                             _traceOwners.Add("gate:" + gate.Id);
                     }
                 }
+                BusLine? onBus = Editor.BusOf(n);
+                if (onBus != null)
+                    _traceOwners.Add("bus:" + onBus.Name);
                 // the instance ports it goes through to the blocks below
                 for (int i = 0; Netlist.Instances != null && i < Netlist.Instances.Count; i++)
                 {
@@ -341,6 +333,9 @@ namespace RetroSchematic.Render
                 return TraceRole.Signal;
             if (item.Owner.StartsWith("port:", StringComparison.Ordinal) && _traceOwners.Contains(item.Owner))
                 return TraceRole.Signal;
+            // the bus line the signal runs along: shown, so the way to the other entries is seen
+            if (item.Owner.StartsWith("bus:", StringComparison.Ordinal) && _traceOwners.Contains(item.Owner))
+                return TraceRole.Joined;
             if ((item.Role == DrawRole.Symbol || item.Role == DrawRole.PartOutline || item.Role == DrawRole.PartLabel) && _traceOwners.Contains(item.Owner))
                 return TraceRole.Joined;
             return TraceRole.Dimmed;

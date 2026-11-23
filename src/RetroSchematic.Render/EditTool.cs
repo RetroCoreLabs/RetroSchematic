@@ -251,7 +251,7 @@ namespace RetroSchematic.Render
             if (TraceMode)
             {
                 _session.TraceAt(x, y);
-                Message = _session.Traced.Length == 0 ? "" : "Tracing " + _session.Traced + ".";
+                Message = _session.Traced.Length == 0 ? "" : TraceMessage();
                 return;
             }
             string hit = _session.Drawing.HitTest(x, y);
@@ -260,6 +260,13 @@ namespace RetroSchematic.Render
                 _session.TogglePick(hit);
                 Message = _session.Picked.Count + " picked.";
                 return;
+            }
+            // a plain click on anything of a signal traces it, in every mode: tracing is how a
+            // sheet is read. A click on a chip or the paper clears the trace.
+            if (PlaceType == null)
+            {
+                _session.TraceOwner(hit);
+                Message = _session.Traced.Length == 0 ? "" : TraceMessage();
             }
             // a plain click on something outside the group picked starts afresh
             string whole = SheetSession.WholeOf(hit);
@@ -485,6 +492,17 @@ namespace RetroSchematic.Render
                     return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// The status line for a trace: the signal, how many pins, how many blocks it enters.
+        /// </summary>
+        private string TraceMessage()
+        {
+            int blocks = _session.TracedPortMarks().Count;
+            return "Tracing " + _session.Traced + ": " + _session.TracedPins().Count + " pins"
+                + (blocks > 0 ? ", into " + blocks + " block port(s) (double-click one to follow it inside)" : "")
+                + ". Tab jumps to each place.";
         }
 
         private void Try(Action action)

@@ -42,6 +42,19 @@ Colours: what was READ off the drawing is in the theme's ink colour, anything IN
 its own colour, anything OPEN (not known) in another, and the picked item is in the theme's
 selection colour. A wire is as sure as the less sure of the two pins it joins.
 
+## Tracing a signal
+
+Click anything that belongs to a signal - a wire, a name tag, a pin, a bus entry or bus member
+name, or a port of a block - and every place the signal goes lights up and pulses in the trace
+colour, once a second, while everything else is dimmed. This works with the Select tool and in
+read-only mode; the Trace tool does the same. A click on a chip body or the paper clears it.
+
+- The bus a signal runs along is shown with it.
+- Where the signal goes into a block, a pulsing ring sits on the block's edge; double-click
+  that port to follow the signal inside (the same signal is then traced there).
+- Tab centres the view on each place in turn (pins first, then the block entries); Shift-Tab
+  goes back.
+
 ## Editing
 
 Switch on Edit > Edit mode first; a sheet always opens read-only.

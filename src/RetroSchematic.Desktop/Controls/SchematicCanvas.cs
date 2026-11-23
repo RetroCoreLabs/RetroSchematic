@@ -13,6 +13,7 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
+using Avalonia.Threading;
 using RetroSchematic.Desktop.Themes;
 using RetroSchematic.Model;
 using PathSegment = RetroSchematic.Render.PathSegment;
@@ -76,6 +77,11 @@ namespace RetroSchematic.Desktop.Controls
 
         private bool _panned;
 
+        // the trace pulse: a redraw about 25 times a second while a signal is traced. The level
+        // itself (how bright, at what moment) is SheetSession.PulseLevel in the library.
+        private readonly DispatcherTimer _pulse;
+        private readonly System.Diagnostics.Stopwatch _clock = System.Diagnostics.Stopwatch.StartNew();
+
         /// <summary>
         /// Creates the canvas; it repaints when the theme changes.
         /// </summary>
@@ -83,6 +89,11 @@ namespace RetroSchematic.Desktop.Controls
         {
             ClipToBounds = true;
             Focusable = true;
+            _pulse = new DispatcherTimer(TimeSpan.FromMilliseconds(40), DispatcherPriority.Render, (s, e) =>
+            {
+                if (_session != null && _session.Traced.Length > 0)
+                    InvalidateVisual();
+            });
             ActualThemeVariantChanged += OnThemeChanged;
         }
 
@@ -90,6 +101,20 @@ namespace RetroSchematic.Desktop.Controls
         /// The zoom factor (1 = one drawing unit per screen pixel).
         /// </summary>
         public double Zoom => _zoom;
+
+        /// <inheritdoc/>
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnAttachedToVisualTree(e);
+            _pulse.Start();
+        }
+
+        /// <inheritdoc/>
+        protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnDetachedFromVisualTree(e);
+            _pulse.Stop();
+        }
 
         /// <summary>
         /// The mouse and key handling for the session shown, or null when none is shown.
@@ -234,6 +259,8 @@ namespace RetroSchematic.Desktop.Controls
             IBrush trace = Brush(ThemeManager.SchematicTraceKey);
 
             SchematicDrawing d = session.Drawing;
+            // on screen the trace pulses once a second; an exported picture shows it still
+            double level = withGesture ? SheetSession.PulseLevel(_clock.Elapsed.TotalSeconds) : 0.6;
             for (int i = 0; i < d.Items.Count; i++)
             {
                 DrawItem it = d.Items[i];
@@ -246,9 +273,17 @@ namespace RetroSchematic.Desktop.Controls
                 // the trace tool: the signal thick in the trace colour, the chips it joins outlined
                 // in it, everything else faint
                 TraceRole role = session.TraceOf(it);
-                if (role == TraceRole.Signal || role == TraceRole.Joined)
+                if (role == TraceRole.Signal)
                 {
-                    DrawOne(context, it, trace, role == TraceRole.Signal ? 2.5 : 1);
+                    // a soft glow that swells and fades, then the line itself on top
+                    using (context.PushOpacity(0.15 + (0.35 * level)))
+                        DrawOne(context, it, trace, 3 + (4 * level));
+                    DrawOne(context, it, trace, 1.5 + level);
+                    continue;
+                }
+                if (role == TraceRole.Joined)
+                {
+                    DrawOne(context, it, trace, 1);
                     continue;
                 }
                 if (role == TraceRole.Dimmed)
@@ -258,6 +293,16 @@ namespace RetroSchematic.Desktop.Controls
                     continue;
                 }
                 DrawOne(context, it, b, isLit ? 1 : 0);
+            }
+
+            // where the traced signal goes inside a block: a pulsing ring on the box edge
+            System.Collections.Generic.List<TraceMark> marks = session.TracedPortMarks();
+            for (int i = 0; i < marks.Count; i++)
+            {
+                Point c = new(marks[i].At.X, marks[i].At.Y);
+                using (context.PushOpacity(0.3 + (0.4 * level)))
+                    context.DrawEllipse(trace, null, c, 4 + (3 * level), 4 + (3 * level));
+                context.DrawEllipse(null, new Pen(trace, 1.5), c, 8, 8);
             }
 
             if (!withGesture || _tool == null)
@@ -325,8 +370,19 @@ namespace RetroSchematic.Desktop.Controls
             PointerPoint p = e.GetCurrentPoint(this);
             if (p.Properties.IsLeftButtonPressed && e.ClickCount == 2 && Session != null)
             {
+                // a double-click on a port the traced signal goes through follows it inside
+                string clicked = Session.Drawing.HitTest(ToDrawingX(p.Position.X), ToDrawingY(p.Position.Y));
+                string traced = Session.Traced;
+                if (Session.FollowAt(clicked))
+                {
+                    _tool?.Cancel();
+                    ToolMessage?.Invoke("Followed " + traced + " inside: now tracing " + Session.Traced + ".");
+                    InvalidateVisual();
+                    e.Handled = true;
+                    return;
+                }
                 // a double-click on an instance box opens it
-                string owner = SheetSession.WholeOf(Session.Drawing.HitTest(ToDrawingX(p.Position.X), ToDrawingY(p.Position.Y)));
+                string owner = SheetSession.WholeOf(clicked);
                 if (owner.StartsWith("inst:", StringComparison.Ordinal))
                 {
                     _tool?.Cancel();
@@ -401,6 +457,17 @@ namespace RetroSchematic.Desktop.Controls
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
+            // Tab / Shift-Tab: centre the view on each place the traced signal goes, in turn
+            if (e.Key == Key.Tab && _session != null && _session.Traced.Length > 0)
+            {
+                if (_session.NextTracePlace((e.KeyModifiers & KeyModifiers.Shift) != 0 ? -1 : 1, out DrawPoint at, out string what))
+                {
+                    CentreOn(at.X, at.Y);
+                    ToolMessage?.Invoke("At " + what + " (" + _session.Traced + ").");
+                }
+                e.Handled = true;
+                return;
+            }
             if (_tool == null)
                 return;
             if (e.Key == Key.Delete)
