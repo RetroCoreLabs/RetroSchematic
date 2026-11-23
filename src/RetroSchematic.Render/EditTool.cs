@@ -74,6 +74,12 @@ namespace RetroSchematic.Render
         public string? PlaceType { get; set; }
 
         /// <summary>
+        /// True: the trace tool is chosen. A press traces the signal under it (in read-only and in
+        /// edit mode alike) and changes nothing.
+        /// </summary>
+        public bool TraceMode { get; set; }
+
+        /// <summary>
         /// What the current drag is doing.
         /// </summary>
         public EditGesture Gesture { get; private set; }
@@ -106,6 +112,12 @@ namespace RetroSchematic.Render
         {
             Message = "";
             Gesture = EditGesture.None;
+            if (TraceMode)
+            {
+                _session.TraceAt(x, y);
+                Message = _session.Traced.Length == 0 ? "" : "Tracing " + _session.Traced + ".";
+                return;
+            }
             string hit = _session.Drawing.HitTest(x, y);
             if (_session.Editor.ReadOnly)
             {
@@ -230,11 +242,12 @@ namespace RetroSchematic.Render
         public void Redo() => Try(() => { _session.Editor.Redo(); Message = "Done again."; });
 
         /// <summary>
-        /// Escape: stops placing and drops a drag.
+        /// Escape: stops placing, drops a drag and clears the trace.
         /// </summary>
         public void Cancel()
         {
             PlaceType = null;
+            _session.Trace("");
             Gesture = EditGesture.None;
             Message = "";
         }

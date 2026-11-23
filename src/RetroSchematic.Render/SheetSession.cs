@@ -13,6 +13,32 @@ using RetroSchematic.Model;
 namespace RetroSchematic.Render
 {
     /// <summary>
+    /// What the trace tool makes of one drawing step.
+    /// </summary>
+    public enum TraceRole
+    {
+        /// <summary>
+        /// Nothing is traced: draw as usual.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Part of the traced signal (a wire, label, name or pin): drawn thick in the trace colour.
+        /// </summary>
+        Signal,
+
+        /// <summary>
+        /// The outline or label of a chip or gate the signal joins: drawn in the trace colour.
+        /// </summary>
+        Joined,
+
+        /// <summary>
+        /// Everything else: drawn faint.
+        /// </summary>
+        Dimmed,
+    }
+
+    /// <summary>
     /// One open sheet and what the user is looking at: the symbol style, what is shown, the drawing
     /// laid out for it, and the picked part, gate, signal or pin. Changes to the sheet go through
     /// <see cref="Editor"/>; the drawing is laid out again after each one. The desktop window only
@@ -23,6 +49,8 @@ namespace RetroSchematic.Render
     {
         private readonly LayoutOptions _options = new();
         private readonly Dictionary<string, SignalValue> _values = new(StringComparer.Ordinal);
+        private readonly HashSet<string> _tracePins = new(StringComparer.Ordinal);
+        private readonly HashSet<string> _traceOwners = new(StringComparer.Ordinal);
 
         /// <summary>
         /// Called after the drawing was laid out again (new style, new options, or an edit).
@@ -52,6 +80,11 @@ namespace RetroSchematic.Render
         /// The picked item changed.
         /// </summary>
         public event SelectionChangedHandler? SelectionChanged;
+
+        /// <summary>
+        /// The traced signal changed (see <see cref="Trace"/>).
+        /// </summary>
+        public event DrawingChangedHandler? TraceChanged;
 
         /// <summary>
         /// Opens a sheet file, read-only. <paramref name="catalogFolder"/> is the catalogue's folder
@@ -138,6 +171,11 @@ namespace RetroSchematic.Render
         public string Selected { get; private set; } = "";
 
         /// <summary>
+        /// The signal the trace tool shows, or empty for none.
+        /// </summary>
+        public string Traced { get; private set; } = "";
+
+        /// <summary>
         /// Changes the symbol set and lays the sheet out again. The picked item stays picked.
         /// </summary>
         /// <param name="style">
@@ -189,6 +227,133 @@ namespace RetroSchematic.Render
         {
             Editor.Save(path);
             SheetPath = path;
+        }
+
+        /// <summary>
+        /// Traces the signal under a point: a wire, a net-label diamond, a signal name or a pin.
+        /// Anything else (empty paper, a chip) clears the trace.
+        /// </summary>
+        /// <param name="x">
+        /// Point X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Point Y in drawing units.
+        /// </param>
+        public void TraceAt(double x, double y)
+        {
+            string hit = Drawing.HitTest(x, y);
+            string net = "";
+            if (hit.StartsWith("net:", StringComparison.Ordinal))
+                net = hit.Substring(4);
+            else if (hit.StartsWith("pin:", StringComparison.Ordinal))
+                net = Editor.NetOf(hit.Substring(4))?.Name ?? "";
+            Trace(net);
+        }
+
+        /// <summary>
+        /// Shows one whole signal: its wires, labels and pins lit, the chips and gates it joins
+        /// outlined, everything else dimmed. Empty (or an unknown name) clears the trace.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's name, or empty.
+        /// </param>
+        public void Trace(string net)
+        {
+            Net? n = net.Length == 0 ? null : Editor.FindNet(net);
+            _tracePins.Clear();
+            _traceOwners.Clear();
+            Traced = n == null ? "" : n.Name;
+            if (n != null)
+            {
+                for (int i = 0; i < n.Pins.Count; i++)
+                {
+                    string at = n.Pins[i].At;
+                    _tracePins.Add(at);
+                    string part = n.Pins[i].PartRef;
+                    _traceOwners.Add("part:" + part);
+                    int pin = n.Pins[i].Pin;
+                    for (int g = 0; g < Netlist.Gates.Count; g++)
+                    {
+                        Gate gate = Netlist.Gates[g];
+                        if (gate.Part == part && (gate.Output == pin || gate.Inputs.Contains(pin)))
+                            _traceOwners.Add("gate:" + gate.Id);
+                    }
+                }
+            }
+            TraceChanged?.Invoke(this);
+        }
+
+        /// <summary>
+        /// What the trace makes of a drawing step.
+        /// </summary>
+        /// <param name="item">
+        /// A drawing step.
+        /// </param>
+        /// <returns>
+        /// <see cref="TraceRole.None"/> when nothing is traced.
+        /// </returns>
+        public TraceRole TraceOf(DrawItem item)
+        {
+            if (Traced.Length == 0)
+                return TraceRole.None;
+            if (item.Owner == "net:" + Traced)
+                return TraceRole.Signal;
+            if (item.Owner.StartsWith("pin:", StringComparison.Ordinal) && _tracePins.Contains(item.Owner.Substring(4)))
+                return TraceRole.Signal;
+            if ((item.Role == DrawRole.Symbol || item.Role == DrawRole.PartOutline || item.Role == DrawRole.PartLabel) && _traceOwners.Contains(item.Owner))
+                return TraceRole.Joined;
+            return TraceRole.Dimmed;
+        }
+
+        /// <summary>
+        /// The pins of the traced signal, in the file's order, for the side panel.
+        /// </summary>
+        /// <returns>
+        /// The pins (11D.3), or an empty list.
+        /// </returns>
+        public List<string> TracedPins()
+        {
+            List<string> list = new();
+            Net? n = Traced.Length == 0 ? null : Editor.FindNet(Traced);
+            if (n != null)
+            {
+                for (int i = 0; i < n.Pins.Count; i++)
+                    list.Add(n.Pins[i].At);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// Where a pin is drawn: the middle of its pin line, for centring the view on it.
+        /// </summary>
+        /// <param name="at">
+        /// The pin (11D.3).
+        /// </param>
+        /// <param name="x">
+        /// The pin's X in drawing units, 0 when it is not drawn.
+        /// </param>
+        /// <param name="y">
+        /// The pin's Y in drawing units, 0 when it is not drawn.
+        /// </param>
+        /// <returns>
+        /// False when the pin is not drawn on this sheet (a backplane pin, or no such pin).
+        /// </returns>
+        public bool PinPoint(string at, out double x, out double y)
+        {
+            string owner = "pin:" + at;
+            for (int i = 0; i < Drawing.Items.Count; i++)
+            {
+                if (Drawing.Items[i].Owner == owner)
+                {
+                    SchematicDrawing.Bounds(Drawing.Items[i], out double l, out double t, out double r, out double b);
+                    x = (l + r) / 2;
+                    y = (t + b) / 2;
+                    return true;
+                }
+            }
+            x = 0;
+            y = 0;
+            return false;
         }
 
         /// <summary>
@@ -373,6 +538,8 @@ namespace RetroSchematic.Render
         private void OnEdited(SheetEditor editor)
         {
             Relayout();
+            if (Traced.Length > 0)
+                Trace(Traced);
             // a pick that no longer exists (a deleted part) is dropped
             if (Selected.Length > 0 && Describe().Length == 0)
                 Select("");
