@@ -27,21 +27,24 @@
     },
     {
       "pin": 1,
-      "name": "1R'",
+      "name": "1R",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
     },
     {
       "pin": 2,
-      "name": "1S1'",
+      "name": "1S1",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
     },
     {
       "pin": 3,
-      "name": "1S2'",
+      "name": "1S2",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
@@ -54,14 +57,16 @@
     },
     {
       "pin": 5,
-      "name": "2R'",
+      "name": "2R",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
     },
     {
       "pin": 6,
-      "name": "2S'",
+      "name": "2S",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
@@ -74,21 +79,24 @@
     },
     {
       "pin": 10,
-      "name": "3R'",
+      "name": "3R",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
     },
     {
       "pin": 11,
-      "name": "3S1'",
+      "name": "3S1",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
     },
     {
       "pin": 12,
-      "name": "3S2'",
+      "name": "3S2",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
@@ -101,14 +109,16 @@
     },
     {
       "pin": 14,
-      "name": "4R'",
+      "name": "4R",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
     },
     {
       "pin": 15,
-      "name": "4S'",
+      "name": "4S",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
@@ -187,7 +197,7 @@
       {
         "name": "L1",
         "kind": "latch",
-        "next": "L1 = NOT (1S1' AND 1S2') OR (L1 AND 1R')",
+        "next": "L1 = NOT (/1S1 AND /1S2) OR (L1 AND /1R)",
         "clock": {
           "when": "1",
           "edge": "level-high"
@@ -197,7 +207,7 @@
       {
         "name": "L2",
         "kind": "latch",
-        "next": "L2 = NOT (2S') OR (L2 AND 2R')",
+        "next": "L2 = NOT (/2S) OR (L2 AND /2R)",
         "clock": {
           "when": "1",
           "edge": "level-high"
@@ -207,7 +217,7 @@
       {
         "name": "L3",
         "kind": "latch",
-        "next": "L3 = NOT (3S1' AND 3S2') OR (L3 AND 3R')",
+        "next": "L3 = NOT (/3S1 AND /3S2) OR (L3 AND /3R)",
         "clock": {
           "when": "1",
           "edge": "level-high"
@@ -217,7 +227,7 @@
       {
         "name": "L4",
         "kind": "latch",
-        "next": "L4 = NOT (4S') OR (L4 AND 4R')",
+        "next": "L4 = NOT (/4S) OR (L4 AND /4R)",
         "clock": {
           "when": "1",
           "edge": "level-high"

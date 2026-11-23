@@ -33,7 +33,8 @@
     },
     {
       "pin": 15,
-      "name": "G'",
+      "name": "G",
+      "inverted": true,
       "role": "enable",
       "active": "low",
       "controls": [
@@ -117,7 +118,7 @@
   "functions": [
     {
       "output": "4,7,9,12",
-      "formula": "nY = NOT ((SELECT' AND nA) OR (SELECT AND nB)), Z when G' high",
+      "formula": "nY = NOT ((SELECT' AND nA) OR (SELECT AND nB)), Z when /G high",
       "text": "Inverting: with G' low, Y is the complement of A (SELECT low) or of B (SELECT high); G' high puts all outputs in high impedance."
     }
   ],
@@ -166,7 +167,7 @@
       "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
     },
     {
-      "from": "G'",
+      "from": "/G",
       "to": "Y",
       "edge": "PZH",
       "minNs": null,
@@ -175,7 +176,7 @@
       "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
     },
     {
-      "from": "G'",
+      "from": "/G",
       "to": "Y",
       "edge": "PZL",
       "minNs": null,
@@ -184,7 +185,7 @@
       "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
     },
     {
-      "from": "G'",
+      "from": "/G",
       "to": "Y",
       "edge": "PHZ",
       "minNs": null,
@@ -193,7 +194,7 @@
       "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 5 pF"
     },
     {
-      "from": "G'",
+      "from": "/G",
       "to": "Y",
       "edge": "PLZ",
       "minNs": null,
@@ -219,7 +220,7 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G'",
+              "pin": "/G",
               "active": "low"
             }
           ],
@@ -234,7 +235,7 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G'",
+              "pin": "/G",
               "active": "low"
             }
           ],
@@ -249,7 +250,7 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G'",
+              "pin": "/G",
               "active": "low"
             }
           ],
@@ -264,7 +265,7 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G'",
+              "pin": "/G",
               "active": "low"
             }
           ],

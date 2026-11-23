@@ -40,7 +40,8 @@
     },
     {
       "pin": 3,
-      "name": "1CLR'",
+      "name": "1CLR",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low",
@@ -54,7 +55,8 @@
     },
     {
       "pin": 4,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -85,7 +87,8 @@
     },
     {
       "pin": 11,
-      "name": "2CLR'",
+      "name": "2CLR",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low",
@@ -99,7 +102,8 @@
     },
     {
       "pin": 12,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -208,12 +212,14 @@
     {
       "what": "pulseWidth",
       "pin": "A or B",
-      "minNs": 50
+      "minNs": 50,
+      "ref": null
     },
     {
       "what": "pulseWidth",
       "pin": "CLR'",
-      "minNs": 20
+      "minNs": 20,
+      "ref": null
     },
     {
       "what": "setup",
@@ -224,7 +230,8 @@
     {
       "what": "outputPulseWidth",
       "pin": "Q",
-      "text": "tw(out): Cext 80 pF, Rext 2k: 70/110/150 ns; Cext 0, Rext 2k: 20/30/50 ns; Cext 100 pF, Rext 10k: 650/700/750 ns; Cext 1 uF, Rext 10k: 6.5/7/7.5 ms (min/typ/max)"
+      "text": "tw(out): Cext 80 pF, Rext 2k: 70/110/150 ns; Cext 0, Rext 2k: 20/30/50 ns; Cext 100 pF, Rext 10k: 650/700/750 ns; Cext 1 uF, Rext 10k: 6.5/7/7.5 ms (min/typ/max)",
+      "ref": null
     }
   ],
   "unknown": [
@@ -240,11 +247,11 @@
         "name": "P1",
         "kind": "one-shot",
         "clock": {
-          "when": "NOT 1A AND 1B AND 1CLR'",
+          "when": "NOT 1A AND 1B AND /1CLR",
           "edge": "rising"
         },
         "clear": {
-          "pin": "1CLR'",
+          "pin": "/1CLR",
           "active": "low"
         },
         "retriggerable": false,
@@ -255,11 +262,11 @@
         "name": "P2",
         "kind": "one-shot",
         "clock": {
-          "when": "NOT 2A AND 2B AND 2CLR'",
+          "when": "NOT 2A AND 2B AND /2CLR",
           "edge": "rising"
         },
         "clear": {
-          "pin": "2CLR'",
+          "pin": "/2CLR",
           "active": "low"
         },
         "retriggerable": false,
@@ -275,8 +282,8 @@
         "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT P1",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT P1",
         "type": "totem-pole",
         "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
       },
@@ -287,8 +294,8 @@
         "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT P2",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT P2",
         "type": "totem-pole",
         "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
       }

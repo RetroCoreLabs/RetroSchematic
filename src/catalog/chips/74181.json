@@ -27,44 +27,52 @@
     },
     {
       "pin": 2,
-      "name": "A0'",
+      "name": "A0",
+      "inverted": true,
       "role": "input",
       "text": "operand A bit 0 (A0 with active-high data)"
     },
     {
       "pin": 23,
-      "name": "A1'",
+      "name": "A1",
+      "inverted": true,
       "role": "input"
     },
     {
       "pin": 21,
-      "name": "A2'",
+      "name": "A2",
+      "inverted": true,
       "role": "input"
     },
     {
       "pin": 19,
-      "name": "A3'",
+      "name": "A3",
+      "inverted": true,
       "role": "input"
     },
     {
       "pin": 1,
-      "name": "B0'",
+      "name": "B0",
+      "inverted": true,
       "role": "input",
       "text": "operand B bit 0 (B0 with active-high data)"
     },
     {
       "pin": 22,
-      "name": "B1'",
+      "name": "B1",
+      "inverted": true,
       "role": "input"
     },
     {
       "pin": 20,
-      "name": "B2'",
+      "name": "B2",
+      "inverted": true,
       "role": "input"
     },
     {
       "pin": 18,
-      "name": "B3'",
+      "name": "B3",
+      "inverted": true,
       "role": "input"
     },
     {
@@ -105,25 +113,29 @@
     },
     {
       "pin": 9,
-      "name": "F0'",
+      "name": "F0",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
     {
       "pin": 10,
-      "name": "F1'",
+      "name": "F1",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
     {
       "pin": 11,
-      "name": "F2'",
+      "name": "F2",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
     {
       "pin": 13,
-      "name": "F3'",
+      "name": "F3",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -136,14 +148,16 @@
     },
     {
       "pin": 15,
-      "name": "P'",
+      "name": "P",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole",
       "text": "carry propagate output for the '182 (X with active-high data)"
     },
     {
       "pin": 17,
-      "name": "G'",
+      "name": "G",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole",
       "text": "carry generate output for the '182 (Y with active-high data)"
@@ -169,12 +183,12 @@
     },
     {
       "output": "15",
-      "formula": "P' = carry propagate of the 4-bit group (for the '182)",
+      "formula": "/P = carry propagate of the 4-bit group (for the '182)",
       "text": "Group propagate output; feeds a P input of the SN74182."
     },
     {
       "output": "17",
-      "formula": "G' = carry generate of the 4-bit group (for the '182)",
+      "formula": "/G = carry generate of the 4-bit group (for the '182)",
       "text": "Group generate output; feeds a G input of the SN74182."
     },
     {
@@ -307,7 +321,7 @@
     },
     {
       "from": "A or B",
-      "to": "G'",
+      "to": "/G",
       "edge": "PLH",
       "minNs": null,
       "typNs": 13,
@@ -316,7 +330,7 @@
     },
     {
       "from": "A or B",
-      "to": "G'",
+      "to": "/G",
       "edge": "PHL",
       "minNs": null,
       "typNs": 13,
@@ -325,7 +339,7 @@
     },
     {
       "from": "A or B",
-      "to": "G'",
+      "to": "/G",
       "edge": "PLH",
       "minNs": null,
       "typNs": 17,
@@ -334,7 +348,7 @@
     },
     {
       "from": "A or B",
-      "to": "G'",
+      "to": "/G",
       "edge": "PHL",
       "minNs": null,
       "typNs": 17,
@@ -343,7 +357,7 @@
     },
     {
       "from": "A or B",
-      "to": "P'",
+      "to": "/P",
       "edge": "PLH",
       "minNs": null,
       "typNs": 13,
@@ -352,7 +366,7 @@
     },
     {
       "from": "A or B",
-      "to": "P'",
+      "to": "/P",
       "edge": "PHL",
       "minNs": null,
       "typNs": 17,
@@ -361,7 +375,7 @@
     },
     {
       "from": "A or B",
-      "to": "P'",
+      "to": "/P",
       "edge": "PLH",
       "minNs": null,
       "typNs": 17,
@@ -370,7 +384,7 @@
     },
     {
       "from": "A or B",
-      "to": "P'",
+      "to": "/P",
       "edge": "PHL",
       "minNs": null,
       "typNs": 17,
@@ -465,35 +479,35 @@
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (inverter on M, pin 8)"
       },
       {
-        "formula": "U0 = NOT((A0' AND B0' AND S3) OR (A0' AND NOT B0' AND S2))",
+        "formula": "U0 = NOT((/A0 AND /B0 AND S3) OR (/A0 AND NOT /B0 AND S2))",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 0: AND gates with S3 and S2)"
       },
       {
-        "formula": "L0 = NOT((NOT B0' AND S1) OR (B0' AND S0) OR A0')",
+        "formula": "L0 = NOT((NOT /B0 AND S1) OR (/B0 AND S0) OR /A0)",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 0: AND gates with S1 and S0, and A alone)"
       },
       {
-        "formula": "U1 = NOT((A1' AND B1' AND S3) OR (A1' AND NOT B1' AND S2))",
+        "formula": "U1 = NOT((/A1 AND /B1 AND S3) OR (/A1 AND NOT /B1 AND S2))",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 1: AND gates with S3 and S2)"
       },
       {
-        "formula": "L1 = NOT((NOT B1' AND S1) OR (B1' AND S0) OR A1')",
+        "formula": "L1 = NOT((NOT /B1 AND S1) OR (/B1 AND S0) OR /A1)",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 1: AND gates with S1 and S0, and A alone)"
       },
       {
-        "formula": "U2 = NOT((A2' AND B2' AND S3) OR (A2' AND NOT B2' AND S2))",
+        "formula": "U2 = NOT((/A2 AND /B2 AND S3) OR (/A2 AND NOT /B2 AND S2))",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 2: AND gates with S3 and S2)"
       },
       {
-        "formula": "L2 = NOT((NOT B2' AND S1) OR (B2' AND S0) OR A2')",
+        "formula": "L2 = NOT((NOT /B2 AND S1) OR (/B2 AND S0) OR /A2)",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 2: AND gates with S1 and S0, and A alone)"
       },
       {
-        "formula": "U3 = NOT((A3' AND B3' AND S3) OR (A3' AND NOT B3' AND S2))",
+        "formula": "U3 = NOT((/A3 AND /B3 AND S3) OR (/A3 AND NOT /B3 AND S2))",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (upper NOR of bit 3: AND gates with S3 and S2)"
       },
       {
-        "formula": "L3 = NOT((NOT B3' AND S1) OR (B3' AND S0) OR A3')",
+        "formula": "L3 = NOT((NOT /B3 AND S1) OR (/B3 AND S0) OR /A3)",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (lower NOR of bit 3: AND gates with S1 and S0, and A alone)"
       },
       {
@@ -515,50 +529,50 @@
     ],
     "outputs": [
       {
-        "pin": "F0'",
-        "formula": "F0' = U0 XOR L0 XOR K0",
+        "pin": "/F0",
+        "formula": "/F0 = U0 XOR L0 XOR K0",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 0)"
       },
       {
-        "pin": "F1'",
-        "formula": "F1' = U1 XOR L1 XOR K1",
+        "pin": "/F1",
+        "formula": "/F1 = U1 XOR L1 XOR K1",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 1)"
       },
       {
-        "pin": "F2'",
-        "formula": "F2' = U2 XOR L2 XOR K2",
+        "pin": "/F2",
+        "formula": "/F2 = U2 XOR L2 XOR K2",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 2)"
       },
       {
-        "pin": "F3'",
-        "formula": "F3' = U3 XOR L3 XOR K3",
+        "pin": "/F3",
+        "formula": "/F3 = U3 XOR L3 XOR K3",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (two XOR gates of bit 3)"
       },
       {
-        "pin": "P'",
-        "formula": "P' = NOT(U0 AND U1 AND U2 AND U3)",
+        "pin": "/P",
+        "formula": "/P = NOT(U0 AND U1 AND U2 AND U3)",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (4-input NAND to pin 15)"
       },
       {
-        "pin": "G'",
-        "formula": "G' = NOT(L3 OR (U3 AND L2) OR (U3 AND U2 AND L1) OR (U3 AND U2 AND U1 AND L0))",
+        "pin": "/G",
+        "formula": "/G = NOT(L3 OR (U3 AND L2) OR (U3 AND U2 AND L1) OR (U3 AND U2 AND U1 AND L0))",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (AND-NOR to pin 17)"
       },
       {
         "pin": "Cn+4",
-        "formula": "Cn+4 = NOT G' OR (U0 AND U1 AND U2 AND U3 AND Cn)",
+        "formula": "Cn+4 = NOT /G OR (U0 AND U1 AND U2 AND U3 AND Cn)",
         "type": "totem-pole",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (OR with inverted inputs to pin 16: G' and a 5-input NAND)"
       },
       {
         "pin": "A=B",
-        "formula": "A=B = F0' AND F1' AND F2' AND F3'",
+        "formula": "A=B = /F0 AND /F1 AND /F2 AND /F3",
         "type": "open-collector",
         "source": "7-280 (PDF page 279) - TI The TTL Data Book for Design Engineers, 2nd ed. 1976, functional block diagram (AND of the four F outputs to pin 14); open collector per 7-271"
       }

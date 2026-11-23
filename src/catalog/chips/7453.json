@@ -79,7 +79,8 @@
     },
     {
       "pin": 12,
-      "name": "X'",
+      "name": "X",
+      "inverted": true,
       "role": "analog",
       "text": "expander node: connect to the X-bar output of a 7460 expander; leave open if not used"
     },

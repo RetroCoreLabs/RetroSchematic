@@ -95,6 +95,45 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// The text and subscript to draw for a chip pin's name: a pin the datasheet draws with
+        /// a bar (<see cref="ChipPin.Inverted"/>) shows as /NAME, ~NAME or NAME with a small 0;
+        /// any other pin name is plain in every style.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin.
+        /// </param>
+        /// <param name="style">
+        /// The style.
+        /// </param>
+        /// <param name="subscript">
+        /// The subscript to draw after the text ("0" or empty).
+        /// </param>
+        /// <returns>
+        /// The text to draw.
+        /// </returns>
+        public static string Pin(ChipPin pin, SignalNameStyle style, out string subscript)
+            => Format(pin.Name, pin.Inverted ? ActiveLevel.Low : ActiveLevel.None, style, out subscript);
+
+        /// <summary>
+        /// A chip pin's name on one line (a list, a tooltip, the Details panel): subscript style
+        /// writes NAME_0 there.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin.
+        /// </param>
+        /// <param name="style">
+        /// The style.
+        /// </param>
+        /// <returns>
+        /// The name for one line of text.
+        /// </returns>
+        public static string PinLine(ChipPin pin, SignalNameStyle style)
+        {
+            string text = Pin(pin, style, out string sub);
+            return sub.Length == 0 ? text : text + "_" + sub;
+        }
+
+        /// <summary>
         /// Reads a typed name in any style: "/NAME" or "~NAME" is NAME active low, "NAME_0" and
         /// "NAME_1" are NAME with that level, anything else is the plain name with no level said.
         /// </summary>

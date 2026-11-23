@@ -64,7 +64,8 @@
     },
     {
       "pin": 9,
-      "name": "X'",
+      "name": "X",
+      "inverted": true,
       "role": "analog",
       "text": "expander node: connect to the X-bar output of the expander; leave open if not used"
     },

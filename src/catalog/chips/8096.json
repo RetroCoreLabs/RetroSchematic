@@ -27,7 +27,8 @@
     },
     {
       "pin": 1,
-      "name": "G1'",
+      "name": "G1",
+      "inverted": true,
       "role": "enable",
       "active": "low",
       "controls": [
@@ -43,7 +44,8 @@
     },
     {
       "pin": 15,
-      "name": "G2'",
+      "name": "G2",
+      "inverted": true,
       "role": "enable",
       "active": "low",
       "controls": [
@@ -132,7 +134,7 @@
   "functions": [
     {
       "output": "3,5,7,9,11,13",
-      "formula": "Y = NOT A when G1' = L AND G2' = L; Z when G1' = H OR G2' = H",
+      "formula": "Y = NOT A when /G1 = L AND /G2 = L; Z when /G1 = H OR /G2 = H",
       "text": "Inverting buffers; all six share the two control lines. Truth table: G1' H or G2' H -> Hi-Z; both low -> Y = complement of A."
     }
   ],
@@ -217,11 +219,11 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G1'",
+              "pin": "/G1",
               "active": "low"
             },
             {
-              "pin": "G2'",
+              "pin": "/G2",
               "active": "low"
             }
           ],
@@ -236,11 +238,11 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G1'",
+              "pin": "/G1",
               "active": "low"
             },
             {
-              "pin": "G2'",
+              "pin": "/G2",
               "active": "low"
             }
           ],
@@ -255,11 +257,11 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G1'",
+              "pin": "/G1",
               "active": "low"
             },
             {
-              "pin": "G2'",
+              "pin": "/G2",
               "active": "low"
             }
           ],
@@ -274,11 +276,11 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G1'",
+              "pin": "/G1",
               "active": "low"
             },
             {
-              "pin": "G2'",
+              "pin": "/G2",
               "active": "low"
             }
           ],
@@ -293,11 +295,11 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G1'",
+              "pin": "/G1",
               "active": "low"
             },
             {
-              "pin": "G2'",
+              "pin": "/G2",
               "active": "low"
             }
           ],
@@ -312,11 +314,11 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "G1'",
+              "pin": "/G1",
               "active": "low"
             },
             {
-              "pin": "G2'",
+              "pin": "/G2",
               "active": "low"
             }
           ],

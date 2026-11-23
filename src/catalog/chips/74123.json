@@ -53,7 +53,8 @@
     },
     {
       "pin": 4,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -97,7 +98,8 @@
     },
     {
       "pin": 12,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -122,7 +124,7 @@
     },
     {
       "output": "4",
-      "formula": "1Q' = NOT PULSE1",
+      "formula": "/1Q = NOT PULSE1",
       "text": "Complement of Q."
     },
     {
@@ -132,7 +134,7 @@
     },
     {
       "output": "12",
-      "formula": "2Q' = NOT PULSE2",
+      "formula": "/2Q = NOT PULSE2",
       "text": "Complement of Q."
     }
   ],
@@ -218,7 +220,8 @@
     {
       "what": "pulse width",
       "pin": "inputs (tw)",
-      "minNs": 40
+      "minNs": 40,
+      "ref": null
     },
     {
       "what": "output pulse width",
@@ -226,7 +229,8 @@
       "minNs": null,
       "typNs": 45,
       "maxNs": 76,
-      "text": "twQ(min): shortest output pulse, from A or B, Cext 0, Rext 5 kOhm, CL 15 pF, RL 400 ohm"
+      "text": "twQ(min): shortest output pulse, from A or B, Cext 0, Rext 5 kOhm, CL 15 pF, RL 400 ohm",
+      "ref": null
     },
     {
       "what": "output pulse width",
@@ -234,7 +238,8 @@
       "minNs": 2760,
       "typNs": 3030,
       "maxNs": 3370,
-      "text": "Cext 1000 pF, Rext 10 kOhm, CL 15 pF, RL 400 ohm (2.76, 3.03, 3.37 us)"
+      "text": "Cext 1000 pF, Rext 10 kOhm, CL 15 pF, RL 400 ohm (2.76, 3.03, 3.37 us)",
+      "ref": null
     }
   ],
   "unknown": [],
@@ -282,8 +287,8 @@
         "source": "1, 2, 4, 5, 7 - TI SN54122"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT P1",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT P1",
         "type": "totem-pole",
         "source": "1, 2, 4, 5, 7 - TI SN54122"
       },
@@ -294,8 +299,8 @@
         "source": "1, 2, 4, 5, 7 - TI SN54122"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT P2",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT P2",
         "type": "totem-pole",
         "source": "1, 2, 4, 5, 7 - TI SN54122"
       }

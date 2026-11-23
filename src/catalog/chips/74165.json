@@ -108,7 +108,8 @@
     },
     {
       "pin": 7,
-      "name": "QH'",
+      "name": "QH",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     }
@@ -121,7 +122,7 @@
     },
     {
       "output": "7",
-      "formula": "QH' = NOT QH",
+      "formula": "/QH = NOT QH",
       "text": "Complement of the eighth stage."
     }
   ],
@@ -200,7 +201,7 @@
     },
     {
       "from": "H",
-      "to": "QH'",
+      "to": "/QH",
       "edge": "PLH",
       "minNs": null,
       "typNs": 18,
@@ -209,7 +210,7 @@
     },
     {
       "from": "H",
-      "to": "QH'",
+      "to": "/QH",
       "edge": "PHL",
       "minNs": null,
       "typNs": 18,
@@ -223,17 +224,20 @@
       "pin": "CLOCK",
       "minMHz": 20,
       "typMHz": 26,
-      "text": "recommended fclock 0 to 20 MHz"
+      "text": "recommended fclock 0 to 20 MHz",
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLOCK",
-      "minNs": 25
+      "minNs": 25,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "SHIFT/LOAD",
-      "minNs": 15
+      "minNs": 15,
+      "ref": null
     },
     {
       "what": "setup",
@@ -414,8 +418,8 @@
         "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "QH'",
-        "formula": "QH' = NOT FH",
+        "pin": "/QH",
+        "formula": "/QH = NOT FH",
         "type": "totem-pole",
         "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers"
       }

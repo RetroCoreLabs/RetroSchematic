@@ -445,6 +445,18 @@ namespace RetroSchematic.Render
         public string Subscript = "";
 
         /// <summary>
+        /// The font size of a subscript: 0.8 of the text, at least 8 so it can be read, but never
+        /// bigger than the text itself (a chip pin name is 7: its 0 is 7 too).
+        /// </summary>
+        /// <param name="fontSize">
+        /// The size of the text it follows.
+        /// </param>
+        /// <returns>
+        /// The subscript's size.
+        /// </returns>
+        public static double SubscriptSize(double fontSize) => Math.Min(fontSize, Math.Max(8, fontSize * 0.8));
+
+        /// <summary>
         /// Font size in drawing units.
         /// </summary>
         public double FontSize = 10;

@@ -97,7 +97,8 @@
     },
     {
       "pin": 13,
-      "name": "CLEAR'",
+      "name": "CLEAR",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
@@ -180,7 +181,7 @@
   },
   "timing": [
     {
-      "from": "CLEAR'",
+      "from": "/CLEAR",
       "to": "QA..QH",
       "edge": "PHL",
       "minNs": null,
@@ -213,12 +214,14 @@
       "pin": "CLOCK",
       "minMHz": 25,
       "typMHz": 35,
-      "text": "recommended fclock 0-25 MHz"
+      "text": "recommended fclock 0-25 MHz",
+      "ref": null
     },
     {
       "what": "pulseWidth",
       "pin": "CLOCK or CLEAR'",
-      "minNs": 20
+      "minNs": 20,
+      "ref": null
     },
     {
       "what": "setup",
@@ -258,7 +261,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -272,7 +275,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -286,7 +289,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -300,7 +303,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -314,7 +317,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -328,7 +331,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -342,7 +345,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"
@@ -356,7 +359,7 @@
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: load, shift right, shift left, inhibit)"

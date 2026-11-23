@@ -75,7 +75,8 @@
     },
     {
       "pin": 3,
-      "name": "ME1'",
+      "name": "ME1",
+      "inverted": true,
       "role": "enable",
       "active": "low",
       "controls": [
@@ -86,7 +87,8 @@
     },
     {
       "pin": 4,
-      "name": "ME2'",
+      "name": "ME2",
+      "inverted": true,
       "role": "enable",
       "active": "low",
       "controls": [
@@ -96,7 +98,8 @@
     },
     {
       "pin": 5,
-      "name": "ME3'",
+      "name": "ME3",
+      "inverted": true,
       "role": "enable",
       "active": "low",
       "controls": [
@@ -106,7 +109,8 @@
     },
     {
       "pin": 12,
-      "name": "WE'",
+      "name": "WE",
+      "inverted": true,
       "role": "input",
       "text": "write enable, active low; while low the output is in high impedance"
     },
@@ -187,7 +191,7 @@
       "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm"
     },
     {
-      "from": "WE'",
+      "from": "/WE",
       "to": "Y",
       "edge": "PZH",
       "minNs": null,
@@ -196,7 +200,7 @@
       "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm, sense recovery from write enable"
     },
     {
-      "from": "WE'",
+      "from": "/WE",
       "to": "Y",
       "edge": "PZL",
       "minNs": null,
@@ -223,7 +227,7 @@
       "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 300 ohm"
     },
     {
-      "from": "WE'",
+      "from": "/WE",
       "to": "Y",
       "edge": "PHZ",
       "minNs": null,
@@ -232,7 +236,7 @@
       "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 300 ohm"
     },
     {
-      "from": "WE'",
+      "from": "/WE",
       "to": "Y",
       "edge": "PLZ",
       "minNs": null,
@@ -244,43 +248,44 @@
   "timingLimits": [
     {
       "what": "pulseWidth",
-      "pin": "WE'",
-      "minNs": 40
+      "pin": "/WE",
+      "minNs": 40,
+      "ref": null
     },
     {
       "what": "setup",
       "pin": "address",
-      "ref": "WE'",
+      "ref": "/WE",
       "minNs": 0
     },
     {
       "what": "setup",
       "pin": "DATA",
-      "ref": "WE'",
+      "ref": "/WE",
       "minNs": 0
     },
     {
       "what": "setup",
       "pin": "ME'",
-      "ref": "WE'",
+      "ref": "/WE",
       "minNs": 0
     },
     {
       "what": "hold",
       "pin": "address",
-      "ref": "WE'",
+      "ref": "/WE",
       "minNs": 10
     },
     {
       "what": "hold",
       "pin": "DATA",
-      "ref": "WE'",
+      "ref": "/WE",
       "minNs": 10
     },
     {
       "what": "hold",
       "pin": "ME'",
-      "ref": "WE'",
+      "ref": "/WE",
       "minNs": 0
     }
   ],
@@ -310,7 +315,7 @@
         "DATA"
       ],
       "write": {
-        "when": "NOT ME1' AND NOT ME2' AND NOT ME3' AND NOT WE'",
+        "when": "NOT /ME1 AND NOT /ME2 AND NOT /ME3 AND NOT /WE",
         "edge": "level-high"
       },
       "source": "2-11 to 2-13 (PDF pages 114-116) - National Semiconductor 1977 Memory Databook (truth table: the chip stores the complement of DATA and Y shows the stored bit, so Y is NOT of the DATA written; kept here as DATA stored and inverted on read; row A,B,C,H, column D,E,F,G - bit order inside the address not given)"
@@ -323,19 +328,19 @@
         "outputEnable": {
           "pins": [
             {
-              "pin": "ME1'",
+              "pin": "/ME1",
               "active": "low"
             },
             {
-              "pin": "ME2'",
+              "pin": "/ME2",
               "active": "low"
             },
             {
-              "pin": "ME3'",
+              "pin": "/ME3",
               "active": "low"
             },
             {
-              "pin": "WE'",
+              "pin": "/WE",
               "active": "high"
             }
           ],

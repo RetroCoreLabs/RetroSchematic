@@ -63,7 +63,8 @@
     },
     {
       "pin": 7,
-      "name": "1Y'",
+      "name": "1Y",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -105,7 +106,8 @@
     },
     {
       "pin": 9,
-      "name": "2Y'",
+      "name": "2Y",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     }
@@ -339,8 +341,8 @@
         "source": "7-121 (PDF page 120), Figures 2 and 3: Y follows the clock while pulses pass and rests low while stopped"
       },
       {
-        "pin": "1Y'",
-        "formula": "1Y' = NOT(1C AND EN1)",
+        "pin": "/1Y",
+        "formula": "/1Y = NOT(1C AND EN1)",
         "type": "totem-pole",
         "source": "7-121 (PDF page 120), Figures 2 and 3: Y' is the complement and rests high while stopped"
       },
@@ -351,8 +353,8 @@
         "source": "7-121 (PDF page 120), Figures 2 and 3: Y follows the clock while pulses pass and rests low while stopped"
       },
       {
-        "pin": "2Y'",
-        "formula": "2Y' = NOT(2C AND EN2)",
+        "pin": "/2Y",
+        "formula": "/2Y = NOT(2C AND EN2)",
         "type": "totem-pole",
         "source": "7-121 (PDF page 120), Figures 2 and 3: Y' is the complement and rests high while stopped"
       }

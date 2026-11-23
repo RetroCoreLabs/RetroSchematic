@@ -10,9 +10,7 @@ yet (see `docs/2A50-catalogue-map.md`).
 - Chip catalogue as data. Steps 1 and 2 are done: the formula reader
   (`RetroSchematic.Model/ChipFormula.cs`) and the structured `behaviour` of every chip file
   (`catalog/chips/FORMAT.md`, Behaviour; `RetroSchematic.Model/ChipBehaviour.cs`;
-  `ChipBehaviourTests` checks every chip file). Only TMS6010 is still without it (no datasheet of its own found; `docs/BUGS.md` B3). Still to do, in this order: (3) inverted pin names to base
-  name + flag by script, truth tables the same before and after, no raw ' left, every display
-  in the chosen name style; (4) function text per pin (hover + Details column); (5) the
+  `ChipBehaviourTests` checks every chip file). Only TMS6010 is still without it (no datasheet of its own found; `docs/BUGS.md` B3). Inverted pin names are done (base name + `inverted`, `/NAME` in formulas). Still to do, in this order: (4) function text per pin (hover + Details column); (5) the
   generated "How it works" card in Details (sentence, truth table, output-enable row, clock row
   with up L->H / down H->L, async rows; muxes 74153/74157/74S157 with the sheet's own mapping
   and the two-halves box with the "select (both halves)" band); (6) tests: generated truth

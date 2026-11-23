@@ -51,7 +51,8 @@
     },
     {
       "pin": 3,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -68,7 +69,8 @@
     },
     {
       "pin": 6,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -85,7 +87,8 @@
     },
     {
       "pin": 11,
-      "name": "3Q'",
+      "name": "3Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -102,7 +105,8 @@
     },
     {
       "pin": 14,
-      "name": "4Q'",
+      "name": "4Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     }
@@ -115,7 +119,7 @@
     },
     {
       "output": "3",
-      "formula": "1Q' = NOT FF1",
+      "formula": "/1Q = NOT FF1",
       "text": "Complement of flip-flop 1."
     },
     {
@@ -125,7 +129,7 @@
     },
     {
       "output": "6",
-      "formula": "2Q' = NOT FF2",
+      "formula": "/2Q = NOT FF2",
       "text": "Complement of flip-flop 2."
     },
     {
@@ -135,7 +139,7 @@
     },
     {
       "output": "11",
-      "formula": "3Q' = NOT FF3",
+      "formula": "/3Q = NOT FF3",
       "text": "Complement of flip-flop 3."
     },
     {
@@ -145,7 +149,7 @@
     },
     {
       "output": "14",
-      "formula": "4Q' = NOT FF4",
+      "formula": "/4Q = NOT FF4",
       "text": "Complement of flip-flop 4."
     }
   ],
@@ -209,12 +213,14 @@
       "pin": "CLOCK",
       "minMHz": 25,
       "typMHz": 35,
-      "text": "recommended fclock 0 to 25 MHz"
+      "text": "recommended fclock 0 to 25 MHz",
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLOCK or CLEAR",
-      "minNs": 20
+      "minNs": 20,
+      "ref": null
     },
     {
       "what": "setup",
@@ -306,8 +312,8 @@
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT FF1",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT FF1",
         "type": "totem-pole",
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
@@ -318,8 +324,8 @@
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT FF2",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT FF2",
         "type": "totem-pole",
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
@@ -330,8 +336,8 @@
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "3Q'",
-        "formula": "3Q' = NOT FF3",
+        "pin": "/3Q",
+        "formula": "/3Q = NOT FF3",
         "type": "totem-pole",
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
@@ -342,8 +348,8 @@
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "4Q'",
-        "formula": "4Q' = NOT FF4",
+        "pin": "/4Q",
+        "formula": "/4Q = NOT FF4",
         "type": "totem-pole",
         "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
       }

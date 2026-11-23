@@ -6,31 +6,127 @@
   "title": "4-bit parallel-access shift register",
   "package": "DIP-16",
   "sources": [
-    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54195/SN74195 (bulletin DL-S 7611820, Mar 1974, rev. Oct 1976)",
-     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
-     "pages": "7-324, 7-327 (PDF pages 323, 326)", "familyUsed": "SN74195"}
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54195/SN74195 (bulletin DL-S 7611820, Mar 1974, rev. Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-324, 7-327 (PDF pages 323, 326)",
+      "familyUsed": "SN74195"
+    }
   ],
   "pins": [
-    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
-    {"pin": 8,  "name": "GND", "role": "ground"},
-    {"pin": 1,  "name": "CLEAR'", "role": "input", "async": true, "active": "low", "text": "direct overriding clear"},
-    {"pin": 2,  "name": "J", "role": "input", "text": "serial input to first stage"},
-    {"pin": 3,  "name": "K'", "role": "input", "text": "serial input to first stage (inverted K)"},
-    {"pin": 4,  "name": "A", "role": "input", "text": "parallel data"},
-    {"pin": 5,  "name": "B", "role": "input", "text": "parallel data"},
-    {"pin": 6,  "name": "C", "role": "input", "text": "parallel data"},
-    {"pin": 7,  "name": "D", "role": "input", "text": "parallel data"},
-    {"pin": 9,  "name": "SHIFT/LOAD'", "role": "input", "text": "low: parallel load at the clock edge; high: shift QA toward QD"},
-    {"pin": 10, "name": "CLOCK", "role": "clock", "edge": "rising"},
-    {"pin": 15, "name": "QA", "role": "output", "outputType": "totem-pole"},
-    {"pin": 14, "name": "QB", "role": "output", "outputType": "totem-pole"},
-    {"pin": 13, "name": "QC", "role": "output", "outputType": "totem-pole"},
-    {"pin": 12, "name": "QD", "role": "output", "outputType": "totem-pole"},
-    {"pin": 11, "name": "QD'", "role": "output", "outputType": "totem-pole"}
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "CLEAR",
+      "inverted": true,
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "text": "direct overriding clear"
+    },
+    {
+      "pin": 2,
+      "name": "J",
+      "role": "input",
+      "text": "serial input to first stage"
+    },
+    {
+      "pin": 3,
+      "name": "K",
+      "inverted": true,
+      "role": "input",
+      "text": "serial input to first stage (inverted K)"
+    },
+    {
+      "pin": 4,
+      "name": "A",
+      "role": "input",
+      "text": "parallel data"
+    },
+    {
+      "pin": 5,
+      "name": "B",
+      "role": "input",
+      "text": "parallel data"
+    },
+    {
+      "pin": 6,
+      "name": "C",
+      "role": "input",
+      "text": "parallel data"
+    },
+    {
+      "pin": 7,
+      "name": "D",
+      "role": "input",
+      "text": "parallel data"
+    },
+    {
+      "pin": 9,
+      "name": "SHIFT/LOAD",
+      "inverted": true,
+      "role": "input",
+      "text": "low: parallel load at the clock edge; high: shift QA toward QD"
+    },
+    {
+      "pin": 10,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 15,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "QD",
+      "inverted": true,
+      "role": "output",
+      "outputType": "totem-pole"
+    }
   ],
   "functions": [
-    {"output": "15,14,13,12", "formula": "QA..QD = Q[0..3]", "text": "Register bits."},
-    {"output": "11", "formula": "QD' = NOT QD", "text": "Complement output of the last stage."}
+    {
+      "output": "15,14,13,12",
+      "formula": "QA..QD = Q[0..3]",
+      "text": "Register bits."
+    },
+    {
+      "output": "11",
+      "formula": "/QD = NOT QD",
+      "text": "Complement output of the last stage."
+    }
   ],
   "state": {
     "bits": 4,
@@ -47,24 +143,93 @@
     ]
   },
   "electrical": {
-    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.8, "outputMaxVoltageV": null,
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
     "inputSchmitt": false,
     "notes": "SN74195: VCC 4.75-5.25 V, TA 0-70 C."
   },
   "timing": [
-    {"from": "CLEAR'", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 19, "maxNs": 30, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "QA..QD, QD'", "edge": "PLH", "minNs": null, "typNs": 14, "maxNs": 22, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "QA..QD, QD'", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 26, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"}
+    {
+      "from": "/CLEAR",
+      "to": "QA..QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QD, QD'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QD, QD'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 26,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
   ],
   "timingLimits": [
-    {"what": "maxClockFrequency", "pin": "CLOCK", "minMHz": 30, "typMHz": 39, "text": "recommended fclock 0-30 MHz"},
-    {"what": "pulseWidth", "pin": "CLOCK", "minNs": 16},
-    {"what": "pulseWidth", "pin": "CLEAR'", "minNs": 12},
-    {"what": "setup", "pin": "SHIFT/LOAD'", "ref": "CLOCK", "minNs": 25},
-    {"what": "setup", "pin": "J, K', A..D", "ref": "CLOCK", "minNs": 20},
-    {"what": "setup", "pin": "CLEAR' inactive", "ref": "CLOCK", "minNs": 25},
-    {"what": "release", "pin": "SHIFT/LOAD'", "ref": "CLOCK", "maxNs": 10, "text": "shift/load release time, max 10 ns (Figure 1)"},
-    {"what": "hold", "pin": "J, K', A..D", "ref": "CLOCK", "minNs": 0}
+    {
+      "what": "maxClockFrequency",
+      "pin": "CLOCK",
+      "minMHz": 30,
+      "typMHz": 39,
+      "text": "recommended fclock 0-30 MHz",
+      "ref": null
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CLOCK",
+      "minNs": 16,
+      "ref": null
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "/CLEAR",
+      "minNs": 12,
+      "ref": null
+    },
+    {
+      "what": "setup",
+      "pin": "/SHIFT/LOAD",
+      "ref": "CLOCK",
+      "minNs": 25
+    },
+    {
+      "what": "setup",
+      "pin": "J, K', A..D",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "CLEAR' inactive",
+      "ref": "CLOCK",
+      "minNs": 25
+    },
+    {
+      "what": "release",
+      "pin": "/SHIFT/LOAD",
+      "ref": "CLOCK",
+      "maxNs": 10,
+      "text": "shift/load release time, max 10 ns (Figure 1)"
+    },
+    {
+      "what": "hold",
+      "pin": "J, K', A..D",
+      "ref": "CLOCK",
+      "minNs": 0
+    }
   ],
   "unknown": [
     "Clear to QD' (low-to-high) delay is not listed separately.",
@@ -78,13 +243,13 @@
       {
         "name": "FA",
         "kind": "flip-flop",
-        "next": "FA = (NOT SHIFT/LOAD' AND A) OR (SHIFT/LOAD' AND ((J AND NOT FA) OR (K' AND FA)))",
+        "next": "FA = (NOT /SHIFT/LOAD AND A) OR (/SHIFT/LOAD AND ((J AND NOT FA) OR (/K AND FA)))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -92,13 +257,13 @@
       {
         "name": "FB",
         "kind": "flip-flop",
-        "next": "FB = (NOT SHIFT/LOAD' AND B) OR (SHIFT/LOAD' AND (FA))",
+        "next": "FB = (NOT /SHIFT/LOAD AND B) OR (/SHIFT/LOAD AND (FA))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -106,13 +271,13 @@
       {
         "name": "FC",
         "kind": "flip-flop",
-        "next": "FC = (NOT SHIFT/LOAD' AND C) OR (SHIFT/LOAD' AND (FB))",
+        "next": "FC = (NOT /SHIFT/LOAD AND C) OR (/SHIFT/LOAD AND (FB))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -120,13 +285,13 @@
       {
         "name": "FD",
         "kind": "flip-flop",
-        "next": "FD = (NOT SHIFT/LOAD' AND D) OR (SHIFT/LOAD' AND (FC))",
+        "next": "FD = (NOT /SHIFT/LOAD AND D) OR (/SHIFT/LOAD AND (FC))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -158,8 +323,8 @@
         "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "QD'",
-        "formula": "QD' = NOT FD",
+        "pin": "/QD",
+        "formula": "/QD = NOT FD",
         "type": "totem-pole",
         "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
       }

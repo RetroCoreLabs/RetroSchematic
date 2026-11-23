@@ -22,7 +22,8 @@
   "pins": [
     {
       "pin": 1,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -68,7 +69,8 @@
     },
     {
       "pin": 8,
-      "name": "4Q'",
+      "name": "4Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -86,7 +88,8 @@
     },
     {
       "pin": 11,
-      "name": "3Q'",
+      "name": "3Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -111,7 +114,8 @@
     },
     {
       "pin": 14,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -136,7 +140,7 @@
     },
     {
       "output": "1",
-      "formula": "1Q' = NOT state1",
+      "formula": "/1Q = NOT state1",
       "text": "Inverse of 1Q."
     },
     {
@@ -146,7 +150,7 @@
     },
     {
       "output": "14",
-      "formula": "2Q' = NOT state2",
+      "formula": "/2Q = NOT state2",
       "text": "Inverse of 2Q."
     },
     {
@@ -156,7 +160,7 @@
     },
     {
       "output": "11",
-      "formula": "3Q' = NOT state3",
+      "formula": "/3Q = NOT state3",
       "text": "Inverse of 3Q."
     },
     {
@@ -166,7 +170,7 @@
     },
     {
       "output": "8",
-      "formula": "4Q' = NOT state4",
+      "formula": "/4Q = NOT state4",
       "text": "Inverse of 4Q."
     }
   ],
@@ -199,7 +203,7 @@
     },
     {
       "from": "1D",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 24,
@@ -208,7 +212,7 @@
     },
     {
       "from": "1D",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -235,7 +239,7 @@
     },
     {
       "from": "G12",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -244,7 +248,7 @@
     },
     {
       "from": "G12",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -271,7 +275,7 @@
     },
     {
       "from": "2D",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 24,
@@ -280,7 +284,7 @@
     },
     {
       "from": "2D",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -307,7 +311,7 @@
     },
     {
       "from": "G12",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -316,7 +320,7 @@
     },
     {
       "from": "G12",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -343,7 +347,7 @@
     },
     {
       "from": "3D",
-      "to": "3Q'",
+      "to": "/3Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 24,
@@ -352,7 +356,7 @@
     },
     {
       "from": "3D",
-      "to": "3Q'",
+      "to": "/3Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -379,7 +383,7 @@
     },
     {
       "from": "G34",
-      "to": "3Q'",
+      "to": "/3Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -388,7 +392,7 @@
     },
     {
       "from": "G34",
-      "to": "3Q'",
+      "to": "/3Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -415,7 +419,7 @@
     },
     {
       "from": "4D",
-      "to": "4Q'",
+      "to": "/4Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 24,
@@ -424,7 +428,7 @@
     },
     {
       "from": "4D",
-      "to": "4Q'",
+      "to": "/4Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -451,7 +455,7 @@
     },
     {
       "from": "G34",
-      "to": "4Q'",
+      "to": "/4Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -460,7 +464,7 @@
     },
     {
       "from": "G34",
-      "to": "4Q'",
+      "to": "/4Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 7,
@@ -550,8 +554,8 @@
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT L1",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT L1",
         "type": "totem-pole",
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
@@ -562,8 +566,8 @@
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT L2",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT L2",
         "type": "totem-pole",
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
@@ -574,8 +578,8 @@
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "3Q'",
-        "formula": "3Q' = NOT L3",
+        "pin": "/3Q",
+        "formula": "/3Q = NOT L3",
         "type": "totem-pole",
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
@@ -586,8 +590,8 @@
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "4Q'",
-        "formula": "4Q' = NOT L4",
+        "pin": "/4Q",
+        "formula": "/4Q = NOT L4",
         "type": "totem-pole",
         "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
       }

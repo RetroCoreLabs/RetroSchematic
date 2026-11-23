@@ -6,34 +6,132 @@
   "title": "Synchronous up/down counter",
   "package": "DIP-16",
   "sources": [
-    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54190/SN54191/SN74190/SN74191 (bulletin DL-S 7611865, Dec 1972, rev. Oct 1976)",
-     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
-     "pages": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300)", "familyUsed": "SN74191"}
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54190/SN54191/SN74190/SN74191 (bulletin DL-S 7611865, Dec 1972, rev. Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300)",
+      "familyUsed": "SN74191"
+    }
   ],
   "pins": [
-    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
-    {"pin": 8,  "name": "GND", "role": "ground"},
-    {"pin": 15, "name": "A", "role": "input", "text": "data input (preset)"},
-    {"pin": 1,  "name": "B", "role": "input", "text": "data input (preset)"},
-    {"pin": 10, "name": "C", "role": "input", "text": "data input (preset)"},
-    {"pin": 9,  "name": "D", "role": "input", "text": "data input (preset)"},
-    {"pin": 11, "name": "LOAD'", "role": "input", "async": true, "active": "low", "text": "low: QA..QD take A..D at once, independent of the clock"},
-    {"pin": 4,  "name": "G'", "role": "input", "text": "count enable, active low: high inhibits counting; change it only while CLOCK is high"},
-    {"pin": 5,  "name": "D/U'", "role": "input", "text": "down/up: low counts up, high counts down"},
-    {"pin": 14, "name": "CLOCK", "role": "clock", "edge": "rising"},
-    {"pin": 3,  "name": "QA", "role": "output", "outputType": "totem-pole"},
-    {"pin": 2,  "name": "QB", "role": "output", "outputType": "totem-pole"},
-    {"pin": 6,  "name": "QC", "role": "output", "outputType": "totem-pole"},
-    {"pin": 7,  "name": "QD", "role": "output", "outputType": "totem-pole"},
-    {"pin": 12, "name": "MAX/MIN", "role": "output", "outputType": "totem-pole"},
-    {"pin": 13, "name": "RIPPLE CLOCK'", "role": "output", "outputType": "totem-pole"}
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 15,
+      "name": "A",
+      "role": "input",
+      "text": "data input (preset)"
+    },
+    {
+      "pin": 1,
+      "name": "B",
+      "role": "input",
+      "text": "data input (preset)"
+    },
+    {
+      "pin": 10,
+      "name": "C",
+      "role": "input",
+      "text": "data input (preset)"
+    },
+    {
+      "pin": 9,
+      "name": "D",
+      "role": "input",
+      "text": "data input (preset)"
+    },
+    {
+      "pin": 11,
+      "name": "LOAD",
+      "inverted": true,
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "text": "low: QA..QD take A..D at once, independent of the clock"
+    },
+    {
+      "pin": 4,
+      "name": "G",
+      "inverted": true,
+      "role": "input",
+      "text": "count enable, active low: high inhibits counting; change it only while CLOCK is high"
+    },
+    {
+      "pin": 5,
+      "name": "D/U",
+      "inverted": true,
+      "role": "input",
+      "text": "down/up: low counts up, high counts down"
+    },
+    {
+      "pin": 14,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 3,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 2,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "MAX/MIN",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "RIPPLE CLOCK",
+      "inverted": true,
+      "role": "output",
+      "outputType": "totem-pole"
+    }
   ],
   "functions": [
-    {"output": "3,2,6,7", "formula": "QA..QD = Q[0..3]", "text": "The four counter bits (QA least significant)."},
-    {"output": "12", "formula": "MAX/MIN = (D/U' = L AND Q = 15) OR (D/U' = H AND Q = 0)",
-     "text": "High-level pulse about one full clock cycle long when the counter overflows (counting up) or underflows (counting down); the timing diagram shows it high at 15 counting up and at 0 counting down."},
-    {"output": "13", "formula": "RIPPLE CLOCK' = NOT (MAX/MIN AND G' = L AND CLOCK = L)",
-     "text": "Low-level pulse equal in width to the low part of the clock when an overflow or underflow condition exists (datasheet wording); used to cascade into the next counter's enable or clock."}
+    {
+      "output": "3,2,6,7",
+      "formula": "QA..QD = Q[0..3]",
+      "text": "The four counter bits (QA least significant)."
+    },
+    {
+      "output": "12",
+      "formula": "MAX/MIN = (/D/U = L AND Q = 15) OR (/D/U = H AND Q = 0)",
+      "text": "High-level pulse about one full clock cycle long when the counter overflows (counting up) or underflows (counting down); the timing diagram shows it high at 15 counting up and at 0 counting down."
+    },
+    {
+      "output": "13",
+      "formula": "/RIPPLE CLOCK = NOT (MAX/MIN AND /G = L AND CLOCK = L)",
+      "text": "Low-level pulse equal in width to the low part of the clock when an overflow or underflow condition exists (datasheet wording); used to cascade into the next counter's enable or clock."
+    }
   ],
   "state": {
     "bits": 4,
@@ -47,32 +145,174 @@
     ]
   },
   "electrical": {
-    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.8, "outputMaxVoltageV": null,
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
     "inputSchmitt": false,
     "notes": "SN74191: VCC 4.75-5.25 V, TA 0-70 C. Enable input IIL -4.8 mA (three loads), other inputs -1.6 mA."
   },
   "timing": [
-    {"from": "LOAD'", "to": "QA..QD", "edge": "PLH", "minNs": null, "typNs": 22, "maxNs": 33, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "LOAD'", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 33, "maxNs": 50, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "A..D", "to": "QA..QD", "edge": "PLH", "minNs": null, "typNs": 14, "maxNs": 22, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "A..D", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 35, "maxNs": 50, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "RIPPLE CLOCK'", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 20, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "RIPPLE CLOCK'", "edge": "PHL", "minNs": null, "typNs": 16, "maxNs": 24, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "QA..QD", "edge": "PLH", "minNs": null, "typNs": 16, "maxNs": 24, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 24, "maxNs": 36, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "MAX/MIN", "edge": "PLH", "minNs": null, "typNs": 28, "maxNs": 42, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "CLOCK", "to": "MAX/MIN", "edge": "PHL", "minNs": null, "typNs": 37, "maxNs": 52, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "D/U'", "to": "RIPPLE CLOCK'", "edge": "PLH", "minNs": null, "typNs": 30, "maxNs": 45, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "D/U'", "to": "RIPPLE CLOCK'", "edge": "PHL", "minNs": null, "typNs": 30, "maxNs": 45, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "D/U'", "to": "MAX/MIN", "edge": "PLH", "minNs": null, "typNs": 21, "maxNs": 33, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
-    {"from": "D/U'", "to": "MAX/MIN", "edge": "PHL", "minNs": null, "typNs": 22, "maxNs": 33, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"}
+    {
+      "from": "/LOAD",
+      "to": "QA..QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "/LOAD",
+      "to": "QA..QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 33,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A..D",
+      "to": "QA..QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A..D",
+      "to": "QA..QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "/RIPPLE CLOCK",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "/RIPPLE CLOCK",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 24,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 24,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 36,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "MAX/MIN",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 42,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "MAX/MIN",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 37,
+      "maxNs": 52,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "/D/U",
+      "to": "/RIPPLE CLOCK",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 30,
+      "maxNs": 45,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "/D/U",
+      "to": "/RIPPLE CLOCK",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 30,
+      "maxNs": 45,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "/D/U",
+      "to": "MAX/MIN",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "/D/U",
+      "to": "MAX/MIN",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
   ],
   "timingLimits": [
-    {"what": "maxClockFrequency", "pin": "CLOCK", "minMHz": 20, "typMHz": 25, "text": "fmax min 20 MHz, typ 25 MHz (switching characteristics); recommended fclock 0-20 MHz"},
-    {"what": "pulseWidth", "pin": "CLOCK", "minNs": 25},
-    {"what": "pulseWidth", "pin": "LOAD'", "minNs": 35},
-    {"what": "setup", "pin": "A..D", "ref": "LOAD'", "minNs": 20, "text": "data setup time, see datasheet figures 1 and 2"},
-    {"what": "hold", "pin": "A..D", "ref": "LOAD'", "minNs": 0}
+    {
+      "what": "maxClockFrequency",
+      "pin": "CLOCK",
+      "minMHz": 20,
+      "typMHz": 25,
+      "text": "fmax min 20 MHz, typ 25 MHz (switching characteristics); recommended fclock 0-20 MHz",
+      "ref": null
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CLOCK",
+      "minNs": 25,
+      "ref": null
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "/LOAD",
+      "minNs": 35,
+      "ref": null
+    },
+    {
+      "what": "setup",
+      "pin": "A..D",
+      "ref": "/LOAD",
+      "minNs": 20,
+      "text": "data setup time, see datasheet figures 1 and 2"
+    },
+    {
+      "what": "hold",
+      "pin": "A..D",
+      "ref": "/LOAD",
+      "minNs": 0
+    }
   ],
   "unknown": [
     "The exact gate logic of MAX/MIN and RIPPLE CLOCK' is read from the description and timing diagram, not transcribed from the block diagram.",
@@ -87,14 +327,14 @@
       {
         "name": "FA",
         "kind": "counter",
-        "next": "FA = FA XOR (G' AND ((D/U' AND 1) OR (NOT D/U' AND 1)))",
+        "next": "FA = FA XOR (/G AND ((/D/U AND 1) OR (NOT /D/U AND 1)))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "async": [
           {
-            "when": "NOT LOAD'",
+            "when": "NOT /LOAD",
             "value": "A"
           }
         ],
@@ -103,14 +343,14 @@
       {
         "name": "FB",
         "kind": "counter",
-        "next": "FB = FB XOR (G' AND ((D/U' AND NOT FA) OR (NOT D/U' AND FA)))",
+        "next": "FB = FB XOR (/G AND ((/D/U AND NOT FA) OR (NOT /D/U AND FA)))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "async": [
           {
-            "when": "NOT LOAD'",
+            "when": "NOT /LOAD",
             "value": "B"
           }
         ],
@@ -119,14 +359,14 @@
       {
         "name": "FC",
         "kind": "counter",
-        "next": "FC = FC XOR (G' AND ((D/U' AND NOT FA AND NOT FB) OR (NOT D/U' AND FA AND FB)))",
+        "next": "FC = FC XOR (/G AND ((/D/U AND NOT FA AND NOT FB) OR (NOT /D/U AND FA AND FB)))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "async": [
           {
-            "when": "NOT LOAD'",
+            "when": "NOT /LOAD",
             "value": "C"
           }
         ],
@@ -135,14 +375,14 @@
       {
         "name": "FD",
         "kind": "counter",
-        "next": "FD = FD XOR (G' AND ((D/U' AND NOT FA AND NOT FB AND NOT FC) OR (NOT D/U' AND FA AND FB AND FC)))",
+        "next": "FD = FD XOR (/G AND ((/D/U AND NOT FA AND NOT FB AND NOT FC) OR (NOT /D/U AND FA AND FB AND FC)))",
         "clock": {
           "pin": "CLOCK",
           "edge": "rising"
         },
         "async": [
           {
-            "when": "NOT LOAD'",
+            "when": "NOT /LOAD",
             "value": "D"
           }
         ],
@@ -151,7 +391,7 @@
     ],
     "internal": [
       {
-        "formula": "MAXMIN = (NOT D/U' AND FA AND FB AND FC AND FD) OR (D/U' AND NOT FA AND NOT FB AND NOT FC AND NOT FD)",
+        "formula": "MAXMIN = (NOT /D/U AND FA AND FB AND FC AND FD) OR (/D/U AND NOT FA AND NOT FB AND NOT FC AND NOT FD)",
         "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers (description and timing diagram: high at 15 counting up, at 0 counting down)"
       }
     ],
@@ -187,8 +427,8 @@
         "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "RIPPLE CLOCK'",
-        "formula": "RIPPLE CLOCK' = NOT (MAXMIN AND NOT G' AND NOT CLOCK)",
+        "pin": "/RIPPLE CLOCK",
+        "formula": "/RIPPLE CLOCK = NOT (MAXMIN AND NOT /G AND NOT CLOCK)",
         "type": "totem-pole",
         "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
       }

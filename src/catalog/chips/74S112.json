@@ -56,7 +56,8 @@
     },
     {
       "pin": 6,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -98,7 +99,8 @@
     },
     {
       "pin": 7,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -124,7 +126,7 @@
     },
     {
       "output": "6",
-      "formula": "1Q' = NOT FF1",
+      "formula": "/1Q = NOT FF1",
       "text": "Complement of flip-flop 1 (except both high while PRESET and CLEAR are both low)."
     },
     {
@@ -134,7 +136,7 @@
     },
     {
       "output": "7",
-      "formula": "2Q' = NOT FF2",
+      "formula": "/2Q = NOT FF2",
       "text": "Complement of flip-flop 2 (except both high while PRESET and CLEAR are both low)."
     }
   ],
@@ -208,22 +210,26 @@
       "what": "max clock frequency",
       "pin": "CLOCK",
       "minMHz": 80,
-      "typMHz": 125
+      "typMHz": 125,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLOCK high",
-      "minNs": 6
+      "minNs": 6,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLOCK low",
-      "minNs": 6.5
+      "minNs": 6.5,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "PRESET or CLEAR low",
-      "minNs": 8
+      "minNs": 8,
+      "ref": null
     },
     {
       "what": "setup",
@@ -297,8 +303,8 @@
         "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT FF1 OR (1PR' AND 1CLR')",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT FF1 OR (1PR' AND 1CLR')",
         "type": "totem-pole",
         "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
       },
@@ -309,8 +315,8 @@
         "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT FF2 OR (2PR' AND 2CLR')",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT FF2 OR (2PR' AND 2CLR')",
         "type": "totem-pole",
         "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
       }

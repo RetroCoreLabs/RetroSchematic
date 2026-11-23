@@ -72,7 +72,8 @@
     },
     {
       "pin": 8,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -100,7 +101,8 @@
     },
     {
       "pin": 13,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -118,7 +120,7 @@
     },
     {
       "output": "13",
-      "formula": "1Q' = NOT state1",
+      "formula": "/1Q = NOT state1",
       "text": "Inverse of 1Q."
     },
     {
@@ -128,7 +130,7 @@
     },
     {
       "output": "8",
-      "formula": "2Q' = NOT state2",
+      "formula": "/2Q = NOT state2",
       "text": "Inverse of 2Q."
     }
   ],
@@ -144,7 +146,7 @@
   "timing": [
     {
       "from": "1CLR",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -180,7 +182,7 @@
     },
     {
       "from": "1CK",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -189,7 +191,7 @@
     },
     {
       "from": "1CK",
-      "to": "1Q'",
+      "to": "/1Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 25,
@@ -198,7 +200,7 @@
     },
     {
       "from": "2CLR",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -234,7 +236,7 @@
     },
     {
       "from": "2CK",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -243,7 +245,7 @@
     },
     {
       "from": "2CK",
-      "to": "2Q'",
+      "to": "/2Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 25,
@@ -341,8 +343,8 @@
         "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT FF1",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT FF1",
         "type": "totem-pole",
         "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
@@ -353,8 +355,8 @@
         "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT FF2",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT FF2",
         "type": "totem-pole",
         "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       }

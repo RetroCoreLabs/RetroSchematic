@@ -23,9 +23,37 @@ namespace RetroSchematic.Model
         public int Number { get; set; }
 
         /// <summary>
-        /// The datasheet's name for the pin (1A, GND, 1Q').
+        /// The datasheet's name for the pin without its bar (1A, GND, 1Q). Whether the datasheet
+        /// draws a bar over it is <see cref="Inverted"/>.
         /// </summary>
         public string Name { get; set; } = "";
+
+        /// <summary>
+        /// True when the datasheet draws the name with a bar (an active-low or inverted pin: the
+        /// 7474's Q-bar is <c>Name</c> "1Q" with <c>Inverted</c> true). Shown in the chosen name
+        /// style (/1Q, ~1Q or 1Q with a small 0).
+        /// </summary>
+        public bool Inverted { get; set; }
+
+        /// <summary>
+        /// The name as formulas and the other fields of a chip file write it: <c>/NAME</c> for an
+        /// inverted pin, else the name (FORMAT.md, Pins).
+        /// </summary>
+        public string Key => KeyOf(Name, Inverted);
+
+        /// <summary>
+        /// The key of a pin name: <c>/NAME</c> when inverted, else the name.
+        /// </summary>
+        /// <param name="name">
+        /// The name without its bar.
+        /// </param>
+        /// <param name="inverted">
+        /// True when the datasheet draws a bar over it.
+        /// </param>
+        /// <returns>
+        /// The key.
+        /// </returns>
+        public static string KeyOf(string name, bool inverted) => inverted ? "/" + name : name;
 
         /// <summary>
         /// The pin's role from catalog/chips/FORMAT.md (input, output, power, ground, clock, ...).
@@ -187,6 +215,7 @@ namespace RetroSchematic.Model
                 {
                     Number = p.GetProperty("pin").GetInt32(),
                     Name = p.TryGetProperty("name", out JsonElement n) ? n.GetString() ?? "" : "",
+                    Inverted = p.TryGetProperty("inverted", out JsonElement inv) && inv.ValueKind == JsonValueKind.True,
                     Role = p.TryGetProperty("role", out JsonElement r) ? r.GetString() ?? "" : "",
                     OutputType = p.TryGetProperty("outputType", out JsonElement ot) ? ot.GetString() ?? "" : "",
                 });
@@ -280,7 +309,7 @@ namespace RetroSchematic.Model
         {
             for (int i = 0; i < pins.Count; i++)
             {
-                if (pins[i].Name == name && (pins[i].Role == "input" || pins[i].Role == "clock" || pins[i].Role == "enable"))
+                if (pins[i].Key == name && (pins[i].Role == "input" || pins[i].Role == "clock" || pins[i].Role == "enable"))
                     return pins[i].Number;
             }
             return -1;

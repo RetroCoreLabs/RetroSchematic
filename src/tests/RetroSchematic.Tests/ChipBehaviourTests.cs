@@ -47,7 +47,10 @@ namespace RetroSchematic.Tests
             JsonElement ps = root.GetProperty("pins");
             for (int i = 0; i < ps.GetArrayLength(); i++)
             {
+                // an inverted pin (a bar in the datasheet) is named /NAME in formulas
                 string name = ps[i].GetProperty("name").GetString()!;
+                if (ps[i].TryGetProperty("inverted", out JsonElement inv) && inv.ValueKind == JsonValueKind.True)
+                    name = "/" + name;
                 pins.Add(name);
                 if (ps[i].TryGetProperty("role", out JsonElement r) && r.GetString() == "output")
                     outputs.Add(name);
@@ -138,15 +141,15 @@ namespace RetroSchematic.Tests
                         Dictionary<string, bool> v = new();
                         for (int k = 0; k < 4; k++)
                         {
-                            v["A" + k + "'"] = ((a >> k) & 1) != 0;
-                            v["B" + k + "'"] = ((bb >> k) & 1) != 0;
+                            v["/A" + k] = ((a >> k) & 1) != 0;
+                            v["/B" + k] = ((bb >> k) & 1) != 0;
                             v["S" + k] = ((rows[r, 0] >> k) & 1) != 0;
                         }
                         v["M"] = rows[r, 1] != 0;
                         v["Cn"] = rows[r, 2] != 0;
                         for (int s = 0; s < steps.Count; s++)
                             v[steps[s].Target] = steps[s].Expression.Evaluate(v);
-                        int f = (v["F0'"] ? 1 : 0) | (v["F1'"] ? 2 : 0) | (v["F2'"] ? 4 : 0) | (v["F3'"] ? 8 : 0);
+                        int f = (v["/F0"] ? 1 : 0) | (v["/F1"] ? 2 : 0) | (v["/F2"] ? 4 : 0) | (v["/F3"] ? 8 : 0);
                         int want = rows[r, 3] switch
                         {
                             0 => (a + bb) & 15,

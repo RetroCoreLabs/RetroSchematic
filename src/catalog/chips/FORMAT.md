@@ -58,10 +58,20 @@ and the electrical figures. Every fact comes from a datasheet that was actually 
 A clear, preset, load or reset input that acts at once (not on a clock edge) is `input` with
 `"async": true` and `active`. An output that is three-state names its enable pin in `enabledBy`.
 
+**A name the datasheet draws with a bar** (Q-bar, CLR-bar, G0-bar) is stored as its base name
+and `"inverted": true`: `{"pin": 6, "name": "1Q", "inverted": true, "role": "output"}`. The
+name itself never holds a ' or a /. Everywhere else in the file - formulas, `behaviour` pin
+fields, `timing` `from`/`to` - that pin is written `/NAME` (`/1Q = NOT FF1`), so the 7474's
+1Q and Q-bar stay two different names. A ' after a name in a formula still means NOT. The
+viewer shows an inverted pin in the chosen name style: `/1Q` (the default), `~1Q`, or `1Q` with
+a small 0. The change from the old `1Q'` names was made by script on 2026-11-23
+(`docs/pin-rename-2026-11-23.md` lists every change); `ChipPinNameTests` checks that every
+formula still gives the truth table it gave before.
+
 ## Functions
 
 One entry per output pin (or per group of identical outputs). `formula` uses `AND`, `OR`, `XOR`,
-`NOT`, and `X'` for NOT X, with the datasheet's pin names. `text` says the same in plain words. A
+`NOT`, and `X'` for NOT X, with the datasheet's pin names (`/NAME` for a pin drawn with a bar, see Pins). `text` says the same in plain words. A
 part with stored state (flip-flop, counter, register, memory, one-shot) says in `formula` what the
 output is FROM the state, and describes in `state` how the state changes:
 

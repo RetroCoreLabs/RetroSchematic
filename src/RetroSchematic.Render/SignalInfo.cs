@@ -340,7 +340,7 @@ namespace RetroSchematic.Render
             string? firstType = null;
             for (int i = 0; i < net.Pins.Count; i++)
             {
-                SignalPin p = PinOf(editor, net.Pins[i]);
+                SignalPin p = PinOf(editor, net.Pins[i], style);
                 s.Pins.Add(p);
                 if (p.Drives)
                 {
@@ -595,7 +595,7 @@ namespace RetroSchematic.Render
 
         private static string ConfidenceWord(Confidence c) => c == Confidence.Read ? "read" : c == Confidence.Inferred ? "inferred" : "open";
 
-        private static SignalPin PinOf(SheetEditor editor, PinReference r)
+        private static SignalPin PinOf(SheetEditor editor, PinReference r, SignalNameStyle style)
         {
             string at = r.At;
             int dot = at.LastIndexOf('.');
@@ -619,7 +619,7 @@ namespace RetroSchematic.Render
             {
                 ChipPin cp = chip.Pins[i];
                 if (cp.Number == number)
-                    return new SignalPin { At = at, ChipType = part.Type, PinName = cp.Name, Role = cp.Role, OutputType = cp.OutputType, Confidence = r.Confidence };
+                    return new SignalPin { At = at, ChipType = part.Type, PinName = SignalNames.PinLine(cp, style), Role = cp.Role, OutputType = cp.OutputType, Confidence = r.Confidence };
             }
             return new SignalPin { At = at, ChipType = part.Type, Confidence = r.Confidence };
         }

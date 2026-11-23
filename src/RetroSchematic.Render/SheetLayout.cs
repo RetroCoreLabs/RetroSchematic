@@ -443,12 +443,15 @@ namespace RetroSchematic.Render
                 ChipInfo? chip = options.Catalog?.Get(part.Type);
                 List<int> numbers = new();
                 List<string> names = new();
+                List<string> subs = new();
                 if (chip != null)
                 {
                     for (int i = 0; i < chip.Pins.Count; i++)
                     {
                         numbers.Add(chip.Pins[i].Number);
-                        names.Add(chip.Pins[i].Name);
+                        // an inverted pin in the chosen name style (/1Q, ~1Q, 1Q with a small 0)
+                        names.Add(SignalNames.Pin(chip.Pins[i], options.NameStyle, out string sub));
+                        subs.Add(sub);
                     }
                 }
                 else
@@ -459,13 +462,14 @@ namespace RetroSchematic.Render
                         {
                             numbers.Add(pin);
                             names.Add("");
+                            subs.Add("");
                         }
                     }
                 }
                 int left = (numbers.Count + 1) / 2;
                 double nameWidth = 0;
                 for (int i = 0; i < names.Count; i++)
-                    nameWidth = Math.Max(nameWidth, TextWidth(names[i], "", PinFont));
+                    nameWidth = Math.Max(nameWidth, TextWidth(names[i], subs[i], PinFont));
                 plan.Width = Snap(Math.Max(48, (2 * nameWidth) + 24));
                 plan.Height = Snap((left + 1) * PinPitch);
                 for (int i = 0; i < numbers.Count; i++)
@@ -475,6 +479,7 @@ namespace RetroSchematic.Render
                     PinPlan p = AddPin(plan, part, numbers[i], onLeft ? -1 : 1, onLeft ? -PinOut : plan.Width + PinOut,
                         (row + 1) * PinPitch, "part:" + part.Ref, netByPin);
                     p.Name = names[i];
+                    p.NameSubscript = subs[i];
                 }
             }
 
@@ -1076,9 +1081,10 @@ namespace RetroSchematic.Render
                 }
                 if (p.Name.Length > 0)
                 {
-                    Text(d, DrawRole.PinName, plan.Part.Confidence, "pin:" + p.At,
+                    DrawItem pn = Text(d, DrawRole.PinName, plan.Part.Confidence, "pin:" + p.At,
                         p.Side < 0 ? plan.X + 3 : plan.X + plan.Width - 3, p.Y + 2.5, p.Name, PinFont,
                         p.Side < 0 ? TextAnchor.Start : TextAnchor.End);
+                    pn.Subscript = p.NameSubscript;
                 }
                 PinDot(d, p.At, p.X, p.Y);
             }
@@ -1380,6 +1386,9 @@ namespace RetroSchematic.Render
             public double X, Y;
             public string Owner = "";
             public string Name = "";
+
+            // the small 0 after an inverted pin's name in subscript style, else empty
+            public string NameSubscript = "";
             public Net? Net;
             public Confidence Confidence;
         }

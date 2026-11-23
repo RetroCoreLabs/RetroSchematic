@@ -757,7 +757,7 @@ namespace RetroSchematic.Render
             if (chip != null)
             {
                 for (int i = 0; i < chip.Pins.Count; i++)
-                    AppendPinLine(sb, p.Ref, chip.Pins[i].Number, chip.Pins[i].Name);
+                    AppendPinLine(sb, p.Ref, chip.Pins[i].Number, SignalNames.PinLine(chip.Pins[i], _options.NameStyle));
             }
             else
             {
@@ -938,7 +938,7 @@ namespace RetroSchematic.Render
                 for (int i = 0; i < chip.Pins.Count; i++)
                 {
                     if (chip.Pins[i].Number == number)
-                        sb.Append(": ").Append(chip.Pins[i].Name).Append(" (").Append(chip.Pins[i].Role).Append(')');
+                        sb.Append(": ").Append(SignalNames.PinLine(chip.Pins[i], _options.NameStyle)).Append(" (").Append(chip.Pins[i].Role).Append(')');
                 }
             }
             sb.Append('\n');

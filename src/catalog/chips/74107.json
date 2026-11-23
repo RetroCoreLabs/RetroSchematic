@@ -57,7 +57,8 @@
     },
     {
       "pin": 2,
-      "name": "1Q'",
+      "name": "1Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -93,7 +94,8 @@
     },
     {
       "pin": 6,
-      "name": "2Q'",
+      "name": "2Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     }
@@ -106,7 +108,7 @@
     },
     {
       "output": "2",
-      "formula": "1Q' = NOT FF1",
+      "formula": "/1Q = NOT FF1",
       "text": "Complement output."
     },
     {
@@ -116,7 +118,7 @@
     },
     {
       "output": "6",
-      "formula": "2Q' = NOT FF2",
+      "formula": "/2Q = NOT FF2",
       "text": "Complement output."
     }
   ],
@@ -179,22 +181,26 @@
       "what": "max clock frequency",
       "pin": "CLK",
       "minMHz": 15,
-      "typMHz": 20
+      "typMHz": 20,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLK high",
-      "minNs": 20
+      "minNs": 20,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLK low",
-      "minNs": 47
+      "minNs": 47,
+      "ref": null
     },
     {
       "what": "pulse width",
       "pin": "CLR low",
-      "minNs": 25
+      "minNs": 25,
+      "ref": null
     },
     {
       "what": "setup",
@@ -252,8 +258,8 @@
         "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
       {
-        "pin": "1Q'",
-        "formula": "1Q' = NOT FF1",
+        "pin": "/1Q",
+        "formula": "/1Q = NOT FF1",
         "type": "totem-pole",
         "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
@@ -264,8 +270,8 @@
         "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
       {
-        "pin": "2Q'",
-        "formula": "2Q' = NOT FF2",
+        "pin": "/2Q",
+        "formula": "/2Q = NOT FF2",
         "type": "totem-pole",
         "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       }

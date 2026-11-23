@@ -33,13 +33,15 @@
     },
     {
       "pin": 1,
-      "name": "K'",
+      "name": "K",
+      "inverted": true,
       "role": "input",
       "text": "serial input (inverted K)"
     },
     {
       "pin": 23,
-      "name": "SHIFT/LOAD'",
+      "name": "SHIFT/LOAD",
+      "inverted": true,
       "role": "input",
       "text": "low: parallel load; high: shift QA toward QH"
     },
@@ -98,7 +100,8 @@
     },
     {
       "pin": 14,
-      "name": "CLEAR'",
+      "name": "CLEAR",
+      "inverted": true,
       "role": "input",
       "async": true,
       "active": "low"
@@ -182,7 +185,7 @@
   },
   "timing": [
     {
-      "from": "CLEAR'",
+      "from": "/CLEAR",
       "to": "QA..QH",
       "edge": "PHL",
       "minNs": null,
@@ -215,16 +218,18 @@
       "pin": "CLOCK",
       "minMHz": 25,
       "typMHz": 35,
-      "text": "recommended fclock 0-25 MHz"
+      "text": "recommended fclock 0-25 MHz",
+      "ref": null
     },
     {
       "what": "pulseWidth",
       "pin": "CLOCK or CLEAR'",
-      "minNs": 20
+      "minNs": 20,
+      "ref": null
     },
     {
       "what": "setup",
-      "pin": "SHIFT/LOAD'",
+      "pin": "/SHIFT/LOAD",
       "ref": "CLOCK",
       "minNs": 30,
       "text": "mode-control setup time"
@@ -254,13 +259,13 @@
       {
         "name": "FA",
         "kind": "flip-flop",
-        "next": "FA = (NOT SHIFT/LOAD' AND A) OR (SHIFT/LOAD' AND ((J AND NOT FA) OR (K' AND FA)))",
+        "next": "FA = (NOT /SHIFT/LOAD AND A) OR (/SHIFT/LOAD AND ((J AND NOT FA) OR (/K AND FA)))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -268,13 +273,13 @@
       {
         "name": "FB",
         "kind": "flip-flop",
-        "next": "FB = (NOT SHIFT/LOAD' AND B) OR (SHIFT/LOAD' AND (FA))",
+        "next": "FB = (NOT /SHIFT/LOAD AND B) OR (/SHIFT/LOAD AND (FA))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -282,13 +287,13 @@
       {
         "name": "FC",
         "kind": "flip-flop",
-        "next": "FC = (NOT SHIFT/LOAD' AND C) OR (SHIFT/LOAD' AND (FB))",
+        "next": "FC = (NOT /SHIFT/LOAD AND C) OR (/SHIFT/LOAD AND (FB))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -296,13 +301,13 @@
       {
         "name": "FD",
         "kind": "flip-flop",
-        "next": "FD = (NOT SHIFT/LOAD' AND D) OR (SHIFT/LOAD' AND (FC))",
+        "next": "FD = (NOT /SHIFT/LOAD AND D) OR (/SHIFT/LOAD AND (FC))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -310,13 +315,13 @@
       {
         "name": "FE",
         "kind": "flip-flop",
-        "next": "FE = (NOT SHIFT/LOAD' AND E) OR (SHIFT/LOAD' AND (FD))",
+        "next": "FE = (NOT /SHIFT/LOAD AND E) OR (/SHIFT/LOAD AND (FD))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -324,13 +329,13 @@
       {
         "name": "FF",
         "kind": "flip-flop",
-        "next": "FF = (NOT SHIFT/LOAD' AND F) OR (SHIFT/LOAD' AND (FE))",
+        "next": "FF = (NOT /SHIFT/LOAD AND F) OR (/SHIFT/LOAD AND (FE))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -338,13 +343,13 @@
       {
         "name": "FG",
         "kind": "flip-flop",
-        "next": "FG = (NOT SHIFT/LOAD' AND G) OR (SHIFT/LOAD' AND (FF))",
+        "next": "FG = (NOT /SHIFT/LOAD AND G) OR (/SHIFT/LOAD AND (FF))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
@@ -352,13 +357,13 @@
       {
         "name": "FH",
         "kind": "flip-flop",
-        "next": "FH = (NOT SHIFT/LOAD' AND H) OR (SHIFT/LOAD' AND (FG))",
+        "next": "FH = (NOT /SHIFT/LOAD AND H) OR (/SHIFT/LOAD AND (FG))",
         "clock": {
           "when": "CLOCK OR CLOCK INHIBIT",
           "edge": "rising"
         },
         "clear": {
-          "pin": "CLEAR'",
+          "pin": "/CLEAR",
           "active": "low"
         },
         "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"

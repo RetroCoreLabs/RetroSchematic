@@ -137,7 +137,7 @@ namespace RetroSchematic.Render
                 List<ChipPin> pins = new(chip.Pins);
                 pins.Sort((a, b) => a.Number.CompareTo(b.Number));
                 for (int i = 0; i < pins.Count; i++)
-                    info.Pins.Add(Row(editor, p.Ref, pins[i].Number, pins[i].Name, SignalPin.DirectionOf(pins[i].Role), style));
+                    info.Pins.Add(Row(editor, p.Ref, pins[i].Number, SignalNames.PinLine(pins[i], style), SignalPin.DirectionOf(pins[i].Role), style));
                 return info;
             }
             // no chip file: the pins that are on a signal, in number order

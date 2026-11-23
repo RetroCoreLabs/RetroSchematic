@@ -135,7 +135,7 @@ namespace RetroSchematic.Render
                     svg.Append(Escape(it.Text));
                     // the 0/1 level subscript: big enough to read, never smaller than 8
                     if (it.Subscript.Length > 0)
-                        svg.Append(CultureInfo.InvariantCulture, $"<tspan baseline-shift=\"sub\" font-size=\"{Math.Max(8, it.FontSize * 0.8):0.#}\">").Append(Escape(it.Subscript)).Append("</tspan>");
+                        svg.Append(CultureInfo.InvariantCulture, $"<tspan baseline-shift=\"sub\" font-size=\"{DrawItem.SubscriptSize(it.FontSize):0.#}\">").Append(Escape(it.Subscript)).Append("</tspan>");
                     svg.Append("</text>\n");
                     break;
             }

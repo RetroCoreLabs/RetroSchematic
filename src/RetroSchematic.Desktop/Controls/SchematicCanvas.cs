@@ -753,7 +753,7 @@ namespace RetroSchematic.Desktop.Controls
             // the 0/1 level subscript: big enough to read, the same size as in the SVG
             FormattedText? sub = it.Subscript.Length == 0 ? null
                 : new FormattedText(it.Subscript, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, it.Bold || bold ? s_monoBold : s_mono,
-                    Math.Max(8, it.FontSize * 0.8), brush);
+                    DrawItem.SubscriptSize(it.FontSize), brush);
             double width = main.WidthIncludingTrailingWhitespace + (sub?.WidthIncludingTrailingWhitespace ?? 0);
             double left = it.Anchor == TextAnchor.Start ? it.X1 : it.Anchor == TextAnchor.Middle ? it.X1 - (width / 2) : it.X1 - width;
             context.DrawText(main, new Point(left, it.Y1 - main.Baseline));

@@ -52,7 +52,8 @@
     },
     {
       "pin": 1,
-      "name": "Q'",
+      "name": "Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -103,7 +104,7 @@
     },
     {
       "output": "1",
-      "formula": "Q' = NOT PULSE",
+      "formula": "/Q = NOT PULSE",
       "text": "Complement of Q."
     }
   ],
@@ -146,7 +147,7 @@
     },
     {
       "from": "A1 or A2",
-      "to": "Q'",
+      "to": "/Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 50,
@@ -155,7 +156,7 @@
     },
     {
       "from": "B",
-      "to": "Q'",
+      "to": "/Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 40,
@@ -167,7 +168,8 @@
     {
       "what": "pulse width",
       "pin": "A1, A2, B (input pulse)",
-      "minNs": 50
+      "minNs": 50,
+      "ref": null
     },
     {
       "what": "output pulse width",
@@ -175,14 +177,16 @@
       "minNs": 70,
       "typNs": 110,
       "maxNs": 150,
-      "text": "Cext 80 pF, Rint to VCC"
+      "text": "Cext 80 pF, Rint to VCC",
+      "ref": null
     },
     {
       "what": "output pulse width",
       "pin": "Q",
       "typNs": 30,
       "maxNs": 50,
-      "text": "Cext 0, Rint to VCC"
+      "text": "Cext 0, Rint to VCC",
+      "ref": null
     },
     {
       "what": "output pulse width",
@@ -190,7 +194,8 @@
       "minNs": 600,
       "typNs": 700,
       "maxNs": 800,
-      "text": "Cext 100 pF, RT 10 kOhm"
+      "text": "Cext 100 pF, RT 10 kOhm",
+      "ref": null
     },
     {
       "what": "output pulse width",
@@ -198,7 +203,8 @@
       "minNs": 6000000,
       "typNs": 7000000,
       "maxNs": 8000000,
-      "text": "Cext 1 uF, RT 10 kOhm (6, 7, 8 ms)"
+      "text": "Cext 1 uF, RT 10 kOhm (6, 7, 8 ms)",
+      "ref": null
     }
   ],
   "unknown": [
@@ -229,8 +235,8 @@
         "source": "1, 3, 4 - TI SN54121"
       },
       {
-        "pin": "Q'",
-        "formula": "Q' = NOT P",
+        "pin": "/Q",
+        "formula": "/Q = NOT P",
         "type": "totem-pole",
         "source": "1, 3, 4 - TI SN54121"
       }

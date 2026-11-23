@@ -53,7 +53,8 @@
     },
     {
       "pin": 6,
-      "name": "Q'",
+      "name": "Q",
+      "inverted": true,
       "role": "output",
       "outputType": "totem-pole"
     },
@@ -115,7 +116,7 @@
     },
     {
       "output": "6",
-      "formula": "Q' = NOT state",
+      "formula": "/Q = NOT state",
       "text": "Q' is the inverse of the stored bit (both high while PR and CLR are both low)."
     }
   ],
@@ -143,7 +144,7 @@
     },
     {
       "from": "PR",
-      "to": "Q'",
+      "to": "/Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 25,
@@ -152,7 +153,7 @@
     },
     {
       "from": "CLR",
-      "to": "Q'",
+      "to": "/Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -188,7 +189,7 @@
     },
     {
       "from": "CK",
-      "to": "Q'",
+      "to": "/Q",
       "edge": "PLH",
       "minNs": null,
       "typNs": 16,
@@ -197,7 +198,7 @@
     },
     {
       "from": "CK",
-      "to": "Q'",
+      "to": "/Q",
       "edge": "PHL",
       "minNs": null,
       "typNs": 25,
@@ -292,8 +293,8 @@
         "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       },
       {
-        "pin": "Q'",
-        "formula": "Q' = NOT FF1 OR (PR' AND CLR')",
+        "pin": "/Q",
+        "formula": "/Q = NOT FF1 OR (PR' AND CLR')",
         "type": "totem-pole",
         "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
       }
