@@ -183,3 +183,26 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
 - 2A50 signals the reading document does not explain (DEQL, OSC, the SMN switch lines, the
   numbered N_ nets and others) have no description; a backplane signal among them shows the bus
   catalogue's text.
+
+## 9. Logic simulator and its MCP tools
+
+Built after the chip behaviour data in section 2, because it runs on it.
+
+- An event-driven engine in the library, run from the chip behaviour fields: the formulas, clock
+  edges, set and clear pins, output enable, and open-collector lines pulled up as wired AND.
+  It uses X for unknown values and for conflicts. The datasheet delays are optional. The
+  window's run and step buttons use the same engine.
+- MCP tools:
+  - `sim_reset`, `sim_set_pin`: set a connector pin (`P.n`, `F.n`, later ND-100 rows) or any
+    signal to 0, 1 or not driven;
+  - `sim_read`: one signal, one chip pin, or every signal and chip at once, each with its value
+    and what drives it;
+  - `sim_run_script`: steps that set pins, wait a time or "until stable", pulse a pin (a strobe
+    low for 100 ns), and read or expect values. It returns a table per step and a timing record
+    of chosen signals, with a VCD file for a waveform viewer;
+  - `sim_expect`: fails loudly when a value is wrong.
+- A part with no model (COM2601) has unknown outputs unless the script sets them as test
+  inputs, and the result says so.
+- Test: an IOX write on 2A50. Set BA0-9 to the device address and BD0-15 to 2215 octal, pulse
+  IOXE low, then read the IRFTIE, IERRIE and TEST flip-flops and LEV12. They must come out as
+  `docs/2A50-reading.md` says.

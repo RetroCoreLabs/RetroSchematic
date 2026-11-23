@@ -77,9 +77,14 @@ namespace RetroSchematic.Desktop.Controls
 
         private bool _panned;
 
-        // the trace pulse: a redraw about 25 times a second while a signal is traced. The level
-        // itself (how bright, at what moment) is SheetSession.PulseLevel in the library.
-        private readonly DispatcherTimer _pulse;
+        // the trace pulse: while a signal is traced, each drawn frame asks for the next one
+        // (RequestAnimationFrame), so the pulse runs at the screen's pace and never asks for
+        // more frames than get drawn. A fixed 40 ms timer at Render priority did that before:
+        // on a big sheet a frame takes longer than 40 ms, the queue never emptied, and input
+        // waited behind it (docs/BUGS.md B1). The level itself (how bright, at what moment) is
+        // SheetSession.PulseLevel in the library.
+        private bool _framePending;
+        private bool _tracePulse = true;
 
         // the hover text shows after the pointer rests on one item for about 400 ms
         private readonly DispatcherTimer _hover;
@@ -93,11 +98,6 @@ namespace RetroSchematic.Desktop.Controls
         {
             ClipToBounds = true;
             Focusable = true;
-            _pulse = new DispatcherTimer(TimeSpan.FromMilliseconds(40), DispatcherPriority.Render, (s, e) =>
-            {
-                if (TracePulse && _session != null && _session.Traced.Length > 0)
-                    InvalidateVisual();
-            });
             _hover = new DispatcherTimer(TimeSpan.FromMilliseconds(400), DispatcherPriority.Normal, (s, e) =>
             {
                 ((DispatcherTimer)s!).Stop();
@@ -150,20 +150,27 @@ namespace RetroSchematic.Desktop.Controls
         /// <summary>
         /// True to make a traced signal pulse; false shows it still (a setting).
         /// </summary>
-        public bool TracePulse { get; set; } = true;
+        public bool TracePulse
+        {
+            get => _tracePulse;
+            set
+            {
+                _tracePulse = value;
+                InvalidateVisual();
+            }
+        }
 
         /// <inheritdoc/>
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnAttachedToVisualTree(e);
-            _pulse.Start();
         }
 
         /// <inheritdoc/>
         protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
         {
             base.OnDetachedFromVisualTree(e);
-            _pulse.Stop();
+            _framePending = false;
         }
 
         /// <summary>
@@ -278,6 +285,29 @@ namespace RetroSchematic.Desktop.Controls
         }
 
         /// <summary>
+        /// The drawing point in the middle of the control now (for Back / Forward).
+        /// </summary>
+        public Point ViewCentre => new(((Bounds.Width / 2) - _offset.X) / _zoom, ((Bounds.Height / 2) - _offset.Y) / _zoom);
+
+        /// <summary>
+        /// Puts the view back where it was: a zoom and the drawing point in the middle.
+        /// </summary>
+        /// <param name="x">
+        /// Point X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Point Y in drawing units.
+        /// </param>
+        /// <param name="zoom">
+        /// The zoom factor.
+        /// </param>
+        public void SetView(double x, double y, double zoom)
+        {
+            _zoom = Math.Clamp(zoom, MinZoom, MaxZoom);
+            CentreOn(x, y);
+        }
+
+        /// <summary>
         /// Zooms by a factor, keeping the drawing point under <paramref name="screen"/> still.
         /// </summary>
         /// <param name="screen">
@@ -331,6 +361,7 @@ namespace RetroSchematic.Desktop.Controls
                 return;
             using (context.PushTransform(Matrix.CreateScale(_zoom, _zoom) * Matrix.CreateTranslation(_offset.X, _offset.Y)))
                 DrawSheet(context, true);
+            NextPulseFrame();
         }
 
         /// <summary>
@@ -742,6 +773,22 @@ namespace RetroSchematic.Desktop.Controls
         private void OnThemeChanged(object? sender, EventArgs e) => InvalidateVisual();
 
         private void OnDrawingChanged(SheetSession session) => InvalidateVisual();
+
+        // after a frame is drawn: while a signal pulses, ask for one more frame
+        private void NextPulseFrame()
+        {
+            if (_framePending || !_tracePulse || _session == null || _session.Traced.Length == 0)
+                return;
+            TopLevel? top = TopLevel.GetTopLevel(this);
+            if (top == null)
+                return;
+            _framePending = true;
+            top.RequestAnimationFrame(_ =>
+            {
+                _framePending = false;
+                InvalidateVisual();
+            });
+        }
 
         private void OnSelectionChanged(SheetSession session, string owner) => InvalidateVisual();
     }

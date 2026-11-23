@@ -132,15 +132,19 @@ namespace RetroSchematic.Desktop.Tests
             string? folder = System.Environment.GetEnvironmentVariable("RETROSCHEMATIC_PANEL_PNG");
             if (string.IsNullOrEmpty(folder))
                 return;
+            Controls.SchematicCanvas canvas = w.FindControl<Controls.SchematicCanvas>("Canvas")!;
+            canvas.TracePulse = false;
             string[] themes = { "Light", "Dark" };
             for (int i = 0; i < themes.Length; i++)
             {
+                // CaptureRenderedFrame renders the frame itself. Pumping the dispatcher here first
+                // (RunJobs) ran a render tick that sometimes never came back (see docs/BUGS.md B1).
                 ThemeManager.Instance.Apply(themes[i], persist: false);
-                Avalonia.Threading.Dispatcher.UIThread.RunJobs();
                 using Avalonia.Media.Imaging.WriteableBitmap? frame = w.CaptureRenderedFrame();
                 frame?.Save(Path.Combine(folder, name + "-" + themes[i].ToLowerInvariant() + ".png"));
             }
             ThemeManager.Instance.Apply("Light", persist: false);
+            canvas.TracePulse = true;
         }
     }
 }
