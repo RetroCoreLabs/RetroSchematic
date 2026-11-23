@@ -49,6 +49,12 @@ namespace RetroSchematic.Render
         /// the pins that are on a signal.
         /// </summary>
         public ChipCatalog? Catalog { get; set; }
+
+        /// <summary>
+        /// Draw an arrow on every port pin of an instance box: into the box for an input, out
+        /// for an output, both ways for an inout.
+        /// </summary>
+        public bool ShowPortArrows { get; set; } = true;
     }
 
     /// <summary>
@@ -146,6 +152,9 @@ namespace RetroSchematic.Render
         /// </returns>
         public static SchematicDrawing Build(Netlist netlist, SymbolStyle style, LayoutOptions options)
         {
+            // an instance's port ends take part in the drawing as pins of their signals; a copy
+            // of the sheet carries them, so the sheet itself is never changed
+            netlist = WithPortEnds(netlist);
             Dictionary<string, Net> netByPin = new(StringComparer.Ordinal);
             Dictionary<string, PinReference> pinRef = new(StringComparer.Ordinal);
             for (int i = 0; i < netlist.Nets.Count; i++)
@@ -171,6 +180,13 @@ namespace RetroSchematic.Render
                 right = Math.Max(right, plans[i].X + plans[i].Width + plans[i].RightReach);
                 bottom = Math.Max(bottom, plans[i].Y + plans[i].Height + 12);
             }
+            // instance boxes: at their position, or in a row below everything else
+            List<InstancePlan> boxes = PlaceInstances(netlist, plans, netByPin, bottom);
+            for (int i = 0; i < boxes.Count; i++)
+            {
+                right = Math.Max(right, boxes[i].X + boxes[i].Width + boxes[i].RightReach);
+                bottom = Math.Max(bottom, boxes[i].Y + boxes[i].Height + boxes[i].BottomReach + 12);
+            }
             SchematicDrawing d = new(Snap(right + Margin), Snap(bottom + Margin));
             Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
                 netlist.Sheet.Id + "  " + netlist.Sheet.Title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
@@ -188,6 +204,11 @@ namespace RetroSchematic.Render
                     pinPlans[p.At] = p;
                 }
             }
+            for (int i = 0; i < boxes.Count; i++)
+            {
+                for (int j = 0; j < boxes[i].Pins.Count; j++)
+                    pinPlans[boxes[i].Pins[j].At] = boxes[i].Pins[j];
+            }
             // signals on a virtual bus join the bus instead of getting their own wire
             HashSet<Net> onBus = BusMembers(netlist);
             List<Net> candidates = WireCandidates(netlist, pinPlans);
@@ -203,6 +224,8 @@ namespace RetroSchematic.Render
                 d.Frames[plans[i].Part.Ref] = new PartFrame(plans[i].X, plans[i].Y, plans[i].Width, plans[i].Height);
                 DrawPart(d, plans[i], style, options);
             }
+            for (int i = 0; i < boxes.Count; i++)
+                DrawInstance(d, netlist, boxes[i], options);
 
             // 5. route the short signals round everything drawn so far and every label's room
             HashSet<string> busPins = new(StringComparer.Ordinal);

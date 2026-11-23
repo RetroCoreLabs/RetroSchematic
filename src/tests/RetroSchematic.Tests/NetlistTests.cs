@@ -52,8 +52,9 @@ namespace RetroSchematic.Tests
         [Test]
         public void UnknownVersion_IsRefused()
         {
-            NetlistException e = Assert.Throws<NetlistException>(() => NetlistReader.Parse(Minimal.Replace("\"formatVersion\":1", "\"formatVersion\":2", StringComparison.Ordinal)))!;
-            Assert.That(e.Message, Does.Contain("version 2"));
+            // version 2 (blocks) is known since the blocks work; 3 is the first unknown one
+            NetlistException e = Assert.Throws<NetlistException>(() => NetlistReader.Parse(Minimal.Replace("\"formatVersion\":1", "\"formatVersion\":3", StringComparison.Ordinal)))!;
+            Assert.That(e.Message, Does.Contain("version 3"));
         }
 
         [Test]

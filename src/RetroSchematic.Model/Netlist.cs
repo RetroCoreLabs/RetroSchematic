@@ -164,6 +164,195 @@ namespace RetroSchematic.Model
         /// Drawing only - it never changes what is connected to what.
         /// </summary>
         public SheetLayoutSection? Layout { get; set; }
+
+        /// <summary>
+        /// Block definitions (format version 2), or null for none. Each is a Verilog module.
+        /// </summary>
+        public List<BlockDefinition>? Blocks { get; set; }
+
+        /// <summary>
+        /// Instances of blocks on this level (format version 2), or null for none.
+        /// </summary>
+        public List<BlockInstance>? Instances { get; set; }
+    }
+
+    /// <summary>
+    /// Which way a block port carries its signal, seen from inside the block.
+    /// </summary>
+    public enum PortDirection
+    {
+        /// <summary>
+        /// Into the block.
+        /// </summary>
+        Input,
+
+        /// <summary>
+        /// Out of the block.
+        /// </summary>
+        Output,
+
+        /// <summary>
+        /// Both ways (a bus line, or a line driven both inside and outside).
+        /// </summary>
+        Inout,
+    }
+
+    /// <summary>
+    /// The edge of an instance box a port pin is drawn on.
+    /// </summary>
+    public enum PortSide
+    {
+        /// <summary>
+        /// The left edge.
+        /// </summary>
+        Left,
+
+        /// <summary>
+        /// The right edge.
+        /// </summary>
+        Right,
+
+        /// <summary>
+        /// The top edge.
+        /// </summary>
+        Top,
+
+        /// <summary>
+        /// The bottom edge.
+        /// </summary>
+        Bottom,
+    }
+
+    /// <summary>
+    /// A signal named on one level: its name and, when two signals share it, its level.
+    /// </summary>
+    public sealed class SignalRef
+    {
+        /// <summary>
+        /// The signal's name.
+        /// </summary>
+        public string Net { get; set; } = "";
+
+        /// <summary>
+        /// Its level; null matches the first signal of that name.
+        /// </summary>
+        public ActiveLevel? Active { get; set; }
+    }
+
+    /// <summary>
+    /// A block definition (a Verilog module): its ports and its inside, used by name from any
+    /// number of instances.
+    /// </summary>
+    public sealed class BlockDefinition
+    {
+        /// <summary>
+        /// The block's name, unique in the file.
+        /// </summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>
+        /// The connections to the level above, in order.
+        /// </summary>
+        public List<BlockPort> Ports { get; set; } = new();
+
+        /// <summary>
+        /// The chips inside.
+        /// </summary>
+        public List<Part> Parts { get; set; } = new();
+
+        /// <summary>
+        /// The gates of those chips.
+        /// </summary>
+        public List<Gate> Gates { get; set; } = new();
+
+        /// <summary>
+        /// The signals inside, including those the ports carry.
+        /// </summary>
+        public List<Net> Nets { get; set; } = new();
+
+        /// <summary>
+        /// Drawing of the inside, or null.
+        /// </summary>
+        public SheetLayoutSection? Layout { get; set; }
+
+        /// <summary>
+        /// Instances of other blocks inside this one, or null.
+        /// </summary>
+        public List<BlockInstance>? Instances { get; set; }
+    }
+
+    /// <summary>
+    /// One port of a block: one signal (a single port, a Verilog wire) or several (a bus port,
+    /// a Verilog vector, entry 0 the lowest bit).
+    /// </summary>
+    public sealed class BlockPort
+    {
+        /// <summary>
+        /// The port name, unique in the block.
+        /// </summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>
+        /// Into, out of, or both ways, seen from inside.
+        /// </summary>
+        public PortDirection Direction { get; set; }
+
+        /// <summary>
+        /// The signals inside the block this port carries.
+        /// </summary>
+        public List<SignalRef> Signals { get; set; } = new();
+
+        /// <summary>
+        /// The edge of the instance box it is drawn on, or null for the default.
+        /// </summary>
+        public PortSide? Side { get; set; }
+
+        /// <summary>
+        /// Its place along that edge (0 first, from the top or left), or null for port order.
+        /// </summary>
+        public int? Order { get; set; }
+    }
+
+    /// <summary>
+    /// One use of a block on a level (a Verilog instantiation with named port connections).
+    /// </summary>
+    public sealed class BlockInstance
+    {
+        /// <summary>
+        /// The instance name, unique on its level (U1).
+        /// </summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>
+        /// The block it is an instance of.
+        /// </summary>
+        public string Block { get; set; } = "";
+
+        /// <summary>
+        /// Top left of the instance box in mm, or null to place it automatically. Drawing only.
+        /// </summary>
+        public Point? Position { get; set; }
+
+        /// <summary>
+        /// One per connected port: the signals on this level it joins, bit for bit.
+        /// </summary>
+        public List<PortConnection>? Connections { get; set; }
+    }
+
+    /// <summary>
+    /// How one port of an instance is connected on the instance's level.
+    /// </summary>
+    public sealed class PortConnection
+    {
+        /// <summary>
+        /// The port name.
+        /// </summary>
+        public string Port { get; set; } = "";
+
+        /// <summary>
+        /// The signals on this level, as many as the port is wide, in the port's bit order.
+        /// </summary>
+        public List<SignalRef> Nets { get; set; } = new();
     }
 
     /// <summary>

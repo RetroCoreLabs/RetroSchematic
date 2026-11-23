@@ -43,6 +43,8 @@ namespace RetroSchematic.Desktop
             Canvas.ToolMessage += OnToolMessage;
             TbPinNumbers.IsChecked = PinNumbersItem.IsChecked;
             TbBoardPositions.IsChecked = BoardPositionsItem.IsChecked;
+            PortArrowsItem.IsChecked = UiSettings.Instance.PortArrows;
+            TbPortArrows.IsChecked = UiSettings.Instance.PortArrows;
             TbSelect.IsChecked = true;
             OpenDemoItem.IsEnabled = SheetFiles.FindDemo(AppContext.BaseDirectory) != null;
             if (UiSettings.Instance.LoadProblem != null)
@@ -117,6 +119,7 @@ namespace RetroSchematic.Desktop
             _session.TraceChanged += OnTraceChanged;
             _session.SetShowPinNumbers(PinNumbersItem.IsChecked);
             _session.SetShowBoardPositions(BoardPositionsItem.IsChecked);
+            _session.SetShowPortArrows(UiSettings.Instance.PortArrows);
             Canvas.Session = s;
             FillLists();
             FillChipBox();
@@ -463,6 +466,24 @@ namespace RetroSchematic.Desktop
             BoardPositionsItem.IsChecked = _session.ShowBoardPositions;
             TbBoardPositions.IsChecked = _session.ShowBoardPositions;
         }
+
+        /// <summary>
+        /// Turns the block port arrows on or off and remembers the choice. Public so the
+        /// window tests can use it.
+        /// </summary>
+        public void TogglePortArrows()
+        {
+            bool show = !UiSettings.Instance.PortArrows;
+            UiSettings.Instance.PortArrows = show;
+            PortArrowsItem.IsChecked = show;
+            TbPortArrows.IsChecked = show;
+            _session?.SetShowPortArrows(show);
+            string? problem = UiSettings.Instance.Save();
+            if (problem != null)
+                StatusText.Text = problem;
+        }
+
+        private void OnTogglePortArrows(object? sender, RoutedEventArgs e) => TogglePortArrows();
 
         private void OnFixWire(object? sender, RoutedEventArgs e) => WireCommand(true);
 

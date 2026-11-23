@@ -51,14 +51,22 @@ namespace RetroSchematic.Render
         /// </param>
         public SheetEditor(Netlist netlist, ChipCatalog? catalog)
         {
+            Root = netlist;
             Netlist = netlist;
             Catalog = catalog;
         }
 
         /// <summary>
-        /// The sheet as it is now. Undo and redo replace this object.
+        /// The level being looked at and edited: the whole sheet, or, after
+        /// <see cref="EnterInstance"/>, the inside of a block seen as a sheet of its own (see
+        /// <see cref="Hierarchy.ViewOf"/>). Undo and redo replace this object.
         /// </summary>
         public Netlist Netlist { get; private set; }
+
+        /// <summary>
+        /// The whole design: the top level with every block. Saving writes this.
+        /// </summary>
+        public Netlist Root { get; private set; }
 
         /// <summary>
         /// The chip catalogue, or null.
@@ -464,9 +472,11 @@ namespace RetroSchematic.Render
             CheckWritable();
             if (_undo.Count == 0)
                 throw new SheetEditException("There is nothing to undo.");
-            _redo.Add(NetlistReader.Write(Netlist));
-            Netlist = NetlistReader.Parse(_undo[^1]);
+            SyncBack();
+            _redo.Add(NetlistReader.Write(Root));
+            Root = NetlistReader.Parse(_undo[^1]);
             _undo.RemoveAt(_undo.Count - 1);
+            ShowLevel();
             Modified = true;
             Changed?.Invoke(this);
         }
@@ -479,9 +489,11 @@ namespace RetroSchematic.Render
             CheckWritable();
             if (_redo.Count == 0)
                 throw new SheetEditException("There is nothing to redo.");
-            _undo.Add(NetlistReader.Write(Netlist));
-            Netlist = NetlistReader.Parse(_redo[^1]);
+            SyncBack();
+            _undo.Add(NetlistReader.Write(Root));
+            Root = NetlistReader.Parse(_redo[^1]);
             _redo.RemoveAt(_redo.Count - 1);
+            ShowLevel();
             Modified = true;
             Changed?.Invoke(this);
         }
@@ -496,7 +508,8 @@ namespace RetroSchematic.Render
         /// </param>
         public void Save(string path)
         {
-            string json = NetlistReader.Write(Netlist);
+            SyncBack();
+            string json = NetlistReader.Write(Root);
             try
             {
                 NetlistReader.Parse(json);
@@ -692,12 +705,14 @@ namespace RetroSchematic.Render
 
         private void Snapshot()
         {
-            _undo.Add(NetlistReader.Write(Netlist));
+            SyncBack();
+            _undo.Add(NetlistReader.Write(Root));
             _redo.Clear();
         }
 
         private void Done()
         {
+            SyncBack();
             Modified = true;
             Changed?.Invoke(this);
         }

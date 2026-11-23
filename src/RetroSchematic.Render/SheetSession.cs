@@ -161,6 +161,11 @@ namespace RetroSchematic.Render
         public bool ShowBoardPositions => _options.ShowBoardPositions;
 
         /// <summary>
+        /// True when block port pins carry direction arrows.
+        /// </summary>
+        public bool ShowPortArrows => _options.ShowPortArrows;
+
+        /// <summary>
         /// The laid-out drawing for <see cref="Style"/>.
         /// </summary>
         public SchematicDrawing Drawing { get; private set; }
@@ -214,6 +219,20 @@ namespace RetroSchematic.Render
             if (show == _options.ShowBoardPositions)
                 return;
             _options.ShowBoardPositions = show;
+            Relayout();
+        }
+
+        /// <summary>
+        /// Shows or hides the direction arrows on block port pins.
+        /// </summary>
+        /// <param name="show">
+        /// True to show them.
+        /// </param>
+        public void SetShowPortArrows(bool show)
+        {
+            if (show == _options.ShowPortArrows)
+                return;
+            _options.ShowPortArrows = show;
             Relayout();
         }
 

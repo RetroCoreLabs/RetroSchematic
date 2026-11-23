@@ -109,7 +109,9 @@ namespace RetroSchematic.Render
                     PathSegment[] p = it.Path!;
                     for (int i = 0; i < p.Length; i++)
                         AppendSegment(svg, p[i]);
-                    svg.Append(CultureInfo.InvariantCulture, $"\" fill=\"none\" stroke=\"{colour}\"{dash}/>\n");
+                    // a port arrow is a filled triangle; every other path is a line
+                    string pathFill = it.Role == DrawRole.PortArrow ? colour : "none";
+                    svg.Append(CultureInfo.InvariantCulture, $"\" fill=\"{pathFill}\" stroke=\"{colour}\"{dash}/>\n");
                     break;
                 case DrawKind.Text:
                     string anchor = it.Anchor == TextAnchor.Start ? "" : it.Anchor == TextAnchor.Middle ? " text-anchor=\"middle\"" : " text-anchor=\"end\"";

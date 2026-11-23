@@ -41,6 +41,11 @@ namespace RetroSchematic.Desktop.Themes
         public bool NdSymbols { get; set; } = true;
 
         /// <summary>
+        /// True to draw direction arrows on block port pins.
+        /// </summary>
+        public bool PortArrows { get; set; } = true;
+
+        /// <summary>
         /// The last sheet file opened, re-opened at start.
         /// </summary>
         public string? LastSheet { get; set; }

@@ -81,6 +81,11 @@ namespace RetroSchematic.Render
         /// A virtual bus line and its name: drawn thicker than a wire, thinner than a chip frame.
         /// </summary>
         Bus,
+
+        /// <summary>
+        /// The direction arrow on a block port pin, drawn filled.
+        /// </summary>
+        PortArrow,
     }
 
     /// <summary>
@@ -470,6 +475,11 @@ namespace RetroSchematic.Render
         /// The frame of each chip, by part reference.
         /// </summary>
         public Dictionary<string, PartFrame> Frames { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// The box of each block instance, by instance name.
+        /// </summary>
+        public Dictionary<string, PartFrame> InstanceFrames { get; } = new(StringComparer.Ordinal);
 
         /// <summary>
         /// Every wired signal's branches as laid (bend points in drawing units), so the editor can

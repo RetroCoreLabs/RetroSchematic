@@ -457,7 +457,8 @@ namespace RetroSchematic.Desktop.Controls
                     context.DrawEllipse(null, pen, new Point(it.X1, it.Y1), it.X2, it.X2);
                     break;
                 case DrawKind.Path:
-                    context.DrawGeometry(null, pen, BuildPath(it.Path!));
+                    // a port arrow is a filled triangle in its own colour
+                    context.DrawGeometry(it.Role == DrawRole.PortArrow ? brush : null, pen, BuildPath(it.Path!));
                     break;
                 case DrawKind.Text:
                     DrawText(context, it, brush);
