@@ -158,6 +158,40 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void APort_MovesAlongItsEdge_AndToAnotherEdge()
+        {
+            SheetEditor e = Open();
+            e.MakeBlock("m", null, new List<string>(Modem), null);
+            BlockDefinition b = e.Root.Blocks![0];
+            // the ports on the left edge, in drawing order
+            List<BlockPort> left = b.Ports.FindAll(p => SheetLayout.SideOf(p) == PortSide.Left);
+            Assert.That(left.Count, Is.GreaterThan(2));
+            string first = left[0].Name, second = left[1].Name;
+            Assert.Throws<SheetEditException>(() => e.MovePortAlong("m", first, -1), "already first");
+            e.MovePortAlong("m", first, 1);
+            Assert.That(left[0].Order, Is.EqualTo(1));
+            Assert.That(left[1].Order, Is.EqualTo(0), second + " is now first");
+            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = e.Catalog });
+            Assert.That(PinY(d, "port:U1:" + second), Is.LessThan(PinY(d, "port:U1:" + first)), "drawn in the new order");
+            e.SetPortPosition("m", first, PortSide.Right, null);
+            Assert.That(SheetLayout.SideOf(left[0]), Is.EqualTo(PortSide.Right));
+            e.Undo();
+            e.Undo();
+            Assert.That(left.Count, Is.GreaterThan(0));
+            Assert.That(e.Root.Blocks![0].Ports.Find(p => p.Name == first)!.Order, Is.Null, "undo puts the port order back");
+        }
+
+        private static double PinY(SchematicDrawing d, string owner)
+        {
+            for (int i = 0; i < d.Items.Count; i++)
+            {
+                if (d.Items[i].Owner == owner && d.Items[i].Kind == DrawKind.Line)
+                    return d.Items[i].Y1;
+            }
+            return double.NaN;
+        }
+
+        [Test]
         public void TheReader_RefusesBrokenBlockFiles_WithAReason()
         {
             SheetEditor e = Open();

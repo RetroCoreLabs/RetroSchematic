@@ -64,6 +64,7 @@ both ways for an inout; the choice is remembered.
 | Edit > Make block, the Make block button, or right-click > Make block | asks a name and shows the ports it will get (every signal that crosses the edge; numbered ones become one bus port), each name editable; the picked parts become one instance box. Connections never change |
 | Drag a picked chip onto an instance box | moves it (and the rest of the group picked) inside that block; one undo step |
 | Drag an instance box | moves it |
+| Right-click a port pin of an instance | put the port on another edge of the box, or one place earlier or later along its edge (drawing only) |
 | Right-click an instance > Dissolve into this level | puts its inside back on this level |
 
 A pin is on one signal only: joining two pins that are already on different signals is refused,

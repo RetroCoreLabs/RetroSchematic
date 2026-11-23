@@ -791,6 +791,30 @@ namespace RetroSchematic.Desktop
                 dissolve.Click += (s, a) => DissolveInstance(name);
                 menu.Items.Add(dissolve);
             }
+            // a port pin: which edge of the box it sits on, and its place along that edge
+            if (editing && owner.StartsWith("port:", StringComparison.Ordinal))
+            {
+                int colon = owner.IndexOf(':', 5);
+                BlockInstance? inst = colon < 0 ? null : Hierarchy.FindInstance(_session.Netlist.Instances, owner.Substring(5, colon - 5));
+                string port = colon < 0 ? "" : owner.Substring(colon + 1);
+                string[] edges = { "left", "right", "top", "bottom" };
+                for (int i = 0; inst != null && i < edges.Length; i++)
+                {
+                    PortSide side = (PortSide)i;
+                    MenuItem edge = new() { Header = "Put port " + port + " on the " + edges[i] + " edge" };
+                    edge.Click += (s, a) => PortCommand(() => _session.Editor.SetPortPosition(inst.Block, port, side, null));
+                    menu.Items.Add(edge);
+                }
+                if (inst != null)
+                {
+                    MenuItem earlier = new() { Header = "Move port " + port + " one place earlier" };
+                    earlier.Click += (s, a) => PortCommand(() => _session.Editor.MovePortAlong(inst.Block, port, -1));
+                    menu.Items.Add(earlier);
+                    MenuItem later = new() { Header = "Move port " + port + " one place later" };
+                    later.Click += (s, a) => PortCommand(() => _session.Editor.MovePortAlong(inst.Block, port, 1));
+                    menu.Items.Add(later);
+                }
+            }
             if (_session.Editor.LevelPath.Count > 0)
             {
                 MenuItem up = new() { Header = "Up one level" };
@@ -827,6 +851,20 @@ namespace RetroSchematic.Desktop
                 };
                 LevelBar.Children.Add(level);
             }
+        }
+
+        private void PortCommand(Action change)
+        {
+            try
+            {
+                change();
+                StatusText.Text = "Port moved.";
+            }
+            catch (SheetEditException e)
+            {
+                StatusText.Text = e.Message;
+            }
+            ShowEditState();
         }
 
         private void OnMakeBlock(object? sender, RoutedEventArgs e) => OpenMakeBlockDialog();

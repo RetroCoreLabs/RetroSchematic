@@ -620,6 +620,54 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// Moves a port one or more places along its edge, swapping it with its neighbour. Every
+        /// port on that edge then has a fixed place (its order), in the order they are drawn.
+        /// Drawing only.
+        /// </summary>
+        /// <param name="block">
+        /// The block.
+        /// </param>
+        /// <param name="port">
+        /// The port name.
+        /// </param>
+        /// <param name="step">
+        /// -1 for one place earlier (up or left), 1 for one place later.
+        /// </param>
+        public void MovePortAlong(string block, string port, int step)
+        {
+            CheckWritable();
+            BlockDefinition b = Hierarchy.FindBlock(Root, block) ?? throw new SheetEditException($"There is no block {block}.");
+            BlockPort? p = PortOf(b, port) ?? throw new SheetEditException($"Block {block} has no port {port}.");
+            PortSide side = SheetLayout.SideOf(p);
+            // the ports on that edge in drawing order: their own place first, then port order
+            List<BlockPort> edge = new();
+            for (int i = 0; i < b.Ports.Count; i++)
+            {
+                if (SheetLayout.SideOf(b.Ports[i]) == side)
+                    edge.Add(b.Ports[i]);
+            }
+            List<BlockPort> sorted = new(edge);
+            sorted.Sort((x, y) =>
+            {
+                int c = (x.Order ?? int.MaxValue).CompareTo(y.Order ?? int.MaxValue);
+                return c != 0 ? c : edge.IndexOf(x).CompareTo(edge.IndexOf(y));
+            });
+            int at = sorted.IndexOf(p);
+            int to = at + step;
+            if (to < 0 || to >= sorted.Count)
+                throw new SheetEditException($"Port {port} is already the {(step < 0 ? "first" : "last")} on its edge.");
+            Snapshot();
+            sorted[at] = sorted[to];
+            sorted[to] = p;
+            for (int i = 0; i < sorted.Count; i++)
+            {
+                sorted[i].Side = side;
+                sorted[i].Order = i;
+            }
+            Done();
+        }
+
+        /// <summary>
         /// Moves an instance box. Drawing only.
         /// </summary>
         /// <param name="instance">

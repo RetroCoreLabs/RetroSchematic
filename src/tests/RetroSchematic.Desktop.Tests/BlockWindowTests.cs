@@ -60,6 +60,19 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(((MenuItem)menu.Items[1]!).Header, Is.EqualTo("Open U1"));
             Assert.That(((MenuItem)menu.Items[2]!).Header, Is.EqualTo("Dissolve U1 into this level"));
             menu.Close();
+            // the right-click menu on a port pin places the port
+            string port = Hierarchy.FindBlock(w.Session.Editor.Root, "modem")!.Ports[0].Name;
+            ContextMenu portMenu = w.ShowDrawingMenu("port:U1:" + port)!;
+            MenuItem? top = null;
+            for (int i = 0; i < portMenu.Items.Count; i++)
+            {
+                if (portMenu.Items[i] is MenuItem m && (string?)m.Header == "Put port " + port + " on the top edge")
+                    top = m;
+            }
+            Assert.That(top, Is.Not.Null, "the port menu offers the four edges");
+            top!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(MenuItem.ClickEvent));
+            portMenu.Close();
+            Assert.That(Hierarchy.FindBlock(w.Session.Editor.Root, "modem")!.Ports[0].Side, Is.EqualTo(PortSide.Top));
             Assert.That(up.IsEnabled, Is.False);
             w.OpenInstance("U1");
             Assert.That(up.IsEnabled, Is.True);
