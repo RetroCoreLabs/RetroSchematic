@@ -5576,9 +5576,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 
 - **Output:** line
 - **What it looks like:** A large open triangle pointing right with one input.
-- **How to tell it apart:** Big triangle, one input. The manual heads it 'Line driver'.
+- **How to tell it apart:** Big triangle, one input. The manual heads it 'Line driver', but the 75154 is a quadruple line RECEIVER in every datasheet found (TI 1974 and 1995, National DS75154), and sheet 2A50 uses it as a receiver; the manual's label is kept here as printed and taken to be a slip (see catalog/chips/75154.json).
 
-- **Datasheet:** [TI The Interface Circuits Data Book 2nd ed. 1974, SN75154 quadruple line receiver (bulletin DL-S 7011389, Nov 1970)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf) p. 4-79, 4-80 (PDF pages 143, 144) (figures for SN75154)
+- **Datasheet:** [TI The Interface Circuits Data Book 2nd ed. 1974, SN75154 quadruple line receiver (bulletin DL-S 7011389, Nov 1970)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf) p. 4-79 to 4-81 (PDF pages 143-145); the schematic with R1 is on 4-81 (figures for SN75154); [TI SN75154 Quadruple Line Receiver, revision B, May 1995](https://www.ti.com/lit/gpn/sn75154) p. 1 (pin diagram footnote 'For function of R1, see schematic') (figures for SN75154); [National Semiconductor DS75154 quad line receiver](https://pccomponents.com/datasheets/NSC75154.PDF) p. 1 (description; read by text search of the PDF, not page by page) (figures for DS75154)
 - **Formulas:**
   - `Y = NOT A (with hysteresis: low when A > VT+, high when A < VT-, else holds)` - Datasheet logic Y = A'. Inverting RS-232-C receiver with active pull-up output. In fail-safe mode (threshold control open) an open or zero input gives a high output.
 - **Stored state:** 4 bits, changes on input crossing a threshold (hysteresis)
@@ -5596,7 +5596,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 | 6 | 3A | analog | text: RS-232-C line input |
 | 7 | 4A | analog | text: RS-232-C line input |
 | 8 | GND | ground | - |
-| 9 | R1 | analog | text: end of an internal resistor whose other end is at pin 15 (VCC1) in the pin diagram |
+| 9 | R1 | analog | text: R1: a 5 kohm resistor inside the chip from this pin to VCC1 (pin 15), in the block common to all four receivers and connected to nothing else - a spare pull-up to +5 V (TI 1974 schematic, page 4-81) |
 | 10 | 4Y | output | outputType: totem-pole |
 | 11 | 3Y | output | outputType: totem-pole |
 | 12 | 2Y | output | outputType: totem-pole |
@@ -5613,8 +5613,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Timing limits:** transitionTime Y
 - **Output current:** low 16 mA, high -0.4 mA
 - **Electrical notes:** VCC1 4.5-5.5 V (or VCC2 10.8-13.2 V), TA 0-70 C. Input voltage range +/-15 V recommended (+/-25 V absolute). Input resistance 3-7 kohm. Open-circuit input voltage 0-2 V. VOH min 2.4 V at IOH -400 uA, VOL max 0.4 V at IOL 16 mA (these are test conditions; the recommended conditions give fan-out N = 10). VIH 3 V, VIL -3 V.
-- **Not settled by the datasheet:** Only typical delays are printed; no min or max.; IOL/IOH are taken from the VOL/VOH test conditions; the recommended conditions give fan-out N = 10 instead.; Purpose of pin 9 (R1) beyond what the pin diagram shows is not described on the pages read.; ND symbol title is 'Line driver' with formula Y = NOT A, but the SN75154 datasheet calls the part a quadruple line receiver; the datasheet title is used here.
-- **Notes:** ND symbol (nd1976/75154.json) is titled 'Line driver'; the datasheet part is a receiver. Y = NOT A agrees with the datasheet logic.
+- **Not settled by the datasheet:** Only typical delays are printed; no min or max.; IOL/IOH are taken from the VOL/VOH test conditions; the recommended conditions give fan-out N = 10 instead.
+- **Notes:** ND-13.003.01 page 44 labels this part 'Line driver'. Every datasheet found (TI 1974, TI 1995, National DS75154) calls it a quadruple line receiver and no 75154 sold as a driver was found, so the manual's label is taken as a slip on that one entry (the 75150 above it is a driver). NORD-10 sheet 2A50 uses two 75154 as receivers for the modem's incoming signals. Y = NOT A agrees with the datasheet logic.
 
 ### 75322 - TTL to MOS driver
 

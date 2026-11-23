@@ -14,8 +14,6 @@ NOR, NOT, AND, OR and XOR are drawn in both styles from one pin table, checked b
 
 - a datasheet for 74118 (its chip file has the title only), VP5, VP12 and DC1035T, and a real
   74H datasheet for 74H11 and 74H21 (they carry LS figures);
-- 75154: ND's symbol calls it a line driver, TI's datasheet a line receiver; sheet 2A50 uses it
-  as a receiver;
 - parts on sheet 2A50 with no catalogue entry: 7451 (only inside the 7450 entry), 74S157,
   COM 2601, and VP12/12's pins;
 - the candidates folder and process for symbols found on drawings but not in the manual.

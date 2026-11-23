@@ -1,20 +1,20 @@
 {
-  "catalogFormat": "nd-symbol",
-  "catalogFormatVersion": 1,
-  "id": "75154",
-  "partNumber": "75154",
-  "title": "Line driver",
-  "source": {
-    "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
-    "printedPage": 44,
-    "pdfPage": 50
-  },
-  "image": "75154.png",
-  "symbolType": "gate",
-  "kind": "not",
-  "outputType": "line",
-  "formula": "Y = NOT A",
-  "description": "A large open triangle pointing right with one input.",
-  "tells": "Big triangle, one input. The manual heads it 'Line driver'.",
-  "confidence": "read"
+ "catalogFormat": "nd-symbol",
+ "catalogFormatVersion": 1,
+ "id": "75154",
+ "partNumber": "75154",
+ "title": "Line driver",
+ "source": {
+  "document": "docs/sources/manuals/ND-13.003.01-Circuit-Diagram-Symbols-1976.pdf",
+  "printedPage": 44,
+  "pdfPage": 50
+ },
+ "image": "75154.png",
+ "symbolType": "gate",
+ "kind": "not",
+ "outputType": "line",
+ "formula": "Y = NOT A",
+ "description": "A large open triangle pointing right with one input.",
+ "tells": "Big triangle, one input. The manual heads it 'Line driver', but the 75154 is a quadruple line RECEIVER in every datasheet found (TI 1974 and 1995, National DS75154), and sheet 2A50 uses it as a receiver; the manual's label is kept here as printed and taken to be a slip (see catalog/chips/75154.json).",
+ "confidence": "read"
 }

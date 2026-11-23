@@ -3,14 +3,26 @@
   "catalogFormatVersion": 1,
   "id": "75154",
   "family": "751xx",
-  "title": "Quadruple line receiver",
+  "title": "Quadruple line receiver (EIA RS-232-C)",
   "package": "DIP-16",
   "sources": [
     {
       "document": "TI The Interface Circuits Data Book 2nd ed. 1974, SN75154 quadruple line receiver (bulletin DL-S 7011389, Nov 1970)",
       "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf",
-      "pages": "4-79, 4-80 (PDF pages 143, 144)",
+      "pages": "4-79 to 4-81 (PDF pages 143-145); the schematic with R1 is on 4-81",
       "familyUsed": "SN75154"
+    },
+    {
+      "document": "TI SN75154 Quadruple Line Receiver, revision B, May 1995",
+      "url": "https://www.ti.com/lit/gpn/sn75154",
+      "pages": "1 (pin diagram footnote 'For function of R1, see schematic')",
+      "familyUsed": "SN75154"
+    },
+    {
+      "document": "National Semiconductor DS75154 quad line receiver",
+      "url": "https://pccomponents.com/datasheets/NSC75154.PDF",
+      "pages": "1 (description; read by text search of the PDF, not page by page)",
+      "familyUsed": "DS75154"
     }
   ],
   "pins": [
@@ -85,7 +97,7 @@
       "pin": 9,
       "name": "R1",
       "role": "analog",
-      "text": "end of an internal resistor whose other end is at pin 15 (VCC1) in the pin diagram"
+      "text": "R1: a 5 kohm resistor inside the chip from this pin to VCC1 (pin 15), in the block common to all four receivers and connected to nothing else - a spare pull-up to +5 V (TI 1974 schematic, page 4-81)"
     },
     {
       "pin": 13,
@@ -164,9 +176,7 @@
   ],
   "unknown": [
     "Only typical delays are printed; no min or max.",
-    "IOL/IOH are taken from the VOL/VOH test conditions; the recommended conditions give fan-out N = 10 instead.",
-    "Purpose of pin 9 (R1) beyond what the pin diagram shows is not described on the pages read.",
-    "ND symbol title is 'Line driver' with formula Y = NOT A, but the SN75154 datasheet calls the part a quadruple line receiver; the datasheet title is used here."
+    "IOL/IOH are taken from the VOL/VOH test conditions; the recommended conditions give fan-out N = 10 instead."
   ],
-  "notes": "ND symbol (nd1976/75154.json) is titled 'Line driver'; the datasheet part is a receiver. Y = NOT A agrees with the datasheet logic."
+  "notes": "ND-13.003.01 page 44 labels this part 'Line driver'. Every datasheet found (TI 1974, TI 1995, National DS75154) calls it a quadruple line receiver and no 75154 sold as a driver was found, so the manual's label is taken as a slip on that one entry (the 75150 above it is a driver). NORD-10 sheet 2A50 uses two 75154 as receivers for the modem's incoming signals. Y = NOT A agrees with the datasheet logic."
 }
