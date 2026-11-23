@@ -286,6 +286,29 @@ namespace RetroSchematic.Desktop
         }
 
         /// <summary>
+        /// A View switch: turns over the value in force for the open sheet. The sheet's own value
+        /// when it has one (the sheet is then changed), else the default for all sheets.
+        /// </summary>
+        /// <param name="option">
+        /// The option.
+        /// </param>
+        /// <param name="flipDefault">
+        /// Turns over the default in the app settings.
+        /// </param>
+        private void ToggleOption(DisplayOption option, Action flipDefault)
+        {
+            if (_session != null && _session.ToggleSheetValue(option))
+            {
+                ApplyDisplay();
+                ShowEditState();
+                StatusText.Text = "Changed this sheet's own setting (save the sheet to keep it).";
+                return;
+            }
+            flipDefault();
+            SaveDefaults();
+        }
+
+        /// <summary>
         /// Saves the defaults after a View switch changed one, and applies them.
         /// </summary>
         private void SaveDefaults()
@@ -297,13 +320,12 @@ namespace RetroSchematic.Desktop
         }
 
         /// <summary>
-        /// Turns drawing the buses on or off as the default for all sheets. Display only: the
+        /// Turns drawing the buses on or off (this sheet's own value if it has one, else the default). Display only: the
         /// sheet keeps its buses. Public so the window tests can use it.
         /// </summary>
         public void ToggleShowBuses()
         {
-            UiSettings.Instance.ShowBuses = !UiSettings.Instance.ShowBuses;
-            SaveDefaults();
+            ToggleOption(DisplayOption.Buses, () => UiSettings.Instance.ShowBuses = !UiSettings.Instance.ShowBuses);
         }
 
         private void OnToggleShowBuses(object? sender, RoutedEventArgs e) => ToggleShowBuses();
@@ -525,24 +547,21 @@ namespace RetroSchematic.Desktop
 
         private void OnTogglePinNumbers(object? sender, RoutedEventArgs e)
         {
-            UiSettings.Instance.PinNumbers = !UiSettings.Instance.PinNumbers;
-            SaveDefaults();
+            ToggleOption(DisplayOption.PinNumbers, () => UiSettings.Instance.PinNumbers = !UiSettings.Instance.PinNumbers);
         }
 
         private void OnToggleBoardPositions(object? sender, RoutedEventArgs e)
         {
-            UiSettings.Instance.BoardPositions = !UiSettings.Instance.BoardPositions;
-            SaveDefaults();
+            ToggleOption(DisplayOption.BoardPositions, () => UiSettings.Instance.BoardPositions = !UiSettings.Instance.BoardPositions);
         }
 
         /// <summary>
-        /// Turns the block port arrows on or off and remembers the choice. Public so the
+        /// Turns the block port arrows on or off (this sheet's own value if it has one, else the default). Public so the
         /// window tests can use it.
         /// </summary>
         public void TogglePortArrows()
         {
-            UiSettings.Instance.PortArrows = !UiSettings.Instance.PortArrows;
-            SaveDefaults();
+            ToggleOption(DisplayOption.PortArrows, () => UiSettings.Instance.PortArrows = !UiSettings.Instance.PortArrows);
         }
 
         private void OnTogglePortArrows(object? sender, RoutedEventArgs e) => TogglePortArrows();

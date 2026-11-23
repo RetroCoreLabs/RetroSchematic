@@ -82,6 +82,21 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void AViewSwitch_TurnsOverTheSheetsOwnValue_WhenItHasOne()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, ChipCatalog.Find(Sheet2A50));
+            Assert.That(s.ToggleSheetValue(DisplayOption.Buses), Is.False, "no own value: the caller changes the default");
+            Assert.That(s.Editor.Modified, Is.False);
+            s.SetSheetDisplay(new SheetDisplay { Buses = false });
+            Assert.That(s.ShowBuses, Is.False);
+            Assert.That(s.ToggleSheetValue(DisplayOption.Buses), Is.True);
+            Assert.That(s.ShowBuses, Is.True, "back on");
+            Assert.That(s.SheetDisplay.Buses, Is.True);
+            Assert.That(s.ToggleSheetValue(DisplayOption.Buses), Is.True);
+            Assert.That(s.ShowBuses, Is.False, "off again");
+        }
+
+        [Test]
         public void ASheetsOwnValues_ApplyWhenItIsOpened()
         {
             Netlist n = NetlistReader.ReadFile(Sheet2A50);

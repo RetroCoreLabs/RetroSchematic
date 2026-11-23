@@ -147,6 +147,27 @@ namespace RetroSchematic.Render
     }
 
     /// <summary>
+    /// The on/off display options a View switch turns over.
+    /// </summary>
+    public enum DisplayOption
+    {
+        /// <summary>Pin numbers.</summary>
+        PinNumbers,
+
+        /// <summary>Board positions.</summary>
+        BoardPositions,
+
+        /// <summary>Port direction arrows.</summary>
+        PortArrows,
+
+        /// <summary>The sheet's buses.</summary>
+        Buses,
+
+        /// <summary>The trace pulse.</summary>
+        TracePulse,
+    }
+
+    /// <summary>
     /// The settings-window side of a session: the defaults it was given, the sheet's own values,
     /// and what applies.
     /// </summary>
@@ -201,6 +222,52 @@ namespace RetroSchematic.Render
             SheetDisplay? next = sheet.IsEmpty() ? null : Copy(sheet);
             Editor.SetDisplay(next);
             ApplyDisplay();
+        }
+
+        /// <summary>
+        /// What a View switch does: it turns over the value in force for this sheet. When the
+        /// sheet has its own value for the option, that is the one in force, so it is the one
+        /// changed (and the sheet is marked as changed); otherwise the caller changes the default.
+        /// Without this, a sheet's own "off" hid every change of the default and the switch
+        /// could not turn the option back on.
+        /// </summary>
+        /// <param name="option">
+        /// The option.
+        /// </param>
+        /// <returns>
+        /// True when the sheet's own value was changed; false when the caller should turn over
+        /// the default.
+        /// </returns>
+        public bool ToggleSheetValue(DisplayOption option)
+        {
+            SheetDisplay s = SheetDisplay;
+            bool? own = Get(s, option);
+            if (own == null)
+                return false;
+            Set(s, option, !own.Value);
+            SetSheetDisplay(s);
+            return true;
+        }
+
+        private static bool? Get(SheetDisplay s, DisplayOption o) => o switch
+        {
+            DisplayOption.PinNumbers => s.PinNumbers,
+            DisplayOption.BoardPositions => s.BoardPositions,
+            DisplayOption.PortArrows => s.PortArrows,
+            DisplayOption.Buses => s.Buses,
+            _ => s.TracePulse,
+        };
+
+        private static void Set(SheetDisplay s, DisplayOption o, bool v)
+        {
+            switch (o)
+            {
+                case DisplayOption.PinNumbers: s.PinNumbers = v; break;
+                case DisplayOption.BoardPositions: s.BoardPositions = v; break;
+                case DisplayOption.PortArrows: s.PortArrows = v; break;
+                case DisplayOption.Buses: s.Buses = v; break;
+                default: s.TracePulse = v; break;
+            }
         }
 
         /// <summary>
