@@ -4412,18 +4412,18 @@
             },
             {
               "at": "3E.14",
-              "confidence": "inferred",
-              "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+              "confidence": "read",
+              "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
             },
             {
               "at": "5E.14",
-              "confidence": "inferred",
-              "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+              "confidence": "read",
+              "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
             },
             {
               "at": "5D.14",
-              "confidence": "inferred",
-              "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+              "confidence": "read",
+              "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
             }
           ],
           "note": "automatic name: 74153 select A"
@@ -4438,18 +4438,18 @@
             },
             {
               "at": "3E.2",
-              "confidence": "inferred",
-              "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+              "confidence": "read",
+              "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
             },
             {
               "at": "5E.2",
-              "confidence": "inferred",
-              "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+              "confidence": "read",
+              "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
             },
             {
               "at": "5D.2",
-              "confidence": "inferred",
-              "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+              "confidence": "read",
+              "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
             }
           ],
           "note": "automatic name: 74153 select B"
@@ -4992,12 +4992,12 @@
           ]
         },
         {
-          "name": "ICW_1",
+          "name": "ICW_0",
           "direction": "input",
           "signals": [
             {
               "net": "ICW",
-              "active": "high"
+              "active": "low"
             }
           ]
         },
@@ -5458,15 +5458,17 @@
         },
         {
           "name": "ICW",
-          "active": "high",
+          "active": "low",
           "pins": [
             {
               "at": "3C.11",
-              "confidence": "read"
+              "confidence": "read",
+              "note": "corrected 2026-11-23: the clock pins of 3C and 1D take ICW with subscript 0, as drawn at the label; see the flat sheet"
             },
             {
               "at": "1D.11",
-              "confidence": "read"
+              "confidence": "read",
+              "note": "corrected 2026-11-23: the clock pins of 3C and 1D take ICW with subscript 0, as drawn at the label; see the flat sheet"
             }
           ]
         },
@@ -7715,11 +7717,11 @@
           ]
         },
         {
-          "port": "ICW_1",
+          "port": "ICW_0",
           "nets": [
             {
               "net": "ICW",
-              "active": "high"
+              "active": "low"
             }
           ]
         },

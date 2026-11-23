@@ -151,7 +151,7 @@
       "type": "7451",
       "function": "level 12 request (gate 1, pins 9,10,13,1>8) and level 10 request (gate 2, pins 3,2,5,4>6)",
       "confidence": "read",
-      "note": "one 7451 holds both AND-OR-INVERT gates; the parts list has 1 x 7451"
+      "note": "one 7451 holds both AND-OR-INVERT gates; the parts list has 1 x 7451. Gate 1 output pin 8 goes only to inverter 7B pin 11 (net N_3B_8); 7B pin 10 is LEV12_1. Read again at 1200 dpi 2026-11-23: inputs 9 IRFTIE, 10 IRFT, 13 IERR, 1 IERRIE; 3 ORFTIE, 2 ORFT, 5 OERR, 4 OERRIE. The pairs (1,13)(9,10)(2,3)(4,5) are the AND pairs of the 7450/7451 pinout, so each enable is ANDed with its own condition."
     },
     {
       "ref": "5A",
@@ -1521,6 +1521,16 @@
         {
           "at": "15C.11",
           "confidence": "read"
+        },
+        {
+          "at": "3C.11",
+          "confidence": "read",
+          "note": "corrected 2026-11-23: the label at this clock pin is ICW with subscript 0 (the same dot as CLDI and as ICW at 15C pin 11), and the drawn wire comes from that label, not from inverter 11C pin 12. The enables therefore load at the END of the ICW strobe (rising edge of ICW_0). OCW_0 clocks the other half the same way."
+        },
+        {
+          "at": "1D.11",
+          "confidence": "read",
+          "note": "corrected 2026-11-23: the label at this clock pin is ICW with subscript 0 (the same dot as CLDI and as ICW at 15C pin 11), and the drawn wire comes from that label, not from inverter 11C pin 12. The enables therefore load at the END of the ICW strobe (rising edge of ICW_0). OCW_0 clocks the other half the same way."
         }
       ],
       "description": "Register select, offset 3 (ICW): write the input control word.",
@@ -1541,14 +1551,6 @@
         },
         {
           "at": "7-8C-D.39",
-          "confidence": "read"
-        },
-        {
-          "at": "3C.11",
-          "confidence": "read"
-        },
-        {
-          "at": "1D.11",
           "confidence": "read"
         },
         {
@@ -3215,18 +3217,18 @@
         },
         {
           "at": "3E.14",
-          "confidence": "inferred",
-          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+          "confidence": "read",
+          "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
         },
         {
           "at": "5E.14",
-          "confidence": "inferred",
-          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+          "confidence": "read",
+          "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
         },
         {
           "at": "5D.14",
-          "confidence": "inferred",
-          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+          "confidence": "read",
+          "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
         }
       ],
       "note": "automatic name: 74153 select A"
@@ -3245,18 +3247,18 @@
         },
         {
           "at": "3E.2",
-          "confidence": "inferred",
-          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+          "confidence": "read",
+          "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
         },
         {
           "at": "5E.2",
-          "confidence": "inferred",
-          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+          "confidence": "read",
+          "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
         },
         {
           "at": "5D.2",
-          "confidence": "inferred",
-          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+          "confidence": "read",
+          "note": "followed on the scan 2026-11-23: the two select lines run down past 3D to pins 2 and 14 of 3E, 5E and 5D with a junction dot at each (11E pin 11 to pin 2, 11E pin 8 to pin 14)"
         }
       ],
       "note": "automatic name: 74153 select B"

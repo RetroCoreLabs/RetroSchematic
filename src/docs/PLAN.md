@@ -3,12 +3,15 @@
 Outstanding work only. Finished items are deleted.
 
 **Next:** decide on 2A50's BD buses (section 7), then add the parts the catalogue cannot name
-yet (see `docs/2A50-catalogue-map.md`) and follow the four 74153 select lines on 2A50 (3E, 5E,
-5D pins 2 and 14 are `inferred`).
+yet (see `docs/2A50-catalogue-map.md`).
 
 ## 0. Sheet 2A50 - what the wire reading left open
 
-- 74153 select pins 2 and 14 on 3E, 5E and 5D: taken to match 3D, not followed on the scan.
+- ICW with bit 4 and bits 0/1 in the same write: the clear (CL1) and the enable clock (ICW0
+  rising) end together; which wins is not on the drawing (`docs/2A50-interrupts.md`).
+- The owner's LEV12 back-trace in the viewer stopped at net N_3B_8 (3B pin 8 to 7B pin 11). The
+  netlist is complete there; check whether the trace steps back through a gate of kind `other`
+  (the 7451 at 3B).
 - Front connector pins (circled 81-95 with V.24 names) are written `F.` as `inferred`; the
   supply pins circled 62/63 and 66/67 are taken as backplane pins, also `inferred`.
 - Switches 15E and 1E, resistors and capacitors have no place in format version 1; they are

@@ -149,8 +149,11 @@ Driver value **5** = interrupt on, request to send on. **0** = both off.
 
 - Level 12 = (IRFTIE and IRFT) or (IERRIE and IERR) (7451 3B, 5A).
 - Level 10 = (ORFTIE and ORFT) or (OERRIE and OERR).
-- When the CPU's IDENT is answered, multiplexer 1C clears the enable that caused it
-  (CLDI, CLEI, CLDO, CLEO): data enable if the data condition was set, else the error enable.
+- When the CPU's IDENT is answered, multiplexer 1C clears the enables of the answered level
+  (CLDI, CLEI, CLDO, CLEO): each one whose own condition is set, both if both (corrected
+  2026-11-23; see docs/2A50-interrupts.md).
+- The receive enables are clocked by ICW0 (end of the ICW write), the transmit enables by OCW0.
+  READ (corrected 2026-11-23: the netlist had ICW1 at 3C pin 11 and 1D pin 11).
   This is why the driver writes 205 / 5 again after every character: the IDENT has
   switched the interrupt enable off. INFERRED from the wiring and the driver together.
 - Reading IDR resets the chip's DA (pin 24). Writing ODW loads the chip's transmit buffer
