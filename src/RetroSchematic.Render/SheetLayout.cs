@@ -55,6 +55,13 @@ namespace RetroSchematic.Render
         /// for an output, both ways for an inout.
         /// </summary>
         public bool ShowPortArrows { get; set; } = true;
+
+        /// <summary>
+        /// Draw the sheet's virtual buses. Off draws every bus member with its own wires and
+        /// name tags as if there were no bus; the sheet keeps its buses either way, this only
+        /// changes the picture.
+        /// </summary>
+        public bool ShowBuses { get; set; } = true;
     }
 
     /// <summary>
@@ -210,7 +217,7 @@ namespace RetroSchematic.Render
                     pinPlans[boxes[i].Pins[j].At] = boxes[i].Pins[j];
             }
             // signals on a virtual bus join the bus instead of getting their own wire
-            HashSet<Net> onBus = BusMembers(netlist);
+            HashSet<Net> onBus = options.ShowBuses ? BusMembers(netlist) : new HashSet<Net>(ReferenceEqualityComparer.Instance);
             List<Net> candidates = WireCandidates(netlist, pinPlans);
             for (int i = candidates.Count - 1; i >= 0; i--)
             {
@@ -229,7 +236,7 @@ namespace RetroSchematic.Render
 
             // 5. route the short signals round everything drawn so far and every label's room
             HashSet<string> busPins = new(StringComparer.Ordinal);
-            HashSet<string> wired = Route(d, netlist, candidates, pinPlans, busPins);
+            HashSet<string> wired = Route(d, netlist, candidates, pinPlans, busPins, options.ShowBuses);
 
             // 6. labels for the rest
             foreach (KeyValuePair<string, PinPlan> kv in pinPlans)
@@ -239,6 +246,9 @@ namespace RetroSchematic.Render
                     continue;
                 DrawLabel(d, p, pinRef[p.At].Confidence);
             }
+
+            // 7. a dot wherever a wire branches
+            AddJunctions(d);
             return d;
         }
 
@@ -656,10 +666,13 @@ namespace RetroSchematic.Render
         /// <param name="busPins">
         /// Filled with the pins that joined a bus (they get no label).
         /// </param>
-        private static HashSet<string> Route(SchematicDrawing d, Netlist netlist, List<Net> candidates, Dictionary<string, PinPlan> pinPlans, HashSet<string> busPins)
+        /// <param name="showBuses">
+        /// False to leave the buses out (see <see cref="LayoutOptions.ShowBuses"/>).
+        /// </param>
+        private static HashSet<string> Route(SchematicDrawing d, Netlist netlist, List<Net> candidates, Dictionary<string, PinPlan> pinPlans, HashSet<string> busPins, bool showBuses)
         {
             HashSet<string> wired = new(StringComparer.Ordinal);
-            if (candidates.Count == 0 && (netlist.Layout?.Buses == null || netlist.Layout.Buses.Count == 0))
+            if (candidates.Count == 0 && (!showBuses || netlist.Layout?.Buses == null || netlist.Layout.Buses.Count == 0))
                 return wired;
             WireRouter router = new(d.Width, d.Height);
             double m = WireRouter.Step;
@@ -694,7 +707,8 @@ namespace RetroSchematic.Render
             }
 
             // buses first: their lines and entries claim their room before any wire is laid
-            DrawBuses(d, netlist, router, netNumber, pinPlans, busPins);
+            if (showBuses)
+                DrawBuses(d, netlist, router, netNumber, pinPlans, busPins);
 
             List<DrawPoint> ends = new();
             List<int> outward = new();
@@ -876,8 +890,15 @@ namespace RetroSchematic.Render
                 Y2 = plan.Height,
                 Dashed = part.Confidence != Confidence.Read,
             });
-            DrawItem label = Text(d, DrawRole.PartLabel, part.Confidence, owner, plan.X, plan.Y - 5,
-                options.ShowBoardPositions ? part.Ref + " " + part.Type : part.Type, LabelFont, TextAnchor.Start);
+            // the board position muted, then the chip type in bold: the type is what a reader
+            // looks for, the position is where to find it on the board
+            double typeX = plan.X;
+            if (options.ShowBoardPositions)
+            {
+                Text(d, DrawRole.BoardPosition, part.Confidence, owner, plan.X, plan.Y - 5, part.Ref, LabelFont, TextAnchor.Start);
+                typeX = plan.X + TextWidth(part.Ref + " ", "", LabelFont);
+            }
+            DrawItem label = Text(d, DrawRole.PartLabel, part.Confidence, owner, typeX, plan.Y - 5, part.Type, LabelFont, TextAnchor.Start);
             label.Bold = true;
 
             for (int i = 0; i < plan.Gates.Count; i++)

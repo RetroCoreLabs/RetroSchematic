@@ -85,6 +85,9 @@ namespace RetroSchematic.Tests
                     if (texts[i].Role == DrawRole.PinName && texts[i].Owner.StartsWith("port:", System.StringComparison.Ordinal)
                         && frames[j].Owner == "inst:" + texts[i].Owner.Substring(5, texts[i].Owner.IndexOf(':', 5) - 5))
                         continue;
+                    // and an instance's title, written in the header band of its own box
+                    if (texts[i].Role == DrawRole.PartLabel && texts[i].Owner.StartsWith("inst:", System.StringComparison.Ordinal) && frames[j].Owner == texts[i].Owner)
+                        continue;
                     if (texts[i].Overlaps(frames[j]))
                         bad.Add("text " + texts[i].Text + " / frame " + frames[j].Owner);
                 }

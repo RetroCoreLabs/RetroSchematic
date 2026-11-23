@@ -600,7 +600,7 @@ namespace RetroSchematic.Render
         {
             if (it.Role == DrawRole.PinDot)
                 return 0;
-            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.NetLabel || it.Role == DrawRole.PartLabel || it.Role == DrawRole.PinName)
+            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.NetLabel || it.Role == DrawRole.PartLabel || it.Role == DrawRole.BoardPosition || it.Role == DrawRole.PinName)
                 return 1;
             if (it.Owner.StartsWith("gate:", StringComparison.Ordinal))
                 return 2;

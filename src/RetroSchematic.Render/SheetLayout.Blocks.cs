@@ -244,10 +244,12 @@ namespace RetroSchematic.Render
             double[][] along = { new double[] { 0 }, new double[] { 0 }, Slots(inst, netlist, bySide[2]), Slots(inst, netlist, bySide[3]) };
             double across = Math.Max(along[2][^1], along[3][^1]);
             plan.Width = Snap(Math.Max(Math.Max(72, nameWidth + 12), Math.Max(leftNames + rightNames + 24, across)));
-            plan.Height = Snap(Math.Max(48, (Math.Max(bySide[0].Count, bySide[1].Count) + 1) * PinPitch + 12));
+            // the header band across the top holds the instance and block name; the side pins
+            // start below it
+            plan.Height = Snap(HeaderHeight + Math.Max(48, (Math.Max(bySide[0].Count, bySide[1].Count) + 1) * PinPitch + 12));
             plan.LeftReach = PinOut + 4;
             plan.RightReach = PinOut + 4;
-            plan.TopReach = 18;
+            plan.TopReach = 6;
             plan.BottomReach = 6;
             for (int s = 0; s < 4; s++)
             {
@@ -259,10 +261,10 @@ namespace RetroSchematic.Render
                     switch (side)
                     {
                         case PortSide.Left:
-                            pp.EdgeX = 0; pp.EdgeY = 12 + ((i + 1) * PinPitch); pp.EndX = -PinOut; pp.EndY = pp.EdgeY;
+                            pp.EdgeX = 0; pp.EdgeY = HeaderHeight + 12 + ((i + 1) * PinPitch); pp.EndX = -PinOut; pp.EndY = pp.EdgeY;
                             break;
                         case PortSide.Right:
-                            pp.EdgeX = plan.Width; pp.EdgeY = 12 + ((i + 1) * PinPitch); pp.EndX = plan.Width + PinOut; pp.EndY = pp.EdgeY;
+                            pp.EdgeX = plan.Width; pp.EdgeY = HeaderHeight + 12 + ((i + 1) * PinPitch); pp.EndX = plan.Width + PinOut; pp.EndY = pp.EdgeY;
                             break;
                         case PortSide.Top:
                             pp.EdgeX = Snap(along[2][i]); pp.EdgeY = 0; pp.EndX = pp.EdgeX; pp.EndY = -PinOut;
@@ -287,7 +289,7 @@ namespace RetroSchematic.Render
                         }
                     }
                     else if (side == PortSide.Top)
-                        plan.TopReach = Math.Max(plan.TopReach, PinOut + 4 + SignalFont + 6 + LabelFont);
+                        plan.TopReach = Math.Max(plan.TopReach, PinOut + 4 + SignalFont + 6);
                     else if (side == PortSide.Bottom)
                         plan.BottomReach = Math.Max(plan.BottomReach, PinOut + 6 + SignalFont);
                     plan.Ports.Add(pp);
@@ -342,6 +344,11 @@ namespace RetroSchematic.Render
             return at;
         }
 
+        /// <summary>
+        /// The height of the band across the top of an instance box that holds its name.
+        /// </summary>
+        private const double HeaderHeight = 16;
+
         private static void DrawInstance(SchematicDrawing d, Netlist netlist, InstancePlan plan, LayoutOptions options)
         {
             string owner = "inst:" + plan.Instance.Name;
@@ -352,8 +359,13 @@ namespace RetroSchematic.Render
                 Kind = DrawKind.Rect, Role = DrawRole.PartOutline, Confidence = Confidence.Read, Owner = owner,
                 X1 = plan.X, Y1 = plan.Y, X2 = plan.Width, Y2 = plan.Height,
             });
-            // the title goes above the top pins and what they are connected to
-            DrawItem title = Text(d, DrawRole.PartLabel, Confidence.Read, owner, plan.X, plan.Y - plan.TopReach + LabelFont,
+            // the header band with the title in it
+            d.Items.Add(new DrawItem
+            {
+                Kind = DrawKind.Rect, Role = DrawRole.BlockHeader, Confidence = Confidence.Read, Owner = owner,
+                X1 = plan.X, Y1 = plan.Y, X2 = plan.Width, Y2 = HeaderHeight,
+            });
+            DrawItem title = Text(d, DrawRole.PartLabel, Confidence.Read, owner, plan.X + 4, plan.Y + HeaderHeight - 4,
                 plan.Instance.Name + "  " + plan.Block.Name, LabelFont, TextAnchor.Start);
             title.Bold = true;
             for (int i = 0; i < plan.Ports.Count; i++)
@@ -380,7 +392,7 @@ namespace RetroSchematic.Render
                         Text(d, DrawRole.PinName, Confidence.Read, portOwner, pp.EdgeX - 3, pp.EdgeY + 2.5, name, PinFont, TextAnchor.End);
                         break;
                     case PortSide.Top:
-                        Text(d, DrawRole.PinName, Confidence.Read, portOwner, pp.EdgeX, pp.EdgeY + 3 + PinFont, name, PinFont, TextAnchor.Middle);
+                        Text(d, DrawRole.PinName, Confidence.Read, portOwner, pp.EdgeX, pp.EdgeY + HeaderHeight + 3 + PinFont, name, PinFont, TextAnchor.Middle);
                         break;
                     default:
                         Text(d, DrawRole.PinName, Confidence.Read, portOwner, pp.EdgeX, pp.EdgeY - 4, name, PinFont, TextAnchor.Middle);

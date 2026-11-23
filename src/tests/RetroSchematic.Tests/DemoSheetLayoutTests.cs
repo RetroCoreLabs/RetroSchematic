@@ -132,7 +132,10 @@ namespace RetroSchematic.Tests
             SchematicDrawing hidden = SheetLayout.Build(n, SymbolStyle.NorskData, new LayoutOptions { ShowPinNumbers = false, ShowBoardPositions = false });
             Assert.That(Count(shown, DrawRole.PinNumber), Is.GreaterThan(0));
             Assert.That(Count(hidden, DrawRole.PinNumber), Is.EqualTo(0));
-            Assert.That(First(shown, "part:1A", DrawKind.Text).Text, Is.EqualTo("1A 7400"));
+            // the position is its own muted text, the type follows it
+            Assert.That(First(shown, "part:1A", DrawKind.Text).Text, Is.EqualTo("1A"));
+            Assert.That(Count(shown, DrawRole.BoardPosition), Is.GreaterThan(0));
+            Assert.That(Count(hidden, DrawRole.BoardPosition), Is.EqualTo(0));
             Assert.That(First(hidden, "part:1A", DrawKind.Text).Text, Is.EqualTo("7400"));
         }
 

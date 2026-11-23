@@ -166,6 +166,11 @@ namespace RetroSchematic.Render
         public bool ShowPortArrows => _options.ShowPortArrows;
 
         /// <summary>
+        /// True when the sheet's buses are drawn (see <see cref="LayoutOptions.ShowBuses"/>).
+        /// </summary>
+        public bool ShowBuses => _options.ShowBuses;
+
+        /// <summary>
         /// The laid-out drawing for <see cref="Style"/>.
         /// </summary>
         public SchematicDrawing Drawing { get; private set; }
@@ -219,6 +224,21 @@ namespace RetroSchematic.Render
             if (show == _options.ShowBoardPositions)
                 return;
             _options.ShowBoardPositions = show;
+            Relayout();
+        }
+
+        /// <summary>
+        /// Shows or hides the sheet's buses; hidden, every member is drawn on its own. Display
+        /// only: the sheet and its file keep their buses.
+        /// </summary>
+        /// <param name="show">
+        /// True to draw the buses.
+        /// </param>
+        public void SetShowBuses(bool show)
+        {
+            if (show == _options.ShowBuses)
+                return;
+            _options.ShowBuses = show;
             Relayout();
         }
 
