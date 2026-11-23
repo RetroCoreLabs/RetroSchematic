@@ -98,8 +98,8 @@ command-line tool and an MCP tool can do the same.
   part's or pin's confidence and note; move a single gate; hand-placed wire bend points (wires
   are routed again from the pin ends after every change). A chip whose formulas are not plain
   gates (7474, counters) is placed without gate symbols and shown as a pin list.
-- Simulation toolbar: run, pause, single step, reset; click an input to set 0 or 1; lines
-  coloured by value (0, 1, not driven, unknown, driven twice).
+- Simulation: the toolbar buttons (run, pause, step, reset) and the value colours (0, 1, not
+  driven, unknown, driven twice) exist, but nothing simulates yet; click an input to set 0 or 1.
 - Signal plot window (logic analyser view).
 
 ## 4. Converters
@@ -132,8 +132,8 @@ command-line tool and an MCP tool can do the same.
 
 ## 6. Renderer
 
-- Wires are routed in a simple way: the drawn pins of a signal are joined left to right with
-  straight pieces, which crosses other parts on a busy sheet. Wires to backplane and front pins
-  are not drawn (those pins have no place on the sheet yet).
+- Wires are routed again from scratch after every change; hand-placed bend points are not kept
+  yet (see section 1b). A wire can still take a long way round a busy corner of a sheet.
+- Backplane and front pins have no place on the sheet, so their signals are always labelled.
 - OR and buffer symbols in ND style are not transcribed from the manual yet; they are drawn as
   a labelled box.

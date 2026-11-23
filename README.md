@@ -49,9 +49,12 @@ Version 0.1.0, no tagged release yet.
   (`src/docs/2A50-catalogue-map.md`); most chip-to-chip wires are not read pin by pin yet.
 - The symbol catalogue covers all 128 parts of ND-13.003.01, with chip files from datasheets
   for all but one (74118: no datasheet found).
-- The viewer window shows a sheet with the RetroCommander themes.
-- The renderer places chips and draws gates, but not routed wires.
-- 42 tests, all passing (run 2026-11-23): 39 for the libraries, 3 for the viewer window.
+- The viewer window shows a sheet with the RetroCommander themes, a toolbar, an edit mode and a
+  trace tool that lights one whole signal.
+- The renderer places chips with room between them and routes short local wires round every
+  part; every other signal is an ND net-label diamond at each pin (the rule is in
+  `src/docs/FORMAT.md`, "How a sheet is drawn").
+- 102 tests, all passing (run 2026-11-23): 91 for the libraries, 11 for the viewer window.
 - The outstanding work, including the rest of the viewer, simulation, KiCad/Logisim converters
   and Verilog export, is in `src/docs/PLAN.md`.
 
@@ -76,10 +79,9 @@ Use `modern` instead of `nd` for modern gate symbols.
 
 ## Current limitations
 
-- **Wires are not drawn** - a signal shows as its name at each pin, the way ND drawings end a
-  line in a named diamond head.
+- **Only short local signals are wires** - the rest show as a named diamond at each pin, the
+  way ND drawings end a line. Hand-placed wire paths are not saved yet.
 - **ND OR and buffer symbols** are not transcribed from the manual yet and draw as a labelled box.
-- **Gate positions** measured on the scan are part of the format but not used by the renderer.
 
 ## About Norsk Data circuit drawings
 
