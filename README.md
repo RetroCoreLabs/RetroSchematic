@@ -36,7 +36,8 @@ was read from, and the tools that check and draw it.
 | Program | What it is |
 |---|---|
 | `RetroSchematic.Cli` (`retroschematic`) | command line: check a sheet file, write it as SVG |
-| [`RetroSchematic.Desktop`](src/RetroSchematic.Desktop/README.md) (`RetroSchematic`) | the viewer window |
+| [`RetroSchematic.Desktop`](src/RetroSchematic.Desktop/README.md) (`RetroSchematic`) | the viewer and editor window |
+| `RetroSchematic.Mcp` (`retroschematic-mcp`) | MCP server over standard input and output: make and change sheets with the same edit rules as the window (see [the viewer](src/RetroSchematic.Desktop/README.md#mcp-server)) |
 
 ## Status
 

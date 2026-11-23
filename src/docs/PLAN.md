@@ -89,18 +89,18 @@ The file layout must cover all of this from the start; adding it later rewrites 
 The window has no logic of its own: every action calls the shared libraries, and the
 command-line tool and an MCP tool can do the same.
 
-- File: save a sheet, export to KiCad, Logisim, PNG.
-- View: show or hide pin numbers and board positions; show the original scan behind the
-  drawing to compare; keep signal lines in place when switching symbol style (wires are not
-  drawn yet, see 1b).
-- OPEN connections in a colour of their own (today READ is ink and INFERRED its own colour;
-  OPEN is drawn like INFERRED).
-- Side panel for a picked part: pins and their signals, source (sheet, page). A picked signal
-  lights its pins on this sheet; across sheets is not done.
+- File: export to KiCad, Logisim.
+- View: show the original scan behind the drawing to compare. Wires start at the pin ends,
+  which are the same in both symbol styles except the ND AND gate's output (10 units further
+  right), so switching style still moves those wires a little.
+- A picked signal lights its pins on this sheet only; across sheets is not done.
+- Editing, still missing: rename a signal and set its subscript, drive and pull-up; change a
+  part's or pin's confidence and note; move a single gate; hand-placed wire bend points (wires
+  are routed again from the pin ends after every change). A chip whose formulas are not plain
+  gates (7474, counters) is placed without gate symbols and shown as a pin list.
 - Simulation toolbar: run, pause, single step, reset; click an input to set 0 or 1; lines
   coloured by value (0, 1, not driven, unknown, driven twice).
 - Signal plot window (logic analyser view).
-- Search box for a part, signal or pin.
 
 ## 4. Converters
 
@@ -132,7 +132,8 @@ command-line tool and an MCP tool can do the same.
 
 ## 6. Renderer
 
-- Gate positions measured on the scan (`position` in the format) are not used yet.
-- Signals are shown as names at the pins; routed wires are not drawn.
+- Wires are routed in a simple way: the drawn pins of a signal are joined left to right with
+  straight pieces, which crosses other parts on a busy sheet. Wires to backplane and front pins
+  are not drawn (those pins have no place on the sheet yet).
 - OR and buffer symbols in ND style are not transcribed from the manual yet; they are drawn as
   a labelled box.
