@@ -46,6 +46,26 @@ namespace RetroSchematic.Desktop.Tests
         }
 
         [AvaloniaTest]
+        public void SignalValues_MapToTheLogisimColours_InEveryTheme()
+        {
+            Assert.That(ThemeManager.ValueKey(SignalValue.NotSimulated), Is.Null, "no value keeps the ink colour");
+            SignalValue[] values = { SignalValue.Unknown, SignalValue.Zero, SignalValue.One, SignalValue.NotDriven, SignalValue.Conflict };
+            string[] expected = { "#808080", "#006400", "#00D200", "#2828FF", "#FF0000" };
+            IReadOnlyList<ThemeDefinition> themes = ThemeManager.Instance.Themes;
+            for (int t = 0; t < themes.Count; t++)
+            {
+                for (int i = 0; i < values.Length; i++)
+                {
+                    string key = ThemeManager.ValueKey(values[i])!;
+                    Assert.That(Application.Current!.TryGetResource(key, themes[t].Variant, out object? brush), Is.True, themes[t].Id + " " + key);
+                    Assert.That(((ISolidColorBrush)brush!).Color, Is.EqualTo(Color.Parse(expected[i])), themes[t].Id + " " + values[i]);
+                }
+            }
+            // and every value has its own colour
+            Assert.That(new HashSet<string>(expected).Count, Is.EqualTo(values.Length));
+        }
+
+        [AvaloniaTest]
         public void Sheet_IsDrawn_InkOnPaper_InTheThemesColours()
         {
             ThemeManager.Instance.Apply("Light", persist: false);

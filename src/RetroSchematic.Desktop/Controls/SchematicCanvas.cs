@@ -199,6 +199,10 @@ namespace RetroSchematic.Desktop.Controls
                 DrawItem it = d.Items[i];
                 bool isLit = session.IsLit(it);
                 IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note);
+                // a simulated value colours the signal's wires, labels and names (none today)
+                string? valueKey = isLit ? null : ThemeManager.ValueKey(session.ValueOf(it));
+                if (valueKey != null)
+                    b = Brush(valueKey);
                 DrawOne(context, it, b, isLit);
             }
 

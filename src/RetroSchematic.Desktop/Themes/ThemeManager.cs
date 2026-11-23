@@ -11,6 +11,7 @@ using Avalonia;
 using Avalonia.Controls;        // ResourceDictionary
 using Avalonia.Media;           // Color, SolidColorBrush
 using Avalonia.Styling;         // ThemeVariant
+using RetroSchematic.Render;    // SignalValue
 
 namespace RetroSchematic.Desktop.Themes
 {
@@ -65,6 +66,11 @@ namespace RetroSchematic.Desktop.Themes
             SchematicNoteKey,
             SchematicSelectionKey,
             SchematicOpenKey,
+            ValueUnknownKey,
+            ValueZeroKey,
+            ValueOneKey,
+            ValueNotDrivenKey,
+            ValueConflictKey,
         };
 
         /// <summary>
@@ -101,6 +107,52 @@ namespace RetroSchematic.Desktop.Themes
         /// Brush key: a connection that is OPEN, not known (its own colour, apart from INFERRED).
         /// </summary>
         public const string SchematicOpenKey = "SchematicOpenBrush";
+
+        /// <summary>
+        /// Brush key: a simulated signal with no value yet (Logisim grey).
+        /// </summary>
+        public const string ValueUnknownKey = "SchematicValueUnknownBrush";
+
+        /// <summary>
+        /// Brush key: a simulated 0 (Logisim dark green).
+        /// </summary>
+        public const string ValueZeroKey = "SchematicValueZeroBrush";
+
+        /// <summary>
+        /// Brush key: a simulated 1 (Logisim bright green).
+        /// </summary>
+        public const string ValueOneKey = "SchematicValueOneBrush";
+
+        /// <summary>
+        /// Brush key: a signal nothing drives (Logisim blue).
+        /// </summary>
+        public const string ValueNotDrivenKey = "SchematicValueNotDrivenBrush";
+
+        /// <summary>
+        /// Brush key: a signal driven both ways at once (Logisim red).
+        /// </summary>
+        public const string ValueConflictKey = "SchematicValueConflictBrush";
+
+        /// <summary>
+        /// The brush key for a simulated value, or null for <see cref="SignalValue.NotSimulated"/>
+        /// (the item keeps its ink and reading colour).
+        /// </summary>
+        /// <param name="value">
+        /// The value.
+        /// </param>
+        /// <returns>
+        /// The brush key, or null.
+        /// </returns>
+        public static string? ValueKey(SignalValue value) => value switch
+        {
+            SignalValue.NotSimulated => null,
+            SignalValue.Unknown => ValueUnknownKey,
+            SignalValue.Zero => ValueZeroKey,
+            SignalValue.One => ValueOneKey,
+            SignalValue.NotDriven => ValueNotDrivenKey,
+            SignalValue.Conflict => ValueConflictKey,
+            _ => throw new ArgumentOutOfRangeException(nameof(value), value, "a signal value this program does not know"),
+        };
 
         private ThemeManager()
         {
@@ -629,6 +681,31 @@ namespace RetroSchematic.Desktop.Themes
         public string SchematicOpen = "#D00000";
 
         /// <summary>
+        /// A simulated signal with no value yet.
+        /// </summary>
+        public string ValueUnknown = "#808080";
+
+        /// <summary>
+        /// A simulated 0.
+        /// </summary>
+        public string ValueZero = "#006400";
+
+        /// <summary>
+        /// A simulated 1.
+        /// </summary>
+        public string ValueOne = "#00D200";
+
+        /// <summary>
+        /// A signal nothing drives.
+        /// </summary>
+        public string ValueNotDriven = "#2828FF";
+
+        /// <summary>
+        /// A signal driven both ways.
+        /// </summary>
+        public string ValueConflict = "#FF0000";
+
+        /// <summary>
         /// The colours in brush-key order.
         /// </summary>
         /// <returns>
@@ -643,6 +720,7 @@ namespace RetroSchematic.Desktop.Themes
                 SidebarSeparator, WarningBackground, WarningBorder, SuccessBackground, SuccessBorder,
                 ErrorBackground, ErrorBorder, ErrorText,
                 SchematicPaper, SchematicInk, SchematicFrame, SchematicInferred, SchematicNote, SchematicSelection, SchematicOpen,
+                ValueUnknown, ValueZero, ValueOne, ValueNotDriven, ValueConflict,
             };
         }
     }

@@ -22,6 +22,7 @@ namespace RetroSchematic.Render
     public sealed class SheetSession
     {
         private readonly LayoutOptions _options = new();
+        private readonly Dictionary<string, SignalValue> _values = new(StringComparer.Ordinal);
 
         /// <summary>
         /// Called after the drawing was laid out again (new style, new options, or an edit).
@@ -188,6 +189,55 @@ namespace RetroSchematic.Render
         {
             Editor.Save(path);
             SheetPath = path;
+        }
+
+        /// <summary>
+        /// Gives a signal a simulated value; the window then draws its wires, labels and names in
+        /// that value's colour. <see cref="SignalValue.NotSimulated"/> takes the value away.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's name.
+        /// </param>
+        /// <param name="value">
+        /// Its value.
+        /// </param>
+        public void SetValue(string net, SignalValue value)
+        {
+            if (value == SignalValue.NotSimulated)
+                _values.Remove(net);
+            else
+                _values[net] = value;
+            DrawingChanged?.Invoke(this);
+        }
+
+        /// <summary>
+        /// The simulated value of a signal, <see cref="SignalValue.NotSimulated"/> when it has none.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's name.
+        /// </param>
+        /// <returns>
+        /// Its value.
+        /// </returns>
+        public SignalValue ValueOf(string net) => _values.TryGetValue(net, out SignalValue v) ? v : SignalValue.NotSimulated;
+
+        /// <summary>
+        /// The value an item shows: its signal's value for a wire, a net label or a signal name,
+        /// and <see cref="SignalValue.NotSimulated"/> for everything else (chips, gates, pins).
+        /// </summary>
+        /// <param name="item">
+        /// A drawing step.
+        /// </param>
+        /// <returns>
+        /// The value to colour it by.
+        /// </returns>
+        public SignalValue ValueOf(DrawItem item)
+        {
+            if (_values.Count == 0 || !item.Owner.StartsWith("net:", StringComparison.Ordinal))
+                return SignalValue.NotSimulated;
+            if (item.Role != DrawRole.Wire && item.Role != DrawRole.NetLabel && item.Role != DrawRole.SignalName && item.Role != DrawRole.PinLine)
+                return SignalValue.NotSimulated;
+            return ValueOf(item.Owner.Substring(4));
         }
 
         /// <summary>
