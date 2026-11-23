@@ -38,7 +38,10 @@ namespace RetroSchematic.Tests
             Netlist n = NetlistReader.ReadFile(Sheet2A50);
             Assert.That(n.Blocks, Is.Null);
             Assert.That(n.Instances, Is.Null);
-            Assert.That(NetlistReader.Write(n), Does.Contain("\"formatVersion\": 1"));
+            string written = NetlistReader.Write(n);
+            Assert.That(written, Does.Contain("\"formatVersion\": 1"));
+            // a pin is written as "at" only; its part and number are worked out from it
+            Assert.That(written, Does.Not.Contain("\"partRef\"").And.Not.Contain("\"pin\":"));
             // flattening a design with no blocks changes nothing
             Assert.That(Hierarchy.Flatten(n).Nets.Count, Is.EqualTo(n.Nets.Count));
         }

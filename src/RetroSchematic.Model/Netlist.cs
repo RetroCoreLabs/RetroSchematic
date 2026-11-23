@@ -665,13 +665,17 @@ namespace RetroSchematic.Model
         public string? Note { get; set; }
 
         /// <summary>
-        /// The part ref: everything before the last dot.
+        /// The part ref: everything before the last dot. Worked out from <see cref="At"/>, so it
+        /// is not written to the file (the format has only "at").
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
         public string PartRef => At.Substring(0, At.LastIndexOf('.'));
 
         /// <summary>
-        /// The pin number: everything after the last dot.
+        /// The pin number: everything after the last dot. Worked out from <see cref="At"/>, so it
+        /// is not written to the file.
         /// </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
         public int Pin => int.Parse(At.Substring(At.LastIndexOf('.') + 1), System.Globalization.CultureInfo.InvariantCulture);
     }
 }
