@@ -46,23 +46,51 @@ namespace RetroSchematic.Desktop.Tests
         }
 
         [AvaloniaTest]
-        public void SignalValues_MapToTheLogisimColours_InEveryTheme()
+        public void SignalValues_AreReadable_OnEveryThemesPaper()
         {
             Assert.That(ThemeManager.ValueKey(SignalValue.NotSimulated), Is.Null, "no value keeps the ink colour");
             SignalValue[] values = { SignalValue.Unknown, SignalValue.Zero, SignalValue.One, SignalValue.NotDriven, SignalValue.Conflict };
-            string[] expected = { "#808080", "#006400", "#00D200", "#2828FF", "#FF0000" };
             IReadOnlyList<ThemeDefinition> themes = ThemeManager.Instance.Themes;
             for (int t = 0; t < themes.Count; t++)
             {
+                Color paper = Lookup(ThemeManager.SchematicPaperKey, themes[t]);
                 for (int i = 0; i < values.Length; i++)
                 {
-                    string key = ThemeManager.ValueKey(values[i])!;
-                    Assert.That(Application.Current!.TryGetResource(key, themes[t].Variant, out object? brush), Is.True, themes[t].Id + " " + key);
-                    Assert.That(((ISolidColorBrush)brush!).Color, Is.EqualTo(Color.Parse(expected[i])), themes[t].Id + " " + values[i]);
+                    Color c = Lookup(ThemeManager.ValueKey(values[i])!, themes[t]);
+                    // WCAG: 3 to 1 is the least for lines and large marks
+                    Assert.That(Contrast(c, paper), Is.GreaterThanOrEqualTo(3.0), themes[t].Id + " " + values[i] + " is too faint on the paper");
                 }
+                // Logisim's idea kept: 0 is the darker green, 1 the brighter, and they are clearly apart
+                Color zero = Lookup(ThemeManager.ValueZeroKey, themes[t]);
+                Color one = Lookup(ThemeManager.ValueOneKey, themes[t]);
+                Assert.That(zero.G, Is.GreaterThan(zero.R).And.GreaterThan(zero.B), themes[t].Id + " 0 is not green");
+                Assert.That(one.G, Is.GreaterThan(one.R).And.GreaterThan(one.B), themes[t].Id + " 1 is not green");
+                Assert.That(Luminance(one), Is.GreaterThan(Luminance(zero)), themes[t].Id + " 1 must be the brighter green");
+                Assert.That(Contrast(one, zero), Is.GreaterThanOrEqualTo(1.8), themes[t].Id + " 0 and 1 look too alike");
             }
-            // and every value has its own colour
-            Assert.That(new HashSet<string>(expected).Count, Is.EqualTo(values.Length));
+        }
+
+        private static Color Lookup(string key, ThemeDefinition theme)
+        {
+            Assert.That(Application.Current!.TryGetResource(key, theme.Variant, out object? brush), Is.True, theme.Id + " " + key);
+            return ((ISolidColorBrush)brush!).Color;
+        }
+
+        private static double Luminance(Color c)
+        {
+            static double Lin(byte v)
+            {
+                double x = v / 255.0;
+                return x <= 0.03928 ? x / 12.92 : System.Math.Pow((x + 0.055) / 1.055, 2.4);
+            }
+
+            return (0.2126 * Lin(c.R)) + (0.7152 * Lin(c.G)) + (0.0722 * Lin(c.B));
+        }
+
+        private static double Contrast(Color a, Color b)
+        {
+            double la = Luminance(a), lb = Luminance(b);
+            return (System.Math.Max(la, lb) + 0.05) / (System.Math.Min(la, lb) + 0.05);
         }
 
         [AvaloniaTest]

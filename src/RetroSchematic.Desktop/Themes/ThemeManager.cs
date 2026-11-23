@@ -306,6 +306,8 @@ namespace RetroSchematic.Desktop.Themes
                 SchematicNote = "#666666",
                 SchematicSelection = "#0078D7",
                 SchematicOpen = "#D00000",
+                // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                ValueUnknown = "#757575", ValueZero = "#006400", ValueOne = "#00A000", ValueNotDriven = "#2828FF", ValueConflict = "#E00000",
             }));
 
             _themes.Add(new ThemeDefinition("Dark", "Dark", ThemeVariant.Dark, new Palette
@@ -336,6 +338,8 @@ namespace RetroSchematic.Desktop.Themes
                 SchematicNote = "#A0A0A0",
                 SchematicSelection = "#0A84FF",
                 SchematicOpen = "#FF5555",
+                // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
             }));
 
             _themes.Add(new ThemeDefinition("SolarizedDark", "Solarized Dark",
@@ -367,6 +371,8 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicNote = "#657B83",
                     SchematicSelection = "#268BD2",
                     SchematicOpen = "#DC322F",
+                    // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                    ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
 
             _themes.Add(new ThemeDefinition("Nord", "Nord",
@@ -398,6 +404,8 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicNote = "#9AA4B5",
                     SchematicSelection = "#88C0D0",
                     SchematicOpen = "#BF616A",
+                    // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                    ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
 
             _themes.Add(new ThemeDefinition("RetroGreen", "Retro Green",
@@ -429,6 +437,8 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicNote = "#00AA00",
                     SchematicSelection = "#FFFFFF",
                     SchematicOpen = "#FF4040",
+                    // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                    ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
 
             _themes.Add(new ThemeDefinition("AmberCrt", "Amber CRT",
@@ -460,6 +470,8 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicNote = "#CC8800",
                     SchematicSelection = "#FFFFFF",
                     SchematicOpen = "#FF4040",
+                    // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                    ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
 
             _themes.Add(new ThemeDefinition("Synthwave", "Synthwave '84",
@@ -491,6 +503,8 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicNote = "#B893CE",
                     SchematicSelection = "#FF7EDB",
                     SchematicOpen = "#FE4450",
+                    // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                    ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
 
             _themes.Add(new ThemeDefinition("HighContrast", "High Contrast",
@@ -522,6 +536,8 @@ namespace RetroSchematic.Desktop.Themes
                     SchematicNote = "#E0E0E0",
                     SchematicSelection = "#00FFFF",
                     SchematicOpen = "#FF0000",
+                    // signal values, Logisim's idea (0 dark green, 1 bright green) made readable on this paper
+                    ValueUnknown = "#9A9A9A", ValueZero = "#2E9B2E", ValueOne = "#66FF66", ValueNotDriven = "#7A9BFF", ValueConflict = "#FF5050",
                 }));
         }
     }
