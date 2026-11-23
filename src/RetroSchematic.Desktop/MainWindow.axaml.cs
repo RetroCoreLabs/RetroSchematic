@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Controls.Primitives;     // ToggleButton
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
@@ -26,6 +27,10 @@ namespace RetroSchematic.Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Back / Forward history, and true while going back or forward (so that is not noted)
+        private readonly NavHistory _history = new();
+        private bool _navigating;
+
         private readonly List<string> _partOwners = new();
         private readonly List<string> _netOwners = new();
         private readonly List<string> _foundOwners = new();
@@ -43,6 +48,7 @@ namespace RetroSchematic.Desktop
             Canvas.ToolMessage += OnToolMessage;
             Canvas.InstanceOpened += owner => OpenInstance(owner.Substring(5));
             Canvas.MenuRequested += owner => ShowDrawingMenu(owner);
+            AddHandler(PointerPressedEvent, OnSideButtons, Avalonia.Interactivity.RoutingStrategies.Tunnel);
             Details.PinClicked += CentreOnPin;
             Details.SignalClicked += key => PickFromList("net:" + key);
             ApplyDisplay();
@@ -120,6 +126,7 @@ namespace RetroSchematic.Desktop
                 _session.TraceChanged -= OnTraceChanged;
             }
             _session = s;
+            _history.Clear();
             _session.SelectionChanged += OnSelectionChanged;
             _session.DrawingChanged += OnDrawingChanged;
             _session.TraceChanged += OnTraceChanged;
@@ -129,6 +136,7 @@ namespace RetroSchematic.Desktop
             FillLists();
             FillChipBox();
             Details.ShowText("Details", "Click a part, gate, signal or pin on the drawing.");
+            Record(s);
             SaveAsItem.IsEnabled = true;
             SaveSvgItem.IsEnabled = true;
             ExportPngItem.IsEnabled = true;
@@ -471,8 +479,105 @@ namespace RetroSchematic.Desktop
                 Canvas.CentreOn(p.X, p.Y);
         }
 
+        /// <summary>
+        /// Back / Forward through what was picked, as in a web browser.
+        /// </summary>
+        public NavHistory History => _history;
+
+        /// <summary>
+        /// Goes back to the place picked before, with its view.
+        /// </summary>
+        public void GoBack() => Navigate(back: true);
+
+        /// <summary>
+        /// Goes forward again after <see cref="GoBack"/>.
+        /// </summary>
+        public void GoForward() => Navigate(back: false);
+
+        private void OnBack(object? sender, RoutedEventArgs e) => GoBack();
+
+        private void OnForward(object? sender, RoutedEventArgs e) => GoForward();
+
+        // the mouse's side buttons go back and forward, as in a browser
+        private void OnSideButtons(object? sender, PointerPressedEventArgs e)
+        {
+            PointerPointProperties p = e.GetCurrentPoint(this).Properties;
+            if (p.IsXButton1Pressed)
+            {
+                GoBack();
+                e.Handled = true;
+            }
+            else if (p.IsXButton2Pressed)
+            {
+                GoForward();
+                e.Handled = true;
+            }
+        }
+
+        // keeps the view of the place being left, so going back to it puts the view back too
+        private void KeepView()
+        {
+            NavPlace? cur = _history.Current;
+            if (cur == null)
+                return;
+            Avalonia.Point c = Canvas.ViewCentre;
+            cur.CentreX = c.X;
+            cur.CentreY = c.Y;
+            cur.Zoom = Canvas.Zoom;
+            cur.HasView = true;
+        }
+
+        // notes the place shown now as a new history entry (unless going back or forward)
+        private void Record(SheetSession session)
+        {
+            if (_navigating)
+                return;
+            NavPlace now = session.PlaceNow();
+            NavPlace? cur = _history.Current;
+            if (cur != null && !cur.SameAs(now))
+                KeepView();
+            _history.Push(now);
+            ShowNav();
+        }
+
+        private void Navigate(bool back)
+        {
+            if (_session == null || (back ? !_history.CanBack : !_history.CanForward))
+                return;
+            KeepView();
+            NavPlace p = back ? _history.Back()! : _history.Forward()!;
+            _navigating = true;
+            try
+            {
+                _session.GoTo(p);
+            }
+            finally
+            {
+                _navigating = false;
+            }
+            if (p.HasView)
+                Canvas.SetView(p.CentreX, p.CentreY, p.Zoom);
+            ShowNav();
+        }
+
+        // the buttons and menu items: on when there is somewhere to go, naming where
+        private void ShowNav()
+        {
+            NavPlace? b = _history.BackPlace;
+            NavPlace? f = _history.ForwardPlace;
+            string bt = b == null ? "Back (Alt+Left)" : "Back to " + b.Label + " (Alt+Left)";
+            string ft = f == null ? "Forward (Alt+Right)" : "Forward to " + f.Label + " (Alt+Right)";
+            TbBack.IsEnabled = DetailsBack.IsEnabled = BackItem.IsEnabled = b != null;
+            TbForward.IsEnabled = DetailsForward.IsEnabled = ForwardItem.IsEnabled = f != null;
+            ToolTip.SetTip(TbBack, bt);
+            ToolTip.SetTip(DetailsBack, bt);
+            ToolTip.SetTip(TbForward, ft);
+            ToolTip.SetTip(DetailsForward, ft);
+        }
+
         private void OnSelectionChanged(SheetSession session, string owner)
         {
+            Record(session);
             ShowEditState();
             ShowSignalEditor();
             ShowDetails(session, owner);
@@ -869,6 +974,8 @@ namespace RetroSchematic.Desktop
 
         private void OnTraceChanged(SheetSession session)
         {
+            if (session.TraceBelongsToPick)
+                Record(session);
             _syncingLists = true;
             // the Details panel's pin table already lists the traced signal's pins
             TracePanel.IsVisible = session.Traced.Length > 0 && Details.SignalKey != session.Traced;

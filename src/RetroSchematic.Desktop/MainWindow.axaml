@@ -45,6 +45,9 @@
         <MenuItem Header="_Up one level" Click="OnUpLevel" x:Name="UpLevelItem" IsEnabled="False"/>
       </MenuItem>
       <MenuItem Header="_View">
+        <MenuItem Header="_Back" x:Name="BackItem" Click="OnBack" IsEnabled="False" HotKey="Alt+Left" InputGesture="Alt+Left"/>
+        <MenuItem Header="_Forward" x:Name="ForwardItem" Click="OnForward" IsEnabled="False" HotKey="Alt+Right" InputGesture="Alt+Right"/>
+        <Separator/>
         <MenuItem Header="_ND 1976 symbols" x:Name="NdStyleItem" Click="OnNdStyle" ToggleType="Radio"/>
         <MenuItem Header="_Modern symbols" x:Name="ModernStyleItem" Click="OnModernStyle" ToggleType="Radio"/>
         <Separator/>
@@ -67,6 +70,10 @@
          blocks, port arrows, the simulator) are there but switched off, and say so. -->
     <Border DockPanel.Dock="Top" Classes="app-toolbar" Padding="6,2">
       <StackPanel Orientation="Horizontal" Spacing="2">
+        <!-- Back / Forward through what was picked, as in a web browser -->
+        <Button x:Name="TbBack" Classes="toolbar-button icon" Click="OnBack" IsEnabled="False" ToolTip.Tip="Back (Alt+Left)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBack}"/></Button>
+        <Button x:Name="TbForward" Classes="toolbar-button icon" Click="OnForward" IsEnabled="False" ToolTip.Tip="Forward (Alt+Right)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconForward}"/></Button>
+        <Border Classes="toolbar-divider"/>
         <Button x:Name="TbNew" Classes="toolbar-button icon" Click="OnNew" ToolTip.Tip="New sheet (Ctrl+N)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconNew}"/></Button>
         <Button x:Name="TbOpen" Classes="toolbar-button icon" Click="OnOpen" ToolTip.Tip="Open sheet (Ctrl+O)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconOpen}"/></Button>
         <Button x:Name="TbSave" Classes="toolbar-button icon" Click="OnSave" IsEnabled="False" ToolTip.Tip="Save sheet (Ctrl+S)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconSave}"/></Button>
@@ -150,7 +157,13 @@
       <!-- right: what the picked item is -->
       <Border Grid.Column="4" Classes="panel-border" Margin="0,6,6,6" Padding="10">
         <DockPanel>
-          <TextBlock DockPanel.Dock="Top" Classes="fluent-text-header" Text="Details" Margin="0,0,0,8"/>
+          <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="2">
+              <Button x:Name="DetailsBack" Classes="detail-nav" Click="OnBack" IsEnabled="False" ToolTip.Tip="Back (Alt+Left)" ToolTip.ShowOnDisabled="True"><Path Classes="detail-icon" Data="{StaticResource IconBack}"/></Button>
+              <Button x:Name="DetailsForward" Classes="detail-nav" Click="OnForward" IsEnabled="False" ToolTip.Tip="Forward (Alt+Right)" ToolTip.ShowOnDisabled="True"><Path Classes="detail-icon" Data="{StaticResource IconForward}"/></Button>
+            </StackPanel>
+            <TextBlock Classes="fluent-text-header" Text="Details" VerticalAlignment="Center"/>
+          </DockPanel>
           <!-- the traced signal and its pins; clicking a pin centres the drawing on it -->
           <!-- the picked bus and its signals; every change goes through SheetEditor -->
           <StackPanel DockPanel.Dock="Bottom" x:Name="BusPanel" IsVisible="False" Margin="0,8,0,0" Spacing="4">

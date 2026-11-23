@@ -36,6 +36,24 @@
   <Style Selector="Button.detail-header:pressed /template/ ContentPresenter">
     <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
   </Style>
+  <!-- the small Back / Forward buttons at the top of the panel -->
+  <Style Selector="Button.detail-nav">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Width" Value="26"/>
+    <Setter Property="Height" Value="24"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style Selector="Button.detail-nav:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
+  </Style>
+  <Style Selector="Button.detail-nav:disabled">
+    <Setter Property="Opacity" Value="0.35"/>
+  </Style>
+  <Style Selector="Button.detail-nav:disabled /template/ ContentPresenter">
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
   <Style Selector="Path.detail-icon">
     <Setter Property="Stroke" Value="{DynamicResource FluentAccentBlueBrush}"/>
     <Setter Property="StrokeThickness" Value="1.6"/>

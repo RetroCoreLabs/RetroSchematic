@@ -23,6 +23,15 @@ In the part, connector, bus and block lists, clicking a row traces that row's si
 on its wire does. The panel only lays out facts that the library works out (`SignalInfo`,
 `PartInfo`, `SignalList` in RetroSchematic.Render), and every colour comes from the theme.
 
+## Back and Forward
+
+Every pick, every trace started from the drawing, a list or the Details panel, and every
+change of block level is a step in a history, as in a web browser. Back returns to the step
+before, with its view; Forward goes again. Use the arrow buttons at the left of the toolbar or
+at the top of the Details panel, Alt+Left / Alt+Right, or the mouse's side buttons. A new pick
+after going back drops the steps that were ahead. Tab jumps between the places of a traced
+signal are not steps. The tooltips name where the buttons go ("Back to 11D 7402").
+
 ## Start it
 
 ```powershell
