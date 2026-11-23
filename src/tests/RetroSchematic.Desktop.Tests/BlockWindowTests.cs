@@ -23,7 +23,7 @@ namespace RetroSchematic.Desktop.Tests
     [TestFixture]
     public class BlockWindowTests
     {
-        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         [AvaloniaTest]
         public void MakeBlock_Open_Up_AndDissolve_ThroughTheWindow()
@@ -91,7 +91,7 @@ namespace RetroSchematic.Desktop.Tests
         [AvaloniaTest]
         public void Tab_CentresTheViewOnEachPlaceOfTheTracedSignal()
         {
-            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             MainWindow w = new();
             w.Show();
             w.OpenSheet(blocks);

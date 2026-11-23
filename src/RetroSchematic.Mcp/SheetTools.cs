@@ -95,7 +95,7 @@ namespace RetroSchematic.Mcp
         /// What was opened.
         /// </returns>
         [McpServerTool(Name = "open_sheet"), Description("Open an nd-netlist sheet file. It opens READ-ONLY unless edit is true; every change is refused in read-only mode.")]
-        public string OpenSheet([Description("Path of the .json sheet file")] string path, [Description("True to open in edit mode")] bool edit = false)
+        public string OpenSheet([Description("Path of the sheet file (.rsc, .rsx, or an old .json)")] string path, [Description("True to open in edit mode")] bool edit = false)
         {
             Netlist n;
             try
@@ -411,7 +411,7 @@ namespace RetroSchematic.Mcp
         /// <returns>
         /// Where it was saved.
         /// </returns>
-        [McpServerTool(Name = "save_sheet"), Description("Save the open sheet as nd-netlist JSON, with every position. Without a path it saves to the file it was opened from.")]
+        [McpServerTool(Name = "save_sheet"), Description("Save the open sheet as nd-netlist JSON, with every position: plain text for a .rsc path, zipped for a .rsx path. Without a path it saves to the file it was opened from.")]
         public string SaveSheet([Description("File to write; empty for the file it was opened from")] string? path = null)
         {
             SheetEditor e = Open();

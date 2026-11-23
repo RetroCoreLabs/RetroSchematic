@@ -52,7 +52,7 @@ namespace RetroSchematic.Tests
         public void TwoSignalsOfTheSameName_AreTracedApart()
         {
             // 2A50 has two signals named BD15: subscript 0 and subscript 1
-            string real = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            string real = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
             SheetSession s = new(real, SymbolStyle.NorskData, DemoSheetLayoutTests.Catalog);
             List<string> keys = new();
             for (int i = 0; i < s.Netlist.Nets.Count; i++)
@@ -81,7 +81,7 @@ namespace RetroSchematic.Tests
         {
             // 3B (7451, AND-OR-INVERT) was drawn as an "OTHER" box; its output 3B.8 (N_3B_8 to
             // 7B.11) must be drawn and reachable like every other gate output
-            string real = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            string real = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
             SheetSession s = new(real, style, DemoSheetLayoutTests.Catalog);
             int checkedOutputs = 0;
             for (int g = 0; g < s.Netlist.Gates.Count; g++)

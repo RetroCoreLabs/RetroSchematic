@@ -70,9 +70,9 @@ Version 0.1.0, no tagged release yet.
 ```powershell
 # from the src folder
 dotnet test RetroSchematic.slnx -nodeReuse:false
-dotnet run --project RetroSchematic.Cli -- check sheets\nord-10\2A50-sync-modem-buffer-1050.json
-dotnet run --project RetroSchematic.Cli -- render sheets\nord-10\2A50-sync-modem-buffer-1050.json 2A50.svg nd
-dotnet run --project RetroSchematic.Desktop -- sheets\nord-10\2A50-sync-modem-buffer-1050.json
+dotnet run --project RetroSchematic.Cli -- check sheets\nord-10\2A50-sync-modem-buffer-1050.rsc
+dotnet run --project RetroSchematic.Cli -- render sheets\nord-10\2A50-sync-modem-buffer-1050.rsc 2A50.svg nd
+dotnet run --project RetroSchematic.Desktop -- sheets\nord-10\2A50-sync-modem-buffer-1050.rsc
 ```
 
 Use `modern` instead of `nd` for modern gate symbols.

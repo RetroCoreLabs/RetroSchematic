@@ -24,7 +24,7 @@ namespace RetroSchematic.Desktop.Tests
     public class ToolbarTests
     {
         private static readonly string Sheet = System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory,
-            "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         [AvaloniaTest]
         public void EveryToolbarButton_HasAnIconAndATooltip()

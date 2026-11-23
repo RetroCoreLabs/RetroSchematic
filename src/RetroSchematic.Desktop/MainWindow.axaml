@@ -23,6 +23,10 @@
         <MenuItem Header="Save as S_VG..." Click="OnSaveSvg" x:Name="SaveSvgItem" IsEnabled="False"/>
         <MenuItem Header="Export _PNG..." Click="OnExportPng" x:Name="ExportPngItem" IsEnabled="False"/>
         <Separator/>
+        <!-- per-user Windows file association (HKEY_CURRENT_USER only, no administrator rights) -->
+        <MenuItem Header="Open .rsc/.rsx files with RetroSchematic" Click="OnAssociate" x:Name="AssociateItem"/>
+        <MenuItem Header="Stop opening .rsc/.rsx files with RetroSchematic" Click="OnUnassociate" x:Name="UnassociateItem"/>
+        <Separator/>
         <MenuItem Header="E_xit" Click="OnExit"/>
       </MenuItem>
       <MenuItem Header="_Edit">

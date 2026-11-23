@@ -16,7 +16,7 @@ namespace RetroSchematic.Tests
     public class NetlistTests
     {
         private static readonly string SyncModemSheet =
-            Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         private const string Minimal =
             "{\"format\":\"nd-netlist\",\"formatVersion\":1,\"sheet\":{\"id\":\"X\",\"title\":\"T\",\"source\":{\"document\":\"d.pdf\"}}," +

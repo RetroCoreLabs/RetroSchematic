@@ -54,7 +54,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void EveryWireOn2A50_FixedAndReadBack_IsKeptExactly()
         {
-            string real = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            string real = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
             SheetSession s = new(real, SymbolStyle.NorskData, DemoSheetLayoutTests.Catalog);
             s.Editor.ReadOnly = false;
             List<string> nets = new(s.Drawing.WireBranches.Keys);

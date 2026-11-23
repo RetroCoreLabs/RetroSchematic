@@ -29,8 +29,8 @@ namespace RetroSchematic.Desktop.Tests
     public class ViewToggleTests
     {
         // the blocks demo has no buses of its own; 2A50 has two
-        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
-        private static readonly string Blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
+        private static readonly string Blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
 
         [AvaloniaTest]
         public void PortArrows_OffOnOff_ByToolbarAndMenu() => OffOnOff(Blocks, "TbPortArrows", "PortArrowsItem", w => Count(w, DrawRole.PortArrow) > 0);

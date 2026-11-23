@@ -21,7 +21,7 @@ namespace RetroSchematic.Tests
     [TestFixture]
     public class BlockTests
     {
-        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         // the four groups of the demo design (docs/PLAN.md section 7)
         private static readonly string[] AddressDecode = { "13E", "13D", "11C", "9E", "11E" };
@@ -238,7 +238,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void TheBlocksDemo_ConnectsExactlyWhat2A50Connects()
         {
-            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             Netlist blocks = NetlistReader.ReadFile(demo);
             Assert.That(blocks.Instances!.Count, Is.EqualTo(4));
             Assert.That(Hierarchy.Connections(blocks), Is.EqualTo(Hierarchy.Connections(NetlistReader.ReadFile(Sheet2A50))));
@@ -247,7 +247,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void ATrace_FollowsASignalThroughThePorts_IntoTheBlocks()
         {
-            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
             // DEQL is used by three of the four blocks
             s.Trace("DEQL_1");
@@ -273,7 +273,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void CtrlClick_AndADraggedBox_PickSeveralThings()
         {
-            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
             EditTool tool = new(s);
             PartFrame a = s.Drawing.Frames["11A"], b = s.Drawing.Frames["13B"];
@@ -297,7 +297,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void DroppingPickedParts_OnAnInstance_MovesThemInside_InOneUndoStep()
         {
-            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
             s.Editor.ReadOnly = false;
             string before = Hierarchy.Connections(s.Editor.Root);
@@ -343,7 +343,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void OpeningAnInstance_ShowsTheBreadcrumb_AndUpComesBack()
         {
-            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
             s.TogglePick("part:11A");
             s.OpenInstance("U2");

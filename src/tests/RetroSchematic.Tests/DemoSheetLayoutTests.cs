@@ -13,13 +13,13 @@ using RetroSchematic.Render;
 namespace RetroSchematic.Tests
 {
     /// <summary>
-    /// The made-up demo sheet (sheets/demo/demo-gates.json) and what the layout makes of it:
+    /// The made-up demo sheet (sheets/demo/demo-gates.rsc) and what the layout makes of it:
     /// measured positions used, wires between pins, OPEN in its own colour, show/hide options.
     /// </summary>
     [TestFixture]
     public class DemoSheetLayoutTests
     {
-        internal static readonly string Demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "demo", "demo-gates.json");
+        internal static readonly string Demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "demo", "demo-gates.rsc");
 
         internal static readonly string Catalog = Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog");
 
@@ -156,7 +156,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void TheRealSheet_StillLaysOut_WithWires()
         {
-            string real = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            string real = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
             SchematicDrawing d = SheetLayout.Build(NetlistReader.ReadFile(real), SymbolStyle.NorskData);
             Assert.That(Count(d, DrawRole.Wire), Is.GreaterThan(0));
         }

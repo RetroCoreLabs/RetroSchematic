@@ -36,11 +36,11 @@ signal are not steps. The tooltips name where the buttons go ("Back to 11D 7402"
 
 ```powershell
 # from the src folder
-dotnet run --project RetroSchematic.Desktop -- sheets\nord-10\2A50-sync-modem-buffer-1050.json
+dotnet run --project RetroSchematic.Desktop -- sheets\nord-10\2A50-sync-modem-buffer-1050.rsc
 ```
 
 The program is `RetroSchematic.exe`. With no file named it opens the sheet that was open last time.
-File > Open the demo sheet opens `sheets/demo/demo-gates.json`, a small made-up sheet (not a
+File > Open the demo sheet opens `sheets/demo/demo-gates.rsc`, a small made-up sheet (not a
 reading of a real drawing) with every kind of connection in it.
 
 ## Using it

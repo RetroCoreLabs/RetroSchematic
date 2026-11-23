@@ -17,7 +17,7 @@ namespace RetroSchematic.Tests
     [TestFixture]
     public class NavHistoryTests
     {
-        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
         private static readonly string Catalog = Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog");
 
         private static NavPlace At(string owner, params string[] level) => new() { Selected = owner, Level = level, Label = owner };

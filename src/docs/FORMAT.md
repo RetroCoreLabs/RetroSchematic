@@ -5,7 +5,29 @@ the chips, and the signal lines (nets) between their pins. Every converter (KiCa
 EDIF), the renderer and the viewer read this file and nothing else.
 
 The schema is `schema/nd-netlist-1.schema.json`. The first sheet written in it is
-`sheets/nord-10/2A50-sync-modem-buffer-1050.json`.
+`sheets/nord-10/2A50-sync-modem-buffer-1050.rsc`.
+
+## File endings
+
+A sheet is stored in one of two endings; the content is the same JSON either way.
+
+| Ending | What is in the file |
+|---|---|
+| `.rsc` | the JSON as plain UTF-8 text (no byte-order mark). Saving writes this unless `.rsx` is chosen. |
+| `.rsx` | the same JSON zipped: a normal zip archive holding exactly one entry, named `sheet.json`, compressed with deflate, with the JSON as UTF-8 text inside. No folders, no other entries. |
+| `.json` | the old ending, plain text like `.rsc`. Still read; renamed sheets in `sheets/` use `.rsc`. |
+
+A reader goes by the content, not the name: a file starting with the zip header bytes `PK 03 04`
+is opened as a zip and its `sheet.json` entry is read; anything else is read as text (a UTF-8
+byte-order mark is skipped). The writer picks by the name: a path ending in `.rsx` is zipped,
+every other path is written as text. The chip, signal and connector catalogues under `catalog/`
+are not sheets and stay `.json`.
+
+On Windows, File > "Open .rsc/.rsx files with RetroSchematic" makes both endings open in the
+program on a double-click, for the current user only (keys under
+`HKEY_CURRENT_USER\Software\Classes`: `.rsc` and `.rsx` name `RetroSchematic.Sheet`, whose
+`shell\open\command` runs the program with the file). The menu item below it takes that away
+again.
 
 ## The version rule
 

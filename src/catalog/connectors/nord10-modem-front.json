@@ -7,7 +7,7 @@
   "sources": [
     {
       "id": "S2A50",
-      "document": "NORD-10 drawings, sheet 2A50 SYNCHRONOUS MODEM BUFFER 1050 (1973), as read pin by pin in this repository (sheets/nord-10/2A50-sync-modem-buffer-1050.json, docs/2A50-reading.md)",
+      "document": "NORD-10 drawings, sheet 2A50 SYNCHRONOUS MODEM BUFFER 1050 (1973), as read pin by pin in this repository (sheets/nord-10/2A50-sync-modem-buffer-1050.rsc, docs/2A50-reading.md)",
       "note": "The names the card drawing uses (LEV10, IOXE, MC ...) differ from the backplane names (BINT10, BIOXE, BMCL ...); the pin numbers match."
     },
     {

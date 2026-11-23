@@ -18,7 +18,7 @@ namespace RetroSchematic.Tests
     public class SheetSessionTests
     {
         private static readonly string Sheet = Path.Combine(TestContext.CurrentContext.TestDirectory,
-            "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+            "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         [Test]
         public void ClickingAPartLabel_PicksThePart_AndDescribesIt()

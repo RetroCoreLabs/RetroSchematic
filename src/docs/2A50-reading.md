@@ -1,7 +1,7 @@
 # ND synchronous modem card: what the schematic says (2026-11-22)
 
 The emulator card built from this reading is `Emulated.HW/ND/CPU/NDBUS/NDBusSyncModem.cs` in the
-RetroCore repository. The netlist of the sheet is `sheets/nord-10/2A50-sync-modem-buffer-1050.json`;
+RetroCore repository. The netlist of the sheet is `sheets/nord-10/2A50-sync-modem-buffer-1050.rsc`;
 the scan is `docs/sources/nord-10/NORD-10-drawings.pdf`, page 64.
 
 ## Sources

@@ -19,7 +19,7 @@ namespace RetroSchematic.Tests
     [TestFixture]
     public class SignalNameTests
     {
-        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+        private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         [TestCase(SignalNameStyle.Slash, ActiveLevel.Low, "/RESET", "")]
         [TestCase(SignalNameStyle.Slash, ActiveLevel.High, "RESET", "")]

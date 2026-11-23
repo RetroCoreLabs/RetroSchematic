@@ -41,7 +41,8 @@ namespace RetroSchematic.Model
         };
 
         /// <summary>
-        /// Read and check a file.
+        /// Read and check a file: .rsc (text), .rsx (zipped) or an old .json, told apart by
+        /// content (<see cref="SheetFile"/>).
         /// </summary>
         /// <param name="path">
         /// The sheet file.
@@ -49,7 +50,7 @@ namespace RetroSchematic.Model
         /// <returns>
         /// The checked netlist.
         /// </returns>
-        public static Netlist ReadFile(string path) => Parse(File.ReadAllText(path));
+        public static Netlist ReadFile(string path) => Parse(SheetFile.ReadText(path));
 
         /// <summary>
         /// Read and check JSON text.

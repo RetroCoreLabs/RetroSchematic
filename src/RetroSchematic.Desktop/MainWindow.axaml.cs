@@ -744,7 +744,11 @@ namespace RetroSchematic.Desktop
             {
                 Title = "Open sheet",
                 AllowMultiple = false,
-                FileTypeFilter = new[] { new FilePickerFileType("ND netlist sheet") { Patterns = new[] { "*.json" } } },
+                FileTypeFilter = new[]
+                {
+                    new FilePickerFileType("RetroSchematic (*.rsc;*.rsx)") { Patterns = new[] { "*.rsc", "*.rsx" } },
+                    new FilePickerFileType("Old sheet (*.json)") { Patterns = new[] { "*.json" } },
+                },
             });
             if (files.Count == 0)
                 return;
@@ -785,8 +789,14 @@ namespace RetroSchematic.Desktop
             IStorageFile? file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
             {
                 Title = "Save sheet as",
-                DefaultExtension = "json",
-                SuggestedFileName = _session.Netlist.Sheet.Id + ".json",
+                // .rsc (plain JSON text) unless the zipped .rsx is picked
+                DefaultExtension = "rsc",
+                SuggestedFileName = _session.Netlist.Sheet.Id + ".rsc",
+                FileTypeChoices = new[]
+                {
+                    new FilePickerFileType("RetroSchematic sheet (*.rsc)") { Patterns = new[] { "*.rsc" } },
+                    new FilePickerFileType("RetroSchematic sheet, zipped (*.rsx)") { Patterns = new[] { "*.rsx" } },
+                },
             });
             string? path = file?.TryGetLocalPath();
             if (path != null)
@@ -986,6 +996,43 @@ namespace RetroSchematic.Desktop
             });
 
         private void OnExit(object? sender, RoutedEventArgs e) => Close();
+
+        /// <summary>
+        /// The registry the file-association menu items write to. Tests put a fake here so the
+        /// real registry is never touched; null means the real HKEY_CURRENT_USER on Windows.
+        /// </summary>
+        internal IRegistryWriter? Registry { get; set; }
+
+        private FileAssociation? Association()
+        {
+            IRegistryWriter? r = Registry ?? (OperatingSystem.IsWindows() ? new CurrentUserRegistry() : null);
+            return r == null ? null : new FileAssociation(r);
+        }
+
+        internal void OnAssociate(object? sender, RoutedEventArgs e)
+        {
+            FileAssociation? a = Association();
+            string? exe = Environment.ProcessPath;
+            if (a == null || exe == null)
+            {
+                StatusText.Text = "File association works on Windows only.";
+                return;
+            }
+            a.Register(exe);
+            StatusText.Text = ".rsc and .rsx files now open with RetroSchematic (for this Windows user).";
+        }
+
+        internal void OnUnassociate(object? sender, RoutedEventArgs e)
+        {
+            FileAssociation? a = Association();
+            if (a == null)
+            {
+                StatusText.Text = "File association works on Windows only.";
+                return;
+            }
+            a.Unregister();
+            StatusText.Text = ".rsc and .rsx files no longer open with RetroSchematic.";
+        }
 
         private void OnNdStyle(object? sender, RoutedEventArgs e) => SetStyle(SymbolStyle.NorskData);
 

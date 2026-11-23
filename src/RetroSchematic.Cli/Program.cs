@@ -17,8 +17,8 @@ namespace RetroSchematic.Cli
     public static class Program
     {
         private const string Help =
-            "retroschematic check <sheet.json>                          check a netlist file\n" +
-            "retroschematic render <sheet.json> <out.svg> [nd|modern] [--theme <name>] [--no-buses] [--names slash|tilde|subscript]\n" +
+            "retroschematic check <sheet.rsc>                          check a netlist file\n" +
+            "retroschematic render <sheet.rsc> <out.svg> [nd|modern] [--theme <name>] [--no-buses] [--names slash|tilde|subscript]\n" +
             "    draw it as SVG (default: nd symbols, the Light theme, buses drawn, /NAME for active low)\n";
 
         /// <summary>

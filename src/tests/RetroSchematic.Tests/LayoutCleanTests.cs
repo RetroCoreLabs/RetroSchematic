@@ -21,12 +21,12 @@ namespace RetroSchematic.Tests
     [TestFixture]
     public class LayoutCleanTests
     {
-        private static readonly string Real = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json");
+        private static readonly string Real = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
 
         private static IEnumerable<TestCaseData> Drawings()
         {
             // the blocks demo too: instance boxes, port pins and arrows must stay clear as well
-            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
             string[] sheets = { Real, DemoSheetLayoutTests.Demo, blocks };
             SymbolStyle[] styles = { SymbolStyle.NorskData, SymbolStyle.Modern };
             for (int i = 0; i < sheets.Length; i++)

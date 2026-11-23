@@ -141,7 +141,7 @@ namespace RetroSchematic.Tests
         public void SignalInfo_ComesFromTheBusCatalogue_UntilADescriptionIsSet()
         {
             SheetTools t = Tools();
-            t.OpenSheet(System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json"));
+            t.OpenSheet(System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc"));
             string info = t.GetSignalInfo("IOXE_0");
             Assert.That(info, Does.Contain("What it does: IOX enable"));
             Assert.That(info, Does.Contain("Source: bus catalogue, BIOXE"));

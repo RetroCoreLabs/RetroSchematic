@@ -22,7 +22,7 @@ namespace RetroSchematic.Desktop.Tests
     [TestFixture]
     public class BusWindowTests
     {
-        private static readonly string Demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "demo", "demo-gates.json");
+        private static readonly string Demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "demo", "demo-gates.rsc");
 
         [AvaloniaTest]
         public void NewBus_TicksByPattern_ThenThePathIsClickedOut_AndThePanelShowsTheMembers()

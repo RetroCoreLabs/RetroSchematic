@@ -24,7 +24,7 @@
   <ItemGroup>
     <!-- File > Open the demo sheet finds this copy next to the program; the chip files let a
          copy of the program outside the repository place chips and list their pins -->
-    <None Include="..\sheets\demo\demo-gates.json" Link="sheets\demo\demo-gates.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\sheets\demo\demo-gates.rsc" Link="sheets\demo\demo-gates.rsc" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\catalog\chips\*.json" Link="catalog\chips\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\catalog\signals\*.json" Link="catalog\signals\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\catalog\connectors\*.json" Link="catalog\connectors\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

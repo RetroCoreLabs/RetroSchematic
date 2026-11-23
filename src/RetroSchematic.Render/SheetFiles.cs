@@ -16,7 +16,7 @@ namespace RetroSchematic.Render
         /// <summary>
         /// The demo sheet's place under a <c>sheets</c> folder.
         /// </summary>
-        public const string DemoRelativePath = "sheets/demo/demo-gates.json";
+        public const string DemoRelativePath = "sheets/demo/demo-gates.rsc";
 
         /// <summary>
         /// Walks up from a folder to the first one holding <see cref="DemoRelativePath"/>: the
@@ -34,7 +34,7 @@ namespace RetroSchematic.Render
             string? dir = Path.GetFullPath(start);
             while (dir != null)
             {
-                string candidate = Path.Combine(dir, "sheets", "demo", "demo-gates.json");
+                string candidate = Path.Combine(dir, "sheets", "demo", "demo-gates.rsc");
                 if (File.Exists(candidate))
                     return candidate;
                 dir = Path.GetDirectoryName(dir);

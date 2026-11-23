@@ -24,7 +24,7 @@ namespace RetroSchematic.Tests
 
         private static IEnumerable<TestCaseData> Sheets()
         {
-            string[] names = { "2A50-sync-modem-buffer-1050.json", "2A50-sync-modem-buffer-1050-blocks.json" };
+            string[] names = { "2A50-sync-modem-buffer-1050.rsc", "2A50-sync-modem-buffer-1050-blocks.rsc" };
             for (int i = 0; i < names.Length; i++)
             {
                 yield return new TestCaseData(Path.Combine(Folder, names[i]), SymbolStyle.NorskData).SetName("NoLineThroughACircle(" + names[i] + ", nd)");
@@ -70,7 +70,7 @@ namespace RetroSchematic.Tests
         public void ThePinLine_AndTheWire_StopAtThePinEndRing()
         {
             // the case that was wrong: U1's left port pins, line from box to ring, wire to the tag
-            string sheet = Path.Combine(Folder, "2A50-sync-modem-buffer-1050-blocks.json");
+            string sheet = Path.Combine(Folder, "2A50-sync-modem-buffer-1050-blocks.rsc");
             SchematicDrawing d = SheetLayout.Build(NetlistReader.ReadFile(sheet), SymbolStyle.NorskData, new LayoutOptions { Catalog = new ChipCatalog(ChipCatalog.Find(sheet)!) });
             DrawPoint ring = d.Pins["U1:DEQL.0"];
             int touching = 0;
@@ -89,7 +89,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void BlockPortNames_FollowTheNameStyle()
         {
-            string sheet = Path.Combine(Folder, "2A50-sync-modem-buffer-1050-blocks.json");
+            string sheet = Path.Combine(Folder, "2A50-sync-modem-buffer-1050-blocks.rsc");
             Netlist n = NetlistReader.ReadFile(sheet);
             ChipCatalog cat = new(ChipCatalog.Find(sheet)!);
             List<string> slash = PinNames(SheetLayout.Build(n, SymbolStyle.NorskData, new LayoutOptions { Catalog = cat, NameStyle = SignalNameStyle.Slash }));

@@ -522,7 +522,8 @@ namespace RetroSchematic.Render
             {
                 throw new SheetEditException("The sheet is not valid and was not saved: " + e.Message, e);
             }
-            File.WriteAllText(path, json + "\n");
+            // zipped when the path ends in .rsx, else plain text (.rsc, or an old .json kept as it is)
+            SheetFile.WriteText(path, json + "\n");
             Modified = false;
         }
 

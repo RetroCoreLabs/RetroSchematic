@@ -3,7 +3,7 @@
 Sheet: "SYNCHRONOUS MODEM BUFFER 1050", NORD-10, A/S Norsk Data-Elektronikk, drawn 6.11.73,
 updated 28/29.11.73. Scan: `docs/sources/nord-10/NORD-10-drawings.pdf`, PDF page 64, read at
 600 dpi in overlapping tiles. Catalogue: `docs/SYMBOL-CATALOG.md`, `catalog/symbols/nd1976/`,
-`catalog/chips/`. Netlist: `sheets/nord-10/2A50-sync-modem-buffer-1050.json`.
+`catalog/chips/`. Netlist: `sheets/nord-10/2A50-sync-modem-buffer-1050.rsc`.
 
 Status words: **READ** = read on the scan; **INFERRED** = follows from the scan plus the stated
 reason; **UNKNOWN** = not legible or not on the sheet.
