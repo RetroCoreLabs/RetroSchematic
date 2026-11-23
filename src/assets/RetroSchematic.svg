@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- RetroSchematic icon: a modern NAND gate (flat back, round front, inversion bubble),
+       two input wires and an output wire ending in a pin dot, on a rounded dark tile. -->
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="#1F2A30"/>
+  <!-- input wires -->
+  <line x1="7" y1="25" x2="18" y2="25" stroke="#4DB6AC" stroke-width="3" stroke-linecap="round"/>
+  <line x1="7" y1="39" x2="18" y2="39" stroke="#4DB6AC" stroke-width="3" stroke-linecap="round"/>
+  <!-- NAND body: flat back, half-circle front -->
+  <path d="M18 16 H30 A16 16 0 0 1 30 48 H18 Z" fill="#FFF6DC" stroke="#B3261E" stroke-width="3" stroke-linejoin="round"/>
+  <!-- inversion bubble -->
+  <circle cx="49" cy="32" r="3.2" fill="#FFF6DC" stroke="#B3261E" stroke-width="2.5"/>
+  <!-- output wire and pin dot -->
+  <line x1="52.5" y1="32" x2="57" y2="32" stroke="#7CFC00" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="57.5" cy="32" r="2.8" fill="#7CFC00"/>
+</svg>

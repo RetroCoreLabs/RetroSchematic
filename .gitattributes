@@ -9,3 +9,5 @@ src/sheets/**/*.png filter=lfs diff=lfs merge=lfs -text
 src/sheets/**/*.jpg filter=lfs diff=lfs merge=lfs -text
 src/sheets/**/*.rsx filter=lfs diff=lfs merge=lfs -text
 src/datasheets/**/*.pdf filter=lfs diff=lfs merge=lfs -text
+src/assets/*.png filter=lfs diff=lfs merge=lfs -text
+src/assets/*.ico filter=lfs diff=lfs merge=lfs -text
