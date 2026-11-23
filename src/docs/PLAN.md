@@ -222,3 +222,10 @@ Built after the chip behaviour data in section 2, because it runs on it.
 - Test: an IOX write on 2A50. Set BA0-9 to the device address and BD0-15 to 2215 octal, pulse
   IOXE low, then read the IRFTIE, IERRIE and TEST flip-flops and LEV12. They must come out as
   `docs/2A50-reading.md` says.
+
+## 10. Web version (low priority - last)
+
+- A WebAssembly build of the same window code (Avalonia's browser target, or Blazor if that
+  turns out to fit better - not decided), published on GitHub Pages: pick a card from a list of
+  controllers, load its packed .rsx sheet, and show the same viewer as the desktop app.
+
