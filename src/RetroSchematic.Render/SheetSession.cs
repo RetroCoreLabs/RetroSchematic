@@ -944,6 +944,8 @@ namespace RetroSchematic.Render
                     if (!string.IsNullOrEmpty(r.Note))
                         sb.Append("Note: ").Append(r.Note).Append('\n');
                 }
+                // and everything about the signal the pin is on
+                sb.Append('\n').Append(SignalInfo.Of(Editor, net, NameStyle, BusSignals).Details());
             }
             return sb.ToString();
         }

@@ -106,6 +106,7 @@ namespace RetroSchematic.Desktop
             if (!on && Canvas.Tool != null)
                 Canvas.Tool.Cancel();
             ShowEditState();
+            ShowSignalEditor();
         }
 
         private void Show(SheetSession s)
@@ -355,9 +356,73 @@ namespace RetroSchematic.Desktop
 
         private void OnSettings(object? sender, RoutedEventArgs e) => OpenSettings();
 
+        /// <summary>
+        /// The key of the signal the editing fields are for, or empty.
+        /// </summary>
+        private string _editedSignal = "";
+
+        private static readonly string[] s_sourceKinds = { "the drawing", "a manual", "a reading document", "inferred" };
+        private static readonly string[] s_confidences = { "read", "inferred", "open" };
+
+        /// <summary>
+        /// Shows the signal's description, source and notes for editing when the sheet is in edit
+        /// mode and a signal (or anything of one) is picked; hides them otherwise.
+        /// </summary>
+        private void ShowSignalEditor()
+        {
+            string key = _session == null || _session.Editor.ReadOnly || _session.Selected.Length == 0 ? "" : _session.SignalAt(_session.Selected);
+            Net? n = key.Length == 0 ? null : _session!.Editor.FindNetByKey(key);
+            SignalEditPanel.IsVisible = n != null;
+            _editedSignal = n == null ? "" : key;
+            if (n == null)
+                return;
+            if (SourceKindBox.ItemsSource == null)
+            {
+                SourceKindBox.ItemsSource = s_sourceKinds;
+                SourceConfidenceBox.ItemsSource = s_confidences;
+            }
+            SignalEditTitle.Text = "Describe " + _session!.NameOf(n);
+            DescriptionBox.Text = n.Description ?? "";
+            DescriptionSource? s = n.DescriptionSource;
+            SourceKindBox.SelectedIndex = s == null ? 2 : (int)s.Kind;
+            SourceDocumentBox.Text = s?.Document ?? "";
+            SourcePlaceBox.Text = s?.Place ?? "";
+            SourceConfidenceBox.SelectedIndex = s == null ? 0 : (int)s.Confidence;
+            NotesBox.Text = n.Note ?? "";
+        }
+
+        /// <summary>
+        /// Saves the editing fields into the signal (undoable; marks the sheet changed). Public so
+        /// the window tests can use it.
+        /// </summary>
+        public void SaveSignalText()
+        {
+            if (_session == null || _editedSignal.Length == 0)
+                return;
+            DescriptionSource source = new()
+            {
+                Kind = (SourceKind)Math.Max(0, SourceKindBox.SelectedIndex),
+                Document = string.IsNullOrWhiteSpace(SourceDocumentBox.Text) ? null : SourceDocumentBox.Text.Trim(),
+                Place = string.IsNullOrWhiteSpace(SourcePlaceBox.Text) ? null : SourcePlaceBox.Text.Trim(),
+                Confidence = (Confidence)Math.Max(0, SourceConfidenceBox.SelectedIndex),
+            };
+            try
+            {
+                _session.SetSignalInfo(_editedSignal, DescriptionBox.Text, source, NotesBox.Text);
+                StatusText.Text = "Saved the text of the signal.";
+            }
+            catch (SheetEditException ex)
+            {
+                StatusText.Text = ex.Message;
+            }
+        }
+
+        private void OnSignalTextSave(object? sender, RoutedEventArgs e) => SaveSignalText();
+
         private void OnSelectionChanged(SheetSession session, string owner)
         {
             ShowEditState();
+            ShowSignalEditor();
             DetailsText.Text = owner.Length == 0 ? "Nothing under the pointer." : session.Describe();
             // keep the lists in step with a pick made on the drawing
             _syncingLists = true;

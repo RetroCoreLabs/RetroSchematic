@@ -167,6 +167,19 @@
               <Button Classes="fluent-button" Content="Delete bus" Click="OnBusDelete"/>
             </StackPanel>
           </StackPanel>
+          <StackPanel DockPanel.Dock="Bottom" x:Name="SignalEditPanel" IsVisible="False" Margin="0,8,0,0" Spacing="4">
+            <TextBlock x:Name="SignalEditTitle" Classes="fluent-text-header"/>
+            <TextBox x:Name="DescriptionBox" Classes="fluent-textbox" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="90"
+                     Watermark="What the signal does (never invent one: say where it is read)"/>
+            <ComboBox x:Name="SourceKindBox" Classes="fluent-combobox" HorizontalAlignment="Stretch"
+                      ToolTip.Tip="Where the description comes from"/>
+            <TextBox x:Name="SourceDocumentBox" Classes="fluent-textbox" Watermark="Document, e.g. docs/2A50-reading.md"/>
+            <TextBox x:Name="SourcePlaceBox" Classes="fluent-textbox" Watermark="Place in it: section or page"/>
+            <ComboBox x:Name="SourceConfidenceBox" Classes="fluent-combobox" HorizontalAlignment="Stretch"
+                      ToolTip.Tip="How sure the description is"/>
+            <TextBox x:Name="NotesBox" Classes="fluent-textbox" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="70" Watermark="Notes"/>
+            <Button Classes="fluent-button" Content="Save signal text" Click="OnSignalTextSave"/>
+          </StackPanel>
           <StackPanel DockPanel.Dock="Bottom" x:Name="TracePanel" IsVisible="False" Margin="0,8,0,0">
             <TextBlock x:Name="TraceTitle" Classes="fluent-text-header"/>
             <ListBox x:Name="TraceList" MaxHeight="260" SelectionChanged="OnTracePinPicked"

@@ -80,6 +80,10 @@ namespace RetroSchematic.Desktop.Controls
         // the trace pulse: a redraw about 25 times a second while a signal is traced. The level
         // itself (how bright, at what moment) is SheetSession.PulseLevel in the library.
         private readonly DispatcherTimer _pulse;
+
+        // the hover text shows after the pointer rests on one item for about 400 ms
+        private readonly DispatcherTimer _hover;
+        private string _hoverOwner = "";
         private readonly System.Diagnostics.Stopwatch _clock = System.Diagnostics.Stopwatch.StartNew();
 
         /// <summary>
@@ -94,7 +98,48 @@ namespace RetroSchematic.Desktop.Controls
                 if (TracePulse && _session != null && _session.Traced.Length > 0)
                     InvalidateVisual();
             });
+            _hover = new DispatcherTimer(TimeSpan.FromMilliseconds(400), DispatcherPriority.Normal, (s, e) =>
+            {
+                ((DispatcherTimer)s!).Stop();
+                ShowHover(_hoverOwner);
+            });
+            _hover.Stop();
             ActualThemeVariantChanged += OnThemeChanged;
+        }
+
+        /// <summary>
+        /// The hover text shown now, or null. The text itself is built in the library
+        /// (<see cref="SheetSession.TooltipAt"/>).
+        /// </summary>
+        public string? HoverText { get; private set; }
+
+        /// <summary>
+        /// Shows the hover text for an item at once (the pointer calls this after resting about
+        /// 400 ms on it). Public so the window tests can use it without waiting.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner of the item under the pointer.
+        /// </param>
+        public void ShowHover(string owner)
+        {
+            HoverText = _session?.TooltipAt(owner);
+            ToolTip.SetTip(this, HoverText);
+            ToolTip.SetIsOpen(this, HoverText != null);
+        }
+
+        private void HoverAt(Point at)
+        {
+            if (_session == null)
+                return;
+            string owner = _session.Drawing.HitTest(ToDrawingX(at.X), ToDrawingY(at.Y));
+            if (owner == _hoverOwner)
+                return;
+            _hoverOwner = owner;
+            _hover.Stop();
+            if (HoverText != null)
+                ShowHover("");
+            if (owner.Length > 0)
+                _hover.Start();
         }
 
         /// <summary>
@@ -478,7 +523,10 @@ namespace RetroSchematic.Desktop.Controls
                 return;
             }
             if (_dragFrom is not Point from)
+            {
+                HoverAt(e.GetPosition(this));
                 return;
+            }
             Point now = e.GetPosition(this);
             // a few pixels of wobble on a right-click is not a drag of the view
             if (Math.Abs(now.X - from.X) + Math.Abs(now.Y - from.Y) > 3 || _panned)
