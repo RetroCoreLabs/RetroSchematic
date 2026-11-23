@@ -45,6 +45,11 @@
   <StreamGeometry x:Key="IconPortArrows">M3,12 H16 M12,8 L16,12 L12,16 M20,5 V19</StreamGeometry>
 
   <!-- simulation -->
+  <!-- settings: a gear, a ring with six teeth -->
+  <StreamGeometry x:Key="IconSettings">M9,12 a3,3 0 1 0 6,0 a3,3 0 1 0 -6,0 M6,12 a6,6 0 1 0 12,0 a6,6 0 1 0 -12,0 M12,2 V6 M12,18 V22 M3.3,7 L6.8,9 M17.2,15 L20.7,17 M3.3,17 L6.8,15 M17.2,9 L20.7,7</StreamGeometry>
+  <!-- show buses: two thick lines with an entry -->
+  <StreamGeometry x:Key="IconShowBuses">M3,8 H21 M3,11 H21 M7,11 V18 M12,11 V18 M17,11 V18</StreamGeometry>
+
   <StreamGeometry x:Key="IconRun">M7,4 L19,12 L7,20 Z</StreamGeometry>
   <StreamGeometry x:Key="IconPause">M8,5 V19 M16,5 V19</StreamGeometry>
   <StreamGeometry x:Key="IconStep">M5,5 L14,12 L5,19 Z M18,5 V19</StreamGeometry>

@@ -47,6 +47,10 @@
         <MenuItem Header="Show _pin numbers" x:Name="PinNumbersItem" Click="OnTogglePinNumbers" ToggleType="CheckBox" IsChecked="True"/>
         <MenuItem Header="Show _board positions" x:Name="BoardPositionsItem" Click="OnToggleBoardPositions" ToggleType="CheckBox" IsChecked="True"/>
         <MenuItem Header="Show port _arrows" x:Name="PortArrowsItem" Click="OnTogglePortArrows" ToggleType="CheckBox" IsChecked="True"/>
+        <MenuItem Header="Show b_uses" x:Name="ShowBusesItem" Click="OnToggleShowBuses" ToggleType="CheckBox" IsChecked="True"
+                  ToolTip.Tip="Off: buses are hidden and every member is drawn on its own. The sheet keeps its buses."/>
+        <Separator/>
+        <MenuItem Header="_Settings..." x:Name="SettingsItem" Click="OnSettings" HotKey="Ctrl+OemComma" InputGesture="Ctrl+OemComma"/>
         <Separator/>
         <MenuItem Header="_Fit to window" Click="OnFit" HotKey="Ctrl+D0" InputGesture="Ctrl+0"/>
         <Separator/>
@@ -86,6 +90,8 @@
         <ToggleButton x:Name="TbPinNumbers" Classes="toolbar-button" Click="OnTogglePinNumbers" ToolTip.Tip="Show pin numbers" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPinNumbers}"/></ToggleButton>
         <ToggleButton x:Name="TbBoardPositions" Classes="toolbar-button" Click="OnToggleBoardPositions" ToolTip.Tip="Show board positions" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBoardPositions}"/></ToggleButton>
         <ToggleButton x:Name="TbPortArrows" Classes="toolbar-button" Click="OnTogglePortArrows" ToolTip.Tip="Show port direction arrows on blocks" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPortArrows}"/></ToggleButton>
+        <ToggleButton x:Name="TbShowBuses" Classes="toolbar-button" Click="OnToggleShowBuses" ToolTip.Tip="Show buses (off: every member drawn on its own; the sheet keeps its buses)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconShowBuses}"/></ToggleButton>
+        <Button x:Name="TbSettings" Classes="toolbar-button icon" Click="OnSettings" ToolTip.Tip="Settings (Ctrl+,)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconSettings}"/></Button>
         <Border Classes="toolbar-divider"/>
         <Button x:Name="TbRun" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Run the simulation (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconRun}"/></Button>
         <Button x:Name="TbPause" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Pause (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPause}"/></Button>

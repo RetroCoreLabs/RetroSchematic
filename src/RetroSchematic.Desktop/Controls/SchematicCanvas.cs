@@ -91,7 +91,7 @@ namespace RetroSchematic.Desktop.Controls
             Focusable = true;
             _pulse = new DispatcherTimer(TimeSpan.FromMilliseconds(40), DispatcherPriority.Render, (s, e) =>
             {
-                if (_session != null && _session.Traced.Length > 0)
+                if (TracePulse && _session != null && _session.Traced.Length > 0)
                     InvalidateVisual();
             });
             ActualThemeVariantChanged += OnThemeChanged;
@@ -101,6 +101,11 @@ namespace RetroSchematic.Desktop.Controls
         /// The zoom factor (1 = one drawing unit per screen pixel).
         /// </summary>
         public double Zoom => _zoom;
+
+        /// <summary>
+        /// True to make a traced signal pulse; false shows it still (a setting).
+        /// </summary>
+        public bool TracePulse { get; set; } = true;
 
         /// <inheritdoc/>
         protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
@@ -261,7 +266,7 @@ namespace RetroSchematic.Desktop.Controls
 
             SchematicDrawing d = session.Drawing;
             // on screen the trace pulses once a second; an exported picture shows it still
-            double level = withGesture ? SheetSession.PulseLevel(_clock.Elapsed.TotalSeconds) : 0.6;
+            double level = withGesture && TracePulse ? SheetSession.PulseLevel(_clock.Elapsed.TotalSeconds) : 0.6;
             for (int i = 0; i < d.Items.Count; i++)
             {
                 DrawItem it = d.Items[i];

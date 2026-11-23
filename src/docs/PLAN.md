@@ -143,7 +143,10 @@ command-line tool and an MCP tool can do the same.
 
 Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.buses`.
 
-- 2A50's own BD buses (BD_0, BD_1): the owner decides whether they stay. With them the sheet
+- The text written at a bus port of an instance ("BD0_0 .. BD15_0") still uses the subscript
+  form, not the chosen name style.
+- 2A50's own BD buses (BD_0, BD_1): the owner decides whether they stay (each viewer can now hide
+  them with View > Show buses). With them the sheet
   draws cleanly, but the long entry wires read worse than labels, and 7 pins cannot reach their
   bus (the render lists them). The blocks demo has them deleted.
 - A bus port of an instance is not yet joined to a virtual bus on the level above: it shows

@@ -43,10 +43,7 @@ namespace RetroSchematic.Desktop
             Canvas.ToolMessage += OnToolMessage;
             Canvas.InstanceOpened += owner => OpenInstance(owner.Substring(5));
             Canvas.MenuRequested += owner => ShowDrawingMenu(owner);
-            TbPinNumbers.IsChecked = PinNumbersItem.IsChecked;
-            TbBoardPositions.IsChecked = BoardPositionsItem.IsChecked;
-            PortArrowsItem.IsChecked = UiSettings.Instance.PortArrows;
-            TbPortArrows.IsChecked = UiSettings.Instance.PortArrows;
+            ApplyDisplay();
             TbSelect.IsChecked = true;
             OpenDemoItem.IsEnabled = SheetFiles.FindDemo(AppContext.BaseDirectory) != null;
             if (UiSettings.Instance.LoadProblem != null)
@@ -119,10 +116,9 @@ namespace RetroSchematic.Desktop
             _session.SelectionChanged += OnSelectionChanged;
             _session.DrawingChanged += OnDrawingChanged;
             _session.TraceChanged += OnTraceChanged;
-            _session.SetShowPinNumbers(PinNumbersItem.IsChecked);
-            _session.SetShowBoardPositions(BoardPositionsItem.IsChecked);
-            _session.SetShowPortArrows(UiSettings.Instance.PortArrows);
             Canvas.Session = s;
+            // the app's defaults, with the sheet's own display values winning
+            ApplyDisplay();
             FillLists();
             FillChipBox();
             DetailsText.Text = "Click a part, gate, signal or pin on the drawing.";
@@ -196,9 +192,9 @@ namespace RetroSchematic.Desktop
             }
             for (int i = 0; i < n.Nets.Count; i++)
             {
-                // with its subscript: two signals may share a name and differ only in level
+                // in the chosen name style (/BD15 and BD15 differ, as BD15_0 and BD15_1 do)
                 string key = SheetLayout.NetKey(n.Nets[i]);
-                nets.Add(key);
+                nets.Add(_session.NameOf(n.Nets[i]));
                 _netOwners.Add("net:" + key);
             }
             PartsList.ItemsSource = parts;
@@ -258,10 +254,79 @@ namespace RetroSchematic.Desktop
         private void SetStyle(SymbolStyle style)
         {
             UiSettings.Instance.NdSymbols = style == SymbolStyle.NorskData;
-            UiSettings.Instance.Save();
-            ShowStyleTicks(style);
-            _session?.SetStyle(style);
+            SaveDefaults();
         }
+
+        /// <summary>
+        /// Gives the open sheet the app's defaults (its own display values still win) and makes
+        /// every View tick, toolbar button, the theme and the trace pulse show what applies.
+        /// </summary>
+        public void ApplyDisplay()
+        {
+            DisplaySettings d = UiSettings.Instance.ToDefaults();
+            if (_session != null)
+            {
+                _session.SetDefaults(d);
+                d = _session.Display;
+            }
+            ShowStyleTicks(d.Symbols);
+            PinNumbersItem.IsChecked = d.PinNumbers;
+            TbPinNumbers.IsChecked = d.PinNumbers;
+            BoardPositionsItem.IsChecked = d.BoardPositions;
+            TbBoardPositions.IsChecked = d.BoardPositions;
+            PortArrowsItem.IsChecked = d.PortArrows;
+            TbPortArrows.IsChecked = d.PortArrows;
+            ShowBusesItem.IsChecked = d.Buses;
+            TbShowBuses.IsChecked = d.Buses;
+            Canvas.TracePulse = d.TracePulse;
+            // a sheet with a theme of its own shows in it; the saved choice is not changed
+            if (ThemeManager.Instance.Current != null && !string.Equals(ThemeManager.Instance.Current.Id, d.Theme, StringComparison.OrdinalIgnoreCase))
+                ThemeManager.Instance.Apply(d.Theme, persist: false);
+            Canvas.InvalidateVisual();
+        }
+
+        /// <summary>
+        /// Saves the defaults after a View switch changed one, and applies them.
+        /// </summary>
+        private void SaveDefaults()
+        {
+            string? problem = UiSettings.Instance.Save();
+            ApplyDisplay();
+            if (problem != null)
+                StatusText.Text = problem;
+        }
+
+        /// <summary>
+        /// Turns drawing the buses on or off as the default for all sheets. Display only: the
+        /// sheet keeps its buses. Public so the window tests can use it.
+        /// </summary>
+        public void ToggleShowBuses()
+        {
+            UiSettings.Instance.ShowBuses = !UiSettings.Instance.ShowBuses;
+            SaveDefaults();
+        }
+
+        private void OnToggleShowBuses(object? sender, RoutedEventArgs e) => ToggleShowBuses();
+
+        /// <summary>
+        /// Opens the settings window. Public so the window tests can use it.
+        /// </summary>
+        /// <returns>
+        /// The window, shown.
+        /// </returns>
+        public SettingsWindow OpenSettings()
+        {
+            SettingsWindow w = new(_session);
+            w.Applied += () =>
+            {
+                ApplyDisplay();
+                ShowEditState();
+            };
+            w.Show(this);
+            return w;
+        }
+
+        private void OnSettings(object? sender, RoutedEventArgs e) => OpenSettings();
 
         private void OnSelectionChanged(SheetSession session, string owner)
         {
@@ -417,7 +482,7 @@ namespace RetroSchematic.Desktop
             string? path = file?.TryGetLocalPath();
             if (path == null)
                 return;
-            File.WriteAllText(path, SvgRenderer.Write(_session.Drawing));
+            File.WriteAllText(path, SvgRenderer.Write(_session.Drawing, SchematicTheme.Find(ThemeManager.Instance.Current?.Id) ?? SchematicTheme.Default));
             StatusText.Text = "Saved " + path;
         }
 
@@ -460,20 +525,14 @@ namespace RetroSchematic.Desktop
 
         private void OnTogglePinNumbers(object? sender, RoutedEventArgs e)
         {
-            if (_session == null)
-                return;
-            _session.SetShowPinNumbers(!_session.ShowPinNumbers);
-            PinNumbersItem.IsChecked = _session.ShowPinNumbers;
-            TbPinNumbers.IsChecked = _session.ShowPinNumbers;
+            UiSettings.Instance.PinNumbers = !UiSettings.Instance.PinNumbers;
+            SaveDefaults();
         }
 
         private void OnToggleBoardPositions(object? sender, RoutedEventArgs e)
         {
-            if (_session == null)
-                return;
-            _session.SetShowBoardPositions(!_session.ShowBoardPositions);
-            BoardPositionsItem.IsChecked = _session.ShowBoardPositions;
-            TbBoardPositions.IsChecked = _session.ShowBoardPositions;
+            UiSettings.Instance.BoardPositions = !UiSettings.Instance.BoardPositions;
+            SaveDefaults();
         }
 
         /// <summary>
@@ -482,14 +541,8 @@ namespace RetroSchematic.Desktop
         /// </summary>
         public void TogglePortArrows()
         {
-            bool show = !UiSettings.Instance.PortArrows;
-            UiSettings.Instance.PortArrows = show;
-            PortArrowsItem.IsChecked = show;
-            TbPortArrows.IsChecked = show;
-            _session?.SetShowPortArrows(show);
-            string? problem = UiSettings.Instance.Save();
-            if (problem != null)
-                StatusText.Text = problem;
+            UiSettings.Instance.PortArrows = !UiSettings.Instance.PortArrows;
+            SaveDefaults();
         }
 
         private void OnTogglePortArrows(object? sender, RoutedEventArgs e) => TogglePortArrows();

@@ -46,6 +46,73 @@ namespace RetroSchematic.Desktop.Themes
         public bool PortArrows { get; set; } = true;
 
         /// <summary>
+        /// Default name style for active-low signals: "slash" (/NAME), "tilde" (~NAME) or
+        /// "subscript" (ND's 0 and 1).
+        /// </summary>
+        public string NameStyle { get; set; } = "slash";
+
+        /// <summary>
+        /// Default: show pin numbers.
+        /// </summary>
+        public bool PinNumbers { get; set; } = true;
+
+        /// <summary>
+        /// Default: show board positions.
+        /// </summary>
+        public bool BoardPositions { get; set; } = true;
+
+        /// <summary>
+        /// Default: draw the sheet's buses.
+        /// </summary>
+        public bool ShowBuses { get; set; } = true;
+
+        /// <summary>
+        /// Default: a traced signal pulses.
+        /// </summary>
+        public bool TracePulse { get; set; } = true;
+
+        /// <summary>
+        /// The defaults for all sheets as the library's settings.
+        /// </summary>
+        /// <returns>
+        /// The defaults.
+        /// </returns>
+        public RetroSchematic.Render.DisplaySettings ToDefaults()
+        {
+            RetroSchematic.Render.DisplaySettings d = new()
+            {
+                Symbols = NdSymbols ? RetroSchematic.Render.SymbolStyle.NorskData : RetroSchematic.Render.SymbolStyle.Modern,
+                Theme = Theme ?? "Light",
+                PinNumbers = PinNumbers,
+                BoardPositions = BoardPositions,
+                PortArrows = PortArrows,
+                Buses = ShowBuses,
+                TracePulse = TracePulse,
+            };
+            if (RetroSchematic.Render.SignalNames.TryParseStyle(NameStyle, out RetroSchematic.Render.SignalNameStyle ns))
+                d.NameStyle = ns;
+            return d;
+        }
+
+        /// <summary>
+        /// Takes new defaults for all sheets (not saved until <see cref="Save"/>).
+        /// </summary>
+        /// <param name="d">
+        /// The defaults.
+        /// </param>
+        public void FromDefaults(RetroSchematic.Render.DisplaySettings d)
+        {
+            NdSymbols = d.Symbols == RetroSchematic.Render.SymbolStyle.NorskData;
+            Theme = d.Theme;
+            PinNumbers = d.PinNumbers;
+            BoardPositions = d.BoardPositions;
+            PortArrows = d.PortArrows;
+            ShowBuses = d.Buses;
+            TracePulse = d.TracePulse;
+            NameStyle = RetroSchematic.Render.DisplaySettings.NameStyleText(d.NameStyle);
+        }
+
+        /// <summary>
         /// The last sheet file opened, re-opened at start.
         /// </summary>
         public string? LastSheet { get; set; }

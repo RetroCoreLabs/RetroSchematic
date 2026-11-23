@@ -28,7 +28,9 @@ reading of a real drawing) with every kind of connection in it.
 | File > Export PNG | the whole sheet as a picture, twice the drawing size |
 | Edit > Edit mode | switch between read-only (every change refused) and edit mode |
 | Edit > Undo / Redo | step back and forward through changes |
-| View > Show pin numbers / Show board positions | hide or show them |
+| View > Show pin numbers / Show board positions / Show port arrows | hide or show them (the toolbar buttons too) |
+| View > Show buses, or its toolbar button | off: buses hidden and every member drawn with its own wires and name tags. Display only - the sheet keeps its buses |
+| View > Settings (Ctrl+,), or the gear button | every display option, as a default for all sheets and for this sheet (see below) |
 | Search box | lists matching parts, signals and pins (write a pin as 11D.3) |
 | View > ND 1976 symbols / Modern symbols | switch the symbol set; what is picked stays picked |
 | View > Fit to window | the whole sheet in view |
@@ -41,6 +43,25 @@ reading of a real drawing) with every kind of connection in it.
 Colours: what was READ off the drawing is in the theme's ink colour, anything INFERRED is in
 its own colour, anything OPEN (not known) in another, and the picked item is in the theme's
 selection colour. A wire is as sure as the less sure of the two pins it joins.
+
+## Settings
+
+The Settings window has two columns. **Defaults for all sheets** are kept by the app.
+**This sheet** values are saved in the sheet file (its optional `display` section, see
+`docs/FORMAT.md`); each can be "Use default". When a sheet is opened its own values win.
+Changing a value for this sheet marks it as changed, so it needs saving; it never changes what
+is connected. The View switches change the defaults.
+
+| Option | Choices |
+|---|---|
+| Active-low signal names | /NAME (default), ~NAME, or NAME with ND's subscript 0/1. Active-high is plain NAME; a signal with no level is plain in every style. Search finds a signal typed in any style |
+| Symbol style | ND (1976 manual) or modern |
+| Theme | any of the themes |
+| Show pin numbers, board positions, port arrows, buses | on / off |
+| Trace pulse | on: a traced signal pulses; off: it is shown still |
+
+The command line takes the same choices: `--theme <name>`, `--no-buses`,
+`--names slash|tilde|subscript`.
 
 ## Tracing a signal
 
