@@ -43,6 +43,8 @@ namespace RetroSchematic.Desktop
             Canvas.ToolMessage += OnToolMessage;
             Canvas.InstanceOpened += owner => OpenInstance(owner.Substring(5));
             Canvas.MenuRequested += owner => ShowDrawingMenu(owner);
+            Details.PinClicked += CentreOnPin;
+            Details.SignalClicked += key => PickFromList("net:" + key);
             ApplyDisplay();
             TbSelect.IsChecked = true;
             OpenDemoItem.IsEnabled = SheetFiles.FindDemo(AppContext.BaseDirectory) != null;
@@ -126,7 +128,7 @@ namespace RetroSchematic.Desktop
             ApplyDisplay();
             FillLists();
             FillChipBox();
-            DetailsText.Text = "Click a part, gate, signal or pin on the drawing.";
+            Details.ShowText("Details", "Click a part, gate, signal or pin on the drawing.");
             SaveAsItem.IsEnabled = true;
             SaveSvgItem.IsEnabled = true;
             ExportPngItem.IsEnabled = true;
@@ -419,11 +421,61 @@ namespace RetroSchematic.Desktop
 
         private void OnSignalTextSave(object? sender, RoutedEventArgs e) => SaveSignalText();
 
+        /// <summary>
+        /// Fills the Details panel for what is picked: a signal (or anything of one) and a part
+        /// as cards built from the library's facts, anything else as text.
+        /// </summary>
+        /// <param name="session">
+        /// The sheet.
+        /// </param>
+        /// <param name="owner">
+        /// What is picked.
+        /// </param>
+        private void ShowDetails(SheetSession session, string owner)
+        {
+            if (owner.Length == 0)
+            {
+                Details.ShowText("Details", "Nothing picked. Click a part, gate, signal or pin on the drawing.");
+                return;
+            }
+            if (owner.StartsWith("part:", StringComparison.Ordinal) && session.PartInfoOf(owner.Substring(5)) is PartInfo part)
+            {
+                Details.ShowPart(part);
+                return;
+            }
+            if (SignalList.Of(session, owner) is SignalList list)
+            {
+                Details.ShowList(list);
+                TracePanel.IsVisible = session.Traced.Length > 0;
+                return;
+            }
+            string key = session.SignalAt(owner);
+            SignalInfo? info = key.Length == 0 ? null : session.SignalInfoOf(key);
+            if (info != null)
+                Details.ShowSignal(info);
+            else
+                Details.ShowText("Details", session.Describe());
+            // the separate list of traced pins is only needed when the panel shows something else
+            TracePanel.IsVisible = session.Traced.Length > 0 && Details.SignalKey != session.Traced;
+        }
+
+        /// <summary>
+        /// A pin row in the Details panel was clicked: centre the view on that pin.
+        /// </summary>
+        /// <param name="at">
+        /// The pin.
+        /// </param>
+        public void CentreOnPin(string at)
+        {
+            if (_session != null && _session.Drawing.Pins.TryGetValue(at, out DrawPoint p))
+                Canvas.CentreOn(p.X, p.Y);
+        }
+
         private void OnSelectionChanged(SheetSession session, string owner)
         {
             ShowEditState();
             ShowSignalEditor();
-            DetailsText.Text = owner.Length == 0 ? "Nothing under the pointer." : session.Describe();
+            ShowDetails(session, owner);
             // keep the lists in step with a pick made on the drawing
             _syncingLists = true;
             PartsList.SelectedIndex = _partOwners.IndexOf(owner);
@@ -435,7 +487,7 @@ namespace RetroSchematic.Desktop
         {
             FillLists();
             if (session.Selected.Length > 0)
-                DetailsText.Text = session.Describe();
+                ShowDetails(session, session.Selected);
             ShowEditState();
         }
 
@@ -818,7 +870,8 @@ namespace RetroSchematic.Desktop
         private void OnTraceChanged(SheetSession session)
         {
             _syncingLists = true;
-            TracePanel.IsVisible = session.Traced.Length > 0;
+            // the Details panel's pin table already lists the traced signal's pins
+            TracePanel.IsVisible = session.Traced.Length > 0 && Details.SignalKey != session.Traced;
             TraceTitle.Text = "Signal " + session.Traced;
             TraceList.ItemsSource = session.TracedPins();
             _syncingLists = false;

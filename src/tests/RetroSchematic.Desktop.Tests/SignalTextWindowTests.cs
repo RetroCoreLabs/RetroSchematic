@@ -38,10 +38,10 @@ namespace RetroSchematic.Desktop.Tests
         {
             MainWindow w = Open();
             w.PickFromList("net:LEV12_0");
-            string text = w.FindControl<SelectableTextBlock>("DetailsText")!.Text!;
-            Assert.That(text, Does.Contain("What it does: Level-12 interrupt"));
-            Assert.That(text, Does.Contain("Source: reading document docs/2A50-reading.md, Interrupts (read)"));
-            Assert.That(text, Does.Contain("Pins:"));
+            string text = w.FindControl<Controls.DetailsPanel>("Details")!.AllText();
+            Assert.That(text, Does.Contain("Level-12 interrupt"));
+            Assert.That(text, Does.Contain("reading document docs/2A50-reading.md, Interrupts"));
+            Assert.That(text, Does.Contain("Pins ("));
             Assert.That(w.FindControl<StackPanel>("SignalEditPanel")!.IsVisible, Is.False, "read-only: nothing to edit");
             w.Close();
         }

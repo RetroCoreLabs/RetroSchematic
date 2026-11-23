@@ -43,7 +43,7 @@ namespace RetroSchematic.Desktop.Tests
             nets.SelectedIndex = index;
             Assert.That(w.Session!.Traced, Is.EqualTo("BD3_0"), "traced, as a click on its wire");
             Assert.That(w.Session.Selected, Is.EqualTo("net:BD3_0"));
-            Assert.That(w.FindControl<SelectableTextBlock>("DetailsText")!.Text, Does.StartWith("Signal /BD3"));
+            Assert.That(w.FindControl<Controls.DetailsPanel>("Details")!.AllText(), Does.StartWith("Signal\n/BD3"));
             Assert.That(w.Session.AreaOf("net:BD3_0", out _, out DrawPoint first), Is.True);
             Assert.That(canvas.IsOnScreen(first.X, first.Y), Is.True, "its first pin is on screen");
             Assert.That(w.FindControl<TextBlock>("StatusText")!.Text, Does.StartWith("Tracing /BD3"));

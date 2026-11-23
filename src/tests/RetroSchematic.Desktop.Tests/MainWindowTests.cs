@@ -135,8 +135,8 @@ namespace RetroSchematic.Desktop.Tests
             parts.SelectedIndex = 0;
             string first = w.Session!.Netlist.Parts[0].Ref;
             Assert.That(w.Session.Selected, Is.EqualTo("part:" + first));
-            SelectableTextBlock details = w.FindControl<SelectableTextBlock>("DetailsText")!;
-            Assert.That(details.Text, Does.StartWith("Part " + first));
+            Controls.DetailsPanel details = w.FindControl<Controls.DetailsPanel>("Details")!;
+            Assert.That(details.AllText(), Does.StartWith("Part\n" + first + "  "));
 
             w.Session.SetStyle(SymbolStyle.Modern);
             Assert.That(w.Session.Selected, Is.EqualTo("part:" + first));

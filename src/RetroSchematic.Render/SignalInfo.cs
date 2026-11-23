@@ -57,6 +57,35 @@ namespace RetroSchematic.Render
         public bool Loads => Role == "input" || Role == "clock" || Role == "enable";
 
         /// <summary>
+        /// The pin's direction in short words for the pin table: in, out, in/out, power, ground,
+        /// connector, or empty when not known.
+        /// </summary>
+        public string Direction => IsConnector ? "connector" : DirectionOf(Role);
+
+        /// <summary>
+        /// True for a pin on one of the card's connectors.
+        /// </summary>
+        public bool IsConnector { get; init; }
+
+        /// <summary>
+        /// A chip file's pin role in short words: input, clock and enable are "in", output is
+        /// "out", bidirectional is "in/out"; anything else is given as it is.
+        /// </summary>
+        /// <param name="role">
+        /// The role from the chip file.
+        /// </param>
+        /// <returns>
+        /// The words.
+        /// </returns>
+        public static string DirectionOf(string role) => role switch
+        {
+            "input" or "clock" or "enable" => "in",
+            "output" => "out",
+            "bidirectional" or "inout" => "in/out",
+            _ => role,
+        };
+
+        /// <summary>
         /// The pin on one line: "13C.7  74153 1Y  output".
         /// </summary>
         /// <returns>
@@ -157,6 +186,80 @@ namespace RetroSchematic.Render
         /// bus-signal catalogue's, else null.
         /// </summary>
         public string? Description => !string.IsNullOrWhiteSpace(Net.Description) ? Net.Description!.Trim() : CatalogueSignal?.Description;
+
+        /// <summary>
+        /// Where <see cref="Description"/> comes from without the confidence word (for a panel
+        /// that shows the confidence as a badge of its own), or null.
+        /// </summary>
+        public string? DescriptionSourcePlace
+        {
+            get
+            {
+                string? s = DescriptionSourceText;
+                if (s == null)
+                    return null;
+                int paren = s.LastIndexOf(" (", System.StringComparison.Ordinal);
+                return paren < 0 ? s : s.Substring(0, paren);
+            }
+        }
+
+        /// <summary>
+        /// How sure <see cref="Description"/> is, or null when there is none.
+        /// </summary>
+        public Confidence? DescriptionConfidence => DescriptionFromCatalogue
+            ? CatalogueSignal!.DescriptionConfidence
+            : Description == null ? null : Net.DescriptionSource?.Confidence;
+
+        /// <summary>
+        /// The active level for a badge: "active low", "active high", or null.
+        /// </summary>
+        public string? ActiveText => Net.Active == ActiveLevel.Low ? "active low" : Net.Active == ActiveLevel.High ? "active high" : null;
+
+        /// <summary>
+        /// The drive type for a badge, in capitals: OPEN-COLLECTOR, THREE-STATE, TOTEM-POLE, MIXED,
+        /// or null when nothing is known.
+        /// </summary>
+        public string? DriveBadge
+        {
+            get
+            {
+                if (MixedDrive)
+                    return "MIXED";
+                LineDrive? d = DerivedDrive ?? Net.Drive;
+                return d switch
+                {
+                    LineDrive.TotemPole => "TOTEM-POLE",
+                    LineDrive.OpenCollector => "OPEN-COLLECTOR",
+                    LineDrive.OpenCollectorHighVoltage => "OPEN-COLLECTOR HV",
+                    LineDrive.ThreeState => "THREE-STATE",
+                    _ => null,
+                };
+            }
+        }
+
+        /// <summary>
+        /// Where else the signal goes, as short tags: the bus it is drawn on, each connector pin,
+        /// and each other block level.
+        /// </summary>
+        public List<string> Places
+        {
+            get
+            {
+                List<string> list = new();
+                if (Bus != null)
+                    list.Add("bus " + Bus);
+                for (int i = 0; i < Net.Pins.Count; i++)
+                {
+                    string part = Net.Pins[i].PartRef;
+                    if (ConnectorPins.IsConnector(part))
+                        list.Add((ConnectorPins.Kind(part) == 'P' ? "backplane " : "front ") + ConnectorPins.Show(part, Net.Pins[i].Pin)
+                            + (CatalogueSignal != null && ConnectorPins.Kind(part) == 'P' ? " " + CatalogueSignal.Name : ""));
+                }
+                for (int i = 0; i < Levels.Count; i++)
+                    list.Add(Levels[i]);
+                return list;
+            }
+        }
 
         /// <summary>
         /// True when <see cref="Description"/> comes from the bus-signal catalogue.
@@ -421,7 +524,17 @@ namespace RetroSchematic.Render
             string at = r.At;
             int dot = at.LastIndexOf('.');
             if (dot > 0 && ConnectorPins.IsConnector(at.Substring(0, dot)))
-                return new SignalPin { At = at, ChipType = ConnectorPins.Name(at.Substring(0, dot)), Confidence = r.Confidence };
+            {
+                string conn = at.Substring(0, dot);
+                return new SignalPin
+                {
+                    At = at,
+                    ChipType = ConnectorPins.Kind(conn) == 'P' ? "backplane" : "front",
+                    PinName = ConnectorPins.Show(conn, r.Pin),
+                    Confidence = r.Confidence,
+                    IsConnector = true,
+                };
+            }
             Part? part = dot > 0 ? editor.FindPart(at.Substring(0, dot)) : null;
             ChipInfo? chip = part == null ? null : editor.Catalog?.Get(part.Type);
             if (part == null || chip == null || !int.TryParse(at.AsSpan(dot + 1), out int number))

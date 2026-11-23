@@ -28,6 +28,14 @@
   <StreamGeometry x:Key="IconPlaceChip">M8,4 H16 V20 H8 Z M4,7 H8 M4,11 H8 M4,15 H8 M16,7 H20 M16,11 H20 M16,15 H20 M11,4 A1,1 0 0 0 13,4</StreamGeometry>
   <StreamGeometry x:Key="IconWire">M3,18 H10 V6 H21 M3,16.5 V19.5 M21,4.5 V7.5</StreamGeometry>
   <StreamGeometry x:Key="IconBus">M3,9 H21 M3,12 H21 M6,12 L9,17 H11 M14,12 L17,17 H19</StreamGeometry>
+  <!-- the Details panel's section icons -->
+  <StreamGeometry x:Key="IconSignal">M2,12 H6 L9,5 L15,19 L18,12 H22</StreamGeometry>
+  <StreamGeometry x:Key="IconDescription">M5,3 H15 L19,7 V21 H5 Z M8,10 H16 M8,14 H16 M8,18 H13</StreamGeometry>
+  <StreamGeometry x:Key="IconElectrical">M13,2 L5,13 H11 L10,22 L19,10 H13 Z</StreamGeometry>
+  <StreamGeometry x:Key="IconWhere">M12,21 C12,21 5,14 5,9 A7,7 0 0 1 19,9 C19,14 12,21 12,21 Z M10,9 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0</StreamGeometry>
+  <StreamGeometry x:Key="IconPinTable">M4,4 H20 V20 H4 Z M4,9 H20 M4,14 H20 M10,4 V20</StreamGeometry>
+  <StreamGeometry x:Key="IconChevronDown">M5,9 L12,16 L19,9</StreamGeometry>
+  <StreamGeometry x:Key="IconChevronRight">M9,5 L16,12 L9,19</StreamGeometry>
   <StreamGeometry x:Key="IconTrace">M3,20 H8 V11 H13 M13,10 a4.5,4.5 0 1 0 9,0 a4.5,4.5 0 1 0 -9,0</StreamGeometry>
 
   <!-- hierarchy -->

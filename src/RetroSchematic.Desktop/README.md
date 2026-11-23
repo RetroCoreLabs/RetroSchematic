@@ -6,6 +6,23 @@ also places chips, draws wires and moves chips, and saves the sheet back to its 
 and the SVG file come from the same layout code (`RetroSchematic.Render/SheetLayout.cs`), so they
 always match.
 
+## The Details panel
+
+The right-hand panel shows what is picked as cards with a header bar; click a header to fold a
+card, and the fold stays while you pick other things.
+
+- **A signal:** its name and active level, what it does (with where that is written and how sure:
+  read, inferred or open), the electrical facts (drive type, driver, loads, pull-up, and any
+  conflict in a red box), where else it goes (bus, connector, block levels), and a table of its
+  pins. Click a pin row to centre the drawing on that pin.
+- **A part:** board position, type, function, catalogue title and where it was read, then every
+  pin with the signal on it.
+- **A connector, a bus or a block:** its facts and the list of signals on it.
+
+In the part, connector, bus and block lists, clicking a row traces that row's signal, as a click
+on its wire does. The panel only lays out facts that the library works out (`SignalInfo`,
+`PartInfo`, `SignalList` in RetroSchematic.Render), and every colour comes from the theme.
+
 ## Start it
 
 ```powershell

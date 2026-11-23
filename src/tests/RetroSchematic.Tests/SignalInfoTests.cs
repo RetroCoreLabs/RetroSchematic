@@ -153,5 +153,49 @@ namespace RetroSchematic.Tests
                 n.Pins.Add(new PinReference { At = pins[i] });
             return n;
         }
+
+        [Test]
+        public void ThePanelFacts_OfASignal_AreStructured()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
+            SignalInfo info = s.SignalInfoOf("LEV12_0")!;
+            Assert.That(info.ActiveText, Is.EqualTo("active low"));
+            Assert.That(info.DriveBadge, Is.EqualTo("OPEN-COLLECTOR"));
+            Assert.That(info.DescriptionConfidence, Is.EqualTo(Confidence.Read));
+            Assert.That(info.DescriptionSourcePlace, Does.Not.EndWith("(read)"));
+            Assert.That(info.Places, Does.Contain("backplane ?.35 BINT12"));
+            SignalPin conn = info.Pins.Find(p => p.At == "P.35")!;
+            Assert.That(conn.Direction, Is.EqualTo("connector"));
+            Assert.That(conn.ChipType, Is.EqualTo("backplane"));
+            Assert.That(SignalPin.DirectionOf("output"), Is.EqualTo("out"));
+            Assert.That(SignalPin.DirectionOf("bidirectional"), Is.EqualTo("in/out"));
+        }
+
+        [Test]
+        public void APart_GivesEveryChipPin_WithItsSignal()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
+            PartInfo p = s.PartInfoOf("13D")!;
+            Assert.That(p.Type, Is.EqualTo("7442"));
+            Assert.That(p.Pins.Count, Is.EqualTo(16));
+            Assert.That(p.Pins[0].At, Is.EqualTo("13D.1"));
+            Assert.That(p.Pins[15].Direction, Is.EqualTo("power"));
+            Assert.That(p.Source, Does.Contain("page 64"));
+            Assert.That(s.PartInfoOf("no-such"), Is.Null);
+        }
+
+        [Test]
+        public void TheBackplaneConnector_ListsItsSignals_InPinOrder()
+        {
+            SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
+            SignalList l = SignalList.Of(s, "conn:P")!;
+            Assert.That(l.Kind, Is.EqualTo("Connector"));
+            SignalLink lev12 = l.Rows.Find(r => r.NetKey == "LEV12_0")!;
+            Assert.That(lev12.Label, Is.EqualTo("35"));
+            Assert.That(lev12.Extra, Is.EqualTo("BINT12"));
+            for (int i = 1; i < l.Rows.Count; i++)
+                Assert.That(int.Parse(l.Rows[i].Label) >= int.Parse(l.Rows[i - 1].Label), Is.True);
+            Assert.That(SignalList.Of(s, "part:13D"), Is.Null);
+        }
     }
 }

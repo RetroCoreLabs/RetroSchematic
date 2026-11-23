@@ -16,5 +16,6 @@
     <!-- the DataGrid styles must be included or a DataGrid does not draw at all -->
     <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
     <StyleInclude Source="avares://RetroSchematic/Styles/FluentTheme.axaml"/>
+    <StyleInclude Source="avares://RetroSchematic/Styles/Details.axaml"/>
   </Application.Styles>
 </Application>

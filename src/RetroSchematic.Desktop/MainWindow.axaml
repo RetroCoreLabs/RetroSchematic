@@ -186,10 +186,7 @@
                      Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
           </StackPanel>
           <ScrollViewer>
-            <SelectableTextBlock x:Name="DetailsText" TextWrapping="Wrap"
-                                 FontFamily="Consolas, Courier New, monospace" FontSize="12"
-                                 Foreground="{DynamicResource FluentTextPrimaryBrush}"
-                                 Text="Click a part, gate, signal or pin on the drawing."/>
+            <c:DetailsPanel x:Name="Details" Margin="0,0,6,0"/>
           </ScrollViewer>
         </DockPanel>
       </Border>

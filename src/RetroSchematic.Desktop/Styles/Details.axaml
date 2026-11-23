@@ -1,0 +1,219 @@
+<!--
+  SPDX-License-Identifier: MIT
+  Copyright (c) 1985-2026 Ronny Hansen
+  RetroCore Labs — https://github.com/RetroCoreLabs
+
+  The Details panel on the right (Controls/DetailsPanel.cs): cards with a header bar, label and
+  value rows, badges, tags, a warning box and the pin table. Every colour is a theme resource
+  (ThemeManager), so the panel follows the chosen theme; nothing here names a colour.
+-->
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- a section: a card with a header bar -->
+  <Style Selector="Border.detail-card">
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundPrimaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderLightBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="6"/>
+    <Setter Property="Margin" Value="0,0,0,10"/>
+    <Setter Property="ClipToBounds" Value="True"/>
+  </Style>
+  <Style Selector="Button.detail-header">
+    <Setter Property="Background" Value="{DynamicResource FluentSurfaceAltBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderLightBrush}"/>
+    <Setter Property="CornerRadius" Value="0"/>
+    <Setter Property="Padding" Value="10,6"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style Selector="Button.detail-header:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
+  </Style>
+  <Style Selector="Button.detail-header:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
+  </Style>
+  <Style Selector="Path.detail-icon">
+    <Setter Property="Stroke" Value="{DynamicResource FluentAccentBlueBrush}"/>
+    <Setter Property="StrokeThickness" Value="1.6"/>
+    <Setter Property="Width" Value="15"/>
+    <Setter Property="Height" Value="15"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="Path.detail-chevron">
+    <Setter Property="Stroke" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="StrokeThickness" Value="1.5"/>
+    <Setter Property="Width" Value="10"/>
+    <Setter Property="Height" Value="10"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="TextBlock.detail-title">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSize}"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="StackPanel.detail-body">
+    <Setter Property="Margin" Value="10,8,10,10"/>
+    <Setter Property="Spacing" Value="6"/>
+  </Style>
+
+  <!-- text: the big name, labels muted on the left, values on the right -->
+  <Style Selector="TextBlock.detail-name">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="20"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+  </Style>
+  <Style Selector="TextBlock.detail-label">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="VerticalAlignment" Value="Top"/>
+    <Setter Property="Margin" Value="0,1,10,0"/>
+  </Style>
+  <Style Selector="TextBlock.detail-value">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSize}"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+  </Style>
+  <Style Selector="TextBlock.detail-muted">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+  </Style>
+  <Style Selector="TextBlock.detail-mono">
+    <Setter Property="FontFamily" Value="Consolas, Courier New, monospace"/>
+  </Style>
+
+  <!-- badges: a small rounded tag -->
+  <Style Selector="Border.badge">
+    <Setter Property="CornerRadius" Value="9"/>
+    <Setter Property="Padding" Value="7,1"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderDarkBrush}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+  </Style>
+  <Style Selector="Border.badge > TextBlock">
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.read">
+    <Setter Property="Background" Value="{DynamicResource FluentSuccessBackgroundBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentSuccessBorderBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.inferred">
+    <Setter Property="BorderBrush" Value="{DynamicResource SchematicInferredBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.inferred > TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource SchematicInferredBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.open">
+    <Setter Property="BorderBrush" Value="{DynamicResource SchematicOpenBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.open > TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource SchematicOpenBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.drive">
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.drive > TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FluentAccentBlueBrush}"/>
+  </Style>
+  <Style Selector="Border.badge.level > TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+  </Style>
+
+  <!-- a tag for a place the signal goes (bus, connector, block level) -->
+  <Style Selector="Border.place-chip">
+    <Setter Property="CornerRadius" Value="4"/>
+    <Setter Property="Padding" Value="6,2"/>
+    <Setter Property="Margin" Value="0,0,6,6"/>
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderLightBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+  </Style>
+  <Style Selector="Border.place-chip > TextBlock">
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+  </Style>
+
+  <!-- a warning box (a stored drive that disagrees with the chip catalogue, mixed drivers) -->
+  <Style Selector="Border.warning-box">
+    <Setter Property="Background" Value="{DynamicResource FluentErrorBackgroundBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentErrorBorderBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="4"/>
+    <Setter Property="Padding" Value="8,6"/>
+  </Style>
+  <Style Selector="Border.warning-box TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FluentErrorTextBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSize}"/>
+    <Setter Property="TextWrapping" Value="Wrap"/>
+  </Style>
+
+  <!-- the pin table: header, rows with alternating shading, the driver row marked -->
+  <Style Selector="Grid.pin-head TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+  </Style>
+  <Style Selector="Button.pin-row">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="2,0,0,0"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="CornerRadius" Value="0"/>
+    <Setter Property="Padding" Value="4,3"/>
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style Selector="Button.pin-row.alt">
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+  </Style>
+  <Style Selector="Button.pin-row.driver">
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
+  </Style>
+  <Style Selector="Button.pin-row:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
+  </Style>
+  <Style Selector="Button.pin-row TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+  </Style>
+  <Style Selector="Button.pin-row TextBlock.detail-mono">
+    <Setter Property="FontFamily" Value="Consolas, Courier New, monospace"/>
+  </Style>
+  <Style Selector="Button.pin-row.driver TextBlock.dir">
+    <Setter Property="Foreground" Value="{DynamicResource FluentAccentBlueBrush}"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+  </Style>
+  <Style Selector="Button.signal-link">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style Selector="Button.signal-link TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FluentAccentBlueBrush}"/>
+    <Setter Property="TextDecorations" Value="Underline"/>
+  </Style>
+</Styles>

@@ -78,7 +78,7 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(found.ItemCount, Is.EqualTo(1));
             found.SelectedIndex = 0;
             Assert.That(w.Session!.Selected, Is.EqualTo("net:IRQ_0"));
-            Assert.That(w.FindControl<SelectableTextBlock>("DetailsText")!.Text, Does.Contain("Pull-up: 1k to +5V"));
+            Assert.That(w.FindControl<Controls.DetailsPanel>("Details")!.AllText(), Does.Contain("1k to +5V"));
             w.Close();
         }
 

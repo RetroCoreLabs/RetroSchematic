@@ -823,6 +823,17 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// The facts of a part on the level shown, for the Details panel.
+        /// </summary>
+        /// <param name="reference">
+        /// The board position.
+        /// </param>
+        /// <returns>
+        /// The facts, or null.
+        /// </returns>
+        public PartInfo? PartInfoOf(string reference) => PartInfo.Of(Editor, reference, NameStyle);
+
+        /// <summary>
         /// Everything known about a signal on the level shown: what the file says, what the bus
         /// catalogue says (never over the sheet's own description) and what follows from the
         /// chip catalogue.
