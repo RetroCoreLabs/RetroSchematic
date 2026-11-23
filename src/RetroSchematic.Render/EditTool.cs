@@ -5,6 +5,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace RetroSchematic.Render
 {
@@ -33,6 +34,16 @@ namespace RetroSchematic.Render
         /// (a double-click) or Enter finishes it.
         /// </summary>
         BusPath,
+
+        /// <summary>
+        /// Dragging a box: every chip and instance wholly inside is picked.
+        /// </summary>
+        Band,
+
+        /// <summary>
+        /// Dragging an instance box to a new place.
+        /// </summary>
+        MoveInstance,
     }
 
     /// <summary>
@@ -52,7 +63,7 @@ namespace RetroSchematic.Render
     /// </list>
     /// A refused change does not throw out of here: its reason is put in <see cref="Message"/>.
     /// </summary>
-    public sealed class EditTool
+    public sealed partial class EditTool
     {
         private readonly SheetSession _session;
         private readonly System.Collections.Generic.List<DrawPoint> _busPoints = new();
@@ -205,7 +216,7 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// The mouse button went down at a point.
+        /// The mouse button went down at a point, without Ctrl.
         /// </summary>
         /// <param name="x">
         /// X in drawing units.
@@ -213,7 +224,22 @@ namespace RetroSchematic.Render
         /// <param name="y">
         /// Y in drawing units.
         /// </param>
-        public void PointerDown(double x, double y)
+        public void PointerDown(double x, double y) => PointerDown(x, y, false);
+
+        /// <summary>
+        /// The mouse button went down at a point. With Ctrl, the chip or instance there is added
+        /// to (or taken out of) the group picked. On empty paper a box is dragged to pick.
+        /// </summary>
+        /// <param name="x">
+        /// X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Y in drawing units.
+        /// </param>
+        /// <param name="ctrl">
+        /// True when Ctrl is held.
+        /// </param>
+        public void PointerDown(double x, double y, bool ctrl)
         {
             Message = "";
             if (BusPathFor != null)
@@ -229,6 +255,25 @@ namespace RetroSchematic.Render
                 return;
             }
             string hit = _session.Drawing.HitTest(x, y);
+            if (ctrl && PlaceType == null)
+            {
+                _session.TogglePick(hit);
+                Message = _session.Picked.Count + " picked.";
+                return;
+            }
+            // a plain click on something outside the group picked starts afresh
+            string whole = SheetSession.WholeOf(hit);
+            bool inGroup = whole.Length > 0 && Contains(_session.Picked, whole);
+            if (!inGroup && PlaceType == null)
+                _session.ClearPicked();
+            Start = new DrawPoint(x, y);
+            Current = Start;
+            if (hit.Length == 0 && PlaceType == null)
+            {
+                _session.Select("");
+                Gesture = EditGesture.Band;
+                return;
+            }
             if (_session.Editor.ReadOnly)
             {
                 _session.Select(hit);
@@ -247,7 +292,18 @@ namespace RetroSchematic.Render
             _session.Select(hit);
             Start = new DrawPoint(x, y);
             Current = Start;
-            if (hit.StartsWith("pin:", StringComparison.Ordinal))
+            if (whole.StartsWith("inst:", StringComparison.Ordinal) && !hit.StartsWith("pin:", StringComparison.Ordinal))
+            {
+                _from = whole.Substring(5);
+                Gesture = EditGesture.MoveInstance;
+            }
+            else if (hit.StartsWith("pin:", StringComparison.Ordinal) && hit.IndexOf(':', 4) >= 0)
+            {
+                // an instance's port end: its signal is wired on this level, but a new connection
+                // to a port is made inside the block
+                Message = "That is a port of an instance; open the instance to connect inside it.";
+            }
+            else if (hit.StartsWith("pin:", StringComparison.Ordinal))
             {
                 _from = hit.Substring(4);
                 if (_session.Drawing.Pins.TryGetValue(_from, out DrawPoint p))
@@ -291,6 +347,26 @@ namespace RetroSchematic.Render
             if (g == EditGesture.BusPath)
                 return;
             Gesture = EditGesture.None;
+            if (g == EditGesture.Band)
+            {
+                if (Math.Abs(x - Start.X) < MoveThreshold && Math.Abs(y - Start.Y) < MoveThreshold)
+                    return;
+                _session.PickInBox(Start.X, Start.Y, x, y);
+                Message = _session.Picked.Count + " picked.";
+                return;
+            }
+            if (g == EditGesture.MoveInstance)
+            {
+                double mx = x - Start.X, my = y - Start.Y;
+                if ((Math.Abs(mx) < MoveThreshold && Math.Abs(my) < MoveThreshold) || !_session.Drawing.InstanceFrames.TryGetValue(_from, out PartFrame box))
+                    return;
+                Try(() =>
+                {
+                    _session.Editor.MoveInstance(_from, SheetLayout.ToMm(box.X + mx), SheetLayout.ToMm(box.Y + my));
+                    Message = "Moved " + _from + ".";
+                });
+                return;
+            }
             if (g == EditGesture.Wire)
             {
                 string hit = _session.Drawing.HitTest(x, y);
@@ -310,6 +386,19 @@ namespace RetroSchematic.Render
                 double dx = x - Start.X, dy = y - Start.Y;
                 if (Math.Abs(dx) < MoveThreshold && Math.Abs(dy) < MoveThreshold)
                     return;
+                // dropped on an instance box: the chip (or the whole group picked) goes inside
+                string target = InstanceAt(x, y);
+                if (target.Length > 0)
+                {
+                    List<string> members = Contains(_session.Picked, "part:" + _from) ? _session.PickedMembers() : new List<string> { _from };
+                    Try(() =>
+                    {
+                        _session.Editor.MoveIntoInstance(members, target);
+                        _session.ClearPicked();
+                        Message = "Moved " + string.Join(", ", members) + " into " + target + ".";
+                    });
+                    return;
+                }
                 if (!_session.Drawing.Frames.TryGetValue(_from, out PartFrame f))
                     return;
                 Try(() =>
@@ -372,6 +461,30 @@ namespace RetroSchematic.Render
             string name = owner.Substring(owner.IndexOf(':') + 1);
             int slash = name.IndexOf('/');
             return slash < 0 ? name : name.Substring(0, slash);
+        }
+
+        /// <summary>
+        /// The instance whose box holds a point, or empty.
+        /// </summary>
+        private string InstanceAt(double x, double y)
+        {
+            foreach (KeyValuePair<string, PartFrame> kv in _session.Drawing.InstanceFrames)
+            {
+                PartFrame f = kv.Value;
+                if (x >= f.X && x <= f.X + f.Width && y >= f.Y && y <= f.Y + f.Height)
+                    return kv.Key;
+            }
+            return "";
+        }
+
+        private static bool Contains(IReadOnlyList<string> list, string value)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == value)
+                    return true;
+            }
+            return false;
         }
 
         private void Try(Action action)

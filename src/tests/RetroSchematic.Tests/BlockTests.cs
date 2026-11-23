@@ -234,6 +234,91 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void CtrlClick_AndADraggedBox_PickSeveralThings()
+        {
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
+            EditTool tool = new(s);
+            PartFrame a = s.Drawing.Frames["11A"], b = s.Drawing.Frames["13B"];
+            PartFrame u4 = s.Drawing.InstanceFrames["U4"];
+            tool.PointerDown(a.X + (a.Width / 2), a.Y + (a.Height / 2), true);
+            tool.PointerDown(b.X + (b.Width / 2), b.Y + (b.Height / 2), true);
+            tool.PointerDown(u4.X + (u4.Width / 2), u4.Y + (u4.Height / 2), true);
+            Assert.That(s.Picked, Is.EqualTo(new[] { "part:11A", "part:13B", "inst:U4" }));
+            Assert.That(s.PickedMembers(), Is.EqualTo(new[] { "11A", "13B", "inst:U4" }));
+            tool.PointerDown(b.X + (b.Width / 2), b.Y + (b.Height / 2), true);
+            Assert.That(s.Picked.Count, Is.EqualTo(2), "a second Ctrl-click takes it out again");
+
+            // a box dragged on empty paper round 13B picks just that chip
+            tool.PointerDown(b.X - 3, b.Y - 3);
+            Assert.That(tool.Gesture, Is.EqualTo(EditGesture.Band));
+            Assert.That(s.Picked.Count, Is.EqualTo(0), "a plain click on paper empties the group");
+            tool.PointerUp(b.X + b.Width + 3, b.Y + b.Height + 3);
+            Assert.That(s.Picked, Is.EqualTo(new[] { "part:13B" }));
+        }
+
+        [Test]
+        public void DroppingPickedParts_OnAnInstance_MovesThemInside_InOneUndoStep()
+        {
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
+            s.Editor.ReadOnly = false;
+            string before = Hierarchy.Connections(s.Editor.Root);
+            BlockDefinition modem = Hierarchy.FindBlock(s.Editor.Root, "modem-interface")!;
+            string kept = modem.Ports[0].Name;
+            s.Editor.SetPortPosition("modem-interface", kept, PortSide.Bottom, 0);
+            EditTool tool = new(s);
+
+            // move the U4 box
+            PartFrame u4 = s.Drawing.InstanceFrames["U4"];
+            tool.PointerDown(u4.X + 20, u4.Y + 20);
+            Assert.That(tool.Gesture, Is.EqualTo(EditGesture.MoveInstance));
+            tool.PointerUp(u4.X + 80, u4.Y + 20);
+            Assert.That(tool.Message, Does.StartWith("Moved U4"));
+
+            // drag chip 13B (with 17B picked too) onto U4
+            PartFrame b = s.Drawing.Frames["13B"], c = s.Drawing.Frames["17B"];
+            tool.PointerDown(c.X + (c.Width / 2), c.Y + (c.Height / 2), true);
+            tool.PointerDown(b.X + (b.Width / 2), b.Y + (b.Height / 2), true);
+            u4 = s.Drawing.InstanceFrames["U4"];
+            tool.PointerDown(b.X + (b.Width / 2), b.Y + (b.Height / 2));
+            Assert.That(tool.Gesture, Is.EqualTo(EditGesture.Move));
+            tool.PointerUp(u4.X + 10, u4.Y + 10);
+            Assert.That(tool.Message, Does.StartWith("Moved 17B, 13B into U4"));
+            modem = Hierarchy.FindBlock(s.Editor.Root, "modem-interface")!;
+            Assert.That(modem.Parts.Exists(p => p.Ref == "13B") && modem.Parts.Exists(p => p.Ref == "17B"), Is.True);
+            Assert.That(s.Editor.Netlist.Parts.Exists(p => p.Ref == "13B"), Is.False);
+            Assert.That(Hierarchy.Connections(s.Editor.Root), Is.EqualTo(before), "moving parts in keeps every connection");
+            BlockPort? same = modem.Ports.Find(p => p.Name == kept);
+            Assert.That(same, Is.Not.Null, "a port that carries the same signals keeps its name");
+            Assert.That(same!.Side, Is.EqualTo(PortSide.Bottom), "and its edge");
+
+            // one undo takes the whole move back
+            s.Editor.Undo();
+            Assert.That(s.Editor.Netlist.Parts.Exists(p => p.Ref == "13B"), Is.True);
+            Assert.That(Hierarchy.FindBlock(s.Editor.Root, "modem-interface")!.Parts.Exists(p => p.Ref == "13B"), Is.False);
+            Assert.That(Hierarchy.Connections(s.Editor.Root), Is.EqualTo(before));
+            Assert.That(s.Editor.CanUndo, Is.True, "the instance move before it is still there to undo");
+            s.Editor.Undo();
+            Assert.That(s.Editor.CanUndo, Is.True, "and below it the port edge change");
+        }
+
+        [Test]
+        public void OpeningAnInstance_ShowsTheBreadcrumb_AndUpComesBack()
+        {
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
+            s.TogglePick("part:11A");
+            s.OpenInstance("U2");
+            Assert.That(s.LevelNames(), Is.EqualTo(new[] { "Top", "U2 (read-multiplexers)" }));
+            Assert.That(s.Picked.Count, Is.EqualTo(0), "the group picked named things on the level left");
+            Assert.That(s.Drawing.Frames.ContainsKey("3D"), Is.True, "the drawing shows the inside");
+            s.LeaveInstance();
+            Assert.That(s.LevelNames(), Is.EqualTo(new[] { "Top" }));
+            Assert.That(s.Drawing.InstanceFrames.ContainsKey("U2"), Is.True);
+        }
+
+        [Test]
         public void Mcp_MakesListsEntersAndDissolvesABlock()
         {
             SheetTools t = new(TestContext.CurrentContext.TestDirectory);

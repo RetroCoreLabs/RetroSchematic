@@ -45,7 +45,7 @@ namespace RetroSchematic.Render
     /// shows this object; every action is a method here or on the editor, so the command-line
     /// tool, the MCP tool and tests can do the same things.
     /// </summary>
-    public sealed class SheetSession
+    public sealed partial class SheetSession
     {
         private readonly LayoutOptions _options = new();
         private readonly Dictionary<string, SignalValue> _values = new(StringComparer.Ordinal);
@@ -534,6 +534,9 @@ namespace RetroSchematic.Render
         /// </returns>
         public bool IsLit(DrawItem item)
         {
+            // everything in the group picked with Ctrl-click or a dragged box
+            if (IsPicked(item))
+                return true;
             if (Selected.Length == 0 || item.Owner.Length == 0)
                 return false;
             if (item.Owner == Selected)

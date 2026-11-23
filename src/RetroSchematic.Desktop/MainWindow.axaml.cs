@@ -41,6 +41,8 @@ namespace RetroSchematic.Desktop
             BuildThemeMenu();
             ShowStyleTicks(UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern);
             Canvas.ToolMessage += OnToolMessage;
+            Canvas.InstanceOpened += owner => OpenInstance(owner.Substring(5));
+            Canvas.MenuRequested += owner => ShowDrawingMenu(owner);
             TbPinNumbers.IsChecked = PinNumbersItem.IsChecked;
             TbBoardPositions.IsChecked = BoardPositionsItem.IsChecked;
             PortArrowsItem.IsChecked = UiSettings.Instance.PortArrows;
@@ -164,6 +166,13 @@ namespace RetroSchematic.Desktop
             NewBusItem.IsEnabled = editing;
             TbBus.IsChecked = Canvas.Tool?.BusPathFor != null;
             ShowBusPanel();
+            bool canBlock = editing && _session!.PickedMembers().Count > 0;
+            TbMakeBlock.IsEnabled = canBlock;
+            MakeBlockItem.IsEnabled = canBlock;
+            bool inside = _session != null && _session.Editor.LevelPath.Count > 0;
+            TbUpLevel.IsEnabled = inside;
+            UpLevelItem.IsEnabled = inside;
+            ShowLevelBar();
             // leaving edit mode drops an editing tool back to Select (Trace stays: it works read-only)
             if (!editing && (TbPlace.IsChecked == true || TbWire.IsChecked == true))
                 PickTool(TbSelect);
@@ -660,5 +669,168 @@ namespace RetroSchematic.Desktop
             else
                 StatusText.Text = at + " is not drawn on this sheet (a backplane or off-sheet pin).";
         }
+
+        /// <summary>
+        /// Opens the Make block dialog for the chips and instances picked; null (with a reason in
+        /// the status bar) when not in edit mode or nothing is picked. Public so the window tests
+        /// can use it.
+        /// </summary>
+        /// <returns>
+        /// The dialog, or null.
+        /// </returns>
+        public MakeBlockWindow? OpenMakeBlockDialog()
+        {
+            if (_session == null || _session.Editor.ReadOnly)
+            {
+                StatusText.Text = "Switch on edit mode to make a block.";
+                return null;
+            }
+            List<string> members = _session.PickedMembers();
+            if (members.Count == 0)
+            {
+                StatusText.Text = "Pick the parts first: Ctrl-click them, or drag a box round them.";
+                return null;
+            }
+            MakeBlockWindow dialog = new(_session, members);
+            dialog.Closed += (s, a) =>
+            {
+                if (dialog.Created != null)
+                    StatusText.Text = "Made instance " + dialog.Created + ". Double-click it to open it.";
+                ShowEditState();
+            };
+            dialog.Show(this);
+            return dialog;
+        }
+
+        /// <summary>
+        /// Shows the inside of an instance on the level shown.
+        /// </summary>
+        /// <param name="instance">
+        /// The instance name.
+        /// </param>
+        public void OpenInstance(string instance)
+        {
+            if (_session == null)
+                return;
+            try
+            {
+                _session.OpenInstance(instance);
+                StatusText.Text = "Inside " + instance + ". Up one level (or the bar above the drawing) goes back.";
+            }
+            catch (SheetEditException e)
+            {
+                StatusText.Text = e.Message;
+            }
+            ShowEditState();
+        }
+
+        /// <summary>
+        /// Puts the inside of an instance back on the level shown.
+        /// </summary>
+        /// <param name="instance">
+        /// The instance name.
+        /// </param>
+        public void DissolveInstance(string instance)
+        {
+            if (_session == null)
+                return;
+            try
+            {
+                _session.Editor.DissolveInstance(instance);
+                StatusText.Text = "Dissolved " + instance + " into this level.";
+            }
+            catch (SheetEditException e)
+            {
+                StatusText.Text = e.Message;
+            }
+            ShowEditState();
+        }
+
+        /// <summary>
+        /// Goes back up one level.
+        /// </summary>
+        public void LeaveLevel()
+        {
+            if (_session == null)
+                return;
+            _session.LeaveInstance();
+            StatusText.Text = _session.Editor.LevelPath.Count == 0 ? "At the top level." : "Inside " + string.Join("/", _session.Editor.LevelPath) + ".";
+            ShowEditState();
+        }
+
+        /// <summary>
+        /// The right-click menu for a point on the drawing: Make block when parts are picked,
+        /// Open and Dissolve on an instance. Built here from what the session says is possible.
+        /// </summary>
+        /// <param name="owner">
+        /// What was under the pointer.
+        /// </param>
+        /// <returns>
+        /// The menu, or null when it would be empty (for tests).
+        /// </returns>
+        public ContextMenu? ShowDrawingMenu(string owner)
+        {
+            if (_session == null)
+                return null;
+            bool editing = !_session.Editor.ReadOnly;
+            string whole = SheetSession.WholeOf(owner);
+            ContextMenu menu = new();
+            if (editing && _session.PickedMembers().Count > 0)
+            {
+                MenuItem make = new() { Header = "Make block..." };
+                make.Click += (s, a) => OpenMakeBlockDialog();
+                menu.Items.Add(make);
+            }
+            if (whole.StartsWith("inst:", StringComparison.Ordinal))
+            {
+                string name = whole.Substring(5);
+                MenuItem open = new() { Header = "Open " + name };
+                open.Click += (s, a) => OpenInstance(name);
+                menu.Items.Add(open);
+                MenuItem dissolve = new() { Header = "Dissolve " + name + " into this level", IsEnabled = editing };
+                dissolve.Click += (s, a) => DissolveInstance(name);
+                menu.Items.Add(dissolve);
+            }
+            if (_session.Editor.LevelPath.Count > 0)
+            {
+                MenuItem up = new() { Header = "Up one level" };
+                up.Click += (s, a) => LeaveLevel();
+                menu.Items.Add(up);
+            }
+            if (menu.Items.Count == 0)
+                return null;
+            menu.Open(Canvas);
+            return menu;
+        }
+
+        private void ShowLevelBar()
+        {
+            LevelBar.Children.Clear();
+            if (_session == null || _session.Editor.LevelPath.Count == 0)
+            {
+                LevelBar.IsVisible = false;
+                return;
+            }
+            LevelBar.IsVisible = true;
+            List<string> names = _session.LevelNames();
+            for (int i = 0; i < names.Count; i++)
+            {
+                if (i > 0)
+                    LevelBar.Children.Add(new TextBlock { Text = ">", VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center, Classes = { "fluent-text" } });
+                int up = names.Count - 1 - i;
+                Button level = new() { Content = names[i], IsEnabled = up > 0, Classes = { "fluent-button" } };
+                level.Click += (s, a) =>
+                {
+                    for (int k = 0; k < up; k++)
+                        _session.LeaveInstance();
+                    ShowEditState();
+                };
+                LevelBar.Children.Add(level);
+            }
+        }
+
+        private void OnMakeBlock(object? sender, RoutedEventArgs e) => OpenMakeBlockDialog();
+
+        private void OnUpLevel(object? sender, RoutedEventArgs e) => LeaveLevel();
     }
 }

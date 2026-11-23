@@ -57,6 +57,26 @@ namespace RetroSchematic.Desktop.Controls
         public event ToolMessageHandler? ToolMessage;
 
         /// <summary>
+        /// Called with the owner name of what was under the pointer (empty for paper).
+        /// </summary>
+        /// <param name="owner">
+        /// The owner name, such as inst:U1.
+        /// </param>
+        public delegate void OwnerHandler(string owner);
+
+        /// <summary>
+        /// An instance box was double-clicked: the window opens it.
+        /// </summary>
+        public event OwnerHandler? InstanceOpened;
+
+        /// <summary>
+        /// The right button was clicked without dragging the view: the window shows its menu.
+        /// </summary>
+        public event OwnerHandler? MenuRequested;
+
+        private bool _panned;
+
+        /// <summary>
         /// Creates the canvas; it repaints when the theme changes.
         /// </summary>
         public SchematicCanvas()
@@ -255,6 +275,18 @@ namespace RetroSchematic.Desktop.Controls
             }
             else if (_tool.Gesture == EditGesture.Wire)
                 context.DrawLine(preview, new Point(_tool.Start.X, _tool.Start.Y), new Point(_tool.Current.X, _tool.Current.Y));
+            else if (_tool.Gesture == EditGesture.Band)
+            {
+                // the box being dragged to pick chips and instances
+                double l = Math.Min(_tool.Start.X, _tool.Current.X), t = Math.Min(_tool.Start.Y, _tool.Current.Y);
+                context.DrawRectangle(null, preview, new Rect(l, t, Math.Abs(_tool.Current.X - _tool.Start.X), Math.Abs(_tool.Current.Y - _tool.Start.Y)));
+            }
+            else if (_tool.Gesture == EditGesture.MoveInstance && session.Selected.StartsWith("inst:", StringComparison.Ordinal)
+                && d.InstanceFrames.TryGetValue(session.Selected.Substring(5), out PartFrame box))
+            {
+                double dx = _tool.Current.X - _tool.Start.X, dy = _tool.Current.Y - _tool.Start.Y;
+                context.DrawRectangle(null, preview, new Rect(box.X + dx, box.Y + dy, box.Width, box.Height));
+            }
             else if (_tool.Gesture == EditGesture.Move && session.Selected.Length > 0)
             {
                 string reference = session.Selected.Substring(session.Selected.IndexOf(':') + 1);
@@ -291,9 +323,21 @@ namespace RetroSchematic.Desktop.Controls
             base.OnPointerPressed(e);
             Focus();
             PointerPoint p = e.GetCurrentPoint(this);
+            if (p.Properties.IsLeftButtonPressed && e.ClickCount == 2 && Session != null)
+            {
+                // a double-click on an instance box opens it
+                string owner = SheetSession.WholeOf(Session.Drawing.HitTest(ToDrawingX(p.Position.X), ToDrawingY(p.Position.Y)));
+                if (owner.StartsWith("inst:", StringComparison.Ordinal))
+                {
+                    _tool?.Cancel();
+                    InstanceOpened?.Invoke(owner);
+                    e.Handled = true;
+                    return;
+                }
+            }
             if (p.Properties.IsLeftButtonPressed && _tool != null)
             {
-                _tool.PointerDown(ToDrawingX(p.Position.X), ToDrawingY(p.Position.Y));
+                _tool.PointerDown(ToDrawingX(p.Position.X), ToDrawingY(p.Position.Y), (e.KeyModifiers & KeyModifiers.Control) != 0);
                 if (_tool.Gesture != EditGesture.None)
                     e.Pointer.Capture(this);
                 Report();
@@ -303,6 +347,7 @@ namespace RetroSchematic.Desktop.Controls
             else if (p.Properties.IsRightButtonPressed || p.Properties.IsMiddleButtonPressed)
             {
                 _dragFrom = p.Position;
+                _panned = false;
                 e.Pointer.Capture(this);
                 e.Handled = true;
             }
@@ -322,6 +367,11 @@ namespace RetroSchematic.Desktop.Controls
             if (_dragFrom is not Point from)
                 return;
             Point now = e.GetPosition(this);
+            // a few pixels of wobble on a right-click is not a drag of the view
+            if (Math.Abs(now.X - from.X) + Math.Abs(now.Y - from.Y) > 3 || _panned)
+                _panned = true;
+            else
+                return;
             _offset += now - from;
             _dragFrom = now;
             InvalidateVisual();
@@ -337,6 +387,11 @@ namespace RetroSchematic.Desktop.Controls
                 _tool.PointerUp(ToDrawingX(at.X), ToDrawingY(at.Y));
                 Report();
                 InvalidateVisual();
+            }
+            if (_dragFrom != null && !_panned && e.InitialPressMouseButton == MouseButton.Right && Session != null)
+            {
+                Point at = e.GetPosition(this);
+                MenuRequested?.Invoke(Session.Drawing.HitTest(ToDrawingX(at.X), ToDrawingY(at.Y)));
             }
             _dragFrom = null;
             e.Pointer.Capture(null);

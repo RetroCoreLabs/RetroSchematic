@@ -35,6 +35,10 @@
         <Separator/>
         <MenuItem Header="New _bus..." Click="OnNewBus" x:Name="NewBusItem" IsEnabled="False"
                   ToolTip.Tip="Name a bus, tick its signals, then click out its path (drawing only)"/>
+        <Separator/>
+        <MenuItem Header="Make bloc_k from the picked parts..." Click="OnMakeBlock" x:Name="MakeBlockItem" IsEnabled="False"
+                  ToolTip.Tip="Ctrl-click or drag a box round chips, then make them one block; connections never change"/>
+        <MenuItem Header="_Up one level" Click="OnUpLevel" x:Name="UpLevelItem" IsEnabled="False"/>
       </MenuItem>
       <MenuItem Header="_View">
         <MenuItem Header="_ND 1976 symbols" x:Name="NdStyleItem" Click="OnNdStyle" ToggleType="Radio"/>
@@ -72,8 +76,8 @@
         <ToggleButton x:Name="TbBus" Classes="toolbar-button" Click="OnNewBus" IsEnabled="False" ToolTip.Tip="New bus: name it, tick its signals, then click out its path; click the last point again to finish (edit mode). Drawing only - connections never change." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBus}"/></ToggleButton>
         <ToggleButton x:Name="TbTrace" Classes="toolbar-button" Click="OnToolTrace" IsEnabled="False" ToolTip.Tip="Trace: click a wire, label or pin to show the whole signal; Esc or empty paper clears. Works in read-only mode." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconTrace}"/></ToggleButton>
         <Border Classes="toolbar-divider"/>
-        <Button x:Name="TbMakeBlock" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Make block from the selection (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconMakeBlock}"/></Button>
-        <Button x:Name="TbUpLevel" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Up one level (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconUpLevel}"/></Button>
+        <Button x:Name="TbMakeBlock" Classes="toolbar-button icon" Click="OnMakeBlock" IsEnabled="False" ToolTip.Tip="Make a block from the picked parts: Ctrl-click them or drag a box round them first (edit mode). Connections never change." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconMakeBlock}"/></Button>
+        <Button x:Name="TbUpLevel" Classes="toolbar-button icon" Click="OnUpLevel" IsEnabled="False" ToolTip.Tip="Up one level, out of the block shown" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconUpLevel}"/></Button>
         <Border Classes="toolbar-divider"/>
         <Button x:Name="TbZoomIn" Classes="toolbar-button icon" Click="OnZoomIn" IsEnabled="False" ToolTip.Tip="Zoom in" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconZoomIn}"/></Button>
         <Button x:Name="TbZoomOut" Classes="toolbar-button icon" Click="OnZoomOut" IsEnabled="False" ToolTip.Tip="Zoom out" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconZoomOut}"/></Button>
@@ -124,9 +128,13 @@
       <GridSplitter Grid.Column="1" Background="Transparent"/>
 
       <!-- middle: the drawing -->
-      <Border Grid.Column="2" Classes="panel-border" Margin="0,6" ClipToBounds="True">
-        <c:SchematicCanvas x:Name="Canvas"/>
-      </Border>
+      <DockPanel Grid.Column="2">
+        <!-- where you are: Top > U2 (read-multiplexers); click a level to go back up to it -->
+        <StackPanel x:Name="LevelBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2" Margin="0,6,0,0" IsVisible="False"/>
+        <Border Classes="panel-border" Margin="0,6" ClipToBounds="True">
+          <c:SchematicCanvas x:Name="Canvas"/>
+        </Border>
+      </DockPanel>
       <GridSplitter Grid.Column="3" Background="Transparent"/>
 
       <!-- right: what the picked item is -->

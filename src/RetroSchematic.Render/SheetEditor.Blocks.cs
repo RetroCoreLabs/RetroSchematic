@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using RetroSchematic.Model;
 
 namespace RetroSchematic.Render
@@ -478,6 +479,112 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// Moves chips (and instances) on the current level into an instance that is there too:
+        /// the instance's block takes them in and its ports are made again for the new edge. It
+        /// is done as a dissolve followed by a make block, which both keep the flattened netlist,
+        /// so the connections do not change. Port names, edges and places are kept for every
+        /// port that carries the same signals as before, and the box stays where it was. One
+        /// undo step. Refused when other instances use the same block, because they would
+        /// change too.
+        /// </summary>
+        /// <param name="members">
+        /// Part references and inst:NAME entries on the current level.
+        /// </param>
+        /// <param name="instance">
+        /// The instance that takes them in.
+        /// </param>
+        public void MoveIntoInstance(List<string> members, string instance)
+        {
+            CheckWritable();
+            BlockInstance inst = Hierarchy.FindInstance(Netlist.Instances, instance)
+                ?? throw new SheetEditException($"There is no instance {instance} on this level.");
+            if (members.Count == 0)
+                throw new SheetEditException("Pick the parts to move into " + instance + " first.");
+            if (members.Contains("inst:" + instance))
+                throw new SheetEditException("An instance cannot be moved into itself.");
+            BlockDefinition b = Hierarchy.FindBlock(Root, inst.Block)
+                ?? throw new SheetEditException($"Instance {instance} is of block {inst.Block}, which is not defined.");
+            int users = 0;
+            CountUsers(Root.Instances, b.Name, ref users);
+            for (int i = 0; Root.Blocks != null && i < Root.Blocks.Count; i++)
+                CountUsers(Root.Blocks[i].Instances, b.Name, ref users);
+            if (users > 1)
+                throw new SheetEditException($"Block {b.Name} has {users} instances; moving parts into it would change all of them.");
+
+            // what to keep: each port's look, by the signals it carries
+            Dictionary<string, BlockPort> oldPorts = new(StringComparer.Ordinal);
+            for (int i = 0; i < b.Ports.Count; i++)
+                oldPorts[SignalsKey(b.Ports[i].Signals)] = b.Ports[i];
+            string blockName = b.Name;
+            Point? position = inst.Position;
+            HashSet<string> partsBefore = new(StringComparer.Ordinal);
+            for (int i = 0; i < Netlist.Parts.Count; i++)
+                partsBefore.Add(Netlist.Parts[i].Ref);
+            HashSet<string> instancesBefore = new(StringComparer.Ordinal);
+            for (int i = 0; Netlist.Instances != null && i < Netlist.Instances.Count; i++)
+                instancesBefore.Add(Netlist.Instances[i].Name);
+
+            int undoBefore = _undo.Count;
+            try
+            {
+                DissolveInstance(instance);
+                // everything that came up out of the instance goes back in, with the new members
+                List<string> all = new(members);
+                for (int i = 0; i < Netlist.Parts.Count; i++)
+                {
+                    if (!partsBefore.Contains(Netlist.Parts[i].Ref))
+                        all.Add(Netlist.Parts[i].Ref);
+                }
+                for (int i = 0; Netlist.Instances != null && i < Netlist.Instances.Count; i++)
+                {
+                    if (!instancesBefore.Contains(Netlist.Instances[i].Name))
+                        all.Add("inst:" + Netlist.Instances[i].Name);
+                }
+                List<PlannedPort> ports = PlanBlock(all);
+                for (int i = 0; i < ports.Count; i++)
+                {
+                    if (oldPorts.TryGetValue(SignalsKey(ports[i].Signals), out BlockPort? old))
+                        ports[i].Name = old.Name;
+                }
+                // two old names may now meet on different ports: keep the names unique
+                HashSet<string> names = new(StringComparer.Ordinal);
+                for (int i = 0; i < ports.Count; i++)
+                {
+                    string baseName = ports[i].Name;
+                    for (int k = 2; !names.Add(ports[i].Name); k++)
+                        ports[i].Name = baseName + "_" + k.ToString(CultureInfo.InvariantCulture);
+                }
+                MakeBlock(blockName, instance, all, ports);
+                BlockDefinition made = Hierarchy.FindBlock(Root, blockName)!;
+                for (int i = 0; i < made.Ports.Count; i++)
+                {
+                    if (oldPorts.TryGetValue(SignalsKey(made.Ports[i].Signals), out BlockPort? old))
+                    {
+                        made.Ports[i].Side = old.Side;
+                        made.Ports[i].Order = old.Order;
+                    }
+                }
+                Hierarchy.FindInstance(Netlist.Instances, instance)!.Position = position;
+            }
+            catch (SheetEditException)
+            {
+                // put everything back as it was before the dissolve
+                if (_undo.Count > undoBefore)
+                {
+                    Root = NetlistReader.Parse(_undo[undoBefore]);
+                    _undo.RemoveRange(undoBefore, _undo.Count - undoBefore);
+                    ShowLevel();
+                    Changed?.Invoke(this);
+                }
+                throw;
+            }
+            // one undo step for the whole move
+            if (_undo.Count > undoBefore + 1)
+                _undo.RemoveRange(undoBefore + 1, _undo.Count - undoBefore - 1);
+            Done();
+        }
+
+        /// <summary>
         /// Places a port pin on an edge of its block's instance boxes. Drawing only.
         /// </summary>
         /// <param name="block">
@@ -579,6 +686,27 @@ namespace RetroSchematic.Render
                     return true;
             }
             return false;
+        }
+
+        private static void CountUsers(List<BlockInstance>? instances, string block, ref int users)
+        {
+            for (int i = 0; instances != null && i < instances.Count; i++)
+            {
+                if (instances[i].Block == block)
+                    users++;
+            }
+        }
+
+        /// <summary>
+        /// The signals a port carries as one text (names and levels in bit order), to find the
+        /// same port again after it is made anew.
+        /// </summary>
+        private static string SignalsKey(List<SignalRef> signals)
+        {
+            StringBuilder sb = new();
+            for (int i = 0; i < signals.Count; i++)
+                sb.Append(signals[i].Net).Append('|').Append(signals[i].Active?.ToString() ?? "").Append(';');
+            return sb.ToString();
         }
 
         private static bool Uses(List<BlockInstance>? instances, string block)
