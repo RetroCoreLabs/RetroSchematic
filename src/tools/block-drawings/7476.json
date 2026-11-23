@@ -1,0 +1,70 @@
+{
+  "id": "7476",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "16",
+          "outside": "K",
+          "inside": "",
+          "second": "12"
+        },
+        {
+          "number": "1",
+          "outside": "Clock",
+          "inside": "",
+          "second": "6"
+        },
+        {
+          "number": "4",
+          "outside": "J",
+          "inside": "",
+          "second": "9"
+        }
+      ],
+      "right": [
+        {
+          "number": "14",
+          "outside": "~Q",
+          "inside": "",
+          "second": "10"
+        },
+        {
+          "number": "15",
+          "outside": "Q",
+          "inside": "",
+          "second": "11"
+        }
+      ],
+      "top": [
+        {
+          "number": "3",
+          "outside": "Clear",
+          "bend": {
+            "dir": "left",
+            "length": 39,
+            "stub": 12
+          },
+          "second": "8"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "Preset",
+          "bend": {
+            "dir": "left",
+            "length": 39,
+            "stub": 12
+          },
+          "second": "7"
+        }
+      ],
+      "height": 56
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Each pin has a second number in brackets for the other flip-flop: Clear 3 (8), K 16 (12), Clock 1 (6), J 4 (9), ~Q 14 (10), Q 15 (11), Preset 2 (7). The 'number' field holds the unbracketed one."
+}

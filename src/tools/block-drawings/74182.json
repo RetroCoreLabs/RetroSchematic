@@ -1,0 +1,101 @@
+{
+  "id": "74182",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "P_0",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "G_0",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "P_1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "1",
+          "outside": "G_1",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "P_2",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "14",
+          "outside": "G_2",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "P_3",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "5",
+          "outside": "G_3",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "13",
+          "outside": "Carry input"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "7",
+          "outside": "(P)"
+        },
+        {
+          "number": "10",
+          "outside": "(G)"
+        }
+      ],
+      "width": 24
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Carry out",
+      "pins": [
+        "12",
+        "11",
+        "9"
+      ]
+    }
+  ],
+  "unreadable": [
+    "The subscript in 'P0' and 'G0' may be the letter o or the digit 0; written as 0."
+  ],
+  "notes": "The signal labels have subscripts: P with subscript 0..3, G with subscript 0..3."
+}

@@ -1,0 +1,88 @@
+{
+  "id": "74S133",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "9",
+          "outside": "Y",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 11
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 13-input positive NAND gate. No supply pins printed."
+}

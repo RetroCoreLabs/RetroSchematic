@@ -1,0 +1,129 @@
+{
+  "id": "74198",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "17",
+          "outside": "F",
+          "inside": ""
+        },
+        {
+          "number": "19",
+          "outside": "G",
+          "inside": ""
+        },
+        {
+          "number": "21",
+          "outside": "H",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "8",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "Q_E",
+          "inside": ""
+        },
+        {
+          "number": "16",
+          "outside": "Q_F",
+          "inside": ""
+        },
+        {
+          "number": "18",
+          "outside": "Q_G",
+          "inside": ""
+        },
+        {
+          "number": "20",
+          "outside": "Q_H",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "22",
+          "outside": "Serial input"
+        },
+        {
+          "number": "13",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "11",
+          "outside": "Clock"
+        },
+        {
+          "number": "1",
+          "outside": ""
+        },
+        {
+          "number": "23",
+          "outside": ""
+        }
+      ],
+      "width": 25,
+      "height": 100
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Mode",
+      "pins": [
+        "1",
+        "23"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 8-bit shift register. The word 'Mode' is printed under the ends of both bottom lines 1 and 23, so it is recorded as a label for the pair."
+}

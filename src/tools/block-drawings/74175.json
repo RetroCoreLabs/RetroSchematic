@@ -1,0 +1,90 @@
+{
+  "id": "74175",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "13",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "D",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "14",
+          "outside": "~Q_A",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "~Q_B",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "2",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "~Q_C",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "10",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "~Q_D",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "7",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "9",
+          "outside": "Clock"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Each left input line sits level with the second (Q) line of its right-side pair."
+}

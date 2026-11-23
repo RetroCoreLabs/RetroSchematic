@@ -1,0 +1,105 @@
+{
+  "id": "7494",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "7",
+          "outside": "serial in",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "A1",
+          "inside": ""
+        },
+        {
+          "number": "16",
+          "outside": "A2",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "B1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "14",
+          "outside": "B2",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "C1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "13",
+          "outside": "C2",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "D1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "11",
+          "outside": "D2",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "11",
+          "outside": "D (output)",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "8",
+          "outside": "clock"
+        },
+        {
+          "number": "10",
+          "outside": "clear_1"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "6",
+          "outside": "PR1"
+        },
+        {
+          "number": "15",
+          "outside": "PR2"
+        }
+      ],
+      "width": 33,
+      "marks": [
+        {
+          "type": "text",
+          "x": 2.7,
+          "y": 1.2,
+          "text": "+5V  =  5",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 2.7,
+          "y": 1.27,
+          "text": "GND  = 12",
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 4-bit shift register. Printed below the box: +5V = 5, GND = 12. The number 11 is printed at two lines: the D2 input on the left and the D (output) line on the right. 'clear' carries a subscript 1."
+}

@@ -1,0 +1,91 @@
+{
+  "id": "74298",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "A_1",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "A_2",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "B_1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "1",
+          "outside": "B_2",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "C_1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "5",
+          "outside": "C_2",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "D_1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "6",
+          "outside": "D_2",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "15",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "10",
+          "outside": "Select"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "11",
+          "outside": "Clock"
+        }
+      ],
+      "height": 108
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Quadruple 2-input multiplexer with storage. The 1 and 2 in A1, A2 etc. are printed as subscripts."
+}

@@ -1,0 +1,104 @@
+{
+  "id": "74191",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "15",
+          "outside": "A",
+          "inside": "",
+          "at": 0.08
+        },
+        {
+          "number": "1",
+          "outside": "B",
+          "inside": "",
+          "at": 0.25
+        },
+        {
+          "number": "10",
+          "outside": "C",
+          "inside": "",
+          "at": 0.415
+        },
+        {
+          "number": "9",
+          "outside": "D",
+          "inside": "",
+          "at": 0.58
+        },
+        {
+          "number": "11",
+          "outside": "Load",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.83
+        },
+        {
+          "number": "14",
+          "outside": "Clock",
+          "inside": "",
+          "at": 0.92
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Q_A",
+          "inside": "",
+          "at": 0.08
+        },
+        {
+          "number": "2",
+          "outside": "Q_B",
+          "inside": "",
+          "at": 0.25
+        },
+        {
+          "number": "6",
+          "outside": "Q_C",
+          "inside": "",
+          "at": 0.415
+        },
+        {
+          "number": "7",
+          "outside": "Q_D",
+          "inside": "",
+          "at": 0.58
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.83
+        },
+        {
+          "number": "13",
+          "outside": "Min/max",
+          "inside": "",
+          "at": 0.92
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "4",
+          "outside": "Enable",
+          "at": 0.37
+        },
+        {
+          "number": "5",
+          "outside": "Up_0/down_1",
+          "at": 0.7
+        }
+      ],
+      "width": 26,
+      "height": 100
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Synchronous up/down counter. Pin 12 on the right has no label printed. In 'Up0/down1' the 0 and 1 are printed as subscripts."
+}

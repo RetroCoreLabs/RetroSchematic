@@ -1,0 +1,101 @@
+{
+  "id": "74148",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "A_2",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "A_1",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "A_0",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "5",
+          "outside": "Expand input"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "15",
+          "outside": "Expand output"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Input",
+      "pins": [
+        "4",
+        "3",
+        "2",
+        "1",
+        "13",
+        "12",
+        "11",
+        "10"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 74148 (Equal to 9318), 8-line-to-3-line priority encoder. 'Input' is printed beside the left lines with no brace. Right pin 14 has no label. No supply pins printed."
+}

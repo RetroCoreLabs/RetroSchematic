@@ -1,0 +1,106 @@
+{
+  "id": "8833",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "7",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "9",
+          "outside": "Enable output_0"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Bus input/\noutput",
+      "pins": [
+        "1",
+        "4",
+        "12",
+        "15"
+      ]
+    },
+    {
+      "text": "Enable input_0",
+      "pins": [
+        "7"
+      ],
+      "x": 0.53,
+      "y": 0.2,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Quad tri-state transceiver. Eight left lines evenly spaced, no labels. Subscript 0 on both enable labels."
+}

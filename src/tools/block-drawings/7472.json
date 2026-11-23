@@ -1,0 +1,117 @@
+{
+  "id": "7472",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "0",
+          "at": 0.14
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "inside": "1",
+          "gapBefore": true,
+          "at": 0.85
+        }
+      ],
+      "top": [
+        {
+          "number": "2",
+          "outside": "Clear",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "13",
+          "outside": "Preset",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.32,
+              0
+            ],
+            [
+              0.32,
+              0.44
+            ],
+            [
+              0,
+              0.44
+            ]
+          ]
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0.57
+            ],
+            [
+              0.32,
+              0.57
+            ],
+            [
+              0.32,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Pins 9,10,11 go into an upper AND box inside the left edge, pins 3,4,5 into a lower AND box. Clear and Preset lines run off to the left."
+}

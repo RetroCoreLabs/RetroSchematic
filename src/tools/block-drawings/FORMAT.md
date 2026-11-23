@@ -61,3 +61,51 @@ A section may also carry:
 
 The marks are read off the cut-out and checked by drawing the part and comparing it with the
 cut-out at full size.
+
+### Pin position and bent pin lines
+
+A pin may also carry:
+
+- `at`: where along its side the pin sits, as a fraction of the side (0 = top or left end,
+  1 = bottom or right end). Without it the pins of a short side are spread evenly.
+- `bend`: the line leaves the box and then turns, as the select and enable lines of 74153 do:
+  `{"dir": "left", "length": 20, "stub": 12}`. `dir` is `left`, `right`, `up` or `down`;
+  `length` is the turned part; `stub` (optional) is the straight part from the box before the
+  turn (default 20). Two lines on one side need different `stub` values so their turned parts
+  do not lie on top of each other. The `outside` name is written at the far end of the turned
+  part.
+
+Text printed beside the drawing (a truth table, a timing formula) is drawn with `text` marks.
+
+### More pin and label fields
+
+- `length` on a pin: the length of that one straight line (default 20), for lines the manual
+  draws shorter.
+- `second` on a pin: the other half's pin number printed in brackets beside this one, as text
+  (`"second": "13"` prints `(13)`). Use this instead of a text mark so the number belongs to its pin.
+- `endMark: "diamond"` on a pin: the line ends in a small open diamond (7483 carry out).
+- `x`, `y` (and optional `anchor`: `start`, `middle`, `end`) on a group label: place it yourself,
+  as fractions of the WHOLE drawing (not the box), when the automatic place is not where the
+  manual prints it.
+
+### Side-by-side drawings, braces, subscripts, printed notes
+
+- `beside: true` on a section: draw it to the right of the previous one (8097/8098 "Alternative").
+- Brace mark: `{"type": "brace", "x": -0.6, "y1": 0, "y2": 1, "dir": "right"}` (vertical; `dir`
+  is the side it opens to) or `{"type": "brace", "y": 1.3, "x1": 0, "x2": 1, "dir": "up"}`.
+- Subscript: write `_` before it in any printed text: `Q_A`, `Strobe_1`, `Y_A`.
+- Notes printed under or beside a drawing in the manual ("Pins 7 and 9 connected to GND") are
+  part of the cut-out and are drawn with `text` marks, not only kept in `notes`.
+- Overbar: `~A` bars one name (`~Q`, `~Y_A`), `~{A·E}` bars a whole group, in any printed text.
+- Text printed on several lines: put `\n` where the line breaks (`"Serial\ninput"`), in any
+  printed text including group labels.
+- The drawing area grows to hold every mark, so text placed far from the box (74107's truth
+  table) is not cut off.
+- Text printed on several lines: put `\n` where the line breaks (`"Serial\ninput"`), in any
+  printed text including group labels.
+- The drawing area grows to hold every mark, so text placed far from the box (74107's truth
+  table) is not cut off.
+- `anchor` on a text mark: `start` (left-aligned), `middle` (default) or `end`.
+- `numberOnBend: true` on a bent pin: its number is printed on the turned part (8831).
+- `numberAt` on a pin: where along the line its number stands, 0 = at the box, 1 = at the far end (default 0.5).
+- `nameAnchor` on a top/bottom pin: `end` puts its name to the left of the line, `start` to the right (8599), instead of centred under it; such names are never moved down a row.

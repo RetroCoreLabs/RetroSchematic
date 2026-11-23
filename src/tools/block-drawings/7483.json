@@ -1,0 +1,101 @@
+{
+  "id": "7483",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "16",
+          "outside": "A3",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "B3",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "A2",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "3",
+          "outside": "B2",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "A1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "8",
+          "outside": "B1",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "A0",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "11",
+          "outside": "B0",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "15",
+          "outside": "Bit 3",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "Bit 2",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "Bit 1",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Bit 0",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "14",
+          "outside": "Carry out",
+          "bend": {
+            "dir": "right",
+            "length": 12,
+            "stub": 7
+          },
+          "endMark": "diamond"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "13",
+          "outside": "Carry in",
+          "bend": {
+            "dir": "left",
+            "length": 33,
+            "stub": 7
+          }
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "The Carry out line ends in a small diamond shape."
+}

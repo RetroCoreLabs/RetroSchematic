@@ -1,0 +1,68 @@
+{
+  "id": "MC4007",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "A",
+          "at": 0.11,
+          "second": "10"
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "B",
+          "at": 0.31,
+          "second": "9"
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "E",
+          "at": 0.74,
+          "second": "11"
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "0",
+          "at": 0.11,
+          "second": "12"
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "1",
+          "at": 0.33,
+          "second": "13"
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "2",
+          "at": 0.5,
+          "second": "14"
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "3",
+          "at": 0.74,
+          "second": "15"
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 28,
+      "height": 45
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 'MC 4007 Dual 1-of-4 decoder'. One box is drawn; each pin line carries a plain number and a number in brackets beside it, the bracketed one is recorded in 'outside' (it reads as the pin of the second decoder, but the drawing does not say so)."
+}

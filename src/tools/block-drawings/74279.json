@@ -1,0 +1,98 @@
+{
+  "id": "74279",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [],
+      "right": [
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.17,
+          "second": "13"
+        }
+      ],
+      "top": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "S",
+          "second": "15"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "R",
+          "second": "14"
+        }
+      ],
+      "height": 56,
+      "marks": [
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.14,
+          "text": "S",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.95,
+          "text": "R",
+          "size": 4
+        }
+      ]
+    },
+    {
+      "insideLabel": "",
+      "left": [],
+      "right": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.17,
+          "second": "9"
+        }
+      ],
+      "top": [
+        {
+          "number": "2",
+          "outside": "",
+          "length": 10,
+          "second": "11"
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "second": "12"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "R",
+          "second": "10"
+        }
+      ],
+      "height": 56,
+      "marks": [
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.95,
+          "text": "R",
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Quadruple S-R latches. Two boxes, each standing for two latches; every pin also carries a second number in brackets for the other latch of that kind: upper box 6 (15), 7 (13), 5 (14); lower box 2 (11), 3 (12), 4 (9), 1 (10). The lower box has no 'S' printed inside at the top, only 'R' at the bottom. In the lower box pin 2 is a shorter line near the left corner of the top side and pin 3 a longer line further right."
+}

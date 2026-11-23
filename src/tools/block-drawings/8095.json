@@ -1,0 +1,108 @@
+{
+  "id": "8095",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "F",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Y_A",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "Y_B",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "Y_C",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Y_D",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "Y_E",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "Y_F",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "15",
+          "outside": "Disable_1"
+        }
+      ],
+      "width": 11,
+      "height": 60,
+      "marks": [
+        {
+          "type": "text",
+          "x": 2.3181818181818183,
+          "y": 1.12,
+          "text": "Y_A=A",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Disable_1",
+      "pins": [
+        "1"
+      ],
+      "x": 0.53,
+      "y": 0.2,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Tri-state hex buffer. Both pin 1 and pin 15 are labelled 'Disable' with subscript 1. Printed beside: 'YA=A'."
+}

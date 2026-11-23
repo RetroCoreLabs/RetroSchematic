@@ -1,0 +1,160 @@
+{
+  "id": "74154",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "23",
+          "outside": "A",
+          "inside": "",
+          "at": 0.06
+        },
+        {
+          "number": "22",
+          "outside": "B",
+          "inside": "",
+          "at": 0.17
+        },
+        {
+          "number": "21",
+          "outside": "C",
+          "inside": "",
+          "at": 0.29
+        },
+        {
+          "number": "20",
+          "outside": "D",
+          "inside": "",
+          "at": 0.41
+        },
+        {
+          "number": "19",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.58
+        },
+        {
+          "number": "18",
+          "outside": "",
+          "inside": "",
+          "at": 0.63
+        }
+      ],
+      "right": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.06
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.119
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.177
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.236
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.295
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.353
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.412
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "inside": "",
+          "at": 0.471
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "at": 0.53
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.588
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "at": 0.647
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.706
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "at": 0.764
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": "",
+          "at": 0.823
+        },
+        {
+          "number": "16",
+          "outside": "",
+          "inside": "",
+          "at": 0.882
+        },
+        {
+          "number": "17",
+          "outside": "",
+          "inside": "",
+          "at": 0.941
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 32,
+      "height": 176
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Enable\noutput",
+      "pins": [
+        "19",
+        "18"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Right side has 16 lines numbered 1-11 and 13-17; no 12 is printed. 'Enable' and 'output' are printed on two lines beside 19 and 18."
+}

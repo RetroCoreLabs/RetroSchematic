@@ -1,0 +1,87 @@
+{
+  "id": "8820",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "Input",
+          "inside": "-",
+          "second": "13"
+        },
+        {
+          "number": "2",
+          "outside": "Terminate",
+          "inside": "",
+          "second": "12"
+        },
+        {
+          "number": "3",
+          "outside": "Input",
+          "inside": "+",
+          "second": "11"
+        }
+      ],
+      "right": [
+        {
+          "number": "6",
+          "outside": "Output",
+          "inside": "",
+          "second": "8"
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "4",
+          "outside": "Strobe_1",
+          "bend": {
+            "dir": "left",
+            "length": 22,
+            "stub": 15
+          },
+          "second": "10"
+        }
+      ],
+      "width": 16,
+      "height": 30,
+      "marks": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0.5
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 1.5,
+          "y": 2.3,
+          "text": "Pins 1 and 2 (13 and 12) are connected when",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 1.3,
+          "y": 2.5,
+          "text": "internal termination resistor is used.",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Box with a triangle drawn inside pointing right (drawn as a mark); '-' printed inside by pin 1 and '+' by pin 3. Title: Tri-state line receiver. Each pin has a second number in brackets as printed: 1(13), 2(12), 3(11), 6(8), 4(10); these are kept in 'outside'. The pin 4 line leaves the bottom of the box and bends left to the label 'Strobe' with subscript 1. Printed below: 'Pins 1 and 2 (13 and 12) are connected when internal termination resistor is used.'"
+}

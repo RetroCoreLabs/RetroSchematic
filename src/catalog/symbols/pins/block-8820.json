@@ -1,0 +1,40 @@
+{
+ "shape": "block-8820",
+ "pins": [
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 45.0,
+   "side": "left",
+   "name": "Input"
+  },
+  {
+   "pin": "2",
+   "x": 60.0,
+   "y": 55.0,
+   "side": "left",
+   "name": "Terminate"
+  },
+  {
+   "pin": "3",
+   "x": 60.0,
+   "y": 65.0,
+   "side": "left",
+   "name": "Input"
+  },
+  {
+   "pin": "6",
+   "x": 116.0,
+   "y": 55.0,
+   "side": "right",
+   "name": "Output"
+  },
+  {
+   "pin": "4",
+   "x": 66.0,
+   "y": 85.0,
+   "side": "bottom",
+   "name": ""
+  }
+ ]
+}

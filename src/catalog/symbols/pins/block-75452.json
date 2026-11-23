@@ -1,0 +1,26 @@
+{
+ "shape": "block-75452",
+ "pins": [
+  {
+   "pin": "left:0",
+   "x": 60.0,
+   "y": 47.5,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:1",
+   "x": 60.0,
+   "y": 62.5,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "right:0",
+   "x": 124.0,
+   "y": 55.0,
+   "side": "right",
+   "name": ""
+  }
+ ]
+}

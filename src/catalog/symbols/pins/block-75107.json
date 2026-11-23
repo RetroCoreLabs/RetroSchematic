@@ -1,0 +1,33 @@
+{
+ "shape": "block-75107",
+ "pins": [
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 49.9,
+   "side": "left",
+   "name": "A_+"
+  },
+  {
+   "pin": "2",
+   "x": 60.0,
+   "y": 60.1,
+   "side": "left",
+   "name": "A_-"
+  },
+  {
+   "pin": "4",
+   "x": 130.0,
+   "y": 55.0,
+   "side": "right",
+   "name": "Y"
+  },
+  {
+   "pin": "5",
+   "x": 95.0,
+   "y": 90,
+   "side": "bottom",
+   "name": "Strobe"
+  }
+ ]
+}

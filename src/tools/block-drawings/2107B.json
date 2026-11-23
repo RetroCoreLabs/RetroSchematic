@@ -1,0 +1,126 @@
+{
+  "id": "2107B",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "8",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "21",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "20",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "19",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.958
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": ""
+        },
+        {
+          "number": "18",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "6",
+          "outside": ""
+        },
+        {
+          "number": "12",
+          "outside": ""
+        },
+        {
+          "number": "5",
+          "outside": ""
+        },
+        {
+          "number": "17",
+          "outside": ""
+        }
+      ],
+      "width": 46,
+      "marks": [
+        {
+          "type": "text",
+          "x": 0.12,
+          "y": 1.3,
+          "text": "+5V: 11",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.12,
+          "y": 1.36,
+          "text": "GND: 22",
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: '2107 B 4 K dynamic RAM 22 pin package'. No signal names. Printed under the drawing: '+5V: 11' and 'GND: 22'. Same pin layout as the TMS 4030 page."
+}

@@ -1,0 +1,133 @@
+{
+  "id": "74S258",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "15",
+          "outside": "Output control"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Select"
+        }
+      ],
+      "width": 16,
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0.5
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Input",
+      "pins": [
+        "14",
+        "13",
+        "11",
+        "10",
+        "5",
+        "6",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "text": "Output",
+      "pins": [
+        "12",
+        "9",
+        "7",
+        "4"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Quadruple 2-line-to-1-line data selector multiplexer with tri-state outputs. Inside the box two straight lines run from the top left and bottom left corners to the middle of the right side (a triangle shape). 'Input' and 'Output' are printed beside the left and right sides with no brace."
+}

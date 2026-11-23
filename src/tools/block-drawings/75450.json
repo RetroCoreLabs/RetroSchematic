@@ -1,0 +1,248 @@
+{
+  "id": "75450",
+  "sections": [
+    {
+      "insideLabel": "",
+      "outline": "dashed",
+      "width": 40,
+      "height": 40,
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.2,
+          "length": 6
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.33,
+          "length": 6
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": "",
+          "at": 0.76,
+          "length": 6
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.25,
+          "length": 6
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.74,
+          "length": 6
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "marks": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.125,
+              0.13
+            ],
+            [
+              0.255,
+              0.13
+            ],
+            [
+              0.255,
+              0.38
+            ],
+            [
+              0.125,
+              0.38
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.125,
+              0.63
+            ],
+            [
+              0.255,
+              0.63
+            ],
+            [
+              0.255,
+              0.88
+            ],
+            [
+              0.125,
+              0.88
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.755,
+              0.12
+            ],
+            [
+              0.885,
+              0.12
+            ],
+            [
+              0.885,
+              0.37
+            ],
+            [
+              0.755,
+              0.37
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.82,
+          "y1": 0.12,
+          "x2": 0.82,
+          "y2": 0.37
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.755,
+              0.62
+            ],
+            [
+              0.885,
+              0.62
+            ],
+            [
+              0.885,
+              0.87
+            ],
+            [
+              0.755,
+              0.87
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.82,
+          "y1": 0.62,
+          "x2": 0.82,
+          "y2": 0.87
+        },
+        {
+          "type": "line",
+          "x1": 0.255,
+          "y1": 0.26,
+          "x2": 0.39,
+          "y2": 0.26
+        },
+        {
+          "type": "text",
+          "x": 0.33,
+          "y": 0.23,
+          "text": "3",
+          "size": 4.5
+        },
+        {
+          "type": "line",
+          "x1": 0.62,
+          "y1": 0.25,
+          "x2": 0.755,
+          "y2": 0.25
+        },
+        {
+          "type": "text",
+          "x": 0.68,
+          "y": 0.22,
+          "text": "4",
+          "size": 4.5
+        },
+        {
+          "type": "line",
+          "x1": 0.255,
+          "y1": 0.76,
+          "x2": 0.39,
+          "y2": 0.76
+        },
+        {
+          "type": "text",
+          "x": 0.36,
+          "y": 0.73,
+          "text": "12",
+          "size": 4.5
+        },
+        {
+          "type": "line",
+          "x1": 0.62,
+          "y1": 0.74,
+          "x2": 0.755,
+          "y2": 0.74
+        },
+        {
+          "type": "text",
+          "x": 0.68,
+          "y": 0.71,
+          "text": "11",
+          "size": 4.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.2,
+          "x2": 0.125,
+          "y2": 0.2
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.33,
+          "x2": 0.125,
+          "y2": 0.33
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.76,
+          "x2": 0.125,
+          "y2": 0.76
+        },
+        {
+          "type": "line",
+          "x1": 0.885,
+          "y1": 0.25,
+          "x2": 1,
+          "y2": 0.25
+        },
+        {
+          "type": "line",
+          "x1": 0.885,
+          "y1": 0.74,
+          "x2": 1,
+          "y2": 0.74
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [
+    "Bottom-left box, left pin: printed '1' followed by a second digit half hidden by the box edge; cannot be read with certainty."
+  ],
+  "notes": "Title: Dual peripheral driver. One dashed outline holding four small boxes in a 2x2 layout (drawn as marks); the two right-hand boxes have a vertical line through the middle. Pins 2, 1, the bottom-left input, 5 and 10 cross the dashed outline (pin lines); 3, 4, 12 and 11 stop inside it and are drawn as marks with their numbers. No signal names and no supply pins printed."
+}

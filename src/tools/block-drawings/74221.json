@@ -1,0 +1,82 @@
+{
+  "id": "74221",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.65,
+          "second": "10"
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.83,
+          "second": "9"
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.16,
+          "second": "12"
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.83,
+          "second": "5"
+        }
+      ],
+      "top": [
+        {
+          "number": "14",
+          "outside": "",
+          "second": "6"
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "second": "7"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "3",
+          "outside": "Clear",
+          "second": "11"
+        }
+      ],
+      "height": 56,
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0.75
+            ],
+            [
+              0.33,
+              0.75
+            ],
+            [
+              0.33,
+              1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Dual monostable multivibrator (Pin compatible with 74123). Only one box is drawn; each pin also carries a second number in brackets, which is the pin of the other half: 14 (6), 15 (7), 4 (12), 2 (10), 1 (9), 13 (5), 3 (11). A small square is drawn inside the box in its lower left corner; pin 1 meets the box at the top of that square. No pin has a signal name except Clear."
+}

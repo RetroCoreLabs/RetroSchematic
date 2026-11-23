@@ -1,0 +1,178 @@
+{
+  "id": "74123",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.66,
+          "second": "10"
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.83,
+          "second": "9"
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "0",
+          "at": 0.155,
+          "second": "12"
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "1",
+          "at": 0.82,
+          "second": "5"
+        }
+      ],
+      "top": [
+        {
+          "number": "14",
+          "outside": "",
+          "at": 0.18,
+          "second": "6"
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "at": 0.82,
+          "second": "7"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "3",
+          "outside": "Clear",
+          "at": 0.49,
+          "bend": {
+            "dir": "left",
+            "length": 12.8,
+            "stub": 12.8
+          },
+          "second": "11"
+        }
+      ],
+      "width": 20,
+      "height": 40,
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0.75
+            ],
+            [
+              0.33,
+              0.75
+            ],
+            [
+              0.33,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.18,
+          "y1": -0.503,
+          "x2": 0.42,
+          "y2": -0.503
+        },
+        {
+          "type": "line",
+          "x1": 0.42,
+          "y1": -0.562,
+          "x2": 0.42,
+          "y2": -0.443
+        },
+        {
+          "type": "line",
+          "x1": 0.48,
+          "y1": -0.562,
+          "x2": 0.48,
+          "y2": -0.443
+        },
+        {
+          "type": "line",
+          "x1": 0.48,
+          "y1": -0.503,
+          "x2": 0.95,
+          "y2": -0.503
+        },
+        {
+          "type": "circle",
+          "x": 0.82,
+          "y": -0.503,
+          "r": 0.025
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.95,
+              -0.54
+            ],
+            [
+              1.45,
+              -0.54
+            ],
+            [
+              1.45,
+              -0.465
+            ],
+            [
+              0.95,
+              -0.465
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 1.45,
+          "y1": -0.503,
+          "x2": 1.7,
+          "y2": -0.503
+        },
+        {
+          "type": "line",
+          "x1": 1.7,
+          "y1": -0.562,
+          "x2": 1.7,
+          "y2": -0.443
+        },
+        {
+          "type": "text",
+          "x": -1.95,
+          "y": 1.68,
+          "text": "T ≈ 0.32·RC"
+        },
+        {
+          "type": "text",
+          "x": -1.95,
+          "y": 1.82,
+          "text": "Rmin =  5 kΩ"
+        },
+        {
+          "type": "text",
+          "x": -1.95,
+          "y": 1.96,
+          "text": "Rmax = 50 kΩ"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Retriggerable monostable multivibrator with clear. One box is drawn, and every line carries two numbers: a plain one (recorded in 'number') and one in parentheses, which reads as the second half of the part. Pairs as printed: top left 14 (6), top right 15 (7), left upper 2 (10), left lower 1 (9), right upper 4 (12), right lower 13 (5), Clear 3 (11). Pin 1 enters a small box drawn inside the main box at its lower left. The Clear line comes in from the left below the box and bends up into the bottom. Above the box a capacitor is drawn between the lines of pins 14 and 15, and a resistor runs from the pin 15 side out to the right, ending in a short upright bar. Printed below: T ~ 0.32*RC, Rmin = 5 kohm, Rmax = 50 kohm."
+}

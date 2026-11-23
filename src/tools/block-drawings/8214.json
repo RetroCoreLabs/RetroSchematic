@@ -1,0 +1,102 @@
+{
+  "id": "8214",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "7",
+          "outside": "1Y",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "2Y",
+          "inside": "",
+          "gapBefore": true
+        }
+      ],
+      "top": [
+        {
+          "number": "2",
+          "outside": ""
+        },
+        {
+          "number": "14",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "1Y"
+        },
+        {
+          "number": "15",
+          "outside": "2Y"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Select input",
+      "pins": [
+        "2",
+        "14"
+      ]
+    },
+    {
+      "text": "Strobe",
+      "pins": [
+        "1",
+        "15"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Tri-state dual 4:1 multiplexer. 'Select input' is printed above both top lines; '1Y 2Y' under the bottom lines and 'Strobe' under those."
+}

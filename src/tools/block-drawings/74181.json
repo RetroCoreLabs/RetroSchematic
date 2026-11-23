@@ -1,0 +1,175 @@
+{
+  "id": "74181",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "B0",
+          "inside": "",
+          "at": 0.055
+        },
+        {
+          "number": "1",
+          "outside": "A0",
+          "inside": "",
+          "at": 0.11
+        },
+        {
+          "number": "23",
+          "outside": "B1",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.23
+        },
+        {
+          "number": "22",
+          "outside": "A1",
+          "inside": "",
+          "at": 0.27
+        },
+        {
+          "number": "21",
+          "outside": "B2",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.39
+        },
+        {
+          "number": "20",
+          "outside": "A2",
+          "inside": "",
+          "at": 0.44
+        },
+        {
+          "number": "19",
+          "outside": "B3",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.55
+        },
+        {
+          "number": "18",
+          "outside": "A3",
+          "inside": "",
+          "at": 0.61
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.72
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.775
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.89
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.94
+        }
+      ],
+      "right": [
+        {
+          "number": "9",
+          "outside": "F_A",
+          "inside": "",
+          "at": 0.11
+        },
+        {
+          "number": "10",
+          "outside": "F_B",
+          "inside": "",
+          "at": 0.28
+        },
+        {
+          "number": "11",
+          "outside": "F_C",
+          "inside": "",
+          "at": 0.44
+        },
+        {
+          "number": "13",
+          "outside": "F_D",
+          "inside": "",
+          "at": 0.61
+        }
+      ],
+      "top": [
+        {
+          "number": "7",
+          "outside": "Mode",
+          "at": 0.25,
+          "length": 16
+        },
+        {
+          "number": "8",
+          "outside": "Carry in",
+          "at": 0.72,
+          "length": 9.5
+        }
+      ],
+      "bottom": [
+        {
+          "number": "17",
+          "outside": "(G)",
+          "at": 0.245,
+          "length": 16
+        },
+        {
+          "number": "16",
+          "outside": "Carry out",
+          "at": 0.51,
+          "length": 31
+        },
+        {
+          "number": "15",
+          "outside": "(P)",
+          "at": 0.755,
+          "length": 16
+        }
+      ],
+      "width": 35,
+      "marks": [
+        {
+          "type": "brace",
+          "x": -0.62,
+          "y1": 0.7,
+          "y2": 0.96,
+          "dir": "right"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Function\nselect",
+      "pins": [
+        "6",
+        "5",
+        "4",
+        "3"
+      ],
+      "x": 0.27,
+      "y": 0.664,
+      "anchor": "end"
+    }
+  ],
+  "unreadable": [
+    "In 'B0' and 'A0' the last character may be the letter O or the digit 0; written as 0."
+  ],
+  "notes": ""
+}

@@ -1,0 +1,128 @@
+{
+  "id": "7445",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "marks": [
+        {
+          "type": "brace",
+          "x": -0.85,
+          "y1": 0.07,
+          "y2": 0.93,
+          "dir": "right"
+        },
+        {
+          "type": "brace",
+          "x": 1.85,
+          "y1": 0.07,
+          "y2": 0.93,
+          "dir": "left"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Input",
+      "pins": [
+        "left:0",
+        "left:1",
+        "left:2",
+        "left:3"
+      ]
+    },
+    {
+      "text": "Output",
+      "pins": [
+        "right:0",
+        "right:1",
+        "right:2",
+        "right:3",
+        "right:4",
+        "right:5",
+        "right:6",
+        "right:7",
+        "right:8",
+        "right:9"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "No pin numbers printed. 4 input lines on the left, 10 output lines on the right."
+}

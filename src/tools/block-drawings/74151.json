@@ -1,0 +1,124 @@
+{
+  "id": "74151",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "~Y",
+          "inside": "",
+          "at": 0.43
+        },
+        {
+          "number": "6",
+          "outside": "Y",
+          "inside": "",
+          "at": 0.54
+        }
+      ],
+      "top": [
+        {
+          "number": "9",
+          "outside": "(C)",
+          "bend": {
+            "dir": "left",
+            "length": 19,
+            "stub": 9
+          },
+          "at": 0.23
+        },
+        {
+          "number": "10",
+          "outside": "(B)",
+          "bend": {
+            "dir": "left",
+            "length": 28,
+            "stub": 18
+          },
+          "at": 0.5
+        },
+        {
+          "number": "11",
+          "outside": "(A)",
+          "bend": {
+            "dir": "left",
+            "length": 37,
+            "stub": 28
+          },
+          "at": 0.74
+        }
+      ],
+      "bottom": [
+        {
+          "number": "7",
+          "outside": "Enable",
+          "bend": {
+            "dir": "left",
+            "length": 28,
+            "stub": 9
+          },
+          "at": 0.5
+        }
+      ],
+      "width": 38
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Select input",
+      "pins": [
+        "9",
+        "10",
+        "11"
+      ],
+      "x": 0.56,
+      "y": 0.142,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Top select lines bend left to their labels: (A) goes to 11, (B) to 10, (C) to 9. The Enable line bends left from pin 7."
+}

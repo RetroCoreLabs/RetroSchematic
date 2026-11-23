@@ -1,0 +1,305 @@
+{
+  "id": "7453",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": null,
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "F",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "G",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "H",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": null,
+          "outside": "Y",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 21,
+      "height": 80,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0.5,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.25,
+          "x2": 0.5,
+          "y2": 0.25
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.5,
+          "x2": 0.5,
+          "y2": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.75,
+          "x2": 0.5,
+          "y2": 0.75
+        },
+        {
+          "type": "line",
+          "x1": 0.5,
+          "y1": 0,
+          "x2": 1,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": 1
+        },
+        {
+          "type": "text",
+          "x": 2.9,
+          "y": 0.82,
+          "text": "Y=~{A·B+C·D+E·F+G·H}",
+          "size": 4
+        }
+      ]
+    },
+    {
+      "insideLabel": "",
+      "outline": "none",
+      "width": 21,
+      "height": 30,
+      "left": [],
+      "right": [],
+      "top": [],
+      "bottom": [],
+      "marks": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.08620689655172414,
+              -1.9923896499238964
+            ],
+            [
+              0.5517241379310345,
+              -1.9923896499238964
+            ],
+            [
+              0.5517241379310345,
+              -0.6773211567732117
+            ],
+            [
+              0.08620689655172414,
+              -0.6773211567732117
+            ]
+          ],
+          "dashed": true
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.1206896551724138,
+              -0.32420091324200917
+            ],
+            [
+              0.5689655172413793,
+              -0.32420091324200917
+            ],
+            [
+              0.5689655172413793,
+              0.9908675799086756
+            ],
+            [
+              0.1206896551724138,
+              0.9908675799086756
+            ]
+          ],
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": 0.3103448275862069,
+          "y1": -2.3333333333333335,
+          "x2": 0.3103448275862069,
+          "y2": -1.9923896499238964,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": 0.3793103448275862,
+          "y1": -0.6773211567732117,
+          "x2": 0.3793103448275862,
+          "y2": -0.32420091324200917,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": 0.7413793103448276,
+          "y1": -2.3333333333333335,
+          "x2": 0.7413793103448276,
+          "y2": 0.32115677321156777,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": 0.5689655172413793,
+          "y1": 0.32115677321156777,
+          "x2": 0.7413793103448276,
+          "y2": 0.32115677321156777,
+          "dashed": true
+        },
+        {
+          "type": "polygon",
+          "filled": true,
+          "points": [
+            [
+              0.8013793103448277,
+              -1.3470319634703196
+            ],
+            [
+              0.7838057172160204,
+              -1.3173334786604847
+            ],
+            [
+              0.7413793103448276,
+              -1.3050319634703196
+            ],
+            [
+              0.6989529034736348,
+              -1.3173334786604847
+            ],
+            [
+              0.6813793103448276,
+              -1.3470319634703196
+            ],
+            [
+              0.6989529034736348,
+              -1.3767304482801546
+            ],
+            [
+              0.7413793103448276,
+              -1.3890319634703197
+            ],
+            [
+              0.7838057172160204,
+              -1.3767304482801546
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": -1.8097412480974124,
+          "x2": 0.10344827586206896,
+          "y2": -1.8097412480974124,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": -1.4809741248097412,
+          "x2": 0.10344827586206896,
+          "y2": -1.4809741248097412,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": -1.1400304414003044,
+          "x2": 0.10344827586206896,
+          "y2": -1.1400304414003044,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": -0.8234398782343988,
+          "x2": 0.10344827586206896,
+          "y2": -0.8234398782343988,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": -0.15372907153729093,
+          "x2": 0.10344827586206896,
+          "y2": -0.15372907153729093,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": 0.17503805175038042,
+          "x2": 0.10344827586206896,
+          "y2": 0.17503805175038042,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": 0.5038051750380518,
+          "x2": 0.10344827586206896,
+          "y2": 0.5038051750380518,
+          "dashed": true
+        },
+        {
+          "type": "line",
+          "x1": -0.8620689655172413,
+          "y1": 0.8325722983257232,
+          "x2": 0.10344827586206896,
+          "y2": 0.8325722983257232,
+          "dashed": true
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title reads '7453 - 7454', 4x2 AND-OR-INVERT. No pin numbers printed. The box is split into a left part with four small AND boxes (two inputs each: A-B, C-D, E-F, G-H) and a right part with a cross (the OR-invert). Printed beside it: Y = ~(A.B+C.D+E.F+G.H) (one overbar over the whole sum). Below the box, drawn in DASHED lines, are two extra four-input AND gates (8 dashed input lines, no labels or numbers) joined to the OR part, showing optional expansion; they are not recorded as pins. The dashed expander gates are drawn as a second section with no outline and no pins (marks only), because marks outside the first box would fall off the drawing."
+}

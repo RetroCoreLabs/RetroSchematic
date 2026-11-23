@@ -1,0 +1,185 @@
+{
+  "id": "74121",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "9",
+          "outside": "+5V",
+          "inside": "",
+          "at": 0.17,
+          "bend": {
+            "dir": "up",
+            "length": 7.2,
+            "stub": 14.4
+          }
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.5
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.68
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.84
+        }
+      ],
+      "right": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "0",
+          "at": 0.17
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "1",
+          "at": 0.82
+        }
+      ],
+      "top": [
+        {
+          "number": "10",
+          "outside": "",
+          "at": 0.17
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "at": 0.81
+        }
+      ],
+      "bottom": [],
+      "width": 23,
+      "height": 46,
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0.66
+            ],
+            [
+              0.32,
+              0.66
+            ],
+            [
+              0.32,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.17,
+          "y1": -0.435,
+          "x2": 0.46,
+          "y2": -0.435
+        },
+        {
+          "type": "line",
+          "x1": 0.46,
+          "y1": -0.485,
+          "x2": 0.46,
+          "y2": -0.385
+        },
+        {
+          "type": "line",
+          "x1": 0.53,
+          "y1": -0.485,
+          "x2": 0.53,
+          "y2": -0.385
+        },
+        {
+          "type": "line",
+          "x1": 0.53,
+          "y1": -0.435,
+          "x2": 1.0,
+          "y2": -0.435
+        },
+        {
+          "type": "circle",
+          "x": 0.81,
+          "y": -0.435,
+          "r": 0.03
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              1.0,
+              -0.47
+            ],
+            [
+              1.55,
+              -0.47
+            ],
+            [
+              1.55,
+              -0.4
+            ],
+            [
+              1.0,
+              -0.4
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 1.55,
+          "y1": -0.435,
+          "x2": 1.8,
+          "y2": -0.435
+        },
+        {
+          "type": "line",
+          "x1": 1.8,
+          "y1": -0.485,
+          "x2": 1.8,
+          "y2": -0.385
+        },
+        {
+          "type": "line",
+          "x1": -0.75,
+          "y1": 0.01,
+          "x2": -0.5,
+          "y2": 0.01
+        },
+        {
+          "type": "text",
+          "x": -2.0,
+          "y": 1.33,
+          "text": "T ≈ 0,7·RC"
+        },
+        {
+          "type": "text",
+          "x": -1.95,
+          "y": 1.47,
+          "text": "Rmin = 1.4 kΩ"
+        },
+        {
+          "type": "text",
+          "x": -2.0,
+          "y": 1.6,
+          "text": "Rmax = 40 kΩ"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Monostable multivibrator. Pin 9 is tied to a '+5V' mark drawn above it at the left. Pins 4 and 3 enter a small box drawn inside the main box at its lower left; pin 5 enters the main box directly. Above the box a capacitor is drawn between the lines of pins 10 and 11, and a resistor runs from the pin 11 side out to the right, ending in a short upright bar. Printed below: T ~ 0,7*RC, Rmin = 1.4 kohm, Rmax = 40 kohm."
+}

@@ -1,0 +1,159 @@
+{
+  "id": "VP12",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.1,
+          "bend": {
+            "dir": "down",
+            "length": 8.6,
+            "stub": 13.0
+          }
+        },
+        {
+          "number": "24",
+          "outside": "5V",
+          "inside": "",
+          "at": 0.2
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.8,
+          "bend": {
+            "dir": "down",
+            "length": 8.6,
+            "stub": 13.0
+          }
+        },
+        {
+          "number": "13",
+          "outside": "GND",
+          "inside": "",
+          "at": 0.9
+        }
+      ],
+      "right": [
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "+",
+          "at": 0.1,
+          "bend": {
+            "dir": "down",
+            "length": 8.6,
+            "stub": 13.0
+          }
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "at": 0.2
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "-",
+          "at": 0.3,
+          "bend": {
+            "dir": "down",
+            "length": 8.6,
+            "stub": 13.0
+          }
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": "",
+          "at": 0.4
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "+",
+          "at": 0.6,
+          "bend": {
+            "dir": "down",
+            "length": 8.6,
+            "stub": 13.0
+          }
+        },
+        {
+          "number": "22",
+          "outside": "",
+          "inside": "",
+          "at": 0.7
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "-",
+          "at": 0.8,
+          "bend": {
+            "dir": "down",
+            "length": 8.6,
+            "stub": 13.0
+          }
+        },
+        {
+          "number": "23",
+          "outside": "",
+          "inside": "",
+          "at": 0.9
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 26,
+      "height": 86,
+      "marks": [
+        {
+          "type": "circle",
+          "x": -0.5,
+          "y": 0.2,
+          "r": 0.04
+        },
+        {
+          "type": "circle",
+          "x": -0.5,
+          "y": 0.9,
+          "r": 0.04
+        },
+        {
+          "type": "circle",
+          "x": 1.5,
+          "y": 0.2,
+          "r": 0.04
+        },
+        {
+          "type": "circle",
+          "x": 1.5,
+          "y": 0.4,
+          "r": 0.04
+        },
+        {
+          "type": "circle",
+          "x": 1.5,
+          "y": 0.7,
+          "r": 0.04
+        },
+        {
+          "type": "circle",
+          "x": 1.5,
+          "y": 0.9,
+          "r": 0.04
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 'VP 12/12 Voltage converter'. Pins are drawn in joined pairs: two pin stubs (upper and lower number) meet in a dot on one outside line. Pairs: 1+24 (labelled 5V), 12+13 (GND), 11+14 (+), 10+15 (-), 3+22 (+), 2+23 (-). The + and - signs are inside the box beside each right-hand pair; 'inside' is put on the upper pin of each pair. The upper pin of each pair is a bent line that turns down to the join; the join dot is a mark."
+}

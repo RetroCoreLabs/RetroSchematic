@@ -1,0 +1,162 @@
+{
+  "id": "74150",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "10",
+          "outside": "Y",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "11",
+          "outside": ""
+        },
+        {
+          "number": "13",
+          "outside": ""
+        },
+        {
+          "number": "14",
+          "outside": ""
+        },
+        {
+          "number": "15",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "9",
+          "outside": ""
+        }
+      ],
+      "width": 46
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "16 inputs",
+      "pins": [
+        "left:0",
+        "left:1",
+        "left:2",
+        "left:3",
+        "left:4",
+        "left:5",
+        "left:6",
+        "left:7",
+        "left:8",
+        "left:9",
+        "left:10",
+        "left:11",
+        "left:12",
+        "left:13",
+        "left:14",
+        "left:15"
+      ]
+    },
+    {
+      "text": "Select input",
+      "pins": [
+        "11",
+        "13",
+        "14",
+        "15"
+      ]
+    },
+    {
+      "text": "Enable",
+      "pins": [
+        "9"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "The 16 input lines on the left carry no pin numbers in the drawing."
+}

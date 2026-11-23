@@ -1,0 +1,98 @@
+{
+  "id": "74163",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Load",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "2",
+          "outside": "Clock",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "14",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "Carry",
+          "inside": "",
+          "gapBefore": true
+        }
+      ],
+      "top": [
+        {
+          "number": "7",
+          "outside": ""
+        },
+        {
+          "number": "10",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Clear"
+        }
+      ],
+      "width": 26,
+      "height": 96
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Enable",
+      "pins": [
+        "7",
+        "10"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": ""
+}

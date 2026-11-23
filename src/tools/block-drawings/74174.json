@@ -1,0 +1,89 @@
+{
+  "id": "74174",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "F",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "2",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "Q_E",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "Q_F",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "9",
+          "outside": "Clock"
+        }
+      ],
+      "width": 26,
+      "height": 70
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": ""
+}

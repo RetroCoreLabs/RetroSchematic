@@ -1,0 +1,103 @@
+{
+ "shape": "block-74191",
+ "pins": [
+  {
+   "pin": "15",
+   "x": 60.0,
+   "y": 48.0,
+   "side": "left",
+   "name": "A"
+  },
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 65.0,
+   "side": "left",
+   "name": "B"
+  },
+  {
+   "pin": "10",
+   "x": 60.0,
+   "y": 81.5,
+   "side": "left",
+   "name": "C"
+  },
+  {
+   "pin": "9",
+   "x": 60.0,
+   "y": 98.0,
+   "side": "left",
+   "name": "D"
+  },
+  {
+   "pin": "11",
+   "x": 60.0,
+   "y": 123.0,
+   "side": "left",
+   "name": "Load"
+  },
+  {
+   "pin": "14",
+   "x": 60.0,
+   "y": 132.0,
+   "side": "left",
+   "name": "Clock"
+  },
+  {
+   "pin": "3",
+   "x": 126.0,
+   "y": 48.0,
+   "side": "right",
+   "name": "Q_A"
+  },
+  {
+   "pin": "2",
+   "x": 126.0,
+   "y": 65.0,
+   "side": "right",
+   "name": "Q_B"
+  },
+  {
+   "pin": "6",
+   "x": 126.0,
+   "y": 81.5,
+   "side": "right",
+   "name": "Q_C"
+  },
+  {
+   "pin": "7",
+   "x": 126.0,
+   "y": 98.0,
+   "side": "right",
+   "name": "Q_D"
+  },
+  {
+   "pin": "12",
+   "x": 126.0,
+   "y": 123.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "13",
+   "x": 126.0,
+   "y": 132.0,
+   "side": "right",
+   "name": "Min/max"
+  },
+  {
+   "pin": "4",
+   "x": 89.62,
+   "y": 160,
+   "side": "bottom",
+   "name": "Enable"
+  },
+  {
+   "pin": "5",
+   "x": 98.2,
+   "y": 160,
+   "side": "bottom",
+   "name": "Up_0/down_1"
+  }
+ ]
+}

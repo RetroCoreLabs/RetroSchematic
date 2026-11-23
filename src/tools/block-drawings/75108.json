@@ -1,0 +1,85 @@
+{
+  "id": "75108",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "A_+",
+          "inside": "+",
+          "at": 0.33,
+          "second": "12"
+        },
+        {
+          "number": "2",
+          "outside": "A_-",
+          "inside": "-",
+          "at": 0.67,
+          "second": "11"
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "Y",
+          "inside": "",
+          "second": "9"
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "5",
+          "outside": "Strobe",
+          "second": "8"
+        }
+      ],
+      "width": 30,
+      "height": 30,
+      "marks": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.5,
+              0.5
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.5,
+          "y1": 0.5,
+          "x2": 0.65,
+          "y2": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0.65,
+          "y1": 0,
+          "x2": 0.65,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 0.83,
+          "y1": 0,
+          "x2": 0.83,
+          "y2": 1
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 75108 (open collector). Same drawing as 75107 except the output part on the right is drawn as two narrow boxes side by side instead of one. Each pin also carries a second number in brackets for the other half: 1 (12), 2 (11), 4 (9), 5 (8). In 'A+' the + is printed as a subscript."
+}

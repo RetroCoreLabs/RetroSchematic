@@ -1,0 +1,61 @@
+{
+ "shape": "block-7493",
+ "pins": [
+  {
+   "pin": "14",
+   "x": 60.0,
+   "y": 47.84,
+   "side": "left",
+   "name": "Input A"
+  },
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 61.28,
+   "side": "left",
+   "name": "Input B"
+  },
+  {
+   "pin": "12",
+   "x": 128.0,
+   "y": 47.84,
+   "side": "right",
+   "name": "Q_A"
+  },
+  {
+   "pin": "9",
+   "x": 128.0,
+   "y": 61.28,
+   "side": "right",
+   "name": "Q_B"
+  },
+  {
+   "pin": "8",
+   "x": 128.0,
+   "y": 75.28,
+   "side": "right",
+   "name": "Q_C"
+  },
+  {
+   "pin": "11",
+   "x": 128.0,
+   "y": 89.28,
+   "side": "right",
+   "name": "Q_D"
+  },
+  {
+   "pin": "2",
+   "x": 87.0,
+   "y": 116,
+   "side": "bottom",
+   "name": ""
+  },
+  {
+   "pin": "3",
+   "x": 101.0,
+   "y": 116,
+   "side": "bottom",
+   "name": ""
+  }
+ ]
+}

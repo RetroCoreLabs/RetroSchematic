@@ -1,0 +1,65 @@
+{
+  "id": "8093",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "A",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Y_A",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": ""
+        }
+      ],
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0.48,
+          "y1": 0,
+          "x2": 0.48,
+          "y2": 1
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.48,
+              0
+            ],
+            [
+              1,
+              0.5
+            ],
+            [
+              0.48,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 2.05,
+          "y": 1.6,
+          "text": "Y_A=A",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Box with a triangle driver drawn inside, pointing right (drawn as marks). Title: Tri-state quad buffer. Only one buffer of the four is drawn. Pin 1 at the bottom has no label. Printed beside the drawing: 'YA=A'."
+}

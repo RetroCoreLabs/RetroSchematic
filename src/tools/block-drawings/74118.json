@@ -1,0 +1,84 @@
+{
+  "id": "74118",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "F",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "Q_E",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "Q_F",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "9",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [],
+      "width": 25,
+      "height": 100
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 6-bit set latch. No supply pins printed."
+}

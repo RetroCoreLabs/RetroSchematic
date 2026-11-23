@@ -1,0 +1,241 @@
+{
+  "id": "TIL113",
+  "sections": [
+    {
+      "insideLabel": "",
+      "outline": "box",
+      "width": 60,
+      "height": 37,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0.2,
+          "y1": 0,
+          "x2": 0.2,
+          "y2": 0.39
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.13,
+              0.39
+            ],
+            [
+              0.27,
+              0.39
+            ],
+            [
+              0.2,
+              0.61
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.13,
+          "y1": 0.62,
+          "x2": 0.27,
+          "y2": 0.62
+        },
+        {
+          "type": "line",
+          "x1": 0.2,
+          "y1": 0.61,
+          "x2": 0.2,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 0.48,
+          "y1": 0.23,
+          "x2": 0.48,
+          "y2": 0.56
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.48,
+              0.33
+            ],
+            [
+              0.6,
+              0.23
+            ],
+            [
+              0.8,
+              0.23
+            ]
+          ]
+        },
+        {
+          "type": "circle",
+          "x": 0.8,
+          "y": 0.235,
+          "r": 0.013
+        },
+        {
+          "type": "line",
+          "x1": 0.8,
+          "y1": 0,
+          "x2": 0.8,
+          "y2": 0.47
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.48,
+              0.47
+            ],
+            [
+              0.6,
+              0.58
+            ],
+            [
+              0.61,
+              0.65
+            ],
+            [
+              0.685,
+              0.65
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.59,
+              0.57
+            ],
+            [
+              0.5366,
+              0.5586
+            ],
+            [
+              0.5562,
+              0.5021
+            ]
+          ],
+          "filled": true
+        },
+        {
+          "type": "line",
+          "x1": 0.685,
+          "y1": 0.51,
+          "x2": 0.685,
+          "y2": 0.83
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.685,
+              0.59
+            ],
+            [
+              0.8,
+              0.47
+            ]
+          ]
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.685,
+              0.73
+            ],
+            [
+              0.8,
+              0.85
+            ],
+            [
+              0.8,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.81,
+              0.83
+            ],
+            [
+              0.7563,
+              0.8232
+            ],
+            [
+              0.774,
+              0.765
+            ]
+          ],
+          "filled": true
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.48,
+              0.4
+            ],
+            [
+              0.4,
+              0.4
+            ],
+            [
+              0.4,
+              0.84
+            ],
+            [
+              0.5,
+              0.84
+            ],
+            [
+              0.5,
+              1
+            ]
+          ]
+        }
+      ],
+      "left": [],
+      "right": [],
+      "top": [
+        {
+          "number": "1",
+          "outside": "",
+          "at": 0.2
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "at": 0.8
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "",
+          "at": 0.2
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "at": 0.5
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "at": 0.8
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 'TIL 113 Photo darlington coupler'. One outer box holds an LED (diode triangle pointing down with bar; anode pin 1 at top, cathode pin 2 at bottom) and two transistors in darlington form: both collectors joined (dot) to pin 5 at top, first emitter (arrow) drives the second base, second emitter (arrow) to pin 4 at bottom, first base line bent down to pin 6 at bottom. All drawn as marks. No signal names printed."
+}

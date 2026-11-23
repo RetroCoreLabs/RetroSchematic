@@ -1,0 +1,95 @@
+{
+  "id": "75361",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "1A",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "2A",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "6",
+          "outside": "1Y",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "2Y",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "5",
+          "outside": ""
+        },
+        {
+          "number": "8",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "Enable"
+        }
+      ],
+      "width": 15,
+      "height": 30,
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0.27
+            ],
+            [
+              0,
+              0.54
+            ],
+            [
+              1,
+              0.75
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 3.6,
+          "y": 1.3,
+          "text": "Y=~{A•E}",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "V_cc",
+      "pins": [
+        "5",
+        "8"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: MOS driver. 'Vcc' (cc as subscript) is printed above both top lines 5 and 8. Inside the box two triangles point right, one toward each output. Beside the drawing is printed 'Y=~(AÂ·E)': one overbar covers the whole AÂ·E. Two triangles drawn inside as one zigzag mark. The printed overbar over 'A•E' covers the whole product; written 'Y=~A•E'."
+}

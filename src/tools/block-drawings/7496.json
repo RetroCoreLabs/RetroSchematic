@@ -1,0 +1,79 @@
+{
+  "id": "7496",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "9",
+          "outside": "Serial input",
+          "inside": "",
+          "at": 0.9
+        }
+      ],
+      "right": [
+        {
+          "number": "10",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "Q_E",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "8",
+          "outside": "Preset"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Clock"
+        },
+        {
+          "number": "16",
+          "outside": "Clear"
+        }
+      ],
+      "height": 70,
+      "marks": [
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.73,
+          "text": "+5V= 5",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.83,
+          "text": "GND=12",
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 5-bit shift register. The serial input line is at the bottom of the left side, level with QE."
+}

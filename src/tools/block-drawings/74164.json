@@ -1,0 +1,99 @@
+{
+  "id": "74164",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.06
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.12
+        },
+        {
+          "number": "8",
+          "outside": "Clock",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.93
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Q_A",
+          "inside": "",
+          "at": 0.06
+        },
+        {
+          "number": "4",
+          "outside": "Q_B",
+          "inside": "",
+          "at": 0.19
+        },
+        {
+          "number": "5",
+          "outside": "Q_C",
+          "inside": "",
+          "at": 0.32
+        },
+        {
+          "number": "6",
+          "outside": "Q_D",
+          "inside": "",
+          "at": 0.44
+        },
+        {
+          "number": "10",
+          "outside": "Q_E",
+          "inside": "",
+          "at": 0.57
+        },
+        {
+          "number": "11",
+          "outside": "Q_F",
+          "inside": "",
+          "at": 0.69
+        },
+        {
+          "number": "12",
+          "outside": "Q_G",
+          "inside": "",
+          "at": 0.81
+        },
+        {
+          "number": "13",
+          "outside": "Q_H",
+          "inside": "",
+          "at": 0.93
+        }
+      ],
+      "top": [
+        {
+          "number": "9",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [],
+      "width": 24,
+      "height": 128
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Serial\nInput",
+      "pins": [
+        "1",
+        "2"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "'Serial' is printed beside pin 1 and 'Input' beside pin 2."
+}

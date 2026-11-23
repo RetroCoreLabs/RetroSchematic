@@ -1,0 +1,101 @@
+{
+  "id": "8123",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "15",
+          "outside": "Enable output_0"
+        }
+      ],
+      "width": 25
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Select_1",
+      "pins": [
+        "1"
+      ],
+      "x": 0.53,
+      "y": 0.14,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Tri-state quad 2-input multiplexer. Left pins in four pairs, each pair facing one right pin. Subscripts as printed: 'Select' 1, 'Enable output' 0 (written plainly)."
+}

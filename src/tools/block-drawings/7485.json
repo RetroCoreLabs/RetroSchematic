@@ -1,0 +1,111 @@
+{
+  "id": "7485",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "10",
+          "outside": "A0",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "B0",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "A1",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "11",
+          "outside": "B1",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "A2",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "14",
+          "outside": "B2",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "A3",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "1",
+          "outside": "B3",
+          "inside": ""
+        }
+      ],
+      "right": [],
+      "top": [
+        {
+          "number": "2",
+          "outside": "A<B"
+        },
+        {
+          "number": "3",
+          "outside": "A=B",
+          "length": 35
+        },
+        {
+          "number": "4",
+          "outside": "A>B"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "7",
+          "outside": "A<B"
+        },
+        {
+          "number": "6",
+          "outside": "A=B",
+          "length": 35
+        },
+        {
+          "number": "5",
+          "outside": "A>B"
+        }
+      ],
+      "width": 33
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Inputs",
+      "pins": [
+        "2",
+        "3",
+        "4"
+      ],
+      "x": 0.585,
+      "y": 0.155,
+      "anchor": "start"
+    },
+    {
+      "text": "Outputs",
+      "pins": [
+        "7",
+        "6",
+        "5"
+      ],
+      "x": 0.585,
+      "y": 0.83,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": ""
+}

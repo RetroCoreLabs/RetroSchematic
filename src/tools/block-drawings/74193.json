@@ -1,0 +1,85 @@
+{
+  "id": "74193",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "15",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "D",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "11",
+          "outside": "Load"
+        },
+        {
+          "number": "4",
+          "outside": "Count down"
+        },
+        {
+          "number": "5",
+          "outside": "Count up"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "14",
+          "outside": "Clear"
+        },
+        {
+          "number": "12",
+          "outside": "Carry"
+        },
+        {
+          "number": "13",
+          "outside": "Borrow"
+        }
+      ],
+      "width": 30,
+      "height": 60
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Up/down binary counter. The middle top line (4, Count down) and middle bottom line (12, Carry) are drawn longer, with their labels further out."
+}

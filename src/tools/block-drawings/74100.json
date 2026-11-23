@@ -1,0 +1,106 @@
+{
+  "id": "74100",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "22",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "16",
+          "outside": "F",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "G",
+          "inside": ""
+        },
+        {
+          "number": "21",
+          "outside": "H",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "8",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "19",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "Q_E",
+          "inside": ""
+        },
+        {
+          "number": "17",
+          "outside": "Q_F",
+          "inside": ""
+        },
+        {
+          "number": "18",
+          "outside": "Q_G",
+          "inside": ""
+        },
+        {
+          "number": "20",
+          "outside": "Q_H",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "12",
+          "outside": "Enable"
+        },
+        {
+          "number": "23",
+          "outside": "Clock"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 8-bit bistable latches. The bottom numbers are printed run together as '1223', split by the line between them into 12 and 23. No supply pins printed."
+}

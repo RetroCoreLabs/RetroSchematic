@@ -1,0 +1,130 @@
+{
+  "id": "74200",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "6",
+          "outside": "Output",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "13",
+          "outside": "Input"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "3",
+          "outside": "Memory\nenable"
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "length": 8
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "length": 8
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "length": 8
+        }
+      ],
+      "width": 45,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0.375,
+          "y1": 1.1,
+          "x2": 0.625,
+          "y2": 1.1
+        },
+        {
+          "type": "circle",
+          "x": 0.625,
+          "y": 1.1,
+          "r": 0.025
+        },
+        {
+          "type": "line",
+          "x1": 0.625,
+          "y1": 1.1,
+          "x2": 0.625,
+          "y2": 1.45
+        },
+        {
+          "type": "text",
+          "x": 0.85,
+          "y": 1.22,
+          "text": "Write\nenable"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Address\ninput",
+      "pins": [
+        "14",
+        "15",
+        "1",
+        "2",
+        "10",
+        "9",
+        "11",
+        "7"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 256 bit RAM. 'Address input' is printed to the left of the eight left lines with no brace. Bottom lines 4 and 5 are joined by a short bar with a dot, and one line goes down from the dot labelled 'Write enable'. Bottom line 12 is short and has no label."
+}

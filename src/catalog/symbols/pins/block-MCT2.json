@@ -1,0 +1,40 @@
+{
+ "shape": "block-MCT2",
+ "pins": [
+  {
+   "pin": "1",
+   "x": 92.0,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "5",
+   "x": 128.0,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "2",
+   "x": 92.0,
+   "y": 97,
+   "side": "bottom",
+   "name": ""
+  },
+  {
+   "pin": "6",
+   "x": 110.0,
+   "y": 97,
+   "side": "bottom",
+   "name": ""
+  },
+  {
+   "pin": "4",
+   "x": 128.0,
+   "y": 97,
+   "side": "bottom",
+   "name": ""
+  }
+ ]
+}

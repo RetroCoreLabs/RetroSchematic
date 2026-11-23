@@ -21,6 +21,9 @@ for style in ("nd1976", "modern"):
     for k, _, _, _ in shapes_needed():
         base = f"catalog/symbols/{style}/shapes/{k}"
         render(base + ".svg", base + ".png")
+    # the box parts, drawn by build-block-shapes.py from the cut-out readings
+    for svg in sorted(glob.glob(f"catalog/symbols/{style}/shapes/block-*.svg")):
+        render(svg, svg[:-4] + ".png", zoom=3)
 
 entries = [json.load(open(f, encoding="utf-8")) for f in glob.glob("catalog/symbols/nd1976/*.json")]
 entries.sort(key=lambda e: (e["source"]["printedPage"], e["id"]))
@@ -29,7 +32,91 @@ manual_formulas = json.load(open("tools/manual-formulas.json", encoding="utf-8")
 def formula(e):
     if e.get("formula"):
         return e["formula"]
-    return manual_formulas.get(e["partNumber"]) or manual_formulas.get(e["id"]) or "not printed in the manual"
+    m = manual_formulas.get(e["partNumber"]) or manual_formulas.get(e["id"])
+    if m:
+        return m
+    # not printed in the manual: the formulas from the chip's datasheet (catalog/chips)
+    path = f"catalog/chips/{e['id']}.json"
+    if os.path.exists(path):
+        fs = json.load(open(path, encoding="utf-8")).get("functions") or []
+        texts = [f.get("formula") for f in fs if f.get("formula")]
+        if texts:
+            return "; ".join(texts[:3]).replace("|", "\|") + (" ..." if len(texts) > 3 else "") + " (datasheet)"
+    return "not printed in the manual; chip data not written yet"
+
+def cell(v):
+    """A value for a table cell; a missing figure shows as a dash, never as a guess."""
+    if v is None or v == "":
+        return "-"
+    return str(v).replace("|", "\\|").replace("\n", " ")
+
+
+def chip_section(part_id):
+    """What the chip is and does, from catalog/chips/<id>.json (datasheet facts with sources)."""
+    path = f"catalog/chips/{part_id}.json"
+    if not os.path.exists(path):
+        return ["- **Chip data:** not written yet.\n"]
+    c = json.load(open(path, encoding="utf-8"))
+    out = []
+    src = c.get("sources") or []
+    if src:
+        out.append("- **Datasheet:** " + "; ".join(
+            f"[{s.get('document', '')}]({s.get('url', '')}) p. {s.get('pages', '')}"
+            + (f" (figures for {s['familyUsed']})" if s.get("familyUsed") else "") for s in src))
+    funcs = c.get("functions") or []
+    if funcs:
+        out.append("- **Formulas:**")
+        for f in funcs:
+            out.append(f"  - `{cell(f.get('formula'))}` - {cell(f.get('text'))}")
+    st = c.get("state")
+    if st:
+        out.append(f"- **Stored state:** {cell(st.get('bits'))} bits, changes on {cell(st.get('changesOn'))}")
+        for r in st.get("rules") or []:
+            out.append(f"  - {cell(r)}")
+    pins = c.get("pins") or []
+    if pins:
+        out.append("\n| Pin | Name | Role | Details |\n|---|---|---|---|")
+        for p in sorted(pins, key=lambda p: (p.get("pin") if isinstance(p.get("pin"), int) else 999)):
+            extra = []
+            for key in ("outputType", "active", "edge", "voltage", "whenInactive", "enabledBy", "text"):
+                if p.get(key):
+                    extra.append(f"{key}: {p[key]}")
+            if p.get("controls"):
+                extra.append("controls: " + ", ".join(str(x) for x in p["controls"]))
+            if p.get("schmitt"):
+                extra.append("Schmitt input")
+            if p.get("async"):
+                extra.append("acts at once (not on a clock edge)")
+            out.append(f"| {cell(p.get('pin'))} | {cell(p.get('name'))} | {cell(p.get('role'))} | {cell('; '.join(extra))} |")
+        out.append("")
+    tm = c.get("timing") or []
+    if tm:
+        out.append("| From | To | Output edge | Min ns | Typ ns | Max ns | Conditions |\n|---|---|---|---|---|---|---|")
+        for t in tm:
+            edge = {"PLH": "low to high", "PHL": "high to low"}.get(t.get("edge"), t.get("edge"))
+            out.append(f"| {cell(t.get('from'))} | {cell(t.get('to'))} | {cell(edge)} | {cell(t.get('minNs'))} "
+                       f"| {cell(t.get('typNs'))} | {cell(t.get('maxNs'))} | {cell(t.get('conditions'))} |")
+        out.append("")
+    lim = c.get("timingLimits") or []
+    if lim:
+        out.append("- **Timing limits:** " + "; ".join(
+            f"{cell(l.get('what'))} {cell(l.get('pin'))}"
+            + (f" to {l['ref']}" if l.get("ref") else "")
+            + "".join(f" {k} {l[k]}" for k in ("minNs", "typNs", "maxNs", "minMHz", "typMHz") if l.get(k) is not None)
+            for l in lim))
+    el = c.get("electrical") or {}
+    if el:
+        out.append(f"- **Output current:** low {cell(el.get('outputLowMaxCurrentMa'))} mA, high {cell(el.get('outputHighMaxCurrentMa'))} mA"
+                   + (f"; output may be pulled up to {el['outputMaxVoltageV']} V" if el.get("outputMaxVoltageV") else ""))
+        if el.get("notes"):
+            out.append(f"- **Electrical notes:** {cell(el['notes'])}")
+    if c.get("unknown"):
+        out.append("- **Not settled by the datasheet:** " + "; ".join(cell(u) for u in c["unknown"]))
+    if c.get("notes"):
+        out.append(f"- **Notes:** {cell(c['notes'])}")
+    out.append("")
+    return out
+
 
 def anchor(e):
     return (e["partNumber"] + " - " + e["title"]).lower().replace(" ", "-")
@@ -100,8 +187,15 @@ for e in entries:
         out.append(f"- **What it looks like:** {e['description']}")
         out.append(f"- **How to tell it apart:** {e['tells']}\n")
     else:
-        out.append(f"- **What it looks like:** {e['description']}")
-        out.append("- **Pin numbers:** shown in the cut-out; not transcribed into the catalogue yet.\n")
+        k = "block-" + e["id"]
+        if os.path.exists(f"catalog/symbols/nd1976/shapes/{k}.svg"):
+            out.append(f"| ND 1976 (redrawn from the cut-out) | Modern |\n|---|---|\n"
+                       f"| ![{e['id']} in ND style](../catalog/symbols/nd1976/shapes/{k}.png) "
+                       f"| ![{e['id']} in modern style](../catalog/symbols/modern/shapes/{k}.png) |\n")
+        else:
+            out.append("- **Drawing:** the manual prints no drawing for this part, only a reference to another part.\n")
+        out.append(f"- **What it looks like:** {e['description']}\n")
+    out.extend(chip_section(e["id"]))
 
 open("docs/SYMBOL-CATALOG.md", "w", encoding="utf-8", newline="\n").write("\n".join(out))
 print(len(entries), "entries")

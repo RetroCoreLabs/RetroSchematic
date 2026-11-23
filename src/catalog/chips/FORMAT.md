@@ -99,7 +99,8 @@ thing measured from the clock edge. One entry per path the datasheet lists:
 
 `from` and `to` are pin names (or `any`/`Y` for all inputs/outputs of identical gates). Setup,
 hold and minimum pulse width go in `"timingLimits": [{"what": "setup", "pin": "D", "ref": "CLK",
-"minNs": 20}]`. A missing figure is `null`, never guessed; a missing minimum means the datasheet
+"minNs": 20}]`. The highest clock rate is `{"what": "clock frequency", "pin": "CLK", "minMHz": 15,
+"typMHz": 25}` (the datasheet's "fmax": the guaranteed minimum of the maximum rate, and typical). A missing figure is `null`, never guessed; a missing minimum means the datasheet
 gives none - the path-delay function then uses 0 ns for that minimum and says so.
 
 ## Unknown

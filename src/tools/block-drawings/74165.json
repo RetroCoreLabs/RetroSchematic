@@ -1,0 +1,116 @@
+{
+  "id": "74165",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "11",
+          "outside": "A",
+          "inside": "",
+          "at": 0.06
+        },
+        {
+          "number": "12",
+          "outside": "B",
+          "inside": "",
+          "at": 0.185
+        },
+        {
+          "number": "13",
+          "outside": "C",
+          "inside": "",
+          "at": 0.31
+        },
+        {
+          "number": "14",
+          "outside": "D",
+          "inside": "",
+          "at": 0.43
+        },
+        {
+          "number": "3",
+          "outside": "E",
+          "inside": "",
+          "at": 0.56
+        },
+        {
+          "number": "4",
+          "outside": "F",
+          "inside": "",
+          "at": 0.68
+        },
+        {
+          "number": "5",
+          "outside": "G",
+          "inside": "",
+          "at": 0.81
+        },
+        {
+          "number": "6",
+          "outside": "H",
+          "inside": "",
+          "at": 0.94
+        }
+      ],
+      "right": [
+        {
+          "number": "9",
+          "outside": "Output",
+          "inside": "",
+          "at": 0.93
+        }
+      ],
+      "top": [
+        {
+          "number": "10",
+          "outside": "",
+          "at": 0.22
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "at": 0.7
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Shift/load",
+          "at": 0.28,
+          "length": 17.7
+        },
+        {
+          "number": "2",
+          "outside": "Clock",
+          "at": 0.77,
+          "length": 8
+        }
+      ],
+      "width": 32,
+      "height": 128
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Serial input",
+      "pins": [
+        "10"
+      ],
+      "x": 0.435,
+      "y": 0.09,
+      "anchor": "end"
+    },
+    {
+      "text": "Clock inhibit",
+      "pins": [
+        "15"
+      ],
+      "x": 0.54,
+      "y": 0.09,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": ""
+}

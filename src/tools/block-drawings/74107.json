@@ -1,0 +1,237 @@
+{
+  "id": "74107",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "K",
+          "inside": "",
+          "at": 0.175
+        },
+        {
+          "number": "12",
+          "outside": "Clock",
+          "inside": "",
+          "at": 0.51
+        },
+        {
+          "number": "1",
+          "outside": "J",
+          "inside": "",
+          "at": 0.825
+        }
+      ],
+      "right": [
+        {
+          "number": "2",
+          "outside": "Q",
+          "inside": "0",
+          "at": 0.175
+        },
+        {
+          "number": "3",
+          "outside": "Q",
+          "inside": "1",
+          "at": 0.825
+        }
+      ],
+      "top": [
+        {
+          "number": "13",
+          "outside": "Clear",
+          "at": 0.34,
+          "bend": {
+            "dir": "left",
+            "length": 29.7,
+            "stub": 9
+          }
+        }
+      ],
+      "bottom": [],
+      "width": 30,
+      "height": 60,
+      "marks": [
+        {
+          "type": "text",
+          "x": 2.909,
+          "y": 0.152,
+          "text": "J",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.409,
+          "y": 0.152,
+          "text": "K",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.909,
+          "y": 0.152,
+          "text": "Q",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 4.409,
+          "y": 0.152,
+          "text": "~Q",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 2.909,
+          "y": 0.359,
+          "text": "L",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.409,
+          "y": 0.359,
+          "text": "L",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 2.909,
+          "y": 0.594,
+          "text": "H",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.409,
+          "y": 0.594,
+          "text": "L",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.909,
+          "y": 0.594,
+          "text": "H",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 4.409,
+          "y": 0.594,
+          "text": "L",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 2.909,
+          "y": 0.806,
+          "text": "L",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.409,
+          "y": 0.806,
+          "text": "H",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.909,
+          "y": 0.806,
+          "text": "L",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 4.409,
+          "y": 0.806,
+          "text": "H",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 2.909,
+          "y": 1.023,
+          "text": "H",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 3.409,
+          "y": 1.023,
+          "text": "H",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 4.155,
+          "y": 1.023,
+          "text": "Toggle",
+          "size": 4.5
+        },
+        {
+          "type": "line",
+          "x1": 3.155,
+          "y1": 0.041,
+          "x2": 3.155,
+          "y2": 1.051
+        },
+        {
+          "type": "line",
+          "x1": 3.609,
+          "y1": 0.041,
+          "x2": 3.609,
+          "y2": 1.051
+        },
+        {
+          "type": "line",
+          "x1": 2.764,
+          "y1": 0.189,
+          "x2": 4.682,
+          "y2": 0.189
+        },
+        {
+          "type": "text",
+          "x": 3.836,
+          "y": 0.359,
+          "text": "No",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 4.682,
+          "y": 0.359,
+          "text": "toggle",
+          "size": 4.5
+        },
+        {
+          "type": "line",
+          "x1": 4.109,
+          "y1": 0.041,
+          "x2": 4.109,
+          "y2": 0.926
+        },
+        {
+          "type": "line",
+          "x1": 4.682,
+          "y1": 0.041,
+          "x2": 4.682,
+          "y2": 0.267
+        },
+        {
+          "type": "line",
+          "x1": 4.682,
+          "y1": 0.406,
+          "x2": 4.682,
+          "y2": 1.051
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Dual J-K Master-Slave flip-flop. Only one box is drawn (one flip-flop). Both outputs are printed as plain 'Q' with no overbar. The Clear line comes in from the left above the box and bends down into pin 13 at the top right corner. A table is printed beside it: J K | Q ~Q : L L No toggle; H L H L; L H L H; H H Toggle. No supply pins printed."
+}

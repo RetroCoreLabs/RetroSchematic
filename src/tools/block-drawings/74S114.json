@@ -1,0 +1,85 @@
+{
+  "id": "74S114",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": null,
+          "outside": ""
+        }
+      ],
+      "height": 112
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [
+    "The bottom line runs to the lower edge of the cut-out; any number or label below it is not in the image."
+  ],
+  "notes": "Title: Dual J-K negative-edge-triggered flip-flop with preset, common clear and common clock. The drawing is a blank box: six lines on the left, six on the right, one at the bottom, with no pin numbers and no labels printed."
+}

@@ -1,0 +1,96 @@
+{
+  "id": "75322",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "1A",
+          "inside": "",
+          "at": 0.25
+        },
+        {
+          "number": "4",
+          "outside": "Enable",
+          "inside": "",
+          "at": 0.5
+        },
+        {
+          "number": "5",
+          "outside": "2A",
+          "inside": "",
+          "at": 0.75
+        }
+      ],
+      "right": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "1Y",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "2Y",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "11",
+          "outside": ""
+        }
+      ],
+      "bottom": [],
+      "width": 25,
+      "height": 100,
+      "marks": [
+        {
+          "type": "text",
+          "x": 1.9,
+          "y": 1.12,
+          "text": "Y=A•E",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Ext.\ntransistors",
+      "pins": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "text": "Ext.\ntransistors",
+      "pins": [
+        "9",
+        "8"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: TTL to MOS driver. 'Ext. transistors' is printed between lines 2 and 1, and again between lines 9 and 8, with no brace. Top line 11 has no label. Below the drawing is printed 'Y=AÂ·E' (a dot between A and E, no overbar)."
+}

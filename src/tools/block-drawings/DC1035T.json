@@ -1,0 +1,130 @@
+{
+  "id": "DC1035T",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "N.C.",
+          "inside": "",
+          "at": 0.66
+        },
+        {
+          "number": "7",
+          "outside": "GND",
+          "inside": "",
+          "at": 0.85
+        }
+      ],
+      "right": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.07
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.17
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.26
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.36
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.46
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.56
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "at": 0.65
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.75
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "at": 0.85
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "INPUT",
+          "bend": {
+            "dir": "left",
+            "length": 32,
+            "stub": 11
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "8",
+          "outside": "",
+          "bend": {
+            "dir": "right",
+            "length": 35,
+            "stub": 11
+          }
+        }
+      ],
+      "width": 30,
+      "height": 100,
+      "marks": [
+        {
+          "type": "brace",
+          "x": 1.85,
+          "y1": 0.03,
+          "y2": 1.12,
+          "dir": "left"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "OUTPUTS",
+      "pins": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "12",
+        "11",
+        "10",
+        "9",
+        "8"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title printed faintly as 'DC 10-35T 100 ns delay line with 10 ns taps'. Pin 1 enters the top and turns left to the label INPUT. Pin 8 leaves the bottom and turns right; the OUTPUTS brace covers the nine right-side pins and the pin 8 line."
+}

@@ -1,0 +1,203 @@
+{
+  "id": "8097",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "F",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Y_A",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "Y_B",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "Y_C",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Y_D",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "Y_E",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "Y_F",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "Disable A,B,C,D"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "15",
+          "outside": "Disable E,F"
+        }
+      ],
+      "width": 11,
+      "height": 60,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.667,
+          "x2": 1,
+          "y2": 0.667
+        },
+        {
+          "type": "text",
+          "x": 2.3181818181818183,
+          "y": 1.12,
+          "text": "Y_A=A",
+          "size": 4.5
+        }
+      ]
+    },
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "15",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": ""
+        }
+      ],
+      "width": 11,
+      "height": 60,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.333,
+          "x2": 1,
+          "y2": 0.333
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": -0.42,
+          "text": "Alternative",
+          "size": 4.5
+        }
+      ],
+      "beside": true
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Tri-state hex buffer. Two drawings: the main one, and a second headed 'Alternative' with the same box turned upside down and no signal names. In both, a horizontal line divides the box: main drawing between pins 10/9 and 12/11 (A-D part above, E-F part below); alternative drawing between pins 12/11 and 10/9. Printed beside the main drawing: 'YA=A'."
+}

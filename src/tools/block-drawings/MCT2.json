@@ -1,0 +1,161 @@
+{
+  "id": "MCT2",
+  "sections": [
+    {
+      "insideLabel": "",
+      "outline": "box",
+      "width": 60,
+      "height": 37,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0.2,
+          "y1": 0,
+          "x2": 0.2,
+          "y2": 0.39
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.13,
+              0.39
+            ],
+            [
+              0.27,
+              0.39
+            ],
+            [
+              0.2,
+              0.61
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.13,
+          "y1": 0.62,
+          "x2": 0.27,
+          "y2": 0.62
+        },
+        {
+          "type": "line",
+          "x1": 0.2,
+          "y1": 0.61,
+          "x2": 0.2,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 0.6,
+          "y1": 0.16,
+          "x2": 0.6,
+          "y2": 0.8
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.5,
+              1
+            ],
+            [
+              0.5,
+              0.48
+            ],
+            [
+              0.6,
+              0.48
+            ]
+          ]
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.6,
+              0.42
+            ],
+            [
+              0.8,
+              0.18
+            ],
+            [
+              0.8,
+              0
+            ]
+          ]
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.6,
+              0.58
+            ],
+            [
+              0.8,
+              0.8
+            ],
+            [
+              0.8,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.8,
+              0.77
+            ],
+            [
+              0.7467,
+              0.757
+            ],
+            [
+              0.767,
+              0.701
+            ]
+          ],
+          "filled": true
+        }
+      ],
+      "left": [],
+      "right": [],
+      "top": [
+        {
+          "number": "1",
+          "outside": "",
+          "at": 0.2
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "at": 0.8
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "",
+          "at": 0.2
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "at": 0.5
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "at": 0.8
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 'MCT 2 Photo transistor coupler'. One outer box holds an LED (diode triangle pointing down with bar; anode pin 1 at top, cathode pin 2 at bottom) and an NPN phototransistor: base bar, collector to pin 5 at top, emitter with arrow to pin 4 at bottom, base line bent down to pin 6 at bottom. All drawn as marks. No signal names printed."
+}

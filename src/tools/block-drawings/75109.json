@@ -1,0 +1,136 @@
+{
+  "id": "75109",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "",
+          "inside": "",
+          "at": 0.34,
+          "second": "5"
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.68,
+          "second": "6"
+        }
+      ],
+      "right": [
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.34,
+          "second": "8"
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.68,
+          "second": "9"
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "3",
+          "outside": "Inhibit",
+          "second": "4"
+        }
+      ],
+      "width": 30,
+      "height": 30,
+      "marks": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0.19
+            ],
+            [
+              0.33,
+              0.19
+            ],
+            [
+              0.33,
+              0.82
+            ],
+            [
+              0,
+              0.82
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0.33,
+          "y1": 0.5,
+          "x2": 0.5,
+          "y2": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0.5,
+          "y1": 0,
+          "x2": 0.5,
+          "y2": 1
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0.5,
+              0
+            ],
+            [
+              1,
+              0.5
+            ],
+            [
+              0.5,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": 0.66,
+          "y": 0.38,
+          "text": "+",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.66,
+          "y": 0.72,
+          "text": "-",
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Input",
+      "pins": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "text": "Output",
+      "pins": [
+        "13",
+        "12"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 75109-75110 (one drawing for both parts). One half is drawn; each pin also carries a second number in brackets for the other half: 1 (5), 2 (6), 13 (8), 12 (9), 3 (4). Inside: a small box on the left joined to pins 1 and 2, then a triangle pointing right with + at the top and - at the bottom; the + and - are inside the triangle on its left edge, level with output lines 13 and 12, so the inside marks are recorded against those pins. 'Input' and 'Output' are printed beside the line pairs with no brace. The + and - are drawn as marks inside the triangle. Bracketed second-half numbers drawn as text marks."
+}

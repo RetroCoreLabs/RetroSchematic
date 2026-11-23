@@ -1,0 +1,121 @@
+{
+  "id": "7497",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.66
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.83
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.92
+        }
+      ],
+      "top": [
+        {
+          "number": "13",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": []
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Rate\ninput",
+      "pins": [
+        "4",
+        "1",
+        "14",
+        "15",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "text": "Control",
+      "pins": [
+        "12",
+        "11",
+        "10",
+        "9"
+      ]
+    },
+    {
+      "text": "Output",
+      "pins": [
+        "7",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Synchronous 6-bit binary rate multiplier. No braces are drawn; the words 'Rate input', 'Control' and 'Output' are printed beside the groups, and which pins each word covers is read from its position. 'Output' sits between pin 7 and pin 5. No supply pins printed."
+}

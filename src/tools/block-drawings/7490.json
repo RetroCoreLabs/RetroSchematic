@@ -1,0 +1,121 @@
+{
+  "id": "7490",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "Input A",
+          "inside": "",
+          "at": 0.13
+        },
+        {
+          "number": "1",
+          "outside": "Input B",
+          "inside": "",
+          "at": 0.38
+        }
+      ],
+      "right": [
+        {
+          "number": "12",
+          "outside": "Q_A",
+          "inside": "",
+          "at": 0.13
+        },
+        {
+          "number": "9",
+          "outside": "Q_B",
+          "inside": "",
+          "at": 0.38
+        },
+        {
+          "number": "8",
+          "outside": "Q_C",
+          "inside": "",
+          "at": 0.62
+        },
+        {
+          "number": "11",
+          "outside": "Q_D",
+          "inside": "",
+          "at": 0.87
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "",
+          "length": 17
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "length": 17
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "length": 17
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "length": 17
+        }
+      ],
+      "height": 72,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.25,
+          "x2": 1,
+          "y2": 0.25
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.7,
+          "text": "V_cc = 5",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.82,
+          "text": "GND=10",
+          "size": 4
+        },
+        {
+          "type": "line",
+          "x1": 0.5,
+          "y1": 1.3,
+          "x2": 0.5,
+          "y2": 1.75,
+          "dashed": true
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Clear",
+      "pins": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "text": "Preset",
+      "pins": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "The box has a line across it near the top: Input A and QA meet the small top part, the other pins the lower part. A vertical line between bottom pins 3 and 6 separates the Clear and Preset labels."
+}

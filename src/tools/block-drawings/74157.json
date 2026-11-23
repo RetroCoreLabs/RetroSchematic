@@ -1,0 +1,116 @@
+{
+  "id": "74157",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Select_1",
+          "at": 0.34,
+          "bend": {
+            "dir": "left",
+            "length": 16.4,
+            "stub": 7.4
+          }
+        },
+        {
+          "number": "15",
+          "outside": "Enable",
+          "at": 0.69,
+          "bend": {
+            "dir": "left",
+            "length": 25.5,
+            "stub": 16
+          }
+        }
+      ],
+      "width": 26,
+      "marks": [
+        {
+          "type": "text",
+          "x": -0.9,
+          "y": 1.37,
+          "text": "74158 has inverted output",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [
+    "The small subscript after 'Enable' (pin 15) may be the letter o or the digit 0; left out of the label."
+  ],
+  "notes": "Heading is '74157/74158'. Text below: '74158 has inverted output'. Bottom lines bend left to their labels."
+}

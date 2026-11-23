@@ -1,0 +1,103 @@
+{
+ "shape": "block-7494",
+ "pins": [
+  {
+   "pin": "7",
+   "x": 60.0,
+   "y": 45.0,
+   "side": "left",
+   "name": "serial in"
+  },
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 55.0,
+   "side": "left",
+   "name": "A1"
+  },
+  {
+   "pin": "16",
+   "x": 60.0,
+   "y": 65.0,
+   "side": "left",
+   "name": "A2"
+  },
+  {
+   "pin": "2",
+   "x": 60.0,
+   "y": 81.0,
+   "side": "left",
+   "name": "B1"
+  },
+  {
+   "pin": "14",
+   "x": 60.0,
+   "y": 91.0,
+   "side": "left",
+   "name": "B2"
+  },
+  {
+   "pin": "3",
+   "x": 60.0,
+   "y": 107.0,
+   "side": "left",
+   "name": "C1"
+  },
+  {
+   "pin": "13",
+   "x": 60.0,
+   "y": 117.0,
+   "side": "left",
+   "name": "C2"
+  },
+  {
+   "pin": "4",
+   "x": 60.0,
+   "y": 133.0,
+   "side": "left",
+   "name": "D1"
+  },
+  {
+   "pin": "11",
+   "x": 60.0,
+   "y": 143.0,
+   "side": "left",
+   "name": "D2"
+  },
+  {
+   "pin": "11'",
+   "x": 133.0,
+   "y": 94.0,
+   "side": "right",
+   "name": "D (output)"
+  },
+  {
+   "pin": "8",
+   "x": 88.25,
+   "y": 20,
+   "side": "top",
+   "name": "clock"
+  },
+  {
+   "pin": "10",
+   "x": 104.75,
+   "y": 20,
+   "side": "top",
+   "name": "clear_1"
+  },
+  {
+   "pin": "6",
+   "x": 88.25,
+   "y": 168,
+   "side": "bottom",
+   "name": "PR1"
+  },
+  {
+   "pin": "15",
+   "x": 104.75,
+   "y": 168,
+   "side": "bottom",
+   "name": "PR2"
+  }
+ ]
+}

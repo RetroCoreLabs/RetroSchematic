@@ -1,0 +1,139 @@
+{
+  "id": "74170",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "10",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "5",
+          "outside": "",
+          "length": 8
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "length": 24
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "length": 8
+        }
+      ],
+      "bottom": [
+        {
+          "number": "14",
+          "outside": "",
+          "length": 8
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "length": 24
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "length": 8
+        }
+      ],
+      "width": 30,
+      "height": 60,
+      "marks": [
+        {
+          "type": "text",
+          "x": 0.04,
+          "y": -0.25,
+          "text": "Select"
+        },
+        {
+          "type": "text",
+          "x": 0.92,
+          "y": -0.25,
+          "text": "Enable"
+        },
+        {
+          "type": "text",
+          "x": 0.63,
+          "y": -0.43,
+          "text": "Read"
+        },
+        {
+          "type": "text",
+          "x": 0.05,
+          "y": 1.33,
+          "text": "Select"
+        },
+        {
+          "type": "text",
+          "x": 0.93,
+          "y": 1.33,
+          "text": "Enable"
+        },
+        {
+          "type": "text",
+          "x": 0.48,
+          "y": 1.47,
+          "text": "Write"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Input",
+      "pins": [
+        "15",
+        "1",
+        "2",
+        "3"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Top: 'Read' above, then 'Select | Enable' split by a line. Bottom: 'Select | Enable', then 'Write' below. Read/Select/Enable/Write are drawn as text marks where the cut-out prints them: Read = pins 5, 4, 11 (Select 5, 4; Enable 11); Write = pins 14, 13, 12 (Select 14, 13; Enable 12)."
+}

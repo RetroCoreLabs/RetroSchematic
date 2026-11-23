@@ -1,0 +1,241 @@
+{
+  "id": "TMS6010",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "33",
+          "outside": "",
+          "inside": "",
+          "at": 0.07
+        },
+        {
+          "number": "32",
+          "outside": "",
+          "inside": "",
+          "at": 0.101
+        },
+        {
+          "number": "31",
+          "outside": "",
+          "inside": "",
+          "at": 0.134
+        },
+        {
+          "number": "30",
+          "outside": "",
+          "inside": "",
+          "at": 0.167
+        },
+        {
+          "number": "29",
+          "outside": "",
+          "inside": "",
+          "at": 0.2
+        },
+        {
+          "number": "28",
+          "outside": "",
+          "inside": "",
+          "at": 0.23
+        },
+        {
+          "number": "27",
+          "outside": "",
+          "inside": "",
+          "at": 0.263
+        },
+        {
+          "number": "26",
+          "outside": "",
+          "inside": "",
+          "at": 0.296
+        },
+        {
+          "number": "40",
+          "outside": "",
+          "inside": "",
+          "at": 0.362
+        },
+        {
+          "number": "23",
+          "outside": "",
+          "inside": "",
+          "at": 0.425
+        },
+        {
+          "number": "20",
+          "outside": "",
+          "inside": "",
+          "at": 0.522
+        },
+        {
+          "number": "17",
+          "outside": "",
+          "inside": "",
+          "at": 0.586
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.651
+        },
+        {
+          "number": "16",
+          "outside": "",
+          "inside": "",
+          "at": 0.684
+        },
+        {
+          "number": "18",
+          "outside": "",
+          "inside": "",
+          "at": 0.75
+        },
+        {
+          "number": "34",
+          "outside": "",
+          "inside": "",
+          "at": 0.816
+        },
+        {
+          "number": "35",
+          "outside": "",
+          "inside": "",
+          "at": 0.846
+        },
+        {
+          "number": "36",
+          "outside": "",
+          "inside": "",
+          "at": 0.879
+        },
+        {
+          "number": "37",
+          "outside": "",
+          "inside": "",
+          "at": 0.912
+        },
+        {
+          "number": "38",
+          "outside": "",
+          "inside": "",
+          "at": 0.943
+        },
+        {
+          "number": "39",
+          "outside": "",
+          "inside": "",
+          "at": 0.976
+        }
+      ],
+      "right": [
+        {
+          "number": "25",
+          "outside": "",
+          "inside": "",
+          "at": 0.296
+        },
+        {
+          "number": "22",
+          "outside": "",
+          "inside": "",
+          "at": 0.425
+        },
+        {
+          "number": "24",
+          "outside": "",
+          "inside": "",
+          "at": 0.458
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.522
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.555
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.586
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "inside": "",
+          "at": 0.618
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "at": 0.651
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.684
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "at": 0.717
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.75
+        },
+        {
+          "number": "19",
+          "outside": "",
+          "inside": "",
+          "at": 0.816
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.879
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "at": 0.912
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": "",
+          "at": 0.943
+        }
+      ],
+      "top": [
+        {
+          "number": "21",
+          "outside": "",
+          "at": 0.45
+        }
+      ],
+      "bottom": [],
+      "width": 25,
+      "height": 200
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 'TMS 6010 (TMS 6011 - AY-5-1012 - AY-5-1013) Universal asynchronous receiver/transmitter'. No signal names. Left 21 lines, right 15, top 1 (37 lines); pins 1, 2 and 3 are not drawn. Several numbers are printed faintly but readable."
+}

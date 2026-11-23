@@ -1,0 +1,116 @@
+{
+  "id": "7474",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.5
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "D",
+          "at": 0.83
+        }
+      ],
+      "right": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "0",
+          "at": 0.17
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "1",
+          "at": 0.83
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "Clear",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "4",
+          "outside": "Preset",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "height": 56
+    },
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "D",
+          "at": 0.1
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.5
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "0",
+          "at": 0.1
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "1",
+          "at": 0.82
+        }
+      ],
+      "top": [
+        {
+          "number": "4",
+          "outside": "Clear",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Preset",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "height": 56
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Drawn as two boxes with the same pin numbers swapped: top box Clear=1, Preset=4, 0=6, 1=5, D at the bottom (2), pin 3 above it; bottom box Clear=4, Preset=1, 0=5, 1=6, D at the top (2), pin 3 below it."
+}

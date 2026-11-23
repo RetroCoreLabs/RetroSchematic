@@ -1,0 +1,92 @@
+{
+  "id": "7493",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "Input A",
+          "inside": "",
+          "at": 0.14
+        },
+        {
+          "number": "1",
+          "outside": "Input B",
+          "inside": "",
+          "at": 0.38
+        }
+      ],
+      "right": [
+        {
+          "number": "12",
+          "outside": "Q_A",
+          "inside": "",
+          "at": 0.14
+        },
+        {
+          "number": "9",
+          "outside": "Q_B",
+          "inside": "",
+          "at": 0.38
+        },
+        {
+          "number": "8",
+          "outside": "Q_C",
+          "inside": "",
+          "at": 0.63
+        },
+        {
+          "number": "11",
+          "outside": "Q_D",
+          "inside": "",
+          "at": 0.88
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": ""
+        },
+        {
+          "number": "3",
+          "outside": ""
+        }
+      ],
+      "height": 56,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.26,
+          "x2": 1,
+          "y2": 0.26
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.68,
+          "text": "V_cc= 5",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 0.82,
+          "text": "GND=10",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 0.5,
+          "y": 1.5,
+          "text": "Clear"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 4-bit binary counter. The box has a horizontal line across it just below pin 14 and pin 12, making a small top part (pins 14 and 12) and a larger lower part. Vcc and GND are printed inside the box."
+}

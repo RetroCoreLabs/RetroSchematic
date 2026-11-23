@@ -1,0 +1,226 @@
+{
+  "id": "7470",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "bubble": false
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "0",
+          "at": 0.14
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "inside": "1",
+          "gapBefore": true,
+          "at": 0.86
+        }
+      ],
+      "top": [
+        {
+          "number": "2",
+          "outside": "",
+          "bend": {
+            "dir": "left",
+            "length": 36,
+            "stub": 10
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "13",
+          "outside": "",
+          "bend": {
+            "dir": "left",
+            "length": 36,
+            "stub": 10
+          }
+        }
+      ],
+      "width": 33,
+      "marks": [
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0.32,
+              0
+            ],
+            [
+              0.32,
+              0.435
+            ],
+            [
+              0,
+              0.435
+            ]
+          ]
+        },
+        {
+          "type": "polyline",
+          "points": [
+            [
+              0,
+              0.575
+            ],
+            [
+              0.32,
+              0.575
+            ],
+            [
+              0.32,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              0.32,
+              0
+            ],
+            [
+              0.32,
+              0.145
+            ],
+            [
+              0,
+              0.145
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0.32,
+          "y2": 0.145
+        },
+        {
+          "type": "line",
+          "x1": 0.32,
+          "y1": 0,
+          "x2": 0,
+          "y2": 0.145
+        },
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0.855
+            ],
+            [
+              0.32,
+              0.855
+            ],
+            [
+              0.32,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.855,
+          "x2": 0.32,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 0.32,
+          "y1": 0.855,
+          "x2": 0,
+          "y2": 1
+        },
+        {
+          "type": "text",
+          "x": -3.5,
+          "y": 1.35,
+          "text": "The AND gate opposite the 0 output is equal to K-inputs.",
+          "size": 3.5,
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "x": -3.5,
+          "y": 1.4300000000000002,
+          "text": "The preset and clear input is pointing to that side of",
+          "size": 3.5,
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "x": -3.5,
+          "y": 1.51,
+          "text": "the flip-flop which becomes \"high\" for a corresponding",
+          "size": 3.5,
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "x": -3.5,
+          "y": 1.59,
+          "text": "\"low\" pulse.",
+          "size": 3.5,
+          "anchor": "start"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "No signal names outside the box. Pins 9,10,11,12 go into an upper AND box drawn inside the left edge, pins 3,4,5 into a lower AND box. A small box with a cross sits at pin 9 and another at pin 5. Pin 2 enters the top, pin 13 the bottom (both lines run off to the left first). Text printed under the drawing: 'The AND gate opposite the 0 output is equal to K-inputs. The preset and clear input is pointing to that side of the flip-flop which becomes \"high\" for a corresponding \"low\" pulse.'"
+}

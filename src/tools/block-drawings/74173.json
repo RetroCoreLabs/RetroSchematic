@@ -1,0 +1,100 @@
+{
+  "id": "74173",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "D",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": ""
+        },
+        {
+          "number": "2",
+          "outside": ""
+        },
+        {
+          "number": "15",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "7",
+          "outside": "Clock"
+        },
+        {
+          "number": "9",
+          "outside": ""
+        },
+        {
+          "number": "10",
+          "outside": ""
+        }
+      ],
+      "width": 30,
+      "height": 60
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Output\ncontrol",
+      "pins": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "text": "Input\nenable",
+      "pins": [
+        "9",
+        "10"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "'Clock' is printed just below the short line of pin 7, reaching toward the line of pin 9."
+}

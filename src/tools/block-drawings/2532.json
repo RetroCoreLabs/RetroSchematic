@@ -1,0 +1,95 @@
+{
+  "id": "2532",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "Recirculate",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "Data in",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "1",
+          "outside": "Data out",
+          "inside": "",
+          "at": 0.174
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.43
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.686
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.942
+        }
+      ],
+      "top": [
+        {
+          "number": "12",
+          "outside": "V_GG"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "11",
+          "outside": "Clock"
+        }
+      ],
+      "width": 22
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: '2532 Quad 80-bit static shift register'. Names are printed only for the first register (pins 2, 3, 1) and for 12 (V with subscript GG) and 11 (Clock); the other three pin groups are unnamed."
+}

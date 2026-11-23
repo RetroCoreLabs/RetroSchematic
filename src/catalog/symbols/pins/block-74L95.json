@@ -1,0 +1,89 @@
+{
+ "shape": "block-74L95",
+ "pins": [
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 46.2,
+   "side": "left",
+   "name": "serial in"
+  },
+  {
+   "pin": "14",
+   "x": 60.0,
+   "y": 58.6,
+   "side": "left",
+   "name": "A"
+  },
+  {
+   "pin": "2",
+   "x": 60.0,
+   "y": 71.0,
+   "side": "left",
+   "name": "B"
+  },
+  {
+   "pin": "3",
+   "x": 60.0,
+   "y": 83.4,
+   "side": "left",
+   "name": "C"
+  },
+  {
+   "pin": "5",
+   "x": 60.0,
+   "y": 95.8,
+   "side": "left",
+   "name": "D"
+  },
+  {
+   "pin": "13",
+   "x": 128.0,
+   "y": 47.75,
+   "side": "right",
+   "name": "Q_A"
+  },
+  {
+   "pin": "12",
+   "x": 128.0,
+   "y": 63.25,
+   "side": "right",
+   "name": "Q_B"
+  },
+  {
+   "pin": "10",
+   "x": 128.0,
+   "y": 78.75,
+   "side": "right",
+   "name": "Q_C"
+  },
+  {
+   "pin": "9",
+   "x": 128.0,
+   "y": 94.25,
+   "side": "right",
+   "name": "Q_D"
+  },
+  {
+   "pin": "7",
+   "x": 87.0,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "8",
+   "x": 101.0,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "6",
+   "x": 94.0,
+   "y": 122,
+   "side": "bottom",
+   "name": "Mode Control"
+  }
+ ]
+}

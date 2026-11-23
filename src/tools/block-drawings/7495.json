@@ -1,0 +1,103 @@
+{
+  "id": "7495",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "serial in",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "D",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "13",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "9",
+          "outside": "Right shift"
+        },
+        {
+          "number": "8",
+          "outside": "Left shift"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "6",
+          "outside": "Mode Control"
+        }
+      ],
+      "height": 62,
+      "marks": [
+        {
+          "type": "text",
+          "x": -2.75,
+          "y": 1.57,
+          "text": "Mode Control:",
+          "size": 4,
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "x": -2.0,
+          "y": 1.75,
+          "text": "0 = Shift serial",
+          "size": 4,
+          "anchor": "start"
+        },
+        {
+          "type": "text",
+          "x": -2.0,
+          "y": 1.85,
+          "text": "1 = Shift parallel",
+          "size": 4,
+          "anchor": "start"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 4-bit right-shift, left-shift register. Printed below: 'Mode Control: 0 = Shift serial, 1 = Shift parallel'. No supply pins printed."
+}

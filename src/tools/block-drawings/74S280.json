@@ -1,0 +1,94 @@
+{
+  "id": "74S280",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "8",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "Even",
+          "inside": "",
+          "at": 0.4
+        },
+        {
+          "number": "6",
+          "outside": "Odd",
+          "inside": "",
+          "at": 0.6
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "marks": [
+        {
+          "type": "brace",
+          "x": 2.4,
+          "y1": 0.36,
+          "y2": 0.64,
+          "dir": "left"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Output",
+      "pins": [
+        "5",
+        "6"
+      ],
+      "x": 0.86,
+      "y": 0.46,
+      "anchor": "start"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 9-bit odd/even parity generator/checker. A brace joins Even and Odd and is labelled Output. The nine left lines have no names."
+}

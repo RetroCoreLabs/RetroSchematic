@@ -1,0 +1,96 @@
+{
+ "shape": "block-74195",
+ "pins": [
+  {
+   "pin": "2",
+   "x": 60.0,
+   "y": 50.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "3",
+   "x": 60.0,
+   "y": 58.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "4",
+   "x": 60.0,
+   "y": 76.0,
+   "side": "left",
+   "name": "A"
+  },
+  {
+   "pin": "5",
+   "x": 60.0,
+   "y": 94.5,
+   "side": "left",
+   "name": "B"
+  },
+  {
+   "pin": "6",
+   "x": 60.0,
+   "y": 112.0,
+   "side": "left",
+   "name": "C"
+  },
+  {
+   "pin": "7",
+   "x": 60.0,
+   "y": 130.0,
+   "side": "left",
+   "name": "D"
+  },
+  {
+   "pin": "15",
+   "x": 128.0,
+   "y": 76.0,
+   "side": "right",
+   "name": "Q_A"
+  },
+  {
+   "pin": "14",
+   "x": 128.0,
+   "y": 94.5,
+   "side": "right",
+   "name": "Q_B"
+  },
+  {
+   "pin": "13",
+   "x": 128.0,
+   "y": 112.0,
+   "side": "right",
+   "name": "Q_C"
+  },
+  {
+   "pin": "12",
+   "x": 128.0,
+   "y": 130.0,
+   "side": "right",
+   "name": "Q_D"
+  },
+  {
+   "pin": "1",
+   "x": 94.0,
+   "y": 20,
+   "side": "top",
+   "name": "Clear"
+  },
+  {
+   "pin": "10",
+   "x": 88.68,
+   "y": 160,
+   "side": "bottom",
+   "name": "Clock"
+  },
+  {
+   "pin": "9",
+   "x": 98.2,
+   "y": 160,
+   "side": "bottom",
+   "name": "Shift/load"
+  }
+ ]
+}

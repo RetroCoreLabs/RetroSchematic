@@ -1,0 +1,54 @@
+{
+  "id": "74393",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "A",
+          "inside": "",
+          "second": "13"
+        },
+        {
+          "number": "2",
+          "outside": "Clear",
+          "inside": "",
+          "second": "12"
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "second": "11"
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "second": "10"
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "second": "9"
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "second": "8"
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "height": 76
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Dual 4-bit binary ripple counter. One box is drawn; each pin also carries a second number in brackets for the other counter: 1 (13), 2 (12), 3 (11), 4 (10), 5 (9), 6 (8). The four right lines have no names."
+}

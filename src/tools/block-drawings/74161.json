@@ -1,0 +1,130 @@
+{
+  "id": "74161",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "A",
+          "inside": "",
+          "at": 0.09
+        },
+        {
+          "number": "4",
+          "outside": "B",
+          "inside": "",
+          "at": 0.25
+        },
+        {
+          "number": "5",
+          "outside": "C",
+          "inside": "",
+          "at": 0.41
+        },
+        {
+          "number": "6",
+          "outside": "D",
+          "inside": "",
+          "at": 0.58
+        },
+        {
+          "number": "9",
+          "outside": "Load",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.82
+        },
+        {
+          "number": "2",
+          "outside": "Clock",
+          "inside": "",
+          "at": 0.91
+        }
+      ],
+      "right": [
+        {
+          "number": "14",
+          "outside": "Q_A",
+          "inside": "",
+          "at": 0.09
+        },
+        {
+          "number": "13",
+          "outside": "Q_B",
+          "inside": "",
+          "at": 0.25
+        },
+        {
+          "number": "12",
+          "outside": "Q_C",
+          "inside": "",
+          "at": 0.41
+        },
+        {
+          "number": "11",
+          "outside": "Q_D",
+          "inside": "",
+          "at": 0.58
+        },
+        {
+          "number": "15",
+          "outside": "Carry",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.91
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "Clear",
+          "at": 0.48,
+          "bend": {
+            "dir": "left",
+            "length": 18.2,
+            "stub": 9
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "7",
+          "outside": "",
+          "at": 0.375,
+          "bend": {
+            "dir": "left",
+            "length": 18.2,
+            "stub": 8.5
+          }
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "at": 0.71,
+          "bend": {
+            "dir": "left",
+            "length": 27.6,
+            "stub": 18.5
+          }
+        }
+      ],
+      "width": 28,
+      "height": 110
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Enable",
+      "pins": [
+        "7",
+        "10"
+      ],
+      "x": 0.354,
+      "y": 0.783,
+      "anchor": "end"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Clear line bends left from pin 1. Both bottom lines bend left; the word Enable sits between the two bent lines."
+}

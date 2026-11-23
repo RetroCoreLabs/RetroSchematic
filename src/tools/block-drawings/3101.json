@@ -1,0 +1,85 @@
+{
+  "id": "3101",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "13",
+          "outside": ""
+        },
+        {
+          "number": "14",
+          "outside": ""
+        },
+        {
+          "number": "15",
+          "outside": ""
+        },
+        {
+          "number": "1",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": ""
+        },
+        {
+          "number": "3",
+          "outside": ""
+        }
+      ],
+      "width": 36,
+      "height": 58
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: '3101 (Equal to 7489) 64-bit read/write memory'. No signal names."
+}

@@ -1,0 +1,115 @@
+{
+  "id": "8599",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "13",
+          "outside": ""
+        },
+        {
+          "number": "1",
+          "outside": ""
+        },
+        {
+          "number": "15",
+          "outside": ""
+        },
+        {
+          "number": "14",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "Memory\nenable_0",
+          "at": 0.3,
+          "nameAnchor": "end"
+        },
+        {
+          "number": "3",
+          "outside": "Write\nenable_0",
+          "at": 0.7,
+          "nameAnchor": "start"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Address input",
+      "pins": [
+        "13",
+        "1",
+        "15",
+        "14"
+      ]
+    },
+    {
+      "text": "Data\ninput",
+      "pins": [
+        "4",
+        "12",
+        "6",
+        "10"
+      ]
+    },
+    {
+      "text": "Inverted\noutputs",
+      "pins": [
+        "5",
+        "11",
+        "7",
+        "9"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Tri-state 64-bit random access read/write memory. Top pin 13 is set a little apart from 1, 15, 14. Group texts printed beside the pins, no braces."
+}

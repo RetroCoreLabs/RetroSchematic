@@ -1,0 +1,101 @@
+{
+  "id": "74H55",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": null,
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "F",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "G",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "H",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": null,
+          "outside": "Y",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 20,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 0.46,
+          "y1": 0,
+          "x2": 0.46,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0.5,
+          "x2": 0.46,
+          "y2": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0.46,
+          "y1": 0,
+          "x2": 1,
+          "y2": 1
+        },
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 0.46,
+          "y2": 1
+        },
+        {
+          "type": "text",
+          "x": 2.2,
+          "y": 0.92,
+          "text": "Y=~{A·B·C·D+E·F·G·H}",
+          "size": 4,
+          "anchor": "start"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "No pin numbers printed. Box split into a left part with two small AND boxes (A-D, E-H) and a crossed right part. Printed beside it: Y = ~(A.B.C.D+E.F.G.H) (one overbar over the whole sum)."
+}

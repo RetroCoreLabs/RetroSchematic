@@ -1,0 +1,136 @@
+{
+  "id": "74153",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "6",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "gapBefore": true
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": ""
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "7",
+          "outside": "1Y",
+          "inside": "",
+          "at": 0.245
+        },
+        {
+          "number": "9",
+          "outside": "2Y",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.745
+        }
+      ],
+      "top": [
+        {
+          "number": "2",
+          "outside": "(B)",
+          "at": 0.37,
+          "bend": {
+            "dir": "left",
+            "length": 17.6,
+            "stub": 8
+          }
+        },
+        {
+          "number": "14",
+          "outside": "(A)",
+          "at": 0.68,
+          "bend": {
+            "dir": "left",
+            "length": 25.7,
+            "stub": 17
+          }
+        }
+      ],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "1Y",
+          "at": 0.37,
+          "bend": {
+            "dir": "left",
+            "length": 17.6,
+            "stub": 9
+          }
+        },
+        {
+          "number": "15",
+          "outside": "2Y",
+          "at": 0.68,
+          "bend": {
+            "dir": "left",
+            "length": 25.7,
+            "stub": 17.5
+          }
+        }
+      ],
+      "width": 26,
+      "height": 86
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Select input",
+      "pins": [
+        "2",
+        "14"
+      ],
+      "x": 0.543,
+      "y": 0.183,
+      "anchor": "start"
+    },
+    {
+      "text": "Enable",
+      "pins": [
+        "1",
+        "15"
+      ],
+      "x": 0.31,
+      "y": 0.753,
+      "anchor": "end"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Top and bottom lines bend left to their labels."
+}

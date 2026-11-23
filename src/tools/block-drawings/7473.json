@@ -1,0 +1,108 @@
+{
+  "id": "7473",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.19
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.5
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.81
+        }
+      ],
+      "right": [
+        {
+          "number": "8",
+          "outside": "",
+          "inside": "0",
+          "at": 0.19
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "1",
+          "at": 0.81
+        }
+      ],
+      "top": [
+        {
+          "number": "6",
+          "outside": "Clear",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "bottom": [],
+      "height": 56
+    },
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.19
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.5
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.81
+        }
+      ],
+      "right": [
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "0",
+          "at": 0.19
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "inside": "1",
+          "at": 0.81
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "6",
+          "outside": "Preset",
+          "bend": {
+            "dir": "left",
+            "length": 34,
+            "stub": 10
+          }
+        }
+      ],
+      "height": 56
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Drawn as two boxes. Top box: Clear on top (pin 6), no bottom pin. Bottom box: Preset at bottom (pin 6), no top pin. The two boxes carry the same pin numbers in opposite order (10,5,7 vs 7,5,10; outputs 0=8,1=9 vs 0=9,1=8), and both Clear and Preset are numbered 6."
+}

@@ -1,0 +1,93 @@
+{
+  "id": "74L95",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "1",
+          "outside": "serial in",
+          "inside": ""
+        },
+        {
+          "number": "14",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "2",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "3",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "D",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "13",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "12",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "Q_D",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "7",
+          "outside": ""
+        },
+        {
+          "number": "8",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "6",
+          "outside": "Mode Control"
+        }
+      ],
+      "height": 62,
+      "marks": [
+        {
+          "type": "text",
+          "x": 2.6,
+          "y": 1.39,
+          "text": "+5V  =  4",
+          "size": 4
+        },
+        {
+          "type": "text",
+          "x": 2.6,
+          "y": 1.49,
+          "text": "GND  = 11",
+          "size": 4
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 4-bit parallel-access shift register. The two top lines (7 and 8) have no label printed. Printed below: +5V = 4, GND = 11."
+}

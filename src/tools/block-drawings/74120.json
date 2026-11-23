@@ -1,0 +1,95 @@
+{
+  "id": "74120",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "Reset",
+          "inside": "",
+          "at": 0.18,
+          "second": "12"
+        },
+        {
+          "number": "5",
+          "outside": "Clock",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.51,
+          "second": "11"
+        },
+        {
+          "number": "3",
+          "outside": "S2",
+          "inside": "",
+          "at": 0.68,
+          "second": "14"
+        },
+        {
+          "number": "2",
+          "outside": "S1",
+          "inside": "",
+          "at": 0.83,
+          "second": "13"
+        }
+      ],
+      "right": [
+        {
+          "number": "7",
+          "outside": "~Y",
+          "inside": "",
+          "at": 0.17,
+          "second": "9"
+        },
+        {
+          "number": "6",
+          "outside": "Y",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.83,
+          "second": "10"
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "Mode",
+          "at": 0.375,
+          "bend": {
+            "dir": "left",
+            "length": 21,
+            "stub": 15
+          },
+          "second": "15"
+        }
+      ],
+      "width": 24,
+      "height": 46,
+      "marks": [
+        {
+          "type": "brace",
+          "x": -1.4,
+          "y1": 0.6,
+          "y2": 0.9,
+          "dir": "right"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Stop",
+      "pins": [
+        "3",
+        "2"
+      ],
+      "x": 0.23,
+      "y": 0.51,
+      "anchor": "end"
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: Pulse synchronizer. One box is drawn, and every line carries two numbers: a plain one (recorded in 'number') and one in parentheses, which reads as the second half of the part. Pairs as printed: Reset 4 (12), Clock 5 (11), S2 3 (14), S1 2 (13), ~Y 7 (9), Y 6 (10), Mode 1 (15). The Mode line comes in from the left below the box and bends up into the bottom of the box. 'Stop' is a brace covering S2 and S1. No supply pins printed."
+}

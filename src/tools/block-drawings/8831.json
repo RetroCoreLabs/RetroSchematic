@@ -1,0 +1,218 @@
+{
+  "id": "8831",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.09
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.27
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.45
+        },
+        {
+          "number": "9",
+          "outside": "",
+          "inside": "",
+          "at": 0.52
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.73
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.92
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.09
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.27
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "at": 0.73
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.92
+        }
+      ],
+      "top": [
+        {
+          "number": "2",
+          "outside": "",
+          "at": 0.33
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "at": 0.65
+        }
+      ],
+      "bottom": [
+        {
+          "number": "14",
+          "outside": "",
+          "at": 0.33
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "at": 0.65
+        }
+      ],
+      "width": 16,
+      "height": 72,
+      "marks": [
+        {
+          "type": "text",
+          "x": 0.3,
+          "y": 1.45,
+          "text": "Pins 7 and 9 connected to GND",
+          "size": 4.5
+        }
+      ]
+    },
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "4",
+          "outside": "A_1",
+          "inside": "",
+          "second": "12"
+        },
+        {
+          "number": "6",
+          "outside": "A_2",
+          "inside": "",
+          "second": "10"
+        }
+      ],
+      "right": [
+        {
+          "number": "3",
+          "outside": "Y_1",
+          "inside": "",
+          "second": "13"
+        },
+        {
+          "number": "5",
+          "outside": "Y_2",
+          "inside": "",
+          "second": "11"
+        }
+      ],
+      "top": [],
+      "bottom": [
+        {
+          "number": "1",
+          "outside": "",
+          "at": 0.26,
+          "bend": {
+            "dir": "left",
+            "length": 26,
+            "stub": 6
+          },
+          "second": "14",
+          "numberOnBend": true
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "at": 0.8,
+          "bend": {
+            "dir": "left",
+            "length": 35,
+            "stub": 16
+          },
+          "second": "15",
+          "numberOnBend": true
+        }
+      ],
+      "width": 16,
+      "height": 32,
+      "marks": [
+        {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0.5
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "x": -3.2,
+          "y": 1.45,
+          "text": "Output enable",
+          "size": 4.5
+        },
+        {
+          "type": "text",
+          "x": 0.3,
+          "y": 2.3,
+          "text": "Pins 7 and/or 9 connected to HIGH",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Input",
+      "pins": [
+        "4'",
+        "6'"
+      ]
+    },
+    {
+      "text": "Output",
+      "pins": [
+        "3'",
+        "5'"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Section titles as printed: first 'Used as single-ended driver', second 'Used as differential line driver' (box with a triangle drawn inside pointing right, drawn as a mark). Two drawings for the same part. First: 'Used as single-ended driver', no signal names; the right side has no lines facing 7 and 9; printed below 'Pins 7 and 9 connected to GND'. Second: 'Used as differential line driver'; numbers in brackets are a second set (12),(10),(13),(11),(14),(15) as printed; the two bottom lines (1 and 2) bend left to the text 'Output enable'; printed below 'Pins 7 and/or 9 connected to HIGH'."
+}

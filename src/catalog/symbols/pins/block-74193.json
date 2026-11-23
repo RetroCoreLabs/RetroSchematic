@@ -1,0 +1,103 @@
+{
+ "shape": "block-74193",
+ "pins": [
+  {
+   "pin": "15",
+   "x": 60.0,
+   "y": 47.5,
+   "side": "left",
+   "name": "A"
+  },
+  {
+   "pin": "1",
+   "x": 60.0,
+   "y": 62.5,
+   "side": "left",
+   "name": "B"
+  },
+  {
+   "pin": "10",
+   "x": 60.0,
+   "y": 77.5,
+   "side": "left",
+   "name": "C"
+  },
+  {
+   "pin": "9",
+   "x": 60.0,
+   "y": 92.5,
+   "side": "left",
+   "name": "D"
+  },
+  {
+   "pin": "3",
+   "x": 130.0,
+   "y": 47.5,
+   "side": "right",
+   "name": "Q_A"
+  },
+  {
+   "pin": "2",
+   "x": 130.0,
+   "y": 62.5,
+   "side": "right",
+   "name": "Q_B"
+  },
+  {
+   "pin": "6",
+   "x": 130.0,
+   "y": 77.5,
+   "side": "right",
+   "name": "Q_C"
+  },
+  {
+   "pin": "7",
+   "x": 130.0,
+   "y": 92.5,
+   "side": "right",
+   "name": "Q_D"
+  },
+  {
+   "pin": "11",
+   "x": 85.0,
+   "y": 20,
+   "side": "top",
+   "name": "Load"
+  },
+  {
+   "pin": "4",
+   "x": 95.0,
+   "y": 20,
+   "side": "top",
+   "name": "Count down"
+  },
+  {
+   "pin": "5",
+   "x": 105.0,
+   "y": 20,
+   "side": "top",
+   "name": "Count up"
+  },
+  {
+   "pin": "14",
+   "x": 85.0,
+   "y": 120,
+   "side": "bottom",
+   "name": "Clear"
+  },
+  {
+   "pin": "12",
+   "x": 95.0,
+   "y": 120,
+   "side": "bottom",
+   "name": "Carry"
+  },
+  {
+   "pin": "13",
+   "x": 105.0,
+   "y": 120,
+   "side": "bottom",
+   "name": "Borrow"
+  }
+ ]
+}

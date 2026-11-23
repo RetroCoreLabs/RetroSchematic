@@ -1,0 +1,103 @@
+{
+ "shape": "block-7442",
+ "pins": [
+  {
+   "pin": "left:0",
+   "x": 60.0,
+   "y": 52.5,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:1",
+   "x": 60.0,
+   "y": 77.5,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:2",
+   "x": 60.0,
+   "y": 102.5,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:3",
+   "x": 60.0,
+   "y": 127.5,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "right:0",
+   "x": 128.0,
+   "y": 45.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:1",
+   "x": 128.0,
+   "y": 55.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:2",
+   "x": 128.0,
+   "y": 65.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:3",
+   "x": 128.0,
+   "y": 75.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:4",
+   "x": 128.0,
+   "y": 85.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:5",
+   "x": 128.0,
+   "y": 95.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:6",
+   "x": 128.0,
+   "y": 105.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:7",
+   "x": 128.0,
+   "y": 115.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:8",
+   "x": 128.0,
+   "y": 125.0,
+   "side": "right",
+   "name": ""
+  },
+  {
+   "pin": "right:9",
+   "x": 128.0,
+   "y": 135.0,
+   "side": "right",
+   "name": ""
+  }
+ ]
+}

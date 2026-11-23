@@ -1,0 +1,104 @@
+{
+  "id": "74195",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.1
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.18
+        },
+        {
+          "number": "4",
+          "outside": "A",
+          "inside": "",
+          "gapBefore": true,
+          "at": 0.36
+        },
+        {
+          "number": "5",
+          "outside": "B",
+          "inside": "",
+          "at": 0.545
+        },
+        {
+          "number": "6",
+          "outside": "C",
+          "inside": "",
+          "at": 0.72
+        },
+        {
+          "number": "7",
+          "outside": "D",
+          "inside": "",
+          "at": 0.9
+        }
+      ],
+      "right": [
+        {
+          "number": "15",
+          "outside": "Q_A",
+          "inside": "",
+          "at": 0.36
+        },
+        {
+          "number": "14",
+          "outside": "Q_B",
+          "inside": "",
+          "at": 0.545
+        },
+        {
+          "number": "13",
+          "outside": "Q_C",
+          "inside": "",
+          "at": 0.72
+        },
+        {
+          "number": "12",
+          "outside": "Q_D",
+          "inside": "",
+          "at": 0.9
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "Clear"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "10",
+          "outside": "Clock",
+          "at": 0.31
+        },
+        {
+          "number": "9",
+          "outside": "Shift/load",
+          "at": 0.65
+        }
+      ],
+      "width": 28,
+      "height": 100
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Serial\ninput",
+      "pins": [
+        "2",
+        "3"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 4-bit parallel-access shift register. 'Serial' is printed beside pin 2 and 'input' beside pin 3, with no brace; read here as one label covering both lines."
+}

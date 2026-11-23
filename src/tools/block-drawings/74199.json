@@ -1,0 +1,141 @@
+{
+  "id": "74199",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": "5",
+          "outside": "B",
+          "inside": ""
+        },
+        {
+          "number": "7",
+          "outside": "C",
+          "inside": ""
+        },
+        {
+          "number": "9",
+          "outside": "D",
+          "inside": ""
+        },
+        {
+          "number": "16",
+          "outside": "E",
+          "inside": ""
+        },
+        {
+          "number": "18",
+          "outside": "F",
+          "inside": ""
+        },
+        {
+          "number": "20",
+          "outside": "G",
+          "inside": ""
+        },
+        {
+          "number": "22",
+          "outside": "H",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": "4",
+          "outside": "Q_A",
+          "inside": ""
+        },
+        {
+          "number": "6",
+          "outside": "Q_B",
+          "inside": ""
+        },
+        {
+          "number": "8",
+          "outside": "Q_C",
+          "inside": ""
+        },
+        {
+          "number": "10",
+          "outside": "Q_D",
+          "inside": ""
+        },
+        {
+          "number": "15",
+          "outside": "Q_E",
+          "inside": ""
+        },
+        {
+          "number": "17",
+          "outside": "Q_F",
+          "inside": ""
+        },
+        {
+          "number": "19",
+          "outside": "Q_G",
+          "inside": ""
+        },
+        {
+          "number": "21",
+          "outside": "Q_H",
+          "inside": ""
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": ""
+        },
+        {
+          "number": "2",
+          "outside": ""
+        },
+        {
+          "number": "14",
+          "outside": ""
+        }
+      ],
+      "bottom": [
+        {
+          "number": "13",
+          "outside": "Clock"
+        },
+        {
+          "number": "11",
+          "outside": "Clock inhibit"
+        },
+        {
+          "number": "23",
+          "outside": "Shift/load"
+        }
+      ],
+      "height": 110,
+      "marks": [
+        {
+          "type": "text",
+          "x": 1.08,
+          "y": -0.085,
+          "text": "Clear",
+          "anchor": "start"
+        }
+      ]
+    }
+  ],
+  "groupLabels": [
+    {
+      "text": "Serial input",
+      "pins": [
+        "1",
+        "2"
+      ]
+    }
+  ],
+  "unreadable": [],
+  "notes": "Title: 8-bit shift register. 'Serial input' is printed above top lines 1 and 2 together. The top numbers 14 and the bottom numbers 13, 11, 23 are hand-written."
+}

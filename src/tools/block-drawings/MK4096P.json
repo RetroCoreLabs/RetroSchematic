@@ -1,0 +1,98 @@
+{
+  "id": "MK4096P",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.09
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.23
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "at": 0.37
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.51
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.65
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "inside": "",
+          "at": 0.8
+        }
+      ],
+      "right": [
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "at": 0.85
+        }
+      ],
+      "top": [
+        {
+          "number": "1",
+          "outside": "",
+          "at": 0.2
+        },
+        {
+          "number": "8",
+          "outside": "",
+          "at": 0.65
+        }
+      ],
+      "bottom": [
+        {
+          "number": "2",
+          "outside": "",
+          "at": 0.12
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "at": 0.33
+        },
+        {
+          "number": "13",
+          "outside": "",
+          "at": 0.45
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "at": 0.6
+        },
+        {
+          "number": "15",
+          "outside": "",
+          "at": 0.75
+        }
+      ],
+      "width": 40,
+      "height": 47
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: 'MK 4096P 4 K dynamic RAM 16 pin package'. No signal names; no supply pins printed (pins 9 and 16 do not appear)."
+}

@@ -1,0 +1,159 @@
+{
+ "shape": "block-74150",
+ "pins": [
+  {
+   "pin": "left:0",
+   "x": 60.0,
+   "y": 45.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:1",
+   "x": 60.0,
+   "y": 55.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:2",
+   "x": 60.0,
+   "y": 65.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:3",
+   "x": 60.0,
+   "y": 75.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:4",
+   "x": 60.0,
+   "y": 85.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:5",
+   "x": 60.0,
+   "y": 95.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:6",
+   "x": 60.0,
+   "y": 105.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:7",
+   "x": 60.0,
+   "y": 115.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:8",
+   "x": 60.0,
+   "y": 125.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:9",
+   "x": 60.0,
+   "y": 135.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:10",
+   "x": 60.0,
+   "y": 145.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:11",
+   "x": 60.0,
+   "y": 155.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:12",
+   "x": 60.0,
+   "y": 165.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:13",
+   "x": 60.0,
+   "y": 175.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:14",
+   "x": 60.0,
+   "y": 185.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "left:15",
+   "x": 60.0,
+   "y": 195.0,
+   "side": "left",
+   "name": ""
+  },
+  {
+   "pin": "10",
+   "x": 146.0,
+   "y": 120.0,
+   "side": "right",
+   "name": "Y"
+  },
+  {
+   "pin": "11",
+   "x": 85.75,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "13",
+   "x": 97.25,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "14",
+   "x": 108.75,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "15",
+   "x": 120.25,
+   "y": 20,
+   "side": "top",
+   "name": ""
+  },
+  {
+   "pin": "9",
+   "x": 103.0,
+   "y": 220,
+   "side": "bottom",
+   "name": ""
+  }
+ ]
+}

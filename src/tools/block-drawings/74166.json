@@ -1,0 +1,100 @@
+{
+  "id": "74166",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "14",
+          "outside": "",
+          "inside": "",
+          "at": 0.07
+        },
+        {
+          "number": "12",
+          "outside": "",
+          "inside": "",
+          "at": 0.19
+        },
+        {
+          "number": "11",
+          "outside": "",
+          "inside": "",
+          "at": 0.32
+        },
+        {
+          "number": "10",
+          "outside": "",
+          "inside": "",
+          "at": 0.44
+        },
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.565
+        },
+        {
+          "number": "4",
+          "outside": "",
+          "inside": "",
+          "at": 0.69
+        },
+        {
+          "number": "3",
+          "outside": "",
+          "inside": "",
+          "at": 0.815
+        },
+        {
+          "number": "2",
+          "outside": "",
+          "inside": "",
+          "at": 0.94
+        }
+      ],
+      "right": [
+        {
+          "number": "13",
+          "outside": "",
+          "inside": "",
+          "at": 0.06
+        }
+      ],
+      "top": [
+        {
+          "number": "9",
+          "outside": "",
+          "at": 0.22
+        },
+        {
+          "number": "1",
+          "outside": "",
+          "at": 0.71
+        }
+      ],
+      "bottom": [
+        {
+          "number": "15",
+          "outside": "",
+          "at": 0.3
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "at": 0.53
+        },
+        {
+          "number": "7",
+          "outside": "",
+          "at": 0.79
+        }
+      ],
+      "width": 32,
+      "height": 128
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "No signal names are printed in this drawing."
+}

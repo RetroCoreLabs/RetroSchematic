@@ -1,0 +1,57 @@
+{
+  "id": "74132",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": null,
+          "outside": "A",
+          "inside": ""
+        },
+        {
+          "number": null,
+          "outside": "B",
+          "inside": ""
+        }
+      ],
+      "right": [
+        {
+          "number": null,
+          "outside": "Y",
+          "inside": ""
+        }
+      ],
+      "top": [],
+      "bottom": [],
+      "width": 15,
+      "height": 30,
+      "marks": [
+        {
+          "type": "line",
+          "x1": 1,
+          "y1": 0,
+          "x2": 1.9,
+          "y2": 0
+        },
+        {
+          "type": "line",
+          "x1": -0.9,
+          "y1": 1,
+          "x2": 0,
+          "y2": 1
+        },
+        {
+          "type": "text",
+          "x": 8.6,
+          "y": 0.5,
+          "text": "Y = ~{A·B}",
+          "size": 4.5
+        }
+      ]
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Quadruple 2-input positive NAND Schmitt trigger. One small gate is drawn with no pin numbers. The box is drawn with its top line running out to the right and its bottom line running out to the left (a stepped outline). Printed beside it: Y = ~(A . B), the bar over 'A . B'."
+}

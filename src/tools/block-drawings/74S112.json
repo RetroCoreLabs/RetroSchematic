@@ -1,0 +1,62 @@
+{
+  "id": "74S112",
+  "sections": [
+    {
+      "insideLabel": "",
+      "left": [
+        {
+          "number": "3",
+          "outside": "J",
+          "inside": "",
+          "second": "11"
+        },
+        {
+          "number": "1",
+          "outside": "Clock",
+          "inside": "",
+          "second": "13"
+        },
+        {
+          "number": "2",
+          "outside": "K",
+          "inside": "",
+          "second": "12"
+        }
+      ],
+      "right": [
+        {
+          "number": "5",
+          "outside": "",
+          "inside": "",
+          "at": 0.17,
+          "second": "9"
+        },
+        {
+          "number": "6",
+          "outside": "",
+          "inside": "",
+          "at": 0.83,
+          "second": "7"
+        }
+      ],
+      "top": [
+        {
+          "number": "4",
+          "outside": "Preset",
+          "second": "10"
+        }
+      ],
+      "bottom": [
+        {
+          "number": "15",
+          "outside": "Clear",
+          "second": "14"
+        }
+      ],
+      "height": 56
+    }
+  ],
+  "groupLabels": [],
+  "unreadable": [],
+  "notes": "Title: Dual J-K negative-edge-triggered flip-flop with preset and clear. One box is drawn, and every line carries two numbers: a plain one (recorded in 'number') and one in parentheses, which reads as the second flip-flop. Pairs as printed: J 3 (11), Clock 1 (13), K 2 (12), Preset 4 (10), right upper 5 (9), right lower 6 (7), Clear 15 (14). The two output lines on the right have no label. No supply pins printed."
+}
