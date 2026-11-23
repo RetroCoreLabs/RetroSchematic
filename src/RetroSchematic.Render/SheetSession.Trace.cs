@@ -104,6 +104,87 @@ namespace RetroSchematic.Render
         public void TraceOwner(string owner) => Trace(SignalAt(owner));
 
         /// <summary>
+        /// What a click on an item does, for a pick made somewhere else (the parts or signals
+        /// list, the search results): the same two steps as a click on the drawing - trace the
+        /// signal it belongs to (anything else clears the trace) and pick it.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner name picked, such as net:BD3_0 or part:13D.
+        /// </param>
+        public void PickAndTrace(string owner)
+        {
+            TraceOwner(owner);
+            Select(owner);
+        }
+
+        /// <summary>
+        /// The area to bring into view for an item: for a signal, the box round every place it
+        /// goes (its pins and where it enters blocks); for a part or instance, its box.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner name.
+        /// </param>
+        /// <param name="area">
+        /// The box: X, Y, width, height in drawing units.
+        /// </param>
+        /// <param name="first">
+        /// The first place (a signal's first pin, a part's middle), to centre on when the whole
+        /// box does not fit.
+        /// </param>
+        /// <returns>
+        /// False when the item has no place on the drawing.
+        /// </returns>
+        public bool AreaOf(string owner, out double[] area, out DrawPoint first)
+        {
+            area = new double[4];
+            first = default;
+            List<DrawPoint> points = new();
+            if (owner.StartsWith("net:", StringComparison.Ordinal))
+            {
+                Net? n = Editor.FindNetByKey(owner.Substring(4));
+                for (int i = 0; n != null && i < n.Pins.Count; i++)
+                {
+                    if (Drawing.Pins.TryGetValue(n.Pins[i].At, out DrawPoint p))
+                        points.Add(p);
+                }
+                if (Traced == owner.Substring(4))
+                {
+                    List<TraceMark> marks = TracedPortMarks();
+                    for (int i = 0; i < marks.Count; i++)
+                        points.Add(marks[i].At);
+                }
+            }
+            else if (owner.StartsWith("part:", StringComparison.Ordinal) && Drawing.Frames.TryGetValue(owner.Substring(5), out PartFrame f))
+            {
+                points.Add(new DrawPoint(f.X + (f.Width / 2), f.Y + (f.Height / 2)));
+                points.Add(new DrawPoint(f.X, f.Y));
+                points.Add(new DrawPoint(f.X + f.Width, f.Y + f.Height));
+            }
+            else if (owner.StartsWith("inst:", StringComparison.Ordinal) && Drawing.InstanceFrames.TryGetValue(owner.Substring(5), out PartFrame b))
+            {
+                points.Add(new DrawPoint(b.X + (b.Width / 2), b.Y + (b.Height / 2)));
+                points.Add(new DrawPoint(b.X, b.Y));
+                points.Add(new DrawPoint(b.X + b.Width, b.Y + b.Height));
+            }
+            if (points.Count == 0)
+                return false;
+            first = points[0];
+            double l = first.X, t = first.Y, r = first.X, btm = first.Y;
+            for (int i = 1; i < points.Count; i++)
+            {
+                l = Math.Min(l, points[i].X);
+                t = Math.Min(t, points[i].Y);
+                r = Math.Max(r, points[i].X);
+                btm = Math.Max(btm, points[i].Y);
+            }
+            area[0] = l;
+            area[1] = t;
+            area[2] = r - l;
+            area[3] = btm - t;
+            return true;
+        }
+
+        /// <summary>
         /// Every place on an instance box where the traced signal goes inside a block.
         /// </summary>
         /// <returns>

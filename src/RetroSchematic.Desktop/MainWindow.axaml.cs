@@ -375,22 +375,41 @@ namespace RetroSchematic.Desktop
             ShowEditState();
         }
 
+        /// <summary>
+        /// A pick in the parts, signals or found list: exactly what a click on the drawing does
+        /// (trace and pick, in the library), then the item is brought into view.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner name picked.
+        /// </param>
+        public void PickFromList(string owner)
+        {
+            if (_session == null)
+                return;
+            _session.PickAndTrace(owner);
+            if (_session.Traced.Length > 0)
+                StatusText.Text = "Tracing " + _session.TracedName + ": " + _session.TracedPins().Count + " pins. Tab jumps to each place.";
+            if (_session.AreaOf(owner, out double[] area, out DrawPoint first))
+                Canvas.ShowArea(area, first);
+            Canvas.Focus();
+        }
+
         private void OnPartPicked(object? sender, SelectionChangedEventArgs e)
         {
             if (!_syncingLists && _session != null && PartsList.SelectedIndex >= 0)
-                _session.Select(_partOwners[PartsList.SelectedIndex]);
+                PickFromList(_partOwners[PartsList.SelectedIndex]);
         }
 
         private void OnNetPicked(object? sender, SelectionChangedEventArgs e)
         {
             if (!_syncingLists && _session != null && NetsList.SelectedIndex >= 0)
-                _session.Select(_netOwners[NetsList.SelectedIndex]);
+                PickFromList(_netOwners[NetsList.SelectedIndex]);
         }
 
         private void OnFoundPicked(object? sender, SelectionChangedEventArgs e)
         {
             if (!_syncingLists && _session != null && FoundList.SelectedIndex >= 0)
-                _session.Select(_foundOwners[FoundList.SelectedIndex]);
+                PickFromList(_foundOwners[FoundList.SelectedIndex]);
         }
 
         private void OnSearchChanged(object? sender, TextChangedEventArgs e)

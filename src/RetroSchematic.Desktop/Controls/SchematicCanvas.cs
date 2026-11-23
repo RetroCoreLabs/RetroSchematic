@@ -169,6 +169,55 @@ namespace RetroSchematic.Desktop.Controls
         }
 
         /// <summary>
+        /// Brings an area into view: the whole of it with a margin when that is still readable,
+        /// else the view is centred on <paramref name="first"/> at a readable zoom.
+        /// </summary>
+        /// <param name="area">
+        /// X, Y, width, height in drawing units.
+        /// </param>
+        /// <param name="first">
+        /// The place to centre on when the whole area does not fit readably.
+        /// </param>
+        public void ShowArea(double[] area, DrawPoint first)
+        {
+            if (Bounds.Width <= 0 || Bounds.Height <= 0)
+                return;
+            const double Margin = 40;
+            // smallest zoom at which text can still be read
+            const double Readable = 0.6;
+            double fit = Math.Min(Bounds.Width / (area[2] + (2 * Margin)), Bounds.Height / (area[3] + (2 * Margin)));
+            if (fit >= Readable)
+            {
+                // never zoom in further than needed: keep the zoom when the area already fits
+                bool fits = area[2] * _zoom <= Bounds.Width - (2 * Margin) && area[3] * _zoom <= Bounds.Height - (2 * Margin);
+                if (!fits || _zoom < Readable)
+                    _zoom = Math.Clamp(Math.Min(fit, 2), MinZoom, MaxZoom);
+                CentreOn(area[0] + (area[2] / 2), area[1] + (area[3] / 2));
+                return;
+            }
+            _zoom = Math.Clamp(Math.Max(_zoom, Readable), MinZoom, MaxZoom);
+            CentreOn(first.X, first.Y);
+        }
+
+        /// <summary>
+        /// True when a drawing point is inside the visible part of the control.
+        /// </summary>
+        /// <param name="x">
+        /// X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Y in drawing units.
+        /// </param>
+        /// <returns>
+        /// True when on screen.
+        /// </returns>
+        public bool IsOnScreen(double x, double y)
+        {
+            double sx = (x * _zoom) + _offset.X, sy = (y * _zoom) + _offset.Y;
+            return sx >= 0 && sy >= 0 && sx <= Bounds.Width && sy <= Bounds.Height;
+        }
+
+        /// <summary>
         /// Moves the view so a drawing point is in the middle of the control, keeping the zoom.
         /// </summary>
         /// <param name="x">
