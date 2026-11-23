@@ -7,16 +7,31 @@ yet (see `docs/2A50-catalogue-map.md`).
 
 ## Queue from the 2026-11-23 session (in this order)
 
-- Found while starting the chip catalogue item (2026-11-23): 57 different pin names carry a
-  trailing ' (1Q', CLR', G', RIPPLE CLOCK', D/U' ...). In 65 of the 130 chip files the formula is
-  free text, not something a program can work out ("QA..QD = Q[0..3]", "1Q = FF1", "Y = MEM[address]
-  when ..."), and a ' after a name means NOT in formulas ("B'A'") but is also part of pin names, so a
-  formula reader must tell the two apart by the pin list. A truth-table check before and after the
-  rename therefore needs that formula reader first; the sequential and memory chips need the
-  structured behaviour fields before they can be checked at all.
-- Chip catalogue as data: inverted pin names as a flag (script, list of changes), pin function
-  texts, behaviour fields (output enable, clock edge, async set/clear, output type, delays,
-  sequential state), "How it works" card in Details, mux drawn in two halves, truth-table tests.
+- Chip catalogue as data. Step 1 is done: `RetroSchematic.Model/ChipFormula.cs` reads a formula
+  against the chip's pin list (longest pin name wins, so "1Q'" is a pin when the chip has one and
+  NOT 1Q otherwise; names side by side are ANDed; free text is refused with the place and the
+  reason). Of the 372 formulas in the catalogue it reads 196 and refuses 176; the test
+  `TheCatalogue_PlainGatesAreAllRead_AndTheRestIsReadOrRefused` prints every refused one. The
+  refusals fall in these groups, each a job for step 2:
+  - stored state, not a pin: "1Q = FF1", "QA = stateA", "Q = PULSE", "QA..QD = Q[0..3]";
+  - an output name that is not a pin name: "Y", "Yn", "OUTx", "BUSx", "QA..QD", "Q'";
+  - a value written as a comparison: "Q = 15 AND UP = L" (74193), "D/U' = L" (74191), "A < B"
+    (7485), "1A - 1B <= -25 mV" (75107);
+  - several formulas in one ("S2 = ... , C1 = ...", 7483);
+  - names that are inverted pin names: 74182 uses G0, P0 where the pins are G0', P0' - this is
+    what step 3 (inverted names as base name + flag) fixes;
+  - three-state text "... when G' = L; Z when ..." (8095, 8214, 8835).
+- Still to do, in this order: (2) the free-text formulas of the 65 chip files as structured
+  behaviour from their datasheets (formulas; outputEnable {pin, active level, disabled output
+  Z/0/1}; clock {pin, edge}; async set/clear with active level and which wins; output type;
+  delays; sequential parts as state + rules; behaviour "none" + reason where the datasheet gives
+  none, e.g. COM 2601), schema + docs, a test that loads every chip file; (3) inverted pin names
+  to base name + flag by script, truth tables the same before and after, no raw ' left, every
+  display in the chosen name style; (4) function text per pin (hover + Details column); (5) the
+  generated "How it works" card in Details (sentence, truth table, output-enable row, clock row
+  with up L->H / down H->L, async rows; muxes 74153/74157/74S157 with the sheet's own mapping and
+  the two-halves box with the "select (both halves)" band); (6) tests: generated truth tables
+  equal the datasheets' function tables (test data with page citations), a 7474 sequence test.
 - Logic simulator and MCP tools (section 9), first test the ICW 2215 octal write on 2A50.
 
 ## 0. Sheet 2A50 - what the wire reading left open
