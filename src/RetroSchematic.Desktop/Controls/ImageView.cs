@@ -5,12 +5,16 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using RetroSchematic.Model;
+using Point = Avalonia.Point;
+using RetroSchematic.Render;
 
 namespace RetroSchematic.Desktop.Controls
 {
@@ -31,6 +35,119 @@ namespace RetroSchematic.Desktop.Controls
         private Vector _offset;
         private bool _fitted;
         private Point? _dragFrom;
+        private Point _pressAt;
+        private bool _editing;
+        private bool _moved;
+
+        // picture pixels per picture unit (a JPEG that says 72 or 300 dpi has a Size in
+        // device-independent units that differs from its pixel count)
+        private double _pxPerUnit = 1;
+
+        /// <summary>
+        /// The size of a corner handle on screen, pixels.
+        /// </summary>
+        public const double HandleSize = 12;
+
+        /// <summary>
+        /// The chip boxes on the photo (picture pixels), or null.
+        /// </summary>
+        public IReadOnlyList<PcbBox>? Boxes { get; set; }
+
+        /// <summary>
+        /// True to draw <see cref="Boxes"/>: see-through boxes with their position names.
+        /// </summary>
+        public bool ShowBoxes { get; set; }
+
+        /// <summary>
+        /// The box under the mouse (drawn stronger, even when the boxes are off), or null.
+        /// </summary>
+        public string? HotRef { get; set; }
+
+        /// <summary>
+        /// The picked part's box (drawn in the pick colour), or null.
+        /// </summary>
+        public string? PickedRef { get; set; }
+
+        /// <summary>
+        /// The board's outline in the picture (four corners, pixels), drawn with handles when
+        /// <see cref="ShowOutline"/> is on.
+        /// </summary>
+        public IReadOnlyList<GridPoint>? Outline { get; set; }
+
+        /// <summary>
+        /// True to draw the board outline and its corner handles.
+        /// </summary>
+        public bool ShowOutline { get; set; }
+
+        /// <summary>
+        /// The mouse moved over the picture (picture pixels).
+        /// </summary>
+        public event Action<GridPoint>? PictureMoved;
+
+        /// <summary>
+        /// A click (press and release without a drag) on the picture (picture pixels).
+        /// </summary>
+        public event Action<GridPoint>? PictureClicked;
+
+        /// <summary>
+        /// Asked when a drag starts at a picture point: true takes the drag for editing (a
+        /// box or a corner), false lets it move the view. The second value says Shift is held.
+        /// </summary>
+        public Func<GridPoint, bool, bool>? EditStart { get; set; }
+
+        /// <summary>
+        /// The editing drag moved to a picture point.
+        /// </summary>
+        public Action<GridPoint>? EditMove { get; set; }
+
+        /// <summary>
+        /// The editing drag ended.
+        /// </summary>
+        public Action? EditEnd { get; set; }
+
+        /// <summary>
+        /// Screen pixels per picture pixel, for distances given on screen.
+        /// </summary>
+        public double ScreenPerPixel => _zoom / _pxPerUnit;
+
+        /// <summary>
+        /// A screen point as a picture point in pixels.
+        /// </summary>
+        /// <param name="screen">
+        /// The point on the control.
+        /// </param>
+        /// <returns>
+        /// The picture point.
+        /// </returns>
+        public GridPoint ToPicture(Point screen)
+            => new((screen.X - _offset.X) / _zoom * _pxPerUnit, (screen.Y - _offset.Y) / _zoom * _pxPerUnit);
+
+        /// <summary>
+        /// A picture point in pixels as a screen point.
+        /// </summary>
+        /// <param name="p">
+        /// The picture point.
+        /// </param>
+        /// <returns>
+        /// The point on the control.
+        /// </returns>
+        public Point ToScreen(GridPoint p) => new((p.X / _pxPerUnit * _zoom) + _offset.X, (p.Y / _pxPerUnit * _zoom) + _offset.Y);
+
+        /// <summary>
+        /// Simulates a click at a picture point (tests).
+        /// </summary>
+        /// <param name="p">
+        /// The picture point.
+        /// </param>
+        public void ClickAt(GridPoint p) => PictureClicked?.Invoke(p);
+
+        /// <summary>
+        /// Simulates the mouse moving to a picture point (tests).
+        /// </summary>
+        /// <param name="p">
+        /// The picture point.
+        /// </param>
+        public void HoverAt(GridPoint p) => PictureMoved?.Invoke(p);
 
         /// <summary>
         /// The text shown when there is no picture, such as "No photo of the solder side".
@@ -66,6 +183,7 @@ namespace RetroSchematic.Desktop.Controls
             {
                 using MemoryStream ms = new(bytes, writable: false);
                 _bitmap = new Bitmap(ms);
+                _pxPerUnit = _bitmap.Size.Width > 0 ? _bitmap.PixelSize.Width / _bitmap.Size.Width : 1;
             }
             _fitted = false;
             InvalidateVisual();
@@ -136,7 +254,70 @@ namespace RetroSchematic.Desktop.Controls
                 FitValues();
             Size s = _bitmap.Size;
             using (context.PushClip(new Rect(Bounds.Size)))
+            {
                 context.DrawImage(_bitmap, new Rect(s), new Rect(_offset.X, _offset.Y, s.Width * _zoom, s.Height * _zoom));
+                DrawOverlay(context);
+            }
+        }
+
+        // the chip boxes (see-through, theme coloured, named) and the board outline; a box
+        // from the grid is dashed, a box set by hand is solid
+        private void DrawOverlay(DrawingContext context)
+        {
+            IBrush accent = Brush("FluentAccentBlueBrush", Brushes.SteelBlue);
+            IBrush pick = Brush("FluentSelectionHighlightBrush", Brushes.Orange);
+            Color ac = accent is ISolidColorBrush sa ? sa.Color : Colors.SteelBlue;
+            Color pc = pick is ISolidColorBrush sp ? sp.Color : Colors.Orange;
+            IBrush paper = Brush("FluentBackgroundPrimaryBrush", Brushes.White);
+            IBrush ink = Brush("FluentTextPrimaryBrush", Brushes.Black);
+            for (int i = 0; Boxes != null && i < Boxes.Count; i++)
+            {
+                PcbBox b = Boxes[i];
+                bool hot = b.Ref == HotRef, picked = b.Ref == PickedRef;
+                if (!ShowBoxes && !hot && !picked)
+                    continue;
+                Color c = picked ? pc : ac;
+                StreamGeometry g = new();
+                using (StreamGeometryContext gc = g.Open())
+                {
+                    gc.BeginFigure(ToScreen(b.Corners[0]), true);
+                    for (int k = 1; k < b.Corners.Length; k++)
+                        gc.LineTo(ToScreen(b.Corners[k]));
+                    gc.EndFigure(true);
+                }
+                byte alpha = (byte)(hot || picked ? 0x70 : 0x38);
+                Pen edge = new(new SolidColorBrush(c), hot || picked ? 2.5 : 1.5, b.ByHand ? null : new DashStyle(new double[] { 4, 2 }, 0));
+                context.DrawGeometry(new SolidColorBrush(Color.FromArgb(alpha, c.R, c.G, c.B)), edge, g);
+                // the position name on a small paper tag at the box's top left
+                FormattedText t = new(b.Ref, System.Globalization.CultureInfo.InvariantCulture, FlowDirection.LeftToRight, Typeface.Default, 12, ink);
+                Point at = ToScreen(TopLeft(b.Corners));
+                Rect tag = new(at.X + 2, at.Y + 2, t.Width + 6, t.Height + 2);
+                context.FillRectangle(paper, tag, 3);
+                context.DrawText(t, new Point(tag.X + 3, tag.Y + 1));
+            }
+            if (ShowOutline && Outline != null && Outline.Count == 4)
+            {
+                Pen line = new(pick, 2, new DashStyle(new double[] { 6, 3 }, 0));
+                for (int i = 0; i < 4; i++)
+                    context.DrawLine(line, ToScreen(Outline[i]), ToScreen(Outline[(i + 1) % 4]));
+                for (int i = 0; i < 4; i++)
+                {
+                    Point p = ToScreen(Outline[i]);
+                    context.DrawRectangle(paper, new Pen(pick, 2), new Rect(p.X - (HandleSize / 2), p.Y - (HandleSize / 2), HandleSize, HandleSize));
+                }
+            }
+        }
+
+        // the corner nearest the top left of the screen
+        private static GridPoint TopLeft(GridPoint[] c)
+        {
+            GridPoint best = c[0];
+            for (int i = 1; i < c.Length; i++)
+            {
+                if (c[i].X + c[i].Y < best.X + best.Y)
+                    best = c[i];
+            }
+            return best;
         }
 
         /// <inheritdoc/>
@@ -152,6 +333,10 @@ namespace RetroSchematic.Desktop.Controls
         {
             base.OnPointerPressed(e);
             _dragFrom = e.GetPosition(this);
+            _pressAt = _dragFrom.Value;
+            _moved = false;
+            // an edit (a box or a board corner) takes the drag; otherwise it moves the view
+            _editing = _bitmap != null && EditStart != null && EditStart(ToPicture(_pressAt), (e.KeyModifiers & KeyModifiers.Shift) != 0);
             e.Pointer.Capture(this);
         }
 
@@ -159,9 +344,21 @@ namespace RetroSchematic.Desktop.Controls
         protected override void OnPointerMoved(PointerEventArgs e)
         {
             base.OnPointerMoved(e);
-            if (_dragFrom is not Point from)
-                return;
             Point now = e.GetPosition(this);
+            if (_dragFrom is not Point from)
+            {
+                if (_bitmap != null)
+                    PictureMoved?.Invoke(ToPicture(now));
+                return;
+            }
+            if (Math.Abs(now.X - _pressAt.X) + Math.Abs(now.Y - _pressAt.Y) > 4)
+                _moved = true;
+            if (_editing)
+            {
+                EditMove?.Invoke(ToPicture(now));
+                InvalidateVisual();
+                return;
+            }
             _offset += now - from;
             _dragFrom = now;
             InvalidateVisual();
@@ -171,8 +368,14 @@ namespace RetroSchematic.Desktop.Controls
         protected override void OnPointerReleased(PointerReleasedEventArgs e)
         {
             base.OnPointerReleased(e);
+            bool click = !_moved && _dragFrom != null && _bitmap != null;
+            if (_editing)
+                EditEnd?.Invoke();
+            _editing = false;
             _dragFrom = null;
             e.Pointer.Capture(null);
+            if (click)
+                PictureClicked?.Invoke(ToPicture(e.GetPosition(this)));
         }
 
         // a theme brush, looked up each time so a theme change shows at once

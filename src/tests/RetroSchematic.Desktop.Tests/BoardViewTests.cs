@@ -16,6 +16,7 @@ using NUnit.Framework;
 using RetroSchematic.Desktop.Controls;
 using RetroSchematic.Desktop.Themes;
 using RetroSchematic.Model;
+using RetroSchematic.Render;
 
 namespace RetroSchematic.Desktop.Tests
 {
@@ -120,6 +121,65 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(w.PhotoChoice.Items[1], Is.EqualTo("Solder side, PCB version I, new"));
             Assert.That(w.PhotoChoice.SelectedIndex, Is.EqualTo(0), "each side keeps its own choice");
             w.Close();
+        }
+
+        [AvaloniaTest]
+        public void ChipBoxes_OnThePhotos_HoverNamesTheChip_ClickPicksIt()
+        {
+            MainWindow w = new() { Width = 1400, Height = 900 };
+            w.Show();
+            w.OpenSheet(Sheet2A50);
+            Assert.That(w.PcbProblem, Is.EqualTo(""));
+            w.ShowView(MainWindow.ViewFront);
+            Assert.That(w.FindControl<ToggleButton>("TbChipBoxes")!.IsEnabled, Is.True);
+            w.SetChipBoxes(true);
+            Assert.That(w.Front.ShowBoxes, Is.True);
+            IReadOnlyList<PcbBox> boxes = w.ChipBoxes(BoardSide.Component);
+            Assert.That(boxes.Count, Is.EqualTo(42), "40 parts and 2 switch blocks");
+            Assert.That(w.CornersFrom(BoardSide.Component), Is.EqualTo("found"), "the board is found in the old component photo");
+            // the middle of 13D's box: hover names it, a click picks it as on the drawing
+            PcbBox d13 = Find(boxes, "13D");
+            GridPoint mid = Middle(d13.Corners);
+            Assert.That(w.HoverPcb(BoardSide.Component, mid), Does.StartWith("13D  7442"));
+            Assert.That(w.Front.HotRef, Is.EqualTo("13D"));
+            w.Front.ClickAt(mid);
+            Assert.That(w.Session!.Selected, Is.EqualTo("part:13D"));
+            Assert.That(w.Front.PickedRef, Is.EqualTo("13D"));
+            BoardViewTests.Save(w, "chips-front-old");
+            // the solder side is the mirror: 13D lies on the other half of its photo
+            PcbBox back13 = Find(w.ChipBoxes(BoardSide.Solder), "13D");
+            Assert.That(Middle(back13.Corners).X, Is.LessThan(w.Back.Bitmap!.PixelSize.Width / 2.0));
+            Assert.That(mid.X, Is.GreaterThan(w.Front.Bitmap!.PixelSize.Width / 2.0));
+            // the new photo
+            w.PhotoChoice.SelectedIndex = 1;
+            Assert.That(w.ChipBoxes(BoardSide.Component).Count, Is.EqualTo(42));
+            BoardViewTests.Save(w, "chips-front-new");
+            w.ShowView(MainWindow.ViewBack);
+            BoardViewTests.Save(w, "chips-back-old");
+            w.SetChipBoxes(false);
+            Assert.That(w.Front.ShowBoxes, Is.False);
+            w.Close();
+        }
+
+        private static PcbBox Find(IReadOnlyList<PcbBox> boxes, string reference)
+        {
+            for (int i = 0; i < boxes.Count; i++)
+            {
+                if (boxes[i].Ref == reference)
+                    return boxes[i];
+            }
+            throw new AssertionException("no box " + reference);
+        }
+
+        private static GridPoint Middle(GridPoint[] c)
+        {
+            double x = 0, y = 0;
+            for (int i = 0; i < c.Length; i++)
+            {
+                x += c[i].X;
+                y += c[i].Y;
+            }
+            return new GridPoint(x / c.Length, y / c.Length);
         }
 
         [AvaloniaTest]

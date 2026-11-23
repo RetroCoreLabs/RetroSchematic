@@ -109,6 +109,18 @@ for a `.rsc`. A PDF page is shown at 150 dpi. When a side has several photos (2A
 old and the new board), a **Photo** picker above the PCB views chooses which one is shown; each
 side keeps its own choice.
 
+**Chips** (toolbar, or View > Chip boxes on the photos, F9) draws a see-through box with its
+position name on every chip and switch block of the PCB photos: dashed when it is the grid cell
+of the position code, solid when the box was set by hand. Even with the boxes off, hovering a
+chip shows its position, type and function (tooltip and status line) and outlines it; a click
+picks it as a click on the drawing does (Details, trace, Back and Forward). On the solder side
+the grid is mirrored. The grid is placed on a photo by the board's four corners: saved in the
+sheet when set by hand, else found in the photo, else the whole picture. **Corners** shows that
+outline. In edit mode, drag a corner handle to where the board's corner is (saved for that
+photo), drag a chip box to move it, drag a box corner to size it, or Shift and a box corner to
+turn it; a box changed by hand is saved in the sheet and wins over the cell. Each change is one
+undo step. See `docs/FORMAT.md`, "pcb".
+
 ## The board
 
 With nothing picked, Details shows the **Board** card: title, machine, card and part numbers, print and ECO

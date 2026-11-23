@@ -127,7 +127,7 @@ namespace RetroSchematic.Tests
                 tools++;
             }
             // 17 sheet tools, 6 bus tools, 7 block tools, 2 signal tools and 13 board tools
-            Assert.That(tools, Is.EqualTo(45));
+            Assert.That(tools, Is.EqualTo(48));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 
@@ -189,6 +189,31 @@ namespace RetroSchematic.Tests
             Assert.That(t.ListSources(), Does.Contain("5. 2A50-files/photos/322049-solder-side-I-old.jpg - solder side [linked]"));
             t.RemovePhoto(5);
             Assert.Throws<McpException>(() => t.AddSource(Path.Combine(TestContext.CurrentContext.TestDirectory, "no-such.png")));
+        }
+
+        /// <summary>
+        /// The chip grid tools on 2A50: the areas are read, a hand-set box wins and is removed
+        /// again, and a photo's corners are set and removed.
+        /// </summary>
+        [Test]
+        public void PcbGridTools_ReadAreas_SetBoxAndCorners()
+        {
+            SheetTools t = Tools();
+            string sheet = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
+            t.OpenSheet(sheet);
+            string grid = t.GetPcbGrid();
+            Assert.That(grid, Does.Contain("Board type: nord10-card").And.Contain("  13D 7442: 97.62,93.5").And.Contain("  1E switch:"));
+            Assert.Throws<McpException>(() => t.SetChipBox("13D", "{\"xMm\":100,\"yMm\":105,\"widthMm\":8,\"heightMm\":20}"), "read-only");
+            t.SetEditMode(true);
+            t.SetChipBox("13D", "{\"xMm\":100,\"yMm\":105,\"widthMm\":8,\"heightMm\":20}");
+            Assert.That(t.GetPcbGrid(), Does.Contain("  13D 7442 (by hand): 96,95"));
+            t.SetChipBox("13D");
+            Assert.That(t.GetPcbGrid(), Does.Contain("  13D 7442: 97.62,93.5"));
+            t.SetPhotoCorners(2, "10 20 30 40 50 60 70 80");
+            Assert.That(t.GetPcbGrid(), Does.Contain(": corners 10,20 30,40 50,60 70,80"));
+            Assert.Throws<McpException>(() => t.SetPhotoCorners(2, "1 2 3"));
+            t.SetPhotoCorners(2);
+            Assert.That(t.GetPcbGrid(), Does.Not.Contain(": corners 10,20"));
         }
 
         private static SheetTools Tools() => new(TestContext.CurrentContext.TestDirectory);

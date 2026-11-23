@@ -183,6 +183,12 @@ namespace RetroSchematic.Model
         public BoardSection? Board { get; set; }
 
         /// <summary>
+        /// The chip grid of the board photos: board type, this board's rows, hand-set chip
+        /// boxes; or null.
+        /// </summary>
+        public PcbLayout? Pcb { get; set; }
+
+        /// <summary>
         /// The original schematic pages the sheet was read from, or null.
         /// </summary>
         public List<SourcePage>? Sources { get; set; }

@@ -1,0 +1,12 @@
+{
+  "id": "nd100-card",
+  "title": "ND-100 card, 367 x 280 mm",
+  "ndSystem": "ND-100",
+  "size": { "widthMm": 367, "heightMm": 280 },
+  "orientation": "Open: which edge is the backplane edge in the catalogue photos is not worked out. In the photos the board is turned so the 280 mm side runs across (portrait, width to height 0.76, matching 280 / 367).",
+  "rowsNote": "Open. In the photos (portrait) the 14- and 16-pin chips lie with their long side across, at steps of 12.7 mm (0.5 inch) down the 367 mm side (agreement 0.73 over 255 chips; centres near 12.4 mm from the top edge of the photo plus whole steps), and in columns about 29 mm apart across the 280 mm side (weaker: agreement 0.60). No ND-100 sheet has been read yet, so how ND's position codes (letter and number) map onto these steps is not known.",
+  "measured": "From the component-side photos of 14 ND-100 boards of 367 x 280 mm in the ND PCB catalogue (2026-11-23), the same way as the NORD-10 grid (catalog/boards/nord10-card.json): board outline against the light background, dark chip bodies placed in mm from the board edges.",
+  "boardsMeasured": [ "322602", "322606", "322609", "322610", "322613", "322615", "322618", "322619", "322620", "322622", "322623", "322624", "322626", "322627" ],
+  "confidence": "open",
+  "note": "No columns or rows are given: the steps are measured, but without an ND-100 drawing to match they cannot be named. To be filled when the first ND-100 card is read."
+}

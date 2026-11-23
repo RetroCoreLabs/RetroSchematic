@@ -5192,6 +5192,18 @@
     },
     "note": "Values given by the owner (2026-11-23). The component-side photo shows the title \"SYNCHRONOUS MODEM BUFFER 1050\" etched on the board; the board number 322049 and print version I are from the photo file names. Imported from the ND PCB catalogue on 2026-11-23 (factSources): the catalogue gives the same part number, print version I, ECO 3, 156 x 149 mm and 2 layers."
   },
+  "pcb": {
+    "template": "nord10-card",
+    "rows": [
+      { "name": "A", "fromMm": 12, "toMm": 41.5 },
+      { "name": "B", "fromMm": 41.5, "toMm": 65.5 },
+      { "name": "C", "fromMm": 65.5, "toMm": 93.5 },
+      { "name": "D", "fromMm": 93.5, "toMm": 120 },
+      { "name": "E", "fromMm": 120, "toMm": 149 }
+    ],
+    "rowsSource": { "kind": "inferred", "document": "component-side photo 322049-component-side-I-old.jpg", "place": "chip bodies measured in mm from the board edges", "confidence": "inferred" },
+    "note": "Rows measured 2026-11-23 from the chip bodies on the old component-side photo (board outline 156 x 149 mm, fingers included): tops near 18, 42, 66, 95 and 119 mm, bottoms near 40, 63, 88, 117 and 141 mm. Each boundary is the middle of the gap between two rows. Matched to the letters by the parts list: 1C 74157, 1D 7474, 3D/3E and 5D/5E 74153, the switch blocks 1E and 15E in the bottom row."
+  },
   "sources": [
     {
       "file": "2A50-files/sources/2A50-sync-modem-buffer-1050-p64.png",

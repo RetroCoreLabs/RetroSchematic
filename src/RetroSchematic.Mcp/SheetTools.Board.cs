@@ -323,6 +323,130 @@ namespace RetroSchematic.Mcp
         private static string Where(SheetEditor e, string file)
             => e.Files.Holds(file) ? " [inside the sheet]" : e.Files.Read(file) != null ? " [linked]" : " [NOT FOUND]";
 
+        /// <summary>
+        /// The chip grid: the board type, the sheet's pcb section, every chip's area in mm and
+        /// each photo's saved corners.
+        /// </summary>
+        /// <returns>
+        /// The grid as text.
+        /// </returns>
+        [McpServerTool(Name = "get_pcb_grid"), Description("The chip grid on the board photos: the board type (catalog/boards, size and columns, how they were measured), the sheet's pcb section (template, rows in mm from the finger edge, hand-set boxes), each chip's and switch block's area in mm on the component side (from its position code, or its hand-set box, which wins), and each photo's saved board corners (pixels). Allowed read-only.")]
+        public string GetPcbGrid()
+        {
+            SheetEditor e = Open();
+            Netlist n = e.Root;
+            string? id = n.Pcb?.Template ?? (n.Board?.NdSystem == "NORD-10" ? "nord10-card" : n.Board?.NdSystem == "ND-100" ? "nd100-card" : null);
+            BoardTemplate? t;
+            try
+            {
+                t = BoardTemplate.Find(e.Catalog?.Folder, id);
+            }
+            catch (NetlistException ex)
+            {
+                throw new McpException(ex.Message, ex);
+            }
+            StringBuilder sb = new();
+            sb.Append("Board type: ").Append(t == null ? "none (" + (id ?? "no template and no ND machine") + ")" : t.Id + ", " + t.Title + ", confidence " + t.Confidence).Append('\n');
+            if (t?.Columns != null)
+                sb.Append(CultureInfo.InvariantCulture, $"Columns {t.Columns.First}-{t.Columns.Last}: centre of column {t.Columns.First} at {t.Columns.FirstCentreMm} mm, {t.Columns.PitchMm} mm apart\n");
+            sb.Append("pcb section: ").Append(n.Pcb == null ? "none" : NetlistReader.ToJson(n.Pcb)).Append('\n');
+            if (t != null)
+            {
+                sb.Append("Areas (mm, component side; x from the left edge, y from the finger edge):\n");
+                for (int i = 0; i < n.Parts.Count; i++)
+                    AppendArea(sb, t, n.Pcb, n.Parts[i].Ref, n.Parts[i].Type);
+                for (int i = 0; n.Switches != null && i < n.Switches.Count; i++)
+                    AppendArea(sb, t, n.Pcb, n.Switches[i].Ref, "switch");
+            }
+            for (int i = 0; n.Photos != null && i < n.Photos.Count; i++)
+            {
+                List<PhotoPoint>? c = n.Photos[i].Corners;
+                sb.Append("Photo ").Append(i + 1).Append(' ').Append(n.Photos[i].File).Append(": corners ")
+                  .Append(c == null ? "not saved (found in the photo, else the whole picture)" : string.Create(CultureInfo.InvariantCulture, $"{c[0].X},{c[0].Y} {c[1].X},{c[1].Y} {c[2].X},{c[2].Y} {c[3].X},{c[3].Y}")).Append('\n');
+            }
+            return sb.ToString();
+        }
+
+        private static void AppendArea(StringBuilder sb, BoardTemplate t, PcbLayout? pcb, string reference, string? type)
+        {
+            if (!PcbGrid.Area(t, pcb, reference, out GridPoint[] c, out bool byHand))
+            {
+                sb.Append("  ").Append(reference).Append(' ').Append(type).Append(": no cell (the code names no column or row of the grid)\n");
+                return;
+            }
+            sb.Append("  ").Append(reference).Append(' ').Append(type).Append(byHand ? " (by hand)" : "").Append(':');
+            for (int i = 0; i < c.Length; i++)
+                sb.Append(CultureInfo.InvariantCulture, $" {c[i].X:0.##},{c[i].Y:0.##}");
+            sb.Append('\n');
+        }
+
+        /// <summary>
+        /// Sets or removes a chip's hand-set box.
+        /// </summary>
+        /// <param name="reference">
+        /// The part's position.
+        /// </param>
+        /// <param name="box">
+        /// The box as JSON, or empty to remove it.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "set_chip_box"), Description("Set a chip's box on the board by hand (edit mode; undoable); it then wins over the grid cell of its position code. JSON {xMm, yMm (the centre, mm on the component side from the left and finger edges), widthMm, heightMm, rotationDeg}. Empty box removes the hand-set box so the cell is used again.")]
+        public string SetChipBox(
+            [Description("The part's position, such as 13D")] string reference,
+            [Description("The box as JSON, e.g. {\"xMm\":101.4,\"yMm\":106,\"widthMm\":7.6,\"heightMm\":20}; empty to remove")] string? box = null)
+            => Run(e =>
+            {
+                if (string.IsNullOrWhiteSpace(box))
+                {
+                    e.RemoveChipBox(reference);
+                    return "Removed the hand-set box of " + reference + "; its grid cell is used.";
+                }
+                ChipBox b = Parse<ChipBox>(box);
+                b.Ref = reference;
+                e.SetChipBox(b);
+                return "Set the box of " + reference + " by hand.";
+            });
+
+        /// <summary>
+        /// Sets or removes a photo's board corners.
+        /// </summary>
+        /// <param name="photo">
+        /// The photo, 1 first.
+        /// </param>
+        /// <param name="corners">
+        /// Eight numbers, or empty.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "set_photo_corners"), Description("Set where the board's four corners are in a photo (edit mode; undoable), in the photo's pixels: top left, top right, bottom right, bottom left of the board as the grid sees it (finger edge at the top; on a solder photo the grid is mirrored for you). Eight numbers 'x1 y1 x2 y2 x3 y3 x4 y4'. Empty removes them (the viewer looks for the board again).")]
+        public string SetPhotoCorners(
+            [Description("The photo number, 1 first (list_sources shows them)")] int photo,
+            [Description("x1 y1 x2 y2 x3 y3 x4 y4, or empty")] string? corners = null)
+            => Run(e =>
+            {
+                if (string.IsNullOrWhiteSpace(corners))
+                {
+                    e.SetPhotoCorners(photo - 1, null);
+                    return "Removed the corners of photo " + photo + ".";
+                }
+                string[] parts = corners.Split(new[] { ' ', ',', ';' }, System.StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length != 8)
+                    throw new McpException("Give eight numbers: x and y of four corners.");
+                GridPoint[] c = new GridPoint[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    if (!double.TryParse(parts[2 * i], NumberStyles.Float, CultureInfo.InvariantCulture, out double x)
+                        || !double.TryParse(parts[(2 * i) + 1], NumberStyles.Float, CultureInfo.InvariantCulture, out double y))
+                        throw new McpException("'" + corners + "' is not eight numbers.");
+                    c[i] = new GridPoint(x, y);
+                }
+                e.SetPhotoCorners(photo - 1, c);
+                return "Set the board corners of photo " + photo + ".";
+            });
+
         private static T Parse<T>(string json)
         {
             try

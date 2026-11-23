@@ -2,25 +2,18 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** the PCB photo grid (first item of the queue), then the datasheets.
+**Next:** the datasheets (first item of the queue).
 
 ## Queue from the 2026-11-23 session (in this order)
 
-- PCB photo grid (owner's final design, 2026-11-23; replaces the earlier per-photo ideas):
-  (1) the grid is defined ONCE per board type, by analysis, in a board-format file
-  (`catalog/boards/nord10-card.json`, `nd100-card.json`): board size in mm and where each
-  column (1, 3, 5 ... as ND numbers them) and row (A, B, C ...) lies, measured from the board
-  edges. Work it out from several photos of each type in the PCB catalogue against the position
-  codes on our drawings (2A50: 13D, 7-8C-D, 19C ...), say how it was measured, mark it
-  inferred; leave a value open when the photos do not show it. (2) Placing the template on a
-  photo = the board outline in it (4 corners): found automatically if that is reliable on the
-  2A50 photos, else the whole image; the corners are dragged by hand and saved per photo; the
-  solder side uses the mirrored template. (3) A chip's area = the grid cell(s) its position code
-  names (7-8C-D spans columns 7-8, rows C-D): hover shows position, type and function; a click
-  picks the part (Details, trace, Back/Forward); an overlay switch draws a themed, see-through
-  named box on each such cell. (4) Each chip's box can be edited by hand (move, resize,
-  corners, rotate); the hand box is saved in the sheet and wins over the cell. Tests: template
-  -> cell rectangles, spanning codes, mirror, corner mapping, hand box over cell, hover -> part.
+- PCB photo grid, open items (the grid itself is done: `catalog/boards/`, the sheet's `pcb`
+  section, the Chips and Corners views): (a) owner's decision - the rows are NOT the same on
+  every NORD-10 board (measured on 26 boards), so each sheet carries its own `pcb.rows` and the
+  board type file gives the columns only; (b) the 2A50 old solder-side photo: the board is not
+  found automatically (the shape found is wrong), so the grid uses the whole picture until its
+  corners are set by hand; (c) the 156 x 179 mm NORD-10 cards are not measured; (d) ND-100:
+  the steps are measured but how ND's position codes name them is open until an ND-100 sheet
+  is read.
 - Later, after the grid: find each chip's exact outline on the photo by analysis and fill in
   the boxes (still editable by hand).
 - Datasheets (owner's request): every chip file gets `datasheets` ({title, url checked to

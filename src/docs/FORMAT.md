@@ -176,6 +176,9 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   `partNumber`, `size` and `layers` moved into `specifications`) and the catalogue's other
   fields were added; only 2A50 used the old names, and it was changed with them.
 
+- `pcb` and `photos[].corners` (2026-11-23): the chip grid on the board photos, see "Board,
+  sources, photos, switches" below. Both format versions accept them.
+
 - `display` (2026-11-23): how this sheet likes to be shown. Display only - it never changes what
   is connected. Every value is optional; a missing one means "use the viewer's default", and a
   value here overrides that default for this sheet only. Both format versions accept it.
@@ -276,6 +279,32 @@ a pin reference splits at its last dot into connector and pin, so it is left for
 `solder`), `version` (print version), `variant` (which board when there are several, such as
 `old` or `new`: the PCB views have a picker for it), `caption`, `source` (where the photo came
 from) and `note`.
+`corners` (four `{ x, y }`, the photo's pixels): where the board's top left, top right, bottom
+right and bottom left corners are, as the chip grid sees the board (finger edge at the top). It
+is set by hand; without it the viewer looks for the board against the light background and,
+when the shape it finds is not the board's, uses the whole picture.
+
+**`pcb`** - the chip grid on the board photos:
+
+| Field | What it is |
+|---|---|
+| `template` | the board type: `catalog/boards/TEMPLATE.json` gives the board size and where the numbered columns lie (`nord10-card`: 156 x 149 mm, column n centred at 9.99 + (n-1) x 7.62 mm). Without it the board's `ndSystem` picks one. |
+| `rows` | this board's rows: `[{ name, fromMm, toMm }]`, mm from the finger edge. The rows differ between boards of one type, so each sheet has its own. |
+| `rowsSource` | where the rows came from, as any source |
+| `boxes` | chip boxes set by hand: `[{ ref, xMm, yMm, widthMm, heightMm, rotationDeg }]`, the centre in mm on the component side. A box wins over the grid cell. |
+| `note` | how it was worked out |
+
+A chip's area is the whole cell or cells its position code names: `13D` is column 13, row D;
+`7-8C-D` spans columns 7 to 8 and rows C to D. The solder side is the same grid mirrored left to
+right. The board type files say how they were measured, on which boards, and how sure that is;
+`nd100-card` has no columns yet (no ND-100 sheet has been read, so how its codes name the
+places is open).
+
+```json
+"pcb": { "template": "nord10-card",
+  "rows": [ { "name": "A", "fromMm": 12, "toMm": 41.5 }, { "name": "B", "fromMm": 41.5, "toMm": 65.5 } ],
+  "boxes": [ { "ref": "13D", "xMm": 101.4, "yMm": 106, "widthMm": 7.6, "heightMm": 20 } ] }
+```
 
 **Where the files are.** In a `.rsc` the `file` fields are links, relative to the sheet file;
 the files stay where they are. In a `.rsx` the files are inside the zip, as `sources/NAME` and

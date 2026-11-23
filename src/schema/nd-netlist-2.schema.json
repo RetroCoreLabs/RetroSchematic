@@ -374,6 +374,87 @@
         }
       }
     },
+    "pcb": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The chip grid on the board photos: the board type (catalog/boards/TEMPLATE.json gives the size and the columns), this board's rows, and boxes set by hand. A chip's area is the cell(s) its position code names (7-8C-D: columns 7 to 8, rows C to D); a hand-set box wins over the cell.",
+      "properties": {
+        "template": {
+          "type": "string",
+          "description": "The board type, such as nord10-card."
+        },
+        "rows": {
+          "type": "array",
+          "description": "This board's rows, mm from the top (finger) edge.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "fromMm",
+              "toMm"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Z]$"
+              },
+              "fromMm": {
+                "type": "number"
+              },
+              "toMm": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "rowsSource": {
+          "$ref": "#/$defs/boardSource"
+        },
+        "boxes": {
+          "type": "array",
+          "description": "Chip boxes set by hand, mm on the component side; each wins over its grid cell.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "xMm",
+              "yMm",
+              "widthMm",
+              "heightMm"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string"
+              },
+              "xMm": {
+                "type": "number",
+                "description": "Centre, mm from the left edge."
+              },
+              "yMm": {
+                "type": "number",
+                "description": "Centre, mm from the top edge."
+              },
+              "widthMm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "heightMm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "rotationDeg": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
     "sources": {
       "type": "array",
       "description": "The original schematic pages. file is relative to the sheet; in a .rsx it is an entry inside the zip (sources/...).",
@@ -458,6 +539,28 @@
           },
           "note": {
             "type": "string"
+          },
+          "corners": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "Where the board's corners are in the photo, in its pixels: top left, top right, bottom right, bottom left of the board as the grid sees it (the finger edge at the top). Set by hand; without it the viewer looks for the board, else uses the whole picture.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "x",
+                "y"
+              ],
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              }
+            }
           }
         }
       }

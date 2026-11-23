@@ -143,7 +143,11 @@ namespace RetroSchematic.Desktop
             Netlist n = _session.Editor.Root;
             string from = Signature(n) + "|" + _session.Editor.Files.Folder;
             if (from == _picturesFrom)
+            {
+                // the parts or the grid may have changed even when the pictures did not
+                RefreshPcb();
                 return;
+            }
             _picturesFrom = from;
 
             _fillingPages = true;
@@ -160,6 +164,7 @@ namespace RetroSchematic.Desktop
             ShowPhoto(BoardSide.Solder);
             PagePickerBar.IsVisible = _view == ViewOriginal && titles.Count > 1;
             FillPhotoPicker();
+            RefreshPcb();
         }
 
         /// <summary>
@@ -197,6 +202,7 @@ namespace RetroSchematic.Desktop
                 _backPick = which;
             ShowPhoto(side);
             FillPhotoPicker();
+            RefreshPcb();
         }
 
         /// <summary>

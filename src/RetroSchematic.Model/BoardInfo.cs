@@ -323,6 +323,13 @@ namespace RetroSchematic.Model
         public DescriptionSource? Source { get; set; }
 
         /// <summary>
+        /// The board's four corners in this photo, in its pixels: top left, top right, bottom
+        /// right, bottom left as seen, with the backplane edge at the top. Set by hand; when
+        /// missing the viewer finds the board itself, else uses the whole picture.
+        /// </summary>
+        public List<PhotoPoint>? Corners { get; set; }
+
+        /// <summary>
         /// Free text: which board, which print version, anything seen on it.
         /// </summary>
         public string? Note { get; set; }

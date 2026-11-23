@@ -74,6 +74,8 @@
         <MenuItem Header="_Original page" Tag="original" Click="OnViewItem" HotKey="F6" InputGesture="F6"/>
         <MenuItem Header="PCB _front (component side)" Tag="front" Click="OnViewItem" HotKey="F7" InputGesture="F7"/>
         <MenuItem Header="PCB b_ack (solder side)" Tag="back" Click="OnViewItem" HotKey="F8" InputGesture="F8"/>
+        <MenuItem Header="Chip bo_xes on the photos" x:Name="ChipBoxesItem" Click="OnChipBoxesItem" ToggleType="CheckBox" HotKey="F9" InputGesture="F9"/>
+        <MenuItem Header="Board _corners on the photos" x:Name="BoardCornersItem" Click="OnBoardCornersItem" ToggleType="CheckBox"/>
         <Separator/>
         <MenuItem Header="_Theme" x:Name="ThemeMenu"/>
       </MenuItem>
@@ -128,6 +130,11 @@
         <ToggleButton x:Name="TbViewOriginal" Classes="toolbar-button view-switch" Tag="original" Click="OnViewButton" Content="Original" IsEnabled="False" ToolTip.Tip="The original schematic page the sheet was read from (F6)" ToolTip.ShowOnDisabled="True"/>
         <ToggleButton x:Name="TbViewFront" Classes="toolbar-button view-switch" Tag="front" Click="OnViewButton" Content="PCB front" IsEnabled="False" ToolTip.Tip="Photo of the component side of the board (F7)" ToolTip.ShowOnDisabled="True"/>
         <ToggleButton x:Name="TbViewBack" Classes="toolbar-button view-switch" Tag="back" Click="OnViewButton" Content="PCB back" IsEnabled="False" ToolTip.Tip="Photo of the solder side of the board (F8)" ToolTip.ShowOnDisabled="True"/>
+        <!-- the chip grid on the photos: boxes named by position, and the board outline -->
+        <ToggleButton x:Name="TbChipBoxes" Classes="toolbar-button view-switch" Click="OnToggleChipBoxes" Content="Chips" IsEnabled="False"
+                      ToolTip.Tip="Draw a see-through, named box on every chip of the PCB photos (dashed: the grid cell of its position code; solid: set by hand). In edit mode drag a box to move it, a box corner to size it, Shift and a corner to turn it." ToolTip.ShowOnDisabled="True"/>
+        <ToggleButton x:Name="TbBoardCorners" Classes="toolbar-button view-switch" Click="OnToggleBoardCorners" Content="Corners" IsEnabled="False"
+                      ToolTip.Tip="Show the board outline the grid is placed on; in edit mode drag a corner to where the board's corner is in the photo (saved per photo)" ToolTip.ShowOnDisabled="True"/>
         <Border Classes="toolbar-divider"/>
         <ComboBox x:Name="ChipBox" Classes="fluent-combobox" Width="140" IsEnabled="False" SelectionChanged="OnChipPicked"
                   VerticalAlignment="Center" ToolTip.Tip="The chip type the Place chip tool puts down"/>
