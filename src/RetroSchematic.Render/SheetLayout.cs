@@ -130,7 +130,10 @@ namespace RetroSchematic.Render
         private const double Diamond = 8;
         private const double LabelOffset = 3;
         private const double PartGap = 48;
-        private const double PinDotRadius = 2;
+        /// <summary>
+        /// The radius of the small ring at a pin end.
+        /// </summary>
+        public const double PinDotRadius = 2;
         private const double CharWidth = 0.6;
 
         /// <summary>
@@ -255,6 +258,9 @@ namespace RetroSchematic.Render
 
             // 7. a dot wherever a wire branches
             AddJunctions(d);
+
+            // 8. no line runs through a circle: every line stops at a circle's edge
+            ClipAtCircles(d);
             return d;
         }
 
@@ -859,7 +865,7 @@ namespace RetroSchematic.Render
                     });
                 }
                 for (int s = 0; s < junctions.Count; s++)
-                    d.Items.Add(new DrawItem { Kind = DrawKind.Circle, Role = DrawRole.Wire, Confidence = worst, Owner = owner, X1 = junctions[s].X, Y1 = junctions[s].Y, X2 = 2 });
+                    d.Items.Add(new DrawItem { Kind = DrawKind.Circle, Role = DrawRole.Junction, Confidence = worst, Owner = owner, X1 = junctions[s].X, Y1 = junctions[s].Y, X2 = LineWidths.JunctionRadius });
             }
         }
 

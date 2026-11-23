@@ -236,12 +236,12 @@ namespace RetroSchematic.Render
             double nameWidth = TextWidth(inst.Name + "  " + b.Name, "", LabelFont);
             double leftNames = 0, rightNames = 0;
             for (int i = 0; i < bySide[0].Count; i++)
-                leftNames = Math.Max(leftNames, TextWidth(bySide[0][i].Name, "", PinFont));
+                leftNames = Math.Max(leftNames, TextWidth(PortLabel(bySide[0][i], style), "", PinFont));
             for (int i = 0; i < bySide[1].Count; i++)
-                rightNames = Math.Max(rightNames, TextWidth(bySide[1][i].Name, "", PinFont));
+                rightNames = Math.Max(rightNames, TextWidth(PortLabel(bySide[1][i], style), "", PinFont));
             // top and bottom pins: each gets room for the wider of its name inside the box and
             // the connection text outside, so neighbours never write over each other
-            double[][] along = { new double[] { 0 }, new double[] { 0 }, Slots(inst, netlist, bySide[2]), Slots(inst, netlist, bySide[3]) };
+            double[][] along = { new double[] { 0 }, new double[] { 0 }, Slots(inst, netlist, bySide[2], style), Slots(inst, netlist, bySide[3], style) };
             double across = Math.Max(along[2][^1], along[3][^1]);
             plan.Width = Snap(Math.Max(Math.Max(72, nameWidth + 12), Math.Max(leftNames + rightNames + 24, across)));
             // the header band across the top holds the instance and block name; the side pins
@@ -273,7 +273,7 @@ namespace RetroSchematic.Render
                             pp.EdgeX = Snap(along[3][i]); pp.EdgeY = plan.Height; pp.EndX = pp.EdgeX; pp.EndY = plan.Height + PinOut;
                             break;
                     }
-                    pp.Connected = Connected(inst, netlist, port);
+                    pp.Connected = Connected(inst, netlist, port, style);
                     if (port.Signals.Count == 1 && (side == PortSide.Left || side == PortSide.Right))
                     {
                         string at = PortEnd(inst.Name, port.Name);
@@ -306,7 +306,39 @@ namespace RetroSchematic.Render
         /// What a port is connected to on this level, as short text: one signal's key, or for a
         /// bus port the first and last (BD0_0 .. BD15_0, 16); empty when not connected.
         /// </summary>
-        private static string Connected(BlockInstance inst, Netlist netlist, BlockPort port)
+        /// <summary>
+        /// A port's name as written inside its box, in the chosen name style: a port named for
+        /// an active-low signal (CL_0, BA_0) is /CL, ~CL or CL_0; a bus port adds [n:0]. The
+        /// port's own name in the file never changes.
+        /// </summary>
+        /// <param name="port">
+        /// The port.
+        /// </param>
+        /// <param name="style">
+        /// How names are written.
+        /// </param>
+        /// <returns>
+        /// The text.
+        /// </returns>
+        private static string PortLabel(BlockPort port, SignalNameStyle style)
+        {
+            string name = port.Name;
+            ActiveLevel? level = SignalNames.Parse(name, out string bare);
+            // a port named without a level mark takes the level of the signal it carries
+            if (level == null && port.Signals.Count > 0 && port.Signals[0].Active != null && port.Signals[0].Active != ActiveLevel.None)
+            {
+                level = port.Signals[0].Active;
+                if (style == SignalNameStyle.Subscript)
+                    name = bare + (level == ActiveLevel.High ? "_1" : "_0");
+            }
+            if (level != null && style != SignalNameStyle.Subscript)
+                name = SignalNames.Format(bare, level.Value, style, out _);
+            if (port.Signals.Count > 1)
+                name += "[" + (port.Signals.Count - 1).ToString(CultureInfo.InvariantCulture) + ":0]";
+            return name;
+        }
+
+        private static string Connected(BlockInstance inst, Netlist netlist, BlockPort port, SignalNameStyle style)
         {
             for (int c = 0; inst.Connections != null && c < inst.Connections.Count; c++)
             {
@@ -317,8 +349,9 @@ namespace RetroSchematic.Render
                 Net? last = NetlistReader.FindNet(netlist.Nets, pc.Nets[^1]);
                 if (first == null || last == null)
                     return "";
-                return pc.Nets.Count == 1 ? NetKey(first)
-                    : NetKey(first) + " .. " + NetKey(last) + ", " + pc.Nets.Count.ToString(CultureInfo.InvariantCulture);
+                // one line of text, in the chosen name style
+                return pc.Nets.Count == 1 ? SignalNames.Line(first, style)
+                    : SignalNames.Line(first, style) + " .. " + SignalNames.Line(last, style) + ", " + pc.Nets.Count.ToString(CultureInfo.InvariantCulture);
             }
             return "";
         }
@@ -328,15 +361,15 @@ namespace RetroSchematic.Render
         /// as the last entry, the width all of them need. Each pin's room is the wider of its
         /// name (inside the box) and its connection text (outside), plus a gap.
         /// </summary>
-        private static double[] Slots(BlockInstance inst, Netlist netlist, List<BlockPort> ports)
+        private static double[] Slots(BlockInstance inst, Netlist netlist, List<BlockPort> ports, SignalNameStyle style)
         {
             double[] at = new double[ports.Count + 1];
             double x = 12;
             for (int i = 0; i < ports.Count; i++)
             {
                 BlockPort p = ports[i];
-                string name = p.Name + (p.Signals.Count > 1 ? "[" + (p.Signals.Count - 1).ToString(CultureInfo.InvariantCulture) + ":0]" : "");
-                double room = Math.Max(TextWidth(name, "", PinFont), TextWidth(Connected(inst, netlist, p), "", SignalFont)) + 12;
+                string name = PortLabel(p, style);
+                double room = Math.Max(TextWidth(name, "", PinFont), TextWidth(Connected(inst, netlist, p, style), "", SignalFont)) + 12;
                 at[i] = x + (room / 2);
                 x += room;
             }
@@ -382,7 +415,7 @@ namespace RetroSchematic.Render
                 if (options.ShowPortArrows)
                     PortArrow(d, portOwner, pp.Port.Direction, pp.EdgeX, pp.EdgeY, pp.EndX, pp.EndY);
                 // the port name inside the box, beside its pin
-                string name = pp.Port.Name + (bus ? "[" + (pp.Port.Signals.Count - 1).ToString(CultureInfo.InvariantCulture) + ":0]" : "");
+                string name = PortLabel(pp.Port, d.NameStyle);
                 switch (pp.Side)
                 {
                     case PortSide.Left:

@@ -91,17 +91,16 @@ namespace RetroSchematic.Tests
                 if (dot.Role != DrawRole.Junction)
                     continue;
                 dots++;
-                // at least three ways leave the dot along its own signal's wires
+                // at least three ways leave the dot along its own signal's wires; each wire stops
+                // at the dot's edge, it never runs through it
                 int ways = 0;
                 for (int j = 0; j < d.Items.Count; j++)
                 {
                     DrawItem w = d.Items[j];
                     if (w.Role != DrawRole.Wire || w.Kind != DrawKind.Line || w.Owner != dot.Owner)
                         continue;
-                    if (Same(w.X1, w.Y1, dot) || Same(w.X2, w.Y2, dot))
+                    if (AtEdge(w.X1, w.Y1, dot) || AtEdge(w.X2, w.Y2, dot))
                         ways++;
-                    else if (OnMiddle(w, dot.X1, dot.Y1))
-                        ways += 2;
                 }
                 Assert.That(ways, Is.GreaterThanOrEqualTo(3), "dot at " + dot.X1 + "," + dot.Y1 + " on " + dot.Owner);
             }
@@ -189,15 +188,7 @@ namespace RetroSchematic.Tests
             return n;
         }
 
-        private static bool Same(double x, double y, DrawItem dot) => Math.Abs(x - dot.X1) < 0.05 && Math.Abs(y - dot.Y1) < 0.05;
-
-        private static bool OnMiddle(DrawItem s, double x, double y)
-        {
-            if (Math.Abs(s.X1 - s.X2) < 0.05 && Math.Abs(x - s.X1) < 0.05)
-                return y > Math.Min(s.Y1, s.Y2) && y < Math.Max(s.Y1, s.Y2);
-            if (Math.Abs(s.Y1 - s.Y2) < 0.05 && Math.Abs(y - s.Y1) < 0.05)
-                return x > Math.Min(s.X1, s.X2) && x < Math.Max(s.X1, s.X2);
-            return false;
-        }
+        private static bool AtEdge(double x, double y, DrawItem dot)
+            => Math.Abs(Math.Sqrt(((x - dot.X1) * (x - dot.X1)) + ((y - dot.Y1) * (y - dot.Y1))) - dot.X2) < 0.05;
     }
 }

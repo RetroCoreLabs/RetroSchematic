@@ -64,7 +64,8 @@ namespace RetroSchematic.Tests
         {
             Netlist n = NetlistReader.ReadFile(Demo);
             SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData);
-            // NAB joins 1A.3, 3A.1 and 2A.2: wires must touch all three pin ends
+            // NAB joins 1A.3, 3A.1 and 2A.2: wires must reach all three pin ends (they stop at the
+            // edge of the pin-end ring, never running through it)
             List<DrawItem> wires = Wires(d, "net:NAB_0");
             Assert.That(wires.Count, Is.GreaterThanOrEqualTo(2));
             for (int i = 0; i < wires.Count; i++)
@@ -76,7 +77,7 @@ namespace RetroSchematic.Tests
                 bool touched = false;
                 for (int i = 0; i < wires.Count; i++)
                 {
-                    if ((wires[i].X1 == at.X && wires[i].Y1 == at.Y) || (wires[i].X2 == at.X && wires[i].Y2 == at.Y))
+                    if (OnRing(wires[i].X1, wires[i].Y1, at) || OnRing(wires[i].X2, wires[i].Y2, at))
                         touched = true;
                 }
                 Assert.That(touched, "no wire ends on pin " + pins[p]);
@@ -92,6 +93,9 @@ namespace RetroSchematic.Tests
             }
             Assert.That(irqLabels, Is.EqualTo(2), "a diamond at 5A.3 and at 5A.6");
         }
+
+        private static bool OnRing(double x, double y, DrawPoint at)
+            => System.Math.Abs(System.Math.Sqrt(((x - at.X) * (x - at.X)) + ((y - at.Y) * (y - at.Y))) - SheetLayout.PinDotRadius) < 0.01;
 
         [Test]
         public void AWireToAnOpenPin_IsOpen_AndToAnInferredPin_IsInferred()

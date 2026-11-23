@@ -390,6 +390,14 @@ namespace RetroSchematic.Render
     public sealed class DrawItem
     {
         /// <summary>
+        /// A copy of this step (the path, if any, is shared: paths are never changed after drawing).
+        /// </summary>
+        /// <returns>
+        /// The copy.
+        /// </returns>
+        public DrawItem Clone() => (DrawItem)MemberwiseClone();
+
+        /// <summary>
         /// What kind of step this is.
         /// </summary>
         public DrawKind Kind;

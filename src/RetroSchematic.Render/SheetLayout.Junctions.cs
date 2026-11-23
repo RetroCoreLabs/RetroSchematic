@@ -40,6 +40,14 @@ namespace RetroSchematic.Render
                 }
                 list.Add(it);
             }
+            // the router already marks the branches it made; those are not marked twice
+            HashSet<(string, long, long)> have = new();
+            for (int i = 0; i < d.Items.Count; i++)
+            {
+                DrawItem it = d.Items[i];
+                if (it.Kind == DrawKind.Circle && it.Role == DrawRole.Junction)
+                    have.Add((it.Owner, (long)Math.Round(it.X1 * 10), (long)Math.Round(it.Y1 * 10)));
+            }
             List<DrawItem> dots = new();
             foreach (KeyValuePair<string, List<DrawItem>> kv in byNet)
             {
@@ -67,7 +75,7 @@ namespace RetroSchematic.Render
                 }
                 foreach (KeyValuePair<(long, long), int> w in ways)
                 {
-                    if (w.Value < 3)
+                    if (w.Value < 3 || have.Contains((kv.Key, w.Key.Item1, w.Key.Item2)))
                         continue;
                     dots.Add(new DrawItem
                     {
