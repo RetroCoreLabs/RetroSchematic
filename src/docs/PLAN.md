@@ -5,13 +5,25 @@ Outstanding work only. Finished items are deleted.
 **Next:** decide on 2A50's BD buses (section 7), then add the parts the catalogue cannot name
 yet (see `docs/2A50-catalogue-map.md`).
 
+## Queue from the 2026-11-23 session (in this order)
+
+- Real connector wires: draw wires from backplane (P.n) and front (F.n) connector pins to the chip
+  pins, routed round parts; BD lines join the BD bus with named entries when buses are shown; a
+  tag with a whole diamond only where a wire cannot route. Test: every connector pin with a net to
+  other pins has a drawn wire, bus entry or tag.
+- Front connector: tag diamonds miss pixels. Diamonds are paths and the circle-cut step only
+  cuts lines, so the cause is still to be found; test that every diamond keeps all 4 edges (2A50,
+  demo, blocks demo, both symbol styles).
+- Thinner outlines (gates and chip boxes about 1.7 x wire width) and a "Line width" setting.
+- Chip catalogue as data: inverted pin names as a flag (script, list of changes), pin function
+  texts, behaviour fields (output enable, clock edge, async set/clear, output type, delays,
+  sequential state), "How it works" card in Details, mux drawn in two halves, truth-table tests.
+- Logic simulator and MCP tools (section 9), first test the ICW 2215 octal write on 2A50.
+
 ## 0. Sheet 2A50 - what the wire reading left open
 
 - ICW with bit 4 and bits 0/1 in the same write: the clear (CL1) and the enable clock (ICW0
   rising) end together; which wins is not on the drawing (`docs/2A50-interrupts.md`).
-- The owner's LEV12 back-trace in the viewer stopped at net N_3B_8 (3B pin 8 to 7B pin 11). The
-  netlist is complete there; check whether the trace steps back through a gate of kind `other`
-  (the 7451 at 3B).
 - Front connector pins (circled 81-95 with V.24 names) are written `F.` as `inferred`; the
   supply pins circled 62/63 and 66/67 are taken as backplane pins, also `inferred`.
 - Switches 15E and 1E, resistors and capacitors have no place in format version 1; they are
