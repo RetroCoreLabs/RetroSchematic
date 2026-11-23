@@ -52,6 +52,8 @@ Switch on Edit > Edit mode first; a sheet always opens read-only.
 | Drag from one pin dot to another | connects the two pins: a new signal, or the free pin joins the other's signal |
 | Drag a chip | moves it; only the drawing changes, not the signals |
 | Delete | deletes the picked chip or signal, or takes the picked pin off its signal |
+| Edit > New bus, or the Bus button | name a bus, tick its signals (a filter box, and a pattern box such as BD*_0 or IDATA0-7), OK, then click out its path on the sheet; click the last point again or press Enter to finish. Drawing only: connections never change |
+| Pick a bus | the Bus members panel: add or remove a signal, redraw the path, delete the bus |
 
 A pin is on one signal only: joining two pins that are already on different signals is refused,
 and the reason shows in the status bar. A chip's gates come from the plain-gate formulas in its
@@ -65,7 +67,7 @@ All of this is done by `RetroSchematic.Render/SheetEditor.cs` (the changes) and 
 `RetroSchematic.Mcp` (`retroschematic-mcp.exe`) offers the same changes to an MCP client over
 standard input and output: `new_sheet`, `open_sheet` (read-only unless `edit` is true),
 `set_edit_mode`, `list_parts`, `list_nets`, `place_part`, `move_part`, `connect_pins`,
-`disconnect_pin`, `delete`, `undo`, `redo`, `save_sheet`. It uses the same `SheetEditor`, so the
+`disconnect_pin`, `delete`, `create_bus`, `set_bus_path`, `add_bus_member`, `remove_bus_member`, `delete_bus`, `list_buses`, `undo`, `redo`, `save_sheet`. It uses the same `SheetEditor`, so the
 rules are the same as in the window.
 
 ## Themes

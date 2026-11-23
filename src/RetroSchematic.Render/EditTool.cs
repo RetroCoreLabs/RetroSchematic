@@ -27,6 +27,12 @@ namespace RetroSchematic.Render
         /// Moving a chip.
         /// </summary>
         Move,
+
+        /// <summary>
+        /// Clicking out a bus path: each click adds a bend point; clicking the last point again
+        /// (a double-click) or Enter finishes it.
+        /// </summary>
+        BusPath,
     }
 
     /// <summary>
@@ -49,6 +55,7 @@ namespace RetroSchematic.Render
     public sealed class EditTool
     {
         private readonly SheetSession _session;
+        private readonly System.Collections.Generic.List<DrawPoint> _busPoints = new();
         private string _from = "";
 
         /// <summary>
@@ -100,6 +107,104 @@ namespace RetroSchematic.Render
         public string Message { get; private set; } = "";
 
         /// <summary>
+        /// The bus whose path is being clicked out, or null.
+        /// </summary>
+        public string? BusPathFor { get; private set; }
+
+        /// <summary>
+        /// The bend points clicked so far for <see cref="BusPathFor"/> (drawing units, on the grid).
+        /// </summary>
+        public System.Collections.Generic.IReadOnlyList<DrawPoint> BusPoints => _busPoints;
+
+        /// <summary>
+        /// Starts clicking out the path of a bus. Each press adds a bend point on the grid, made
+        /// level or upright from the point before; pressing the last point again (a double-click)
+        /// or <see cref="FinishBusPath"/> stores the path; Escape drops it.
+        /// </summary>
+        /// <param name="name">
+        /// The bus.
+        /// </param>
+        public void StartBusPath(string name)
+        {
+            Message = "";
+            if (_session.Editor.ReadOnly)
+            {
+                Message = "The sheet is open read-only; switch to edit mode first.";
+                return;
+            }
+            if (_session.Editor.FindBus(name) == null)
+            {
+                Message = "There is no bus " + name + ".";
+                return;
+            }
+            BusPathFor = name;
+            _busPoints.Clear();
+            Gesture = EditGesture.BusPath;
+            Message = "Click the path of bus " + name + "; click the last point again (or press Enter) to finish, Esc to stop.";
+        }
+
+        /// <summary>
+        /// Stores the bus path clicked out so far (needs two points or more) and stops.
+        /// </summary>
+        public void FinishBusPath()
+        {
+            string? name = BusPathFor;
+            if (name == null)
+                return;
+            BusPathFor = null;
+            Gesture = EditGesture.None;
+            if (_busPoints.Count < 2)
+            {
+                Message = "A bus path needs two points or more; nothing was changed.";
+                _busPoints.Clear();
+                return;
+            }
+            System.Collections.Generic.List<RetroSchematic.Model.Point> mm = new();
+            for (int i = 0; i < _busPoints.Count; i++)
+                mm.Add(new RetroSchematic.Model.Point { X = SheetLayout.ToMm(_busPoints[i].X), Y = SheetLayout.ToMm(_busPoints[i].Y) });
+            _busPoints.Clear();
+            Try(() =>
+            {
+                _session.Editor.SetBusPath(name, mm);
+                _session.Select("bus:" + name);
+                Message = "Bus " + name + " drawn.";
+                for (int i = 0; i < _session.Drawing.BusProblems.Count; i++)
+                {
+                    if (_session.Drawing.BusProblems[i].StartsWith(name + ":", StringComparison.Ordinal))
+                        Message += " " + _session.Drawing.BusProblems[i] + ".";
+                }
+            });
+        }
+
+        private void AddBusPoint(double x, double y)
+        {
+            double step = WireRouter.Step;
+            double gx = Math.Round(x / step) * step, gy = Math.Round(y / step) * step;
+            if (_busPoints.Count > 0)
+            {
+                DrawPoint last = _busPoints[^1];
+                // a press on (or within a grid step of) the last point finishes the path
+                if (Math.Abs(x - last.X) <= step && Math.Abs(y - last.Y) <= step)
+                {
+                    FinishBusPath();
+                    return;
+                }
+                // level or upright: keep the larger of the two moves
+                if (Math.Abs(gx - last.X) >= Math.Abs(gy - last.Y))
+                    gy = last.Y;
+                else
+                    gx = last.X;
+                if (gx == last.X && gy == last.Y)
+                {
+                    FinishBusPath();
+                    return;
+                }
+            }
+            _busPoints.Add(new DrawPoint(gx, gy));
+            Current = new DrawPoint(gx, gy);
+        }
+
+        /// <summary>
         /// The mouse button went down at a point.
         /// </summary>
         /// <param name="x">
@@ -111,6 +216,11 @@ namespace RetroSchematic.Render
         public void PointerDown(double x, double y)
         {
             Message = "";
+            if (BusPathFor != null)
+            {
+                AddBusPoint(x, y);
+                return;
+            }
             Gesture = EditGesture.None;
             if (TraceMode)
             {
@@ -178,6 +288,8 @@ namespace RetroSchematic.Render
         public void PointerUp(double x, double y)
         {
             EditGesture g = Gesture;
+            if (g == EditGesture.BusPath)
+                return;
             Gesture = EditGesture.None;
             if (g == EditGesture.Wire)
             {
@@ -248,6 +360,8 @@ namespace RetroSchematic.Render
         public void Cancel()
         {
             PlaceType = null;
+            BusPathFor = null;
+            _busPoints.Clear();
             _session.Trace("");
             Gesture = EditGesture.None;
             Message = "";

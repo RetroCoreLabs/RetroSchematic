@@ -765,6 +765,29 @@ namespace RetroSchematic.Render
             return list;
         }
 
+        /// <summary>
+        /// Every signal's key (BD15_0) whose name contains the filter (case does not matter), in
+        /// sheet order, for the New bus dialog.
+        /// </summary>
+        /// <param name="filter">
+        /// The text to look for; empty lists every signal.
+        /// </param>
+        /// <returns>
+        /// The keys.
+        /// </returns>
+        public List<string> SignalKeys(string filter)
+        {
+            List<string> list = new();
+            string f = filter.Trim();
+            for (int i = 0; i < Netlist.Nets.Count; i++)
+            {
+                string key = SheetLayout.NetKey(Netlist.Nets[i]);
+                if (f.Length == 0 || Has(key, f))
+                    list.Add(key);
+            }
+            return list;
+        }
+
         private string DescribeBus(string name)
         {
             BusLine? bus = Editor.FindBus(name);

@@ -243,7 +243,17 @@ namespace RetroSchematic.Desktop.Controls
             if (!withGesture || _tool == null)
                 return;
             Pen preview = new(lit, 1.5, new DashStyle(new double[] { 3, 3 }, 0));
-            if (_tool.Gesture == EditGesture.Wire)
+            if (_tool.Gesture == EditGesture.BusPath)
+            {
+                // the bus path clicked so far, and a line on to the pointer
+                System.Collections.Generic.IReadOnlyList<DrawPoint> pts = _tool.BusPoints;
+                Pen bus = new(lit, LineWidths.Bus, new DashStyle(new double[] { 3, 3 }, 0));
+                for (int i = 1; i < pts.Count; i++)
+                    context.DrawLine(bus, new Point(pts[i - 1].X, pts[i - 1].Y), new Point(pts[i].X, pts[i].Y));
+                if (pts.Count > 0)
+                    context.DrawLine(preview, new Point(pts[^1].X, pts[^1].Y), new Point(_tool.Current.X, _tool.Current.Y));
+            }
+            else if (_tool.Gesture == EditGesture.Wire)
                 context.DrawLine(preview, new Point(_tool.Start.X, _tool.Start.Y), new Point(_tool.Current.X, _tool.Current.Y));
             else if (_tool.Gesture == EditGesture.Move && session.Selected.Length > 0)
             {
@@ -342,6 +352,13 @@ namespace RetroSchematic.Desktop.Controls
             {
                 _tool.DeleteSelected();
                 Report();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Enter && _tool.BusPathFor != null)
+            {
+                _tool.FinishBusPath();
+                Report();
+                InvalidateVisual();
                 e.Handled = true;
             }
             else if (e.Key == Key.Escape)

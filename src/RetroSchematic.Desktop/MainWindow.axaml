@@ -32,6 +32,9 @@
         <MenuItem Header="_Fix the picked signal's wire path" Click="OnFixWire" x:Name="FixWireItem" IsEnabled="False"
                   ToolTip.Tip="Keep this wire exactly where it is now; it is saved with the sheet"/>
         <MenuItem Header="Route the picked signal _automatically again" Click="OnFreeWire" x:Name="FreeWireItem" IsEnabled="False"/>
+        <Separator/>
+        <MenuItem Header="New _bus..." Click="OnNewBus" x:Name="NewBusItem" IsEnabled="False"
+                  ToolTip.Tip="Name a bus, tick its signals, then click out its path (drawing only)"/>
       </MenuItem>
       <MenuItem Header="_View">
         <MenuItem Header="_ND 1976 symbols" x:Name="NdStyleItem" Click="OnNdStyle" ToggleType="Radio"/>
@@ -65,7 +68,7 @@
         <ToggleButton x:Name="TbSelect" Classes="toolbar-button" Click="OnToolSelect" ToolTip.Tip="Select: click to pick, drag a chip to move it (in edit mode)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconSelect}"/></ToggleButton>
         <ToggleButton x:Name="TbPlace" Classes="toolbar-button" Click="OnToolPlace" IsEnabled="False" ToolTip.Tip="Place chip: pick the type in the box on the right, then click on the sheet (edit mode)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPlaceChip}"/></ToggleButton>
         <ToggleButton x:Name="TbWire" Classes="toolbar-button" Click="OnToolWire" IsEnabled="False" ToolTip.Tip="Wire: drag from one pin to another (edit mode)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconWire}"/></ToggleButton>
-        <ToggleButton x:Name="TbBus" Classes="toolbar-button" IsEnabled="False" ToolTip.Tip="Bus: draw a named bus line (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBus}"/></ToggleButton>
+        <ToggleButton x:Name="TbBus" Classes="toolbar-button" Click="OnNewBus" IsEnabled="False" ToolTip.Tip="New bus: name it, tick its signals, then click out its path; click the last point again to finish (edit mode). Drawing only - connections never change." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBus}"/></ToggleButton>
         <ToggleButton x:Name="TbTrace" Classes="toolbar-button" Click="OnToolTrace" IsEnabled="False" ToolTip.Tip="Trace: click a wire, label or pin to show the whole signal; Esc or empty paper clears. Works in read-only mode." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconTrace}"/></ToggleButton>
         <Border Classes="toolbar-divider"/>
         <Button x:Name="TbMakeBlock" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Make block from the selection (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconMakeBlock}"/></Button>
@@ -130,6 +133,21 @@
         <DockPanel>
           <TextBlock DockPanel.Dock="Top" Classes="fluent-text-header" Text="Details" Margin="0,0,0,8"/>
           <!-- the traced signal and its pins; clicking a pin centres the drawing on it -->
+          <!-- the picked bus and its signals; every change goes through SheetEditor -->
+          <StackPanel DockPanel.Dock="Bottom" x:Name="BusPanel" IsVisible="False" Margin="0,8,0,0" Spacing="4">
+            <TextBlock x:Name="BusTitle" Classes="fluent-text-header"/>
+            <ListBox x:Name="BusMemberList" MaxHeight="220"
+                     Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+            <DockPanel>
+              <Button DockPanel.Dock="Right" Classes="fluent-button" Content="Add" Click="OnBusAdd" Margin="4,0,0,0"/>
+              <TextBox x:Name="BusAddBox" Classes="fluent-textbox" Watermark="signal, e.g. BD15_0"/>
+            </DockPanel>
+            <StackPanel Orientation="Horizontal" Spacing="4">
+              <Button Classes="fluent-button" Content="Remove picked" Click="OnBusRemove"/>
+              <Button Classes="fluent-button" Content="Redraw path" Click="OnBusRedraw"/>
+              <Button Classes="fluent-button" Content="Delete bus" Click="OnBusDelete"/>
+            </StackPanel>
+          </StackPanel>
           <StackPanel DockPanel.Dock="Bottom" x:Name="TracePanel" IsVisible="False" Margin="0,8,0,0">
             <TextBlock x:Name="TraceTitle" Classes="fluent-text-header"/>
             <ListBox x:Name="TraceList" MaxHeight="260" SelectionChanged="OnTracePinPicked"

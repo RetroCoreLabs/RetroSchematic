@@ -157,6 +157,10 @@ namespace RetroSchematic.Desktop
             TbEditMode.IsChecked = editing;
             TbPlace.IsEnabled = ChipBox.IsEnabled;
             TbWire.IsEnabled = editing;
+            TbBus.IsEnabled = editing;
+            NewBusItem.IsEnabled = editing;
+            TbBus.IsChecked = Canvas.Tool?.BusPathFor != null;
+            ShowBusPanel();
             // leaving edit mode drops an editing tool back to Select (Trace stays: it works read-only)
             if (!editing && (TbPlace.IsChecked == true || TbWire.IsChecked == true))
                 PickTool(TbSelect);
@@ -489,6 +493,79 @@ namespace RetroSchematic.Desktop
             }
             ShowEditState();
         }
+
+        /// <summary>
+        /// Opens the New bus dialog; when a bus is made, the canvas starts clicking out its path.
+        /// </summary>
+        /// <returns>
+        /// The dialog, already shown (the tests drive it directly), or null outside edit mode.
+        /// </returns>
+        public NewBusWindow? OpenNewBusDialog()
+        {
+            if (_session == null || _session.Editor.ReadOnly)
+            {
+                StatusText.Text = "Switch on edit mode to make a bus.";
+                TbBus.IsChecked = false;
+                return null;
+            }
+            NewBusWindow dialog = new(_session);
+            dialog.Closed += (s, a) =>
+            {
+                if (dialog.Created != null && Canvas.Tool != null)
+                {
+                    Canvas.Tool.StartBusPath(dialog.Created);
+                    OnToolMessage(Canvas.Tool.Message);
+                }
+                ShowEditState();
+            };
+            dialog.Show(this);
+            return dialog;
+        }
+
+        private void OnNewBus(object? sender, RoutedEventArgs e) => OpenNewBusDialog();
+
+        private void ShowBusPanel()
+        {
+            string bus = _session != null && _session.Selected.StartsWith("bus:", StringComparison.Ordinal) ? _session.Selected.Substring(4) : "";
+            BusPanel.IsVisible = bus.Length > 0 && _session!.Editor.FindBus(bus) != null;
+            if (!BusPanel.IsVisible)
+                return;
+            BusTitle.Text = "Bus " + bus + " members";
+            BusMemberList.ItemsSource = _session!.BusMembers(bus);
+        }
+
+        private void BusCommand(Action<SheetEditor, string> change)
+        {
+            if (_session == null || !_session.Selected.StartsWith("bus:", StringComparison.Ordinal))
+                return;
+            try
+            {
+                change(_session.Editor, _session.Selected.Substring(4));
+            }
+            catch (SheetEditException ex)
+            {
+                StatusText.Text = ex.Message;
+            }
+            ShowEditState();
+        }
+
+        private void OnBusAdd(object? sender, RoutedEventArgs e) => BusCommand((ed, bus) => ed.AddBusMember(bus, (BusAddBox.Text ?? "").Trim()));
+
+        private void OnBusRemove(object? sender, RoutedEventArgs e)
+            => BusCommand((ed, bus) =>
+            {
+                if (BusMemberList.SelectedItem is string key)
+                    ed.RemoveBusMember(bus, key);
+            });
+
+        private void OnBusDelete(object? sender, RoutedEventArgs e) => BusCommand((ed, bus) => ed.DeleteBus(bus));
+
+        private void OnBusRedraw(object? sender, RoutedEventArgs e)
+            => BusCommand((ed, bus) =>
+            {
+                Canvas.Tool?.StartBusPath(bus);
+                StatusText.Text = Canvas.Tool?.Message ?? "";
+            });
 
         private void OnExit(object? sender, RoutedEventArgs e) => Close();
 
