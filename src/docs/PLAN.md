@@ -17,7 +17,7 @@ yet (see `docs/2A50-catalogue-map.md`).
   with up L->H / down H->L, async rows; muxes 74153/74157/74S157 with the sheet's own mapping
   and the two-halves box with the "select (both halves)" band); (6) tests: generated truth
   tables equal the datasheets' function tables (test data with page citations), a 7474
-  sequence test. 74S157 and COM 2601 (both on 2A50) still have no chip file.
+  sequence test.
 - Logic simulator and MCP tools (section 9), first test the ICW 2215 octal write on 2A50.
 
 ## 0. Sheet 2A50 - what the wire reading left open
@@ -38,8 +38,8 @@ NOR, NOT, AND, OR and XOR are drawn in both styles from one pin table, checked b
 
 - a datasheet for 74118 (its chip file has the title only), VP5, VP12 and DC1035T, and a real
   74H datasheet for 74H11 and 74H21 (they carry LS figures);
-- parts on sheet 2A50 with no catalogue entry: 7451 (only inside the 7450 entry), 74S157,
-  COM 2601, and VP12/12's pins;
+- parts on sheet 2A50 with no catalogue entry: 7451 (only inside the 7450 entry) and VP12/12's
+  pins; COM 2601 has a chip file but no runnable behaviour (its datasheet leaves gaps);
 - the candidates folder and process for symbols found on drawings but not in the manual.
 
 ### Layout

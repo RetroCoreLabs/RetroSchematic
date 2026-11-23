@@ -1,0 +1,270 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74S157",
+  "family": "74S",
+  "title": "Quadruple 2-line-to-1-line data selector/multiplexer, Schottky",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54157 ... SN74S157, SN74S158, bulletin DL-S 7611847 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-181 (function table and pin-out, shared by all '157 types), 7-183 ('S157 block diagram), 7-187 ('S157 figures) (PDF pages 180, 182, 186)",
+      "familyUsed": "SN74S157"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "SELECT",
+      "role": "input",
+      "text": "low selects the A inputs, high the B inputs"
+    },
+    {
+      "pin": 15,
+      "name": "STROBE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "7",
+        "9",
+        "12"
+      ],
+      "whenInactive": "low"
+    },
+    {
+      "pin": 2,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "4B",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4",
+      "formula": "1Y = STROBE' AND ((SELECT' AND 1A) OR (SELECT AND 1B))",
+      "text": "1Y follows 1A when SELECT is low and 1B when SELECT is high; STROBE high forces it low."
+    },
+    {
+      "output": "7",
+      "formula": "2Y = STROBE' AND ((SELECT' AND 2A) OR (SELECT AND 2B))",
+      "text": "2Y follows 2A when SELECT is low and 2B when SELECT is high; STROBE high forces it low."
+    },
+    {
+      "output": "9",
+      "formula": "3Y = STROBE' AND ((SELECT' AND 3A) OR (SELECT AND 3B))",
+      "text": "3Y follows 3A when SELECT is low and 3B when SELECT is high; STROBE high forces it low."
+    },
+    {
+      "output": "12",
+      "formula": "4Y = STROBE' AND ((SELECT' AND 4A) OR (SELECT AND 4B))",
+      "text": "4Y follows 4A when SELECT is low and 4B when SELECT is high; STROBE high forces it low."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 20,
+    "outputHighMaxCurrentMa": -1,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74S157 (7-187): VOH 2.7 V min at -1 mA, VOL 0.5 V max at 20 mA; S or G input low-level current -4 mA, A or B input -2 mA (an S/G input is two loads)."
+  },
+  "timing": [
+    {
+      "from": "Data",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 5,
+      "maxNs": 7.5,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "Data",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 4.5,
+      "maxNs": 6.5,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "Strobe",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 8.5,
+      "maxNs": 12.5,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "Strobe",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7.5,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "Select",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 9.5,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "Select",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 9.5,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The switching table (7-187) was read from the PDF text layer, where the 'S157 and 'S158 columns alternate; pairs taken in that order.",
+    "No minimum propagation delays printed."
+  ],
+  "notes": "This file describes the 74S157 (true outputs). Same function table as the 74157.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-181, 7-183, 7-187 (PDF pages 180, 182, 186) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = STROBE' AND ((SELECT' AND 1A) OR (SELECT AND 1B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-183, 7-187 (PDF pages 180, 182, 186) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = STROBE' AND ((SELECT' AND 2A) OR (SELECT AND 2B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-183, 7-187 (PDF pages 180, 182, 186) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = STROBE' AND ((SELECT' AND 3A) OR (SELECT AND 3B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-183, 7-187 (PDF pages 180, 182, 186) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = STROBE' AND ((SELECT' AND 4A) OR (SELECT AND 4B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-183, 7-187 (PDF pages 180, 182, 186) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
+}

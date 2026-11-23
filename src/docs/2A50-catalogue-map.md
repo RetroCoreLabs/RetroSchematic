@@ -102,14 +102,14 @@ section) of the chip file's pinout; the gate number is the chip file's (1A/1B/1Y
 | 13C | 2 (BA1), 14 (BA0) select; 6,5,4,3 > 7 (INT); 10,11,12,13 > 9 (DINPUT); 1,15 GND | 74153 | 74153 (block) | yes | READ |
 | 1C | 14,13 > 12 (CLDI); 11,10 > 9 (CLEI); 2,3 > 4 (CLDO); 5,6 > 7 (CLEO); 1 = BA1, 15 = CL | 74157 | 74157 (block) | yes: four 2-to-1 sections, 1 SELECT, 15 STROBE | READ |
 | 15B | 5,6 > 7 (TCLOCK); 2,3 > 4 (RCLOCK); 14,13 > 12 (RDATA); 11,10 > 9 (RQTS); 1 = TEST; 15 = GND | 74157 | 74157 (block) | yes | READ |
-| 1A | 5,6 > 7 (CLINT); 14,13 > 12 (TINPUT); 2,3 > 4 (TCONNECT); 11,10 > 9 (TINT); 1 = INIDENT; 15 = GND | 74S157 | none of its own; the 74157 entry's datasheet covers the 74S157 | pins fit the 74157 chip file | READ |
+| 1A | 5,6 > 7 (CLINT); 14,13 > 12 (TINPUT); 2,3 > 4 (TCONNECT); 11,10 > 9 (TINT); 1 = INIDENT; 15 = GND | 74S157 | `catalog/chips/74S157.json` (TI 1976 book 7-181, 7-187) | pins fit the 74S157 chip file | READ |
 | 11B | 1 clear (CL1); 9 clock (ICW1); 13>12 TEST, 11>10 TIMEOUTEN, 4>5 SCEE, 3>2 CARREN, 14>15 IACTIVE, 6>7 HALF | 74174 | 74174 (block) | yes, all six flip-flops | READ |
 | 17D | half 1: 1 (from 9E.1), 2 (CL), 3 (H), 13 out (RR), 14/15 timing (220 pF, 10k); half 2: 10 (OSCD), 9 (TTM), 11 (H), 12 out (OSC), 6/7 timing (10 uF, 47k) | 74 221 | 74221 (block) | yes, both one-shots | READ |
 | 7E | 2>3 (PE>IPE), 4>5 (TDATA>TDA), 6>7 (SCT>OERR), 10>9 (TBMT>ORFT), 12>11 (DA>IRFT), 14>13 (OR>IOR); 1 and 15 to GND | 8097 | 8097 (block) | yes, all six buffers, both enables tied on | READ |
 | 5C | 6,4,2,10 > 7,5,3,9 (DAT0,1,2,6 > BD0,1,2,6, enable 1 = TINPUT inverted); 12,14 > 11,13 (BD0, BD1 in, enable 15 = GND) | 8098 | 8098 (block) | yes, all six | READ |
 | 5B | 6,4,2,10 > 7,5,3,9 (DAT3,4,5,7 > BD3,4,5,7, enable 1); 12,14 > 11,13 (CARRERR, CARREN > BD8, BD9, enable 15 = ISR) | 8098 | 8098 (block) | yes, all six | READ |
 | 7A | 6>7, 4>5, 2>3, 12>11, 14>13, 10>9 (RQTS, CARR, CDSTL, DSR, RFS, HALF > BD10-BD15); 15 = SR, 1 = SR node | 8098 | 8098 (block) | yes, all six | READ |
-| 7-8C-D | as in the netlist (7-14, 18-25, 28-35, 2, 3, 5, 15, 16, 17, 26, 27, 36-40; +5V:1, -12V:6, GND:4) | COM 2601 | none (USRT, not in the catalogue) | no chip file | READ |
+| 7-8C-D | as in the netlist (7-14, 18-25, 28-35, 2, 3, 5, 15, 16, 17, 26, 27, 36-40; +5V:1, -12V:6, GND:4) | COM 2601 | `catalog/chips/COM2601.json` (SMC 1982 catalogue, pages 91-94; behaviour none, see the file) | pins fit the COM2601 chip file | READ |
 | 18-19E | 1,24 +5V; 2,11,12,13,14,23 GND; 3,22 +12V (pins 66/67); 10,15 -12V (pins 62/63) | VP12/12 | VP12/12 entry (voltage converter) | the VP12 chip file has no pins (no datasheet found) | READ (pins on the scan) |
 
 ### Other drawn elements
@@ -169,7 +169,7 @@ they are used on another sheet; this sheet is the whole card, so most likely the
 | Item | What it looks like | Where | What it most likely is |
 |---|---|---|---|
 | 7451 | stacked boxes feeding an X box (same as the 7450 picture) | 3B | Dual AND-OR-INVERT without expander pins. The catalogue names it only inside the 7450 entry; there is no 7451 chip file. Guess: the gate pins are the same as the 7450's (they fit the drawing); not checked against a 7451 data sheet. |
-| 74S157 | plain box, printed "74S157" | 1A | Schottky version of the 74157, same pins (guess from the part number; the pins fit the 74157 chip file). The catalogue has no 74S157 entry; the 74157 entry's datasheet title includes it. |
+| 74S157 | plain box, printed "74S157" | 1A | Schottky version of the 74157, same pins and function table (TI 1976 book 7-181 covers both); chip file `catalog/chips/74S157.json`. |
 | COM 2601 | large box, printed "COM 2601" | 7-8C-D | SMC synchronous USRT, 40 pins. No catalogue entry, no chip file. Pin use is in docs/2A50-reading.md. |
 | VP12/12 pinout | box printed "VP12/12" | 18-19E | In the catalogue by name, but its chip file has no pins (no datasheet found). The pins on this sheet (above) are the only pin information. Guess: a 24-pin DC-DC module making +12 V and -12 V from +5 V. |
 | DIP switch blocks | four switch symbols to a ground rail, one resistor over the group | 15E, 1E | 4-position DIP switches with pull-up resistors (guess: a resistor pack, since one resistor is drawn for four lines). |
