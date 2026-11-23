@@ -7,6 +7,13 @@ yet (see `docs/2A50-catalogue-map.md`).
 
 ## Queue from the 2026-11-23 session (in this order)
 
+- Found while starting the chip catalogue item (2026-11-23): 57 different pin names carry a
+  trailing ' (1Q', CLR', G', RIPPLE CLOCK', D/U' ...). In 65 of the 130 chip files the formula is
+  free text, not something a program can work out ("QA..QD = Q[0..3]", "1Q = FF1", "Y = MEM[address]
+  when ..."), and a ' after a name means NOT in formulas ("B'A'") but is also part of pin names, so a
+  formula reader must tell the two apart by the pin list. A truth-table check before and after the
+  rename therefore needs that formula reader first; the sequential and memory chips need the
+  structured behaviour fields before they can be checked at all.
 - Chip catalogue as data: inverted pin names as a flag (script, list of changes), pin function
   texts, behaviour fields (output enable, clock edge, async set/clear, output type, delays,
   sequential state), "How it works" card in Details, mux drawn in two halves, truth-table tests.

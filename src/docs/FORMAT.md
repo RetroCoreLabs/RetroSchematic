@@ -163,7 +163,7 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   | `pinNumbers`, `boardPositions`, `portArrows` | true / false | Show them |
   | `buses` | true / false | Draw the buses; false draws every member on its own |
   | `tracePulse` | true / false | A traced signal pulses; false shows it still |
-| `lineWidth` | 0.5 to 3 | How thick every line is drawn, as a factor of the normal widths (1 = normal) |
+  | `lineWidth` | 0.5 to 3 | How thick every line is drawn, as a factor of the normal widths (1 = normal) |
 
   ```json
   "display": { "nameStyle": "subscript", "buses": false }
