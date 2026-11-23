@@ -818,32 +818,60 @@ namespace RetroSchematic.Render
 
         private string DescribeNet(string name)
         {
-            StringBuilder sb = new();
-            Net? n = Editor.FindNetByKey(name);
-            if (n == null)
-                return "";
-            sb.Append("Signal ").Append(NameOf(n));
-            if (n.Active != ActiveLevel.None)
-                sb.Append(n.Active == ActiveLevel.High ? " (active high)" : " (active low)");
-            sb.Append('\n');
-            if (n.Drive.HasValue)
-                sb.Append("Line type: ").Append(n.Drive.Value.ToString()).Append('\n');
-            if (n.PullUp != null)
-                sb.Append("Pull-up: ").Append(n.PullUp).Append('\n');
-            sb.Append("Pins:\n");
-            for (int j = 0; j < n.Pins.Count; j++)
-                sb.Append("  ").Append(n.Pins[j].At).Append("  (").Append(ConfidenceText(n.Pins[j].Confidence)).Append(")\n");
-            if (!string.IsNullOrEmpty(n.Note))
-                sb.Append("Note: ").Append(n.Note).Append('\n');
-            List<string> levels = Hierarchy.Reach(Editor.Root, Editor.LevelPath, n);
-            if (levels.Count > 1)
-            {
-                sb.Append("Through block ports, the same signal is:\n");
-                for (int i = 1; i < levels.Count; i++)
-                    sb.Append("  ").Append(levels[i]).Append('\n');
-            }
-            return sb.ToString();
+            SignalInfo? info = SignalInfoOf(name);
+            return info == null ? "" : info.Details();
         }
+
+        /// <summary>
+        /// Everything known about a signal on the level shown: what the file says, what the bus
+        /// catalogue says (never over the sheet's own description) and what follows from the
+        /// chip catalogue.
+        /// </summary>
+        /// <param name="key">
+        /// The signal's key, such as IOXE_0.
+        /// </param>
+        /// <returns>
+        /// The facts, or null when there is no such signal.
+        /// </returns>
+        public SignalInfo? SignalInfoOf(string key)
+        {
+            Net? n = Editor.FindNetByKey(key);
+            return n == null ? null : SignalInfo.Of(Editor, n, NameStyle, BusSignals);
+        }
+
+        /// <summary>
+        /// The hover text for an item of the drawing: for anything of a signal (wire, label, pin)
+        /// its name, the first line of its description, its drive and driving pin; else null.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner of the item under the pointer.
+        /// </param>
+        /// <returns>
+        /// The text, or null.
+        /// </returns>
+        public string? TooltipAt(string owner)
+        {
+            string key = owner.Length == 0 ? "" : SignalAt(owner);
+            return key.Length == 0 ? null : SignalInfoOf(key)?.Tooltip();
+        }
+
+        /// <summary>
+        /// Sets a signal's description, its source and its notes (edit mode; undoable).
+        /// </summary>
+        /// <param name="key">
+        /// The signal's key.
+        /// </param>
+        /// <param name="description">
+        /// What it does, or empty.
+        /// </param>
+        /// <param name="source">
+        /// Where that comes from, or null.
+        /// </param>
+        /// <param name="note">
+        /// Notes, or empty.
+        /// </param>
+        public void SetSignalInfo(string key, string? description, DescriptionSource? source, string? note)
+            => Editor.SetNetInfo(key, description, source, note);
 
         private string DescribeInstance(string name)
         {

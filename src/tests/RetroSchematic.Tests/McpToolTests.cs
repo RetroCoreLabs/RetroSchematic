@@ -126,8 +126,8 @@ namespace RetroSchematic.Tests
                 Assert.That(methods[i].GetCustomAttribute<System.ComponentModel.DescriptionAttribute>(), Is.Not.Null, methods[i].Name);
                 tools++;
             }
-            // 16 sheet tools, 6 bus tools and 7 block tools
-            Assert.That(tools, Is.EqualTo(29));
+            // 16 sheet tools, 6 bus tools, 7 block tools and 2 signal tools
+            Assert.That(tools, Is.EqualTo(31));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 
@@ -135,6 +135,22 @@ namespace RetroSchematic.Tests
         public void TheDemoSheet_IsFoundFromTheTestFolder()
         {
             Assert.That(SheetFiles.FindDemo(TestContext.CurrentContext.TestDirectory), Is.EqualTo(DemoSheetLayoutTests.Demo));
+        }
+
+        [Test]
+        public void SignalInfo_ComesFromTheBusCatalogue_UntilADescriptionIsSet()
+        {
+            SheetTools t = Tools();
+            t.OpenSheet(System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.json"));
+            string info = t.GetSignalInfo("IOXE_0");
+            Assert.That(info, Does.Contain("What it does: IOX enable"));
+            Assert.That(info, Does.Contain("Source: bus catalogue, BIOXE"));
+            Assert.That(Assert.Throws<ModelContextProtocol.McpException>(() => t.SetSignalDescription("IOXE_0", "x", "reading"))!.Message, Does.Contain("read-only"));
+            t.SetEditMode(true);
+            Assert.That(t.SetSignalDescription("IOXE_0", "Starts an IOX transfer.", "reading", "docs/2A50-reading.md", "IOXE", "inferred"), Does.StartWith("Set the description"));
+            info = t.GetSignalInfo("IOXE_0");
+            Assert.That(info, Does.Contain("What it does: Starts an IOX transfer."));
+            Assert.That(info, Does.Contain("Source: reading document docs/2A50-reading.md, IOXE (inferred)"));
         }
 
         private static SheetTools Tools() => new(TestContext.CurrentContext.TestDirectory);

@@ -629,6 +629,40 @@ namespace RetroSchematic.Render
             return null;
         }
 
+        /// <summary>
+        /// Sets what is written about a signal: its description and where that came from, its
+        /// function tags and its notes. Edit mode only; it can be undone and marks the sheet as
+        /// changed. Nothing derived (drive, drivers, loads) is ever stored here.
+        /// </summary>
+        /// <param name="key">
+        /// The signal's key, such as IOXE_0.
+        /// </param>
+        /// <param name="description">
+        /// What it does, or null/empty to remove it.
+        /// </param>
+        /// <param name="source">
+        /// Where the description comes from, or null.
+        /// </param>
+        /// <param name="note">
+        /// Free notes, or null/empty to remove them.
+        /// </param>
+        /// <param name="function">
+        /// Function tags, or null to leave them as they are.
+        /// </param>
+        public void SetNetInfo(string key, string? description, DescriptionSource? source, string? note, List<string>? function = null)
+        {
+            CheckWritable();
+            Net n = FindNetByKey(key) ?? throw new SheetEditException($"There is no signal {key} on this level.");
+            Snapshot();
+            n = FindNetByKey(key)!;
+            n.Description = string.IsNullOrWhiteSpace(description) ? null : description.Trim();
+            n.DescriptionSource = n.Description == null ? null : source;
+            n.Note = string.IsNullOrWhiteSpace(note) ? null : note.Trim();
+            if (function != null)
+                n.Function = function.Count == 0 ? null : function;
+            Done();
+        }
+
         private void CheckWritable()
         {
             if (ReadOnly)
