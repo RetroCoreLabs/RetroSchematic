@@ -1,0 +1,527 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retrocorelabs.github.io/RetroSchematic/schema/nd-netlist-2.schema.json",
+  "title": "ND card sheet netlist, format version 2",
+  "type": "object",
+  "required": [
+    "format",
+    "formatVersion",
+    "sheet",
+    "parts",
+    "nets"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "nd-netlist"
+    },
+    "formatVersion": {
+      "const": 2
+    },
+    "sheet": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "source"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "machine": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "drawn": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "document"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "document": {
+              "type": "string"
+            },
+            "pdfPage": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "parts": {
+      "$ref": "#/$defs/parts"
+    },
+    "gates": {
+      "$ref": "#/$defs/gates"
+    },
+    "nets": {
+      "$ref": "#/$defs/nets"
+    },
+    "layout": {
+      "$ref": "#/$defs/layout"
+    },
+    "blocks": {
+      "type": "array",
+      "description": "Block definitions (Verilog modules).",
+      "items": {
+        "$ref": "#/$defs/block"
+      }
+    },
+    "instances": {
+      "type": "array",
+      "description": "Instances of blocks on the top level.",
+      "items": {
+        "$ref": "#/$defs/instance"
+      }
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "confidence": {
+      "enum": [
+        "read",
+        "inferred",
+        "open"
+      ]
+    },
+    "parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "type",
+          "confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "function": {
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "note": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "#/$defs/point"
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "part",
+          "kind",
+          "inputs",
+          "output",
+          "confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "part": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "nand",
+              "nor",
+              "not",
+              "and",
+              "or",
+              "buffer",
+              "other"
+            ]
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "output": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "position": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          },
+          "confidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "active",
+          "pins"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "enum": [
+              "high",
+              "low",
+              "none"
+            ]
+          },
+          "pins": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "at",
+                "confidence"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "at": {
+                  "type": "string",
+                  "pattern": "^.+\\.[0-9]+$"
+                },
+                "confidence": {
+                  "$ref": "#/$defs/confidence"
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "note": {
+            "type": "string"
+          },
+          "drive": {
+            "enum": [
+              "totem-pole",
+              "open-collector",
+              "open-collector-high-voltage",
+              "three-state",
+              "none"
+            ],
+            "description": "What kind of output drives the line: normal TTL (totem-pole), open collector (several outputs may share the line, it needs a pull-up and reads as the AND of them), three-state bus, or none (supply, input-only from outside the sheet). Absent = not read yet. open-collector-high-voltage: open collector rated for a higher pull-up voltage than 5 V (7406, 7407, 7416, 7417: up to 30 or 15 V), used to drive lamps, relays or lines."
+          },
+          "pullUp": {
+            "type": "string",
+            "description": "For an open-collector line: the pull-up resistor as written on the drawing (e.g. '1k to +5V'), or 'open' if not read."
+          },
+          "driveConfidence": {
+            "$ref": "#/$defs/confidence"
+          }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "description": "Drawing only, never connections: wire paths fixed by hand. Optional (added within version 1).",
+      "additionalProperties": false,
+      "properties": {
+        "wires": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "net",
+              "branches"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "net": {
+                "type": "string",
+                "description": "The signal's name."
+              },
+              "active": {
+                "enum": [
+                  "high",
+                  "low",
+                  "none"
+                ],
+                "description": "The signal's active level; tells apart two signals of the same name."
+              },
+              "branches": {
+                "type": "array",
+                "description": "The first branch joins two pins; each later one runs from a pin to the wire before it. Points in whole mm from the top left; every piece level or upright.",
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "$ref": "#/$defs/point"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "buses": {
+          "type": "array",
+          "description": "Virtual buses (drawing only, never connections). Optional (added within version 1).",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "path",
+              "members"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The bus name."
+              },
+              "path": {
+                "type": "array",
+                "description": "Bend points in whole mm; every piece level or upright. Empty: not drawn yet.",
+                "items": {
+                  "$ref": "#/$defs/point"
+                }
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "net"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "net": {
+                      "type": "string"
+                    },
+                    "active": {
+                      "enum": [
+                        "high",
+                        "low",
+                        "none"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "signalRef": {
+      "type": "object",
+      "required": [
+        "net"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "net": {
+          "type": "string",
+          "description": "A signal's name on this level."
+        },
+        "active": {
+          "enum": [
+            "high",
+            "low",
+            "none"
+          ],
+          "description": "Its level; tells apart two signals of the same name."
+        }
+      }
+    },
+    "port": {
+      "type": "object",
+      "required": [
+        "name",
+        "direction",
+        "signals"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "input",
+            "output",
+            "inout"
+          ],
+          "description": "Seen from inside the block."
+        },
+        "signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/signalRef"
+          },
+          "description": "The signals inside the block; one = single port, more = bus port, entry 0 the lowest bit."
+        },
+        "side": {
+          "enum": [
+            "left",
+            "right",
+            "top",
+            "bottom"
+          ],
+          "description": "Drawing only."
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Drawing only: place along the side."
+        }
+      }
+    },
+    "instance": {
+      "type": "object",
+      "required": [
+        "name",
+        "block"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "block": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/$defs/point"
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "port",
+              "nets"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "port": {
+                "type": "string"
+              },
+              "nets": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/signalRef"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "required": [
+        "name",
+        "ports",
+        "parts",
+        "nets"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/port"
+          }
+        },
+        "parts": {
+          "$ref": "#/$defs/parts"
+        },
+        "gates": {
+          "$ref": "#/$defs/gates"
+        },
+        "nets": {
+          "$ref": "#/$defs/nets"
+        },
+        "layout": {
+          "$ref": "#/$defs/layout"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/instance"
+          }
+        }
+      }
+    }
+  }
+}

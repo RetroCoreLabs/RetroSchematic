@@ -113,3 +113,81 @@ a reader knows what the picture means:
 
 These are drawing rules, not part of the format: a later program may draw the same file another
 way and the file stays valid.
+
+# Format version 2: blocks
+
+Version 2 adds hierarchy: a design can be split into **blocks**, the way Verilog splits a design
+into modules, KiCad into hierarchical sheets and Logisim into subcircuits. A block is defined
+once and used (instantiated) any number of times, and blocks can contain instances of other
+blocks to any depth. The schema is `schema/nd-netlist-2.schema.json`.
+
+A version 1 file is still read: it is a design with one level only, the top block. A file is
+written as version 2 only when it has blocks or instances; otherwise it stays version 1.
+
+## The parts of a version 2 file
+
+The top level of the file is the **top block**: its `parts`, `gates`, `nets` and `layout` are
+exactly as in version 1. Two lists are added:
+
+| Field | What it is |
+|---|---|
+| `blocks[]` | the block definitions, each used by name |
+| `blocks[].name` | the block's name, unique in the file (`ADDRESS_DECODE`) |
+| `blocks[].ports[]` | the block's connections to the level above it, in order |
+| `blocks[].ports[].name` | the port name, unique in the block (`BA0`, `BD_0`) |
+| `blocks[].ports[].direction` | `input`, `output` or `inout`, seen from inside the block |
+| `blocks[].ports[].signals[]` | the signals inside the block this port carries, as `{net, active}`. One entry is a single port; more than one is a bus port, its width the number of entries, entry 0 the lowest bit |
+| `blocks[].ports[].side`, `.order` | where the port pin is drawn on an instance box: `left`, `right`, `top` or `bottom`, and its place along that side from the top or left (0 first). Drawing only. Absent: inputs left, outputs right, bus ports top (inputs) or bottom (outputs and inout), in port order |
+| `blocks[].parts`, `.gates`, `.nets`, `.layout` | the inside of the block, exactly as at the top level |
+| `blocks[].instances[]` | instances of other blocks inside this block |
+| `instances[]` | instances of blocks at the top level |
+| `instances[].name` | the instance name, unique on its level (`U1`) |
+| `instances[].block` | the block it is an instance of |
+| `instances[].position` | where the top left of the instance box is drawn, mm. Drawing only |
+| `instances[].connections[]` | one per port: `port` (its name) and `nets[]`, the signals on this level it joins, as `{net, active}`, as many as the port is wide, in the same bit order |
+
+A signal on a level may have no pins of its own, only instance connections.
+
+## How it maps to Verilog
+
+Field names were chosen so the Verilog export (PLAN section 5) is a straight walk over the file:
+
+| This format | Verilog |
+|---|---|
+| the top level of the file | the top `module`, named after `sheet.id` |
+| `blocks[]` | one `module` each |
+| `blocks[].name` | the module name |
+| a port with one signal | `input wire BA0` / `output wire IRQ` / `inout wire DQ` |
+| a port with n signals (bus port) | a vector port, `input wire [15:0] BD_0`, bit i = `signals[i]` |
+| `direction` | `input` / `output` / `inout` |
+| `nets[]` on a level | `wire` declarations in that module |
+| `parts[]` | instances of the chip modules (one module per chip type) |
+| `instances[]` | module instantiations: `ADDRESS_DECODE U1 ( .BA0(BA0), .BD_0({BD15_0, ..., BD0_0}) );` |
+| `connections[].nets[]` | the named port connection; several nets are joined into one vector with `{ }`, highest bit first |
+| blocks inside blocks | modules instantiating modules |
+| `side`, `order`, `position`, `layout` | nothing (drawing only) |
+
+A signal name with a 0/1 subscript becomes a Verilog name with `_0` / `_1` after it (`BD15_0`),
+the same key the drawing uses.
+
+## Checks a version 2 reader makes
+
+Everything version 1 checks, on every level, plus:
+
+- block names are unique, and every instance names a block that exists;
+- no block contains itself, directly or through other blocks;
+- port names are unique in a block, every port signal is a signal inside the block, and no
+  signal is on two ports;
+- every instance connection names a port of its block, and has exactly as many signals as the
+  port is wide, each of them a signal on the instance's level;
+- every port of an instance is connected once at most (an unconnected port is allowed and is
+  reported by the export as a warning).
+
+## The flattened netlist
+
+Expanding every instance gives the design as one level, with hierarchical names: part `3C`
+inside instance `U1` is `U1/3C`, its pin 9 is `U1/3C.9`, and a signal inside `U1` that does not
+leave it through a port is `U1/NAME`. A signal that leaves through a port is the same signal as
+the one it is connected to on the level above, and takes that name. The flattened netlist is
+what the connections mean; making a block from a selection, or dissolving an instance back
+into its level, never changes it (only the instance path in front of the names).

@@ -137,3 +137,26 @@ command-line tool and an MCP tool can do the same.
 - Backplane and front pins have no place on the sheet, so their signals are always labelled.
 - OR and buffer symbols in ND style are not transcribed from the manual yet; they are drawn as
   a labelled box.
+
+## 7. Blocks (hierarchy) - the design is in FORMAT.md, "Format version 2"
+
+Being built, in this order:
+
+- Model and reader: `blocks[]`, `instances[]`, ports with `signals[]`; version 1 still read as
+  the top block; the checks listed in FORMAT.md; schema `schema/nd-netlist-2.schema.json`.
+- Flattening with hierarchical names (`U1/3C.9`), and a check that compares two designs by
+  their flattened connections.
+- Editor: make a block from a set of parts and instances (ports made for every signal that
+  crosses the edge, signals numbered alike grouped into bus ports), dissolve an instance, enter
+  and leave a level, set a port's side and place. Undo for all of it.
+- Drawing: an instance is a box with its name, its block's name, and a pin per port on its
+  edges with the port name and a direction arrow (in, out, both ways); a bus port is drawn
+  bus-thick.
+- Port direction arrows: a View menu switch and the toolbar button, on by default, saved with
+  the other view settings; SVG export draws what the screen shows.
+- Window: Ctrl-click to select several, right-click "Make block...", "Open", "Dissolve into this
+  level", double-click opens, a bar showing the path back up, Make block and Up one level
+  buttons.
+- MCP: make block, dissolve, enter, leave, list blocks and instances, set port position.
+- A demo file: 2A50 grouped into address decode, read multiplexers, interrupt logic and modem
+  interface. The 2A50 file itself stays the reading of one sheet.
