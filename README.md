@@ -20,43 +20,69 @@ was read from, and the tools that check and draw it.
 
 ## What you can use it for
 
+- **Look at a card in a window** - the viewer draws a sheet in ND's 1976 symbols or modern
+  ones, in a choice of colour themes. Wires go round chips, never through them, and signal
+  values are coloured the way Logisim does it (1, 0, Z, unknown).
+- **Trace a signal** - click a wire, pin, tag or list entry and every place the signal reaches
+  pulses. The Details panel lists its pins, the chip that drives it, its drive type
+  (open-collector, three-state), its description and where it leaves the card. Back and
+  Forward work like a web browser (Alt+Left / Alt+Right, mouse side buttons).
+- **See how a chip works** - each chip's pins, functions and behaviour come from its
+  datasheet, with the page: truth table, output enable, which clock edge it latches on, and
+  set/clear pins.
+- **Edit a card** - read-only by default; in edit mode place chips, connect wires, make
+  virtual buses and blocks (sub-circuits, like Verilog modules or KiCad sheets), and type
+  signal descriptions. Everything can also be done through the MCP server.
+- **See the connectors** - backplane and front connectors are drawn as parts and wired to the
+  chips, with ND's bus signal names from the bus catalogues.
+- **Choose how names look** - an active-low signal as `/NAME` (default), `~NAME`, or ND's own
+  0/1 subscript. Settings can follow the file.
 - **Check a sheet file** - `retroschematic check` refuses a file with an unknown format
-  version, an unknown field, a pin on two wires, or a gate in a chip that is not listed.
-- **Draw a sheet** - `retroschematic render` writes an SVG with every chip at its position on
-  the board, in ND 1976 symbols or modern symbols.
-- **Look at a sheet in a window** - the viewer draws the sheet, switches between ND and modern
-  symbols, and shows what a clicked part, gate or signal is.
-- **Look up a symbol** - `src/docs/SYMBOL-CATALOG.md` shows every part in ND's 1976 symbol
-  manual, redrawn in ND style and in modern style, with its formula, pins and delays from the
-  chip's datasheet.
-- **Read the drawings** - the scans and the ND symbol manual are in `src/docs/sources/`.
+  version, an unknown field, a pin on two wires, or a chip type not in the catalogue.
+- **Draw a sheet to SVG** - `retroschematic render`.
+- **Look up a symbol, chip or bus signal** - the symbol catalogue (`src/docs/SYMBOL-CATALOG.md`),
+  the chip catalogue (`src/catalog/chips/`), and the NORD-10 and ND-100 bus signal catalogues
+  (`src/docs/BUS-SIGNALS.md`).
+
+## Sheet files
+
+A sheet is one drawing page of one card. It is stored as JSON (`src/docs/FORMAT.md`):
+
+| Ending | What it is |
+|---|---|
+| `.rsc` | the JSON as text |
+| `.rsx` | the same JSON zipped, together with its original drawing pages and PCB photos |
+
+Old `.json` sheets still open. Sheets live in one folder per machine under `src/sheets/`
+(`nord-10/` today). The app can register itself to open `.rsc` and `.rsx` files on
+double-click (File menu, current Windows user only).
 
 ## Programs
 
 | Program | What it is |
 |---|---|
-| `RetroSchematic.Cli` (`retroschematic`) | command line: check a sheet file, write it as SVG |
+| `RetroSchematic.Cli` (`retroschematic`) | command line: check a sheet, write it as SVG, wire statistics |
 | [`RetroSchematic.Desktop`](src/RetroSchematic.Desktop/README.md) (`RetroSchematic`) | the viewer and editor window |
-| `RetroSchematic.Mcp` (`retroschematic-mcp`) | MCP server over standard input and output: make and change sheets with the same edit rules as the window (see [the viewer](src/RetroSchematic.Desktop/README.md#mcp-server)) |
+| `RetroSchematic.Mcp` (`retroschematic-mcp`) | MCP server over standard input and output: read, trace and change sheets with the same rules as the window (see [the viewer](src/RetroSchematic.Desktop/README.md#mcp-server)) |
 
 ## Status
 
-Version 0.1.0, no tagged release yet.
+Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
 
-- The file format, version 1, is defined (`src/docs/FORMAT.md`, `src/schema/nd-netlist-1.schema.json`).
-- One sheet is written: NORD-10 sheet 2A50, the synchronous modem buffer card 1050. All 40 chips
-  and 69 gates are in, checked against the parts list printed on the sheet
-  (`src/docs/2A50-catalogue-map.md`); most chip-to-chip wires are not read pin by pin yet.
-- The symbol catalogue covers all 128 parts of ND-13.003.01, with chip files from datasheets
-  for all but one (74118: no datasheet found).
-- The viewer window shows a sheet with the RetroCommander themes, a toolbar, an edit mode and a
-  trace tool that lights one whole signal.
-- The renderer places chips with room between them and routes short local wires round every
-  part; every other signal is an ND net-label diamond at each pin (the rule is in
-  `src/docs/FORMAT.md`, "How a sheet is drawn").
-- 102 tests, all passing (run 2026-11-23): 91 for the libraries, 11 for the viewer window.
-- The outstanding work, including the rest of the viewer, simulation, KiCad/Logisim converters
-  and Verilog export, is in `src/docs/PLAN.md`.
+- **One card is read:** NORD-10 sheet 2A50, the synchronous modem buffer card 1050. Every
+  chip, gate and wire is read pin by pin, then re-read by a second reader, which corrected
+  the clock of the receive interrupt enables. How its interrupts work is explained in
+  `src/docs/2A50-interrupts.md`.
+- **Symbol catalogue:** all 128 parts of ND-13.003.01, drawn in ND and modern style.
+- **Chip catalogue:** 131 chip files from datasheets, with behaviour as data. A few have no
+  behaviour, and say why: no datasheet was found, or the datasheet gives no logic function.
+- **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
+  plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
+  ND-120 CPU's A and B plugs.
+- **Tests:** library and window tests, run with the command in Quick start. Known test
+  problems are in `src/docs/BUGS.md`.
+- **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
+  `src/docs/PLAN.md`.
 
 ## Prerequisites
 
@@ -79,9 +105,11 @@ Use `modern` instead of `nd` for modern gate symbols.
 
 ## Current limitations
 
-- **Only short local signals are wires** - the rest show as a named diamond at each pin, the
-  way ND drawings end a line. Hand-placed wire paths are not saved yet.
-- **ND OR and buffer symbols** are not transcribed from the manual yet and draw as a labelled box.
+- **Only one card is read so far.** A library of NORD-1, NORD-10 and ND-100 cards is planned.
+- **No simulator yet** - the run/step buttons and value colours exist, but nothing simulates.
+- **No KiCad, Logisim or Verilog export yet.**
+- **Busy sheets still have long wires** - a large card like 2A50 draws correctly but is
+  crowded; connector boxes and chips can be moved by hand.
 
 ## About Norsk Data circuit drawings
 
@@ -95,10 +123,14 @@ Symbols" (July 1976), which is in `src/docs/sources/manuals/`.
 
 - [The file format](src/docs/FORMAT.md) - fields, the version rule, how sure a reading is
 - [Sheet 2A50 reading](src/docs/2A50-reading.md) - register-level reading of the sync modem card
+- [Sheet 2A50 interrupts](src/docs/2A50-interrupts.md) - how LEV10 and LEV12 are raised and cleared
 - [Sheet 2A50 against the catalogue](src/docs/2A50-catalogue-map.md) - every drawn element matched to its symbol and chip
 - [Symbol catalogue](src/docs/SYMBOL-CATALOG.md) - every ND symbol, both styles, with chip data
+- [Chip file format](src/catalog/chips/FORMAT.md) - pins and behaviour from datasheets
+- [Bus signals](src/docs/BUS-SIGNALS.md) - NORD-10 and ND-100 bus, sources and where they disagree
 - [The viewer](src/RetroSchematic.Desktop/README.md)
 - [Plan](src/docs/PLAN.md) - outstanding work
+- [Known bugs](src/docs/BUGS.md)
 
 ## Contributing
 
