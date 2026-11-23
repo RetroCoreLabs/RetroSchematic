@@ -10,7 +10,9 @@ using RetroSchematic.Model;
 
 namespace RetroSchematic.Tests
 {
-    /// <summary>The path-delay sum: right edge per stage, missing figures never invented.</summary>
+    /// <summary>
+    /// The path-delay sum: right edge per stage, missing figures never invented.
+    /// </summary>
     [TestFixture]
     public class PathDelayTests
     {

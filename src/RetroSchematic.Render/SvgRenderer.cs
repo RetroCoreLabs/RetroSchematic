@@ -20,10 +20,29 @@ namespace RetroSchematic.Render
     /// </summary>
     public static class SvgRenderer
     {
-        /// <summary>Lay out and render a sheet.</summary>
+        /// <summary>
+        /// Lay out and render a sheet.
+        /// </summary>
+        /// <param name="netlist">
+        /// The sheet.
+        /// </param>
+        /// <param name="style">
+        /// ND 1976 or modern symbols.
+        /// </param>
+        /// <returns>
+        /// The SVG text.
+        /// </returns>
         public static string Render(Netlist netlist, SymbolStyle style) => Write(SheetLayout.Build(netlist, style));
 
-        /// <summary>Write an already laid-out drawing.</summary>
+        /// <summary>
+        /// Write an already laid-out drawing.
+        /// </summary>
+        /// <param name="d">
+        /// The laid-out drawing.
+        /// </param>
+        /// <returns>
+        /// The SVG text.
+        /// </returns>
         public static string Write(SchematicDrawing d)
         {
             StringBuilder svg = new();
@@ -40,6 +59,12 @@ namespace RetroSchematic.Render
         /// The print colour of an item: what it is, and whether its reading is proved. Inferred
         /// symbols are drawn in brown, as before; the part frame is grey.
         /// </summary>
+        /// <param name="it">
+        /// The drawing step.
+        /// </param>
+        /// <returns>
+        /// The colour as #rrggbb.
+        /// </returns>
         public static string PrintColour(DrawItem it)
         {
             if (it.Role == DrawRole.PartOutline)
@@ -129,7 +154,21 @@ namespace RetroSchematic.Render
     /// </summary>
     public readonly struct BoardPosition
     {
-        /// <summary>Create a position.</summary>
+        /// <summary>
+        /// Create a position.
+        /// </summary>
+        /// <param name="firstColumn">
+        /// First column number.
+        /// </param>
+        /// <param name="lastColumn">
+        /// Last column number.
+        /// </param>
+        /// <param name="firstRow">
+        /// First row, A = 0.
+        /// </param>
+        /// <param name="lastRow">
+        /// Last row, A = 0.
+        /// </param>
         public BoardPosition(int firstColumn, int lastColumn, int firstRow, int lastRow)
         {
             FirstColumn = firstColumn;
@@ -138,20 +177,38 @@ namespace RetroSchematic.Render
             LastRow = lastRow;
         }
 
-        /// <summary>First column number.</summary>
+        /// <summary>
+        /// First column number.
+        /// </summary>
         public int FirstColumn { get; }
 
-        /// <summary>Last column number.</summary>
+        /// <summary>
+        /// Last column number.
+        /// </summary>
         public int LastColumn { get; }
 
-        /// <summary>First row, A = 0.</summary>
+        /// <summary>
+        /// First row, A = 0.
+        /// </summary>
         public int FirstRow { get; }
 
-        /// <summary>Last row, A = 0.</summary>
+        /// <summary>
+        /// Last row, A = 0.
+        /// </summary>
         public int LastRow { get; }
 
-        /// <summary>Parse "13D" or "7-8C-D".</summary>
-        /// <exception cref="FormatException">Not a board position.</exception>
+        /// <summary>
+        /// Parse "13D" or "7-8C-D".
+        /// </summary>
+        /// <exception cref="FormatException">
+        /// Not a board position.
+        /// </exception>
+        /// <param name="text">
+        /// The position as printed, such as 13D or 7-8C-D.
+        /// </param>
+        /// <returns>
+        /// The columns and rows it covers.
+        /// </returns>
         public static BoardPosition Parse(string text)
         {
             int i = 0;

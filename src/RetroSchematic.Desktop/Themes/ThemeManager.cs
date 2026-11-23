@@ -66,22 +66,34 @@ namespace RetroSchematic.Desktop.Themes
             SchematicSelectionKey,
         };
 
-        /// <summary>Brush key: the paper behind the drawing.</summary>
+        /// <summary>
+        /// Brush key: the paper behind the drawing.
+        /// </summary>
         public const string SchematicPaperKey = "SchematicPaperBrush";
 
-        /// <summary>Brush key: symbols, pin lines and signal names that were READ off the drawing.</summary>
+        /// <summary>
+        /// Brush key: symbols, pin lines and signal names that were READ off the drawing.
+        /// </summary>
         public const string SchematicInkKey = "SchematicInkBrush";
 
-        /// <summary>Brush key: the frame drawn round each chip at its board position.</summary>
+        /// <summary>
+        /// Brush key: the frame drawn round each chip at its board position.
+        /// </summary>
         public const string SchematicFrameKey = "SchematicFrameBrush";
 
-        /// <summary>Brush key: anything INFERRED rather than read (its own colour, as the plan asks).</summary>
+        /// <summary>
+        /// Brush key: anything INFERRED rather than read (its own colour, as the plan asks).
+        /// </summary>
         public const string SchematicInferredKey = "SchematicInferredBrush";
 
-        /// <summary>Brush key: secondary text such as a chip's function.</summary>
+        /// <summary>
+        /// Brush key: secondary text such as a chip's function.
+        /// </summary>
         public const string SchematicNoteKey = "SchematicNoteBrush";
 
-        /// <summary>Brush key: the picked part, gate or signal.</summary>
+        /// <summary>
+        /// Brush key: the picked part, gate or signal.
+        /// </summary>
         public const string SchematicSelectionKey = "SchematicSelectionBrush";
 
         private ThemeManager()
@@ -89,22 +101,33 @@ namespace RetroSchematic.Desktop.Themes
             BuildThemes();
         }
 
-        /// <summary>The single shared theme manager.</summary>
+        /// <summary>
+        /// The single shared theme manager.
+        /// </summary>
         public static ThemeManager Instance { get; } = new ThemeManager();
 
-        /// <summary>Every brush key a theme must supply.</summary>
+        /// <summary>
+        /// Every brush key a theme must supply.
+        /// </summary>
         public static IReadOnlyList<string> BrushKeys => s_brushKeys;
 
-        /// <summary>All themes, in menu order.</summary>
+        /// <summary>
+        /// All themes, in menu order.
+        /// </summary>
         public IReadOnlyList<ThemeDefinition> Themes => _themes;
 
-        /// <summary>The applied theme (set by <see cref="Initialize"/>).</summary>
+        /// <summary>
+        /// The applied theme (set by <see cref="Initialize"/>).
+        /// </summary>
         public ThemeDefinition Current { get; private set; } = null!;
 
         /// <summary>
         /// Registers every theme's brushes on the application and applies the saved theme (Light
         /// if none). Call once, before the first window opens.
         /// </summary>
+        /// <param name="app">
+        /// The running application, whose resources get the theme brushes.
+        /// </param>
         public void Initialize(Application app)
         {
             _app = app ?? throw new ArgumentNullException(nameof(app));
@@ -115,7 +138,15 @@ namespace RetroSchematic.Desktop.Themes
             Apply(theme.Id, persist: false);
         }
 
-        /// <summary>Applies a theme at once; with <paramref name="persist"/> it is saved for next start.</summary>
+        /// <summary>
+        /// Applies a theme at once; with <paramref name="persist"/> it is saved for next start.
+        /// </summary>
+        /// <param name="themeId">
+        /// Id of one of the themes in Themes.
+        /// </param>
+        /// <param name="persist">
+        /// True to save the choice for the next start.
+        /// </param>
         public void Apply(string themeId, bool persist = true)
         {
             if (_app == null)
@@ -398,10 +429,26 @@ namespace RetroSchematic.Desktop.Themes
         }
     }
 
-    /// <summary>One selectable theme: id, name, Avalonia variant and colours.</summary>
+    /// <summary>
+    /// One selectable theme: id, name, Avalonia variant and colours.
+    /// </summary>
     public sealed class ThemeDefinition
     {
-        /// <summary>Creates a theme.</summary>
+        /// <summary>
+        /// Creates a theme.
+        /// </summary>
+        /// <param name="id">
+        /// The id saved in the settings file.
+        /// </param>
+        /// <param name="displayName">
+        /// The name shown in the menu.
+        /// </param>
+        /// <param name="variant">
+        /// The Avalonia theme variant for this theme.
+        /// </param>
+        /// <param name="palette">
+        /// The colours.
+        /// </param>
         public ThemeDefinition(string id, string displayName, ThemeVariant variant, Palette palette)
         {
             Id = id;
@@ -410,16 +457,24 @@ namespace RetroSchematic.Desktop.Themes
             Palette = palette;
         }
 
-        /// <summary>The id saved in the settings file ("Light", "SolarizedDark").</summary>
+        /// <summary>
+        /// The id saved in the settings file ("Light", "SolarizedDark").
+        /// </summary>
         public string Id { get; }
 
-        /// <summary>The name shown in the menu.</summary>
+        /// <summary>
+        /// The name shown in the menu.
+        /// </summary>
         public string DisplayName { get; }
 
-        /// <summary>The Avalonia theme variant that selects this theme's brushes.</summary>
+        /// <summary>
+        /// The Avalonia theme variant that selects this theme's brushes.
+        /// </summary>
         public ThemeVariant Variant { get; }
 
-        /// <summary>The colours.</summary>
+        /// <summary>
+        /// The colours.
+        /// </summary>
         public Palette Palette { get; }
     }
 
@@ -429,82 +484,137 @@ namespace RetroSchematic.Desktop.Themes
     /// </summary>
     public sealed class Palette
     {
-        /// <summary>Window background.</summary>
+        /// <summary>
+        /// Window background.
+        /// </summary>
         public string BackgroundPrimary = "#000000";
 
-        /// <summary>Panel background.</summary>
+        /// <summary>
+        /// Panel background.
+        /// </summary>
         public string BackgroundSecondary = "#000000";
 
-        /// <summary>Alternative surface (headers).</summary>
+        /// <summary>
+        /// Alternative surface (headers).
+        /// </summary>
         public string SurfaceAlt = "#000000";
 
-        /// <summary>Thin borders.</summary>
+        /// <summary>
+        /// Thin borders.
+        /// </summary>
         public string BorderLight = "#000000";
 
-        /// <summary>Strong borders.</summary>
+        /// <summary>
+        /// Strong borders.
+        /// </summary>
         public string BorderDark = "#000000";
 
-        /// <summary>The theme's accent (not blue in every theme; the name is RetroCommander's).</summary>
+        /// <summary>
+        /// The theme's accent (not blue in every theme; the name is RetroCommander's).
+        /// </summary>
         public string AccentBlue = "#000000";
 
-        /// <summary>Main text.</summary>
+        /// <summary>
+        /// Main text.
+        /// </summary>
         public string TextPrimary = "#FFFFFF";
 
-        /// <summary>Secondary text.</summary>
+        /// <summary>
+        /// Secondary text.
+        /// </summary>
         public string TextSecondary = "#FFFFFF";
 
-        /// <summary>Selected row.</summary>
+        /// <summary>
+        /// Selected row.
+        /// </summary>
         public string SelectionHighlight = "#000000";
 
-        /// <summary>Row under the mouse.</summary>
+        /// <summary>
+        /// Row under the mouse.
+        /// </summary>
         public string HoverHighlight = "#000000";
 
-        /// <summary>Side panel background.</summary>
+        /// <summary>
+        /// Side panel background.
+        /// </summary>
         public string SidebarBackground = "#000000";
 
-        /// <summary>Side panel separators.</summary>
+        /// <summary>
+        /// Side panel separators.
+        /// </summary>
         public string SidebarSeparator = "#000000";
 
-        /// <summary>Warning banner background.</summary>
+        /// <summary>
+        /// Warning banner background.
+        /// </summary>
         public string WarningBackground = "#000000";
 
-        /// <summary>Warning banner border.</summary>
+        /// <summary>
+        /// Warning banner border.
+        /// </summary>
         public string WarningBorder = "#000000";
 
-        /// <summary>Success banner background.</summary>
+        /// <summary>
+        /// Success banner background.
+        /// </summary>
         public string SuccessBackground = "#000000";
 
-        /// <summary>Success banner border.</summary>
+        /// <summary>
+        /// Success banner border.
+        /// </summary>
         public string SuccessBorder = "#000000";
 
-        /// <summary>Error banner background.</summary>
+        /// <summary>
+        /// Error banner background.
+        /// </summary>
         public string ErrorBackground = "#000000";
 
-        /// <summary>Error banner border.</summary>
+        /// <summary>
+        /// Error banner border.
+        /// </summary>
         public string ErrorBorder = "#000000";
 
-        /// <summary>Error text.</summary>
+        /// <summary>
+        /// Error text.
+        /// </summary>
         public string ErrorText = "#FFFFFF";
 
-        /// <summary>Paper behind the drawing.</summary>
+        /// <summary>
+        /// Paper behind the drawing.
+        /// </summary>
         public string SchematicPaper = "#FFFFFF";
 
-        /// <summary>Lines and text read off the drawing.</summary>
+        /// <summary>
+        /// Lines and text read off the drawing.
+        /// </summary>
         public string SchematicInk = "#000000";
 
-        /// <summary>The frame round each chip.</summary>
+        /// <summary>
+        /// The frame round each chip.
+        /// </summary>
         public string SchematicFrame = "#888888";
 
-        /// <summary>Anything inferred, not read.</summary>
+        /// <summary>
+        /// Anything inferred, not read.
+        /// </summary>
         public string SchematicInferred = "#B06000";
 
-        /// <summary>Secondary drawing text.</summary>
+        /// <summary>
+        /// Secondary drawing text.
+        /// </summary>
         public string SchematicNote = "#666666";
 
-        /// <summary>The picked item.</summary>
+        /// <summary>
+        /// The picked item.
+        /// </summary>
         public string SchematicSelection = "#0078D7";
 
-        /// <summary>The colours in brush-key order.</summary>
+        /// <summary>
+        /// The colours in brush-key order.
+        /// </summary>
+        /// <returns>
+        /// The hex colours, one per brush key, in the key list's order.
+        /// </returns>
         public string[] ToArray()
         {
             return new[]

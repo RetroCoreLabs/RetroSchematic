@@ -11,52 +11,84 @@ using System.Text.Json;
 
 namespace RetroSchematic.Model
 {
-    /// <summary>Which way the OUTPUT of a timing path moves. Datasheets give a delay for each.</summary>
+    /// <summary>
+    /// Which way the OUTPUT of a timing path moves. Datasheets give a delay for each.
+    /// </summary>
     public enum OutputEdge
     {
-        /// <summary>tPLH: the output goes from low to high.</summary>
+        /// <summary>
+        /// tPLH: the output goes from low to high.
+        /// </summary>
         LowToHigh,
 
-        /// <summary>tPHL: the output goes from high to low.</summary>
+        /// <summary>
+        /// tPHL: the output goes from high to low.
+        /// </summary>
         HighToLow,
 
-        /// <summary>tPZH: a three-state output starts driving, from floating (Z) to high.</summary>
+        /// <summary>
+        /// tPZH: a three-state output starts driving, from floating (Z) to high.
+        /// </summary>
         FloatToHigh,
 
-        /// <summary>tPZL: a three-state output starts driving, from floating (Z) to low.</summary>
+        /// <summary>
+        /// tPZL: a three-state output starts driving, from floating (Z) to low.
+        /// </summary>
         FloatToLow,
 
-        /// <summary>tPHZ: a three-state output stops driving, from high to floating (Z).</summary>
+        /// <summary>
+        /// tPHZ: a three-state output stops driving, from high to floating (Z).
+        /// </summary>
         HighToFloat,
 
-        /// <summary>tPLZ: a three-state output stops driving, from low to floating (Z).</summary>
+        /// <summary>
+        /// tPLZ: a three-state output stops driving, from low to floating (Z).
+        /// </summary>
         LowToFloat,
 
-        /// <summary>Output enable time, not split by level (datasheet gives one figure).</summary>
+        /// <summary>
+        /// Output enable time, not split by level (datasheet gives one figure).
+        /// </summary>
         FloatToDriven,
 
-        /// <summary>Output disable time, not split by level.</summary>
+        /// <summary>
+        /// Output disable time, not split by level.
+        /// </summary>
         DrivenToFloat,
 
-        /// <summary>Memory access time: from address or chip select until the data out is valid.</summary>
+        /// <summary>
+        /// Memory access time: from address or chip select until the data out is valid.
+        /// </summary>
         Access,
 
-        /// <summary>Memory recovery time after a write before a read is valid.</summary>
+        /// <summary>
+        /// Memory recovery time after a write before a read is valid.
+        /// </summary>
         Recovery,
 
-        /// <summary>How long the output's rising edge itself takes.</summary>
+        /// <summary>
+        /// How long the output's rising edge itself takes.
+        /// </summary>
         Rise,
 
-        /// <summary>How long the output's falling edge itself takes.</summary>
+        /// <summary>
+        /// How long the output's falling edge itself takes.
+        /// </summary>
         Fall,
 
-        /// <summary>Opto-coupler turn-on time to the level the datasheet states.</summary>
+        /// <summary>
+        /// Opto-coupler turn-on time to the level the datasheet states.
+        /// </summary>
         TurnOn,
 
-        /// <summary>Opto-coupler turn-off time to the level the datasheet states.</summary>
+        /// <summary>
+        /// Opto-coupler turn-off time to the level the datasheet states.
+        /// </summary>
         TurnOff,
 
-        /// <summary>Line receiver response time.</summary>
+        /// <summary>
+        /// Line receiver response time.
+        /// </summary>
         Response,
     }
 
@@ -66,16 +98,33 @@ namespace RetroSchematic.Model
     /// </summary>
     public readonly struct DelayNs
     {
-        /// <summary>Shortest delay the datasheet promises, or null if it gives none.</summary>
+        /// <summary>
+        /// Shortest delay the datasheet promises, or null if it gives none.
+        /// </summary>
         public readonly double? Min;
 
-        /// <summary>Typical delay, or null.</summary>
+        /// <summary>
+        /// Typical delay, or null.
+        /// </summary>
         public readonly double? Typ;
 
-        /// <summary>Longest delay the datasheet promises, or null.</summary>
+        /// <summary>
+        /// Longest delay the datasheet promises, or null.
+        /// </summary>
         public readonly double? Max;
 
-        /// <summary>Creates a delay figure.</summary>
+        /// <summary>
+        /// Creates a delay figure.
+        /// </summary>
+        /// <param name="min">
+        /// Shortest delay in ns, or null if the datasheet gives none.
+        /// </param>
+        /// <param name="typ">
+        /// Typical delay in ns, or null.
+        /// </param>
+        /// <param name="max">
+        /// Longest delay in ns, or null.
+        /// </param>
         public DelayNs(double? min, double? typ, double? max)
         {
             Min = min;
@@ -90,7 +139,24 @@ namespace RetroSchematic.Model
     /// </summary>
     public sealed class TimingArc
     {
-        /// <summary>Creates a timing path.</summary>
+        /// <summary>
+        /// Creates a timing path.
+        /// </summary>
+        /// <param name="from">
+        /// Input pin name (or the clock pin).
+        /// </param>
+        /// <param name="to">
+        /// Output pin name.
+        /// </param>
+        /// <param name="edge">
+        /// Which way the output moves.
+        /// </param>
+        /// <param name="delay">
+        /// The delay figures.
+        /// </param>
+        /// <param name="conditions">
+        /// The datasheet's test conditions.
+        /// </param>
         public TimingArc(string from, string to, OutputEdge edge, DelayNs delay, string conditions)
         {
             From = from;
@@ -100,19 +166,29 @@ namespace RetroSchematic.Model
             Conditions = conditions;
         }
 
-        /// <summary>Input pin name (or the clock pin).</summary>
+        /// <summary>
+        /// Input pin name (or the clock pin).
+        /// </summary>
         public string From { get; }
 
-        /// <summary>Output pin name.</summary>
+        /// <summary>
+        /// Output pin name.
+        /// </summary>
         public string To { get; }
 
-        /// <summary>Which way the output moves.</summary>
+        /// <summary>
+        /// Which way the output moves.
+        /// </summary>
         public OutputEdge Edge { get; }
 
-        /// <summary>The delay figures.</summary>
+        /// <summary>
+        /// The delay figures.
+        /// </summary>
         public DelayNs Delay { get; }
 
-        /// <summary>The datasheet's test conditions (load, supply, temperature).</summary>
+        /// <summary>
+        /// The datasheet's test conditions (load, supply, temperature).
+        /// </summary>
         public string Conditions { get; }
     }
 
@@ -122,19 +198,41 @@ namespace RetroSchematic.Model
     /// </summary>
     public readonly struct PathStage
     {
-        /// <summary>Name for the report (for example "IC12 7400 A-&gt;Y").</summary>
+        /// <summary>
+        /// Name for the report (for example "IC12 7400 A->Y").
+        /// </summary>
         public readonly string Name;
 
-        /// <summary>Delay when this stage's output goes low to high.</summary>
+        /// <summary>
+        /// Delay when this stage's output goes low to high.
+        /// </summary>
         public readonly DelayNs Rising;
 
-        /// <summary>Delay when this stage's output goes high to low.</summary>
+        /// <summary>
+        /// Delay when this stage's output goes high to low.
+        /// </summary>
         public readonly DelayNs Falling;
 
-        /// <summary>True if the output edge is the opposite of the input edge.</summary>
+        /// <summary>
+        /// True if the output edge is the opposite of the input edge.
+        /// </summary>
         public readonly bool Inverting;
 
-        /// <summary>Creates a stage.</summary>
+        /// <summary>
+        /// Creates a stage.
+        /// </summary>
+        /// <param name="name">
+        /// Name for the report.
+        /// </param>
+        /// <param name="rising">
+        /// Delay when the output goes low to high.
+        /// </param>
+        /// <param name="falling">
+        /// Delay when the output goes high to low.
+        /// </param>
+        /// <param name="inverting">
+        /// True if the output edge is the opposite of the input edge.
+        /// </param>
         public PathStage(string name, DelayNs rising, DelayNs falling, bool inverting)
         {
             Name = name;
@@ -152,22 +250,49 @@ namespace RetroSchematic.Model
     /// </summary>
     public readonly struct PathDelayResult
     {
-        /// <summary>Shortest total delay, ns.</summary>
+        /// <summary>
+        /// Shortest total delay, ns.
+        /// </summary>
         public readonly double MinNs;
 
-        /// <summary>Longest total delay, ns, or null if some stage has no documented maximum.</summary>
+        /// <summary>
+        /// Longest total delay, ns, or null if some stage has no documented maximum.
+        /// </summary>
         public readonly double? MaxNs;
 
-        /// <summary>Sum of the typical figures, or null if some stage has none.</summary>
+        /// <summary>
+        /// Sum of the typical figures, or null if some stage has none.
+        /// </summary>
         public readonly double? TypNs;
 
-        /// <summary>True if one or more stages had no documented minimum (counted as 0 ns).</summary>
+        /// <summary>
+        /// True if one or more stages had no documented minimum (counted as 0 ns).
+        /// </summary>
         public readonly bool MinIsLowerBoundOnly;
 
-        /// <summary>Direction of the edge at the end of the path.</summary>
+        /// <summary>
+        /// Direction of the edge at the end of the path.
+        /// </summary>
         public readonly OutputEdge FinalEdge;
 
-        /// <summary>Creates a result.</summary>
+        /// <summary>
+        /// Creates a result.
+        /// </summary>
+        /// <param name="minNs">
+        /// Shortest total delay, ns.
+        /// </param>
+        /// <param name="typNs">
+        /// Sum of the typical figures, or null.
+        /// </param>
+        /// <param name="maxNs">
+        /// Longest total delay, ns, or null.
+        /// </param>
+        /// <param name="minIsLowerBoundOnly">
+        /// True if some stage had no documented minimum.
+        /// </param>
+        /// <param name="finalEdge">
+        /// Direction of the edge at the end of the path.
+        /// </param>
         public PathDelayResult(double minNs, double? typNs, double? maxNs, bool minIsLowerBoundOnly, OutputEdge finalEdge)
         {
             MinNs = minNs;
@@ -178,7 +303,9 @@ namespace RetroSchematic.Model
         }
     }
 
-    /// <summary>Adds up the documented delays along a chain of parts.</summary>
+    /// <summary>
+    /// Adds up the documented delays along a chain of parts.
+    /// </summary>
     public static class PathDelay
     {
         /// <summary>
@@ -187,6 +314,15 @@ namespace RetroSchematic.Model
         /// flips at every inverting stage - so tPLH and tPHL alternate through a chain of
         /// inverters, as they do on the board.
         /// </summary>
+        /// <param name="stages">
+        /// The parts on the path, first to last.
+        /// </param>
+        /// <param name="inputEdge">
+        /// Which way the signal moves at the first stage's input.
+        /// </param>
+        /// <returns>
+        /// The total delay range and the edge at the end of the path.
+        /// </returns>
         public static PathDelayResult Calculate(ReadOnlySpan<PathStage> stages, OutputEdge inputEdge)
         {
             OutputEdge edge = inputEdge;
@@ -226,10 +362,20 @@ namespace RetroSchematic.Model
         }
     }
 
-    /// <summary>Reads the "timing" list of a chip file (catalog/chips/&lt;id&gt;.json).</summary>
+    /// <summary>
+    /// Reads the "timing" list of a chip file (catalog/chips, one file per chip id).
+    /// </summary>
     public static class ChipTimingReader
     {
-        /// <summary>Every timing path in the chip file.</summary>
+        /// <summary>
+        /// Every timing path in the chip file.
+        /// </summary>
+        /// <param name="chipFilePath">
+        /// The chip file.
+        /// </param>
+        /// <returns>
+        /// Every timing entry in the file, in file order; empty when it has none.
+        /// </returns>
         public static List<TimingArc> Read(string chipFilePath)
         {
             List<TimingArc> result = new();
@@ -269,6 +415,24 @@ namespace RetroSchematic.Model
         /// A path stage for one input-to-output path of a chip, from its two timing entries
         /// (tPLH and tPHL). Throws if the chip file does not list that path.
         /// </summary>
+        /// <param name="arcs">
+        /// The chip's timing entries, from Read.
+        /// </param>
+        /// <param name="name">
+        /// Name for the report.
+        /// </param>
+        /// <param name="from">
+        /// Input pin name.
+        /// </param>
+        /// <param name="to">
+        /// Output pin name.
+        /// </param>
+        /// <param name="inverting">
+        /// True if this path inverts.
+        /// </param>
+        /// <returns>
+        /// The stage with the path's tPLH and tPHL.
+        /// </returns>
         public static PathStage Stage(List<TimingArc> arcs, string name, string from, string to, bool inverting)
         {
             DelayNs? rising = null;

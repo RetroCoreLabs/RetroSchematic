@@ -39,7 +39,9 @@ namespace RetroSchematic.Desktop.Controls
         private static readonly Typeface s_mono = new("Consolas, Courier New, monospace");
         private static readonly Typeface s_monoBold = new(new FontFamily("Consolas, Courier New, monospace"), FontStyle.Normal, FontWeight.Bold);
 
-        /// <summary>Creates the canvas; it repaints when the theme changes.</summary>
+        /// <summary>
+        /// Creates the canvas; it repaints when the theme changes.
+        /// </summary>
         public SchematicCanvas()
         {
             ClipToBounds = true;
@@ -47,10 +49,14 @@ namespace RetroSchematic.Desktop.Controls
             ActualThemeVariantChanged += OnThemeChanged;
         }
 
-        /// <summary>The zoom factor (1 = one drawing unit per screen pixel).</summary>
+        /// <summary>
+        /// The zoom factor (1 = one drawing unit per screen pixel).
+        /// </summary>
         public double Zoom => _zoom;
 
-        /// <summary>The session shown, or null for an empty canvas.</summary>
+        /// <summary>
+        /// The session shown, or null for an empty canvas.
+        /// </summary>
         public SheetSession? Session
         {
             get => _session;
@@ -71,7 +77,9 @@ namespace RetroSchematic.Desktop.Controls
             }
         }
 
-        /// <summary>Scales and centres the whole sheet in the control.</summary>
+        /// <summary>
+        /// Scales and centres the whole sheet in the control.
+        /// </summary>
         public void FitToWindow()
         {
             if (_session == null || Bounds.Width <= 0 || Bounds.Height <= 0)
@@ -85,7 +93,15 @@ namespace RetroSchematic.Desktop.Controls
             InvalidateVisual();
         }
 
-        /// <summary>Zooms by a factor, keeping the drawing point under <paramref name="screen"/> still.</summary>
+        /// <summary>
+        /// Zooms by a factor, keeping the drawing point under <paramref name="screen"/> still.
+        /// </summary>
+        /// <param name="screen">
+        /// The point in the control that stays still, usually the mouse pointer.
+        /// </param>
+        /// <param name="factor">
+        /// How much to zoom: above 1 zooms in, below 1 zooms out.
+        /// </param>
         public void ZoomAt(Point screen, double factor)
         {
             double z = Math.Clamp(_zoom * factor, MinZoom, MaxZoom);
@@ -179,7 +195,27 @@ namespace RetroSchematic.Desktop.Controls
             e.Pointer.Capture(null);
         }
 
-        /// <summary>The colour of an item: what it is and whether its reading is proved.</summary>
+        /// <summary>
+        /// The colour of an item: what it is and whether its reading is proved.
+        /// </summary>
+        /// <param name="it">
+        /// The drawing step to colour.
+        /// </param>
+        /// <param name="ink">
+        /// Colour for what was read off the drawing.
+        /// </param>
+        /// <param name="frame">
+        /// Colour for the frame round a chip.
+        /// </param>
+        /// <param name="inferred">
+        /// Colour for what was inferred, not read.
+        /// </param>
+        /// <param name="note">
+        /// Colour for secondary text.
+        /// </param>
+        /// <returns>
+        /// The brush to draw the step with.
+        /// </returns>
         private static IBrush Pick(DrawItem it, IBrush ink, IBrush frame, IBrush inferred, IBrush note)
         {
             if (it.Role == DrawRole.PartOutline)
@@ -254,6 +290,15 @@ namespace RetroSchematic.Desktop.Controls
         /// Text with its baseline at (X1,Y1) like SVG, and ND's subscript lowered and smaller
         /// after it, as the SVG output writes it (baseline-shift sub, size 7).
         /// </summary>
+        /// <param name="context">
+        /// Where to draw.
+        /// </param>
+        /// <param name="it">
+        /// The text step: text, subscript, size, anchor and baseline point.
+        /// </param>
+        /// <param name="brush">
+        /// The colour.
+        /// </param>
         private static void DrawText(DrawingContext context, DrawItem it, IBrush brush)
         {
             FormattedText main = new(it.Text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight,
@@ -272,6 +317,12 @@ namespace RetroSchematic.Desktop.Controls
         /// defect in ThemeManager; it is drawn magenta so it is seen at once (MainWindowTests.EveryTheme_GivesEveryBrush also
         /// checks every key in every theme).
         /// </summary>
+        /// <param name="key">
+        /// One of the ThemeManager brush keys.
+        /// </param>
+        /// <returns>
+        /// The current theme's brush, or magenta when the key is missing.
+        /// </returns>
         private IBrush Brush(string key)
         {
             if (this.TryFindResource(key, ActualThemeVariant, out object? value) && value is IBrush b)

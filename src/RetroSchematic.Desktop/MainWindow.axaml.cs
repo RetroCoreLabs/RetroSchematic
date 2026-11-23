@@ -29,7 +29,9 @@ namespace RetroSchematic.Desktop
         private SheetSession? _session;
         private bool _syncingLists;
 
-        /// <summary>Creates the window and fills the theme menu.</summary>
+        /// <summary>
+        /// Creates the window and fills the theme menu.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -39,13 +41,18 @@ namespace RetroSchematic.Desktop
                 StatusText.Text = UiSettings.Instance.LoadProblem;
         }
 
-        /// <summary>The open sheet, or null.</summary>
+        /// <summary>
+        /// The open sheet, or null.
+        /// </summary>
         public SheetSession? Session => _session;
 
         /// <summary>
         /// Opens a sheet file. The catalogue is found by walking up from the sheet to the folder
         /// that holds <c>catalog/</c> (the repository's <c>src</c> folder).
         /// </summary>
+        /// <param name="path">
+        /// The sheet file (a netlist JSON file).
+        /// </param>
         public void OpenSheet(string path)
         {
             SymbolStyle style = UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern;

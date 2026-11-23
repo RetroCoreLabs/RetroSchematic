@@ -93,7 +93,18 @@ namespace RetroSchematic.Desktop.Tests
             w.Close();
         }
 
-        /// <summary>Pixels of the paper colour and of the ink colour inside the drawing area.</summary>
+        /// <summary>
+        /// Pixels of the paper colour and of the ink colour inside the drawing area.
+        /// </summary>
+        /// <param name="w">
+        /// The shown window.
+        /// </param>
+        /// <param name="p">
+        /// The theme whose paper and ink colours are counted.
+        /// </param>
+        /// <returns>
+        /// How many pixels show each colour.
+        /// </returns>
         private static unsafe Counts Count(Window w, Palette p)
         {
             Color paper = Color.Parse(p.SchematicPaper);

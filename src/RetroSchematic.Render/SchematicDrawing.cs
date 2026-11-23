@@ -16,107 +16,188 @@ namespace RetroSchematic.Render
     /// </summary>
     public enum DrawRole
     {
-        /// <summary>The sheet title line.</summary>
+        /// <summary>
+        /// The sheet title line.
+        /// </summary>
         Title,
 
-        /// <summary>The frame around a chip at its board position.</summary>
+        /// <summary>
+        /// The frame around a chip at its board position.
+        /// </summary>
         PartOutline,
 
-        /// <summary>The chip's position code and type ("11D 7402").</summary>
+        /// <summary>
+        /// The chip's position code and type ("11D 7402").
+        /// </summary>
         PartLabel,
 
-        /// <summary>A gate symbol's own lines.</summary>
+        /// <summary>
+        /// A gate symbol's own lines.
+        /// </summary>
         Symbol,
 
-        /// <summary>A pin line from a symbol out to its signal.</summary>
+        /// <summary>
+        /// A pin line from a symbol out to its signal.
+        /// </summary>
         PinLine,
 
-        /// <summary>A small pin number beside a pin line.</summary>
+        /// <summary>
+        /// A small pin number beside a pin line.
+        /// </summary>
         PinNumber,
 
-        /// <summary>A signal name at a pin.</summary>
+        /// <summary>
+        /// A signal name at a pin.
+        /// </summary>
         SignalName,
 
-        /// <summary>Lower-priority text such as a chip's function.</summary>
+        /// <summary>
+        /// Lower-priority text such as a chip's function.
+        /// </summary>
         Note,
     }
 
-    /// <summary>The kind of one drawing step.</summary>
+    /// <summary>
+    /// The kind of one drawing step.
+    /// </summary>
     public enum DrawKind
     {
-        /// <summary>Straight line from (X1,Y1) to (X2,Y2).</summary>
+        /// <summary>
+        /// Straight line from (X1,Y1) to (X2,Y2).
+        /// </summary>
         Line,
 
-        /// <summary>Rectangle at (X1,Y1) with width X2 and height Y2.</summary>
+        /// <summary>
+        /// Rectangle at (X1,Y1) with width X2 and height Y2.
+        /// </summary>
         Rect,
 
-        /// <summary>Circle centred on (X1,Y1) with radius X2.</summary>
+        /// <summary>
+        /// Circle centred on (X1,Y1) with radius X2.
+        /// </summary>
         Circle,
 
-        /// <summary>Outline built from <see cref="DrawItem.Path"/>.</summary>
+        /// <summary>
+        /// Outline built from <see cref="DrawItem.Path"/>.
+        /// </summary>
         Path,
 
-        /// <summary>Text with its baseline at (X1,Y1).</summary>
+        /// <summary>
+        /// Text with its baseline at (X1,Y1).
+        /// </summary>
         Text,
 
-        /// <summary>Starts a named group (a part or a gate); <see cref="DrawItem.Owner"/> names it.</summary>
+        /// <summary>
+        /// Starts a named group (a part or a gate); <see cref="DrawItem.Owner"/> names it.
+        /// </summary>
         GroupStart,
 
-        /// <summary>Ends the most recent group.</summary>
+        /// <summary>
+        /// Ends the most recent group.
+        /// </summary>
         GroupEnd,
     }
 
-    /// <summary>Where text sits relative to its anchor point.</summary>
+    /// <summary>
+    /// Where text sits relative to its anchor point.
+    /// </summary>
     public enum TextAnchor
     {
-        /// <summary>Text starts at the point.</summary>
+        /// <summary>
+        /// Text starts at the point.
+        /// </summary>
         Start,
 
-        /// <summary>Text is centred on the point.</summary>
+        /// <summary>
+        /// Text is centred on the point.
+        /// </summary>
         Middle,
 
-        /// <summary>Text ends at the point.</summary>
+        /// <summary>
+        /// Text ends at the point.
+        /// </summary>
         End,
     }
 
-    /// <summary>One step of an outline path.</summary>
+    /// <summary>
+    /// One step of an outline path.
+    /// </summary>
     public enum PathOp
     {
-        /// <summary>Start a new figure at (X,Y).</summary>
+        /// <summary>
+        /// Start a new figure at (X,Y).
+        /// </summary>
         MoveTo,
 
-        /// <summary>Straight line to (X,Y).</summary>
+        /// <summary>
+        /// Straight line to (X,Y).
+        /// </summary>
         LineTo,
 
-        /// <summary>Quadratic curve with control point (CX,CY) ending at (X,Y).</summary>
+        /// <summary>
+        /// Quadratic curve with control point (CX,CY) ending at (X,Y).
+        /// </summary>
         QuadTo,
 
-        /// <summary>Circular arc of radius R ending at (X,Y), turning clockwise.</summary>
+        /// <summary>
+        /// Circular arc of radius R ending at (X,Y), turning clockwise.
+        /// </summary>
         ArcClockwiseTo,
 
-        /// <summary>Close the figure back to its start.</summary>
+        /// <summary>
+        /// Close the figure back to its start.
+        /// </summary>
         Close,
     }
 
-    /// <summary>One step of a path outline.</summary>
+    /// <summary>
+    /// One step of a path outline.
+    /// </summary>
     public readonly struct PathSegment
     {
-        /// <summary>What the step does.</summary>
+        /// <summary>
+        /// What the step does.
+        /// </summary>
         public readonly PathOp Op;
 
-        /// <summary>End point X.</summary>
+        /// <summary>
+        /// End point X.
+        /// </summary>
         public readonly double X;
 
-        /// <summary>End point Y.</summary>
+        /// <summary>
+        /// End point Y.
+        /// </summary>
         public readonly double Y;
 
-        /// <summary>Curve control point X (QuadTo) or the radius (ArcClockwiseTo).</summary>
+        /// <summary>
+        /// Curve control point X (QuadTo) or the radius (ArcClockwiseTo).
+        /// </summary>
         public readonly double CX;
 
-        /// <summary>Curve control point Y (QuadTo).</summary>
+        /// <summary>
+        /// Curve control point Y (QuadTo).
+        /// </summary>
         public readonly double CY;
 
-        /// <summary>Creates a path step.</summary>
+        /// <summary>
+        /// Creates a path step.
+        /// </summary>
+        /// <param name="op">
+        /// What the step does.
+        /// </param>
+        /// <param name="x">
+        /// End point X.
+        /// </param>
+        /// <param name="y">
+        /// End point Y.
+        /// </param>
+        /// <param name="cx">
+        /// Curve control point X, or the arc radius.
+        /// </param>
+        /// <param name="cy">
+        /// Curve control point Y.
+        /// </param>
         public PathSegment(PathOp op, double x, double y, double cx = 0, double cy = 0)
         {
             Op = op;
@@ -133,28 +214,44 @@ namespace RetroSchematic.Render
     /// </summary>
     public sealed class DrawItem
     {
-        /// <summary>What kind of step this is.</summary>
+        /// <summary>
+        /// What kind of step this is.
+        /// </summary>
         public DrawKind Kind;
 
-        /// <summary>What it shows; chooses the colour.</summary>
+        /// <summary>
+        /// What it shows; chooses the colour.
+        /// </summary>
         public DrawRole Role;
 
-        /// <summary>How sure the reading behind it is. Inferred items are drawn in their own colour.</summary>
+        /// <summary>
+        /// How sure the reading behind it is. Inferred items are drawn in their own colour.
+        /// </summary>
         public Confidence Confidence;
 
-        /// <summary>First coordinate pair, see <see cref="DrawKind"/> for the meaning per kind.</summary>
+        /// <summary>
+        /// First coordinate pair, see <see cref="DrawKind"/> for the meaning per kind.
+        /// </summary>
         public double X1, Y1;
 
-        /// <summary>Second coordinate pair, see <see cref="DrawKind"/> for the meaning per kind.</summary>
+        /// <summary>
+        /// Second coordinate pair, see <see cref="DrawKind"/> for the meaning per kind.
+        /// </summary>
         public double X2, Y2;
 
-        /// <summary>Dashed outline (a part whose type is not proved).</summary>
+        /// <summary>
+        /// Dashed outline (a part whose type is not proved).
+        /// </summary>
         public bool Dashed;
 
-        /// <summary>The path steps for <see cref="DrawKind.Path"/>.</summary>
+        /// <summary>
+        /// The path steps for <see cref="DrawKind.Path"/>.
+        /// </summary>
         public PathSegment[]? Path;
 
-        /// <summary>The text for <see cref="DrawKind.Text"/>.</summary>
+        /// <summary>
+        /// The text for <see cref="DrawKind.Text"/>.
+        /// </summary>
         public string Text = "";
 
         /// <summary>
@@ -163,13 +260,19 @@ namespace RetroSchematic.Render
         /// </summary>
         public string Subscript = "";
 
-        /// <summary>Font size in drawing units.</summary>
+        /// <summary>
+        /// Font size in drawing units.
+        /// </summary>
         public double FontSize = 10;
 
-        /// <summary>Bold text.</summary>
+        /// <summary>
+        /// Bold text.
+        /// </summary>
         public bool Bold;
 
-        /// <summary>Where the text sits relative to (X1,Y1).</summary>
+        /// <summary>
+        /// Where the text sits relative to (X1,Y1).
+        /// </summary>
         public TextAnchor Anchor;
 
         /// <summary>
@@ -186,20 +289,34 @@ namespace RetroSchematic.Render
     /// </summary>
     public sealed class SchematicDrawing
     {
-        /// <summary>Creates an empty drawing of the given size.</summary>
+        /// <summary>
+        /// Creates an empty drawing of the given size.
+        /// </summary>
+        /// <param name="width">
+        /// Width in drawing units.
+        /// </param>
+        /// <param name="height">
+        /// Height in drawing units.
+        /// </param>
         public SchematicDrawing(double width, double height)
         {
             Width = width;
             Height = height;
         }
 
-        /// <summary>Width in drawing units.</summary>
+        /// <summary>
+        /// Width in drawing units.
+        /// </summary>
         public double Width { get; }
 
-        /// <summary>Height in drawing units.</summary>
+        /// <summary>
+        /// Height in drawing units.
+        /// </summary>
         public double Height { get; }
 
-        /// <summary>The steps, in drawing order.</summary>
+        /// <summary>
+        /// The steps, in drawing order.
+        /// </summary>
         public List<DrawItem> Items { get; } = new();
 
         /// <summary>
@@ -207,6 +324,15 @@ namespace RetroSchematic.Render
         /// string. Signal names and gates win over the part frame around them, because they are
         /// drawn on top of it and are the smaller target.
         /// </summary>
+        /// <param name="x">
+        /// Point X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Point Y in drawing units.
+        /// </param>
+        /// <returns>
+        /// The owner of the item under the point, or an empty string.
+        /// </returns>
         public string HitTest(double x, double y)
         {
             string best = "";
@@ -234,6 +360,21 @@ namespace RetroSchematic.Render
         /// The box an item covers. Text width is estimated at 0.6 x the font size per character,
         /// which is the monospace width the sheet is drawn with.
         /// </summary>
+        /// <param name="it">
+        /// The drawing step.
+        /// </param>
+        /// <param name="left">
+        /// Left edge.
+        /// </param>
+        /// <param name="top">
+        /// Top edge.
+        /// </param>
+        /// <param name="right">
+        /// Right edge.
+        /// </param>
+        /// <param name="bottom">
+        /// Bottom edge.
+        /// </param>
         public static void Bounds(DrawItem it, out double left, out double top, out double right, out double bottom)
         {
             switch (it.Kind)

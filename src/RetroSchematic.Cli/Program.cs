@@ -11,14 +11,24 @@ using RetroSchematic.Render;
 
 namespace RetroSchematic.Cli
 {
-    /// <summary>retroschematic: check and render netlist files.</summary>
+    /// <summary>
+    /// retroschematic: check and render netlist files.
+    /// </summary>
     public static class Program
     {
         private const string Help =
             "retroschematic check <sheet.json>                          check a netlist file\n" +
             "retroschematic render <sheet.json> <out.svg> [nd|modern]   draw it as SVG (default: nd symbols)\n";
 
-        /// <summary>Entry point.</summary>
+        /// <summary>
+        /// Entry point.
+        /// </summary>
+        /// <param name="args">
+        /// The command (check or render) and its file names.
+        /// </param>
+        /// <returns>
+        /// 0 when the command worked, 1 when the sheet file is not valid or cannot be read, 2 for a wrong command line.
+        /// </returns>
         public static int Main(string[] args)
         {
             if (args.Length < 2)

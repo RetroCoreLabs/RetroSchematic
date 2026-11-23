@@ -71,7 +71,12 @@ namespace RetroSchematic.Tests
             return result;
         }
 
-        /// <summary>Every shape name that has a pin table.</summary>
+        /// <summary>
+        /// Every shape name that has a pin table.
+        /// </summary>
+        /// <returns>
+        /// The shape names.
+        /// </returns>
         private static string[] ReadKinds()
         {
             string[] files = Directory.GetFiles(Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog", "symbols", "pins"), "*.json");
@@ -81,7 +86,9 @@ namespace RetroSchematic.Tests
             return kinds;
         }
 
-        /// <summary>The far end (x2, y2) of every line carrying data-pin.</summary>
+        /// <summary>
+        /// The far end (x2, y2) of every line carrying data-pin.
+        /// </summary>
         private static Dictionary<string, (double X, double Y)> ReadPinEnds(string path)
         {
             Dictionary<string, (double X, double Y)> result = new();

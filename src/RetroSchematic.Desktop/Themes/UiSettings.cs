@@ -25,16 +25,24 @@ namespace RetroSchematic.Desktop.Themes
         /// </summary>
         internal static string? DirectoryOverride { get; set; }
 
-        /// <summary>The loaded settings (read from disk on first use).</summary>
+        /// <summary>
+        /// The loaded settings (read from disk on first use).
+        /// </summary>
         public static UiSettings Instance => s_instance ??= Load();
 
-        /// <summary>Theme id (see <see cref="ThemeManager.Themes"/>); null = Light.</summary>
+        /// <summary>
+        /// Theme id (see <see cref="ThemeManager.Themes"/>); null = Light.
+        /// </summary>
         public string? Theme { get; set; }
 
-        /// <summary>True to draw with ND's 1976 symbols, false for modern ones.</summary>
+        /// <summary>
+        /// True to draw with ND's 1976 symbols, false for modern ones.
+        /// </summary>
         public bool NdSymbols { get; set; } = true;
 
-        /// <summary>The last sheet file opened, re-opened at start.</summary>
+        /// <summary>
+        /// The last sheet file opened, re-opened at start.
+        /// </summary>
         public string? LastSheet { get; set; }
 
         /// <summary>
@@ -48,6 +56,9 @@ namespace RetroSchematic.Desktop.Themes
         /// <summary>
         /// Writes the settings. Returns null, or the reason it failed (shown in the status bar).
         /// </summary>
+        /// <returns>
+        /// Null when saved, otherwise why it failed.
+        /// </returns>
         public string? Save()
         {
             try
@@ -67,7 +78,9 @@ namespace RetroSchematic.Desktop.Themes
             }
         }
 
-        /// <summary>For tests: forget the loaded settings so the next use reads them again.</summary>
+        /// <summary>
+        /// For tests: forget the loaded settings so the next use reads them again.
+        /// </summary>
         internal static void Reset() => s_instance = null;
 
         private static string GetSettingsPath()

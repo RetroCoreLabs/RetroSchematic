@@ -13,7 +13,9 @@ using RetroSchematic.Desktop.Themes;
 
 namespace RetroSchematic.Desktop
 {
-    /// <summary>The application: loads the styles, sets up the theme, opens the main window.</summary>
+    /// <summary>
+    /// The application: loads the styles, sets up the theme, opens the main window.
+    /// </summary>
     public partial class App : Application
     {
         /// <inheritdoc/>

@@ -23,22 +23,48 @@ namespace RetroSchematic.Render
     {
         private readonly string? _catalogFolder;
 
-        /// <summary>Called after the drawing was laid out again (new sheet or new symbol style).</summary>
+        /// <summary>
+        /// Called after the drawing was laid out again (new sheet or new symbol style).
+        /// </summary>
+        /// <param name="session">
+        /// The session whose drawing changed.
+        /// </param>
         public delegate void DrawingChangedHandler(SheetSession session);
 
-        /// <summary>Called after the picked item changed; <paramref name="owner"/> is empty for none.</summary>
+        /// <summary>
+        /// Called after the picked item changed; <paramref name="owner"/> is empty for none.
+        /// </summary>
+        /// <param name="session">
+        /// The session whose pick changed.
+        /// </param>
+        /// <param name="owner">
+        /// The new pick, or empty for none.
+        /// </param>
         public delegate void SelectionChangedHandler(SheetSession session, string owner);
 
-        /// <summary>The drawing was laid out again.</summary>
+        /// <summary>
+        /// The drawing was laid out again.
+        /// </summary>
         public event DrawingChangedHandler? DrawingChanged;
 
-        /// <summary>The picked item changed.</summary>
+        /// <summary>
+        /// The picked item changed.
+        /// </summary>
         public event SelectionChangedHandler? SelectionChanged;
 
         /// <summary>
         /// Opens a sheet file. <paramref name="catalogFolder"/> is the catalogue's folder (the one
         /// holding <c>chips/</c>), used to show what a picked chip is; null leaves that out.
         /// </summary>
+        /// <param name="sheetPath">
+        /// The sheet file.
+        /// </param>
+        /// <param name="style">
+        /// The symbol set to start with.
+        /// </param>
+        /// <param name="catalogFolder">
+        /// The catalogue folder (the one holding chips), or null.
+        /// </param>
         public SheetSession(string sheetPath, SymbolStyle style, string? catalogFolder)
         {
             SheetPath = sheetPath;
@@ -48,22 +74,37 @@ namespace RetroSchematic.Render
             Drawing = SheetLayout.Build(Netlist, style);
         }
 
-        /// <summary>The sheet file.</summary>
+        /// <summary>
+        /// The sheet file.
+        /// </summary>
         public string SheetPath { get; }
 
-        /// <summary>The sheet's contents.</summary>
+        /// <summary>
+        /// The sheet's contents.
+        /// </summary>
         public Netlist Netlist { get; }
 
-        /// <summary>The symbol set in use.</summary>
+        /// <summary>
+        /// The symbol set in use.
+        /// </summary>
         public SymbolStyle Style { get; private set; }
 
-        /// <summary>The laid-out drawing for <see cref="Style"/>.</summary>
+        /// <summary>
+        /// The laid-out drawing for <see cref="Style"/>.
+        /// </summary>
         public SchematicDrawing Drawing { get; private set; }
 
-        /// <summary>The picked item ("part:11D", "gate:11D/1", "net:BD0"), or empty.</summary>
+        /// <summary>
+        /// The picked item ("part:11D", "gate:11D/1", "net:BD0"), or empty.
+        /// </summary>
         public string Selected { get; private set; } = "";
 
-        /// <summary>Changes the symbol set and lays the sheet out again. The picked item stays picked.</summary>
+        /// <summary>
+        /// Changes the symbol set and lays the sheet out again. The picked item stays picked.
+        /// </summary>
+        /// <param name="style">
+        /// The symbol set to use.
+        /// </param>
         public void SetStyle(SymbolStyle style)
         {
             if (style == Style)
@@ -73,10 +114,23 @@ namespace RetroSchematic.Render
             DrawingChanged?.Invoke(this);
         }
 
-        /// <summary>Picks whatever lies under a point of the drawing (nothing picks nothing).</summary>
+        /// <summary>
+        /// Picks whatever lies under a point of the drawing (nothing picks nothing).
+        /// </summary>
+        /// <param name="x">
+        /// Point X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Point Y in drawing units.
+        /// </param>
         public void PickAt(double x, double y) => Select(Drawing.HitTest(x, y));
 
-        /// <summary>Picks an item by owner name ("part:11D"); empty clears the pick.</summary>
+        /// <summary>
+        /// Picks an item by owner name ("part:11D"); empty clears the pick.
+        /// </summary>
+        /// <param name="owner">
+        /// The item to pick, such as part:11D, or empty for none.
+        /// </param>
         public void Select(string owner)
         {
             if (owner == Selected)
@@ -89,6 +143,12 @@ namespace RetroSchematic.Render
         /// True if an item belongs to the picked thing. Picking a signal lights every pin label of
         /// that signal; picking a gate lights the gate; picking a part lights the part and its gates.
         /// </summary>
+        /// <param name="item">
+        /// A drawing step.
+        /// </param>
+        /// <returns>
+        /// True if the step belongs to the picked item.
+        /// </returns>
         public bool IsLit(DrawItem item)
         {
             if (Selected.Length == 0 || item.Owner.Length == 0)
@@ -109,6 +169,9 @@ namespace RetroSchematic.Render
         /// Plain-text description of the picked item, for the side panel: what it is, how sure
         /// the reading is, and where it connects. Empty when nothing is picked.
         /// </summary>
+        /// <returns>
+        /// The description, one fact per line.
+        /// </returns>
         public string Describe()
         {
             if (Selected.StartsWith("part:", StringComparison.Ordinal))
@@ -182,7 +245,15 @@ namespace RetroSchematic.Render
             return sb.ToString();
         }
 
-        /// <summary>The chip file's title and source, when the catalogue has the chip.</summary>
+        /// <summary>
+        /// The chip file's title and source, when the catalogue has the chip.
+        /// </summary>
+        /// <param name="sb">
+        /// The description being built.
+        /// </param>
+        /// <param name="type">
+        /// The chip type, such as 7442.
+        /// </param>
         private void AppendChip(StringBuilder sb, string type)
         {
             if (_catalogFolder == null)

@@ -18,7 +18,9 @@ namespace RetroSchematic.Model
     /// </summary>
     public static class NetlistReader
     {
-        /// <summary>The format versions this reader understands.</summary>
+        /// <summary>
+        /// The format versions this reader understands.
+        /// </summary>
         public const int SupportedFormatVersion = 1;
 
         private static readonly JsonSerializerOptions s_options = new()
@@ -30,11 +32,29 @@ namespace RetroSchematic.Model
             Converters = { new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower, allowIntegerValues: false) },
         };
 
-        /// <summary>Read and check a file.</summary>
+        /// <summary>
+        /// Read and check a file.
+        /// </summary>
+        /// <param name="path">
+        /// The sheet file.
+        /// </param>
+        /// <returns>
+        /// The checked netlist.
+        /// </returns>
         public static Netlist ReadFile(string path) => Parse(File.ReadAllText(path));
 
-        /// <summary>Read and check JSON text.</summary>
-        /// <exception cref="NetlistException">The text is not a valid version-1 netlist.</exception>
+        /// <summary>
+        /// Read and check JSON text.
+        /// </summary>
+        /// <exception cref="NetlistException">
+        /// The text is not a valid version-1 netlist.
+        /// </exception>
+        /// <param name="json">
+        /// The file's text.
+        /// </param>
+        /// <returns>
+        /// The checked netlist.
+        /// </returns>
         public static Netlist Parse(string json)
         {
             // Look at the header first, so a newer file gets a version message and not a field error.
@@ -65,7 +85,15 @@ namespace RetroSchematic.Model
             return netlist;
         }
 
-        /// <summary>Write a netlist as JSON in the file's own style.</summary>
+        /// <summary>
+        /// Write a netlist as JSON in the file's own style.
+        /// </summary>
+        /// <param name="netlist">
+        /// The netlist to write.
+        /// </param>
+        /// <returns>
+        /// The JSON text.
+        /// </returns>
         public static string Write(Netlist netlist) => JsonSerializer.Serialize(netlist, s_options);
 
         private static void Check(Netlist netlist)
@@ -112,13 +140,28 @@ namespace RetroSchematic.Model
         }
     }
 
-    /// <summary>A netlist file that is not valid.</summary>
+    /// <summary>
+    /// A netlist file that is not valid.
+    /// </summary>
     public sealed class NetlistException : Exception
     {
-        /// <summary>Create with a message.</summary>
+        /// <summary>
+        /// Create with a message.
+        /// </summary>
+        /// <param name="message">
+        /// What is wrong with the file.
+        /// </param>
         public NetlistException(string message) : base(message) { }
 
-        /// <summary>Create with a message and the cause.</summary>
+        /// <summary>
+        /// Create with a message and the cause.
+        /// </summary>
+        /// <param name="message">
+        /// What is wrong with the file.
+        /// </param>
+        /// <param name="inner">
+        /// The error that showed it.
+        /// </param>
         public NetlistException(string message, Exception inner) : base(message, inner) { }
     }
 }

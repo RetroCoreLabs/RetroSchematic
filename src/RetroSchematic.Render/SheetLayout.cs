@@ -11,7 +11,9 @@ using RetroSchematic.Model;
 
 namespace RetroSchematic.Render
 {
-    /// <summary>Which symbol set the sheet is drawn with.</summary>
+    /// <summary>
+    /// Which symbol set the sheet is drawn with.
+    /// </summary>
     public enum SymbolStyle
     {
         /// <summary>
@@ -21,7 +23,9 @@ namespace RetroSchematic.Render
         /// </summary>
         NorskData,
 
-        /// <summary>The usual distinctive-shape symbols (IEEE Std 91 shapes).</summary>
+        /// <summary>
+        /// The usual distinctive-shape symbols (IEEE Std 91 shapes).
+        /// </summary>
         Modern,
     }
 
@@ -41,7 +45,18 @@ namespace RetroSchematic.Render
         private const double GateHeight = 24;
         private const double GateSpacing = 34;
 
-        /// <summary>Lay out a whole sheet.</summary>
+        /// <summary>
+        /// Lay out a whole sheet.
+        /// </summary>
+        /// <param name="netlist">
+        /// The sheet.
+        /// </param>
+        /// <param name="style">
+        /// ND 1976 or modern symbols.
+        /// </param>
+        /// <returns>
+        /// The sheet as drawing steps.
+        /// </returns>
         public static SchematicDrawing Build(Netlist netlist, SymbolStyle style)
         {
             Dictionary<string, Net> netByPin = new(StringComparer.Ordinal);
@@ -167,7 +182,24 @@ namespace RetroSchematic.Render
             PinLabel(d, part, gate.Output, outX + 16, oy + 3, TextAnchor.Start, netByPin);
         }
 
-        /// <summary>ND-13.003.01 pages 2 and 4-6: straight lines only.</summary>
+        /// <summary>
+        /// ND-13.003.01 pages 2 and 4-6: straight lines only.
+        /// </summary>
+        /// <param name="d">
+        /// The drawing to add to.
+        /// </param>
+        /// <param name="gate">
+        /// The gate.
+        /// </param>
+        /// <param name="owner">
+        /// Owner name for the steps.
+        /// </param>
+        /// <param name="x">
+        /// Left edge of the symbol.
+        /// </param>
+        /// <param name="y">
+        /// Top edge of the symbol.
+        /// </param>
         private static void NorskDataSymbol(SchematicDrawing d, Gate gate, string owner, double x, double y)
         {
             double r = x + GateWidth, b = y + GateHeight;
@@ -259,7 +291,15 @@ namespace RetroSchematic.Render
             t.Subscript = Subscript(net);
         }
 
-        /// <summary>ND's subscript on a signal name: 1 = active high, 0 = active low (manual page 2).</summary>
+        /// <summary>
+        /// ND's subscript on a signal name: 1 = active high, 0 = active low (manual page 2).
+        /// </summary>
+        /// <param name="net">
+        /// The signal.
+        /// </param>
+        /// <returns>
+        /// "1", "0", or empty when the signal has no active level.
+        /// </returns>
         private static string Subscript(Net net)
             => net.Active == ActiveLevel.None ? "" : net.Active == ActiveLevel.High ? "1" : "0";
 

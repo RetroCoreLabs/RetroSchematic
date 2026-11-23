@@ -21,10 +21,17 @@ namespace RetroSchematic.Desktop.Tests
     /// </summary>
     public static class TestAppBuilder
     {
-        /// <summary>A private settings folder, so no test reads or changes the user's own preferences.</summary>
+        /// <summary>
+        /// A private settings folder, so no test reads or changes the user's own preferences.
+        /// </summary>
         public static readonly string SettingsFolder = Path.Combine(Path.GetTempPath(), "RetroSchematic.Desktop.Tests-" + System.Environment.ProcessId);
 
-        /// <summary>Used by Avalonia.Headless.NUnit.</summary>
+        /// <summary>
+        /// Used by Avalonia.Headless.NUnit.
+        /// </summary>
+        /// <returns>
+        /// The headless application with Skia drawing.
+        /// </returns>
         public static AppBuilder BuildAvaloniaApp()
         {
             // before App starts: ThemeManager reads the settings during start-up
@@ -43,7 +50,9 @@ namespace RetroSchematic.Desktop.Tests
     [SetUpFixture]
     public sealed class SettingsCleanup
     {
-        /// <summary>Delete the settings folder.</summary>
+        /// <summary>
+        /// Delete the settings folder.
+        /// </summary>
         [OneTimeTearDown]
         public void RemoveSettingsFolder()
         {
