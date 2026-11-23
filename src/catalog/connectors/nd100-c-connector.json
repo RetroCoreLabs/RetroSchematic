@@ -1,0 +1,74 @@
+{
+  "catalogFormat": "nd-connector",
+  "catalogFormatVersion": 1,
+  "id": "nd100-c-connector",
+  "machine": "NORD-100",
+  "title": "NORD-100 module plugs A, B and C",
+  "sources": [
+    {
+      "id": "NDI",
+      "document": "NDInsight repository, SINTRAN/Devices/BusSignals/ND-100-BUS-C-CONNECTOR.md (commit f62ddaa2)",
+      "note": "Secondary source. Its pin table comes from the owner's spreadsheet 'ND-120 Commands' (sheets C-BUS, C-PLUG); its driver and pull-up facts describe the ND-120 3202D CPU card. The ND original of those facts was not checked here. Where its source/used codes disagree with the 1980 table image, the image wins (see 'disagreements')."
+    },
+    {
+      "id": "N100",
+      "document": "ND-06.016.01 NORD-100 Input/Output System (1980)",
+      "note": "Appendix F gives the full backplane table (connector C, rows a/b/c, pins 1-32) and a definition of each signal; section I.2.3 names the plugs A, B, C."
+    }
+  ],
+  "plugs": [
+    {
+      "name": "C",
+      "use": "NORD-100 bus",
+      "pinCount": 96,
+      "pinNumbering": "rows a, b, c x pins 1-32 (the ND table prints the rows in lower case; NDInsight writes A, B, C)",
+      "physicalType": {
+        "value": "DIN 41612, 3 x 32, 2.54 mm pitch; male right-angle on the card, female on the backplane; NOT electrically compatible with Eurocard buses that use the same connector",
+        "source": "NDI",
+        "page": "section 'Physical Connector'",
+        "confidence": "read",
+        "note": "secondary source; no ND manual found that names DIN 41612"
+      },
+      "source": "N100",
+      "page": "section I.2.3 (printed I-2-8) and Appendix F.2 table (PDF page 214)",
+      "confidence": "read",
+      "power": {
+        "GND": "a/b/c 1, 11, 24, 32",
+        "+5V": "a/b/c 2, 31",
+        "+15V": "a/b/c 25",
+        "An. Return": "a/b/c 26",
+        "-15V": "a/b/c 27",
+        "+12V": "a/b/c 28",
+        "POW. SENSE": "a/b/c 29",
+        "5V St.by": "a/b/c 30"
+      }
+    },
+    {
+      "name": "A",
+      "use": "64 lines, use not defined by the bus; on I/O controllers used for the external devices",
+      "pinCount": 64,
+      "pinNumbering": {
+        "value": "open",
+        "confidence": "open",
+        "note": "not given"
+      },
+      "source": "N100",
+      "page": "section I.2.3 (printed I-2-8, I-2-9)",
+      "confidence": "read"
+    },
+    {
+      "name": "B",
+      "use": "64 lines, use not defined by the bus; on I/O controllers used for the external devices",
+      "pinCount": 64,
+      "pinNumbering": {
+        "value": "open",
+        "confidence": "open",
+        "note": "not given"
+      },
+      "source": "N100",
+      "page": "section I.2.3 (printed I-2-8, I-2-9)",
+      "confidence": "read"
+    }
+  ],
+  "note": "Every module has plug C; a module may also have A and B (read). Signal per pin: catalog/signals/nd-bus-nord100.json."
+}

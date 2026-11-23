@@ -1,0 +1,2167 @@
+{
+  "catalogFormat": "nd-bus-signals",
+  "catalogFormatVersion": 1,
+  "id": "nord10-io-bus",
+  "machine": "NORD-10",
+  "title": "NORD-10 Input/Output bus at an I/O device card position",
+  "conventions": {
+    "active": "low = true when the line is low (ND suffix 0); high = true when high (suffix 1); none = power",
+    "direction": "seen from an I/O card: in, out, bidir, 'out, open collector (shared)'",
+    "confidence": "read = stated in the source; inferred = worked out, the note says from what; open = not known",
+    "pins": "connector 'open' = no NORD-10 document found names the connector; pin = the number in the wiring list and on the card drawings",
+    "letters": "In Backwiring til NORD-10 a letter before a signal code (W, G, B, E, X) is printed. G marks the driving pin (inferred from the IDENT/GRANT chains); X marks a signal with only one connection (inferred from the chain ends); W, B and E are open."
+  },
+  "sources": [
+    {
+      "id": "BW",
+      "document": "Backwiring til NORD-10 (A/S Norsk Data-Elektronikk): connector specification list, connector lists per card position, signal code list",
+      "note": "Typed wiring list of the NORD-10 CPU crate. The connector lists of A22 and A25 were checked against the page images; the OCR of the other slot pages agrees with them pin for pin."
+    },
+    {
+      "id": "S2A50",
+      "document": "NORD-10 drawings, sheet 2A50 SYNCHRONOUS MODEM BUFFER 1050 (1973), as read pin by pin in this repository (sheets/nord-10/2A50-sync-modem-buffer-1050.json, docs/2A50-reading.md)",
+      "note": "The names the card drawing uses (LEV10, IOXE, MC ...) differ from the backplane names (BINT10, BIOXE, BMCL ...); the pin numbers match."
+    },
+    {
+      "id": "N10S",
+      "document": "ND-06.008.01 NORD-10/S Reference Manual, Revision A",
+      "note": "Sections 3.3 (IOX), IDENT instruction, 4.1 (Input/Output hardware) and 4.1.3 (vectored interrupt identification). It refers to the NORD-10 Input/Output manual ND-06.004 for signal levels, definitions and timing; that manual was NOT found on this machine."
+    }
+  ],
+  "signals": [
+    {
+      "name": "BA0",
+      "namesOnCards": [
+        "BA0"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 32
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 0. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA1",
+      "namesOnCards": [
+        "BA1"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 33
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 1. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA2",
+      "namesOnCards": [
+        "BA2"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 34
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 2. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA3",
+      "namesOnCards": [
+        "BA3"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 36
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 3. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA4",
+      "namesOnCards": [
+        "BA4"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 37
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 4. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA5",
+      "namesOnCards": [
+        "BA5"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 38
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 5. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA6",
+      "namesOnCards": [
+        "BA6"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 40
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 6. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA7",
+      "namesOnCards": [
+        "BA7"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 41
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 7. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA8",
+      "namesOnCards": [
+        "BA8"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 42
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 8. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA9",
+      "namesOnCards": [
+        "BA9"
+      ],
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 44
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 9. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA10",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 45
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 10. With IOX the device register address is 11 bits (bits 0-10).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      }
+    },
+    {
+      "name": "BA11",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 46
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 11. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BA12",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 48
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 12. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BA13",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 49
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 13. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BA14",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 50
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 14. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BA15",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 52
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 15. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BA16",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 53
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 16. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BA17",
+      "group": "address",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "inferred",
+        "note": "The other end of the line is position A23 (I/O ADDRESS); the 2A50 card only receives BA lines (S2A50)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 54
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus address bit 17. Use on I/O cards not documented in the sources found.",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      }
+    },
+    {
+      "name": "BD0",
+      "namesOnCards": [
+        "BD0"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 10
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 0 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD1",
+      "namesOnCards": [
+        "BD1"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 12
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 1 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD2",
+      "namesOnCards": [
+        "BD2"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 13
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 2 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD3",
+      "namesOnCards": [
+        "BD3"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 14
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 3 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD4",
+      "namesOnCards": [
+        "BD4"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 16
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 4 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD5",
+      "namesOnCards": [
+        "BD5"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 17
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 5 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD6",
+      "namesOnCards": [
+        "BD6"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 18
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 6 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD7",
+      "namesOnCards": [
+        "BD7"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 20
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 7 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD8",
+      "namesOnCards": [
+        "BD8"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 21
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 8 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD9",
+      "namesOnCards": [
+        "BD9"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 22
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 9 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD10",
+      "namesOnCards": [
+        "BD10"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 24
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 10 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD11",
+      "namesOnCards": [
+        "BD11"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 25
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 11 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD12",
+      "namesOnCards": [
+        "BD12"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 26
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 12 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD13",
+      "namesOnCards": [
+        "BD13"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 28
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 13 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD14",
+      "namesOnCards": [
+        "BD14"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 29
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 14 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BD15",
+      "namesOnCards": [
+        "BD15"
+      ],
+      "group": "data",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "bidir",
+        "source": "S2A50",
+        "page": "bus drivers 8098 and receivers 7404 on the sheet",
+        "confidence": "inferred",
+        "note": "2A50 receives BD lines on a write and drives them with 8098 buffers on a read; the other end of the line is position A24 (I/O DATA) in the backwiring list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 30
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Bus data bit 15 (16-bit data word between the CPU A register and the card).",
+        "source": "N10S",
+        "page": "section 3.3 IOX",
+        "confidence": "inferred",
+        "note": "From the IOX description (A register to/from device) and the name."
+      }
+    },
+    {
+      "name": "BIOXE",
+      "namesOnCards": [
+        "IOXE"
+      ],
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "connector list of position A22 (I/O control): PDF page 25, printed page 23",
+        "confidence": "inferred",
+        "note": "Driven from A22 pin 18, which is marked G; in this list G marks the pin that drives a line (inferred from the IDENT chain, where G is always the outgoing pin)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 11
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "IOX enable: the strobe that tells every card that an IOX transfer is under way, so the card compares BA against its own address.",
+        "source": "S2A50",
+        "page": "IOXE enables comparator 13E",
+        "confidence": "inferred",
+        "note": "On 2A50 IOXE is the enable of the address comparator 13E (read). The NORD-100 bus has a signal of the same name with this meaning (ND-06.016.01 Appendix F.2); not verified for NORD-10."
+      }
+    },
+    {
+      "name": "BINPUT",
+      "namesOnCards": [
+        "INPUT"
+      ],
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives INPUT onto pin 15",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 15
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "The addressed card says the transfer is an input (card to CPU).",
+        "source": "S2A50",
+        "page": "13C DINPUT from DEQL, 1A, 5A",
+        "confidence": "inferred",
+        "note": "On 2A50 INPUT is driven when the card is addressed and the register is a read register. The exact meaning in the NORD-10 bus protocol is not in any document found."
+      }
+    },
+    {
+      "name": "BCON",
+      "namesOnCards": [
+        "CONNECT"
+      ],
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives CONNECT onto pin 23",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 23
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "The card answers that it recognised its address (connected).",
+        "source": "S2A50",
+        "page": "1A TCONNECT, 5A",
+        "confidence": "inferred",
+        "note": "From the 2A50 wiring (TCONNECT from the ident/address answer multiplexer). Exact protocol meaning open. Note: BCON in the backwiring list goes to positions A25-A31 only; its CPU-side end (A22 pin 28, unmarked) is read from the A22 page image."
+      }
+    },
+    {
+      "name": "BINT10",
+      "namesOnCards": [
+        "LEV10"
+      ],
+      "group": "interrupt",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives LEV10 / LEV12",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 27
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Interrupt request on program level 10. Levels 15, 13, 12, 11 and 10 are the ones available to external devices.",
+        "source": "N10S",
+        "page": "section 4.1.3 Vectored interrupt identification",
+        "confidence": "inferred",
+        "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      }
+    },
+    {
+      "name": "BINT11",
+      "group": "interrupt",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives LEV10 / LEV12",
+        "confidence": "inferred",
+        "note": "2A50 does not use this level; assumed to be driven like BINT10/BINT12."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 31
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Interrupt request on program level 11. Levels 15, 13, 12, 11 and 10 are the ones available to external devices.",
+        "source": "N10S",
+        "page": "section 4.1.3 Vectored interrupt identification",
+        "confidence": "inferred",
+        "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      }
+    },
+    {
+      "name": "BINT12",
+      "namesOnCards": [
+        "LEV12"
+      ],
+      "group": "interrupt",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives LEV10 / LEV12",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 35
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Interrupt request on program level 12. Levels 15, 13, 12, 11 and 10 are the ones available to external devices.",
+        "source": "N10S",
+        "page": "section 4.1.3 Vectored interrupt identification",
+        "confidence": "inferred",
+        "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      }
+    },
+    {
+      "name": "BINT13",
+      "group": "interrupt",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives LEV10 / LEV12",
+        "confidence": "inferred",
+        "note": "2A50 does not use this level; assumed to be driven like BINT10/BINT12."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 39
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Interrupt request on program level 13. Levels 15, 13, 12, 11 and 10 are the ones available to external devices.",
+        "source": "N10S",
+        "page": "section 4.1.3 Vectored interrupt identification",
+        "confidence": "inferred",
+        "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      }
+    },
+    {
+      "name": "BINT15",
+      "group": "interrupt",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out, open collector (shared)",
+        "source": "S2A50",
+        "page": "7438 at 5A drives LEV10 / LEV12",
+        "confidence": "inferred",
+        "note": "2A50 does not use this level; assumed to be driven like BINT10/BINT12."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 43
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Interrupt request on program level 15. Levels 15, 13, 12, 11 and 10 are the ones available to external devices.",
+        "source": "N10S",
+        "page": "section 4.1.3 Vectored interrupt identification",
+        "confidence": "inferred",
+        "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      }
+    },
+    {
+      "name": "BIDENT / IDENTn (chain in)",
+      "namesOnCards": [
+        "INIDENT"
+      ],
+      "group": "ident",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "Slot A25 pin 7 is BIDENT (from A22 pin 10, marked G); slot A26 pin 7 is IDENT1, the pin-6 output of A25; and so on along the slots."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 7
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "IDENT search signal coming in from the card nearer the CPU. When several cards interrupt on the same level, the slot position decides priority; a card that answers IDENT turns off its interrupt.",
+        "source": "N10S",
+        "page": "IDENT instruction, section 4.1.3",
+        "confidence": "inferred",
+        "note": "Priority by slot and 'turns off its interrupt' are read; that this daisy chain carries the search is inferred from the chain wiring."
+      }
+    },
+    {
+      "name": "IDENTn (chain out)",
+      "namesOnCards": [
+        "OUTIDENT"
+      ],
+      "group": "ident",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "read",
+        "note": "IDENT1 0: A25:G06 to A26:07, IDENT3 0: A26:G06 to A27:07 ... X IDENT15 0: A32:G06 only (end of chain)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 6
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "IDENT search passed on to the next card further from the CPU (when this card does not answer).",
+        "source": "N10S",
+        "page": "section 4.1.3",
+        "confidence": "inferred",
+        "note": "From the chain wiring and slot priority."
+      }
+    },
+    {
+      "name": "BGRANT / GRANTn (chain in)",
+      "namesOnCards": [
+        "INGRANT"
+      ],
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "Slot A25 pin 9 is BGRANT; A26 pin 9 is GRANT1 from A25 pin 8. The index shows BGRANT with one end only (A25:09): its source is not in this list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 9
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "open",
+        "confidence": "open",
+        "note": "Meaning not stated in any NORD-10 document found. The NORD-100 bus has INGRANT for DMA cycles (ND-06.016.01 Appendix F.2) and A22 carries a DMAGRANT line, but neither proves the NORD-10 meaning. 2A50 just wires pin 9 to pin 8."
+      }
+    },
+    {
+      "name": "GRANTn (chain out)",
+      "namesOnCards": [
+        "OUTGRANT"
+      ],
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out",
+        "source": "BW",
+        "page": "signal code list (index by signal): PDF pages 36-54",
+        "confidence": "read",
+        "note": "GRANT1 0: A25:G08 to A26:09 ... X GRANT15 0: A32:G08 only."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 8
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "open",
+        "confidence": "open",
+        "note": "See the chain-in entry."
+      }
+    },
+    {
+      "name": "BMCL",
+      "namesOnCards": [
+        "MC"
+      ],
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "connector list of position A22 (I/O control): PDF page 25, printed page 23",
+        "confidence": "inferred",
+        "note": "Driven from A22 pin 52 (marked G)."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 55
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "Master clear: resets the card.",
+        "source": "S2A50",
+        "page": "17B gate: clear from MC",
+        "confidence": "inferred",
+        "note": "2A50 uses MC (pin 55) to clear the card, the same line as the ICW clear bit (read). NORD-10/S manual section 7.6.1 covers Master Clear at the panel; the bus line itself is not described there."
+      }
+    },
+    {
+      "name": "RESTART",
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "open",
+        "confidence": "open",
+        "note": "A22 pin 26 is not marked G; no driver found in the list."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 19
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "open",
+        "confidence": "open",
+        "note": "Not described in any NORD-10 document found."
+      }
+    },
+    {
+      "name": "IOTE",
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "in",
+        "source": "BW",
+        "page": "connector list of position A22 (I/O control): PDF page 25, printed page 23",
+        "confidence": "inferred",
+        "note": "Driven from A22 pin 44 (marked G); also goes to A23 pin 21."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 47
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "open",
+        "confidence": "open",
+        "note": "Not described in any NORD-10 document found."
+      }
+    },
+    {
+      "name": "BSKIP",
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "inferred",
+        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+      },
+      "direction": {
+        "value": "out",
+        "source": "BW",
+        "page": "connector list of position A22 (I/O control): PDF page 25, printed page 23",
+        "confidence": "inferred",
+        "note": "A22 pin 48 is not marked G, so a card is assumed to drive it."
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 51
+          }
+        ],
+        "source": "BW",
+        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
+        "confidence": "read",
+        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+      },
+      "description": {
+        "value": "open",
+        "confidence": "open",
+        "note": "Not described in any NORD-10 document found."
+      }
+    },
+    {
+      "name": "BFQ1",
+      "namesOnCards": [
+        "BFQ1"
+      ],
+      "group": "control",
+      "active": {
+        "value": "high",
+        "source": "S2A50",
+        "page": "net BFQ1",
+        "confidence": "read",
+        "note": "Drawn with suffix 1 on 2A50."
+      },
+      "direction": {
+        "value": "in",
+        "source": "S2A50",
+        "page": "pin 4 to 74157 15B pins 3, 6",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 4
+          }
+        ],
+        "source": "S2A50",
+        "page": "edge pin 4",
+        "confidence": "read",
+        "note": "Backwiring til NORD-10 shows pin 4 EMPTY on every I/O position A25-A32, and lists FQ1 0 only at A22 pin 6 (marked X = one end only). So on the CPU crate wired by this list, pin 4 carries nothing; the line must come from elsewhere (open)."
+      },
+      "description": {
+        "value": "A clock the card uses in test mode in place of the modem clocks.",
+        "source": "S2A50",
+        "page": "15B test-mode multiplexer",
+        "confidence": "inferred",
+        "note": "Frequency open."
+      }
+    },
+    {
+      "name": "-12V",
+      "group": "power",
+      "active": {
+        "value": "none",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "direction": {
+        "value": "in",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 62
+          },
+          {
+            "connector": "open",
+            "pin": 63
+          }
+        ],
+        "source": "S2A50",
+        "page": "edge pins",
+        "confidence": "read",
+        "note": "Not in Backwiring til NORD-10 (power is not in that list)."
+      },
+      "description": {
+        "value": "-12 V supply.",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      }
+    },
+    {
+      "name": "+12V",
+      "group": "power",
+      "active": {
+        "value": "none",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "direction": {
+        "value": "in",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 66
+          },
+          {
+            "connector": "open",
+            "pin": 67
+          }
+        ],
+        "source": "S2A50",
+        "page": "edge pins",
+        "confidence": "read",
+        "note": "Not in Backwiring til NORD-10."
+      },
+      "description": {
+        "value": "+12 V supply.",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      }
+    },
+    {
+      "name": "GND",
+      "group": "power",
+      "active": {
+        "value": "none",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "direction": {
+        "value": "in",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 80
+          },
+          {
+            "connector": "open",
+            "pin": 82
+          },
+          {
+            "connector": "open",
+            "pin": 84
+          },
+          {
+            "connector": "open",
+            "pin": 86
+          },
+          {
+            "connector": "open",
+            "pin": 94
+          }
+        ],
+        "source": "S2A50",
+        "page": "edge pins",
+        "confidence": "read",
+        "note": "Not in Backwiring til NORD-10. Other ground pins may exist; 2A50 shows these five."
+      },
+      "description": {
+        "value": "Ground.",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      }
+    },
+    {
+      "name": "+5V",
+      "group": "power",
+      "active": {
+        "value": "none",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "direction": {
+        "value": "in",
+        "source": "S2A50",
+        "page": "-",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": "open",
+        "confidence": "open",
+        "note": "No +5 V edge pin is drawn on 2A50 and none is in the backwiring list."
+      },
+      "description": {
+        "value": "+5 V logic supply.",
+        "source": "S2A50",
+        "page": "COM 2601 supply note",
+        "confidence": "read"
+      }
+    }
+  ]
+}
