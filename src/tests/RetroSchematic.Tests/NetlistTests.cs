@@ -130,7 +130,10 @@ namespace RetroSchematic.Tests
         {
             string svg = SvgRenderer.Render(NetlistReader.Parse(Minimal), SymbolStyle.NorskData);
             // ND-13.003.01: the 7402 NOR is a box with both diagonals.
-            Assert.That(svg, Does.Contain("<rect x=\"").And.Contain("<line x1=\"").And.Not.Contain("<path"));
+            // only the gate's own group: the net-label diamonds elsewhere are paths
+            int start = svg.IndexOf("<g id=\"gate-", System.StringComparison.Ordinal);
+            string gate = svg.Substring(start, svg.IndexOf("</g>", start, System.StringComparison.Ordinal) - start);
+            Assert.That(gate, Does.Contain("<rect x=\"").And.Contain("<line x1=\"").And.Not.Contain("<path"));
             Assert.That(svg, Does.Contain("S<tspan baseline-shift=\"sub\" font-size=\"7\">0</tspan>"));
         }
 

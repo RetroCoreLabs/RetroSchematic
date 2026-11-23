@@ -49,14 +49,14 @@ namespace RetroSchematic.Tests
         {
             Netlist n = NetlistReader.ReadFile(Demo);
             SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData);
-            // 1A/1 is at (20 mm, 20 mm): its ND box starts at the margin plus 20 mm in units
-            DrawItem box = First(d, "gate:1A/1", DrawKind.Rect);
-            Assert.That(box.X1, Is.EqualTo(SheetLayout.FromMm(20)));
-            Assert.That(box.Y1, Is.EqualTo(SheetLayout.FromMm(20)));
-            // the part frame is drawn round its measured gates
+            // 1A's gates are measured from (20 mm, 20 mm): its frame starts there, and the gates are
+            // stacked inside it
             PartFrame f = d.Frames["1A"];
-            Assert.That(f.X, Is.LessThan(box.X1));
-            Assert.That(f.Y + f.Height, Is.GreaterThan(SheetLayout.FromMm(40)));
+            Assert.That(f.X, Is.EqualTo(SheetLayout.FromMm(20)));
+            Assert.That(f.Y, Is.EqualTo(SheetLayout.FromMm(20)));
+            DrawItem box = First(d, "gate:1A/1", DrawKind.Rect);
+            Assert.That(box.X1, Is.GreaterThan(f.X));
+            Assert.That(box.Y1, Is.GreaterThan(f.Y));
         }
 
         [Test]
@@ -81,8 +81,16 @@ namespace RetroSchematic.Tests
                 }
                 Assert.That(touched, "no wire ends on pin " + pins[p]);
             }
-            // a signal with only one drawn pin (the rest on the backplane) still gets no wire to nowhere
-            Assert.That(Wires(d, "net:IRQ").Count, Is.GreaterThan(0), "5A.3 and 5A.6 are both drawn");
+            // IRQ also goes to the backplane (P.20), so by the wire rule it is labelled at each
+            // pin instead of wired
+            Assert.That(Wires(d, "net:IRQ").Count, Is.EqualTo(0));
+            int irqLabels = 0;
+            for (int i = 0; i < d.Items.Count; i++)
+            {
+                if (d.Items[i].Role == DrawRole.NetLabel && d.Items[i].Owner == "net:IRQ")
+                    irqLabels++;
+            }
+            Assert.That(irqLabels, Is.EqualTo(2), "a diamond at 5A.3 and at 5A.6");
         }
 
         [Test]
@@ -148,7 +156,7 @@ namespace RetroSchematic.Tests
             List<DrawItem> list = new();
             for (int i = 0; i < d.Items.Count; i++)
             {
-                if (d.Items[i].Role == DrawRole.Wire && d.Items[i].Owner == owner)
+                if (d.Items[i].Role == DrawRole.Wire && d.Items[i].Kind == DrawKind.Line && d.Items[i].Owner == owner)
                     list.Add(d.Items[i]);
             }
             return list;

@@ -69,11 +69,12 @@ namespace RetroSchematic.Tests
             s.Editor.ReadOnly = false;
             EditTool tool = new(s);
             PartFrame f = s.Drawing.Frames["3A"];
-            tool.PointerDown(f.X + 4, f.Y + 8);
+            // on the part label, written just above the frame
+            tool.PointerDown(f.X + 4, f.Y - 8);
             Assert.That(s.Selected, Is.EqualTo("part:3A"));
             Assert.That(tool.Gesture, Is.EqualTo(EditGesture.Move));
-            tool.PointerUp(f.X + 44, f.Y + 8);
-            Assert.That(s.Drawing.Frames["3A"].X, Is.EqualTo(f.X + 40));
+            tool.PointerUp(f.X + 46, f.Y - 8);
+            Assert.That(s.Drawing.Frames["3A"].X, Is.EqualTo(f.X + 42), "moved by the drag, in whole millimetres (one grid step each)");
 
             tool.PlaceType = "7402";
             tool.PointerDown(SheetLayout.FromMm(10), SheetLayout.FromMm(120));

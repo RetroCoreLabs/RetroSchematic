@@ -363,7 +363,8 @@ namespace RetroSchematic.Desktop.Controls
 
         private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, bool lit)
         {
-            Pen pen = new(brush, lit ? 2 : 1, it.Dashed ? new DashStyle(new double[] { 4, 3 }, 0) : null);
+            // the same widths as the SVG; a lit item one unit thicker
+            Pen pen = new(brush, LineWidths.Of(it) + (lit ? 1 : 0), it.Dashed ? new DashStyle(new double[] { 4, 3 }, 0) : null);
             switch (it.Kind)
             {
                 case DrawKind.Line:

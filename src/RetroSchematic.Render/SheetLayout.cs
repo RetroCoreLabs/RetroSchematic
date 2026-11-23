@@ -45,43 +45,75 @@ namespace RetroSchematic.Render
         public bool ShowBoardPositions { get; set; } = true;
 
         /// <summary>
-        /// The chip catalogue, used to list every pin of a chip that has no gates; null lists only
+        /// The chip catalogue, used to draw every pin of a chip that has no gates; null draws only
         /// the pins that are on a signal.
         /// </summary>
         public ChipCatalog? Catalog { get; set; }
     }
 
     /// <summary>
-    /// Lays a netlist sheet out as a <see cref="SchematicDrawing"/>.
+    /// Lays a netlist sheet out as a <see cref="SchematicDrawing"/>, the way the ND drawings do it.
     /// <list type="bullet">
-    /// <item><description>A gate with a measured <c>position</c> is drawn there (millimetres times
-    /// <see cref="UnitsPerMm"/>, plus the margin).</description></item>
-    /// <item><description>A part with its own <c>position</c> has its frame there; a part with no
-    /// position whose gates all have one gets a frame round its gates; any other part sits at its
-    /// board position (column number, row letter).</description></item>
-    /// <item><description>Each signal is drawn as wires between the pins it joins, in straight
-    /// horizontal and vertical pieces, and its name is still written at each pin.</description></item>
+    /// <item><description>A chip is a frame round its gate symbols, stacked one under the other.
+    /// Every pin is a short line out of the frame; its number is written on that line. A chip with
+    /// no gates read is drawn as a box with its pins on two sides (DIP order) and the datasheet pin
+    /// names inside.</description></item>
+    /// <item><description>A chip sits at its board position (column number, row letter) on a grid
+    /// whose columns and rows are as wide as the largest chip in them, with room between them for
+    /// wires. A chip with a hand-set <c>position</c> (or whose gates all have one) sits there instead,
+    /// pushed down if it would cover another.</description></item>
+    /// <item><description>THE WIRE RULE. A signal is drawn as a wire only when it is short and
+    /// local: every one of its pins is drawn on this sheet (none on the backplane or front
+    /// connector), it has at most <see cref="MaxWiredPins"/> pins, and its pins all lie within
+    /// <see cref="WireReach"/> drawing units of each other across and down. Every other signal,
+    /// and a short one the router cannot lay, gets at each pin a short stub ending in the ND
+    /// net-label diamond with the signal's name and its 0/1 subscript.</description></item>
+    /// <item><description>Wires are laid by <see cref="WireRouter"/> on a grid, round every chip
+    /// and gate frame, every text, and the room kept for every label, so a wire never crosses a
+    /// chip, never runs on top of another wire, and no text overlaps another.</description></item>
     /// </list>
     /// </summary>
     public static class SheetLayout
     {
         /// <summary>
-        /// Drawing units per millimetre of a measured position.
+        /// Drawing units per millimetre of a measured position. One millimetre is one router grid step.
         /// </summary>
-        public const double UnitsPerMm = 4;
+        public const double UnitsPerMm = WireRouter.Step;
 
         /// <summary>
         /// The empty border round the sheet, in drawing units.
         /// </summary>
-        public const double Margin = 40;
+        public const double Margin = 48;
 
-        private const double CellWidth = 220;
-        private const double CellHeight = 150;
-        private const double GateWidth = 30;
-        private const double GateHeight = 24;
-        private const double GateSpacing = 34;
-        private const double PinRow = 11;
-        private const double PinDotRadius = 2.5;
+        /// <summary>
+        /// A signal with more pins than this is never drawn as a wire.
+        /// </summary>
+        public const int MaxWiredPins = 6;
+
+        /// <summary>
+        /// A signal whose pins spread further than this (drawing units, across or down) is never
+        /// drawn as a wire.
+        /// </summary>
+        public const double WireReach = 420;
+
+        /// <summary>
+        /// Font size of signal names.
+        /// </summary>
+        public const double SignalFont = 9;
+
+        private const double PinFont = 7;
+        private const double LabelFont = 10;
+        private const double GateWidth = 36;
+        private const double AndTail = 12;
+        private const double PinPitch = 12;
+        private const double PinOut = 12;
+        private const double FramePad = 6;
+        private const double GateGap = 24;
+        private const double Diamond = 8;
+        private const double LabelOffset = 3;
+        private const double PartGap = 48;
+        private const double PinDotRadius = 2;
+        private const double CharWidth = 0.6;
 
         /// <summary>
         /// Lay out a whole sheet with pin numbers and board positions shown.
@@ -115,37 +147,67 @@ namespace RetroSchematic.Render
         public static SchematicDrawing Build(Netlist netlist, SymbolStyle style, LayoutOptions options)
         {
             Dictionary<string, Net> netByPin = new(StringComparer.Ordinal);
-            Dictionary<string, Confidence> pinConfidence = new(StringComparer.Ordinal);
+            Dictionary<string, PinReference> pinRef = new(StringComparer.Ordinal);
             for (int i = 0; i < netlist.Nets.Count; i++)
             {
                 Net net = netlist.Nets[i];
                 for (int j = 0; j < net.Pins.Count; j++)
                 {
                     netByPin[net.Pins[j].At] = net;
-                    pinConfidence[net.Pins[j].At] = net.Pins[j].Confidence;
+                    pinRef[net.Pins[j].At] = net.Pins[j];
                 }
             }
 
-            PartFrame[] frames = new PartFrame[netlist.Parts.Count];
-            double right = 400, bottom = 200;
-            for (int i = 0; i < netlist.Parts.Count; i++)
-            {
-                frames[i] = FrameOf(netlist, netlist.Parts[i], options);
-                right = Math.Max(right, frames[i].X + frames[i].Width);
-                bottom = Math.Max(bottom, frames[i].Y + frames[i].Height);
-            }
+            // 1. measure every chip
+            PartPlan[] plans = new PartPlan[netlist.Parts.Count];
+            for (int i = 0; i < plans.Length; i++)
+                plans[i] = Measure(netlist, netlist.Parts[i], style, options, netByPin);
 
-            SchematicDrawing d = new(right + Margin + 60, bottom + Margin + 30);
-            Text(d, DrawRole.Title, Confidence.Read, "", Margin, Margin - 15,
+            // 2. place them
+            Place(netlist, plans);
+            double right = 400, bottom = 200;
+            for (int i = 0; i < plans.Length; i++)
+            {
+                right = Math.Max(right, plans[i].X + plans[i].Width + plans[i].RightReach);
+                bottom = Math.Max(bottom, plans[i].Y + plans[i].Height + 12);
+            }
+            SchematicDrawing d = new(Snap(right + Margin), Snap(bottom + Margin));
+            Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
                 netlist.Sheet.Id + "  " + netlist.Sheet.Title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
                 16, TextAnchor.Start);
 
-            for (int i = 0; i < netlist.Parts.Count; i++)
+            // 3. which signals get a wire
+            Dictionary<string, PinPlan> pinPlans = new(StringComparer.Ordinal);
+            for (int i = 0; i < plans.Length; i++)
             {
-                d.Frames[netlist.Parts[i].Ref] = frames[i];
-                LayPart(d, netlist, netlist.Parts[i], frames[i], netByPin, style, options);
+                for (int j = 0; j < plans[i].Pins.Count; j++)
+                {
+                    PinPlan p = plans[i].Pins[j];
+                    p.X += plans[i].X;
+                    p.Y += plans[i].Y;
+                    pinPlans[p.At] = p;
+                }
             }
-            LayWires(d, netlist, pinConfidence);
+            List<Net> candidates = WireCandidates(netlist, pinPlans);
+
+            // 4. draw chips (labels for every signal are drawn later, once routing has decided)
+            for (int i = 0; i < plans.Length; i++)
+            {
+                d.Frames[plans[i].Part.Ref] = new PartFrame(plans[i].X, plans[i].Y, plans[i].Width, plans[i].Height);
+                DrawPart(d, plans[i], style, options);
+            }
+
+            // 5. route the short signals round everything drawn so far and every label's room
+            HashSet<string> wired = Route(d, netlist, candidates, pinPlans);
+
+            // 6. labels for the rest
+            foreach (KeyValuePair<string, PinPlan> kv in pinPlans)
+            {
+                PinPlan p = kv.Value;
+                if (p.Net == null || wired.Contains(p.Net.Name))
+                    continue;
+                DrawLabel(d, p, pinRef[p.At].Confidence);
+            }
             return d;
         }
 
@@ -157,9 +219,9 @@ namespace RetroSchematic.Render
         /// X or Y in drawing units.
         /// </param>
         /// <returns>
-        /// The same place in millimetres, rounded to 0.5 mm.
+        /// The same place in whole millimetres.
         /// </returns>
-        public static double ToMm(double units) => Math.Round((units - Margin) / UnitsPerMm * 2, MidpointRounding.AwayFromZero) / 2;
+        public static double ToMm(double units) => Math.Round((units - Margin) / UnitsPerMm, MidpointRounding.AwayFromZero);
 
         /// <summary>
         /// Turns millimetres of a measured position into a drawing coordinate.
@@ -194,102 +256,493 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// Where a part's frame goes and how big it is. See the class summary for the three cases.
+        /// The width of a text as the drawing estimates it (0.6 x font size per character, the
+        /// monospace width; a subscript counts 0.7 of a character).
+        /// </summary>
+        /// <param name="text">
+        /// The text.
+        /// </param>
+        /// <param name="subscript">
+        /// The subscript after it, or empty.
+        /// </param>
+        /// <param name="size">
+        /// Font size.
+        /// </param>
+        /// <returns>
+        /// The width in drawing units.
+        /// </returns>
+        public static double TextWidth(string text, string subscript, double size) => CharWidth * size * (text.Length + (0.7 * subscript.Length));
+
+        private static double Snap(double v) => Math.Ceiling(v / WireRouter.Step) * WireRouter.Step;
+
+        /// <summary>
+        /// Size of a chip, where its gates and pins go (relative to the frame), and how far its
+        /// labels reach out on each side.
         /// </summary>
         /// <param name="netlist">
         /// The sheet.
         /// </param>
         /// <param name="part">
-        /// The part.
+        /// The chip.
+        /// </param>
+        /// <param name="style">
+        /// The symbol set (the ND AND gate is longer).
         /// </param>
         /// <param name="options">
-        /// What to show; the catalogue decides how many pins a gateless chip lists.
+        /// What to show, and the catalogue.
+        /// </param>
+        /// <param name="netByPin">
+        /// The signal on each pin.
         /// </param>
         /// <returns>
-        /// The frame in drawing units.
+        /// The plan.
         /// </returns>
-        private static PartFrame FrameOf(Netlist netlist, Part part, LayoutOptions options)
+        private static PartPlan Measure(Netlist netlist, Part part, SymbolStyle style, LayoutOptions options, Dictionary<string, Net> netByPin)
         {
-            int gates = 0, measured = 0;
-            double minX = double.MaxValue, minY = double.MaxValue, maxX = double.MinValue, maxY = double.MinValue;
+            PartPlan plan = new() { Part = part };
             for (int i = 0; i < netlist.Gates.Count; i++)
             {
-                Gate g = netlist.Gates[i];
-                if (g.Part != part.Ref)
-                    continue;
-                gates++;
-                if (g.Position == null)
-                    continue;
-                measured++;
-                double gx = FromMm(g.Position.X), gy = FromMm(g.Position.Y);
-                minX = Math.Min(minX, gx); minY = Math.Min(minY, gy);
-                maxX = Math.Max(maxX, gx); maxY = Math.Max(maxY, gy);
+                if (netlist.Gates[i].Part == part.Ref)
+                    plan.Gates.Add(netlist.Gates[i]);
             }
 
-            if (part.Position == null && gates > 0 && measured == gates)
+            if (plan.Gates.Count > 0)
             {
-                // room for the pin lines and the signal names on both sides
-                return new PartFrame(minX - 70, minY - 20, (maxX - minX) + GateWidth + 140, (maxY - minY) + GateHeight + 28);
+                double symbolWidth = 0;
+                for (int i = 0; i < plan.Gates.Count; i++)
+                    symbolWidth = Math.Max(symbolWidth, SymbolWidth(plan.Gates[i], style));
+                plan.Width = Snap((2 * FramePad) + symbolWidth);
+                double y = FramePad;
+                for (int i = 0; i < plan.Gates.Count; i++)
+                {
+                    Gate g = plan.Gates[i];
+                    double h = GateHeight(g);
+                    plan.GateY.Add(y);
+                    for (int k = 0; k < g.Inputs.Count; k++)
+                        AddPin(plan, part, g.Inputs[k], -1, -PinOut, y + ((k + 1) * PinPitch), "gate:" + g.Id, netByPin);
+                    AddPin(plan, part, g.Output, 1, plan.Width + PinOut, y + (h / 2), "gate:" + g.Id, netByPin);
+                    y += h + GateGap;
+                }
+                plan.Height = Snap(y - GateGap + FramePad);
             }
-
-            double w = CellWidth - 20;
-            double h = CellHeight - 20;
-            if (part.Position != null)
+            else
             {
-                // sized by what is in it
-                int rows = gates > 0 ? 0 : PinCount(netlist, part, options);
-                h = gates > 0 ? Math.Max(60, 26 + (gates * GateSpacing)) : Math.Max(60, 30 + (Math.Min(rows, 16) * PinRow));
-                if (gates == 0 && rows > 16)
-                    w = 100 * ((rows + 15) / 16);
-                return new PartFrame(FromMm(part.Position.X), FromMm(part.Position.Y), Math.Max(w, 140), h);
+                // a box of pins in DIP order: 1..n/2 down the left, the rest up the right
+                ChipInfo? chip = options.Catalog?.Get(part.Type);
+                List<int> numbers = new();
+                List<string> names = new();
+                if (chip != null)
+                {
+                    for (int i = 0; i < chip.Pins.Count; i++)
+                    {
+                        numbers.Add(chip.Pins[i].Number);
+                        names.Add(chip.Pins[i].Name);
+                    }
+                }
+                else
+                {
+                    for (int pin = 1; pin <= 64; pin++)
+                    {
+                        if (netByPin.ContainsKey(part.Ref + "." + pin.ToString(CultureInfo.InvariantCulture)))
+                        {
+                            numbers.Add(pin);
+                            names.Add("");
+                        }
+                    }
+                }
+                int left = (numbers.Count + 1) / 2;
+                double nameWidth = 0;
+                for (int i = 0; i < names.Count; i++)
+                    nameWidth = Math.Max(nameWidth, TextWidth(names[i], "", PinFont));
+                plan.Width = Snap(Math.Max(48, (2 * nameWidth) + 24));
+                plan.Height = Snap((left + 1) * PinPitch);
+                for (int i = 0; i < numbers.Count; i++)
+                {
+                    bool onLeft = i < left;
+                    int row = onLeft ? i : numbers.Count - 1 - i;
+                    PinPlan p = AddPin(plan, part, numbers[i], onLeft ? -1 : 1, onLeft ? -PinOut : plan.Width + PinOut,
+                        (row + 1) * PinPitch, "part:" + part.Ref, netByPin);
+                    p.Name = names[i];
+                }
             }
 
-            BoardPosition pos = BoardPosition.Parse(part.Ref);
-            // Columns are drawn left to right in rising order. Which edge of the real board
-            // column 1 is on has NOT been checked.
-            return new PartFrame(Margin + ((pos.FirstColumn - 1) * CellWidth), Margin + (pos.FirstRow * CellHeight),
-                ((pos.LastColumn - pos.FirstColumn + 1) * CellWidth) - 20, ((pos.LastRow - pos.FirstRow + 1) * CellHeight) - 20);
+            // how far the labels reach out of the frame on each side
+            plan.LeftReach = PinOut + 4;
+            plan.RightReach = PinOut + 4;
+            for (int i = 0; i < plan.Pins.Count; i++)
+            {
+                PinPlan p = plan.Pins[i];
+                if (p.Net == null)
+                    continue;
+                double reach = PinOut + LabelWidth(p.Net) + 4;
+                if (p.Side < 0)
+                    plan.LeftReach = Math.Max(plan.LeftReach, reach);
+                else
+                    plan.RightReach = Math.Max(plan.RightReach, reach);
+            }
+            plan.LeftReach = Snap(plan.LeftReach);
+            plan.RightReach = Snap(plan.RightReach);
+            return plan;
+        }
+
+        private static PinPlan AddPin(PartPlan plan, Part part, int pin, int side, double x, double y, string owner, Dictionary<string, Net> netByPin)
+        {
+            string at = part.Ref + "." + pin.ToString(CultureInfo.InvariantCulture);
+            netByPin.TryGetValue(at, out Net? net);
+            PinPlan p = new() { At = at, Number = pin, Side = side, X = x, Y = y, Owner = owner, Net = net, Confidence = part.Confidence };
+            plan.Pins.Add(p);
+            return p;
+        }
+
+        private static double GateHeight(Gate g) => Math.Max(24, (g.Inputs.Count + 1) * PinPitch);
+
+        private static double SymbolWidth(Gate g, SymbolStyle style)
+            => GateWidth + (style == SymbolStyle.NorskData && g.Kind == GateKind.And ? AndTail : 0) + (style == SymbolStyle.Modern ? 6 : 0);
+
+        /// <summary>
+        /// Room a label takes beyond the pin end: the diamond, a gap, the name and its subscript.
+        /// </summary>
+        /// <param name="net">
+        /// The signal.
+        /// </param>
+        /// <returns>
+        /// The width in drawing units.
+        /// </returns>
+        private static double LabelWidth(Net net) => LabelOffset + Diamond + 3 + TextWidth(net.Name, Subscript(net), SignalFont);
+
+        /// <summary>
+        /// Puts every chip on the sheet: first the ones at their board position, on a grid whose
+        /// columns and rows are as wide as their largest chip plus <see cref="PartGap"/>; then the
+        /// ones placed by hand, each moved down until it covers nothing already placed.
+        /// </summary>
+        /// <param name="netlist">
+        /// The sheet.
+        /// </param>
+        /// <param name="plans">
+        /// The measured chips, given their X and Y here.
+        /// </param>
+        private static void Place(Netlist netlist, PartPlan[] plans)
+        {
+            int columns = 0, rows = 0;
+            BoardPosition[] pos = new BoardPosition[plans.Length];
+            bool[] byHand = new bool[plans.Length];
+            for (int i = 0; i < plans.Length; i++)
+            {
+                byHand[i] = HandPosition(netlist, plans[i], out _, out _);
+                if (byHand[i])
+                    continue;
+                pos[i] = BoardPosition.Parse(plans[i].Part.Ref);
+                columns = Math.Max(columns, pos[i].LastColumn);
+                rows = Math.Max(rows, pos[i].LastRow + 1);
+            }
+
+            double[] colWidth = new double[columns + 1];
+            double[] rowHeight = new double[rows + 1];
+            // single-cell chips first, then make spanning chips fit by widening their last column/row
+            for (int pass = 0; pass < 2; pass++)
+            {
+                for (int i = 0; i < plans.Length; i++)
+                {
+                    if (byHand[i])
+                        continue;
+                    BoardPosition p = pos[i];
+                    double w = plans[i].LeftReach + plans[i].Width + plans[i].RightReach + PartGap;
+                    double h = 18 + plans[i].Height + PartGap;
+                    bool spans = p.LastColumn != p.FirstColumn || p.LastRow != p.FirstRow;
+                    if (spans != (pass == 1))
+                        continue;
+                    double haveW = 0, haveH = 0;
+                    for (int c = p.FirstColumn; c <= p.LastColumn; c++)
+                        haveW += colWidth[c];
+                    for (int r = p.FirstRow; r <= p.LastRow; r++)
+                        haveH += rowHeight[r];
+                    if (haveW < w)
+                        colWidth[p.LastColumn] += w - haveW;
+                    if (haveH < h)
+                        rowHeight[p.LastRow] += h - haveH;
+                }
+            }
+            double[] colX = new double[columns + 2];
+            double[] rowY = new double[rows + 2];
+            colX[1] = Margin;
+            for (int c = 1; c <= columns; c++)
+                colX[c + 1] = colX[c] + colWidth[c];
+            rowY[0] = Margin + 24;
+            for (int r = 0; r < rows; r++)
+                rowY[r + 1] = rowY[r] + rowHeight[r];
+
+            List<PartPlan> placed = new();
+            for (int i = 0; i < plans.Length; i++)
+            {
+                if (byHand[i])
+                    continue;
+                // Columns are drawn left to right in rising order. Which edge of the real board
+                // column 1 is on has NOT been checked.
+                plans[i].X = Snap(colX[pos[i].FirstColumn] + plans[i].LeftReach);
+                plans[i].Y = Snap(rowY[pos[i].FirstRow] + 18);
+                placed.Add(plans[i]);
+            }
+            for (int i = 0; i < plans.Length; i++)
+            {
+                if (!byHand[i])
+                    continue;
+                HandPosition(netlist, plans[i], out double x, out double y);
+                plans[i].X = Math.Max(Snap(x), Snap(Margin + plans[i].LeftReach));
+                plans[i].Y = Math.Max(Snap(y), Snap(Margin + 42));
+                // pushed down past anything it would cover
+                for (bool moved = true; moved;)
+                {
+                    moved = false;
+                    for (int j = 0; j < placed.Count; j++)
+                    {
+                        if (Covers(plans[i], placed[j]))
+                        {
+                            plans[i].Y = Snap(placed[j].Y + placed[j].Height + PartGap + 18);
+                            moved = true;
+                        }
+                    }
+                }
+                placed.Add(plans[i]);
+            }
         }
 
         /// <summary>
-        /// How many pins a gateless part lists: every pin of its chip file, else the ones on a signal.
+        /// Where a chip placed by hand goes: its own position, else the top left of its measured
+        /// gates. False when it has neither (it goes on the board grid).
         /// </summary>
         /// <param name="netlist">
         /// The sheet.
         /// </param>
-        /// <param name="part">
-        /// The part.
+        /// <param name="plan">
+        /// The chip.
         /// </param>
-        /// <param name="options">
-        /// Holds the catalogue.
+        /// <param name="x">
+        /// Frame left in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Frame top in drawing units.
         /// </param>
         /// <returns>
-        /// The number of pin rows.
+        /// True when the chip is placed by hand.
         /// </returns>
-        private static int PinCount(Netlist netlist, Part part, LayoutOptions options)
+        private static bool HandPosition(Netlist netlist, PartPlan plan, out double x, out double y)
         {
-            ChipInfo? chip = options.Catalog?.Get(part.Type);
-            if (chip != null)
-                return chip.Pins.Count;
-            int n = 0;
-            string prefix = part.Ref + ".";
-            for (int i = 0; i < netlist.Nets.Count; i++)
+            x = 0;
+            y = 0;
+            if (plan.Part.Position != null)
             {
-                List<PinReference> pins = netlist.Nets[i].Pins;
-                for (int j = 0; j < pins.Count; j++)
-                {
-                    if (pins[j].At.StartsWith(prefix, StringComparison.Ordinal))
-                        n++;
-                }
+                x = FromMm(plan.Part.Position.X);
+                y = FromMm(plan.Part.Position.Y);
+                return true;
             }
-            return n;
+            if (plan.Gates.Count == 0)
+                return false;
+            double minX = double.MaxValue, minY = double.MaxValue;
+            for (int i = 0; i < plan.Gates.Count; i++)
+            {
+                Point? p = plan.Gates[i].Position;
+                if (p == null)
+                    return false;
+                minX = Math.Min(minX, p.X);
+                minY = Math.Min(minY, p.Y);
+            }
+            x = FromMm(minX);
+            y = FromMm(minY);
+            return true;
         }
 
-        private static void LayPart(SchematicDrawing d, Netlist netlist, Part part, PartFrame f,
-            Dictionary<string, Net> netByPin, SymbolStyle style, LayoutOptions options)
+        private static bool Covers(PartPlan a, PartPlan b)
         {
+            double gap = PartGap / 2;
+            return a.X - a.LeftReach < b.X + b.Width + b.RightReach + gap && b.X - b.LeftReach < a.X + a.Width + a.RightReach + gap
+                && a.Y - 18 < b.Y + b.Height + gap && b.Y - 18 < a.Y + a.Height + gap;
+        }
+
+        private static List<Net> WireCandidates(Netlist netlist, Dictionary<string, PinPlan> pinPlans)
+        {
+            List<Net> list = new();
+            for (int i = 0; i < netlist.Nets.Count; i++)
+            {
+                Net net = netlist.Nets[i];
+                if (net.Pins.Count < 2 || net.Pins.Count > MaxWiredPins)
+                    continue;
+                double minX = double.MaxValue, minY = double.MaxValue, maxX = double.MinValue, maxY = double.MinValue;
+                bool all = true;
+                for (int j = 0; j < net.Pins.Count && all; j++)
+                {
+                    if (!pinPlans.TryGetValue(net.Pins[j].At, out PinPlan? p))
+                    {
+                        all = false;
+                        break;
+                    }
+                    minX = Math.Min(minX, p.X); maxX = Math.Max(maxX, p.X);
+                    minY = Math.Min(minY, p.Y); maxY = Math.Max(maxY, p.Y);
+                }
+                if (all && maxX - minX <= WireReach && maxY - minY <= WireReach)
+                    list.Add(net);
+            }
+            // short ones first: they get the straight routes
+            list.Sort((a, b) =>
+            {
+                int c = Spread(a, pinPlans).CompareTo(Spread(b, pinPlans));
+                return c != 0 ? c : string.CompareOrdinal(a.Name, b.Name);
+            });
+            return list;
+        }
+
+        private static double Spread(Net net, Dictionary<string, PinPlan> pinPlans)
+        {
+            double minX = double.MaxValue, minY = double.MaxValue, maxX = double.MinValue, maxY = double.MinValue;
+            for (int j = 0; j < net.Pins.Count; j++)
+            {
+                PinPlan p = pinPlans[net.Pins[j].At];
+                minX = Math.Min(minX, p.X); maxX = Math.Max(maxX, p.X);
+                minY = Math.Min(minY, p.Y); maxY = Math.Max(maxY, p.Y);
+            }
+            return (maxX - minX) + (maxY - minY);
+        }
+
+        /// <summary>
+        /// Lays the wires. The router is told about every frame (with one grid step of margin),
+        /// every text already drawn, every pin end, and the room each signal's label would take,
+        /// so a signal that cannot be routed can still get its labels without overlapping a wire.
+        /// </summary>
+        /// <param name="d">
+        /// The drawing so far (chips only).
+        /// </param>
+        /// <param name="netlist">
+        /// The sheet.
+        /// </param>
+        /// <param name="candidates">
+        /// The signals that may get a wire, shortest first.
+        /// </param>
+        /// <param name="pinPlans">
+        /// Every drawn pin.
+        /// </param>
+        /// <returns>
+        /// The names of the signals that got a wire.
+        /// </returns>
+        private static HashSet<string> Route(SchematicDrawing d, Netlist netlist, List<Net> candidates, Dictionary<string, PinPlan> pinPlans)
+        {
+            HashSet<string> wired = new(StringComparer.Ordinal);
+            if (candidates.Count == 0)
+                return wired;
+            WireRouter router = new(d.Width, d.Height);
+            double m = WireRouter.Step;
+            for (int i = 0; i < d.Items.Count; i++)
+            {
+                DrawItem it = d.Items[i];
+                if (it.Kind == DrawKind.GroupStart || it.Kind == DrawKind.GroupEnd || it.Role == DrawRole.PinDot)
+                    continue;
+                SchematicDrawing.Bounds(it, out double l, out double t, out double r, out double b);
+                if (it.Role == DrawRole.PartOutline || (it.Role == DrawRole.Symbol && it.Kind != DrawKind.Text))
+                    router.Block(l - m, t - m, r + m, b + m);
+                else if (it.Kind == DrawKind.Text)
+                    router.Block(l - 3, t - 2, r + 3, b + 2);
+            }
+            Dictionary<string, int> netNumber = new(StringComparer.Ordinal);
+            for (int i = 0; i < netlist.Nets.Count; i++)
+                netNumber[netlist.Nets[i].Name] = i + 1;
+            foreach (KeyValuePair<string, PinPlan> kv in pinPlans)
+            {
+                PinPlan p = kv.Value;
+                if (p.Net == null)
+                {
+                    router.Block(p.X - 1, p.Y - 1, p.X + 1, p.Y + 1);
+                    continue;
+                }
+                LabelBox(p, out double l, out double t, out double r, out double b);
+                // a little room round each label, so a wire passing by does not touch the text
+                router.Reserve(Math.Min(l, p.X) - 4, t - 2, Math.Max(r, p.X) + 4, b + 2, netNumber[p.Net.Name]);
+            }
+
+            List<DrawPoint> ends = new();
+            List<int> outward = new();
+            List<double[]> segments = new();
+            List<DrawPoint> junctions = new();
+            for (int i = 0; i < candidates.Count; i++)
+            {
+                Net net = candidates[i];
+                ends.Clear();
+                outward.Clear();
+                // start from the left-most pin, so a tree grows from one side
+                List<PinPlan> pins = new();
+                for (int j = 0; j < net.Pins.Count; j++)
+                    pins.Add(pinPlans[net.Pins[j].At]);
+                pins.Sort((a, b) => a.X != b.X ? a.X.CompareTo(b.X) : a.Y.CompareTo(b.Y));
+                Confidence worst = Confidence.Read;
+                for (int j = 0; j < pins.Count; j++)
+                {
+                    ends.Add(new DrawPoint(pins[j].X, pins[j].Y));
+                    outward.Add(pins[j].Side);
+                    worst = Worse(worst, PinConfidence(net, pins[j].At));
+                }
+                if (!router.Route(netNumber[net.Name], ends, outward, 120, segments, junctions))
+                    continue;
+                wired.Add(net.Name);
+                string owner = "net:" + net.Name;
+                for (int s = 0; s < segments.Count; s++)
+                {
+                    double[] g = segments[s];
+                    // a branch is as sure as its own pin; the first branch also joins the first pin,
+                    // so it is as sure as the less sure of those two
+                    int branch = (int)g[4];
+                    Confidence c = PinConfidence(net, pins[branch].At);
+                    if (branch == 1)
+                        c = Worse(c, PinConfidence(net, pins[0].At));
+                    d.Items.Add(new DrawItem
+                    {
+                        Kind = DrawKind.Line, Role = DrawRole.Wire, Confidence = c, Owner = owner,
+                        X1 = g[0], Y1 = g[1], X2 = g[2], Y2 = g[3], Dashed = c == Confidence.Open,
+                    });
+                }
+                for (int s = 0; s < junctions.Count; s++)
+                    d.Items.Add(new DrawItem { Kind = DrawKind.Circle, Role = DrawRole.Wire, Confidence = worst, Owner = owner, X1 = junctions[s].X, Y1 = junctions[s].Y, X2 = 2 });
+            }
+            return wired;
+        }
+
+        private static Confidence PinConfidence(Net net, string at)
+        {
+            for (int i = 0; i < net.Pins.Count; i++)
+            {
+                if (net.Pins[i].At == at)
+                    return net.Pins[i].Confidence;
+            }
+            return Confidence.Read;
+        }
+
+        /// <summary>
+        /// The box a pin's label takes: from the pin end outwards, the diamond and the name.
+        /// </summary>
+        /// <param name="p">
+        /// The pin, with a signal.
+        /// </param>
+        /// <param name="left">
+        /// Left edge.
+        /// </param>
+        /// <param name="top">
+        /// Top edge.
+        /// </param>
+        /// <param name="right">
+        /// Right edge.
+        /// </param>
+        /// <param name="bottom">
+        /// Bottom edge.
+        /// </param>
+        private static void LabelBox(PinPlan p, out double left, out double top, out double right, out double bottom)
+        {
+            double w = LabelWidth(p.Net!);
+            left = p.Side < 0 ? p.X - w : p.X;
+            right = p.Side < 0 ? p.X : p.X + w;
+            top = p.Y - SignalFont + 3;
+            bottom = p.Y + 3 + (0.3 * SignalFont);
+        }
+
+        private static void DrawPart(SchematicDrawing d, PartPlan plan, SymbolStyle style, LayoutOptions options)
+        {
+            Part part = plan.Part;
             string owner = "part:" + part.Ref;
-            double x = f.X, y = f.Y, w = f.Width, h = f.Height;
             d.Items.Add(new DrawItem { Kind = DrawKind.GroupStart, Owner = owner });
             d.Items.Add(new DrawItem
             {
@@ -297,134 +750,118 @@ namespace RetroSchematic.Render
                 Role = DrawRole.PartOutline,
                 Confidence = part.Confidence,
                 Owner = owner,
-                X1 = x,
-                Y1 = y,
-                X2 = w,
-                Y2 = h,
+                X1 = plan.X,
+                Y1 = plan.Y,
+                X2 = plan.Width,
+                Y2 = plan.Height,
                 Dashed = part.Confidence != Confidence.Read,
             });
-            DrawItem label = Text(d, DrawRole.PartLabel, part.Confidence, owner, x + 4, y + 12,
-                options.ShowBoardPositions ? part.Ref + " " + part.Type : part.Type, 10, TextAnchor.Start);
+            DrawItem label = Text(d, DrawRole.PartLabel, part.Confidence, owner, plan.X, plan.Y - 5,
+                options.ShowBoardPositions ? part.Ref + " " + part.Type : part.Type, LabelFont, TextAnchor.Start);
             label.Bold = true;
 
-            double gy = y + 22;
-            int gatesDrawn = 0;
-            for (int i = 0; i < netlist.Gates.Count; i++)
+            for (int i = 0; i < plan.Gates.Count; i++)
             {
-                Gate gate = netlist.Gates[i];
-                if (gate.Part != part.Ref)
-                    continue;
-                if (gate.Position != null)
-                    LayGate(d, part, gate, FromMm(gate.Position.X), FromMm(gate.Position.Y), netByPin, style, options);
+                Gate g = plan.Gates[i];
+                string gateOwner = "gate:" + g.Id;
+                double gx = plan.X + FramePad, gy = plan.Y + plan.GateY[i], h = GateHeight(g);
+                d.Items.Add(new DrawItem { Kind = DrawKind.GroupStart, Owner = gateOwner });
+                if (style == SymbolStyle.NorskData)
+                    NorskDataSymbol(d, g, gateOwner, gx, gy, h);
                 else
-                {
-                    LayGate(d, part, gate, x + 60, gy, netByPin, style, options);
-                    gy += GateSpacing;
-                }
-                gatesDrawn++;
+                    ModernSymbol(d, g, gateOwner, gx, gy, h);
+                d.Items.Add(new DrawItem { Kind = DrawKind.GroupEnd, Owner = gateOwner });
             }
 
-            if (gatesDrawn == 0)
-                LayPinList(d, part, x, y, w, h, netByPin, options);
+            for (int i = 0; i < plan.Pins.Count; i++)
+            {
+                PinPlan p = plan.Pins[i];
+                // the pin line runs from the symbol (or the box edge) out to the pin end
+                double inner;
+                if (p.Owner.StartsWith("gate:", StringComparison.Ordinal))
+                {
+                    Gate g = FindGate(plan, p.Owner.Substring(5));
+                    inner = p.Side < 0 ? plan.X + FramePad : plan.X + FramePad + SymbolWidth(g, style) - (style == SymbolStyle.Modern ? 0 : 0);
+                }
+                else
+                    inner = p.Side < 0 ? plan.X : plan.X + plan.Width;
+                Line(d, DrawRole.PinLine, plan.Part.Confidence, p.Owner, inner, p.Y, p.X, p.Y);
+                if (options.ShowPinNumbers)
+                {
+                    string number = p.Number.ToString(CultureInfo.InvariantCulture);
+                    // on the part of the pin line outside the frame
+                    double nx = p.Side < 0 ? p.X + 1 : plan.X + plan.Width + 1;
+                    Text(d, DrawRole.PinNumber, plan.Part.Confidence, p.Owner, nx, p.Y - 2, number, PinFont, TextAnchor.Start);
+                }
+                if (p.Name.Length > 0)
+                {
+                    Text(d, DrawRole.PinName, plan.Part.Confidence, "pin:" + p.At,
+                        p.Side < 0 ? plan.X + 3 : plan.X + plan.Width - 3, p.Y + 2.5, p.Name, PinFont,
+                        p.Side < 0 ? TextAnchor.Start : TextAnchor.End);
+                }
+                PinDot(d, p.At, p.X, p.Y);
+            }
             d.Items.Add(new DrawItem { Kind = DrawKind.GroupEnd, Owner = owner });
         }
 
+        private static Gate FindGate(PartPlan plan, string id)
+        {
+            for (int i = 0; i < plan.Gates.Count; i++)
+            {
+                if (plan.Gates[i].Id == id)
+                    return plan.Gates[i];
+            }
+            return plan.Gates[0];
+        }
+
         /// <summary>
-        /// A chip with no gates read: its pins in columns, so a large chip (COM2601, 40 pins) shows
-        /// every one. With the chip file, every pin is listed with its datasheet name, so an
-        /// unconnected pin can still be wired; without it, only the pins on a signal.
+        /// The ND net label at a pin end: the diamond (manual page 2) and the signal name with its
+        /// subscript, outwards from the chip. It is drawn in the colour of that pin's reading, so an
+        /// OPEN connection shows in the OPEN colour.
         /// </summary>
         /// <param name="d">
         /// The drawing to add to.
         /// </param>
-        /// <param name="part">
-        /// The part.
+        /// <param name="p">
+        /// The pin, with a signal.
         /// </param>
-        /// <param name="x">
-        /// Frame left.
+        /// <param name="c">
+        /// How sure the pin's connection is.
         /// </param>
-        /// <param name="y">
-        /// Frame top.
-        /// </param>
-        /// <param name="w">
-        /// Frame width.
-        /// </param>
-        /// <param name="h">
-        /// Frame height.
-        /// </param>
-        /// <param name="netByPin">
-        /// The signal on each pin.
-        /// </param>
-        /// <param name="options">
-        /// What to show, and the catalogue.
-        /// </param>
-        private static void LayPinList(SchematicDrawing d, Part part, double x, double y, double w, double h,
-            Dictionary<string, Net> netByPin, LayoutOptions options)
+        private static void DrawLabel(SchematicDrawing d, PinPlan p, Confidence c)
         {
-            ChipInfo? chip = options.Catalog?.Get(part.Type);
-            int count = chip != null ? chip.Pins.Count : 64;
-            double ty = y + 26, tx = x + 10;
-            for (int k = 0; k < count; k++)
+            Net net = p.Net!;
+            string owner = "net:" + net.Name;
+            // the diamond starts a little past the pin end, so the pin dot stays clear of it
+            double s = p.Side, x = p.X + (p.Side * LabelOffset), y = p.Y, half = Diamond / 2;
+            d.Items.Add(new DrawItem
             {
-                int pin = chip != null ? chip.Pins[k].Number : k + 1;
-                string at = part.Ref + "." + pin.ToString(CultureInfo.InvariantCulture);
-                netByPin.TryGetValue(at, out Net? net);
-                if (net == null && chip == null)
-                    continue;
-                if (ty > y + h - 8)
+                Kind = DrawKind.Path,
+                Role = DrawRole.NetLabel,
+                Confidence = c,
+                Owner = owner,
+                Path = new[]
                 {
-                    ty = y + 26;
-                    tx += 100;
-                }
-                string number = options.ShowPinNumbers ? pin.ToString("##0", CultureInfo.InvariantCulture).PadLeft(2) + ": " : "";
-                if (net != null)
-                {
-                    DrawItem t = Text(d, DrawRole.SignalName, Confidence.Read, "net:" + net.Name, tx, ty, number + net.Name, 10, TextAnchor.Start);
-                    t.Subscript = Subscript(net);
-                }
-                else
-                    Text(d, DrawRole.Note, part.Confidence, "pin:" + at, tx, ty, number + chip!.Pins[k].Name, 10, TextAnchor.Start);
-                PinDot(d, at, tx - 5, ty - 3);
-                ty += PinRow;
-            }
-            if (chip == null && !string.IsNullOrEmpty(part.Function) && ty < y + h - 4)
-                Text(d, DrawRole.Note, part.Confidence, "part:" + part.Ref, x + 6, y + h - 6, Shorten(part.Function!, (int)(w / 6)), 10, TextAnchor.Start);
-        }
-
-        private static void LayGate(SchematicDrawing d, Part part, Gate gate, double x, double y,
-            Dictionary<string, Net> netByPin, SymbolStyle style, LayoutOptions options)
-        {
-            string owner = "gate:" + gate.Id;
-            d.Items.Add(new DrawItem { Kind = DrawKind.GroupStart, Owner = owner });
-            if (style == SymbolStyle.NorskData)
-                NorskDataSymbol(d, gate, owner, x, y);
-            else
-                ModernSymbol(d, gate, owner, x, y);
-            d.Items.Add(new DrawItem { Kind = DrawKind.GroupEnd, Owner = owner });
-
-            // Input stubs with pin numbers and signal names.
-            int n = gate.Inputs.Count;
-            for (int i = 0; i < n; i++)
-            {
-                double py = y + ((i + 1) * GateHeight / (n + 1));
-                Line(d, DrawRole.PinLine, gate.Confidence, owner, x - 12, py, x, py);
-                if (options.ShowPinNumbers)
-                    Text(d, DrawRole.PinNumber, gate.Confidence, owner, x - 11, py - 2, gate.Inputs[i].ToString(CultureInfo.InvariantCulture), 7, TextAnchor.Start);
-                PinLabel(d, part, gate.Inputs[i], x - 14, py + 3, TextAnchor.End, netByPin);
-                PinDot(d, part.Ref + "." + gate.Inputs[i].ToString(CultureInfo.InvariantCulture), x - 12, py);
-            }
-
-            double outX = x + GateWidth + (style == SymbolStyle.NorskData && gate.Kind == GateKind.And ? 10 : 0);
-            double oy = y + (GateHeight / 2);
-            Line(d, DrawRole.PinLine, gate.Confidence, owner, outX, oy, outX + 14, oy);
-            if (options.ShowPinNumbers)
-                Text(d, DrawRole.PinNumber, gate.Confidence, owner, outX + 3, oy - 2, gate.Output.ToString(CultureInfo.InvariantCulture), 7, TextAnchor.Start);
-            PinLabel(d, part, gate.Output, outX + 16, oy + 3, TextAnchor.Start, netByPin);
-            PinDot(d, part.Ref + "." + gate.Output.ToString(CultureInfo.InvariantCulture), outX + 14, oy);
+                    new PathSegment(PathOp.MoveTo, x, y),
+                    new PathSegment(PathOp.LineTo, x + (s * half), y - half),
+                    new PathSegment(PathOp.LineTo, x + (s * Diamond), y),
+                    new PathSegment(PathOp.LineTo, x + (s * half), y + half),
+                    new PathSegment(PathOp.Close, x, y),
+                },
+            });
+            Line(d, DrawRole.PinLine, c, owner, p.X, y, x, y);
+            // A label left of its pin is written from its left edge (the estimated width back from
+            // the diamond), never right-aligned: a renderer whose font is narrower than the
+            // estimate then leaves a gap, where right alignment without the subscript would run
+            // the subscript into the diamond.
+            double width = TextWidth(net.Name, Subscript(net), SignalFont);
+            double tx = p.Side < 0 ? x - Diamond - 3 - width : x + Diamond + 3;
+            DrawItem t = Text(d, DrawRole.SignalName, c, owner, tx, y + 3, net.Name, SignalFont, TextAnchor.Start);
+            t.Subscript = Subscript(net);
         }
 
         /// <summary>
-        /// The dot at a pin's end, where its wires start, and the pin's place in
+        /// The dot at a pin's end, where its wire or label starts, and the pin's place in
         /// <see cref="SchematicDrawing.Pins"/>.
         /// </summary>
         /// <param name="d">
@@ -446,66 +883,6 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// One wire per pair of neighbouring pins of each signal. The drawn pins of a signal are
-        /// sorted left to right and each is joined to the next by a horizontal piece to half way,
-        /// a vertical piece, and a horizontal piece to the pin. A wire is drawn as sure as the
-        /// less sure of its two pins, so a pin whose connection is OPEN shows in the OPEN colour.
-        /// Pins that are not drawn (backplane, front connector) get no wire; their names stay at
-        /// the drawn pins.
-        /// </summary>
-        /// <param name="d">
-        /// The drawing to add to; its pin places must be filled already.
-        /// </param>
-        /// <param name="netlist">
-        /// The sheet.
-        /// </param>
-        /// <param name="pinConfidence">
-        /// How sure each pin's connection is.
-        /// </param>
-        private static void LayWires(SchematicDrawing d, Netlist netlist, Dictionary<string, Confidence> pinConfidence)
-        {
-            List<string> drawn = new();
-            for (int i = 0; i < netlist.Nets.Count; i++)
-            {
-                Net net = netlist.Nets[i];
-                drawn.Clear();
-                for (int j = 0; j < net.Pins.Count; j++)
-                {
-                    if (d.Pins.ContainsKey(net.Pins[j].At))
-                        drawn.Add(net.Pins[j].At);
-                }
-                if (drawn.Count < 2)
-                    continue;
-                // left to right; equal X by Y, then by name, so the order never depends on the file
-                drawn.Sort((a, b) =>
-                {
-                    DrawPoint pa = d.Pins[a], pb = d.Pins[b];
-                    int c = pa.X.CompareTo(pb.X);
-                    if (c == 0)
-                        c = pa.Y.CompareTo(pb.Y);
-                    return c != 0 ? c : string.CompareOrdinal(a, b);
-                });
-                string owner = "net:" + net.Name;
-                for (int j = 1; j < drawn.Count; j++)
-                {
-                    DrawPoint a = d.Pins[drawn[j - 1]], b = d.Pins[drawn[j]];
-                    Confidence c = Worse(pinConfidence[drawn[j - 1]], pinConfidence[drawn[j]]);
-                    double mid = Math.Round((a.X + b.X) / 2);
-                    Wire(d, c, owner, a.X, a.Y, mid, a.Y);
-                    Wire(d, c, owner, mid, a.Y, mid, b.Y);
-                    Wire(d, c, owner, mid, b.Y, b.X, b.Y);
-                }
-            }
-        }
-
-        private static void Wire(SchematicDrawing d, Confidence c, string owner, double x1, double y1, double x2, double y2)
-        {
-            if (x1 == x2 && y1 == y2)
-                return;
-            d.Items.Add(new DrawItem { Kind = DrawKind.Line, Role = DrawRole.Wire, Confidence = c, Owner = owner, X1 = x1, Y1 = y1, X2 = x2, Y2 = y2, Dashed = c == Confidence.Open });
-        }
-
-        /// <summary>
         /// ND-13.003.01 pages 2 and 4-6: straight lines only.
         /// </summary>
         /// <param name="d">
@@ -523,11 +900,14 @@ namespace RetroSchematic.Render
         /// <param name="y">
         /// Top edge of the symbol.
         /// </param>
-        private static void NorskDataSymbol(SchematicDrawing d, Gate gate, string owner, double x, double y)
+        /// <param name="h">
+        /// Height of the symbol.
+        /// </param>
+        private static void NorskDataSymbol(SchematicDrawing d, Gate gate, string owner, double x, double y, double h)
         {
-            double r = x + GateWidth, b = y + GateHeight;
+            double r = x + GateWidth, b = y + h, m = y + (h / 2);
             Confidence c = gate.Confidence;
-            d.Items.Add(new DrawItem { Kind = DrawKind.Rect, Role = DrawRole.Symbol, Confidence = c, Owner = owner, X1 = x, Y1 = y, X2 = GateWidth, Y2 = GateHeight });
+            d.Items.Add(new DrawItem { Kind = DrawKind.Rect, Role = DrawRole.Symbol, Confidence = c, Owner = owner, X1 = x, Y1 = y, X2 = GateWidth, Y2 = h });
             switch (gate.Kind)
             {
                 case GateKind.Nand:
@@ -538,25 +918,25 @@ namespace RetroSchematic.Render
                     break;
                 case GateKind.Not:
                     Line(d, DrawRole.Symbol, c, owner, x, b, r, y);
-                    Line(d, DrawRole.Symbol, c, owner, x + 4, y + 4, r - 4, y + (GateHeight / 2));
-                    Line(d, DrawRole.Symbol, c, owner, r - 4, y + (GateHeight / 2), x + 4, b - 4);
+                    Line(d, DrawRole.Symbol, c, owner, x + 5, y + 5, r - 5, m);
+                    Line(d, DrawRole.Symbol, c, owner, r - 5, m, x + 5, b - 5);
                     break;
                 case GateKind.And:
                     // The NAND box followed by the inverter's triangle (7408).
-                    Line(d, DrawRole.Symbol, c, owner, r, y + 3, r + 10, y + (GateHeight / 2));
-                    Line(d, DrawRole.Symbol, c, owner, r + 10, y + (GateHeight / 2), r, b - 3);
+                    Line(d, DrawRole.Symbol, c, owner, r, y + 3, r + AndTail, m);
+                    Line(d, DrawRole.Symbol, c, owner, r + AndTail, m, r, b - 3);
                     break;
                 default:
                     // Not drawn by this layout yet: the kind is written in the box, so it shows as
                     // unfinished instead of looking like a NAND.
-                    Text(d, DrawRole.Symbol, c, owner, x + 3, y + 15, gate.Kind.ToString().ToUpperInvariant(), 8, TextAnchor.Start);
+                    Text(d, DrawRole.Symbol, c, owner, x + 3, m + 3, gate.Kind.ToString().ToUpperInvariant(), 8, TextAnchor.Start);
                     break;
             }
         }
 
-        private static void ModernSymbol(SchematicDrawing d, Gate gate, string owner, double x, double y)
+        private static void ModernSymbol(SchematicDrawing d, Gate gate, string owner, double x, double y, double h)
         {
-            double r = x + GateWidth, b = y + GateHeight, m = y + (GateHeight / 2);
+            double r = x + GateWidth, b = y + h, m = y + (h / 2);
             Confidence c = gate.Confidence;
             switch (gate.Kind)
             {
@@ -565,8 +945,8 @@ namespace RetroSchematic.Render
                     Path(d, c, owner, new[]
                     {
                         new PathSegment(PathOp.MoveTo, x, y),
-                        new PathSegment(PathOp.LineTo, r - 12, y),
-                        new PathSegment(PathOp.ArcClockwiseTo, r - 12, b, 12),
+                        new PathSegment(PathOp.LineTo, r - (h / 2), y),
+                        new PathSegment(PathOp.ArcClockwiseTo, r - (h / 2), b, h / 2),
                         new PathSegment(PathOp.LineTo, x, b),
                         new PathSegment(PathOp.Close, x, y),
                     });
@@ -578,8 +958,8 @@ namespace RetroSchematic.Render
                     Path(d, c, owner, new[]
                     {
                         new PathSegment(PathOp.MoveTo, x, y),
-                        new PathSegment(PathOp.QuadTo, r, m, x + 18, y),
-                        new PathSegment(PathOp.QuadTo, x, b, x + 18, b),
+                        new PathSegment(PathOp.QuadTo, r, m, x + 22, y),
+                        new PathSegment(PathOp.QuadTo, x, b, x + 22, b),
                         new PathSegment(PathOp.QuadTo, x, y, x + 8, m),
                         new PathSegment(PathOp.Close, x, y),
                     });
@@ -599,19 +979,10 @@ namespace RetroSchematic.Render
                         Bubble(d, c, owner, r - 1, m);
                     break;
                 default:
-                    d.Items.Add(new DrawItem { Kind = DrawKind.Rect, Role = DrawRole.Symbol, Confidence = c, Owner = owner, X1 = x, Y1 = y, X2 = GateWidth, Y2 = GateHeight });
-                    Text(d, DrawRole.Symbol, c, owner, x + 3, y + 15, "?", 8, TextAnchor.Start);
+                    d.Items.Add(new DrawItem { Kind = DrawKind.Rect, Role = DrawRole.Symbol, Confidence = c, Owner = owner, X1 = x, Y1 = y, X2 = GateWidth, Y2 = h });
+                    Text(d, DrawRole.Symbol, c, owner, x + 3, m + 3, "?", 8, TextAnchor.Start);
                     break;
             }
-        }
-
-        private static void PinLabel(SchematicDrawing d, Part part, int pin, double x, double y, TextAnchor anchor,
-            Dictionary<string, Net> netByPin)
-        {
-            if (!netByPin.TryGetValue(part.Ref + "." + pin.ToString(CultureInfo.InvariantCulture), out Net? net))
-                return;
-            DrawItem t = Text(d, DrawRole.SignalName, Confidence.Read, "net:" + net.Name, x, y, net.Name, 10, anchor);
-            t.Subscript = Subscript(net);
         }
 
         /// <summary>
@@ -643,6 +1014,32 @@ namespace RetroSchematic.Render
         private static void Bubble(SchematicDrawing d, Confidence c, string owner, double cx, double cy)
             => d.Items.Add(new DrawItem { Kind = DrawKind.Circle, Role = DrawRole.Symbol, Confidence = c, Owner = owner, X1 = cx, Y1 = cy, X2 = 3 });
 
-        private static string Shorten(string text, int max) => text.Length <= max ? text : text.Substring(0, Math.Max(0, max - 3)) + "...";
+        /// <summary>
+        /// One chip as measured before it is placed.
+        /// </summary>
+        private sealed class PartPlan
+        {
+            public Part Part = null!;
+            public List<Gate> Gates = new();
+            public List<double> GateY = new();
+            public List<PinPlan> Pins = new();
+            public double X, Y, Width, Height, LeftReach, RightReach;
+        }
+
+        /// <summary>
+        /// One drawn pin: where its end is (first relative to the frame, then on the sheet), which
+        /// side it leaves on, and its signal.
+        /// </summary>
+        private sealed class PinPlan
+        {
+            public string At = "";
+            public int Number;
+            public int Side;
+            public double X, Y;
+            public string Owner = "";
+            public string Name = "";
+            public Net? Net;
+            public Confidence Confidence;
+        }
     }
 }

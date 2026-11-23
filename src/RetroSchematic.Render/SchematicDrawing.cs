@@ -65,6 +65,47 @@ namespace RetroSchematic.Render
         /// The small dot at the end of a pin line, where a wire starts; picks the pin itself.
         /// </summary>
         PinDot,
+
+        /// <summary>
+        /// The ND net-label diamond at the end of a pin's short stub, in front of the signal name:
+        /// the signal goes on elsewhere on the sheet under that name, without a drawn wire.
+        /// </summary>
+        NetLabel,
+
+        /// <summary>
+        /// A datasheet pin name written inside a chip drawn as a box of pins.
+        /// </summary>
+        PinName,
+    }
+
+    /// <summary>
+    /// Line widths shared by the window and the SVG output, so both draw the sheet the same way.
+    /// Chip frames and gate symbols are drawn clearly thicker than signal lines, so the parts
+    /// stand out from the wires.
+    /// </summary>
+    public static class LineWidths
+    {
+        /// <summary>
+        /// A wire, a pin line, a net-label diamond.
+        /// </summary>
+        public const double Wire = 1;
+
+        /// <summary>
+        /// The outline of a chip frame or a gate symbol: 2.25 times a wire.
+        /// </summary>
+        public const double Outline = 2.25;
+
+        /// <summary>
+        /// The width an item is drawn with.
+        /// </summary>
+        /// <param name="it">
+        /// The drawing step.
+        /// </param>
+        /// <returns>
+        /// Its line width in drawing units.
+        /// </returns>
+        public static double Of(DrawItem it)
+            => it.Role == DrawRole.Symbol || it.Role == DrawRole.PartOutline ? Outline : Wire;
     }
 
     /// <summary>
@@ -470,7 +511,7 @@ namespace RetroSchematic.Render
         {
             if (it.Role == DrawRole.PinDot)
                 return 0;
-            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.PartLabel)
+            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.NetLabel || it.Role == DrawRole.PartLabel || it.Role == DrawRole.PinName)
                 return 1;
             if (it.Owner.StartsWith("gate:", StringComparison.Ordinal))
                 return 2;

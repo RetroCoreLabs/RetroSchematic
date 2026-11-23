@@ -47,7 +47,7 @@ namespace RetroSchematic.Render
         {
             StringBuilder svg = new();
             svg.Append(CultureInfo.InvariantCulture,
-                $"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{d.Width:0}\" height=\"{d.Height:0}\" viewBox=\"0 0 {d.Width:0} {d.Height:0}\" font-family=\"monospace\" font-size=\"10\">\n");
+                $"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{d.Width:0}\" height=\"{d.Height:0}\" viewBox=\"0 0 {d.Width:0} {d.Height:0}\" font-family=\"Courier New, Consolas, monospace\" font-size=\"10\">\n");
             svg.Append("<rect width=\"100%\" height=\"100%\" fill=\"#ffffff\"/>\n");
             for (int i = 0; i < d.Items.Count; i++)
                 WriteItem(svg, d.Items[i]);
@@ -81,7 +81,8 @@ namespace RetroSchematic.Render
         private static void WriteItem(StringBuilder svg, DrawItem it)
         {
             string colour = PrintColour(it);
-            string dash = it.Dashed ? " stroke-dasharray=\"4 3\"" : "";
+            string dash = (it.Dashed ? " stroke-dasharray=\"4 3\"" : "")
+                + (LineWidths.Of(it) == 1 ? "" : string.Create(CultureInfo.InvariantCulture, $" stroke-width=\"{LineWidths.Of(it):0.##}\""));
             switch (it.Kind)
             {
                 case DrawKind.GroupStart:
