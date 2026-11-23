@@ -490,6 +490,13 @@ namespace RetroSchematic.Render
             // a gate belongs to its part: "gate:11D/1" is lit when "part:11D" is picked
             if (Selected.StartsWith("part:", StringComparison.Ordinal) && item.Owner.StartsWith("gate:", StringComparison.Ordinal))
                 return OwnerStartsWithPart(item.Owner, 5, Selected.Substring(5), '/');
+            // a picked bus lights its members' wires and names
+            if (Selected.StartsWith("bus:", StringComparison.Ordinal) && item.Owner.StartsWith("net:", StringComparison.Ordinal))
+            {
+                Net? member = Editor.FindNetByKey(item.Owner.Substring(4));
+                BusLine? bus = member == null ? null : Editor.BusOf(member);
+                return bus != null && bus.Name == Selected.Substring(4);
+            }
             // a pin belongs to the picked signal when the signal joins it
             if (Selected.StartsWith("net:", StringComparison.Ordinal) && item.Owner.StartsWith("pin:", StringComparison.Ordinal))
             {
@@ -560,6 +567,8 @@ namespace RetroSchematic.Render
                 return DescribeNet(Selected.Substring(4));
             if (Selected.StartsWith("pin:", StringComparison.Ordinal))
                 return DescribePin(Selected.Substring(4));
+            if (Selected.StartsWith("bus:", StringComparison.Ordinal))
+                return DescribeBus(Selected.Substring(4));
             return "";
         }
 
@@ -731,6 +740,46 @@ namespace RetroSchematic.Render
                     if (!string.IsNullOrEmpty(r.Note))
                         sb.Append("Note: ").Append(r.Note).Append('\n');
                 }
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// The members of a bus, as their keys (BD15_0), for the "Bus members" panel.
+        /// </summary>
+        /// <param name="name">
+        /// The bus.
+        /// </param>
+        /// <returns>
+        /// The member keys, or an empty list for no such bus.
+        /// </returns>
+        public List<string> BusMembers(string name)
+        {
+            List<string> list = new();
+            BusLine? bus = Editor.FindBus(name);
+            for (int i = 0; bus != null && i < bus.Members.Count; i++)
+            {
+                Net? n = SheetLayout.FindMember(Netlist, bus.Members[i]);
+                list.Add(n == null ? bus.Members[i].Net + " (not on the sheet)" : SheetLayout.NetKey(n));
+            }
+            return list;
+        }
+
+        private string DescribeBus(string name)
+        {
+            BusLine? bus = Editor.FindBus(name);
+            if (bus == null)
+                return "";
+            StringBuilder sb = new();
+            sb.Append("Bus ").Append(bus.Name).Append(" (drawing only: it does not change what is connected)\n");
+            sb.Append("Signals:\n");
+            List<string> members = BusMembers(name);
+            for (int i = 0; i < members.Count; i++)
+                sb.Append("  ").Append(members[i]).Append('\n');
+            for (int i = 0; i < Drawing.BusProblems.Count; i++)
+            {
+                if (Drawing.BusProblems[i].StartsWith(bus.Name + ":", StringComparison.Ordinal))
+                    sb.Append(Drawing.BusProblems[i]).Append('\n');
             }
             return sb.ToString();
         }

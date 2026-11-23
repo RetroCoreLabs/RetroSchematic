@@ -24,7 +24,7 @@ namespace RetroSchematic.Mcp
     /// error whose text says why; the sheet is left as it was.
     /// </summary>
     [McpServerToolType]
-    public sealed class SheetTools
+    public sealed partial class SheetTools
     {
         private readonly string? _catalogFolder;
         private SheetEditor? _editor;

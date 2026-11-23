@@ -4479,5 +4479,148 @@
       ],
       "note": "V.24 pin 2; 2200 pF to ground"
     }
-  ]
+  ],
+  "layout": {
+    "wires": [],
+    "buses": [
+      {
+        "name": "BD_0",
+        "path": [
+          {
+            "x": 122,
+            "y": 55
+          },
+          {
+            "x": 122,
+            "y": 220
+          }
+        ],
+        "members": [
+          {
+            "net": "BD0",
+            "active": "low"
+          },
+          {
+            "net": "BD1",
+            "active": "low"
+          },
+          {
+            "net": "BD2",
+            "active": "low"
+          },
+          {
+            "net": "BD3",
+            "active": "low"
+          },
+          {
+            "net": "BD4",
+            "active": "low"
+          },
+          {
+            "net": "BD5",
+            "active": "low"
+          },
+          {
+            "net": "BD6",
+            "active": "low"
+          },
+          {
+            "net": "BD7",
+            "active": "low"
+          },
+          {
+            "net": "BD8",
+            "active": "low"
+          },
+          {
+            "net": "BD9",
+            "active": "low"
+          },
+          {
+            "net": "BD10",
+            "active": "low"
+          },
+          {
+            "net": "BD11",
+            "active": "low"
+          },
+          {
+            "net": "BD12",
+            "active": "low"
+          },
+          {
+            "net": "BD13",
+            "active": "low"
+          },
+          {
+            "net": "BD14",
+            "active": "low"
+          },
+          {
+            "net": "BD15",
+            "active": "low"
+          }
+        ]
+      },
+      {
+        "name": "BD_1",
+        "path": [
+          {
+            "x": 204,
+            "y": 60
+          },
+          {
+            "x": 204,
+            "y": 242
+          }
+        ],
+        "members": [
+          {
+            "net": "BD0",
+            "active": "high"
+          },
+          {
+            "net": "BD1",
+            "active": "high"
+          },
+          {
+            "net": "BD2",
+            "active": "high"
+          },
+          {
+            "net": "BD3",
+            "active": "high"
+          },
+          {
+            "net": "BD4",
+            "active": "high"
+          },
+          {
+            "net": "BD5",
+            "active": "high"
+          },
+          {
+            "net": "BD6",
+            "active": "high"
+          },
+          {
+            "net": "BD7",
+            "active": "high"
+          },
+          {
+            "net": "BD8",
+            "active": "high"
+          },
+          {
+            "net": "BD9",
+            "active": "high"
+          },
+          {
+            "net": "BD15",
+            "active": "high"
+          }
+        ]
+      }
+    ]
+  }
 }

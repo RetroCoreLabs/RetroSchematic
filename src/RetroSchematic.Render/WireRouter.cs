@@ -48,6 +48,9 @@ namespace RetroSchematic.Render
         private readonly int[] _seen;
         private int _stamp;
 
+        // a cell that a wire may reach from any direction (the free end of a bus entry); -1 for none
+        private int _freeTarget = -1;
+
         /// <summary>
         /// A grid covering a drawing of the given size.
         /// </summary>
@@ -274,6 +277,171 @@ namespace RetroSchematic.Render
             if (reachedPins.Count != pinIndex.Count)
                 return Fail(marked, segments, junctions, $"only {reachedPins.Count} of the {pinIndex.Count} pins are on the wire");
             return true;
+        }
+
+        /// <summary>
+        /// Routes one wire from a pin end to a free point (where a bus entry starts). The point may
+        /// be reached from any direction; it must not already carry a wire.
+        /// </summary>
+        /// <param name="net">
+        /// The signal's number.
+        /// </param>
+        /// <param name="pin">
+        /// The pin end.
+        /// </param>
+        /// <param name="outward">
+        /// The direction the wire leaves the pin: +1 right, -1 left.
+        /// </param>
+        /// <param name="target">
+        /// The point to reach, on the grid.
+        /// </param>
+        /// <param name="reach">
+        /// How far (units) the route may stray outside the box round the two ends.
+        /// </param>
+        /// <param name="segments">
+        /// Filled as by <see cref="Route"/>, every piece with branch number 1.
+        /// </param>
+        /// <returns>
+        /// True when the point was reached; nothing is laid otherwise.
+        /// </returns>
+        public bool RouteTo(int net, DrawPoint pin, int outward, DrawPoint target, double reach, List<double[]> segments)
+        {
+            segments.Clear();
+            int px = (int)Math.Round(pin.X / Step), py = (int)Math.Round(pin.Y / Step);
+            int tx = (int)Math.Round(target.X / Step), ty = (int)Math.Round(target.Y / Step);
+            if (px < 0 || py < 0 || px >= _width || py >= _height || tx < 0 || ty < 0 || tx >= _width || ty >= _height)
+                return false;
+            int start = (py * _width) + px, goal = (ty * _width) + tx;
+            if (_used[goal] != 0)
+                return false;
+            int pad = (int)Math.Ceiling(reach / Step);
+            int minX = Math.Max(0, Math.Min(px, tx) - pad), minY = Math.Max(0, Math.Min(py, ty) - pad);
+            int maxX = Math.Min(_width - 1, Math.Max(px, tx) + pad), maxY = Math.Min(_height - 1, Math.Max(py, ty) + pad);
+            HashSet<int> tree = new() { goal };
+            Dictionary<int, int> treePins = new();
+            List<int> path = new();
+            _freeTarget = goal;
+            bool found = Search(net, start, outward, tree, treePins, minX, minY, maxX, maxY, path);
+            _freeTarget = -1;
+            if (!found)
+                return false;
+            // the search runs from the pin to the target; lay it and keep it in that order
+            List<int> marked = new();
+            Lay(net, path, marked);
+            AddSegments(path, segments, 1);
+            return true;
+        }
+
+        /// <summary>
+        /// True when every grid point inside a box is open to all wires and carries no wire.
+        /// </summary>
+        /// <param name="left">
+        /// Left edge.
+        /// </param>
+        /// <param name="top">
+        /// Top edge.
+        /// </param>
+        /// <param name="right">
+        /// Right edge.
+        /// </param>
+        /// <param name="bottom">
+        /// Bottom edge.
+        /// </param>
+        /// <returns>
+        /// True when the box is free.
+        /// </returns>
+        public bool IsFree(double left, double top, double right, double bottom)
+        {
+            int x0 = Math.Max(0, (int)Math.Ceiling(left / Step)), x1 = Math.Min(_width - 1, (int)Math.Floor(right / Step));
+            int y0 = Math.Max(0, (int)Math.Ceiling(top / Step)), y1 = Math.Min(_height - 1, (int)Math.Floor(bottom / Step));
+            for (int y = y0; y <= y1; y++)
+            {
+                for (int x = x0; x <= x1; x++)
+                {
+                    int i = (y * _width) + x;
+                    if (_owner[i] != 0 || _used[i] != 0)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Lays a bus line along its bend points when every grid point on it is free: no chip,
+        /// gate or text, no other signal's label room, no wire yet. Other wires may later cross
+        /// it at a right angle, never run along it.
+        /// </summary>
+        /// <param name="net">
+        /// A number for the bus, different from every signal's.
+        /// </param>
+        /// <param name="points">
+        /// The bend points in drawing units.
+        /// </param>
+        /// <returns>
+        /// True when laid; false (nothing laid, <see cref="Refusal"/> says why) otherwise.
+        /// </returns>
+        public bool LayPath(int net, List<DrawPoint> points)
+        {
+            Refusal = "";
+            List<int> cells = new();
+            if (!Expand(points, cells))
+            {
+                Refusal = "the path is off the grid, slanted or too short";
+                return false;
+            }
+            HashSet<int> none = new();
+            for (int i = 0; i < cells.Count; i++)
+            {
+                int d = i == 0 ? Direction(cells[0], cells[1]) : Direction(cells[i - 1], cells[i]);
+                if (_used[cells[i]] != 0 || !CanEnter(net, cells[i], d, d, none))
+                {
+                    Refusal = "it runs through a chip, a text or a signal's label at " + Where(cells[i]);
+                    return false;
+                }
+            }
+            List<int> marked = new();
+            Lay(net, cells, marked);
+            return true;
+        }
+
+        /// <summary>
+        /// Finds a fresh path for a bus between two points, leaving the first point to the right
+        /// or the left, round everything already on the grid. Nothing is laid.
+        /// </summary>
+        /// <param name="net">
+        /// The bus's number.
+        /// </param>
+        /// <param name="from">
+        /// The first point.
+        /// </param>
+        /// <param name="to">
+        /// The last point.
+        /// </param>
+        /// <param name="points">
+        /// Filled with the bend points.
+        /// </param>
+        /// <returns>
+        /// True when a path was found.
+        /// </returns>
+        public bool FindPath(int net, DrawPoint from, DrawPoint to, List<DrawPoint> points)
+        {
+            points.Clear();
+            List<double[]> segments = new();
+            for (int side = 1; side >= -1; side -= 2)
+            {
+                if (!RouteTo(net, from, side, to, 240, segments))
+                    continue;
+                // RouteTo laid it; take it back off, the caller lays it with LayPath
+                List<int> cells = new();
+                List<DrawPoint> pts = new() { new DrawPoint(segments[0][0], segments[0][1]) };
+                for (int i = 0; i < segments.Count; i++)
+                    pts.Add(new DrawPoint(segments[i][2], segments[i][3]));
+                Expand(pts, cells);
+                Unmark(cells);
+                points.AddRange(pts);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -567,6 +735,8 @@ namespace RetroSchematic.Render
         private bool Arrives(int cell, int dir, Dictionary<int, int> treePins)
         {
             byte u = _used[cell];
+            if (cell == _freeTarget)
+                return u == 0;
             if (treePins.TryGetValue(cell, out int outward))
             {
                 // a bare pin end (the first pin, no wire yet) is entered from outside its chip;

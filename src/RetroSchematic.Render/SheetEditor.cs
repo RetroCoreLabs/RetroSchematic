@@ -22,7 +22,7 @@ namespace RetroSchematic.Render
     /// false. Undo keeps a copy of the whole sheet before each change.
     /// </para>
     /// </summary>
-    public sealed class SheetEditor
+    public sealed partial class SheetEditor
     {
         private readonly List<string> _undo = new();
         private readonly List<string> _redo = new();
@@ -314,6 +314,16 @@ namespace RetroSchematic.Render
             CheckWritable();
             Net net = FindNetByKey(name) ?? throw new SheetEditException($"There is no signal {name}.");
             Snapshot();
+            // a deleted signal also leaves its bus (a bus left empty goes too)
+            BusLine? bus = BusOf(net);
+            if (bus != null)
+            {
+                bus.Members.RemoveAt(MemberIndex(bus, net));
+                if (bus.Members.Count == 0)
+                    Netlist.Layout!.Buses!.Remove(bus);
+                if (Netlist.Layout!.Buses!.Count == 0)
+                    Netlist.Layout.Buses = null;
+            }
             Netlist.Nets.Remove(net);
             RemoveWirePath(net.Name, net.Active);
             Done();
@@ -410,7 +420,7 @@ namespace RetroSchematic.Render
                 if (wires![i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active))
                     wires.RemoveAt(i);
             }
-            if (Netlist.Layout != null && Netlist.Layout.Wires.Count == 0)
+            if (Netlist.Layout != null && Netlist.Layout.Wires.Count == 0 && Netlist.Layout.Buses == null)
                 Netlist.Layout = null;
         }
 

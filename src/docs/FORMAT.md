@@ -76,6 +76,24 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   the path is not used, the signal is routed afresh, and the program says why; the stored path
   stays in the file until it is changed or cleared.
 
+- `layout.buses` (2026-11-23): virtual buses. Drawing only - a bus never changes what is
+  connected; the nets list reads the same with or without it. One entry per bus: `name`, `path`
+  (points in whole mm, every piece level or upright; empty = not drawn yet) and `members`
+  (`net` and, when two signals share a name, `active`). A signal is on one bus at most.
+
+  ```json
+  "layout": { "wires": [], "buses": [ { "name": "BD_0",
+    "path": [ {"x": 122, "y": 55}, {"x": 122, "y": 220} ],
+    "members": [ {"net": "BD0", "active": "low"}, {"net": "BD1", "active": "low"} ] } ] }
+  ```
+
+  A bus is drawn as a line thicker than a wire and thinner than a chip frame, with its name at
+  its start. Every drawn pin of a member leaves with a wire that ends one grid step beside the
+  bus and joins it with a 45-degree piece; the signal's name and its 0/1 subscript are written
+  at that entry. A stored bus path that crosses a chip, a text or a label is not used: the bus
+  is routed afresh between its two ends and the program says why. A pin that cannot reach its
+  bus keeps its ordinary net label, and that is reported too.
+
 ## How a sheet is drawn
 
 The file holds connections only; the drawing is worked out from them every time. The rules, so

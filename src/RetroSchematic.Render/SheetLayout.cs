@@ -73,7 +73,7 @@ namespace RetroSchematic.Render
     /// chip, never runs on top of another wire, and no text overlaps another.</description></item>
     /// </list>
     /// </summary>
-    public static class SheetLayout
+    public static partial class SheetLayout
     {
         /// <summary>
         /// Drawing units per millimetre of a measured position. One millimetre is one router grid step.
@@ -188,7 +188,14 @@ namespace RetroSchematic.Render
                     pinPlans[p.At] = p;
                 }
             }
+            // signals on a virtual bus join the bus instead of getting their own wire
+            HashSet<Net> onBus = BusMembers(netlist);
             List<Net> candidates = WireCandidates(netlist, pinPlans);
+            for (int i = candidates.Count - 1; i >= 0; i--)
+            {
+                if (onBus.Contains(candidates[i]))
+                    candidates.RemoveAt(i);
+            }
 
             // 4. draw chips (labels for every signal are drawn later, once routing has decided)
             for (int i = 0; i < plans.Length; i++)
@@ -198,13 +205,14 @@ namespace RetroSchematic.Render
             }
 
             // 5. route the short signals round everything drawn so far and every label's room
-            HashSet<string> wired = Route(d, netlist, candidates, pinPlans);
+            HashSet<string> busPins = new(StringComparer.Ordinal);
+            HashSet<string> wired = Route(d, netlist, candidates, pinPlans, busPins);
 
             // 6. labels for the rest
             foreach (KeyValuePair<string, PinPlan> kv in pinPlans)
             {
                 PinPlan p = kv.Value;
-                if (p.Net == null || wired.Contains(NetKey(p.Net)))
+                if (p.Net == null || wired.Contains(NetKey(p.Net)) || busPins.Contains(p.At))
                     continue;
                 DrawLabel(d, p, pinRef[p.At].Confidence);
             }
@@ -622,10 +630,13 @@ namespace RetroSchematic.Render
         /// <returns>
         /// The names of the signals that got a wire.
         /// </returns>
-        private static HashSet<string> Route(SchematicDrawing d, Netlist netlist, List<Net> candidates, Dictionary<string, PinPlan> pinPlans)
+        /// <param name="busPins">
+        /// Filled with the pins that joined a bus (they get no label).
+        /// </param>
+        private static HashSet<string> Route(SchematicDrawing d, Netlist netlist, List<Net> candidates, Dictionary<string, PinPlan> pinPlans, HashSet<string> busPins)
         {
             HashSet<string> wired = new(StringComparer.Ordinal);
-            if (candidates.Count == 0)
+            if (candidates.Count == 0 && (netlist.Layout?.Buses == null || netlist.Layout.Buses.Count == 0))
                 return wired;
             WireRouter router = new(d.Width, d.Height);
             double m = WireRouter.Step;
@@ -658,6 +669,9 @@ namespace RetroSchematic.Render
                 // a little room round each label, so a wire passing by does not touch the text
                 router.Reserve(Math.Min(l, p.X) - 4, t - 2, Math.Max(r, p.X) + 4, b + 2, netNumber[p.Net]);
             }
+
+            // buses first: their lines and entries claim their room before any wire is laid
+            DrawBuses(d, netlist, router, netNumber, pinPlans, busPins);
 
             List<DrawPoint> ends = new();
             List<int> outward = new();

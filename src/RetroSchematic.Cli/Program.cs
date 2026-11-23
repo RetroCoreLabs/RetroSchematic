@@ -58,8 +58,17 @@ namespace RetroSchematic.Cli
                             Console.Error.WriteLine($"Unknown symbol style \"{args[3]}\": use nd or modern.");
                             return 2;
                         }
-                        File.WriteAllText(args[2], SvgRenderer.Render(netlist, style));
+                        // drawn with the chip catalogue when one is found above the sheet, exactly as the
+                        // window draws it (a chip without gates then shows every pin)
+                        string? catalog = ChipCatalog.Find(args[1]);
+                        LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog) };
+                        SchematicDrawing drawing = SheetLayout.Build(netlist, style, options);
+                        File.WriteAllText(args[2], SvgRenderer.Write(drawing));
                         Console.WriteLine($"Wrote {args[2]}");
+                        for (int i = 0; i < drawing.RerouteReasons.Count; i++)
+                            Console.WriteLine("Wire routed afresh: " + drawing.RerouteReasons[i]);
+                        for (int i = 0; i < drawing.BusProblems.Count; i++)
+                            Console.WriteLine("Bus: " + drawing.BusProblems[i]);
                         return 0;
 
                     default:

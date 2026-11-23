@@ -175,6 +175,52 @@ namespace RetroSchematic.Model
         /// Wire paths fixed by hand, one entry per signal.
         /// </summary>
         public List<WirePath> Wires { get; set; } = new();
+
+        /// <summary>
+        /// Virtual buses: named thick lines that a group of signals join, or null for none.
+        /// Drawing only - a bus never changes what is connected to what.
+        /// </summary>
+        public List<BusLine>? Buses { get; set; }
+    }
+
+    /// <summary>
+    /// A virtual bus: a named thick line on the sheet. Each member signal leaves its pins with a
+    /// short wire that joins the bus at a 45-degree entry, named with the signal's name and its
+    /// 0/1 subscript. Drawing only: the signals stay exactly as they are in the nets list.
+    /// </summary>
+    public sealed class BusLine
+    {
+        /// <summary>
+        /// The bus name, such as BD_0.
+        /// </summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>
+        /// The bend points in whole mm from the top left, every piece level or upright. Empty
+        /// when no path is set yet; the bus is then not drawn and its signals are drawn as usual.
+        /// </summary>
+        public List<Point> Path { get; set; } = new();
+
+        /// <summary>
+        /// The signals that join the bus.
+        /// </summary>
+        public List<BusMember> Members { get; set; } = new();
+    }
+
+    /// <summary>
+    /// One signal on a bus: its name and, when two signals share the name, its level.
+    /// </summary>
+    public sealed class BusMember
+    {
+        /// <summary>
+        /// The signal's name.
+        /// </summary>
+        public string Net { get; set; } = "";
+
+        /// <summary>
+        /// The signal's active level; null matches the first signal of that name.
+        /// </summary>
+        public ActiveLevel? Active { get; set; }
     }
 
     /// <summary>

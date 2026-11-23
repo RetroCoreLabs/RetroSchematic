@@ -275,6 +275,54 @@
               }
             }
           }
+        },
+        "buses": {
+          "type": "array",
+          "description": "Virtual buses (drawing only, never connections). Optional (added within version 1).",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "path",
+              "members"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The bus name."
+              },
+              "path": {
+                "type": "array",
+                "description": "Bend points in whole mm; every piece level or upright. Empty: not drawn yet.",
+                "items": {
+                  "$ref": "#/$defs/point"
+                }
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "net"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "net": {
+                      "type": "string"
+                    },
+                    "active": {
+                      "enum": [
+                        "high",
+                        "low",
+                        "none"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

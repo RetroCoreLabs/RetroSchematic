@@ -76,6 +76,11 @@ namespace RetroSchematic.Render
         /// A datasheet pin name written inside a chip drawn as a box of pins.
         /// </summary>
         PinName,
+
+        /// <summary>
+        /// A virtual bus line and its name: drawn thicker than a wire, thinner than a chip frame.
+        /// </summary>
+        Bus,
     }
 
     /// <summary>
@@ -96,6 +101,11 @@ namespace RetroSchematic.Render
         public const double Outline = 2.25;
 
         /// <summary>
+        /// A virtual bus line: between a wire and a chip outline.
+        /// </summary>
+        public const double Bus = 1.75;
+
+        /// <summary>
         /// The width an item is drawn with.
         /// </summary>
         /// <param name="it">
@@ -105,7 +115,7 @@ namespace RetroSchematic.Render
         /// Its line width in drawing units.
         /// </returns>
         public static double Of(DrawItem it)
-            => it.Role == DrawRole.Symbol || it.Role == DrawRole.PartOutline ? Outline : Wire;
+            => it.Role == DrawRole.Symbol || it.Role == DrawRole.PartOutline ? Outline : it.Role == DrawRole.Bus ? Bus : Wire;
     }
 
     /// <summary>
@@ -483,6 +493,17 @@ namespace RetroSchematic.Render
         /// 2 runs through a chip ... at (300, 120)").
         /// </summary>
         public List<string> RerouteReasons { get; } = new();
+
+        /// <summary>
+        /// Every drawn bus's path as laid (bend points in drawing units), by bus name.
+        /// </summary>
+        public Dictionary<string, List<DrawPoint>> BusPaths { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// What went wrong with a bus, in plain words: no path yet, a stored path through a chip
+        /// that was routed afresh, a member pin that could not reach the bus (it keeps its label).
+        /// </summary>
+        public List<string> BusProblems { get; } = new();
 
         /// <summary>
         /// The owner ("part:11D", "gate:11D/1", "net:BD0", "pin:11D.3") of what lies under a point,
