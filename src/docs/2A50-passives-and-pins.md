@@ -5,8 +5,7 @@ A second reading of NORD-10 sheet 2A50 (PDF page 64 of the NORD-10 drawing book)
 catalogues, the chip files and the old component-side photo. **READ** = seen on the drawing or
 photo, **INFERRED** = worked out (reason given), **OPEN** = not known.
 
-The changes listed in "Changes to apply" are not in the sheet file yet: the file format gets
-passive parts first.
+The changes are applied to the sheet file (2026-11-23): see "What was applied" at the end.
 
 ## Circled numbers
 
@@ -50,7 +49,7 @@ Every circled number is a pin of the card's one 0-99 connector.
 
 ## Passive parts
 
-None of these is in the sheet file yet.
+All of these are parts in the sheet file now (names under "What was applied").
 
 | Part | Value as written | Connections | Status |
 |---|---|---|---|
@@ -66,7 +65,7 @@ None of these is in the sheet file yet.
 | OSCD | 10uF | OSCD_1 to ground | READ |
 | 5C/5B enable | 1000 pF | 9B.2 = 5C.1 = 5B.1 to ground | READ |
 | SR | 1000 pF | 11A.11 = 7A.1 = 7A.15 to ground | READ |
-| Line 95 | 2200 pF | 19A.12 = F.95 to ground | READ |
+| Line 95 | 2200 pF | 19A.12 = P.95 to ground | READ |
 | Straps at 3D pins 10 and 6 | (STRAP)(GND) | wire links to ground | READ |
 
 - **17D (74221):** pin 6 = 2Cext, 7 = 2Rext/Cext, 14 = 1Cext, 15 = 1Rext/Cext (datasheet), so
@@ -99,17 +98,47 @@ None of these is in the sheet file yet.
 - Not drawn (normal for ND sheets): the 75154 threshold pins (1, 2, 3, 14) and the supply pins
   of the line drivers and logic chips. OPEN.
 
-## Changes to apply
+## What was applied
 
-1. Add 15A.9 to the H net (inferred; note the "15A9" label and the 75154's built-in resistor).
-2. Add every passive part in the table above, with new nets N_17D_7 and N_17D_15, and a ground
-   pin on each switch block's common rail. OSCD gets its second pin.
-3. List 17D.4 and 17D.5 as unused.
-4. Pins 80/82/84/86/94, 62/63 and 66/67 are in the same cable range as F.81-F.95: write them
-   with one connector letter (owner's decision).
-5. Catalogues (`catalog/connectors/nord10-io-card-backplane.json`,
-   `catalog/signals/nd-bus-nord10.json`): 62/63 and 66/67 are outputs of the card's own
-   converter, and 80-94 are cable-side grounds (inferred), not bus pins. The modem front
-   connector's ground entry can name 80/82/84/86/94.
-6. Set the sheet's updated date to 1973-11-28.
-7. The 2200 pF / 1000 pF mismatch is recorded here as OPEN.
+Applied 2026-11-23 to `sheets/nord-10/2A50-sync-modem-buffer-1050.rsc` (and the same parts and
+pins to the hierarchical copy `2A50-sync-modem-buffer-1050-blocks.rsc`). Every value is as
+written on the drawing; every part note cites the drawing, PDF page 64.
+
+| Part | Type | Value | Between |
+|---|---|---|---|
+| 15E, 1E | SW-DIP-4 | | lever k: line on pin k, common ground rail on pin 9-k (DIP pin layout inferred) |
+| R-15E-1..4 | R | open | +5V to SMN3, SMN2, SMN1, SMN0 |
+| R-1E-1..4 | R | open | +5V to IDENT2, IDENT3, IDENT4, IDENT5 |
+| R-13E-1 | R | 1k | +5V to DEQL |
+| R-17D-1 | R | 47k | +5V to N_17D_7 (17D.7) |
+| C-17D-1 | C | 10µF | N_17D_6 (17D.6) to N_17D_7 |
+| R-17D-2 | R | 10k | +5V (bare bar, inferred) to N_17D_15 (17D.15) |
+| C-17D-2 | C | 220pF | N_17D_14 (17D.14) to N_17D_15 |
+| R-17D-3 | R | 220Ω | OSC to OSCD |
+| C-17D-3 | C | 10µF | OSCD to ground |
+| C-9B-1 | C | 1000 pF | N_9B_2 to ground |
+| C-11A-1 | C | 1000 pF | SR to ground |
+| C-19A-1 | C | 2200 pF | TRANSM DATA (P.95) to ground |
+| W-3D-1, W-3D-2 | STRAP | | 3D.10 and 3D.6 to ground (fitted as drawn); 3D.10 and 3D.6 moved off the GND net onto N_3D_10 and N_3D_6 |
+
+- 15A.9 is on the H net (inferred, with the note above).
+- 17D pins 4 and 5 are listed as unused in the 17D part note (the format has no unused-pin field).
+- Every circled pin is `P.n` (owner's decision): F.81-F.95 became P.81-P.95 and the separate
+  front connector entry is gone. The connector catalogue `nord10-io-card-backplane.json` now
+  holds the modem rows 81-95 itself (the file `nord10-modem-front.json` is merged into it and
+  removed), marks 56-99 as the cable side (inferred), 62/63 and 66/67 as outputs of the card's
+  own VP12/12 converter (wiring read, direction inferred), and 80/82/84/86/94 as cable-side
+  grounds (inferred).
+- Updated date 1973-11-28.
+- The 2200 pF / 1000 pF mismatch with the photo stays OPEN (written in each capacitor's note).
+
+## Open-collector lines still without a pull-up
+
+With the pull-ups in, the "no pull-up resistor" warning remains on four lines. Each is a
+reading question; no resistor is invented for them (a test,
+`On2A50_TheOpenCollectorLinesStillWithoutAPullUp_AreTheListedReadingQuestions`, keeps this
+list and the sheet in step):
+
+- **CONNECT** (P.23), **INPUT** (P.15), **LEV10** (P.27), **LEV12** (P.35): driven by the 7438
+  open-collector buffers 5A onto the bus. No resistor is drawn on this sheet. Where the bus
+  pulls them high (CPU card or backplane) is OPEN: no NORD-10 document found says.

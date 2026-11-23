@@ -212,7 +212,7 @@ namespace RetroSchematic.Tests
         {
             SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
             SchematicDrawing d = s.Drawing;
-            PartFrame p = d.ConnectorFrames["P"], f = d.ConnectorFrames["F"];
+            PartFrame p = d.ConnectorFrames["P"];
             double chipsLeft = double.MaxValue, chipsRight = 0;
             foreach (KeyValuePair<string, PartFrame> kv in d.Frames)
             {
@@ -223,9 +223,11 @@ namespace RetroSchematic.Tests
             Assert.That(p.X + p.Width, Is.LessThan(chipsLeft), "backplane box left of every chip");
             Assert.That(d.ShiftX, Is.GreaterThan(0), "room was made on the left");
             Assert.That(d.Pins["P.11"].X, Is.GreaterThan(p.X + p.Width), "its pins are on the side facing the chips");
-            // the 75150/75154 line chips are in the right half
-            Assert.That(f.X, Is.GreaterThan(chipsRight), "front box right of every chip");
-            Assert.That(d.Pins["F.81"].X, Is.LessThan(f.X), "its pins face the chips");
+            // every circled pin is on the one 0-99 connector (owner's decision 2026-11-23): the
+            // modem lines 81-95 are rows of the same box, not a front box of their own
+            Assert.That(d.ConnectorFrames.ContainsKey("F"), Is.False, "no front connector box");
+            Assert.That(d.Pins["P.81"].X, Is.EqualTo(d.Pins["P.11"].X), "the modem pins are on the same box, same side");
+            Assert.That(chipsRight, Is.GreaterThan(0));
         }
 
         [Test]
@@ -251,20 +253,20 @@ namespace RetroSchematic.Tests
             SheetSession s = new(Sheet2A50, SymbolStyle.NorskData, Catalog);
             s.Editor.ReadOnly = false;
             EditTool tool = new(s);
-            PartFrame before = s.Drawing.ConnectorFrames["F"];
+            PartFrame before = s.Drawing.ConnectorFrames["P"];
             // press inside the box body (not on a pin), drag 20 grid steps down
             double x = before.X + 4, y = before.Y + 4;
             tool.PointerDown(x, y);
             Assert.That(tool.Gesture, Is.EqualTo(EditGesture.MoveConnector));
             tool.PointerUp(x, y + 120);
-            ConnectorUse? use = s.Editor.Root.Connectors!.Find(c => c.Ref == "F");
+            ConnectorUse? use = s.Editor.Root.Connectors!.Find(c => c.Ref == "P");
             Assert.That(use?.Position, Is.Not.Null, tool.Message);
-            PartFrame after = s.Drawing.ConnectorFrames["F"];
+            PartFrame after = s.Drawing.ConnectorFrames["P"];
             Assert.That(after.X, Is.EqualTo(before.X));
             Assert.That(after.Y, Is.EqualTo(before.Y + 120));
             Assert.That(s.Drawing.ShiftX, Is.GreaterThan(0), "moving a box does not change the room on the left");
             s.Editor.Undo();
-            Assert.That(s.Editor.Root.Connectors!.Find(c => c.Ref == "F")?.Position, Is.Null);
+            Assert.That(s.Editor.Root.Connectors!.Find(c => c.Ref == "P")?.Position, Is.Null);
         }
 
         [Test]

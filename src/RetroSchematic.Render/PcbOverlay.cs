@@ -90,6 +90,13 @@ namespace RetroSchematic.Render
             for (int i = 0; root.Switches != null && i < root.Switches.Count; i++)
             {
                 SwitchBlock s = root.Switches[i];
+                // a switches entry and a SW-DIP-n part with the same ref are one thing
+                // (docs/FORMAT.md): the part's box is already there
+                bool isPart = false;
+                for (int k = 0; k < root.Parts.Count && !isPart; k++)
+                    isPart = root.Parts[k].Ref == s.Ref;
+                if (isPart)
+                    continue;
                 Add(boxes, root, template, corners, solder, s.Ref, "switch:" + s.Ref, "switch", s.Function);
             }
             return boxes;

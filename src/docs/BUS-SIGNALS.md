@@ -8,8 +8,7 @@ signal on a netlist sheet can be looked up and given a plain-words meaning.
 |---|---|
 | `catalog/signals/nd-bus-nord10.json` | NORD-10 I/O bus, as seen at an I/O device card position (55 entries) |
 | `catalog/signals/nd-bus-nd100.json` | NORD-100 / ND-100 bus on plug C (68 entries, every pin of the table) |
-| `catalog/connectors/nord10-io-card-backplane.json` | NORD-10 I/O card connector to the backplane |
-| `catalog/connectors/nord10-modem-front.json` | the modem (V.24) lines of the 2A50 card |
+| `catalog/connectors/nord10-io-card-backplane.json` | NORD-10 I/O card connector to the backplane: bus side 6-55, cable side 56-99 (the 2A50 modem lines, +-12V out, grounds) |
 | `catalog/connectors/nd100-c-connector.json` | NORD-100 module plugs C (bus, 96 pins) and A, B (64 lines each) |
 | `catalog/connectors/nd120-cpu-a-plug.json` | ND-120 CPU card 3202D, plug A (console and panel), from the owner's spreadsheet |
 | `catalog/connectors/nd120-cpu-b-plug.json` | ND-120 CPU card 3202D, plug B (trace bus), from the owner's spreadsheet |

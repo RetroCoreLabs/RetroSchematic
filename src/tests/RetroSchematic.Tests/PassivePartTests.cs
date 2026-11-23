@@ -252,5 +252,24 @@ namespace RetroSchematic.Tests
                 n.Pins.Add(new PinReference { At = pins[i] });
             return n;
         }
+        [Test]
+        public void On2A50_TheOpenCollectorLinesStillWithoutAPullUp_AreTheListedReadingQuestions()
+        {
+            // the 2A50 pull-ups are parts now (docs/2A50-passives-and-pins.md); every open-collector
+            // line still warned about is a reading question listed in that document, not a resistor
+            // to invent. A line leaving this list must also leave the document.
+            string sheet = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
+            SheetEditor e = new(NetlistReader.ReadFile(sheet), new ChipCatalog(Catalog));
+            List<string> warned = new();
+            for (int i = 0; i < e.Netlist.Nets.Count; i++)
+            {
+                SignalInfo s = SignalInfo.Of(e, e.Netlist.Nets[i], SignalNameStyle.Slash);
+                if (s.PullUpWarning != null)
+                    warned.Add(e.Netlist.Nets[i].Name);
+            }
+            warned.Sort(System.StringComparer.Ordinal);
+            TestContext.Out.WriteLine("still warned: " + string.Join(", ", warned));
+            Assert.That(warned, Is.EqualTo(new[] { "CONNECT", "INPUT", "LEV10", "LEV12" }));
+        }
     }
 }

@@ -77,34 +77,150 @@
       "source": "S2A50"
     },
     {
+      "pin": "56-99",
+      "use": "cable side: the card's own pins, reached by a cable plugged onto the backplane (not bus pins). On 2A50 they carry the modem (V.24) lines, the +-12V the card makes, and grounds",
+      "confidence": "inferred",
+      "source": "N10S",
+      "note": "Empty in the backwiring list (read, BW); 'Cable connectors are plugged directly into the backplane' (read, N10S section 4.1.1); that 56-99 is the cable side is inferred from those two."
+    },
+    {
       "pin": "62, 63",
-      "use": "-12V",
-      "confidence": "read",
-      "source": "S2A50"
+      "use": "-12V OUTPUT of the card's own VP12/12 converter (18-19E pins 10 and 15), put out on the cable side",
+      "direction": "out",
+      "confidence": "inferred",
+      "source": "S2A50",
+      "note": "Wiring read on the drawing; that it is an output, not a supply taken from the bus, is inferred (the card makes +-12V from +5V; ND PCB catalogue: 'Uses the VP12-12 to generate the required +12V')."
     },
     {
       "pin": "66, 67",
-      "use": "+12V",
-      "confidence": "read",
-      "source": "S2A50"
+      "use": "+12V OUTPUT of the card's own VP12/12 converter (18-19E pins 3 and 22), put out on the cable side",
+      "direction": "out",
+      "confidence": "inferred",
+      "source": "S2A50",
+      "note": "Wiring read on the drawing; direction inferred, as for 62/63."
     },
     {
       "pin": "80, 82, 84, 86, 94",
-      "use": "GND",
-      "confidence": "read",
-      "source": "S2A50"
+      "use": "cable-side ground (the cable's signal returns between the modem pins)",
+      "confidence": "inferred",
+      "source": "S2A50",
+      "note": "Tied to ground on the drawing (read); that they are the cable's returns is inferred. V.24 pins 1 and 7 appear nowhere on the sheet."
     },
     {
-      "pin": "81-95 (odd, plus 88, 90, 92)",
-      "use": "modem (V.24) lines on 2A50, see nord10-modem-front.json",
+      "pin": 81,
+      "signal": "RECEIVER TIMING",
+      "v24": 17,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
       "confidence": "read",
-      "source": "S2A50"
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 83,
+      "signal": "TRANSMITTER TIMING",
+      "v24": 15,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 85,
+      "signal": "CALLING INDICATOR",
+      "v24": 22,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 87,
+      "signal": "RECEIVED DATA",
+      "v24": 3,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 88,
+      "signal": "SIGNAL DETECTOR",
+      "v24": 8,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 89,
+      "signal": "READY FOR SENDING",
+      "v24": 5,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 90,
+      "signal": "DATA SET READY",
+      "v24": 6,
+      "direction": "in",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 91,
+      "signal": "CONNECT TO LINE",
+      "v24": 20,
+      "direction": "out",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 92,
+      "signal": "REQUEST TO SEND",
+      "v24": 4,
+      "direction": "out",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 93,
+      "signal": "(no name printed)",
+      "v24": 23,
+      "direction": "out",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
+    },
+    {
+      "pin": 95,
+      "signal": "TRANSM DATA",
+      "v24": 2,
+      "direction": "out",
+      "use": "modem (V.24) line on 2A50, cable side",
+      "confidence": "read",
+      "source": "S2A50",
+      "note": "V.24 pin number from the bracket number on the drawing; that it is the V.24 pin is inferred. Direction read from line receivers 13A/15A and drivers 17A/19A."
     }
   ],
   "power": {
     "value": "open",
     "confidence": "open",
-    "note": "Power pins are not in the backwiring list; only the ones drawn on 2A50 are known (above). +5V pin open."
+    "note": "Power pins are not in the backwiring list. 62/63 and 66/67 on 2A50 are outputs of the card's own +-12V converter, not supply in. +5V pin open."
   },
-  "note": "NORD-10/S manual section 4.1.1: 'Cable connectors are plugged directly into the backplane' and 'Device plugs are also to a common standard' (read). That the modem pins 81-95 of 2A50 are on the same 0-99 numbered connector as the bus pins is inferred from the shared numbering and that sentence; not proven."
+  "note": "NORD-10/S manual section 4.1.1: 'Cable connectors are plugged directly into the backplane' and 'Device plugs are also to a common standard' (read). Every circled pin on 2A50, bus and modem alike, is a pin of this one 0-99 connector, written P.n (owner's decision 2026-11-23); 6-55 is the bus side, 56-99 the cable side (inferred). The former separate file nord10-modem-front.json is merged in here as the 81-95 rows."
 }

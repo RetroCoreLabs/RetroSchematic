@@ -199,8 +199,18 @@ namespace RetroSchematic.Model
 
         private static void Check(Netlist netlist)
         {
-            CheckLevel("the top level", netlist.Parts, netlist.Gates, netlist.Nets);
             List<BlockDefinition>? blocks = netlist.Blocks;
+            // "serves" names a board position (docs/FORMAT.md): the chip is on the card whichever
+            // level of the drawing it was put in, so it is looked for in the whole file
+            HashSet<string> allParts = new(StringComparer.Ordinal);
+            for (int i = 0; i < netlist.Parts.Count; i++)
+                allParts.Add(netlist.Parts[i].Ref);
+            for (int i = 0; blocks != null && i < blocks.Count; i++)
+            {
+                for (int k = 0; k < blocks[i].Parts.Count; k++)
+                    allParts.Add(blocks[i].Parts[k].Ref);
+            }
+            CheckLevel("the top level", netlist.Parts, netlist.Gates, netlist.Nets, allParts);
             Dictionary<string, BlockDefinition> byName = new(StringComparer.Ordinal);
             for (int i = 0; blocks != null && i < blocks.Count; i++)
             {
@@ -212,7 +222,7 @@ namespace RetroSchematic.Model
             {
                 BlockDefinition b = blocks[i];
                 string where = "block " + b.Name;
-                CheckLevel(where, b.Parts, b.Gates, b.Nets);
+                CheckLevel(where, b.Parts, b.Gates, b.Nets, allParts);
                 CheckInstances(where, b.Instances, b.Nets, byName);
                 HashSet<string> ports = new(StringComparer.Ordinal);
                 HashSet<Net> carried = new(ReferenceEqualityComparer.Instance);
@@ -355,7 +365,7 @@ namespace RetroSchematic.Model
             path.RemoveAt(path.Count - 1);
         }
 
-        private static void CheckLevel(string where, List<Part> partList, List<Gate> gateList, List<Net> netList)
+        private static void CheckLevel(string where, List<Part> partList, List<Gate> gateList, List<Net> netList, HashSet<string> allParts)
         {
             HashSet<string> parts = new(StringComparer.Ordinal);
             // a passive part's pins are known from its type alone (PassiveParts)
@@ -374,8 +384,8 @@ namespace RetroSchematic.Model
             for (int i = 0; i < partList.Count; i++)
             {
                 string? serves = partList[i].Serves;
-                if (serves != null && !parts.Contains(serves))
-                    throw new NetlistException($"Part {partList[i].Ref} serves {serves}, which is not in the parts list of {where}.");
+                if (serves != null && !allParts.Contains(serves))
+                    throw new NetlistException($"Part {partList[i].Ref} ({where}) serves {serves}, which is not a part anywhere in the file.");
             }
 
             HashSet<string> gateIds = new(StringComparer.Ordinal);

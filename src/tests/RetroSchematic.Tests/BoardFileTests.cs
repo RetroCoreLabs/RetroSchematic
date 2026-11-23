@@ -41,7 +41,7 @@ namespace RetroSchematic.Tests
             Assert.That(n.Board.Specifications!.Size!.WidthMm, Is.EqualTo(156));
             Assert.That(n.Board.Specifications.Size.HeightMm, Is.EqualTo(149));
             Assert.That(n.Board.Specifications.Layers, Is.EqualTo(2));
-            Assert.That(n.Connectors, Has.Count.EqualTo(2));
+            Assert.That(n.Connectors, Has.Count.EqualTo(1), "one 0-99 connector: the modem lines are its pins 81-95 (owner's decision 2026-11-23)");
             Assert.That(n.Connectors![0].Pins, Is.EqualTo("0-99"));
             Assert.That(n.Sources, Has.Count.EqualTo(1));
             Assert.That(n.Sources![0].Original!.PdfPage, Is.EqualTo(64));

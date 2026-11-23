@@ -183,11 +183,19 @@ namespace RetroSchematic.Render
             double x0 = plan.X, x1 = plan.X + plan.Width, y0 = plan.Y;
 
             // no chip frame: the symbol is the part (picking uses the part's frame all the same)
-            Text(d, DrawRole.BoardPosition, c, owner, x0, y0 - 5, part.Ref, LabelFont, TextAnchor.Start);
+            // the reference is written like a chip's board position (muted), and the board
+            // positions switch hides it the same way: a switch block's ref is its board position,
+            // and an automatic name is made from one (R-17D-1)
+            double valueX = x0;
+            if (options.ShowBoardPositions)
+            {
+                Text(d, DrawRole.BoardPosition, c, owner, x0, y0 - 5, part.Ref, LabelFont, TextAnchor.Start);
+                valueX = x0 + TextWidth(part.Ref + " ", "", LabelFont);
+            }
             string value = part.Value ?? (kind == PassiveKind.SwitchBlock || kind == PassiveKind.ResistorNetwork ? part.Type : "");
             if (value.Length > 0)
             {
-                DrawItem v = Text(d, DrawRole.PartLabel, part.ValueConfidence ?? c, owner, x0 + TextWidth(part.Ref + " ", "", LabelFont), y0 - 5, value, LabelFont, TextAnchor.Start);
+                DrawItem v = Text(d, DrawRole.PartLabel, part.ValueConfidence ?? c, owner, valueX, y0 - 5, value, LabelFont, TextAnchor.Start);
                 v.Bold = true;
             }
 
@@ -337,7 +345,9 @@ namespace RetroSchematic.Render
         {
             Net net = p.Net!;
             string owner = "net:" + NetKey(net);
-            double x = p.X + (p.Side * 6), y = p.Y;
+            // the stub is long enough that the supply's name (centred on the bar) ends before the
+            // pin number, which is written just inside the pin end
+            double x = p.X + (p.Side * 12), y = p.Y;
             Line(d, DrawRole.PinLine, c, owner, p.X, y, x, y);
             if (SupplyNets.IsGround(net.Name))
             {

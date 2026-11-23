@@ -2020,10 +2020,11 @@
         "confidence": "read"
       },
       "direction": {
-        "value": "in",
+        "value": "out",
         "source": "S2A50",
-        "page": "-",
-        "confidence": "read"
+        "page": "18-19E VP12/12 converter",
+        "confidence": "inferred",
+        "note": "Wiring read: the VP12/12 converter 18-19E pins 10 and 15 go to these circled pins. That it is an output (the card makes -12V from +5V; ND PCB catalogue: \"Uses the VP12-12 to generate the required +12V\"), not a supply taken in, is inferred."
       },
       "pins": {
         "value": [
@@ -2039,13 +2040,13 @@
         "source": "S2A50",
         "page": "edge pins",
         "confidence": "read",
-        "note": "Not in Backwiring til NORD-10 (power is not in that list)."
+        "note": "Not in Backwiring til NORD-10. Cable side (56-99) of the card's 0-99 connector, not a bus pin (inferred)."
       },
       "description": {
-        "value": "-12 V supply.",
+        "value": "-12 V made on the 2A50 card by its own VP12/12 converter and put out on the cable side.",
         "source": "S2A50",
-        "page": "-",
-        "confidence": "read"
+        "page": "18-19E",
+        "confidence": "inferred"
       }
     },
     {
@@ -2058,10 +2059,11 @@
         "confidence": "read"
       },
       "direction": {
-        "value": "in",
+        "value": "out",
         "source": "S2A50",
-        "page": "-",
-        "confidence": "read"
+        "page": "18-19E VP12/12 converter",
+        "confidence": "inferred",
+        "note": "Wiring read: the VP12/12 converter 18-19E pins 3 and 22 go to these circled pins. That it is an output (the card makes +12V from +5V; ND PCB catalogue: \"Uses the VP12-12 to generate the required +12V\"), not a supply taken in, is inferred."
       },
       "pins": {
         "value": [
@@ -2077,13 +2079,13 @@
         "source": "S2A50",
         "page": "edge pins",
         "confidence": "read",
-        "note": "Not in Backwiring til NORD-10."
+        "note": "Not in Backwiring til NORD-10. Cable side (56-99) of the card's 0-99 connector, not a bus pin (inferred)."
       },
       "description": {
-        "value": "+12 V supply.",
+        "value": "+12 V made on the 2A50 card by its own VP12/12 converter and put out on the cable side.",
         "source": "S2A50",
-        "page": "-",
-        "confidence": "read"
+        "page": "18-19E",
+        "confidence": "inferred"
       }
     },
     {
@@ -2127,13 +2129,13 @@
         "source": "S2A50",
         "page": "edge pins",
         "confidence": "read",
-        "note": "Not in Backwiring til NORD-10. Other ground pins may exist; 2A50 shows these five."
+        "note": "Not in Backwiring til NORD-10. These five are on the cable side (56-99) between the modem pins 81-95: cable-side grounds (the cable's signal returns), not bus pins (inferred). Other ground pins may exist."
       },
       "description": {
-        "value": "Ground.",
+        "value": "Ground; the five pins 2A50 shows are cable-side grounds.",
         "source": "S2A50",
         "page": "-",
-        "confidence": "read"
+        "confidence": "inferred"
       }
     },
     {

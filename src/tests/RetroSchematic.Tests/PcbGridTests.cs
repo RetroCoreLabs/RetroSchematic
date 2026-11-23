@@ -128,13 +128,15 @@ namespace RetroSchematic.Tests
             // a made-up photo: the board fills 1560 x 1490 pixels, 10 pixels per mm
             GridPoint[] c = { new(0, 0), new(1560, 0), new(1560, 1490), new(0, 1490) };
             List<PcbBox> boxes = PcbOverlay.Build(n, Nord10(), c, false);
-            Assert.That(boxes.Count, Is.EqualTo(n.Parts.Count + n.Switches!.Count), "every part and switch has a position code");
+            // every chip and both switch blocks (parts 15E and 1E, the switches entries are the same
+            // things) have a position code; a passive named from the chip it serves (R-17D-1) has none
+            Assert.That(boxes.Count, Is.EqualTo(42), "40 chips and 2 switch blocks");
             PcbBox? b = PcbOverlay.At(boxes, new GridPoint(1014, 1060));
             Assert.That(b!.Ref, Is.EqualTo("13D"));
             Assert.That(b.Owner, Is.EqualTo("part:13D"));
             Assert.That(b.Label, Does.StartWith("13D  7442"));
             Assert.That(PcbOverlay.At(boxes, new GridPoint(590, 900))!.Ref, Is.EqualTo("7-8C-D"));
-            Assert.That(PcbOverlay.At(boxes, new GridPoint(100, 1350))!.Owner, Is.EqualTo("switch:1E"));
+            Assert.That(PcbOverlay.At(boxes, new GridPoint(100, 1350))!.Owner, Is.EqualTo("part:1E"), "the switch block is the part 1E");
             Assert.That(PcbOverlay.At(boxes, new GridPoint(780, 50)), Is.Null, "the finger edge holds no chip");
             // the solder side: 13D is mirrored to the other half
             List<PcbBox> back = PcbOverlay.Build(n, Nord10(), c, true);

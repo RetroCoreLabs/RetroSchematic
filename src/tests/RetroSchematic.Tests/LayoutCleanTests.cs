@@ -226,7 +226,11 @@ namespace RetroSchematic.Tests
                 else if (!partsOnly && it.Role == DrawRole.Symbol && it.Kind != DrawKind.Text)
                 {
                     Box b = Box.Of(it);
-                    if (gate.TryGetValue(it.Owner, out int k))
+                    // a supply symbol (owner net:GND, net:+5V) is drawn once at every passive pin on
+                    // that supply: each one is its own small box, never one box round all of them
+                    if (it.Owner.StartsWith("net:", StringComparison.Ordinal))
+                        list.Add(b);
+                    else if (gate.TryGetValue(it.Owner, out int k))
                         list[k] = list[k].Union(b);
                     else
                     {

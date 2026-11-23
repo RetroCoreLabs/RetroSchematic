@@ -8,13 +8,13 @@
     "bus": "nord-10",
     "company": "A/S Norsk Data-Elektronikk",
     "drawn": "1973-11-06",
-    "updated": "1973-11-29",
+    "updated": "1973-11-28",
     "source": {
       "document": "docs/sources/nord-10/NORD-10-drawings.pdf",
       "pdfPage": 64,
       "image": "docs/sources/nord-10/2A50-sync-modem-buffer-1050.png"
     },
-    "note": "Parts, gates and wires read pin by pin from the scan on 2026-11-23. Switches, resistors and capacitors are not parts in this format; they are described in net notes. Pins of a 74153/74157 drawn as a stack of small boxes are read with the rule that a pin number sits above its wire. Register-level reading: docs/2A50-reading.md; catalogue map: docs/2A50-catalogue-map.md."
+    "note": "Parts, gates and wires read pin by pin from the scan on 2026-11-23. Switch blocks, resistors, capacitors and straps are passive parts (added 2026-11-23, docs/2A50-passives-and-pins.md). Pins of a 74153/74157 drawn as a stack of small boxes are read with the rule that a pin number sits above its wire. Register-level reading: docs/2A50-reading.md; catalogue map: docs/2A50-catalogue-map.md."
   },
   "parts": [
     {
@@ -138,7 +138,8 @@
       "ref": "17D",
       "type": "74221",
       "function": "one-shot for the receiver reset, and the timeout oscillator",
-      "confidence": "read"
+      "confidence": "read",
+      "note": "Pins 4 (2A) and 5 (2B) are unused: not drawn on the sheet (drawing page 64). Timing parts: R-17D-1..3 and C-17D-1..3."
     },
     {
       "ref": "19C",
@@ -267,6 +268,168 @@
       "function": "voltage converter: +5 V in, +12 V and -12 V out (for the COM 2601 and the line drivers)",
       "confidence": "read",
       "note": "pins: 1,24 = +5V; 2,11,12,13,14,23 = GND; 3,22 = +12V; 10,15 = -12V"
+    },
+    {
+      "ref": "15E",
+      "type": "SW-DIP-4",
+      "confidence": "read",
+      "note": "Switch block 15E, 4 levers (drawing 2A50, NORD-10 drawing book PDF page 64); each lever joins its line to a common ground rail (read). Which DIP pins are the line side and which the rail side follows the usual DIP layout (pins 1-4 lines, 5-8 rail): inferred. The switches section says what each lever means."
+    },
+    {
+      "ref": "R-15E-1",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN3 at lever 1 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "15E"
+    },
+    {
+      "ref": "R-15E-2",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN2 at lever 2 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "15E"
+    },
+    {
+      "ref": "R-15E-3",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN1 at lever 3 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "15E"
+    },
+    {
+      "ref": "R-15E-4",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN0 at lever 4 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "15E"
+    },
+    {
+      "ref": "1E",
+      "type": "SW-DIP-4",
+      "confidence": "read",
+      "note": "Switch block 1E, 4 levers (drawing 2A50, NORD-10 drawing book PDF page 64); each lever joins its line to a common ground rail (read). Which DIP pins are the line side and which the rail side follows the usual DIP layout (pins 1-4 lines, 5-8 rail): inferred. The switches section says what each lever means."
+    },
+    {
+      "ref": "R-1E-1",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT2 at lever 1 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "1E"
+    },
+    {
+      "ref": "R-1E-2",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT3 at lever 2 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "1E"
+    },
+    {
+      "ref": "R-1E-3",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT4 at lever 3 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "1E"
+    },
+    {
+      "ref": "R-1E-4",
+      "type": "R",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT5 at lever 4 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
+      "serves": "1E"
+    },
+    {
+      "ref": "R-13E-1",
+      "type": "R",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. Pull-up on DEQL, \"1k\" written (drawing 2A50, NORD-10 drawing book PDF page 64).",
+      "value": "1k",
+      "serves": "13E"
+    },
+    {
+      "ref": "R-17D-1",
+      "type": "R",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"47k\" from +5V (labelled \"+5V\") to 17D pin 7 (drawing 2A50, NORD-10 drawing book PDF page 64).",
+      "value": "47k",
+      "serves": "17D"
+    },
+    {
+      "ref": "C-17D-1",
+      "type": "C",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"10µF\" between 17D pins 6 and 7 (drawing 2A50, NORD-10 drawing book PDF page 64). Drawn as a plain capacitor, no polarity marked.",
+      "value": "10µF",
+      "serves": "17D"
+    },
+    {
+      "ref": "R-17D-2",
+      "type": "R",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"10k\" from 17D pin 15 to a bare supply bar, taken as +5V (drawing 2A50, NORD-10 drawing book PDF page 64).",
+      "value": "10k",
+      "serves": "17D"
+    },
+    {
+      "ref": "C-17D-2",
+      "type": "C",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"220pF\" between 17D pins 14 and 15 (drawing 2A50, NORD-10 drawing book PDF page 64). The photo shows a red \"220pF +-5%\" beside the 74221 (inferred to be this one).",
+      "value": "220pF",
+      "serves": "17D"
+    },
+    {
+      "ref": "R-17D-3",
+      "type": "R",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"220Ω\" from OSC (17D pin 12) to OSCD (17D pin 10) (drawing 2A50, NORD-10 drawing book PDF page 64).",
+      "value": "220Ω",
+      "serves": "17D"
+    },
+    {
+      "ref": "C-17D-3",
+      "type": "C",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"10µF\" from OSCD to ground (drawing 2A50, NORD-10 drawing book PDF page 64). Drawn as a plain capacitor, no polarity marked.",
+      "value": "10µF",
+      "serves": "17D"
+    },
+    {
+      "ref": "C-9B-1",
+      "type": "C",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"1000 pF\" from the bus driver enable 9B.2 = 5C.1 = 5B.1 to ground (drawing 2A50, NORD-10 drawing book PDF page 64). The old board photo shows two red \"2200pF +-5%\" where the drawing has one 2200 pF and two 1000 pF: mismatch, open (docs/2A50-passives-and-pins.md).",
+      "value": "1000 pF",
+      "serves": "9B"
+    },
+    {
+      "ref": "C-11A-1",
+      "type": "C",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"1000 pF\" from SR (11A.11 = 7A.1 = 7A.15) to ground (drawing 2A50, NORD-10 drawing book PDF page 64). The old board photo shows two red \"2200pF +-5%\" where the drawing has one 2200 pF and two 1000 pF: mismatch, open (docs/2A50-passives-and-pins.md).",
+      "value": "1000 pF",
+      "serves": "11A"
+    },
+    {
+      "ref": "C-19A-1",
+      "type": "C",
+      "confidence": "inferred",
+      "note": "No name on the drawing; the name is made from the chip it serves. \"2200 pF\" from line 95, TRANSM DATA (19A.12) to ground (drawing 2A50, NORD-10 drawing book PDF page 64). The old board photo shows two red \"2200pF +-5%\" where the drawing has one 2200 pF and two 1000 pF: mismatch, open (docs/2A50-passives-and-pins.md).",
+      "value": "2200 pF",
+      "serves": "19A"
+    },
+    {
+      "ref": "W-3D-1",
+      "type": "STRAP",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Marked \"(STRAP)(GND)\" at 3D.10 (drawing 2A50, NORD-10 drawing book PDF page 64); fitted as drawn (read), so ident bits 0 and 1 are 0.",
+      "serves": "3D"
+    },
+    {
+      "ref": "W-3D-2",
+      "type": "STRAP",
+      "confidence": "read",
+      "note": "No name on the drawing; the name is made from the chip it serves. Marked \"(STRAP)(GND)\" at 3D.6 (drawing 2A50, NORD-10 drawing book PDF page 64); fitted as drawn (read), so ident bits 0 and 1 are 0.",
+      "serves": "3D"
     }
   ],
   "gates": [
@@ -1036,9 +1199,18 @@
         {
           "at": "13E.4",
           "confidence": "read"
+        },
+        {
+          "at": "15E.1",
+          "confidence": "inferred",
+          "note": "lever 1 of switch block 15E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-15E-1.2",
+          "confidence": "read"
         }
       ],
-      "note": "modem number switch 15E position 1 with pull-up (switch and resistor are not parts in this file)"
+      "note": "switch 15E lever 1, pulled up by R-15E-1"
     },
     {
       "name": "SMN2",
@@ -1047,9 +1219,18 @@
         {
           "at": "13E.13",
           "confidence": "read"
+        },
+        {
+          "at": "15E.2",
+          "confidence": "inferred",
+          "note": "lever 2 of switch block 15E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-15E-2.2",
+          "confidence": "read"
         }
       ],
-      "note": "switch 15E position 2"
+      "note": "switch 15E lever 2, pulled up by R-15E-2"
     },
     {
       "name": "SMN1",
@@ -1058,9 +1239,18 @@
         {
           "at": "13E.10",
           "confidence": "read"
+        },
+        {
+          "at": "15E.3",
+          "confidence": "inferred",
+          "note": "lever 3 of switch block 15E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-15E-3.2",
+          "confidence": "read"
         }
       ],
-      "note": "switch 15E position 3"
+      "note": "switch 15E lever 3, pulled up by R-15E-3"
     },
     {
       "name": "SMN0",
@@ -1069,9 +1259,18 @@
         {
           "at": "13E.6",
           "confidence": "read"
+        },
+        {
+          "at": "15E.4",
+          "confidence": "inferred",
+          "note": "lever 4 of switch block 15E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-15E-4.2",
+          "confidence": "read"
         }
       ],
-      "note": "switch 15E position 4"
+      "note": "switch 15E lever 4, pulled up by R-15E-4"
     },
     {
       "name": "BA9",
@@ -1238,9 +1437,13 @@
         {
           "at": "1A.3",
           "confidence": "read"
+        },
+        {
+          "at": "R-13E-1.2",
+          "confidence": "read"
         }
       ],
-      "note": "1 kohm pull-up to +5 V on the line"
+      "note": "pulled up by R-13E-1 (1k)"
     },
     {
       "name": "N_11C_8",
@@ -1695,9 +1898,14 @@
         {
           "at": "19A.2",
           "confidence": "read"
+        },
+        {
+          "at": "15A.9",
+          "confidence": "inferred",
+          "note": "the drawing labels the H supply \"15A9\" = chip 15A pin 9; the 75154 has a resistor inside to +5V on that pin (TI 1974 data book page 4-81)"
         }
       ],
-      "note": "tied high through resistor 15A9; pins marked H on the drawing"
+      "note": "pulled high by the resistor inside 15A (75154) on pin 9, labelled \"15A9\" on the drawing; pins marked H on the drawing"
     },
     {
       "name": "H1",
@@ -1760,14 +1968,6 @@
         },
         {
           "at": "3D.15",
-          "confidence": "read"
-        },
-        {
-          "at": "3D.10",
-          "confidence": "read"
-        },
-        {
-          "at": "3D.6",
           "confidence": "read"
         },
         {
@@ -1920,22 +2120,91 @@
         },
         {
           "at": "P.80",
-          "confidence": "read"
+          "confidence": "read",
+          "note": "circled pin to ground: cable-side ground (inferred)"
         },
         {
           "at": "P.82",
-          "confidence": "read"
+          "confidence": "read",
+          "note": "circled pin to ground: cable-side ground (inferred)"
         },
         {
           "at": "P.84",
-          "confidence": "read"
+          "confidence": "read",
+          "note": "circled pin to ground: cable-side ground (inferred)"
         },
         {
           "at": "P.86",
-          "confidence": "read"
+          "confidence": "read",
+          "note": "circled pin to ground: cable-side ground (inferred)"
         },
         {
           "at": "P.94",
+          "confidence": "read",
+          "note": "circled pin to ground: cable-side ground (inferred)"
+        },
+        {
+          "at": "15E.8",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 15E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "15E.7",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 15E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "15E.6",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 15E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "15E.5",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 15E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "1E.8",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 1E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "1E.7",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 1E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "1E.6",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 1E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "1E.5",
+          "confidence": "inferred",
+          "note": "common ground rail of switch block 1E (rail read, pin number from the usual DIP layout)"
+        },
+        {
+          "at": "C-17D-3.2",
+          "confidence": "read"
+        },
+        {
+          "at": "C-9B-1.2",
+          "confidence": "read"
+        },
+        {
+          "at": "C-11A-1.2",
+          "confidence": "read"
+        },
+        {
+          "at": "C-19A-1.2",
+          "confidence": "read"
+        },
+        {
+          "at": "W-3D-1.2",
+          "confidence": "read"
+        },
+        {
+          "at": "W-3D-2.2",
           "confidence": "read"
         }
       ],
@@ -3390,9 +3659,13 @@
         {
           "at": "5B.1",
           "confidence": "read"
+        },
+        {
+          "at": "C-9B-1.1",
+          "confidence": "read"
         }
       ],
-      "note": "automatic name: bus driver enable, 1000 pF to ground"
+      "note": "automatic name: bus driver enable, C-9B-1 (1000 pF) to ground"
     },
     {
       "name": "SR",
@@ -3408,6 +3681,10 @@
         },
         {
           "at": "7A.1",
+          "confidence": "read"
+        },
+        {
+          "at": "C-11A-1.1",
           "confidence": "read"
         }
       ],
@@ -3588,9 +3865,18 @@
         {
           "at": "3E.6",
           "confidence": "read"
+        },
+        {
+          "at": "1E.1",
+          "confidence": "inferred",
+          "note": "lever 1 of switch block 1E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-1E-1.2",
+          "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 1 with pull-up",
+      "note": "switch 1E lever 1, pulled up by R-1E-1",
       "description": "Ident switch 1E line, put on data bit 2 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
       "descriptionSource": {
         "kind": "reading",
@@ -3606,9 +3892,18 @@
         {
           "at": "3E.10",
           "confidence": "read"
+        },
+        {
+          "at": "1E.2",
+          "confidence": "inferred",
+          "note": "lever 2 of switch block 1E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-1E-2.2",
+          "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 2 with pull-up",
+      "note": "switch 1E lever 2, pulled up by R-1E-2",
       "description": "Ident switch 1E line, put on data bit 3 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
       "descriptionSource": {
         "kind": "reading",
@@ -3624,9 +3919,18 @@
         {
           "at": "5E.6",
           "confidence": "read"
+        },
+        {
+          "at": "1E.3",
+          "confidence": "inferred",
+          "note": "lever 3 of switch block 1E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-1E-3.2",
+          "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 3 with pull-up",
+      "note": "switch 1E lever 3, pulled up by R-1E-3",
       "description": "Ident switch 1E line, put on data bit 4 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
       "descriptionSource": {
         "kind": "reading",
@@ -3642,9 +3946,18 @@
         {
           "at": "5E.10",
           "confidence": "read"
+        },
+        {
+          "at": "1E.4",
+          "confidence": "inferred",
+          "note": "lever 4 of switch block 1E; pin number from the usual DIP layout"
+        },
+        {
+          "at": "R-1E-4.2",
+          "confidence": "read"
         }
       ],
-      "note": "ident switch 1E position 4 with pull-up",
+      "note": "switch 1E lever 4, pulled up by R-1E-4",
       "description": "Ident switch 1E line, put on data bit 5 when the CPU asks for an ident (bits 0 and 1 are strapped to ground).",
       "descriptionSource": {
         "kind": "reading",
@@ -4075,6 +4388,61 @@
         {
           "at": "18-19E.24",
           "confidence": "read"
+        },
+        {
+          "at": "R-15E-1.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-15E-2.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-15E-3.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-15E-4.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-1E-1.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-1E-2.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-1E-3.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-1E-4.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-13E-1.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
+        },
+        {
+          "at": "R-17D-1.1",
+          "confidence": "read",
+          "note": "\"+5V\" written at the resistor"
+        },
+        {
+          "at": "R-17D-2.1",
+          "confidence": "inferred",
+          "note": "bare supply bar on the drawing, taken as +5V"
         }
       ],
       "note": "COM 2601 supply pins are printed in its box: +5V 1, -12V 6, GND 4"
@@ -4098,12 +4466,12 @@
         {
           "at": "P.62",
           "confidence": "inferred",
-          "note": "circled 62/63 on the drawing"
+          "note": "circled 62/63 on the drawing; output of the card's own VP12/12 converter 18-19E (wiring read, direction inferred)"
         },
         {
           "at": "P.63",
           "confidence": "inferred",
-          "note": "circled 62/63 on the drawing"
+          "note": "circled 62/63 on the drawing; output of the card's own VP12/12 converter 18-19E (wiring read, direction inferred)"
         }
       ]
     },
@@ -4122,12 +4490,12 @@
         {
           "at": "P.66",
           "confidence": "inferred",
-          "note": "circled 66/67 on the drawing"
+          "note": "circled 66/67 on the drawing; output of the card's own VP12/12 converter 18-19E (wiring read, direction inferred)"
         },
         {
           "at": "P.67",
           "confidence": "inferred",
-          "note": "circled 66/67 on the drawing"
+          "note": "circled 66/67 on the drawing; output of the card's own VP12/12 converter 18-19E (wiring read, direction inferred)"
         }
       ]
     },
@@ -4438,9 +4806,13 @@
         {
           "at": "19C.9",
           "confidence": "read"
+        },
+        {
+          "at": "R-17D-3.1",
+          "confidence": "read"
         }
       ],
-      "note": "through 220 ohm to OSCD"
+      "note": "through R-17D-3 (220Ω) to OSCD"
     },
     {
       "name": "OSCD",
@@ -4449,9 +4821,17 @@
         {
           "at": "17D.10",
           "confidence": "read"
+        },
+        {
+          "at": "R-17D-3.2",
+          "confidence": "read"
+        },
+        {
+          "at": "C-17D-3.1",
+          "confidence": "read"
         }
       ],
-      "note": "OSC through 220 ohm, 10 uF to ground"
+      "note": "OSC through R-17D-3 (220Ω); C-17D-3 (10µF) to ground"
     },
     {
       "name": "TTM",
@@ -4731,9 +5111,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.87",
+          "at": "P.87",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "15A.4",
@@ -4747,9 +5127,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.89",
+          "at": "P.89",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "15A.6",
@@ -4763,9 +5143,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.90",
+          "at": "P.90",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "15A.7",
@@ -4779,9 +5159,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.88",
+          "at": "P.88",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "15A.5",
@@ -4795,9 +5175,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.85",
+          "at": "P.85",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "13A.7",
@@ -4811,9 +5191,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.83",
+          "at": "P.83",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "13A.6",
@@ -4827,9 +5207,9 @@
       "active": "none",
       "pins": [
         {
-          "at": "F.81",
+          "at": "P.81",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         },
         {
           "at": "13A.5",
@@ -4847,9 +5227,9 @@
           "confidence": "read"
         },
         {
-          "at": "F.91",
+          "at": "P.91",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         }
       ],
       "note": "V.24 pin 20"
@@ -4863,9 +5243,9 @@
           "confidence": "read"
         },
         {
-          "at": "F.92",
+          "at": "P.92",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         }
       ],
       "note": "V.24 pin 4"
@@ -4879,9 +5259,9 @@
           "confidence": "read"
         },
         {
-          "at": "F.93",
+          "at": "P.93",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
         }
       ],
       "note": "V.24 pin 23; no signal name printed. 19A pin 2 = H, pin 4 = GND"
@@ -4895,12 +5275,114 @@
           "confidence": "read"
         },
         {
-          "at": "F.95",
+          "at": "P.95",
           "confidence": "inferred",
-          "note": "circled number with a modem signal name: front connector"
+          "note": "circled number with a modem signal name: a pin of the 0-99 connector, cable side (56-99)"
+        },
+        {
+          "at": "C-19A-1.1",
+          "confidence": "read"
         }
       ],
-      "note": "V.24 pin 2; 2200 pF to ground"
+      "note": "V.24 pin 2; C-19A-1 (2200 pF) to ground"
+    },
+    {
+      "name": "N_17D_7",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17D.7",
+          "confidence": "read"
+        },
+        {
+          "at": "R-17D-1.2",
+          "confidence": "read"
+        },
+        {
+          "at": "C-17D-1.2",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: 74221 second half, 2Rext/Cext"
+    },
+    {
+      "name": "N_17D_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17D.6",
+          "confidence": "read"
+        },
+        {
+          "at": "C-17D-1.1",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: 74221 second half, 2Cext"
+    },
+    {
+      "name": "N_17D_15",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17D.15",
+          "confidence": "read"
+        },
+        {
+          "at": "R-17D-2.2",
+          "confidence": "read"
+        },
+        {
+          "at": "C-17D-2.2",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: 74221 first half, 1Rext/Cext"
+    },
+    {
+      "name": "N_17D_14",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17D.14",
+          "confidence": "read"
+        },
+        {
+          "at": "C-17D-2.1",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: 74221 first half, 1Cext"
+    },
+    {
+      "name": "N_3D_10",
+      "active": "none",
+      "pins": [
+        {
+          "at": "3D.10",
+          "confidence": "read"
+        },
+        {
+          "at": "W-3D-1.1",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: strapped to ground"
+    },
+    {
+      "name": "N_3D_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "3D.6",
+          "confidence": "read"
+        },
+        {
+          "at": "W-3D-2.1",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: strapped to ground"
     }
   ],
   "layout": {
@@ -5051,15 +5533,8 @@
       "ref": "P",
       "catalog": "nord10-io-card-backplane",
       "note": "The one backplane connector of a NORD-10 I/O card position; no document names it, so its letter stays unknown.",
-      "use": "the NORD-10 I/O bus: address, data, IOX and interrupt lines, supply",
+      "use": "the NORD-10 I/O bus (pins 6-55: address, data, IOX and interrupt lines) and the cable side (56-99: the modem V.24 lines, the +-12V made on the card, grounds)",
       "pins": "0-99"
-    },
-    {
-      "ref": "F",
-      "catalog": "nord10-modem-front",
-      "note": "The modem (V.24) lines, circled pins 81-95; which connector they are on is not known.",
-      "use": "the modem (V.24) lines: transmit and receive data and clocks, modem control and status",
-      "pins": "81-95"
     }
   ],
   "board": {
@@ -5195,18 +5670,43 @@
   "pcb": {
     "template": "nord10-card",
     "rows": [
-      { "name": "A", "fromMm": 12, "toMm": 41.5 },
-      { "name": "B", "fromMm": 41.5, "toMm": 65.5 },
-      { "name": "C", "fromMm": 65.5, "toMm": 93.5 },
-      { "name": "D", "fromMm": 93.5, "toMm": 120 },
-      { "name": "E", "fromMm": 120, "toMm": 149 }
+      {
+        "name": "A",
+        "fromMm": 12,
+        "toMm": 41.5
+      },
+      {
+        "name": "B",
+        "fromMm": 41.5,
+        "toMm": 65.5
+      },
+      {
+        "name": "C",
+        "fromMm": 65.5,
+        "toMm": 93.5
+      },
+      {
+        "name": "D",
+        "fromMm": 93.5,
+        "toMm": 120
+      },
+      {
+        "name": "E",
+        "fromMm": 120,
+        "toMm": 149
+      }
     ],
-    "rowsSource": { "kind": "inferred", "document": "component-side photo 322049-component-side-I-old.jpg", "place": "chip bodies measured in mm from the board edges", "confidence": "inferred" },
+    "rowsSource": {
+      "kind": "inferred",
+      "document": "component-side photo 322049-component-side-I-old.jpg",
+      "place": "chip bodies measured in mm from the board edges",
+      "confidence": "inferred"
+    },
     "note": "Rows measured 2026-11-23 from the chip bodies on the old component-side photo (board outline 156 x 149 mm, fingers included): tops near 18, 42, 66, 95 and 119 mm, bottoms near 40, 63, 88, 117 and 141 mm. Each boundary is the middle of the gap between two rows. Matched to the letters by the parts list: 1C 74157, 1D 7474, 3D/3E and 5D/5E 74153, the switch blocks 1E and 15E in the bottom row."
   },
   "sources": [
     {
-      "file": "2A50-files/sources/2A50-sync-modem-buffer-1050-p64.png",
+      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/sources/2A50-sync-modem-buffer-1050-p64.png",
       "title": "2A50 Synchronous modem buffer 1050",
       "note": "The only drawing page for card 1050: PDF pages 63 and 65 are sheets 2A49 and 2A51.",
       "original": {
@@ -5218,7 +5718,7 @@
   ],
   "photos": [
     {
-      "file": "2A50-files/photos/322049-component-side-I-old.jpg",
+      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-component-side-I-old.jpg",
       "side": "component",
       "version": "I",
       "variant": "old",
@@ -5233,7 +5733,7 @@
       "note": "Board 322049, print version I (an old card). Title on the board: SYNCHRONOUS MODEM BUFFER 1050. Two 4-lever switch blocks at the bottom edge: left one beside the 74153 status multiplexers, middle one beside the DM8160 comparator. COM 2601 in the middle."
     },
     {
-      "file": "2A50-files/photos/322049-solder-side-I-old.jpg",
+      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-solder-side-I-old.jpg",
       "side": "solder",
       "version": "I",
       "variant": "old",
@@ -5248,7 +5748,7 @@
       "note": "Board 322049, print version I, solder side."
     },
     {
-      "file": "2A50-files/photos/322049-component-side-I-new.jpg",
+      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-component-side-I-new.jpg",
       "side": "component",
       "version": "I",
       "variant": "new",
@@ -5262,7 +5762,7 @@
       }
     },
     {
-      "file": "2A50-files/photos/322049-solder-side-I-new.jpg",
+      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-solder-side-I-new.jpg",
       "side": "solder",
       "version": "I",
       "variant": "new",
@@ -5334,7 +5834,7 @@
           "note": "The catalogue writes the position row letter first: its E15 is our 15E."
         }
       ],
-      "note": "Lever-to-signal from the net notes (\"switch 15E position 1\" = SMN3 ... position 4 = SMN0); lever-to-bit from the DM8160 pairs (A1/B1 .. A6/B6, National 1976 TTL Databook 3-17). The comparator gives a match when each SMN line has the same level as its BA line. SMN and BA are both active low (subscript 0). On means 1 is INFERRED: a lever that is on closes the line to ground against its pull-up (the switch and pull-up are not drawn as parts), so the line is low, which matches an active-low BA line carrying a 1. The other comparator pairs: BA6 through 9E (must be 1), IOXE against ground. Which block on the photo is 15E is inferred: the middle block sits beside the DM8160. Lever positions on the photo cannot be read (open)."
+      "note": "Lever-to-signal from the net notes (\"switch 15E position 1\" = SMN3 ... position 4 = SMN0); lever-to-bit from the DM8160 pairs (A1/B1 .. A6/B6, National 1976 TTL Databook 3-17). The comparator gives a match when each SMN line has the same level as its BA line. SMN and BA are both active low (subscript 0). On means 1 is INFERRED: a lever that is on closes the line to ground against its pull-up (the parts 15E and R-15E-1..4), so the line is low, which matches an active-low BA line carrying a 1. The other comparator pairs: BA6 through 9E (must be 1), IOXE against ground. Which block on the photo is 15E is inferred: the middle block sits beside the DM8160. Lever positions on the photo cannot be read (open)."
     },
     {
       "ref": "1E",

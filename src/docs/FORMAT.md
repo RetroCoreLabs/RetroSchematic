@@ -229,7 +229,7 @@ Extra part fields, for passive parts only (a reader refuses them on a chip):
 | `value` | the value as written on the drawing (`1k`, `470p`); absent when the drawing gives none. Never filled in from anything else |
 | `tolerance` | the tolerance as written on the drawing (`5%`) |
 | `valueConfidence` | how sure the value is, when that differs from the part's `confidence` |
-| `serves` | for a part the drawing gives no name: the board position of the chip it serves |
+| `serves` | for a part the drawing gives no name: the board position of the chip it serves (a part anywhere in the file, at any level) |
 
 **Names.** A part keeps the name ND wrote on the drawing (`R1`, `C3`), with `confidence`
 `read`. A part with no name gets an automatic one made from the chip it serves: the kind's
@@ -253,7 +253,7 @@ the ND style here is a choice, not read from an ND drawing: a resistor is an obl
 block has a frame round its levers. The modern style draws the zigzag resistor and the levers
 without a frame. A capacitor is two plates (a polarised one marked +, its minus plate curved in
 the modern style), a diode the triangle and bar, a strap two posts with an arch. The reference
-is written muted above, the value bold. A passive pin on a supply line ends in a supply symbol
+is written muted above, the value bold. The reference is hidden with the board positions, like a chip's. A passive pin on a supply line ends in a supply symbol
 (a bar with the name for a high supply, the three shortening bars for ground, turned to point away from the part so it fits one pin row) instead of a net label or a
 wire. A part with no `position` is drawn just below the chip it serves (or the first chip it
 shares a signal with).
@@ -323,8 +323,9 @@ Nothing of the catalogue other than the one board is copied into the repository.
 | `rows`, `pinsPerRow` | for a plug with rows: `["a", "b", "c"]` and `32` (DIN 41612) |
 
 A NORD-10 card has one backplane connector (`P`, pins 0-99, its letter not known; catalogue
-`nord10-io-card-backplane`) and, when it has one, a front connector (`F`, catalogue
-`nord10-modem-front` for the modem lines). An ND-100 card has the plugs A, B and C, each its own
+`nord10-io-card-backplane`). Its pins 6-55 are the bus; 56-99 are the cable side, the card's own
+pins reached by a cable plugged onto the backplane (inferred), so the 2A50 modem lines are
+`P.81` .. `P.95` too (owner's decision 2026-11-23). `F` is for a real front connector. An ND-100 card has the plugs A, B and C, each its own
 entry (`P.A`, `P.B`, `P.C`): C is the ND-100 bus (`nd100-c-connector`), A and B are card
 specific (the ND-120 CPU's are `nd120-cpu-a-plug` and `nd120-cpu-b-plug`), and either may be
 `"used": false`.

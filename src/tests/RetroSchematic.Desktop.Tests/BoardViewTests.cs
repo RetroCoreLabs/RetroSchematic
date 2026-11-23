@@ -254,11 +254,13 @@ namespace RetroSchematic.Desktop.Tests
             b.Fields.Width.Text = "wide";
             Assert.That(b.SaveBoard(), Is.False);
 
-            // a connector: front connector marked not used
-            BoardWindow.ConnectorRow front = b.ConnectorRows[1];
-            front.Used.IsChecked = false;
-            Assert.That(b.SaveConnector(front), Is.True, b.Message);
-            Assert.That(w.Session.Editor.Root.Connectors![1].Used, Is.False);
+            // a connector marked not used: 2A50 has one, the 0-99 connector P (the modem lines
+            // are its pins 81-95 since 2026-11-23, so there is no separate front connector)
+            Assert.That(b.ConnectorRows, Has.Count.EqualTo(1));
+            BoardWindow.ConnectorRow row = b.ConnectorRows[0];
+            row.Used.IsChecked = false;
+            Assert.That(b.SaveConnector(row), Is.True, b.Message);
+            Assert.That(w.Session.Editor.Root.Connectors![0].Used, Is.False);
 
             // import a photo and a PDF page into the .rsx: both held inside
             string photo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-files", "photos", "322049-solder-side-I-old.jpg");
