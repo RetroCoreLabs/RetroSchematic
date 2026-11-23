@@ -17,5 +17,6 @@
     <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
     <StyleInclude Source="avares://RetroSchematic/Styles/FluentTheme.axaml"/>
     <StyleInclude Source="avares://RetroSchematic/Styles/Details.axaml"/>
+    <StyleInclude Source="avares://RetroSchematic/Styles/SideList.axaml"/>
   </Application.Styles>
 </Application>

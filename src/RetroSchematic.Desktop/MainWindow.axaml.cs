@@ -7,12 +7,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Controls.Primitives;     // ToggleButton
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using RetroSchematic.Desktop.Controls;
 using RetroSchematic.Desktop.Themes;
 using RetroSchematic.Model;
 using RetroSchematic.Render;
@@ -198,43 +200,108 @@ namespace RetroSchematic.Desktop
             _syncingLists = true;
             _partOwners.Clear();
             _netOwners.Clear();
-            List<string> parts = new();
-            List<string> nets = new();
+            List<SideRow> parts = new();
+            List<SideRow> nets = new();
             Netlist n = _session!.Netlist;
             for (int i = 0; i < n.Parts.Count; i++)
             {
-                parts.Add(n.Parts[i].Ref + "   " + n.Parts[i].Type);
-                _partOwners.Add("part:" + n.Parts[i].Ref);
+                // board position | type | what it does here (muted)
+                Part p = n.Parts[i];
+                parts.Add(new SideRow { Main = p.Ref, Second = p.Type, Muted = p.Function, Owner = "part:" + p.Ref });
+                _partOwners.Add("part:" + p.Ref);
             }
             for (int i = 0; i < n.Nets.Count; i++)
             {
                 // in the chosen name style (/BD15 and BD15 differ, as BD15_0 and BD15_1 do)
                 string key = SheetLayout.NetKey(n.Nets[i]);
-                nets.Add(_session.NameOf(n.Nets[i]));
+                nets.Add(SignalRow(n.Nets[i], "net:" + key));
                 _netOwners.Add("net:" + key);
             }
+            PartsList.ItemTemplate = SideList.Parts;
+            NetsList.ItemTemplate = SideList.Signals;
             PartsList.ItemsSource = parts;
             NetsList.ItemsSource = nets;
             _syncingLists = false;
             FillFound();
         }
 
+        // a signal row: name in the chosen style | active level | pin count (muted)
+        private SideRow SignalRow(Net net, string owner)
+        {
+            string? level = net.Active == ActiveLevel.Low ? "low" : net.Active == ActiveLevel.High ? "high" : null;
+            int pins = net.Pins.Count;
+            return new SideRow
+            {
+                Main = _session!.NameOf(net),
+                Badge = level,
+                Muted = pins.ToString(CultureInfo.InvariantCulture) + (pins == 1 ? " pin" : " pins"),
+                Owner = owner,
+            };
+        }
+
         private void FillFound()
         {
             _syncingLists = true;
             _foundOwners.Clear();
-            List<string> shown = new();
+            List<SideRow> shown = new();
             if (_session != null)
             {
                 List<string> found = _session.Search(SearchBox.Text ?? "");
                 for (int i = 0; i < found.Count; i++)
                 {
                     _foundOwners.Add(found[i]);
-                    shown.Add(found[i].Replace(":", "  ", StringComparison.Ordinal));
+                    shown.Add(FoundRow(found[i]));
                 }
             }
+            FoundList.ItemTemplate = SideList.Found;
             FoundList.ItemsSource = shown;
+            SearchClear.IsVisible = !string.IsNullOrEmpty(SearchBox.Text);
             _syncingLists = false;
+        }
+
+        // a found item: kind icon | name | where it is (muted)
+        private SideRow FoundRow(string owner)
+        {
+            Netlist n = _session!.Netlist;
+            if (owner.StartsWith("part:", StringComparison.Ordinal))
+            {
+                string reference = owner.Substring(5);
+                for (int i = 0; i < n.Parts.Count; i++)
+                {
+                    if (n.Parts[i].Ref == reference)
+                        return new SideRow { Icon = "IconPlaceChip", Main = reference, Muted = n.Parts[i].Type + (n.Parts[i].Function == null ? "" : ", " + n.Parts[i].Function), Owner = owner };
+                }
+                return new SideRow { Icon = "IconPlaceChip", Main = reference, Muted = "part", Owner = owner };
+            }
+            if (owner.StartsWith("net:", StringComparison.Ordinal))
+            {
+                Net? net = _session.Editor.FindNetByKey(owner.Substring(4));
+                if (net != null)
+                    return new SideRow { Icon = "IconSignal", Main = _session.NameOf(net), Muted = "signal, " + net.Pins.Count.ToString(CultureInfo.InvariantCulture) + " pins", Owner = owner };
+                return new SideRow { Icon = "IconSignal", Main = owner.Substring(4), Muted = "signal", Owner = owner };
+            }
+            if (owner.StartsWith("pin:", StringComparison.Ordinal))
+            {
+                // a pin: where it is is the signal on it
+                string at = owner.Substring(4);
+                for (int i = 0; i < n.Nets.Count; i++)
+                {
+                    List<PinReference> pins = n.Nets[i].Pins;
+                    for (int j = 0; j < pins.Count; j++)
+                    {
+                        if (pins[j].At == at)
+                            return new SideRow { Icon = "IconPinNumbers", Main = at, Muted = "pin on " + _session.NameOf(n.Nets[i]), Owner = owner };
+                    }
+                }
+                return new SideRow { Icon = "IconPinNumbers", Main = at, Muted = "pin", Owner = owner };
+            }
+            return new SideRow { Main = owner, Owner = owner };
+        }
+
+        private void OnSearchClear(object? sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+            SearchBox.Focus();
         }
 
         private void FillChipBox()

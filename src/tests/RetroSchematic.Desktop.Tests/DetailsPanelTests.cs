@@ -127,7 +127,7 @@ namespace RetroSchematic.Desktop.Tests
         }
 
         // saves the window as a picture in a light and a dark theme, when asked to
-        private static void Save(MainWindow w, string name)
+        internal static void Save(MainWindow w, string name)
         {
             string? folder = System.Environment.GetEnvironmentVariable("RETROSCHEMATIC_PANEL_PNG");
             if (string.IsNullOrEmpty(folder))

@@ -124,20 +124,27 @@
       <!-- left: search, and the sheet's parts and signals -->
       <Border Grid.Column="0" Classes="panel-border" Margin="6,6,0,6">
         <DockPanel>
-          <TextBox x:Name="SearchBox" DockPanel.Dock="Top" Classes="fluent-textbox" Margin="4"
-                   Watermark="Search part, signal or pin (11D.3)" TextChanged="OnSearchChanged"/>
-          <TabControl x:Name="ListTabs">
+          <!-- the search box: a magnifier, the text, a button that empties it -->
+          <Border DockPanel.Dock="Top" Classes="side-search">
+            <DockPanel>
+              <Path DockPanel.Dock="Left" Classes="side-search-icon" Data="{StaticResource IconSearch}"/>
+              <Button x:Name="SearchClear" DockPanel.Dock="Right" Classes="side-clear" IsVisible="False"
+                      ToolTip.Tip="Clear the search" Click="OnSearchClear">
+                <Path Data="{StaticResource IconClear}"/>
+              </Button>
+              <TextBox x:Name="SearchBox" Classes="side-search-text"
+                       Watermark="Search part, signal or pin (11D.3)" TextChanged="OnSearchChanged"/>
+            </DockPanel>
+          </Border>
+          <TabControl x:Name="ListTabs" Classes="side-tabs">
             <TabItem Header="Parts">
-              <ListBox x:Name="PartsList" SelectionChanged="OnPartPicked"
-                       Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+              <ListBox x:Name="PartsList" Classes="side-list" SelectionChanged="OnPartPicked"/>
             </TabItem>
             <TabItem Header="Signals">
-              <ListBox x:Name="NetsList" SelectionChanged="OnNetPicked"
-                       Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+              <ListBox x:Name="NetsList" Classes="side-list" SelectionChanged="OnNetPicked"/>
             </TabItem>
             <TabItem Header="Found" x:Name="FoundTab">
-              <ListBox x:Name="FoundList" SelectionChanged="OnFoundPicked"
-                       Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+              <ListBox x:Name="FoundList" Classes="side-list" SelectionChanged="OnFoundPicked"/>
             </TabItem>
           </TabControl>
         </DockPanel>

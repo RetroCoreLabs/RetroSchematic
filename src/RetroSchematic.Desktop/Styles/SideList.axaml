@@ -1,0 +1,177 @@
+<!--
+  SPDX-License-Identifier: MIT
+  Copyright (c) 1985-2026 Ronny Hansen
+  RetroCore Labs — https://github.com/RetroCoreLabs
+
+  The left panel (MainWindow.axaml): the search box, the Parts / Signals / Found tabs and their
+  lists (rows built by Controls/SideList.cs). It uses the same heading, font sizes and paddings
+  as the Details panel (Styles/Details.axaml). Every colour is a theme resource (ThemeManager);
+  nothing here names a colour.
+-->
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- the search box: a magnifier on the left, a clear button on the right -->
+  <Style Selector="Border.side-search">
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundPrimaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderLightBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="CornerRadius" Value="6"/>
+    <Setter Property="Margin" Value="8,8,8,6"/>
+    <Setter Property="Padding" Value="8,0,2,0"/>
+  </Style>
+  <Style Selector="Border.side-search:focus-within">
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
+  </Style>
+  <Style Selector="Path.side-search-icon">
+    <Setter Property="Stroke" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="StrokeThickness" Value="1.6"/>
+    <Setter Property="Width" Value="14"/>
+    <Setter Property="Height" Value="14"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <!-- the text box inside draws no frame of its own: the border round it is the frame -->
+  <Style Selector="TextBox.side-search-text">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="6,6"/>
+    <Setter Property="MinHeight" Value="0"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSize}"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="TextBox.side-search-text:pointerover /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+  </Style>
+  <Style Selector="TextBox.side-search-text:focus /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+  </Style>
+  <Style Selector="TextBox.side-search-text /template/ TextBlock#PART_Watermark">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+  </Style>
+  <Style Selector="Button.side-clear">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="5"/>
+    <Setter Property="Width" Value="24"/>
+    <Setter Property="Height" Value="24"/>
+    <Setter Property="CornerRadius" Value="4"/>
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="Button.side-clear:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
+  </Style>
+  <Style Selector="Button.side-clear Path">
+    <Setter Property="Stroke" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="StrokeThickness" Value="1.6"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+  </Style>
+
+  <!-- the tabs: the same header bar as a Details card, accent underline on the chosen one -->
+  <Style Selector="TabControl.side-tabs">
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+  <!-- the strip behind the tabs is the header bar colour of a Details card, with its bottom line -->
+  <Style Selector="TabControl.side-tabs /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+    <Setter Property="Background" Value="{DynamicResource FluentSurfaceAltBrush}"/>
+  </Style>
+  <!-- the accent line sits on the bottom edge of the strip, not under the text -->
+  <Style Selector="TabControl.side-tabs TabItem /template/ Border#PART_SelectedPipe">
+    <Setter Property="Margin" Value="0,0,0,-7"/>
+  </Style>
+  <Style Selector="TabControl.side-tabs TabItem">
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSize}"/>
+    <Setter Property="Padding" Value="12,6"/>
+    <Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style Selector="TabControl.side-tabs TabItem:selected">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+  </Style>
+
+  <!-- the lists: no frame, alternating shading, hover, a clear chosen row -->
+  <Style Selector="ListBox.side-list">
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundPrimaryBrush}"/>
+    <!-- the top line closes the tab strip above, as the line under a Details card header -->
+    <Setter Property="BorderThickness" Value="0,1,0,0"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderLightBrush}"/>
+    <Setter Property="Padding" Value="0"/>
+  </Style>
+  <Style Selector="ListBox.side-list ListBoxItem">
+    <Setter Property="Padding" Value="8,3"/>
+    <Setter Property="MinHeight" Value="0"/>
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="BorderThickness" Value="2,0,0,0"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+  <Style Selector="ListBox.side-list ListBoxItem:nth-child(2n)">
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+  </Style>
+  <Style Selector="ListBox.side-list ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
+  </Style>
+  <Style Selector="ListBox.side-list ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
+  </Style>
+  <Style Selector="ListBox.side-list ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
+  </Style>
+  <Style Selector="ListBox.side-list ListBoxItem:selected TextBlock.side-main">
+    <Setter Property="FontWeight" Value="SemiBold"/>
+  </Style>
+
+  <!-- the cells of a row -->
+  <Style Selector="TextBlock.side-main">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSize}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    <Setter Property="Margin" Value="0,0,8,0"/>
+  </Style>
+  <Style Selector="TextBlock.side-second">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="FontFamily" Value="Consolas, Courier New, monospace"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+    <Setter Property="Margin" Value="0,0,8,0"/>
+  </Style>
+  <Style Selector="TextBlock.side-muted">
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+  </Style>
+  <Style Selector="Border.side-badge">
+    <Setter Property="CornerRadius" Value="9"/>
+    <Setter Property="Padding" Value="6,0"/>
+    <Setter Property="Margin" Value="0,0,6,0"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Background" Value="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentBorderDarkBrush}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="Border.side-badge > TextBlock">
+    <Setter Property="FontFamily" Value="{DynamicResource FluentFontFamily}"/>
+    <Setter Property="FontSize" Value="{DynamicResource FluentFontSizeSmall}"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextSecondaryBrush}"/>
+  </Style>
+  <Style Selector="Path.side-icon">
+    <Setter Property="Stroke" Value="{DynamicResource FluentAccentBlueBrush}"/>
+    <Setter Property="StrokeThickness" Value="1.5"/>
+    <Setter Property="Width" Value="13"/>
+    <Setter Property="Height" Value="13"/>
+    <Setter Property="Stretch" Value="Uniform"/>
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+</Styles>

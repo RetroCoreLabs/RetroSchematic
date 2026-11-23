@@ -36,7 +36,7 @@ namespace RetroSchematic.Desktop.Tests
             System.Collections.IList items = (System.Collections.IList)nets.ItemsSource!;
             for (int i = 0; i < items.Count; i++)
             {
-                if ((string)items[i]! == "/BD3")
+                if (((Controls.SideRow)items[i]!).Main == "/BD3")
                     index = i;
             }
             Assert.That(index, Is.GreaterThanOrEqualTo(0), "the list shows the name style");
@@ -70,6 +70,53 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(w.Session.Selected, Is.EqualTo("part:17D"));
             PartFrame f = w.Session.Drawing.Frames["17D"];
             Assert.That(canvas.IsOnScreen(f.X + (f.Width / 2), f.Y + (f.Height / 2)), Is.True);
+            w.Close();
+        }
+
+        [AvaloniaTest]
+        public void LeftLists_ShowAlignedColumns_AndFoundRowsSayWhatAndWhere()
+        {
+            MainWindow w = new() { Width = 1400, Height = 900 };
+            w.Show();
+            w.OpenSheet(Sheet2A50);
+            System.Collections.IList parts = (System.Collections.IList)w.FindControl<ListBox>("PartsList")!.ItemsSource!;
+            Controls.SideRow part = (Controls.SideRow)parts[0]!;
+            Model.Part first = w.Session!.Netlist.Parts[0];
+            Assert.That(part.Main, Is.EqualTo(first.Ref), "board position first");
+            Assert.That(part.Second, Is.EqualTo(first.Type), "then the type");
+            Assert.That(part.Muted, Is.EqualTo(first.Function), "then what it does, muted");
+            System.Collections.IList nets = (System.Collections.IList)w.FindControl<ListBox>("NetsList")!.ItemsSource!;
+            Controls.SideRow bd3 = null!;
+            for (int i = 0; i < nets.Count; i++)
+            {
+                if (((Controls.SideRow)nets[i]!).Main == "/BD3")
+                    bd3 = (Controls.SideRow)nets[i]!;
+            }
+            Assert.That(bd3, Is.Not.Null);
+            Assert.That(bd3.Badge, Is.EqualTo("low"), "the active level as a badge");
+            Assert.That(bd3.Muted, Does.EndWith(" pins"));
+            // a typed pin: found as a pin, with the signal on it in the chosen name style
+            w.FindControl<TextBox>("SearchBox")!.Text = "5A.8";
+            // TextChanged is raised from the dispatcher queue, not inside the setter
+            Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+            Assert.That(w.FindControl<Button>("SearchClear")!.IsVisible, Is.True, "the clear button shows while there is text");
+            System.Collections.IList found = (System.Collections.IList)w.FindControl<ListBox>("FoundList")!.ItemsSource!;
+            Assert.That(found.Count, Is.GreaterThan(0));
+            Controls.SideRow pin = (Controls.SideRow)found[0]!;
+            Assert.That(pin.Icon, Is.EqualTo("IconPinNumbers"));
+            Assert.That(pin.Main, Is.EqualTo("5A.8"));
+            Assert.That(pin.Muted, Does.StartWith("pin on /"));
+            DetailsPanelTests.Save(w, "left-found");
+            w.FindControl<TextBox>("SearchBox")!.Text = "";
+            // TextChanged is raised from the dispatcher queue, not inside the setter
+            Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+            Assert.That(w.FindControl<Button>("SearchClear")!.IsVisible, Is.False);
+            w.FindControl<TabControl>("ListTabs")!.SelectedIndex = 1;
+            w.FindControl<ListBox>("NetsList")!.SelectedIndex = 3;
+            DetailsPanelTests.Save(w, "left-signals");
+            w.FindControl<TabControl>("ListTabs")!.SelectedIndex = 0;
+            w.FindControl<ListBox>("PartsList")!.SelectedIndex = 2;
+            DetailsPanelTests.Save(w, "left-parts");
             w.Close();
         }
     }
