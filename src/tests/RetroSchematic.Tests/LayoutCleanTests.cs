@@ -25,7 +25,9 @@ namespace RetroSchematic.Tests
 
         private static IEnumerable<TestCaseData> Drawings()
         {
-            string[] sheets = { Real, DemoSheetLayoutTests.Demo };
+            // the blocks demo too: instance boxes, port pins and arrows must stay clear as well
+            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            string[] sheets = { Real, DemoSheetLayoutTests.Demo, blocks };
             SymbolStyle[] styles = { SymbolStyle.NorskData, SymbolStyle.Modern };
             for (int i = 0; i < sheets.Length; i++)
             {
@@ -78,6 +80,10 @@ namespace RetroSchematic.Tests
                 {
                     // a pin name is written inside its own chip's box, on purpose
                     if (texts[i].Role == DrawRole.PinName && frames[j].Owner == "part:" + PartOf(texts[i].Owner))
+                        continue;
+                    // and a port name inside its own instance box (owner port:U1:NAME, box inst:U1)
+                    if (texts[i].Role == DrawRole.PinName && texts[i].Owner.StartsWith("port:", System.StringComparison.Ordinal)
+                        && frames[j].Owner == "inst:" + texts[i].Owner.Substring(5, texts[i].Owner.IndexOf(':', 5) - 5))
                         continue;
                     if (texts[i].Overlaps(frames[j]))
                         bad.Add("text " + texts[i].Text + " / frame " + frames[j].Owner);

@@ -301,6 +301,23 @@ namespace RetroSchematic.Render
                             _traceOwners.Add("gate:" + gate.Id);
                     }
                 }
+                // the instance ports it goes through to the blocks below
+                for (int i = 0; Netlist.Instances != null && i < Netlist.Instances.Count; i++)
+                {
+                    BlockInstance inst = Netlist.Instances[i];
+                    for (int c = 0; inst.Connections != null && c < inst.Connections.Count; c++)
+                    {
+                        List<SignalRef> nets = inst.Connections[c].Nets;
+                        for (int k = 0; k < nets.Count; k++)
+                        {
+                            if (NetlistReader.FindNet(Netlist.Nets, nets[k]) != n)
+                                continue;
+                            _tracePins.Add(SheetLayout.PortEnd(inst.Name, inst.Connections[c].Port));
+                            _traceOwners.Add("inst:" + inst.Name);
+                            _traceOwners.Add("port:" + inst.Name + ":" + inst.Connections[c].Port);
+                        }
+                    }
+                }
             }
             TraceChanged?.Invoke(this);
         }
@@ -322,9 +339,24 @@ namespace RetroSchematic.Render
                 return TraceRole.Signal;
             if (item.Owner.StartsWith("pin:", StringComparison.Ordinal) && _tracePins.Contains(item.Owner.Substring(4)))
                 return TraceRole.Signal;
+            if (item.Owner.StartsWith("port:", StringComparison.Ordinal) && _traceOwners.Contains(item.Owner))
+                return TraceRole.Signal;
             if ((item.Role == DrawRole.Symbol || item.Role == DrawRole.PartOutline || item.Role == DrawRole.PartLabel) && _traceOwners.Contains(item.Owner))
                 return TraceRole.Joined;
             return TraceRole.Dimmed;
+        }
+
+        /// <summary>
+        /// Every level the traced signal reaches through block ports (U2/BD3), the level shown
+        /// first; empty when nothing is traced.
+        /// </summary>
+        /// <returns>
+        /// The names.
+        /// </returns>
+        public List<string> TracedLevels()
+        {
+            Net? n = Traced.Length == 0 ? null : Editor.FindNetByKey(Traced);
+            return n == null ? new List<string>() : Hierarchy.Reach(Editor.Root, Editor.LevelPath, n);
         }
 
         /// <summary>
@@ -588,6 +620,13 @@ namespace RetroSchematic.Render
                 return DescribePin(Selected.Substring(4));
             if (Selected.StartsWith("bus:", StringComparison.Ordinal))
                 return DescribeBus(Selected.Substring(4));
+            if (Selected.StartsWith("inst:", StringComparison.Ordinal))
+                return DescribeInstance(Selected.Substring(5));
+            if (Selected.StartsWith("port:", StringComparison.Ordinal))
+            {
+                int colon = Selected.IndexOf(':', 5);
+                return colon < 0 ? "" : DescribeInstance(Selected.Substring(5, colon - 5));
+            }
             return "";
         }
 
@@ -722,6 +761,34 @@ namespace RetroSchematic.Render
                 sb.Append("  ").Append(n.Pins[j].At).Append("  (").Append(ConfidenceText(n.Pins[j].Confidence)).Append(")\n");
             if (!string.IsNullOrEmpty(n.Note))
                 sb.Append("Note: ").Append(n.Note).Append('\n');
+            List<string> levels = Hierarchy.Reach(Editor.Root, Editor.LevelPath, n);
+            if (levels.Count > 1)
+            {
+                sb.Append("Through block ports, the same signal is:\n");
+                for (int i = 1; i < levels.Count; i++)
+                    sb.Append("  ").Append(levels[i]).Append('\n');
+            }
+            return sb.ToString();
+        }
+
+        private string DescribeInstance(string name)
+        {
+            BlockInstance? inst = Hierarchy.FindInstance(Netlist.Instances, name);
+            BlockDefinition? b = inst == null ? null : Hierarchy.FindBlock(Editor.Root, inst.Block);
+            if (inst == null || b == null)
+                return "";
+            StringBuilder sb = new();
+            sb.Append("Instance ").Append(inst.Name).Append(" of block ").Append(b.Name).Append('\n');
+            sb.Append(b.Parts.Count).Append(" parts and ").Append(b.Instances?.Count ?? 0).Append(" instances inside. Double-click to open it.\n");
+            sb.Append("Ports:\n");
+            for (int i = 0; i < b.Ports.Count; i++)
+            {
+                BlockPort p = b.Ports[i];
+                sb.Append("  ").Append(p.Name).Append("  ").Append(p.Direction.ToString().ToLowerInvariant());
+                if (p.Signals.Count > 1)
+                    sb.Append(", ").Append(p.Signals.Count).Append(" signals");
+                sb.Append('\n');
+            }
             return sb.ToString();
         }
 

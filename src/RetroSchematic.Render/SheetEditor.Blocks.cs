@@ -700,6 +700,10 @@ namespace RetroSchematic.Render
                 k--;
             prefix = name.Substring(0, k);
             number = 0;
+            // a number after an underscore is not a bit number: automatic names are
+            // N_<chip>_<pin> (N_11E_8), and those must never be grouped into a bus port
+            if (k > 0 && name[k - 1] == '_')
+                return false;
             return k > 0 && k < name.Length && int.TryParse(name.AsSpan(k), NumberStyles.None, CultureInfo.InvariantCulture, out number);
         }
 

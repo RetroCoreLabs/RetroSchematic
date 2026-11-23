@@ -128,6 +128,9 @@ namespace RetroSchematic.Tests
             Assert.That(bus, Is.Not.Null, "numbered signals (BD.., IDATA..) become one bus port");
             for (int i = 1; i < bus!.Signals.Count; i++)
                 Assert.That(bus.Signals[i].Net, Is.Not.EqualTo(bus.Signals[i - 1].Net));
+            // automatic names (N_<chip>_<pin>) carry a pin number, not a bit: never a bus
+            for (int i = 0; i < ports.Count; i++)
+                Assert.That(ports[i].Signals.Count == 1 || !ports[i].Signals[0].Net.StartsWith("N_", System.StringComparison.Ordinal), Is.True, ports[i].ToString());
             ports[0].Name = "RENAMED";
             string before = Hierarchy.Connections(e.Root);
             e.MakeBlock("read-multiplexers", null, members, ports);
@@ -195,6 +198,41 @@ namespace RetroSchematic.Tests
             Assert.That(e.Netlist.Nets.Exists(n => n.Pins.Exists(p => p.At.Contains(':'))), Is.False);
         }
     
+        [Test]
+        public void TheBlocksDemo_ConnectsExactlyWhat2A50Connects()
+        {
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            Netlist blocks = NetlistReader.ReadFile(demo);
+            Assert.That(blocks.Instances!.Count, Is.EqualTo(4));
+            Assert.That(Hierarchy.Connections(blocks), Is.EqualTo(Hierarchy.Connections(NetlistReader.ReadFile(Sheet2A50))));
+        }
+
+        [Test]
+        public void ATrace_FollowsASignalThroughThePorts_IntoTheBlocks()
+        {
+            string demo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.json");
+            SheetSession s = new(demo, SymbolStyle.NorskData, ChipCatalog.Find(demo));
+            // DEQL is used by three of the four blocks
+            s.Trace("DEQL_1");
+            List<string> levels = s.TracedLevels();
+            Assert.That(levels[0], Is.EqualTo("DEQL"));
+            Assert.That(levels, Does.Contain("U1/DEQL").And.Contain("U2/DEQL").And.Contain("U3/DEQL"));
+            // the instance port pins light with the signal
+            int lit = 0;
+            for (int i = 0; i < s.Drawing.Items.Count; i++)
+            {
+                DrawItem it = s.Drawing.Items[i];
+                if (it.Owner.StartsWith("port:U1:", System.StringComparison.Ordinal) && s.TraceOf(it) == TraceRole.Signal)
+                    lit++;
+            }
+            Assert.That(lit, Is.GreaterThan(0));
+
+            // inside U2 the same signal reaches back up to the top
+            s.Editor.EnterInstance("U2");
+            Net inner = NetlistReader.FindNet(s.Editor.Netlist.Nets, new SignalRef { Net = "DEQL" })!;
+            Assert.That(Hierarchy.Reach(s.Editor.Root, s.Editor.LevelPath, inner), Does.Contain("DEQL").And.Contain("U1/DEQL"));
+        }
+
         [Test]
         public void Mcp_MakesListsEntersAndDissolvesABlock()
         {

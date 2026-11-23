@@ -20,8 +20,6 @@ namespace RetroSchematic.Render
     /// </summary>
     public static partial class SheetLayout
     {
-        private const double PortSpacing = 48;
-
         /// <summary>
         /// The edge a port is drawn on: its own choice, else inputs left, outputs and inouts
         /// right, bus inputs on top and other bus ports at the bottom.
@@ -241,8 +239,11 @@ namespace RetroSchematic.Render
                 leftNames = Math.Max(leftNames, TextWidth(bySide[0][i].Name, "", PinFont));
             for (int i = 0; i < bySide[1].Count; i++)
                 rightNames = Math.Max(rightNames, TextWidth(bySide[1][i].Name, "", PinFont));
-            int across = Math.Max(bySide[2].Count, bySide[3].Count);
-            plan.Width = Snap(Math.Max(Math.Max(72, nameWidth + 12), Math.Max(leftNames + rightNames + 24, (across + 1) * PortSpacing)));
+            // top and bottom pins: each gets room for the wider of its name inside the box and
+            // the connection text outside, so neighbours never write over each other
+            double[][] along = { new double[] { 0 }, new double[] { 0 }, Slots(inst, netlist, bySide[2]), Slots(inst, netlist, bySide[3]) };
+            double across = Math.Max(along[2][^1], along[3][^1]);
+            plan.Width = Snap(Math.Max(Math.Max(72, nameWidth + 12), Math.Max(leftNames + rightNames + 24, across)));
             plan.Height = Snap(Math.Max(48, (Math.Max(bySide[0].Count, bySide[1].Count) + 1) * PinPitch + 12));
             plan.LeftReach = PinOut + 4;
             plan.RightReach = PinOut + 4;
@@ -264,10 +265,10 @@ namespace RetroSchematic.Render
                             pp.EdgeX = plan.Width; pp.EdgeY = 12 + ((i + 1) * PinPitch); pp.EndX = plan.Width + PinOut; pp.EndY = pp.EdgeY;
                             break;
                         case PortSide.Top:
-                            pp.EdgeX = (i + 1) * PortSpacing; pp.EdgeY = 0; pp.EndX = pp.EdgeX; pp.EndY = -PinOut;
+                            pp.EdgeX = Snap(along[2][i]); pp.EdgeY = 0; pp.EndX = pp.EdgeX; pp.EndY = -PinOut;
                             break;
                         default:
-                            pp.EdgeX = (i + 1) * PortSpacing; pp.EdgeY = plan.Height; pp.EndX = pp.EdgeX; pp.EndY = plan.Height + PinOut;
+                            pp.EdgeX = Snap(along[3][i]); pp.EdgeY = plan.Height; pp.EndX = pp.EdgeX; pp.EndY = plan.Height + PinOut;
                             break;
                     }
                     pp.Connected = Connected(inst, netlist, port);
@@ -286,7 +287,7 @@ namespace RetroSchematic.Render
                         }
                     }
                     else if (side == PortSide.Top)
-                        plan.TopReach = Math.Max(plan.TopReach, PinOut + 18 + SignalFont);
+                        plan.TopReach = Math.Max(plan.TopReach, PinOut + 4 + SignalFont + 6 + LabelFont);
                     else if (side == PortSide.Bottom)
                         plan.BottomReach = Math.Max(plan.BottomReach, PinOut + 6 + SignalFont);
                     plan.Ports.Add(pp);
@@ -320,6 +321,27 @@ namespace RetroSchematic.Render
             return "";
         }
 
+        /// <summary>
+        /// Where the pins along the top or bottom edge go: the middle of each one's room, and,
+        /// as the last entry, the width all of them need. Each pin's room is the wider of its
+        /// name (inside the box) and its connection text (outside), plus a gap.
+        /// </summary>
+        private static double[] Slots(BlockInstance inst, Netlist netlist, List<BlockPort> ports)
+        {
+            double[] at = new double[ports.Count + 1];
+            double x = 12;
+            for (int i = 0; i < ports.Count; i++)
+            {
+                BlockPort p = ports[i];
+                string name = p.Name + (p.Signals.Count > 1 ? "[" + (p.Signals.Count - 1).ToString(CultureInfo.InvariantCulture) + ":0]" : "");
+                double room = Math.Max(TextWidth(name, "", PinFont), TextWidth(Connected(inst, netlist, p), "", SignalFont)) + 12;
+                at[i] = x + (room / 2);
+                x += room;
+            }
+            at[ports.Count] = ports.Count == 0 ? 0 : x + 12;
+            return at;
+        }
+
         private static void DrawInstance(SchematicDrawing d, Netlist netlist, InstancePlan plan, LayoutOptions options)
         {
             string owner = "inst:" + plan.Instance.Name;
@@ -330,7 +352,8 @@ namespace RetroSchematic.Render
                 Kind = DrawKind.Rect, Role = DrawRole.PartOutline, Confidence = Confidence.Read, Owner = owner,
                 X1 = plan.X, Y1 = plan.Y, X2 = plan.Width, Y2 = plan.Height,
             });
-            DrawItem title = Text(d, DrawRole.PartLabel, Confidence.Read, owner, plan.X, plan.Y - 5,
+            // the title goes above the top pins and what they are connected to
+            DrawItem title = Text(d, DrawRole.PartLabel, Confidence.Read, owner, plan.X, plan.Y - plan.TopReach + LabelFont,
                 plan.Instance.Name + "  " + plan.Block.Name, LabelFont, TextAnchor.Start);
             title.Bold = true;
             for (int i = 0; i < plan.Ports.Count; i++)

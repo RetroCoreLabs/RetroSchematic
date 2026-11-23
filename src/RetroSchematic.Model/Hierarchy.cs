@@ -127,7 +127,7 @@ namespace RetroSchematic.Model
         {
             Netlist flat = new() { Format = root.Format, FormatVersion = 1, Sheet = root.Sheet };
             List<Net> ids = new();
-            Expand(root, root.Parts, root.Gates, root.Nets, root.Instances, "", new Dictionary<Net, int>(ReferenceEqualityComparer.Instance), flat, ids);
+            Expand(root, root.Parts, root.Gates, root.Nets, root.Instances, "", new Dictionary<Net, int>(ReferenceEqualityComparer.Instance), flat, ids, null);
             for (int i = 0; i < ids.Count; i++)
             {
                 if (ids[i].Pins.Count > 0)
@@ -176,6 +176,48 @@ namespace RetroSchematic.Model
         }
 
         /// <summary>
+        /// Every level a signal reaches through block ports, as the signal's name on that level
+        /// with the instance path in front (U2/BD3); the level asked about comes first. This is
+        /// how a trace follows a signal up and down through the blocks.
+        /// </summary>
+        /// <param name="root">
+        /// The whole design.
+        /// </param>
+        /// <param name="path">
+        /// Instance names from the top down to the level the signal is on; empty for the top.
+        /// </param>
+        /// <param name="net">
+        /// The signal on that level.
+        /// </param>
+        /// <returns>
+        /// The names, or an empty list when the signal is not found.
+        /// </returns>
+        public static List<string> Reach(Netlist root, IReadOnlyList<string> path, Net net)
+        {
+            Netlist flat = new();
+            List<Net> ids = new();
+            List<Place> places = new();
+            Expand(root, root.Parts, root.Gates, root.Nets, root.Instances, "", new Dictionary<Net, int>(ReferenceEqualityComparer.Instance), flat, ids, places);
+            string prefix = path.Count == 0 ? "" : string.Join("/", path) + "/";
+            int id = -1;
+            for (int i = 0; i < places.Count && id < 0; i++)
+            {
+                if (places[i].Net == net && places[i].Prefix == prefix)
+                    id = places[i].Id;
+            }
+            List<string> list = new();
+            if (id < 0)
+                return list;
+            list.Add(prefix + net.Name);
+            for (int i = 0; i < places.Count; i++)
+            {
+                if (places[i].Id == id && places[i].Net != net)
+                    list.Add(places[i].Prefix + places[i].Net.Name);
+            }
+            return list;
+        }
+
+        /// <summary>
         /// A name with its instance path taken off (U1/U2/3C.9 is 3C.9).
         /// </summary>
         /// <param name="name">
@@ -191,7 +233,7 @@ namespace RetroSchematic.Model
         }
 
         private static void Expand(Netlist root, List<Part> parts, List<Gate> gates, List<Net> nets, List<BlockInstance>? instances,
-            string prefix, Dictionary<Net, int> bound, Netlist flat, List<Net> ids)
+            string prefix, Dictionary<Net, int> bound, Netlist flat, List<Net> ids, List<Place>? places)
         {
             // every signal on this level: the one it is bound to above, or a new one
             Dictionary<Net, int> id = new(ReferenceEqualityComparer.Instance);
@@ -208,6 +250,7 @@ namespace RetroSchematic.Model
                     });
                 }
                 id[n] = k;
+                places?.Add(new Place(prefix, n, k));
                 for (int j = 0; j < n.Pins.Count; j++)
                 {
                     PinReference p = n.Pins[j];
@@ -252,8 +295,13 @@ namespace RetroSchematic.Model
                             inner[inside] = id[outside];
                     }
                 }
-                Expand(root, b.Parts, b.Gates, b.Nets, b.Instances, prefix + inst.Name + "/", inner, flat, ids);
+                Expand(root, b.Parts, b.Gates, b.Nets, b.Instances, prefix + inst.Name + "/", inner, flat, ids, places);
             }
         }
-    }
+    
+        /// <summary>
+        /// One signal on one level and the flattened signal it is part of.
+        /// </summary>
+        private sealed record Place(string Prefix, Net Net, int Id);
+}
 }
