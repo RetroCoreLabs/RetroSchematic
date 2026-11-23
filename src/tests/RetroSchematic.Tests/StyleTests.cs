@@ -25,6 +25,50 @@ namespace RetroSchematic.Tests
         private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
         private static readonly string Blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
 
+        /// <summary>
+        /// Every tag diamond on the three sheets, in both symbol styles, is drawn whole: four
+        /// equal edges joined into a closed outline, drawn with a solid line. An inferred front
+        /// connector pin once had its diamond drawn dashed, which cut pieces out of it (BUGS.md B2).
+        /// </summary>
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.NorskData)]
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.Modern)]
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050-blocks.rsc", SymbolStyle.NorskData)]
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050-blocks.rsc", SymbolStyle.Modern)]
+        [TestCase("demo/demo-gates.rsc", SymbolStyle.NorskData)]
+        [TestCase("demo/demo-gates.rsc", SymbolStyle.Modern)]
+        public void EveryTagDiamond_IsWhole_AndSolid(string sheet, SymbolStyle style)
+        {
+            string file = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", sheet);
+            SheetSession s = new(file, style, Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog"));
+            int tags = 0, inferred = 0;
+            for (int i = 0; i < s.Drawing.Items.Count; i++)
+            {
+                DrawItem it = s.Drawing.Items[i];
+                if (it.Role != DrawRole.NetLabel || it.Kind != DrawKind.Path)
+                    continue;
+                tags++;
+                if (it.Confidence != Confidence.Read)
+                    inferred++;
+                PathSegment[] p = it.Path!;
+                Assert.That(p.Length, Is.EqualTo(5), it.Owner);
+                Assert.That(p[0].Op, Is.EqualTo(PathOp.MoveTo));
+                Assert.That(p[4].Op, Is.EqualTo(PathOp.Close));
+                double edge = Math.Abs(p[1].X - p[0].X) + Math.Abs(p[1].Y - p[0].Y);
+                for (int k = 1; k < 4; k++)
+                {
+                    PathSegment a = p[k], b = k == 3 ? p[0] : p[k + 1];
+                    Assert.That(Math.Abs(b.X - a.X), Is.EqualTo(Math.Abs(b.Y - a.Y)).Within(1e-9), it.Owner + " edge " + k + " is at 45 degrees");
+                    Assert.That(Math.Abs(b.X - a.X) + Math.Abs(b.Y - a.Y), Is.EqualTo(edge).Within(1e-9), it.Owner + " edge " + k);
+                }
+                Assert.That(SchematicStyle.Of(it).Line, Is.EqualTo(LineStyle.Solid), it.Owner + " is drawn solid");
+            }
+            // the demo sheet has every signal wired now, so it may have no tag at all
+            if (sheet.StartsWith("nord-10", StringComparison.Ordinal))
+                Assert.That(tags, Is.GreaterThan(0));
+            if (sheet.StartsWith("nord-10/2A50-sync-modem-buffer-1050.rsc", StringComparison.Ordinal))
+                Assert.That(inferred, Is.GreaterThan(0), "the inferred front connector tags are among them");
+        }
+
         // the colours a reader must tell apart at a glance
         private static readonly SchematicColour[] s_mustDiffer =
         {

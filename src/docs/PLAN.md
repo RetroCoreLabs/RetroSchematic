@@ -7,9 +7,6 @@ yet (see `docs/2A50-catalogue-map.md`).
 
 ## Queue from the 2026-11-23 session (in this order)
 
-- Front connector: tag diamonds miss pixels. Diamonds are paths and the circle-cut step only
-  cuts lines, so the cause is still to be found; test that every diamond keeps all 4 edges (2A50,
-  demo, blocks demo, both symbol styles).
 - Thinner outlines (gates and chip boxes about 1.7 x wire width) and a "Line width" setting.
 - Chip catalogue as data: inverted pin names as a flag (script, list of changes), pin function
   texts, behaviour fields (output enable, clock edge, async set/clear, output type, delays,

@@ -54,3 +54,20 @@ Every later window test in the same run then fails in about 1 ms with "The given
 'fonts:SystemFonts' was not present in the dictionary", raised from `SchematicCanvas.DrawText`.
 So one real failure shows up as 15 or more failures. Only the first failure in the list is
 the real one.
+
+## B2 - tag diamonds on the front connector rows had pieces missing (fixed)
+
+**What happened.** The diamonds (tags) beside the front connector rows (F.81 .. F.95) were drawn
+with gaps in their outline, in the window and in the SVG export.
+
+**Cause.** Those pins are `inferred`, and an inferred line is drawn dashed: 6.8 units of line,
+4.2 units of gap. The style rule (`SchematicStyle.Of`) gave a tag the same dashed line as a
+wire. A diamond with 8-unit sides is only about 23 units round, so two or three gaps of 4.2
+units cut whole pieces out of it. It had nothing to do with the step that cuts lines at circles
+(that one never touches a path) and nothing to do with clipping or pixel snapping.
+
+**Fix.** A tag's diamond is always drawn with a solid line. How sure the reading is still shows
+in the diamond's colour, the same colour as the name beside it. The test
+`StyleTests.EveryTagDiamond_IsWhole_AndSolid` checks every diamond on 2A50, the blocks demo and
+the gate demo, in both symbol styles: four equal 45-degree edges, closed, drawn solid. It fails
+on the old rule.

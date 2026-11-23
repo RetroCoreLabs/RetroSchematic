@@ -333,7 +333,11 @@ namespace RetroSchematic.Render
                         return new ItemStyle(SchematicColour.Bus, null, LineWidths.Wire, LineStyle.Solid, true, false);
                     return new ItemStyle(open ? SchematicColour.Open : SchematicColour.Bus, null, LineWidths.Bus, line, false, true);
                 case DrawRole.NetLabel:
-                    return new ItemStyle(TextColour(it, SchematicColour.NetLabel), null, LineWidths.Label, line, true, true);
+                    // A tag's diamond is always drawn solid. It is only about 23 units round, so
+                    // the dash pattern of an inferred or open line (6.8 on, 4.2 off) cut whole
+                    // pieces out of it and it looked broken (BUGS.md B2). How sure the reading is
+                    // shows in its colour, the same as the name beside it.
+                    return new ItemStyle(TextColour(it, SchematicColour.NetLabel), null, LineWidths.Label, LineStyle.Solid, true, true);
                 case DrawRole.SignalName:
                     return new ItemStyle(TextColour(it, SchematicColour.SignalName), null, LineWidths.Wire, LineStyle.Solid, true, false);
                 case DrawRole.PinDot:
