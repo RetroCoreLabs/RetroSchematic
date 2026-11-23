@@ -3,6 +3,7 @@
   <Project Path="RetroSchematic.Render/RetroSchematic.Render.csproj" />
   <Project Path="RetroSchematic.Cli/RetroSchematic.Cli.csproj" />
   <Project Path="RetroSchematic.Desktop/RetroSchematic.Desktop.csproj" />
+  <Project Path="RetroSchematic.Mcp/RetroSchematic.Mcp.csproj" />
   <Folder Name="/tests/">
     <Project Path="tests/RetroSchematic.Tests/RetroSchematic.Tests.csproj" />
     <Project Path="tests/RetroSchematic.Desktop.Tests/RetroSchematic.Desktop.Tests.csproj" />
