@@ -83,7 +83,7 @@ Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
 - **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
   plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
   ND-120 CPU's A and B plugs.
-- **Tests:** 564, all passing (run 2026-11-23): 515 for the libraries, 49 for the window. Run
+- **Tests:** 581, all passing (run 2026-11-23): 530 for the libraries, 51 for the window. Run
   them with the command in Quick start. Known test problems are in `src/docs/BUGS.md`.
 - **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
   `src/docs/PLAN.md`.
