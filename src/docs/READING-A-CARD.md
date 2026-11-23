@@ -69,6 +69,8 @@ Go over the whole page at 400 dpi in a grid of tiles, then zoom to 1200 dpi roun
 
 **Chips**
 
+- [ ] A symbol you do not recognise: stop there and follow `ADDING-A-SYMBOL.md` before going on.
+
 - [ ] Each chip's position code (`13D`, `7-8C-D`) and type. If the type is written in the box,
       still check the pins against the datasheet pinout. If it is not written, prove it: the
       pin numbers on the drawing against the datasheet pinout, then the count against the parts
