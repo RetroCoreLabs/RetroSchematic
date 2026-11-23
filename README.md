@@ -39,6 +39,11 @@ was read from, and the tools that check and draw it.
   the board's front and back (toolbar or F5-F8), each with its own zoom. File > Board info
   holds the board's facts (part number, print and ECO version, size, layers), its connectors
   and its switches with what each lever does; a `.rsx` file carries all of it, photos included.
+  Board facts and photos can be imported from the ND PCB catalogue (`pcb.json`).
+- **Find a chip on the board photo** - the Chips button (F9) draws a named box on every chip,
+  placed by the board's position grid (13D, 7-8C-D); hover names the chip, a click picks it.
+  Boxes and the board corners can be adjusted by hand. Board types are in
+  `src/catalog/boards/` (NORD-10 card columns measured from photos of 26 boards).
 - **Choose how names look** - an active-low signal as `/NAME` (default), `~NAME`, or ND's own
   0/1 subscript. Settings can follow the file.
 - **Check a sheet file** - `retroschematic check` refuses a file with an unknown format
