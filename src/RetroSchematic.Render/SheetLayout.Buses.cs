@@ -152,9 +152,8 @@ namespace RetroSchematic.Render
                     widest = Math.Max(widest, NameWidth(n, d.NameStyle));
                     for (int j = 0; j < n.Pins.Count; j++)
                     {
-                        // a connector pin keeps its net label: a signal that goes to a connector
-                        // is always labelled there (FORMAT.md, "Wire or label")
-                        if (pinPlans.TryGetValue(n.Pins[j].At, out PinPlan? p) && !ConnectorPins.IsConnector(n.Pins[j].PartRef))
+                        // a connector pin joins the bus like a chip pin, with its own named entry
+                        if (pinPlans.TryGetValue(n.Pins[j].At, out PinPlan? p))
                         {
                             pins.Add(p);
                             pinNet.Add(n);

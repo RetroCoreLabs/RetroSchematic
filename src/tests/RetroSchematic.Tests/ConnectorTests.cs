@@ -118,6 +118,95 @@ namespace RetroSchematic.Tests
             Assert.That(texts, Does.Not.Contain("NORD-10 I/O device card: connector to the backplane"));
         }
 
+        /// <summary>
+        /// Every connector pin whose signal goes to another pin is joined to it on the drawing:
+        /// by a wire or a bus entry that starts at the pin, or, where no wire could be routed, by
+        /// a tag (diamond) beside it. Never neither, and never both a wire and a tag.
+        /// </summary>
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.NorskData, true)]
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.Modern, true)]
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.NorskData, false)]
+        [TestCase("nord-10/2A50-sync-modem-buffer-1050-blocks.rsc", SymbolStyle.NorskData, true)]
+        [TestCase("demo/demo-gates.rsc", SymbolStyle.NorskData, true)]
+        public void EveryConnectorPin_HasAWire_OrATag_NeverNeitherNorBoth(string sheet, SymbolStyle style, bool buses)
+        {
+            string file = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", sheet);
+            Netlist n = NetlistReader.ReadFile(file);
+            SchematicDrawing d = SheetLayout.Build(n, style, new LayoutOptions { Catalog = new ChipCatalog(Catalog), ShowBuses = buses });
+            int wiredPins = 0;
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                Net net = n.Nets[i];
+                if (net.Pins.Count < 2)
+                    continue;
+                for (int j = 0; j < net.Pins.Count; j++)
+                {
+                    PinReference p = net.Pins[j];
+                    if (!ConnectorPins.IsConnector(p.PartRef) || !d.Pins.TryGetValue(p.At, out DrawPoint at))
+                        continue;
+                    bool wire = false, tag = false;
+                    for (int k = 0; k < d.Items.Count; k++)
+                    {
+                        DrawItem it = d.Items[k];
+                        if (it.Kind == DrawKind.Line && it.Role == DrawRole.Wire
+                            && (Near(it.X1, it.Y1, at) || Near(it.X2, it.Y2, at)))
+                            wire = true;
+                        // a tag's diamond starts a few units out from the pin end, on its row
+                        if (it.Role == DrawRole.NetLabel && it.Path != null && it.Path.Length > 0
+                            && System.Math.Abs(it.Path[0].Y - at.Y) < 0.5 && System.Math.Abs(it.Path[0].X - at.X) < 12)
+                            tag = true;
+                    }
+                    if (!wire && !tag)
+                        Assert.Fail(p.At + " (" + net.Name + ") has neither a wire nor a tag;" + Dump(d, at));
+                    Assert.That(wire && tag, Is.False, p.At + " (" + net.Name + ") has both a wire and a tag");
+                    if (wire)
+                        wiredPins++;
+                }
+            }
+            if (sheet.StartsWith("nord-10/2A50-sync-modem-buffer-1050.rsc", System.StringComparison.Ordinal))
+                Assert.That(wiredPins, Is.GreaterThan(30), "most connector pins of 2A50 get a real wire");
+        }
+
+        [Test]
+        public void On2A50_Lev12AtP35_IsWiredTo5A8()
+        {
+            Netlist n = NetlistReader.ReadFile(Sheet2A50);
+            SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData, new LayoutOptions { Catalog = new ChipCatalog(Catalog) });
+            Net? lev = null;
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                for (int j = 0; j < n.Nets[i].Pins.Count; j++)
+                {
+                    if (n.Nets[i].Pins[j].At == "P.35")
+                        lev = n.Nets[i];
+                }
+            }
+            Assert.That(lev, Is.Not.Null);
+            Assert.That(lev!.Name, Is.EqualTo("LEV12"));
+            bool found = false;
+            foreach (KeyValuePair<string, List<List<DrawPoint>>> kv in d.WireBranches)
+            {
+                if (kv.Key.StartsWith("LEV12", System.StringComparison.Ordinal))
+                    found = true;
+            }
+            Assert.That(found, Is.True, "LEV12 is drawn as a wire");
+        }
+
+        private static string Dump(SchematicDrawing d, DrawPoint at)
+        {
+            System.Text.StringBuilder sb = new();
+            sb.Append(" pin at ").Append(at.X).Append(',').Append(at.Y);
+            for (int k = 0; k < d.Items.Count; k++)
+            {
+                DrawItem it = d.Items[k];
+                if (System.Math.Abs(it.Y1 - at.Y) < 20 && System.Math.Abs(it.X1 - at.X) < 40)
+                    sb.Append("\n ").Append(it.Kind).Append(' ').Append(it.Role).Append(' ').Append(it.Owner).Append(' ').Append(it.X1).Append(',').Append(it.Y1).Append(' ').Append(it.X2).Append(',').Append(it.Y2);
+            }
+            return sb.ToString();
+        }
+
+        private static bool Near(double x, double y, DrawPoint p) => System.Math.Abs(x - p.X) < 6 && System.Math.Abs(y - p.Y) < 0.5;
+
         private static List<string> Texts(SchematicDrawing d)
         {
             List<string> list = new();

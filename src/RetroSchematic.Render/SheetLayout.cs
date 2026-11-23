@@ -669,31 +669,66 @@ namespace RetroSchematic.Render
             for (int i = 0; i < netlist.Nets.Count; i++)
             {
                 Net net = netlist.Nets[i];
-                if (net.Pins.Count < 2 || net.Pins.Count > MaxWiredPins)
+                if (net.Pins.Count < 2)
                     continue;
                 double minX = double.MaxValue, minY = double.MaxValue, maxX = double.MinValue, maxY = double.MinValue;
                 bool all = true;
+                int chipPins = 0;
+                bool connector = false;
                 for (int j = 0; j < net.Pins.Count && all; j++)
                 {
-                    // a signal that goes to a connector always gets labels (FORMAT.md)
-                    if (!pinPlans.TryGetValue(net.Pins[j].At, out PinPlan? p) || ConnectorPins.IsConnector(net.Pins[j].PartRef))
+                    if (!pinPlans.TryGetValue(net.Pins[j].At, out PinPlan? p))
                     {
                         all = false;
                         break;
                     }
+                    // a connector box stands right of all the chips, so its pin is always far
+                    // away: only the chip pins count for the reach, and the connector pin is
+                    // joined by a wire whenever one can be routed
+                    if (ConnectorPins.IsConnector(net.Pins[j].PartRef))
+                    {
+                        connector = true;
+                        continue;
+                    }
+                    chipPins++;
                     minX = Math.Min(minX, p.X); maxX = Math.Max(maxX, p.X);
                     minY = Math.Min(minY, p.Y); maxY = Math.Max(maxY, p.Y);
                 }
-                if (all && maxX - minX <= WireReach && maxY - minY <= WireReach)
+                if (!all || chipPins > MaxWiredPins)
+                    continue;
+                if (connector || (maxX - minX <= WireReach && maxY - minY <= WireReach))
                     list.Add(net);
             }
-            // short ones first: they get the straight routes
+            // short ones first: they get the straight routes; signals to a connector come last,
+            // since their wires cross the sheet and would otherwise take the room short ones need
             list.Sort((a, b) =>
             {
-                int c = Spread(a, pinPlans).CompareTo(Spread(b, pinPlans));
+                int c = ToConnector(a).CompareTo(ToConnector(b));
+                if (c != 0)
+                    return c;
+                c = Spread(a, pinPlans).CompareTo(Spread(b, pinPlans));
                 return c != 0 ? c : string.CompareOrdinal(a.Name, b.Name);
             });
             return list;
+        }
+
+        /// <summary>
+        /// True when one of a signal's pins is a connector pin.
+        /// </summary>
+        /// <param name="net">
+        /// The signal.
+        /// </param>
+        /// <returns>
+        /// True for a signal to a connector.
+        /// </returns>
+        private static bool ToConnector(Net net)
+        {
+            for (int j = 0; j < net.Pins.Count; j++)
+            {
+                if (ConnectorPins.IsConnector(net.Pins[j].PartRef))
+                    return true;
+            }
+            return false;
         }
 
         private static double Spread(Net net, Dictionary<string, PinPlan> pinPlans)

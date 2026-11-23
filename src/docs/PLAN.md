@@ -7,10 +7,6 @@ yet (see `docs/2A50-catalogue-map.md`).
 
 ## Queue from the 2026-11-23 session (in this order)
 
-- Real connector wires: draw wires from backplane (P.n) and front (F.n) connector pins to the chip
-  pins, routed round parts; BD lines join the BD bus with named entries when buses are shown; a
-  tag with a whole diamond only where a wire cannot route. Test: every connector pin with a net to
-  other pins has a drawn wire, bus entry or tag.
 - Front connector: tag diamonds miss pixels. Diamonds are paths and the circle-cut step only
   cuts lines, so the cause is still to be found; test that every diamond keeps all 4 edges (2A50,
   demo, blocks demo, both symbol styles).
@@ -150,7 +146,9 @@ command-line tool and an MCP tool can do the same.
 
 - Wires are routed again from scratch after every change; hand-placed bend points are not kept
   yet (see section 1b). A wire can still take a long way round a busy corner of a sheet.
-- Backplane and front pins have no place on the sheet, so their signals are always labelled.
+- Connector wires to the far right box make long runs across the sheet; supply pins (GND, +12V)
+  and signals with more than 6 chip pins keep their tags. Moving a connector box by hand is not
+  possible yet (section 8).
 - OR and buffer symbols in ND style are not transcribed from the manual yet; they are drawn as
   a labelled box.
 

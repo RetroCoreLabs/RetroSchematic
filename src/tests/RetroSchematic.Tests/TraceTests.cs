@@ -140,11 +140,13 @@ namespace RetroSchematic.Tests
             DrawItem? label = null;
             for (int i = 0; i < s.Drawing.Items.Count && label == null; i++)
             {
-                if (s.Drawing.Items[i].Role == DrawRole.NetLabel && s.Drawing.Items[i].Owner == "net:IRQ_0")
-                    label = s.Drawing.Items[i];
+                // IRQ is wired to its backplane pin, so a long wire piece of it is clicked
+                DrawItem it = s.Drawing.Items[i];
+                if (it.Role == DrawRole.Wire && it.Owner == "net:IRQ_0" && System.Math.Abs(it.X2 - it.X1) + System.Math.Abs(it.Y2 - it.Y1) > 20)
+                    label = it;
             }
             Assert.That(label, Is.Not.Null);
-            // the middle of the diamond
+            // the middle of the wire piece
             SchematicDrawing.Bounds(label!, out double l, out double top, out double r, out double b);
             tool.PointerDown((l + r) / 2, (top + b) / 2);
             Assert.That(s.Traced, Is.EqualTo("IRQ_0"));

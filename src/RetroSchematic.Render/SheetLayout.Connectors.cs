@@ -122,7 +122,7 @@ namespace RetroSchematic.Render
                 plan.X = x;
                 plan.Y = Snap(top);
                 plan.Width = Snap(width + 6);
-                plan.Height = Snap(HeaderHeight + 6 + (pins.Count * PinPitch) + 6);
+                plan.Height = Snap(HeaderHeight + 8 + (pins.Count * PinPitch) + 6);
                 for (int i = 0; i < pins.Count; i++)
                 {
                     string at = reference + "." + pins[i].ToString(CultureInfo.InvariantCulture);
@@ -133,7 +133,9 @@ namespace RetroSchematic.Render
                         Number = pins[i],
                         Side = -1,
                         X = plan.X - PinOut,
-                        Y = plan.Y + HeaderHeight + 6 + ((i + 0.5) * PinPitch),
+                        // header 16 + 8 + half a pitch = 30, five grid steps: every pin end is on the
+                        // router's grid, so a wire ends exactly at the pin
+                        Y = plan.Y + HeaderHeight + 8 + ((i + 0.5) * PinPitch),
                         Owner = "pin:" + at,
                         Name = "",
                         Net = net,

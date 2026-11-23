@@ -174,10 +174,14 @@ The file holds connections only; the drawing is worked out from them every time.
 a reader knows what the picture means:
 
 - **Wire or label.** A signal is drawn as a wire only when every one of its pins is drawn on this
-  sheet, it has at most 6 pins, and the pins lie within 420 drawing units (70 mm) of each other.
-  Every other signal - long ones, busy ones, and any that also go to the backplane, the front
-  connector or another sheet - gets the ND net-label diamond at each of its pins, with the
-  signal's name and its 0/1 subscript, the way ND's own drawings end a line in a named diamond.
+  sheet, it has at most 6 chip pins, and the chip pins lie within 420 drawing units (70 mm) of
+  each other. A signal that also goes to a backplane (P.n) or front (F.n) connector pin needs
+  only the first two: its connector pin is joined by a real wire however far the box is, since
+  the boxes stand right of all the chips. A member of a shown bus joins the bus with a named entry
+  instead, from its connector pin too. Every other signal - long ones, busy ones, those that go to
+  another sheet, and any whose wire cannot be routed - gets the ND net-label diamond at each of
+  its pins, with the signal's name and its 0/1 subscript, the way ND's own drawings end a line in
+  a named diamond. A wired pin never also has a diamond.
 - **Routing.** Wires run on a 6-unit grid (one unit is 1/6 mm), round every chip frame, gate
   symbol and text, and round the room kept for every label. Two wires may cross at a right angle
   but never run along the same line. A branch point is marked with a dot.

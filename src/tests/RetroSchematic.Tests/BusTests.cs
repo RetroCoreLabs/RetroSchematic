@@ -59,7 +59,7 @@ namespace RetroSchematic.Tests
             SchematicDrawing d = s.Drawing;
             Assert.That(d.BusPaths.ContainsKey("BD_0") && d.BusPaths.ContainsKey("BD_1"), Is.True, string.Join("\n", d.BusProblems));
             List<BusLine> buses = s.Netlist.Layout!.Buses!;
-            int joined = 0;
+            int joined = 0, connectorsJoined = 0;
             for (int b = 0; b < buses.Count; b++)
             {
                 for (int m = 0; m < buses[b].Members.Count; m++)
@@ -87,24 +87,23 @@ namespace RetroSchematic.Tests
                     {
                         if (!d.Pins.ContainsKey(n.Pins[j].At))
                             continue;
-                        // a connector pin never joins a bus: it keeps its label there
+                        // a connector pin joins the bus like a chip pin, with its own named entry
                         if (ConnectorPins.IsConnector(n.Pins[j].PartRef))
-                        {
                             connectorPins++;
-                            continue;
-                        }
                         drawnPins++;
                         if (d.BusProblems.Exists(p => p.Contains("pin " + n.Pins[j].At + " ", System.StringComparison.Ordinal)))
                             reported++;
                     }
                     // a pin that joined has a name at its entry; one that did not keeps its label
                     // (diamond and name) and is listed as a problem
-                    Assert.That(names, Is.EqualTo(drawnPins + connectorPins), owner);
-                    Assert.That(labels, Is.EqualTo(reported + connectorPins), owner);
+                    Assert.That(names, Is.EqualTo(drawnPins), owner);
+                    Assert.That(labels, Is.EqualTo(reported), owner);
                     joined += drawnPins - reported;
+                    connectorsJoined += connectorPins;
                 }
             }
             Assert.That(joined, Is.GreaterThan(40), "most BD pins join their bus");
+            Assert.That(connectorsJoined, Is.GreaterThan(0), "backplane BD pins are among the members");
         }
 
         [Test]

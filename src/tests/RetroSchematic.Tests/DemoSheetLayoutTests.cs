@@ -82,16 +82,16 @@ namespace RetroSchematic.Tests
                 }
                 Assert.That(touched, "no wire ends on pin " + pins[p]);
             }
-            // IRQ also goes to the backplane (P.20), so by the wire rule it is labelled at each
-            // pin instead of wired
-            Assert.That(Wires(d, "net:IRQ_0").Count, Is.EqualTo(0));
+            // IRQ also goes to the backplane (P.20): it is wired to the connector pin like any
+            // other pin, and a wired signal has no diamond
+            Assert.That(Wires(d, "net:IRQ_0").Count, Is.GreaterThan(0));
             int irqLabels = 0;
             for (int i = 0; i < d.Items.Count; i++)
             {
                 if (d.Items[i].Role == DrawRole.NetLabel && d.Items[i].Owner == "net:IRQ_0")
                     irqLabels++;
             }
-            Assert.That(irqLabels, Is.EqualTo(3), "a diamond at 5A.3, at 5A.6 and at backplane pin 20");
+            Assert.That(irqLabels, Is.EqualTo(0), "no diamond on a wired signal");
         }
 
         private static bool OnRing(double x, double y, DrawPoint at)
