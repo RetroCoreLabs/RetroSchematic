@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;     // ToggleButton
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using RetroSchematic.Desktop.Themes;
@@ -40,6 +41,9 @@ namespace RetroSchematic.Desktop
             BuildThemeMenu();
             ShowStyleTicks(UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern);
             Canvas.ToolMessage += OnToolMessage;
+            TbPinNumbers.IsChecked = PinNumbersItem.IsChecked;
+            TbBoardPositions.IsChecked = BoardPositionsItem.IsChecked;
+            TbSelect.IsChecked = true;
             OpenDemoItem.IsEnabled = SheetFiles.FindDemo(AppContext.BaseDirectory) != null;
             if (UiSettings.Instance.LoadProblem != null)
                 StatusText.Text = UiSettings.Instance.LoadProblem;
@@ -105,10 +109,12 @@ namespace RetroSchematic.Desktop
             {
                 _session.SelectionChanged -= OnSelectionChanged;
                 _session.DrawingChanged -= OnDrawingChanged;
+                _session.TraceChanged -= OnTraceChanged;
             }
             _session = s;
             _session.SelectionChanged += OnSelectionChanged;
             _session.DrawingChanged += OnDrawingChanged;
+            _session.TraceChanged += OnTraceChanged;
             _session.SetShowPinNumbers(PinNumbersItem.IsChecked);
             _session.SetShowBoardPositions(BoardPositionsItem.IsChecked);
             Canvas.Session = s;
@@ -119,6 +125,16 @@ namespace RetroSchematic.Desktop
             SaveSvgItem.IsEnabled = true;
             ExportPngItem.IsEnabled = true;
             EditModeItem.IsEnabled = true;
+            TbExportPng.IsEnabled = true;
+            TbExportSvg.IsEnabled = true;
+            TbEditMode.IsEnabled = true;
+            TbTrace.IsEnabled = true;
+            TbZoomIn.IsEnabled = true;
+            TbZoomOut.IsEnabled = true;
+            TbFit.IsEnabled = true;
+            if (TbTrace.IsChecked == true && Canvas.Tool != null)
+                Canvas.Tool.TraceMode = true;
+            OnTraceChanged(s);
             ShowEditState();
         }
 
@@ -132,6 +148,15 @@ namespace RetroSchematic.Desktop
             RedoItem.IsEnabled = editing && _session!.Editor.CanRedo;
             DeleteItem.IsEnabled = editing;
             SaveItem.IsEnabled = _session != null && _session.SheetPath != null;
+            TbSave.IsEnabled = SaveItem.IsEnabled;
+            TbUndo.IsEnabled = UndoItem.IsEnabled;
+            TbRedo.IsEnabled = RedoItem.IsEnabled;
+            TbEditMode.IsChecked = editing;
+            TbPlace.IsEnabled = ChipBox.IsEnabled;
+            TbWire.IsEnabled = editing;
+            // leaving edit mode drops an editing tool back to Select (Trace stays: it works read-only)
+            if (!editing && (TbPlace.IsChecked == true || TbWire.IsChecked == true))
+                PickTool(TbSelect);
             if (_session != null)
                 Title = "RetroSchematic - " + _session.Netlist.Sheet.Id + " " + _session.Netlist.Sheet.Title
                     + (_session.Editor.Modified ? " (changed)" : "") + (editing ? " [edit]" : "");
@@ -270,7 +295,11 @@ namespace RetroSchematic.Desktop
         {
             if (Canvas.Tool == null)
                 return;
-            Canvas.Tool.PlaceType = ChipBox.SelectedIndex > 0 ? ChipBox.SelectedItem as string : null;
+            // choosing a chip type chooses the Place tool; "(none)" goes back to Select
+            if (ChipBox.SelectedIndex > 0)
+                PickTool(TbPlace);
+            else if (TbPlace.IsChecked == true)
+                PickTool(TbSelect);
         }
 
         private void OnThemePicked(object? sender, RoutedEventArgs e)
@@ -413,6 +442,7 @@ namespace RetroSchematic.Desktop
                 return;
             _session.SetShowPinNumbers(!_session.ShowPinNumbers);
             PinNumbersItem.IsChecked = _session.ShowPinNumbers;
+            TbPinNumbers.IsChecked = _session.ShowPinNumbers;
         }
 
         private void OnToggleBoardPositions(object? sender, RoutedEventArgs e)
@@ -421,6 +451,7 @@ namespace RetroSchematic.Desktop
                 return;
             _session.SetShowBoardPositions(!_session.ShowBoardPositions);
             BoardPositionsItem.IsChecked = _session.ShowBoardPositions;
+            TbBoardPositions.IsChecked = _session.ShowBoardPositions;
         }
 
         private void OnExit(object? sender, RoutedEventArgs e) => Close();
@@ -430,5 +461,70 @@ namespace RetroSchematic.Desktop
         private void OnModernStyle(object? sender, RoutedEventArgs e) => SetStyle(SymbolStyle.Modern);
 
         private void OnFit(object? sender, RoutedEventArgs e) => Canvas.FitToWindow();
+
+        private void OnZoomIn(object? sender, RoutedEventArgs e) => Canvas.ZoomAt(new Avalonia.Point(Canvas.Bounds.Width / 2, Canvas.Bounds.Height / 2), 1.25);
+
+        private void OnZoomOut(object? sender, RoutedEventArgs e) => Canvas.ZoomAt(new Avalonia.Point(Canvas.Bounds.Width / 2, Canvas.Bounds.Height / 2), 1 / 1.25);
+
+        private void OnToolSelect(object? sender, RoutedEventArgs e) => PickTool(TbSelect);
+
+        private void OnToolPlace(object? sender, RoutedEventArgs e) => PickTool(TbPlace);
+
+        private void OnToolWire(object? sender, RoutedEventArgs e) => PickTool(TbWire);
+
+        private void OnToolTrace(object? sender, RoutedEventArgs e) => PickTool(TbTrace);
+
+        /// <summary>
+        /// Chooses one tool button: only that one stays pressed, and the edit tool is told.
+        /// Select, Place and Wire are all the same pointer handling in <see cref="EditTool"/>
+        /// (what a drag does depends on what it starts on); Place also needs a chip type, and
+        /// Trace switches the tool to tracing.
+        /// </summary>
+        /// <param name="button">
+        /// The chosen tool's button.
+        /// </param>
+        public void PickTool(ToggleButton button)
+        {
+            TbSelect.IsChecked = button == TbSelect;
+            TbPlace.IsChecked = button == TbPlace;
+            TbWire.IsChecked = button == TbWire;
+            TbTrace.IsChecked = button == TbTrace;
+            if (Canvas.Tool == null)
+                return;
+            Canvas.Tool.TraceMode = button == TbTrace;
+            if (button != TbTrace)
+                _session?.Trace("");
+            if (button == TbPlace)
+            {
+                Canvas.Tool.PlaceType = ChipBox.SelectedIndex > 0 ? ChipBox.SelectedItem as string : null;
+                StatusText.Text = Canvas.Tool.PlaceType == null ? "Pick the chip type in the box, then click on the sheet." : "Click on the sheet to place a " + Canvas.Tool.PlaceType + ".";
+                ChipBox.Focus();
+            }
+            else
+            {
+                Canvas.Tool.PlaceType = null;
+                StatusText.Text = button == TbWire ? "Drag from one pin to another to wire them."
+                    : button == TbTrace ? "Click a wire, label or pin to trace its signal. Esc clears." : "";
+            }
+        }
+
+        private void OnTraceChanged(SheetSession session)
+        {
+            _syncingLists = true;
+            TracePanel.IsVisible = session.Traced.Length > 0;
+            TraceTitle.Text = "Signal " + session.Traced;
+            TraceList.ItemsSource = session.TracedPins();
+            _syncingLists = false;
+        }
+
+        private void OnTracePinPicked(object? sender, SelectionChangedEventArgs e)
+        {
+            if (_syncingLists || _session == null || TraceList.SelectedItem is not string at)
+                return;
+            if (_session.PinPoint(at, out double x, out double y))
+                Canvas.CentreOn(x, y);
+            else
+                StatusText.Text = at + " is not drawn on this sheet (a backplane or off-sheet pin).";
+        }
     }
 }

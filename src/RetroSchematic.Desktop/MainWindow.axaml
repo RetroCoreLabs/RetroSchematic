@@ -42,16 +42,50 @@
       </MenuItem>
     </Menu>
 
-    <!-- edit bar: the chip to place; only usable in edit mode -->
-    <Border DockPanel.Dock="Top" Classes="app-toolbar" Padding="6,4">
-      <StackPanel Orientation="Horizontal" Spacing="8">
-        <TextBlock x:Name="ModeText" Classes="fluent-text" VerticalAlignment="Center" Text="Read-only"/>
-        <TextBlock Classes="fluent-text-secondary" VerticalAlignment="Center" Text="Chip to place:"/>
-        <ComboBox x:Name="ChipBox" Classes="fluent-combobox" Width="140" IsEnabled="False" SelectionChanged="OnChipPicked"/>
-        <TextBlock Classes="fluent-text-secondary" VerticalAlignment="Center"
-                   Text="Click to place it (Esc stops). Drag pin to pin to wire. Drag a chip to move it. Delete removes the pick."/>
+    <!-- toolbar: icon buttons for the common commands. The icons are outlines from
+         Styles/Icons.axaml in the theme's text colour. Buttons for things not built yet (buses,
+         blocks, port arrows, the simulator) are there but switched off, and say so. -->
+    <Border DockPanel.Dock="Top" Classes="app-toolbar" Padding="6,2">
+      <StackPanel Orientation="Horizontal" Spacing="2">
+        <Button x:Name="TbNew" Classes="toolbar-button icon" Click="OnNew" ToolTip.Tip="New sheet (Ctrl+N)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconNew}"/></Button>
+        <Button x:Name="TbOpen" Classes="toolbar-button icon" Click="OnOpen" ToolTip.Tip="Open sheet (Ctrl+O)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconOpen}"/></Button>
+        <Button x:Name="TbSave" Classes="toolbar-button icon" Click="OnSave" IsEnabled="False" ToolTip.Tip="Save sheet (Ctrl+S)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconSave}"/></Button>
+        <Button x:Name="TbExportPng" Classes="toolbar-button icon" Click="OnExportPng" IsEnabled="False" ToolTip.Tip="Export PNG" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconExportPng}"/></Button>
+        <Button x:Name="TbExportSvg" Classes="toolbar-button icon" Click="OnSaveSvg" IsEnabled="False" ToolTip.Tip="Save as SVG" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconExportSvg}"/></Button>
+        <Border Classes="toolbar-divider"/>
+        <Button x:Name="TbUndo" Classes="toolbar-button icon" Click="OnUndo" IsEnabled="False" ToolTip.Tip="Undo (Ctrl+Z)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconUndo}"/></Button>
+        <Button x:Name="TbRedo" Classes="toolbar-button icon" Click="OnRedo" IsEnabled="False" ToolTip.Tip="Redo (Ctrl+Y)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconRedo}"/></Button>
+        <Border Classes="toolbar-divider"/>
+        <ToggleButton x:Name="TbEditMode" Classes="toolbar-button" Click="OnToggleEditMode" IsEnabled="False" ToolTip.Tip="Edit mode on/off (Ctrl+E). Off = read-only: nothing can be changed." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconEditMode}"/></ToggleButton>
+        <Border Classes="toolbar-divider"/>
+        <ToggleButton x:Name="TbSelect" Classes="toolbar-button" Click="OnToolSelect" ToolTip.Tip="Select: click to pick, drag a chip to move it (in edit mode)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconSelect}"/></ToggleButton>
+        <ToggleButton x:Name="TbPlace" Classes="toolbar-button" Click="OnToolPlace" IsEnabled="False" ToolTip.Tip="Place chip: pick the type in the box on the right, then click on the sheet (edit mode)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPlaceChip}"/></ToggleButton>
+        <ToggleButton x:Name="TbWire" Classes="toolbar-button" Click="OnToolWire" IsEnabled="False" ToolTip.Tip="Wire: drag from one pin to another (edit mode)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconWire}"/></ToggleButton>
+        <ToggleButton x:Name="TbBus" Classes="toolbar-button" IsEnabled="False" ToolTip.Tip="Bus: draw a named bus line (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBus}"/></ToggleButton>
+        <ToggleButton x:Name="TbTrace" Classes="toolbar-button" Click="OnToolTrace" IsEnabled="False" ToolTip.Tip="Trace: click a wire, label or pin to show the whole signal; Esc or empty paper clears. Works in read-only mode." ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconTrace}"/></ToggleButton>
+        <Border Classes="toolbar-divider"/>
+        <Button x:Name="TbMakeBlock" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Make block from the selection (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconMakeBlock}"/></Button>
+        <Button x:Name="TbUpLevel" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Up one level (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconUpLevel}"/></Button>
+        <Border Classes="toolbar-divider"/>
+        <Button x:Name="TbZoomIn" Classes="toolbar-button icon" Click="OnZoomIn" IsEnabled="False" ToolTip.Tip="Zoom in" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconZoomIn}"/></Button>
+        <Button x:Name="TbZoomOut" Classes="toolbar-button icon" Click="OnZoomOut" IsEnabled="False" ToolTip.Tip="Zoom out" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconZoomOut}"/></Button>
+        <Button x:Name="TbFit" Classes="toolbar-button icon" Click="OnFit" IsEnabled="False" ToolTip.Tip="Fit to window (Ctrl+0)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconZoomFit}"/></Button>
+        <Border Classes="toolbar-divider"/>
+        <ToggleButton x:Name="TbPinNumbers" Classes="toolbar-button" Click="OnTogglePinNumbers" ToolTip.Tip="Show pin numbers" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPinNumbers}"/></ToggleButton>
+        <ToggleButton x:Name="TbBoardPositions" Classes="toolbar-button" Click="OnToggleBoardPositions" ToolTip.Tip="Show board positions" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconBoardPositions}"/></ToggleButton>
+        <ToggleButton x:Name="TbPortArrows" Classes="toolbar-button" IsEnabled="False" ToolTip.Tip="Show port direction arrows (not built yet - comes with blocks)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPortArrows}"/></ToggleButton>
+        <Border Classes="toolbar-divider"/>
+        <Button x:Name="TbRun" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Run the simulation (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconRun}"/></Button>
+        <Button x:Name="TbPause" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Pause (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconPause}"/></Button>
+        <Button x:Name="TbStep" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="One step (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconStep}"/></Button>
+        <Button x:Name="TbReset" Classes="toolbar-button icon" IsEnabled="False" ToolTip.Tip="Reset (not built yet)" ToolTip.ShowOnDisabled="True"><Path Classes="toolbar-icon" Data="{StaticResource IconReset}"/></Button>
+        <Border Classes="toolbar-divider"/>
+        <ComboBox x:Name="ChipBox" Classes="fluent-combobox" Width="140" IsEnabled="False" SelectionChanged="OnChipPicked"
+                  VerticalAlignment="Center" ToolTip.Tip="The chip type the Place chip tool puts down"/>
+        <TextBlock x:Name="ModeText" Classes="fluent-text" VerticalAlignment="Center" Margin="10,0,0,0" Text="Read-only"/>
       </StackPanel>
     </Border>
+
 
     <Border DockPanel.Dock="Bottom" Classes="status-bar">
       <TextBlock x:Name="StatusText" Text="Open a sheet (File > Open sheet), or File > New sheet."/>
@@ -91,6 +125,12 @@
       <Border Grid.Column="4" Classes="panel-border" Margin="0,6,6,6" Padding="10">
         <DockPanel>
           <TextBlock DockPanel.Dock="Top" Classes="fluent-text-header" Text="Details" Margin="0,0,0,8"/>
+          <!-- the traced signal and its pins; clicking a pin centres the drawing on it -->
+          <StackPanel DockPanel.Dock="Bottom" x:Name="TracePanel" IsVisible="False" Margin="0,8,0,0">
+            <TextBlock x:Name="TraceTitle" Classes="fluent-text-header"/>
+            <ListBox x:Name="TraceList" MaxHeight="260" SelectionChanged="OnTracePinPicked"
+                     Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
+          </StackPanel>
           <ScrollViewer>
             <SelectableTextBlock x:Name="DetailsText" TextWrapping="Wrap"
                                  FontFamily="Consolas, Courier New, monospace" FontSize="12"

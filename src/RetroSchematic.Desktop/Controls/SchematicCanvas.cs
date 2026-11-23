@@ -88,6 +88,7 @@ namespace RetroSchematic.Desktop.Controls
                 {
                     _session.DrawingChanged -= OnDrawingChanged;
                     _session.SelectionChanged -= OnSelectionChanged;
+                    _session.TraceChanged -= OnDrawingChanged;
                 }
                 _session = value;
                 _tool = value == null ? null : new EditTool(value);
@@ -95,6 +96,7 @@ namespace RetroSchematic.Desktop.Controls
                 {
                     _session.DrawingChanged += OnDrawingChanged;
                     _session.SelectionChanged += OnSelectionChanged;
+                    _session.TraceChanged += OnDrawingChanged;
                 }
                 FitToWindow();
             }
@@ -113,6 +115,21 @@ namespace RetroSchematic.Desktop.Controls
             SchematicDrawing d = _session.Drawing;
             _zoom = Math.Clamp(Math.Min(Bounds.Width / d.Width, Bounds.Height / d.Height), MinZoom, MaxZoom);
             _offset = new Vector((Bounds.Width - (d.Width * _zoom)) / 2, (Bounds.Height - (d.Height * _zoom)) / 2);
+            InvalidateVisual();
+        }
+
+        /// <summary>
+        /// Moves the view so a drawing point is in the middle of the control, keeping the zoom.
+        /// </summary>
+        /// <param name="x">
+        /// Point X in drawing units.
+        /// </param>
+        /// <param name="y">
+        /// Point Y in drawing units.
+        /// </param>
+        public void CentreOn(double x, double y)
+        {
+            _offset = new Vector((Bounds.Width / 2) - (x * _zoom), (Bounds.Height / 2) - (y * _zoom));
             InvalidateVisual();
         }
 
@@ -190,20 +207,37 @@ namespace RetroSchematic.Desktop.Controls
             IBrush frame = Brush(ThemeManager.SchematicFrameKey);
             IBrush inferred = Brush(ThemeManager.SchematicInferredKey);
             IBrush note = Brush(ThemeManager.SchematicNoteKey);
+            IBrush wire = Brush(ThemeManager.SchematicWireKey);
+            IBrush label = Brush(ThemeManager.SchematicNetLabelKey);
             IBrush lit = Brush(ThemeManager.SchematicSelectionKey);
             IBrush open = Brush(ThemeManager.SchematicOpenKey);
+            IBrush trace = Brush(ThemeManager.SchematicTraceKey);
 
             SchematicDrawing d = session.Drawing;
             for (int i = 0; i < d.Items.Count; i++)
             {
                 DrawItem it = d.Items[i];
                 bool isLit = session.IsLit(it);
-                IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note);
+                IBrush b = isLit ? lit : Pick(it, ink, frame, inferred, open, note, wire, label);
                 // a simulated value colours the signal's wires, labels and names (none today)
                 string? valueKey = isLit ? null : ThemeManager.ValueKey(session.ValueOf(it));
                 if (valueKey != null)
                     b = Brush(valueKey);
-                DrawOne(context, it, b, isLit);
+                // the trace tool: the signal thick in the trace colour, the chips it joins outlined
+                // in it, everything else faint
+                TraceRole role = session.TraceOf(it);
+                if (role == TraceRole.Signal || role == TraceRole.Joined)
+                {
+                    DrawOne(context, it, trace, role == TraceRole.Signal ? 2.5 : 1);
+                    continue;
+                }
+                if (role == TraceRole.Dimmed)
+                {
+                    using (context.PushOpacity(0.25))
+                        DrawOne(context, it, b, 0);
+                    continue;
+                }
+                DrawOne(context, it, b, isLit ? 1 : 0);
             }
 
             if (!withGesture || _tool == null)
@@ -349,10 +383,16 @@ namespace RetroSchematic.Desktop.Controls
         /// <param name="note">
         /// Colour for secondary text.
         /// </param>
+        /// <param name="wire">
+        /// A sure wire's colour.
+        /// </param>
+        /// <param name="label">
+        /// A sure net label's colour.
+        /// </param>
         /// <returns>
         /// The brush to draw the step with.
         /// </returns>
-        private static IBrush Pick(DrawItem it, IBrush ink, IBrush frame, IBrush inferred, IBrush open, IBrush note)
+        private static IBrush Pick(DrawItem it, IBrush ink, IBrush frame, IBrush inferred, IBrush open, IBrush note, IBrush wire, IBrush label)
         {
             if (it.Role == DrawRole.PartOutline || it.Role == DrawRole.PinDot)
                 return frame;
@@ -362,13 +402,32 @@ namespace RetroSchematic.Desktop.Controls
                 return open;
             if (it.Confidence != Confidence.Read)
                 return inferred;
+            if (it.Role == DrawRole.Wire)
+                return wire;
+            if (it.Role == DrawRole.NetLabel || it.Role == DrawRole.SignalName)
+                return label;
             return ink;
         }
 
-        private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, bool lit)
+        /// <summary>
+        /// One drawing step.
+        /// </summary>
+        /// <param name="context">
+        /// Where to draw.
+        /// </param>
+        /// <param name="it">
+        /// The step.
+        /// </param>
+        /// <param name="brush">
+        /// Its colour.
+        /// </param>
+        /// <param name="extra">
+        /// Added to its usual line width: 1 for the picked item, more for a traced signal.
+        /// </param>
+        private static void DrawOne(DrawingContext context, DrawItem it, IBrush brush, double extra)
         {
-            // the same widths as the SVG; a lit item one unit thicker
-            Pen pen = new(brush, LineWidths.Of(it) + (lit ? 1 : 0), it.Dashed ? new DashStyle(new double[] { 4, 3 }, 0) : null);
+            // the same widths as the SVG, plus the extra for a picked or traced item
+            Pen pen = new(brush, LineWidths.Of(it) + extra, it.Dashed ? new DashStyle(new double[] { 4, 3 }, 0) : null);
             switch (it.Kind)
             {
                 case DrawKind.Line:

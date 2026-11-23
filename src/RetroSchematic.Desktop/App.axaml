@@ -4,6 +4,13 @@
   <!-- The theme variant is chosen at run time by Themes/ThemeManager.cs (Light, Dark, Solarized
        Dark, Nord, Retro Green, Amber CRT, Synthwave '84, High Contrast) from the saved
        preference. Do NOT set RequestedThemeVariant here. -->
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://RetroSchematic/Styles/Icons.axaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
   <Application.Styles>
     <FluentTheme />
     <!-- the DataGrid styles must be included or a DataGrid does not draw at all -->

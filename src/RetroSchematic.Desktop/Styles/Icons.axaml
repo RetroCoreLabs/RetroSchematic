@@ -1,0 +1,52 @@
+<!--
+  SPDX-License-Identifier: MIT
+  Copyright (c) 1985-2026 Ronny Hansen
+  RetroCore Labs — https://github.com/RetroCoreLabs
+
+  Toolbar icons, drawn as outlines on a 24 x 24 box. They are stroked, never filled, by
+  Path.toolbar-icon (Styles/FluentTheme.axaml) in the theme's text colour, so every icon follows
+  the theme. No bitmap icon pack: a bitmap keeps its own colours whatever the theme is.
+-->
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- file -->
+  <StreamGeometry x:Key="IconNew">M6,3 H14 L18,7 V21 H6 Z M14,3 V7 H18 M12,11 V17 M9,14 H15</StreamGeometry>
+  <StreamGeometry x:Key="IconOpen">M3,6 H9 L11,8 H21 V19 H3 Z M3,11 H21</StreamGeometry>
+  <StreamGeometry x:Key="IconSave">M5,4 H17 L20,7 V20 H5 Z M8,4 V9 H16 V4 M8,20 V14 H17 V20</StreamGeometry>
+  <StreamGeometry x:Key="IconExportPng">M3,5 H21 V19 H3 Z M5,17 L10,11 L14,15 L16,13 L20,17 M16,8 H17</StreamGeometry>
+  <StreamGeometry x:Key="IconExportSvg">M3,19 C7,3 17,21 21,5 M2,18 H4 V20 H2 Z M20,4 H22 V6 H20 Z</StreamGeometry>
+
+  <!-- undo / redo -->
+  <StreamGeometry x:Key="IconUndo">M9,6 L5,10 L9,14 M5,10 H15 A4,4 0 0 1 15,18 H10</StreamGeometry>
+  <StreamGeometry x:Key="IconRedo">M15,6 L19,10 L15,14 M19,10 H9 A4,4 0 0 0 9,18 H14</StreamGeometry>
+
+  <!-- edit mode: a pencil -->
+  <StreamGeometry x:Key="IconEditMode">M4,20 L5,15 L16,4 L20,8 L9,19 Z M14,6 L18,10 M5,15 L9,19</StreamGeometry>
+
+  <!-- tools -->
+  <StreamGeometry x:Key="IconSelect">M6,3 L6,19 L10,15 L13,21 L15,20 L12,14 L18,14 Z</StreamGeometry>
+  <StreamGeometry x:Key="IconPlaceChip">M8,4 H16 V20 H8 Z M4,7 H8 M4,11 H8 M4,15 H8 M16,7 H20 M16,11 H20 M16,15 H20 M11,4 A1,1 0 0 0 13,4</StreamGeometry>
+  <StreamGeometry x:Key="IconWire">M3,18 H10 V6 H21 M3,16.5 V19.5 M21,4.5 V7.5</StreamGeometry>
+  <StreamGeometry x:Key="IconBus">M3,9 H21 M3,12 H21 M6,12 L9,17 H11 M14,12 L17,17 H19</StreamGeometry>
+  <StreamGeometry x:Key="IconTrace">M3,20 H8 V11 H13 M13,10 a4.5,4.5 0 1 0 9,0 a4.5,4.5 0 1 0 -9,0</StreamGeometry>
+
+  <!-- hierarchy -->
+  <StreamGeometry x:Key="IconMakeBlock">M3,3 H21 V21 H3 Z M7,7 H11 V11 H7 Z M13,13 H17 V17 H13 Z M11,9 H15 V13</StreamGeometry>
+  <StreamGeometry x:Key="IconUpLevel">M12,20 V5 M6,11 L12,5 L18,11 M4,3 H20</StreamGeometry>
+
+  <!-- zoom -->
+  <StreamGeometry x:Key="IconZoomIn">M4,10 a6,6 0 1 0 12,0 a6,6 0 1 0 -12,0 M14.5,14.5 L21,21 M7,10 H13 M10,7 V13</StreamGeometry>
+  <StreamGeometry x:Key="IconZoomOut">M4,10 a6,6 0 1 0 12,0 a6,6 0 1 0 -12,0 M14.5,14.5 L21,21 M7,10 H13</StreamGeometry>
+  <StreamGeometry x:Key="IconZoomFit">M3,8 V3 H8 M16,3 H21 V8 M21,16 V21 H16 M8,21 H3 V16 M8,8 H16 V16 H8 Z</StreamGeometry>
+
+  <!-- show / hide -->
+  <StreamGeometry x:Key="IconPinNumbers">M9,4 L7,20 M17,4 L15,20 M4,9 H20 M4,15 H20</StreamGeometry>
+  <StreamGeometry x:Key="IconBoardPositions">M3,3 H21 V21 H3 Z M3,12 H21 M12,3 V21</StreamGeometry>
+  <StreamGeometry x:Key="IconPortArrows">M3,12 H16 M12,8 L16,12 L12,16 M20,5 V19</StreamGeometry>
+
+  <!-- simulation -->
+  <StreamGeometry x:Key="IconRun">M7,4 L19,12 L7,20 Z</StreamGeometry>
+  <StreamGeometry x:Key="IconPause">M8,5 V19 M16,5 V19</StreamGeometry>
+  <StreamGeometry x:Key="IconStep">M5,5 L14,12 L5,19 Z M18,5 V19</StreamGeometry>
+  <StreamGeometry x:Key="IconReset">M5,12 A7,7 0 1 0 7,7 M7,2 V7 H12</StreamGeometry>
+</ResourceDictionary>

@@ -86,7 +86,7 @@
   </Style>
 
   <Style Selector="Button.fluent-button-primary:pointerover">
-    <Setter Property="Background" Value="#106EBE"/>
+    <Setter Property="Background" Value="{DynamicResource FluentAccentHoverBrush}"/>
   </Style>
 
   <!-- TextBlock Styles -->
@@ -493,6 +493,53 @@
   <!-- Disabled (e.g. Back with no history) reads as muted but still clearly visible -->
   <Style Selector="Button.toolbar-button:disabled">
     <Setter Property="Opacity" Value="0.55"/>
+  </Style>
+
+  <!-- Toolbar icons (Styles/Icons.axaml): outlines stroked in the theme's text colour -->
+  <Style Selector="Path.toolbar-icon">
+    <Setter Property="Stroke" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="StrokeThickness" Value="1.6"/>
+    <Setter Property="StrokeLineCap" Value="Round"/>
+    <Setter Property="StrokeJoin" Value="Round"/>
+    <Setter Property="Width" Value="24"/>
+    <Setter Property="Height" Value="24"/>
+    <Setter Property="Stretch" Value="None"/>
+  </Style>
+
+  <!-- On/off toolbar buttons (edit mode, tools, show/hide): the same look as a toolbar button,
+       and the accent behind the icon while on. Every colour is a theme brush, so Fluent's own
+       ToggleButton colours never show through. -->
+  <Style Selector="ToggleButton.toolbar-button">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="CornerRadius" Value="{DynamicResource FluentCornerRadiusSmall}"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="ToggleButton.toolbar-button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentHoverHighlightBrush}"/>
+    <Setter Property="Foreground" Value="{DynamicResource FluentTextPrimaryBrush}"/>
+  </Style>
+  <Style Selector="ToggleButton.toolbar-button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
+  </Style>
+  <Style Selector="ToggleButton.toolbar-button:checked /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource FluentSelectionHighlightBrush}"/>
+    <Setter Property="BorderBrush" Value="{DynamicResource FluentAccentBlueBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+  </Style>
+  <Style Selector="ToggleButton.toolbar-button:disabled">
+    <Setter Property="Opacity" Value="0.4"/>
+  </Style>
+  <Style Selector="ToggleButton.toolbar-button:disabled /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+  <Style Selector="Button.toolbar-button:disabled /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="Transparent"/>
+  </Style>
+  <Style Selector="Button.toolbar-button.icon">
+    <Setter Property="Padding" Value="4"/>
   </Style>
 
   <!-- Thin vertical divider between toolbar groups -->

@@ -71,6 +71,11 @@ namespace RetroSchematic.Desktop.Themes
             ValueOneKey,
             ValueNotDrivenKey,
             ValueConflictKey,
+            SchematicTraceKey,
+            SchematicWireKey,
+            SchematicBusKey,
+            SchematicNetLabelKey,
+            AccentHoverKey,
         };
 
         /// <summary>
@@ -132,6 +137,32 @@ namespace RetroSchematic.Desktop.Themes
         /// Brush key: a signal driven both ways at once (Logisim red).
         /// </summary>
         public const string ValueConflictKey = "SchematicValueConflictBrush";
+
+        /// <summary>
+        /// Brush key: the signal shown by the trace tool, and the chips it joins.
+        /// </summary>
+        public const string SchematicTraceKey = "SchematicTraceBrush";
+
+        /// <summary>
+        /// Brush key: a wire between pins (a sure reading; inferred and open wires keep their
+        /// reading colours).
+        /// </summary>
+        public const string SchematicWireKey = "SchematicWireBrush";
+
+        /// <summary>
+        /// Brush key: a drawn bus line.
+        /// </summary>
+        public const string SchematicBusKey = "SchematicBusBrush";
+
+        /// <summary>
+        /// Brush key: a net-label diamond and its signal name (a sure reading).
+        /// </summary>
+        public const string SchematicNetLabelKey = "SchematicNetLabelBrush";
+
+        /// <summary>
+        /// Brush key: an accent-coloured button under the pointer.
+        /// </summary>
+        public const string AccentHoverKey = "FluentAccentHoverBrush";
 
         /// <summary>
         /// The brush key for a simulated value, or null for <see cref="SignalValue.NotSimulated"/>
@@ -706,6 +737,31 @@ namespace RetroSchematic.Desktop.Themes
         public string ValueConflict = "#FF0000";
 
         /// <summary>
+        /// The traced signal.
+        /// </summary>
+        public string SchematicTrace = "#FF8C00";
+
+        /// <summary>
+        /// A wire; null uses the theme's ink.
+        /// </summary>
+        public string? SchematicWire;
+
+        /// <summary>
+        /// A bus line; null uses the theme's ink.
+        /// </summary>
+        public string? SchematicBus;
+
+        /// <summary>
+        /// A net label; null uses the theme's ink.
+        /// </summary>
+        public string? SchematicNetLabel;
+
+        /// <summary>
+        /// An accent button under the pointer; null uses the accent colour.
+        /// </summary>
+        public string? AccentHover;
+
+        /// <summary>
         /// The colours in brush-key order.
         /// </summary>
         /// <returns>
@@ -720,7 +776,9 @@ namespace RetroSchematic.Desktop.Themes
                 SidebarSeparator, WarningBackground, WarningBorder, SuccessBackground, SuccessBorder,
                 ErrorBackground, ErrorBorder, ErrorText,
                 SchematicPaper, SchematicInk, SchematicFrame, SchematicInferred, SchematicNote, SchematicSelection, SchematicOpen,
-                ValueUnknown, ValueZero, ValueOne, ValueNotDriven, ValueConflict,
+                ValueUnknown, ValueZero, ValueOne, ValueNotDriven, ValueConflict, SchematicTrace,
+                SchematicWire ?? SchematicInk, SchematicBus ?? SchematicInk, SchematicNetLabel ?? SchematicInk,
+                AccentHover ?? AccentBlue,
             };
         }
     }
