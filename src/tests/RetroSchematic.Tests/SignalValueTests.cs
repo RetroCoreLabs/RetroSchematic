@@ -32,9 +32,9 @@ namespace RetroSchematic.Tests
             s.SetValue("IRQ", SignalValue.Conflict);
             Assert.That(calls, Is.EqualTo(1));
             Assert.That(s.ValueOf("IRQ"), Is.EqualTo(SignalValue.Conflict));
-            Assert.That(s.ValueOf(new DrawItem { Owner = "net:IRQ", Role = DrawRole.NetLabel }), Is.EqualTo(SignalValue.Conflict));
-            Assert.That(s.ValueOf(new DrawItem { Owner = "net:IRQ", Role = DrawRole.Wire }), Is.EqualTo(SignalValue.Conflict));
-            Assert.That(s.ValueOf(new DrawItem { Owner = "net:Q", Role = DrawRole.Wire }), Is.EqualTo(SignalValue.NotSimulated));
+            Assert.That(s.ValueOf(new DrawItem { Owner = "net:IRQ_0", Role = DrawRole.NetLabel }), Is.EqualTo(SignalValue.Conflict));
+            Assert.That(s.ValueOf(new DrawItem { Owner = "net:IRQ_0", Role = DrawRole.Wire }), Is.EqualTo(SignalValue.Conflict));
+            Assert.That(s.ValueOf(new DrawItem { Owner = "net:Q_1", Role = DrawRole.Wire }), Is.EqualTo(SignalValue.NotSimulated));
             Assert.That(s.ValueOf(new DrawItem { Owner = "part:5A", Role = DrawRole.PartOutline }), Is.EqualTo(SignalValue.NotSimulated));
             s.SetValue("IRQ", SignalValue.NotSimulated);
             Assert.That(s.ValueOf("IRQ"), Is.EqualTo(SignalValue.NotSimulated));

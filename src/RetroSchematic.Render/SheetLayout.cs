@@ -764,7 +764,7 @@ namespace RetroSchematic.Render
                 for (int j = 0; j < pins.Count; j++)
                     worst = Worse(worst, PinConfidence(net, pins[j].At));
                 d.WireBranches[NetKey(net)] = WireRouter.Branches(segments);
-                string owner = "net:" + net.Name;
+                string owner = "net:" + NetKey(net);
                 for (int s = 0; s < segments.Count; s++)
                 {
                     double[] g = segments[s];
@@ -914,7 +914,7 @@ namespace RetroSchematic.Render
         private static void DrawLabel(SchematicDrawing d, PinPlan p, Confidence c)
         {
             Net net = p.Net!;
-            string owner = "net:" + net.Name;
+            string owner = "net:" + NetKey(net);
             // the diamond starts a little past the pin end, so the pin dot stays clear of it
             double s = p.Side, x = p.X + (p.Side * LabelOffset), y = p.Y, half = Diamond / 2;
             d.Items.Add(new DrawItem

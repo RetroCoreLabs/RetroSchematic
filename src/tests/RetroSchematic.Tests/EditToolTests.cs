@@ -45,8 +45,8 @@ namespace RetroSchematic.Tests
             Net? net = s.Editor.NetOf("1A.9");
             Assert.That(net, Is.Not.Null);
             Assert.That(s.Editor.NetOf("1A.10"), Is.SameAs(net));
-            Assert.That(s.Selected, Is.EqualTo("net:" + net!.Name));
-            Assert.That(DemoSheetLayoutTests.Wires(s.Drawing, "net:" + net.Name).Count, Is.GreaterThan(0), "the drawing was laid out again with the new wire");
+            Assert.That(s.Selected, Is.EqualTo("net:" + SheetLayout.NetKey(net!)));
+            Assert.That(DemoSheetLayoutTests.Wires(s.Drawing, "net:" + SheetLayout.NetKey(net!)).Count, Is.GreaterThan(0), "the drawing was laid out again with the new wire");
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace RetroSchematic.Tests
         public void PickingASignal_LightsItsPinDots_AndOnlyThose()
         {
             SheetSession s = Session();
-            s.Select("net:DATA");
+            s.Select("net:DATA_1");
             Assert.That(s.IsLit(new DrawItem { Owner = "pin:3A.2" }), Is.True);
             Assert.That(s.IsLit(new DrawItem { Owner = "pin:4A.2" }), Is.True);
             Assert.That(s.IsLit(new DrawItem { Owner = "pin:1A.1" }), Is.False);
@@ -133,7 +133,7 @@ namespace RetroSchematic.Tests
         {
             SheetSession s = Session();
             Assert.That(s.Search("7474"), Is.EqualTo(new[] { "part:4A" }));
-            Assert.That(s.Search("irq"), Is.EqualTo(new[] { "net:IRQ" }));
+            Assert.That(s.Search("irq"), Is.EqualTo(new[] { "net:IRQ_0" }));
             Assert.That(s.Search("5A.3"), Is.EqualTo(new[] { "pin:5A.3" }));
             Assert.That(s.Search("  "), Is.Empty);
         }

@@ -188,7 +188,8 @@ namespace RetroSchematic.Render
                 Try(() =>
                 {
                     string net = _session.Editor.Connect(_from, to);
-                    _session.Select("net:" + net);
+                    RetroSchematic.Model.Net? joined = _session.Editor.NetOf(_from);
+                    _session.Select("net:" + (joined == null ? net : SheetLayout.NetKey(joined)));
                     Message = "Connected " + _from + " to " + to + " on " + net + ".";
                 });
             }

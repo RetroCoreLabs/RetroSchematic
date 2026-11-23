@@ -77,7 +77,7 @@ namespace RetroSchematic.Desktop.Tests
             ListBox found = w.FindControl<ListBox>("FoundList")!;
             Assert.That(found.ItemCount, Is.EqualTo(1));
             found.SelectedIndex = 0;
-            Assert.That(w.Session!.Selected, Is.EqualTo("net:IRQ"));
+            Assert.That(w.Session!.Selected, Is.EqualTo("net:IRQ_0"));
             Assert.That(w.FindControl<SelectableTextBlock>("DetailsText")!.Text, Does.Contain("Pull-up: 1k to +5V"));
             w.Close();
         }

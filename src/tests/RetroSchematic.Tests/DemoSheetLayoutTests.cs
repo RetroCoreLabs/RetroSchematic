@@ -65,7 +65,7 @@ namespace RetroSchematic.Tests
             Netlist n = NetlistReader.ReadFile(Demo);
             SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData);
             // NAB joins 1A.3, 3A.1 and 2A.2: wires must touch all three pin ends
-            List<DrawItem> wires = Wires(d, "net:NAB");
+            List<DrawItem> wires = Wires(d, "net:NAB_0");
             Assert.That(wires.Count, Is.GreaterThanOrEqualTo(2));
             for (int i = 0; i < wires.Count; i++)
                 Assert.That(wires[i].X1 == wires[i].X2 || wires[i].Y1 == wires[i].Y2, "a wire piece is not horizontal or vertical");
@@ -83,11 +83,11 @@ namespace RetroSchematic.Tests
             }
             // IRQ also goes to the backplane (P.20), so by the wire rule it is labelled at each
             // pin instead of wired
-            Assert.That(Wires(d, "net:IRQ").Count, Is.EqualTo(0));
+            Assert.That(Wires(d, "net:IRQ_0").Count, Is.EqualTo(0));
             int irqLabels = 0;
             for (int i = 0; i < d.Items.Count; i++)
             {
-                if (d.Items[i].Role == DrawRole.NetLabel && d.Items[i].Owner == "net:IRQ")
+                if (d.Items[i].Role == DrawRole.NetLabel && d.Items[i].Owner == "net:IRQ_0")
                     irqLabels++;
             }
             Assert.That(irqLabels, Is.EqualTo(2), "a diamond at 5A.3 and at 5A.6");
@@ -99,7 +99,7 @@ namespace RetroSchematic.Tests
             Netlist n = NetlistReader.ReadFile(Demo);
             SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData);
             // CLK: 2A.1 read, 4A.3 inferred, 5A.4 open
-            List<DrawItem> clk = Wires(d, "net:CLK");
+            List<DrawItem> clk = Wires(d, "net:CLK_1");
             bool open = false, inferred = false;
             for (int i = 0; i < clk.Count; i++)
             {
@@ -108,7 +108,7 @@ namespace RetroSchematic.Tests
             }
             Assert.That(open, "no OPEN wire on CLK");
             Assert.That(inferred, "no INFERRED wire on CLK");
-            List<DrawItem> data = Wires(d, "net:DATA");
+            List<DrawItem> data = Wires(d, "net:DATA_1");
             Assert.That(data[0].Confidence, Is.EqualTo(Confidence.Read));
             // the SVG prints OPEN in a colour of its own, apart from inferred brown
             DrawItem openWire = clk[0];

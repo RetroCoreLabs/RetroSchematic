@@ -312,10 +312,10 @@ namespace RetroSchematic.Render
         public void DeleteNet(string name)
         {
             CheckWritable();
-            Net net = FindNet(name) ?? throw new SheetEditException($"There is no signal {name}.");
+            Net net = FindNetByKey(name) ?? throw new SheetEditException($"There is no signal {name}.");
             Snapshot();
             Netlist.Nets.Remove(net);
-            RemoveWirePath(name, net.Active);
+            RemoveWirePath(net.Name, net.Active);
             Done();
         }
 
@@ -539,6 +539,26 @@ namespace RetroSchematic.Render
                     return Netlist.Parts[i];
             }
             return null;
+        }
+
+        /// <summary>
+        /// A signal by its key on the drawing (<see cref="SheetLayout.NetKey"/>: BD15_0), or, when
+        /// no signal has that key, the first signal with that name.
+        /// </summary>
+        /// <param name="key">
+        /// The key or the name.
+        /// </param>
+        /// <returns>
+        /// The signal, or null.
+        /// </returns>
+        public Net? FindNetByKey(string key)
+        {
+            for (int i = 0; i < Netlist.Nets.Count; i++)
+            {
+                if (SheetLayout.NetKey(Netlist.Nets[i]) == key)
+                    return Netlist.Nets[i];
+            }
+            return FindNet(key);
         }
 
         /// <summary>

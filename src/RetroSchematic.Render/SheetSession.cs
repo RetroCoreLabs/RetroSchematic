@@ -246,7 +246,10 @@ namespace RetroSchematic.Render
             if (hit.StartsWith("net:", StringComparison.Ordinal))
                 net = hit.Substring(4);
             else if (hit.StartsWith("pin:", StringComparison.Ordinal))
-                net = Editor.NetOf(hit.Substring(4))?.Name ?? "";
+            {
+                Net? n = Editor.NetOf(hit.Substring(4));
+                net = n == null ? "" : SheetLayout.NetKey(n);
+            }
             Trace(net);
         }
 
@@ -259,10 +262,10 @@ namespace RetroSchematic.Render
         /// </param>
         public void Trace(string net)
         {
-            Net? n = net.Length == 0 ? null : Editor.FindNet(net);
+            Net? n = net.Length == 0 ? null : Editor.FindNetByKey(net);
             _tracePins.Clear();
             _traceOwners.Clear();
-            Traced = n == null ? "" : n.Name;
+            Traced = n == null ? "" : SheetLayout.NetKey(n);
             if (n != null)
             {
                 for (int i = 0; i < n.Pins.Count; i++)
@@ -314,7 +317,7 @@ namespace RetroSchematic.Render
         public List<string> TracedPins()
         {
             List<string> list = new();
-            Net? n = Traced.Length == 0 ? null : Editor.FindNet(Traced);
+            Net? n = Traced.Length == 0 ? null : Editor.FindNetByKey(Traced);
             if (n != null)
             {
                 for (int i = 0; i < n.Pins.Count; i++)
@@ -398,10 +401,13 @@ namespace RetroSchematic.Render
         /// </param>
         public void SetValue(string net, SignalValue value)
         {
+            // kept by the signal's key, so two signals of the same name keep their own values
+            Net? n = Editor.FindNetByKey(net);
+            string key = n == null ? net : SheetLayout.NetKey(n);
             if (value == SignalValue.NotSimulated)
-                _values.Remove(net);
+                _values.Remove(key);
             else
-                _values[net] = value;
+                _values[key] = value;
             DrawingChanged?.Invoke(this);
         }
 
@@ -414,7 +420,11 @@ namespace RetroSchematic.Render
         /// <returns>
         /// Its value.
         /// </returns>
-        public SignalValue ValueOf(string net) => _values.TryGetValue(net, out SignalValue v) ? v : SignalValue.NotSimulated;
+        public SignalValue ValueOf(string net)
+        {
+            Net? n = Editor.FindNetByKey(net);
+            return _values.TryGetValue(n == null ? net : SheetLayout.NetKey(n), out SignalValue v) ? v : SignalValue.NotSimulated;
+        }
 
         /// <summary>
         /// The value an item shows: its signal's value for a wire, a net label or a signal name,
@@ -484,7 +494,7 @@ namespace RetroSchematic.Render
             if (Selected.StartsWith("net:", StringComparison.Ordinal) && item.Owner.StartsWith("pin:", StringComparison.Ordinal))
             {
                 Net? net = Editor.NetOf(item.Owner.Substring(4));
-                return net != null && net.Name == Selected.Substring(4);
+                return net != null && SheetLayout.NetKey(net) == Selected.Substring(4);
             }
             return false;
         }
@@ -515,7 +525,7 @@ namespace RetroSchematic.Render
             for (int i = 0; i < n.Nets.Count; i++)
             {
                 if (Has(n.Nets[i].Name, t))
-                    found.Add("net:" + n.Nets[i].Name);
+                    found.Add("net:" + SheetLayout.NetKey(n.Nets[i]));
             }
             // only text with a dot looks for pins, else "1" would list every pin 1
             if (t.IndexOf('.') >= 0)
@@ -668,7 +678,7 @@ namespace RetroSchematic.Render
         private string DescribeNet(string name)
         {
             StringBuilder sb = new();
-            Net? n = Editor.FindNet(name);
+            Net? n = Editor.FindNetByKey(name);
             if (n == null)
                 return "";
             sb.Append("Signal ").Append(n.Name);
