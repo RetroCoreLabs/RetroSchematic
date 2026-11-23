@@ -35,6 +35,10 @@ was read from, and the tools that check and draw it.
   signal descriptions. Everything can also be done through the MCP server.
 - **See the connectors** - backplane and front connectors are drawn as parts and wired to the
   chips, with ND's bus signal names from the bus catalogues.
+- **See the real card** - switch between the drawing, the original scanned page and photos of
+  the board's front and back (toolbar or F5-F8), each with its own zoom. File > Board info
+  holds the board's facts (part number, print and ECO version, size, layers), its connectors
+  and its switches with what each lever does; a `.rsx` file carries all of it, photos included.
 - **Choose how names look** - an active-low signal as `/NAME` (default), `~NAME`, or ND's own
   0/1 subscript. Settings can follow the file.
 - **Check a sheet file** - `retroschematic check` refuses a file with an unknown format
@@ -79,8 +83,8 @@ Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
 - **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
   plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
   ND-120 CPU's A and B plugs.
-- **Tests:** library and window tests, run with the command in Quick start. Known test
-  problems are in `src/docs/BUGS.md`.
+- **Tests:** 564, all passing (run 2026-11-23): 515 for the libraries, 49 for the window. Run
+  them with the command in Quick start. Known test problems are in `src/docs/BUGS.md`.
 - **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
   `src/docs/PLAN.md`.
 
