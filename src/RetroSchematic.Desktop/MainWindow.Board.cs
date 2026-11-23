@@ -10,6 +10,7 @@ using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Platform.Storage;
 using RetroSchematic.Model;
 using RetroSchematic.Render;
 
@@ -175,6 +176,98 @@ namespace RetroSchematic.Desktop
         private void OpenBoardWindowFromDetails() => OpenBoardWindow();
 
         private void OnBoardInfo(object? sender, RoutedEventArgs e) => OpenBoardWindow();
+
+        /// <summary>
+        /// Imports the board info from the ND PCB catalogue (edit mode; one undo step): the
+        /// board facts with the catalogue as their source, the component- and solder-side
+        /// photos, and the catalogue's switch text on the switch blocks it names.
+        /// </summary>
+        /// <param name="catalogue">
+        /// The catalogue file, pcb.json.
+        /// </param>
+        /// <param name="key">
+        /// A part or card number, or null for the sheet's own (part number first).
+        /// </param>
+        /// <returns>
+        /// What was done, or why nothing was.
+        /// </returns>
+        public string ImportFromCatalogue(string catalogue, string? key = null)
+        {
+            if (_session == null)
+                return "No sheet is open.";
+            string message;
+            try
+            {
+                PcbCatalogue c = PcbCatalogue.Load(catalogue);
+                string k = string.IsNullOrWhiteSpace(key) ? _session.Editor.Root.Board?.PartNumber ?? _session.Editor.Root.Board?.Number ?? "" : key;
+                List<CatalogueEntry> found = k.Length == 0 ? new List<CatalogueEntry>() : c.Find(k);
+                if (k.Length == 0)
+                    message = "The sheet has no part or card number to look up.";
+                else if (found.Count == 0)
+                    message = "There is no board " + k + " in the catalogue.";
+                else if (found.Count > 1)
+                    message = "Card number " + k + " is used by " + found.Count.ToString(CultureInfo.InvariantCulture) + " boards; give the part number.";
+                else
+                    message = _session.Editor.ImportFromCatalogue(found[0], _session.SheetPath);
+            }
+            catch (Exception ex) when (ex is SheetEditException || ex is System.IO.IOException || ex is UnauthorizedAccessException)
+            {
+                message = ex.Message;
+            }
+            StatusText.Text = message.Split('\n')[0];
+            LoadPictures();
+            ShowEditState();
+            return message;
+        }
+
+        private async void OnImportCatalogue(object? sender, RoutedEventArgs e)
+        {
+            if (_session == null)
+                return;
+            if (_session.Editor.ReadOnly)
+            {
+                StatusText.Text = "Turn on edit mode (Ctrl+E) to import board info.";
+                return;
+            }
+            IReadOnlyList<Avalonia.Platform.Storage.IStorageFile> files = await StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+            {
+                Title = "The ND PCB catalogue (pcb.json)",
+                AllowMultiple = false,
+                FileTypeFilter = new[] { new Avalonia.Platform.Storage.FilePickerFileType("pcb.json") { Patterns = new[] { "*.json" } } },
+            });
+            string? path = files.Count == 0 ? null : files[0].TryGetLocalPath();
+            if (path == null)
+                return;
+            BoardSection? b = _session.Editor.Root.Board;
+            string? key = await AskBoardKey(b?.PartNumber ?? b?.Number ?? "");
+            if (key != null)
+                ImportFromCatalogue(path, key);
+        }
+
+        // a small dialog: which board (part or card number), filled with the sheet's own
+        private async System.Threading.Tasks.Task<string?> AskBoardKey(string start)
+        {
+            TextBox box = Box(start, "part number (322049) or card number (1050)");
+            Window dialog = new() { Title = "Which board?", Width = 400, SizeToContent = SizeToContent.Height };
+            dialog.Bind(BackgroundProperty, dialog.GetResourceObservable("FluentBackgroundPrimaryBrush"));
+            string? answer = null;
+            StackPanel p = new() { Margin = new Avalonia.Thickness(14), Spacing = 8 };
+            p.Children.Add(new TextBlock { Text = "The board's part number or card number in the catalogue:", TextWrapping = Avalonia.Media.TextWrapping.Wrap });
+            p.Children.Add(box);
+            StackPanel buttons = new() { Orientation = Orientation.Horizontal, Spacing = 6, HorizontalAlignment = HorizontalAlignment.Right };
+            Button ok = new() { Content = "Import", IsDefault = true };
+            ok.Classes.Add("fluent-button");
+            ok.Click += (s, e) => { answer = box.Text; dialog.Close(); };
+            Button cancel = new() { Content = "Cancel", IsCancel = true };
+            cancel.Classes.Add("fluent-button");
+            cancel.Click += (s, e) => dialog.Close();
+            buttons.Children.Add(ok);
+            buttons.Children.Add(cancel);
+            p.Children.Add(buttons);
+            dialog.Content = p;
+            await dialog.ShowDialog(this);
+            return string.IsNullOrWhiteSpace(answer) ? null : answer.Trim();
+        }
 
         private static SwitchLever? LeverOf(SwitchBlock s, int number)
         {

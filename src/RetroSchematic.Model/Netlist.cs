@@ -753,6 +753,12 @@ namespace RetroSchematic.Model
         /// Worked out from other facts plus an assumption.
         /// </summary>
         Inferred,
+
+        /// <summary>
+        /// The ND PCB catalogue (pcb.json, scraped from norsk-data.com); the place is the
+        /// board's page there.
+        /// </summary>
+        Catalogue,
     }
 
     /// <summary>
@@ -779,6 +785,16 @@ namespace RetroSchematic.Model
         /// How sure the description is.
         /// </summary>
         public Confidence Confidence { get; set; }
+
+        /// <summary>
+        /// The source's own words, copied as they are, or null.
+        /// </summary>
+        public string? Quote { get; set; }
+
+        /// <summary>
+        /// Free text about the source: how its words map to the sheet, for example.
+        /// </summary>
+        public string? Note { get; set; }
     }
 
     /// <summary>

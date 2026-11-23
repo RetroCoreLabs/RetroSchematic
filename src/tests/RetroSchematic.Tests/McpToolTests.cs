@@ -126,8 +126,8 @@ namespace RetroSchematic.Tests
                 Assert.That(methods[i].GetCustomAttribute<System.ComponentModel.DescriptionAttribute>(), Is.Not.Null, methods[i].Name);
                 tools++;
             }
-            // 17 sheet tools, 6 bus tools, 7 block tools, 2 signal tools and 12 board tools
-            Assert.That(tools, Is.EqualTo(44));
+            // 17 sheet tools, 6 bus tools, 7 block tools, 2 signal tools and 13 board tools
+            Assert.That(tools, Is.EqualTo(45));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 
@@ -164,16 +164,16 @@ namespace RetroSchematic.Tests
             SheetTools t = Tools();
             string sheet = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
             t.OpenSheet(sheet);
-            Assert.That(t.GetBoardInfo(), Does.Contain("\"boardNumber\": \"322049\"").And.Contain("\"pins\": \"0-99\""));
+            Assert.That(t.GetBoardInfo(), Does.Contain("\"partNumber\": \"322049\"").And.Contain("\"pins\": \"0-99\""));
             Assert.That(t.GetSwitches(), Does.Contain("\"ref\": \"15E\"").And.Contain("\"signal\": \"IDENT5\""));
             string list = t.ListSources();
             Assert.That(list, Does.Contain("2A50-sync-modem-buffer-1050-p64.png").And.Contain("component side").And.Contain("solder side"));
             Assert.That(list, Does.Not.Contain("NOT FOUND"));
-            Assert.Throws<McpException>(() => t.SetBoardInfo("{\"layers\": 4}"), "read-only");
+            Assert.Throws<McpException>(() => t.SetBoardInfo("{\"title\": \"x\"}"), "read-only");
 
             t.SetEditMode(true);
-            t.SetBoardInfo("{\"ndSystem\":\"ND-100\",\"boardNumber\":\"1\",\"layers\":4}");
-            Assert.That(t.Editor!.Root.Board!.Layers, Is.EqualTo(4));
+            t.SetBoardInfo("{\"ndSystem\":\"ND-100\",\"partNumber\":\"1\",\"specifications\":{\"layers\":4}}");
+            Assert.That(t.Editor!.Root.Board!.Specifications!.Layers, Is.EqualTo(4));
             Assert.Throws<McpException>(() => t.SetBoardInfo("{\"ndSystem\":\"NORD-1\"}"));
             Assert.Throws<McpException>(() => t.SetBoardInfo("{\"colour\":\"green\"}"), "unknown field");
             t.SetConnector("{\"ref\":\"P.A\",\"use\":\"not used\",\"used\":false,\"standard\":\"DIN 41612\",\"rows\":[\"a\",\"b\",\"c\"],\"pinsPerRow\":32}");
@@ -184,10 +184,10 @@ namespace RetroSchematic.Tests
             Assert.That(t.GetSwitches(), Does.Contain("9Z"));
             Assert.Throws<McpException>(() => t.SetSwitch("{\"ref\":\"9Y\",\"leverCount\":2,\"levers\":[{\"number\":3,\"confidence\":\"open\"}]}"), "lever 3 of 2");
             t.RemoveSwitch("9Z");
-            string photo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-files", "photos", "322049-solder-side-v1.jpg");
-            Assert.That(t.AddPhoto(photo, "solder"), Does.Contain("2A50-files/photos/322049-solder-side-v1.jpg"), "a .rsc links by a relative path");
-            Assert.That(t.ListSources(), Does.Contain("3. 2A50-files/photos/322049-solder-side-v1.jpg - solder side [linked]"));
-            t.RemovePhoto(3);
+            string photo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-files", "photos", "322049-solder-side-I-old.jpg");
+            Assert.That(t.AddPhoto(photo, "solder"), Does.Contain("2A50-files/photos/322049-solder-side-I-old.jpg"), "a .rsc links by a relative path");
+            Assert.That(t.ListSources(), Does.Contain("5. 2A50-files/photos/322049-solder-side-I-old.jpg - solder side [linked]"));
+            t.RemovePhoto(5);
             Assert.Throws<McpException>(() => t.AddSource(Path.Combine(TestContext.CurrentContext.TestDirectory, "no-such.png")));
         }
 

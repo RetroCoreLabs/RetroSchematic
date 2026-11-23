@@ -35,19 +35,31 @@ namespace RetroSchematic.Tests
             Netlist n = NetlistReader.ReadFile(Sheet2A50);
             Assert.That(n.Board, Is.Not.Null);
             Assert.That(n.Board!.NdSystem, Is.EqualTo("NORD-10"));
-            Assert.That(n.Board.BoardNumber, Is.EqualTo("322049"));
+            Assert.That(n.Board.PartNumber, Is.EqualTo("322049"));
             Assert.That(n.Board.PrintVersion, Is.EqualTo("I"));
             Assert.That(n.Board.EcoVersion, Is.EqualTo("3"));
-            Assert.That(n.Board.Size!.WidthMm, Is.EqualTo(156));
-            Assert.That(n.Board.Size.HeightMm, Is.EqualTo(149));
-            Assert.That(n.Board.Layers, Is.EqualTo(2));
+            Assert.That(n.Board.Specifications!.Size!.WidthMm, Is.EqualTo(156));
+            Assert.That(n.Board.Specifications.Size.HeightMm, Is.EqualTo(149));
+            Assert.That(n.Board.Specifications.Layers, Is.EqualTo(2));
             Assert.That(n.Connectors, Has.Count.EqualTo(2));
             Assert.That(n.Connectors![0].Pins, Is.EqualTo("0-99"));
             Assert.That(n.Sources, Has.Count.EqualTo(1));
             Assert.That(n.Sources![0].Original!.PdfPage, Is.EqualTo(64));
-            Assert.That(n.Photos, Has.Count.EqualTo(2));
+            // the old and the new board, both sides, from the ND PCB catalogue (322049)
+            Assert.That(n.Photos, Has.Count.EqualTo(4));
             Assert.That(n.Photos![0].Side, Is.EqualTo(BoardSide.Component));
             Assert.That(n.Photos[1].Side, Is.EqualTo(BoardSide.Solder));
+            Assert.That(n.Photos[0].Variant, Is.EqualTo("old"));
+            Assert.That(n.Photos[2].Variant, Is.EqualTo("new"));
+            Assert.That(n.Photos[2].Side, Is.EqualTo(BoardSide.Component));
+            Assert.That(n.Photos[3].Side, Is.EqualTo(BoardSide.Solder));
+            for (int i = 0; i < 4; i++)
+                Assert.That(n.Photos[i].Source!.Kind, Is.EqualTo(SourceKind.Catalogue), n.Photos[i].File);
+            Assert.That(n.Board.Number, Is.EqualTo("1050"));
+            Assert.That(n.Board.Title, Is.EqualTo("Synchronous Modem Buffer"));
+            Assert.That(n.Board.SourceUrl, Is.EqualTo("http://norsk-data.com/hardware/nd-10/nd-322049.html"));
+            Assert.That(n.Board.FactSources!["partNumber"].Kind, Is.EqualTo(SourceKind.Catalogue));
+            Assert.That(n.Board.FactSources["specifications"].Place, Is.EqualTo(n.Board.SourceUrl));
 
             // every linked file is there
             SheetAttachments files = SheetAttachments.Load(Sheet2A50);
@@ -80,6 +92,12 @@ namespace RetroSchematic.Tests
                 Assert.That(HasNet(n, ident.Levers[i].Signal!), Is.True, ident.Levers[i].Signal);
             }
             Assert.That(address.OnMeansConfidence, Is.EqualTo(Confidence.Inferred));
+
+            // the ND PCB catalogue's switch text is a second source on both blocks
+            Assert.That(ident.MoreSources![0].Kind, Is.EqualTo(SourceKind.Catalogue));
+            Assert.That(ident.MoreSources[0].Quote, Does.StartWith("IDENT (position E1), binary inverted value * 4"));
+            Assert.That(ident.MoreSources[0].Note, Does.Contain("E1 is our 1E"));
+            Assert.That(address.MoreSources![0].Quote, Does.StartWith("First device number (position E15), binary value * 8"));
         }
 
         /// <summary>
@@ -101,13 +119,13 @@ namespace RetroSchematic.Tests
             SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), null) { Files = SheetAttachments.Load(Sheet2A50) };
             e.Save(rsx);
 
-            // one file: sheet.json plus the three pictures, under sources/ and photos/
+            // one file: sheet.json plus the five pictures, under sources/ and photos/
             using (ZipArchive zip = ZipFile.OpenRead(rsx))
             {
-                Assert.That(zip.Entries.Count, Is.EqualTo(4));
+                Assert.That(zip.Entries.Count, Is.EqualTo(6));
                 Assert.That(zip.GetEntry("sources/2A50-sync-modem-buffer-1050-p64.png"), Is.Not.Null);
-                Assert.That(zip.GetEntry("photos/322049-component-side-v1.jpg"), Is.Not.Null);
-                Assert.That(zip.GetEntry("photos/322049-solder-side-v1.jpg"), Is.Not.Null);
+                Assert.That(zip.GetEntry("photos/322049-component-side-I-old.jpg"), Is.Not.Null);
+                Assert.That(zip.GetEntry("photos/322049-solder-side-I-old.jpg"), Is.Not.Null);
             }
 
             Netlist opened = NetlistReader.ReadFile(rsx);
@@ -125,7 +143,7 @@ namespace RetroSchematic.Tests
             SheetEditor e2 = new(opened, null) { Files = inside };
             e2.Save(rsc);
             Netlist again = NetlistReader.ReadFile(rsc);
-            Assert.That(again.Photos![0].File, Is.EqualTo("again-files/photos/322049-component-side-v1.jpg"));
+            Assert.That(again.Photos![0].File, Is.EqualTo("again-files/photos/322049-component-side-I-old.jpg"));
             SheetAttachments disk = SheetAttachments.Load(rsc);
             Assert.That(disk.Holds(again.Photos[0].File), Is.False, "a .rsc links, it does not hold");
             Assert.That(disk.Read(again.Sources![0].File), Is.EqualTo(page));

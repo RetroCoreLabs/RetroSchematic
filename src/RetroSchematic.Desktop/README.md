@@ -105,17 +105,25 @@ The toolbar has four view buttons (also View menu, F5-F8):
 Every view zooms with the wheel, moves with a drag and fits with Ctrl+0 or the Fit button,
 and keeps its own zoom when you switch away and back. The pages and photos are the sheet's
 `sources` and `photos` (see `docs/FORMAT.md`): inside the file for a `.rsx`, linked beside it
-for a `.rsc`. A PDF page is shown at 150 dpi.
+for a `.rsc`. A PDF page is shown at 150 dpi. When a side has several photos (2A50 has the
+old and the new board), a **Photo** picker above the PCB views chooses which one is shown; each
+side keeps its own choice.
 
 ## The board
 
-With nothing picked, Details shows the **Board** card: machine, board number, print and ECO
+With nothing picked, Details shows the **Board** card: title, machine, card and part numbers, print and ECO
 versions, size, layers, connectors, pages, photos and switches. **File > Board info...** (or the
 card's button) opens the Board window, where in edit mode you change those facts, document each
 connector (for an ND-100 card the plugs A, B and C each on their own, "not used" allowed), and
 import, replace or remove original pages and photos (with thumbnails; for a PDF it asks which
 pages). A `.rsc` links an imported file where it is; a `.rsx` keeps it inside, and **Save as
 .rsx** packs every linked file into the one file (a PDF page as PNG at 300 dpi).
+
+**File > Import board info from the ND PCB catalogue...** (edit mode) asks for `pcb.json` and
+the board's part or card number (filled in from the sheet) and fills the board facts, copies
+the board's component- and solder-side photos into the sheet, and puts the catalogue's switch
+text on the switch blocks it names, each with the catalogue and the board's web page as the
+source. It is one undo step. The catalogue itself is only read.
 
 The switch blocks (2A50: 15E device address, 1E ident code) are listed at the end of the
 Parts list. Picking one shows what each lever sets and what "on" means, each fact marked

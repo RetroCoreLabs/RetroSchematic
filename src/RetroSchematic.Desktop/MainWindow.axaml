@@ -22,7 +22,9 @@
         <MenuItem Header="_Save sheet" Click="OnSave" x:Name="SaveItem" IsEnabled="False" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
         <MenuItem Header="Save sheet _as..." Click="OnSaveAs" x:Name="SaveAsItem" IsEnabled="False"/>
         <MenuItem Header="_Board info..." Click="OnBoardInfo" x:Name="BoardInfoItem" IsEnabled="False"
-                  ToolTip.Tip="The board: machine, board number, versions, size, connectors, original pages and photos"/>
+                  ToolTip.Tip="The board: machine, card and part numbers, versions, size, connectors, original pages and photos"/>
+        <MenuItem Header="_Import board info from the ND PCB catalogue..." Click="OnImportCatalogue" x:Name="ImportCatalogueItem" IsEnabled="False"
+                  ToolTip.Tip="Pick pcb.json (the ND PCB catalogue): fills the board facts, copies the board photos and adds the catalogue's switch text; the board is found by its part or card number"/>
         <MenuItem Header="Save as S_VG..." Click="OnSaveSvg" x:Name="SaveSvgItem" IsEnabled="False"/>
         <MenuItem Header="Export _PNG..." Click="OnExportPng" x:Name="ExportPngItem" IsEnabled="False"/>
         <Separator/>
@@ -177,6 +179,11 @@
         <StackPanel x:Name="PagePickerBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,6,0,0" IsVisible="False">
           <TextBlock Classes="fluent-text" Text="Page" VerticalAlignment="Center"/>
           <ComboBox x:Name="PagePicker" Classes="fluent-combobox" MinWidth="260" SelectionChanged="OnPagePicked"/>
+        </StackPanel>
+        <!-- several photos of the side shown (the old and the new board, say): pick which one -->
+        <StackPanel x:Name="PhotoPickerBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,6,0,0" IsVisible="False">
+          <TextBlock Classes="fluent-text" Text="Photo" VerticalAlignment="Center"/>
+          <ComboBox x:Name="PhotoPicker" Classes="fluent-combobox" MinWidth="320" SelectionChanged="OnPhotoPicked"/>
         </StackPanel>
         <Border Classes="panel-border" Margin="0,6" ClipToBounds="True">
           <Grid>

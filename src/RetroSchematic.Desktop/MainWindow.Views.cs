@@ -54,6 +54,10 @@ namespace RetroSchematic.Desktop
         private string _picturesFrom = "";
         private bool _fillingPages;
 
+        // which photo of each side is shown, among that side's photos (0 = the first)
+        private int _frontPick;
+        private int _backPick;
+
         /// <summary>
         /// The view shown now: drawing, original, front or back.
         /// </summary>
@@ -97,6 +101,7 @@ namespace RetroSchematic.Desktop
             FrontView.IsVisible = view == ViewFront;
             BackView.IsVisible = view == ViewBack;
             PagePickerBar.IsVisible = view == ViewOriginal && PagePicker.ItemCount > 1;
+            FillPhotoPicker();
             TbViewDrawing.IsChecked = view == ViewDrawing;
             TbViewOriginal.IsChecked = view == ViewOriginal;
             TbViewFront.IsChecked = view == ViewFront;
@@ -132,6 +137,7 @@ namespace RetroSchematic.Desktop
             TbViewFront.IsEnabled = open;
             TbViewBack.IsEnabled = open;
             BoardInfoItem.IsEnabled = open;
+            ImportCatalogueItem.IsEnabled = open;
             if (_session == null)
                 return;
             Netlist n = _session.Editor.Root;
@@ -148,9 +154,115 @@ namespace RetroSchematic.Desktop
             PagePicker.SelectedIndex = titles.Count > 0 ? 0 : -1;
             _fillingPages = false;
             ShowPage(titles.Count > 0 ? 0 : -1);
-            FrontView.SetPicture(PhotoBytes(n, BoardSide.Component, out string? fp), fp ?? "This sheet has no photo of the component side (File > Board info...)");
-            BackView.SetPicture(PhotoBytes(n, BoardSide.Solder, out string? bp), bp ?? "This sheet has no photo of the solder side (File > Board info...)");
+            _frontPick = 0;
+            _backPick = 0;
+            ShowPhoto(BoardSide.Component);
+            ShowPhoto(BoardSide.Solder);
             PagePickerBar.IsVisible = _view == ViewOriginal && titles.Count > 1;
+            FillPhotoPicker();
+        }
+
+        /// <summary>
+        /// The photo picker for a side with several photos (the old and the new board, say).
+        /// </summary>
+        public ComboBox PhotoChoice => PhotoPicker;
+
+        /// <summary>
+        /// Which photo of a side its view shows: 0 = the first photo of that side in the sheet.
+        /// </summary>
+        /// <param name="side">
+        /// The side.
+        /// </param>
+        /// <returns>
+        /// The place among that side's photos.
+        /// </returns>
+        public int PhotoShown(BoardSide side) => side == BoardSide.Component ? _frontPick : _backPick;
+
+        /// <summary>
+        /// Shows another photo of a side in its view.
+        /// </summary>
+        /// <param name="side">
+        /// The side.
+        /// </param>
+        /// <param name="which">
+        /// The place among that side's photos, 0 first.
+        /// </param>
+        public void PickPhoto(BoardSide side, int which)
+        {
+            if (_session == null || which < 0 || which >= PhotosOf(_session.Editor.Root, side).Count)
+                return;
+            if (side == BoardSide.Component)
+                _frontPick = which;
+            else
+                _backPick = which;
+            ShowPhoto(side);
+            FillPhotoPicker();
+        }
+
+        /// <summary>
+        /// The name of a photo in the picker: its caption, else its file, and the variant.
+        /// </summary>
+        /// <param name="p">
+        /// The photo.
+        /// </param>
+        /// <returns>
+        /// The text.
+        /// </returns>
+        public static string PhotoTitle(BoardPhoto p)
+        {
+            string t = p.Caption ?? Path.GetFileName(p.File);
+            if (p.Variant != null && p.Caption == null)
+                t += " (" + p.Variant + ")";
+            return t;
+        }
+
+        // the places in the sheet's list of the photos of one side
+        private static List<int> PhotosOf(Netlist n, BoardSide side)
+        {
+            List<int> list = new();
+            for (int i = 0; n.Photos != null && i < n.Photos.Count; i++)
+            {
+                if (n.Photos[i].Side == side)
+                    list.Add(i);
+            }
+            return list;
+        }
+
+        private void ShowPhoto(BoardSide side)
+        {
+            ImageView view = side == BoardSide.Component ? FrontView : BackView;
+            byte[]? b = PhotoBytes(_session!.Editor.Root, side, PhotoShown(side), out string? problem);
+            view.SetPicture(b, problem ?? (side == BoardSide.Component
+                ? "This sheet has no photo of the component side (File > Board info...)"
+                : "This sheet has no photo of the solder side (File > Board info...)"));
+        }
+
+        // the picker lists the photos of the side shown; hidden when it has one or none
+        private void FillPhotoPicker()
+        {
+            if (_session == null || (_view != ViewFront && _view != ViewBack))
+            {
+                PhotoPickerBar.IsVisible = false;
+                return;
+            }
+            BoardSide side = _view == ViewFront ? BoardSide.Component : BoardSide.Solder;
+            Netlist n = _session.Editor.Root;
+            List<int> mine = PhotosOf(n, side);
+            List<string> titles = new();
+            for (int i = 0; i < mine.Count; i++)
+                titles.Add(PhotoTitle(n.Photos![mine[i]]));
+            _fillingPages = true;
+            PhotoPicker.ItemsSource = titles;
+            PhotoPicker.SelectedIndex = titles.Count == 0 ? -1 : PhotoShown(side);
+            _fillingPages = false;
+            PhotoPickerBar.IsVisible = titles.Count > 1;
+        }
+
+        private void OnPhotoPicked(object? sender, SelectionChangedEventArgs e)
+        {
+            if (_fillingPages || PhotoPicker.SelectedIndex < 0)
+                return;
+            PickPhoto(_view == ViewFront ? BoardSide.Component : BoardSide.Solder, PhotoPicker.SelectedIndex);
         }
 
         /// <summary>
@@ -213,20 +325,18 @@ namespace RetroSchematic.Desktop
             }
         }
 
-        // the first photo of a side, or null with the reason
-        private byte[]? PhotoBytes(Netlist n, BoardSide side, out string? problem)
+        // one photo of a side (0 = its first), or null with the reason
+        private byte[]? PhotoBytes(Netlist n, BoardSide side, int which, out string? problem)
         {
             problem = null;
-            for (int i = 0; n.Photos != null && i < n.Photos.Count; i++)
-            {
-                if (n.Photos[i].Side != side)
-                    continue;
-                byte[]? b = _session!.Editor.Files.Read(n.Photos[i].File);
-                if (b == null)
-                    problem = "The photo file " + n.Photos[i].File + " cannot be found.";
-                return b;
-            }
-            return null;
+            List<int> mine = PhotosOf(n, side);
+            if (mine.Count == 0)
+                return null;
+            BoardPhoto p = n.Photos![mine[Math.Clamp(which, 0, mine.Count - 1)]];
+            byte[]? b = _session!.Editor.Files.Read(p.File);
+            if (b == null)
+                problem = "The photo file " + p.File + " cannot be found.";
+            return b;
         }
 
         private static string Signature(Netlist n)
@@ -235,7 +345,7 @@ namespace RetroSchematic.Desktop
             for (int i = 0; n.Sources != null && i < n.Sources.Count; i++)
                 sb.Append(n.Sources[i].File).Append('#').Append(n.Sources[i].PdfPage).Append('#').Append(n.Sources[i].Title).Append(';');
             for (int i = 0; n.Photos != null && i < n.Photos.Count; i++)
-                sb.Append(n.Photos[i].File).Append('@').Append(n.Photos[i].Side).Append(';');
+                sb.Append(n.Photos[i].File).Append('@').Append(n.Photos[i].Side).Append('#').Append(n.Photos[i].Caption).Append(';');
             return sb.ToString();
         }
 

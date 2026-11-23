@@ -19,6 +19,8 @@ namespace RetroSchematic.Cli
         private const string Help =
             "retroschematic check <sheet.rsc>                          check a netlist file\n" +
             "retroschematic pack <sheet.rsc> <sheet.rsx>                save as one zipped file with every source page and photo inside\n" +
+            "retroschematic import-board <sheet> <pcb.json> [number]     fill the board info from the ND PCB catalogue (part or card number;\n" +
+            "    default the sheet's own) and save the sheet; the photos are copied in\n" +
             "retroschematic render <sheet.rsc> <out.svg> [nd|modern] [--theme <name>] [--no-buses] [--names slash|tilde|subscript]\n" +
             "    draw it as SVG (default: nd symbols, the Light theme, buses drawn, /NAME for active low)\n";
 
@@ -69,6 +71,30 @@ namespace RetroSchematic.Cli
                         SheetEditor packer = new(netlist, null) { Files = SheetAttachments.Load(args[1]) };
                         packer.Save(args[2]);
                         Console.WriteLine($"Wrote {args[2]}");
+                        return 0;
+                    }
+
+                    case "import-board":
+                    {
+                        if (args.Length < 3)
+                        {
+                            Console.Error.Write(Help);
+                            return 2;
+                        }
+                        // the same import as File > Import board info from the ND PCB
+                        // catalogue... in the window, saved back into the same sheet file
+                        PcbCatalogue catalogue = PcbCatalogue.Load(args[2]);
+                        string key = args.Length > 3 ? args[3] : netlist.Board?.PartNumber ?? netlist.Board?.Number ?? "";
+                        System.Collections.Generic.List<CatalogueEntry> found = catalogue.Find(key);
+                        if (found.Count != 1)
+                        {
+                            Console.Error.WriteLine(found.Count == 0 ? $"No board \"{key}\" in the catalogue." : $"\"{key}\" matches {found.Count} boards; give the part number.");
+                            return 1;
+                        }
+                        SheetEditor importer = new(netlist, null) { Files = SheetAttachments.Load(args[1]), ReadOnly = false };
+                        Console.Write(importer.ImportFromCatalogue(found[0], args[1]));
+                        importer.Save(args[1]);
+                        Console.WriteLine($"Wrote {args[1]}");
                         return 0;
                     }
 

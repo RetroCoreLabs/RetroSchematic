@@ -88,9 +88,37 @@ namespace RetroSchematic.Desktop.Tests
             MainWindow w = new();
             w.Show();
             w.OpenSheet(Packed2A50);
-            Assert.That(w.Session!.Editor.Files.Holds("photos/322049-component-side-v1.jpg"), Is.True);
+            Assert.That(w.Session!.Editor.Files.Holds("photos/322049-component-side-I-old.jpg"), Is.True);
             Assert.That(w.Front.Bitmap!.PixelSize, Is.EqualTo(new PixelSize(2500, 2500)));
             Assert.That(w.Original.Bitmap!.PixelSize, Is.EqualTo(new PixelSize(3507, 2496)));
+            w.Close();
+        }
+
+        /// <summary>
+        /// 2A50 has the old and the new board on each side: the picker shows both captions on
+        /// the PCB views (not on the drawing), and picking the new one shows another picture.
+        /// </summary>
+        [AvaloniaTest]
+        public void PhotoPicker_ChoosesTheOldOrTheNewBoard()
+        {
+            MainWindow w = new() { Width = 1400, Height = 900 };
+            w.Show();
+            w.OpenSheet(Sheet2A50);
+            StackPanel bar = w.FindControl<StackPanel>("PhotoPickerBar")!;
+            Assert.That(bar.IsVisible, Is.False, "the drawing has no photo picker");
+            w.ShowView(MainWindow.ViewFront);
+            Assert.That(bar.IsVisible, Is.True);
+            Assert.That(w.PhotoChoice.ItemCount, Is.EqualTo(2));
+            Assert.That(w.PhotoChoice.Items[0], Is.EqualTo("Component side, PCB version I, old"));
+            Assert.That(w.PhotoChoice.Items[1], Is.EqualTo("Component side, PCB version I, new"));
+            Avalonia.Media.Imaging.Bitmap old = w.Front.Bitmap!;
+            w.PhotoChoice.SelectedIndex = 1;
+            Assert.That(w.PhotoShown(BoardSide.Component), Is.EqualTo(1));
+            Assert.That(w.Front.Bitmap, Is.Not.SameAs(old));
+            BoardViewTests.Save(w, "view-pcb-front-new");
+            w.ShowView(MainWindow.ViewBack);
+            Assert.That(w.PhotoChoice.Items[1], Is.EqualTo("Solder side, PCB version I, new"));
+            Assert.That(w.PhotoChoice.SelectedIndex, Is.EqualTo(0), "each side keeps its own choice");
             w.Close();
         }
 
@@ -104,6 +132,7 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(d.Sections, Does.Contain("Board"));
             string text = d.AllText();
             Assert.That(text, Does.Contain("322049").And.Contain("NORD-10").And.Contain("156 x 149 mm").And.Contain("15E"));
+            Assert.That(text, Does.Contain("Synchronous Modem Buffer").And.Contain("1050").And.Contain("nd-322049.html"));
             w.Close();
         }
 
@@ -147,7 +176,7 @@ namespace RetroSchematic.Desktop.Tests
             w.Show();
             w.OpenSheet(sheet);
             BoardWindow b = w.OpenBoardWindow()!;
-            Assert.That(b.Thumbnails, Has.Count.EqualTo(3), "one page, two photos");
+            Assert.That(b.Thumbnails, Has.Count.EqualTo(5), "one page, four photos (old and new board, both sides)");
             Assert.That(b.Thumbnails.TrueForAll(t => t != null), Is.True, "every thumbnail could be read");
             Assert.That(b.Fields.Number.Text, Is.EqualTo("322049"));
             SaveWindow(b, "board-window");
@@ -161,7 +190,7 @@ namespace RetroSchematic.Desktop.Tests
             b.Refresh();
             b.Fields.Layers.Text = "4";
             Assert.That(b.SaveBoard(), Is.True, b.Message);
-            Assert.That(w.Session!.Editor.Root.Board!.Layers, Is.EqualTo(4));
+            Assert.That(w.Session!.Editor.Root.Board!.Specifications!.Layers, Is.EqualTo(4));
             b.Fields.Width.Text = "wide";
             Assert.That(b.SaveBoard(), Is.False);
 
@@ -172,10 +201,10 @@ namespace RetroSchematic.Desktop.Tests
             Assert.That(w.Session.Editor.Root.Connectors![1].Used, Is.False);
 
             // import a photo and a PDF page into the .rsx: both held inside
-            string photo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-files", "photos", "322049-solder-side-v1.jpg");
+            string photo = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-files", "photos", "322049-solder-side-I-old.jpg");
             Assert.That(b.ImportPhoto(photo, BoardSide.Solder), Is.True, b.Message);
-            Assert.That(w.Session.Editor.Root.Photos, Has.Count.EqualTo(3));
-            Assert.That(b.RemovePhoto(2), Is.True);
+            Assert.That(w.Session.Editor.Root.Photos, Has.Count.EqualTo(5));
+            Assert.That(b.RemovePhoto(4), Is.True);
             Assert.That(BoardWindow.ParsePages("63-65, 70", 252, out List<int> pages), Is.True);
             Assert.That(pages, Is.EqualTo(new[] { 63, 64, 65, 70 }));
             Assert.That(BoardWindow.ParsePages("300", 252, out _), Is.False);

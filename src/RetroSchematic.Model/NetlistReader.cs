@@ -37,6 +37,9 @@ namespace RetroSchematic.Model
             // an absent optional field is left out, not written as null, so a written file
             // matches the schema (which has no null values)
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            // the file is read by people: '>', '+', quotes and apostrophes are written as they
+            // are, not as > escapes (the text is a file, never put into a web page)
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             Converters = { new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower, allowIntegerValues: false) },
         };
 

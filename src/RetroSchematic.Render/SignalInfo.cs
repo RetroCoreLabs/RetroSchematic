@@ -583,6 +583,8 @@ namespace RetroSchematic.Render
                 SourceKind.Drawing => "the drawing",
                 SourceKind.Manual => "manual",
                 SourceKind.Reading => "reading document",
+                // the document name says which catalogue
+                SourceKind.Catalogue => "catalogue:",
                 _ => "inferred",
             });
             if (!string.IsNullOrEmpty(s.Document))

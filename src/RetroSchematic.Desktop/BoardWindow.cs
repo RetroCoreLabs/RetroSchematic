@@ -36,7 +36,7 @@ namespace RetroSchematic.Desktop
         private readonly StackPanel _root = new() { Spacing = 10, Margin = new Avalonia.Thickness(14) };
 
         private ComboBox _system = new();
-        private TextBox _number = new(), _print = new(), _eco = new(), _width = new(), _height = new(), _layers = new(), _note = new();
+        private TextBox _card = new(), _number = new(), _title = new(), _print = new(), _eco = new(), _width = new(), _height = new(), _layers = new(), _note = new();
         private readonly List<ConnectorRow> _connectors = new();
 
         /// <summary>
@@ -93,22 +93,32 @@ namespace RetroSchematic.Desktop
             _root.Children.Add(Header("Board"));
             BoardSection b = n.Board ?? new BoardSection();
             _system = new ComboBox { ItemsSource = new[] { "not known", "NORD-10", "ND-100" }, SelectedItem = b.NdSystem ?? "not known", MinWidth = 160 };
-            _number = Field(b.BoardNumber, "e.g. 322049");
+            _card = Field(b.Number, "e.g. 1050");
+            _number = Field(b.PartNumber, "e.g. 322049");
+            _title = Field(b.Title, "e.g. Synchronous Modem Buffer");
             _print = Field(b.PrintVersion, "e.g. I");
             _eco = Field(b.EcoVersion, "e.g. 3");
-            _width = Field(b.Size?.WidthMm.ToString(CultureInfo.InvariantCulture), "mm");
-            _height = Field(b.Size?.HeightMm.ToString(CultureInfo.InvariantCulture), "mm");
-            _layers = Field(b.Layers?.ToString(CultureInfo.InvariantCulture), "e.g. 2");
+            _width = Field(b.Specifications?.Size?.WidthMm.ToString(CultureInfo.InvariantCulture), "mm");
+            _height = Field(b.Specifications?.Size?.HeightMm.ToString(CultureInfo.InvariantCulture), "mm");
+            _layers = Field(b.Specifications?.Layers?.ToString(CultureInfo.InvariantCulture), "e.g. 2");
             _note = Field(b.Note, "where the values were read");
             Grid facts = Form();
             AddField(facts, "ND machine", _system);
-            AddField(facts, "Board number", _number);
+            AddField(facts, "Card number", _card);
+            AddField(facts, "Part number", _number);
+            AddField(facts, "Title", _title);
             AddField(facts, "Print version", _print);
             AddField(facts, "ECO version", _eco);
             AddField(facts, "Width (mm)", _width);
             AddField(facts, "Height (mm)", _height);
             AddField(facts, "Layers", _layers);
             AddField(facts, "Note", _note);
+            // the catalogue's other facts are shown, not edited here (File > Import board info
+            // from the ND PCB catalogue... fills them)
+            if (b.Description != null)
+                AddField(facts, "Description", Muted(b.Description));
+            if (b.SourceUrl != null)
+                AddField(facts, "From", Muted(PcbCatalogue.DocumentName + ", " + b.SourceUrl));
             _root.Children.Add(facts);
             _root.Children.Add(Action("Save board facts", editing, (s, e) => SaveBoard()));
 
@@ -149,29 +159,42 @@ namespace RetroSchematic.Desktop
         /// </returns>
         public bool SaveBoard()
         {
-            BoardSection b = new()
-            {
-                NdSystem = _system.SelectedItem as string == "not known" ? null : _system.SelectedItem as string,
-                BoardNumber = Clean(_number.Text),
-                PrintVersion = Clean(_print.Text),
-                EcoVersion = Clean(_eco.Text),
-                Note = Clean(_note.Text),
-            };
+            // the fields not in this form (description, catalogue lists, sources) are kept
+            BoardSection b = _session.Editor.Root.Board == null ? new BoardSection() : NetlistReader.Clone(_session.Editor.Root.Board);
+            BoardSection old = NetlistReader.Clone(b);
+            b.NdSystem = _system.SelectedItem as string == "not known" ? null : _system.SelectedItem as string;
+            b.Number = Clean(_card.Text);
+            b.PartNumber = Clean(_number.Text);
+            b.Title = Clean(_title.Text);
+            b.PrintVersion = Clean(_print.Text);
+            b.EcoVersion = Clean(_eco.Text);
+            b.Note = Clean(_note.Text);
             if (!Number(_width.Text, "width", out double? w) || !Number(_height.Text, "height", out double? h))
                 return false;
+            BoardSize? size = null;
+            int? layerCount = null;
             if (w != null || h != null)
             {
                 if (w == null || h == null)
                     return Fail("Give both width and height, or neither.");
-                b.Size = new BoardSize { WidthMm = w.Value, HeightMm = h.Value };
+                size = new BoardSize { WidthMm = w.Value, HeightMm = h.Value };
             }
             if (Clean(_layers.Text) is string layers)
             {
                 if (!int.TryParse(layers, NumberStyles.Integer, CultureInfo.InvariantCulture, out int l) || l < 1)
                     return Fail("Layers is a whole number, 1 or more.");
-                b.Layers = l;
+                layerCount = l;
             }
-            bool empty = b.NdSystem == null && b.BoardNumber == null && b.PrintVersion == null && b.EcoVersion == null && b.Size == null && b.Layers == null && b.Note == null;
+            b.Specifications = size == null && layerCount == null ? null : new BoardSpecifications { Size = size, Layers = layerCount };
+            // a fact changed by hand no longer comes from where it came from
+            Unsourced(b, "ndSystem", old.NdSystem, b.NdSystem);
+            Unsourced(b, "number", old.Number, b.Number);
+            Unsourced(b, "partNumber", old.PartNumber, b.PartNumber);
+            Unsourced(b, "title", old.Title, b.Title);
+            Unsourced(b, "printVersion", old.PrintVersion, b.PrintVersion);
+            Unsourced(b, "ecoVersion", old.EcoVersion, b.EcoVersion);
+            Unsourced(b, "specifications", NetlistReader.ToJson(old.Specifications), NetlistReader.ToJson(b.Specifications));
+            bool empty = NetlistReader.ToJson(b) == NetlistReader.ToJson(new BoardSection());
             return Change(() => _session.Editor.SetBoard(empty ? null : b), "Saved the board facts.");
         }
 
@@ -424,6 +447,10 @@ namespace RetroSchematic.Desktop
             StackPanel text = new() { Spacing = 2 };
             text.Children.Add(new TextBlock { Text = (index + 1).ToString(CultureInfo.InvariantCulture) + ". " + (p.Side == BoardSide.Component ? "Component side" : "Solder side"), FontWeight = FontWeight.SemiBold });
             text.Children.Add(Muted(p.File + (_session.Editor.Files.Holds(p.File) ? "  (inside the sheet)" : "  (linked)")));
+            if (p.Caption != null || p.Variant != null)
+                text.Children.Add(Muted((p.Caption ?? "") + (p.Variant != null ? "  (variant: " + p.Variant + ")" : "")));
+            if (p.Source != null)
+                text.Children.Add(Muted("from " + SignalInfo.SourceText(p.Source)));
             if (p.Note != null)
                 text.Children.Add(Muted(p.Note));
             StackPanel buttons = new() { Orientation = Orientation.Horizontal, Spacing = 6 };
@@ -540,6 +567,16 @@ namespace RetroSchematic.Desktop
         }
 
         private static string? Clean(string? text) => string.IsNullOrWhiteSpace(text) ? null : text.Trim();
+
+        // drops a fact's source when the fact was changed by hand
+        private static void Unsourced(BoardSection b, string field, string? before, string? after)
+        {
+            if (before == after || b.FactSources == null)
+                return;
+            b.FactSources.Remove(field);
+            if (b.FactSources.Count == 0)
+                b.FactSources = null;
+        }
 
         private static TextBlock Header(string text) => new() { Text = text, FontSize = 16, FontWeight = FontWeight.SemiBold, Margin = new Avalonia.Thickness(0, 8, 0, 0) };
 

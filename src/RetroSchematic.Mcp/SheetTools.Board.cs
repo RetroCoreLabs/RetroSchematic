@@ -45,8 +45,8 @@ namespace RetroSchematic.Mcp
         /// <returns>
         /// What was done.
         /// </returns>
-        [McpServerTool(Name = "set_board_info"), Description("Set the board facts (edit mode; undoable). JSON with any of: ndSystem (NORD-10 or ND-100), boardNumber, printVersion, ecoVersion, size {widthMm, heightMm}, layers, note. The whole section is replaced; empty text removes it.")]
-        public string SetBoardInfo([Description("The board section as JSON, e.g. {\"ndSystem\":\"NORD-10\",\"boardNumber\":\"322049\"}")] string board)
+        [McpServerTool(Name = "set_board_info"), Description("Set the board facts (edit mode; undoable). JSON with any of (the ND PCB catalogue's own names): number (card number, 1050), partNumber (322049), title, ndSystem (NORD-10 or ND-100), group, description, printVersion, ecoVersion, printVersions [{print, eco, note}], specifications {size {widthMm, heightMm}, layers}, releaseDate, leds/straps/switches/connectors [{id, color, text}], chipset [{name, description, url}], sourceUrl, factSources {field: {kind, document, place, confidence, quote, note}}, note. The whole section is replaced; empty text removes it.")]
+        public string SetBoardInfo([Description("The board section as JSON, e.g. {\"ndSystem\":\"NORD-10\",\"partNumber\":\"322049\"}")] string board)
             => Run(e =>
             {
                 BoardSection? b = string.IsNullOrWhiteSpace(board) ? null : Parse<BoardSection>(board);
@@ -54,6 +54,49 @@ namespace RetroSchematic.Mcp
                     throw new McpException("ndSystem is NORD-10 or ND-100.");
                 e.SetBoard(b);
                 return b == null ? "Removed the board section." : "Set the board section.";
+            });
+
+        /// <summary>
+        /// Imports a board from the ND PCB catalogue.
+        /// </summary>
+        /// <param name="catalogue">
+        /// The catalogue file, pcb.json.
+        /// </param>
+        /// <param name="key">
+        /// A part number or card number, or empty for the sheet's own.
+        /// </param>
+        /// <returns>
+        /// What was done.
+        /// </returns>
+        [McpServerTool(Name = "import_board_from_catalogue"), Description("Fill the board facts from the ND PCB catalogue (pcb.json, scraped from norsk-data.com; read only) (edit mode; one undo step). The board is found by part number (322049) or card number (1050); empty key uses the sheet's own partNumber, else number. Every fact filled records the catalogue and the board's web page as its source. The component- and solder-side photos are copied into the sheet (a .rsc: beside its photos, else SHEETNAME-files/photos/; a .rsx holds them) with version, variant (old/new) and caption; a photo the sheet already has is kept. The catalogue's switch text is added as a further source on the switch block it names (its 'position E1' is our 1E).")]
+        public string ImportBoardFromCatalogue(
+            [Description("Full path of pcb.json")] string catalogue,
+            [Description("Part number or card number; empty = the sheet's own")] string? key = null)
+            => Run(e =>
+            {
+                PcbCatalogue c;
+                try
+                {
+                    c = PcbCatalogue.Load(catalogue);
+                }
+                catch (System.IO.IOException ex)
+                {
+                    throw new McpException(ex.Message, ex);
+                }
+                string k = string.IsNullOrWhiteSpace(key) ? e.Root.Board?.PartNumber ?? e.Root.Board?.Number ?? "" : key;
+                if (k.Length == 0)
+                    throw new McpException("The sheet has no part or card number; give one as key.");
+                List<CatalogueEntry> found = c.Find(k);
+                if (found.Count == 0)
+                    throw new McpException("No board " + k + " in the catalogue (" + c.Count.ToString(CultureInfo.InvariantCulture) + " boards).");
+                if (found.Count > 1)
+                {
+                    StringBuilder sb = new();
+                    for (int i = 0; i < found.Count; i++)
+                        sb.Append(i == 0 ? "" : ", ").Append(found[i].PartNumber).Append(" (").Append(found[i].Board.Title).Append(')');
+                    throw new McpException("Card number " + k + " is used by " + found.Count.ToString(CultureInfo.InvariantCulture) + " boards: " + sb + ". Give the part number.");
+                }
+                return e.ImportFromCatalogue(found[0], _path);
             });
 
         /// <summary>
@@ -123,6 +166,8 @@ namespace RetroSchematic.Mcp
             {
                 BoardPhoto p = n.Photos[i];
                 sb.Append(string.Create(CultureInfo.InvariantCulture, $"  {i + 1}. {p.File} - {(p.Side == BoardSide.Component ? "component side" : "solder side")}"));
+                if (p.Version != null || p.Variant != null)
+                    sb.Append(" (version ").Append(p.Version ?? "?").Append(p.Variant == null ? "" : ", " + p.Variant).Append(')');
                 sb.Append(Where(e, p.File)).Append('\n');
             }
             if (n.Photos == null)

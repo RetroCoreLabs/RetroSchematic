@@ -10,20 +10,46 @@ namespace RetroSchematic.Model
 {
     /// <summary>
     /// What the printed circuit board is (the sheet's optional "board" section, docs/FORMAT.md):
-    /// which ND machine it is for, its board number, print and ECO versions, size and layers.
-    /// Every value is optional: a missing one is not known.
+    /// which ND machine it is for, its card and part numbers, print and ECO versions, size and
+    /// layers, and the lists the ND PCB catalogue gives (LEDs, straps, switches, connectors,
+    /// chips). The field names are the catalogue's own (pcb.json, scraped from norsk-data.com)
+    /// wherever a field means the same, so an import is a straight copy. Every value is
+    /// optional: a missing one is not known.
     /// </summary>
     public sealed class BoardSection
     {
         /// <summary>
-        /// The ND machine the card plugs into: "NORD-10" or "ND-100".
+        /// The card number ND gave the board, such as "1050" (the catalogue's "number").
+        /// </summary>
+        public string? Number { get; set; }
+
+        /// <summary>
+        /// The part number printed on the board, such as "322049" (was "boardNumber" before
+        /// 2026-11-23).
+        /// </summary>
+        public string? PartNumber { get; set; }
+
+        /// <summary>
+        /// The board's name, such as "Synchronous Modem Buffer".
+        /// </summary>
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// The ND machine the card plugs into: "NORD-10" or "ND-100". (The catalogue writes
+        /// "10" and "100"; an import turns them into these names.)
         /// </summary>
         public string? NdSystem { get; set; }
 
         /// <summary>
-        /// The board (part) number printed on the card, such as 322049.
+        /// The catalogue's group code for the board, such as "1C". What the codes mean is not
+        /// written in the catalogue.
         /// </summary>
-        public string? BoardNumber { get; set; }
+        public string? Group { get; set; }
+
+        /// <summary>
+        /// What the board is, in words.
+        /// </summary>
+        public string? Description { get; set; }
 
         /// <summary>
         /// The print (PCB) version, such as "I".
@@ -36,7 +62,93 @@ namespace RetroSchematic.Model
         public string? EcoVersion { get; set; }
 
         /// <summary>
-        /// The board's size in millimetres.
+        /// Every print version known, with its ECO version.
+        /// </summary>
+        public List<BoardPrintVersion>? PrintVersions { get; set; }
+
+        /// <summary>
+        /// Size and layers.
+        /// </summary>
+        public BoardSpecifications? Specifications { get; set; }
+
+        /// <summary>
+        /// The release date as the catalogue writes it, such as "01. Jan. 1981".
+        /// </summary>
+        public string? ReleaseDate { get; set; }
+
+        /// <summary>
+        /// The LEDs on the board, in the catalogue's words.
+        /// </summary>
+        public List<BoardItem>? Leds { get; set; }
+
+        /// <summary>
+        /// The straps (and test points) on the board, in the catalogue's words.
+        /// </summary>
+        public List<BoardItem>? Straps { get; set; }
+
+        /// <summary>
+        /// The switches, in the catalogue's words. The sheet's own "switches" list holds the
+        /// worked-out switch blocks; this is the catalogue text as it is.
+        /// </summary>
+        public List<BoardItem>? Switches { get; set; }
+
+        /// <summary>
+        /// The connectors, in the catalogue's words. The sheet's own "connectors" list holds the
+        /// connectors as used by the signals.
+        /// </summary>
+        public List<BoardItem>? Connectors { get; set; }
+
+        /// <summary>
+        /// The special chips the catalogue names, with a link to a datasheet where it has one.
+        /// </summary>
+        public List<BoardChip>? Chipset { get; set; }
+
+        /// <summary>
+        /// The web page the catalogue entry was scraped from.
+        /// </summary>
+        public string? SourceUrl { get; set; }
+
+        /// <summary>
+        /// Where each fact came from: the field name ("title", "specifications" ...) and its
+        /// source. A field not named here was typed in by hand (see <see cref="Note"/>).
+        /// </summary>
+        public Dictionary<string, DescriptionSource>? FactSources { get; set; }
+
+        /// <summary>
+        /// Free text: where the values were read.
+        /// </summary>
+        public string? Note { get; set; }
+    }
+
+    /// <summary>
+    /// One print version of a board and its ECO version.
+    /// </summary>
+    public sealed class BoardPrintVersion
+    {
+        /// <summary>
+        /// The print version, such as "I".
+        /// </summary>
+        public string Print { get; set; } = "";
+
+        /// <summary>
+        /// The ECO version, such as "3".
+        /// </summary>
+        public string? Eco { get; set; }
+
+        /// <summary>
+        /// Free text.
+        /// </summary>
+        public string? Note { get; set; }
+    }
+
+    /// <summary>
+    /// A board's size and copper layers (the catalogue's "specifications").
+    /// </summary>
+    public sealed class BoardSpecifications
+    {
+        /// <summary>
+        /// The size in millimetres. (The catalogue writes "156 x 149 mm"; an import reads the
+        /// two numbers.)
         /// </summary>
         public BoardSize? Size { get; set; }
 
@@ -44,11 +156,48 @@ namespace RetroSchematic.Model
         /// How many copper layers the board has.
         /// </summary>
         public int? Layers { get; set; }
+    }
+
+    /// <summary>
+    /// One LED, strap, switch or connector as the catalogue lists it.
+    /// </summary>
+    public sealed class BoardItem
+    {
+        /// <summary>
+        /// Its name on the board, such as "OCTO" or "MACK"; often empty.
+        /// </summary>
+        public string? Id { get; set; }
 
         /// <summary>
-        /// Free text: where the values were read.
+        /// For an LED: its colour.
         /// </summary>
-        public string? Note { get; set; }
+        public string? Color { get; set; }
+
+        /// <summary>
+        /// The catalogue's text, as it is.
+        /// </summary>
+        public string? Text { get; set; }
+    }
+
+    /// <summary>
+    /// One chip the catalogue names for a board.
+    /// </summary>
+    public sealed class BoardChip
+    {
+        /// <summary>
+        /// The chip, such as "COM2601".
+        /// </summary>
+        public string Name { get; set; } = "";
+
+        /// <summary>
+        /// What it is, such as "USRT".
+        /// </summary>
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// Where its datasheet was on the web, as the catalogue gives it (not checked).
+        /// </summary>
+        public string? Url { get; set; }
     }
 
     /// <summary>
@@ -153,6 +302,27 @@ namespace RetroSchematic.Model
         public BoardSide Side { get; set; }
 
         /// <summary>
+        /// The print version of the board in the photo, such as "I".
+        /// </summary>
+        public string? Version { get; set; }
+
+        /// <summary>
+        /// Which variant of the board the photo shows when there are several, such as "old"
+        /// or "new" (the catalogue's words). The photo views let the reader choose.
+        /// </summary>
+        public string? Variant { get; set; }
+
+        /// <summary>
+        /// A short caption, such as "Component side, PCB version I, old".
+        /// </summary>
+        public string? Caption { get; set; }
+
+        /// <summary>
+        /// Where the photo came from, or null when not recorded.
+        /// </summary>
+        public DescriptionSource? Source { get; set; }
+
+        /// <summary>
         /// Free text: which board, which print version, anything seen on it.
         /// </summary>
         public string? Note { get; set; }
@@ -203,6 +373,12 @@ namespace RetroSchematic.Model
         /// Where the facts come from.
         /// </summary>
         public DescriptionSource? Source { get; set; }
+
+        /// <summary>
+        /// Further sources that say something about the block, such as the ND PCB catalogue's
+        /// switch text (kept word for word in <see cref="DescriptionSource.Quote"/>).
+        /// </summary>
+        public List<DescriptionSource>? MoreSources { get; set; }
 
         /// <summary>
         /// Free text.

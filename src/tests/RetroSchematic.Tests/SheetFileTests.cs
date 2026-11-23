@@ -44,8 +44,8 @@ namespace RetroSchematic.Tests
                 Assert.That(File.ReadAllText(rsc).TrimStart()[0], Is.EqualTo('{'), ".rsc is plain JSON text");
                 Assert.That(SheetFile.IsZip(File.ReadAllBytes(rsx)), Is.True, ".rsx is a zip");
                 using ZipArchive zip = ZipFile.OpenRead(rsx);
-                // sheet.json first, then the source page and the two photos
-                Assert.That(zip.Entries.Count, Is.EqualTo(4));
+                // sheet.json first, then the source page and the four photos
+                Assert.That(zip.Entries.Count, Is.EqualTo(6));
                 Assert.That(zip.Entries[0].FullName, Is.EqualTo(SheetFile.ZipEntryName));
             }
             finally

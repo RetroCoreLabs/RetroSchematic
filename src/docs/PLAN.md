@@ -2,26 +2,10 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** the board info import from the ND PCB catalogue (first item of the queue), then the
-PCB photo grid, then the datasheets.
+**Next:** the PCB photo grid (first item of the queue), then the datasheets.
 
 ## Queue from the 2026-11-23 session (in this order)
 
-- Board info from the ND PCB catalogue (owner, 2026-11-23). It lives outside the repository on
-  the owner's machine and is read only: `pcb.json` (522 boards scraped from norsk-data.com) and
-  one folder per part number with component- and solder-side photos and `MetaData.json`.
-  (1) Rename the sheet's `board` fields to the catalogue's names where they mean the same:
-  number (card number, 1050), partNumber (322049), title, ndSystem, printVersion, ecoVersion,
-  printVersions, specifications.size / layers, releaseDate, leds, straps, switches,
-  connectors, sourceUrl. The `board` section is new (2026-11-23) and only 2A50 uses it, so this
-  is the moment. (2) File > "Import board info from the ND PCB catalogue..." and an MCP tool:
-  pick pcb.json, match by card or part number, fill the facts with source = the catalogue and
-  its sourceUrl, copy the photos into `<sheet>-files/photos/`. Never copy the whole catalogue
-  into the repository. (3) 2A50 = 322049 there, with FOUR photos (old and new variant of both
-  sides): import all, and let the PCB views choose the variant. Its switch text agrees with our
-  reading ("IDENT (position E1), binary inverted value * 4", "First device number (position
-  E15), binary value * 8"): add it as a second source on both switches, noting that E1/E15
-  there are our 1E/15E written row first. "Inverted" there supports our inferred on = 0 for 1E.
 - PCB photo grid (owner's final design, 2026-11-23; replaces the earlier per-photo ideas):
   (1) the grid is defined ONCE per board type, by analysis, in a board-format file
   (`catalog/boards/nord10-card.json`, `nd100-card.json`): board size in mm and where each

@@ -235,12 +235,17 @@ namespace RetroSchematic.Desktop.Controls
             Grid rows = Rows();
             BoardSection? b = n.Board;
             AddRow(rows, "Machine", Value(b?.NdSystem));
-            AddRow(rows, "Board no.", Value(b?.BoardNumber));
+            AddRow(rows, "Title", Value(b?.Title));
+            AddRow(rows, "Card no.", Value(b?.Number));
+            AddRow(rows, "Part no.", Value(b?.PartNumber));
             AddRow(rows, "Print ver.", Value(b?.PrintVersion));
             AddRow(rows, "ECO ver.", Value(b?.EcoVersion));
-            AddRow(rows, "Size", Value(b?.Size == null ? null
-                : b.Size.WidthMm.ToString(CultureInfo.InvariantCulture) + " x " + b.Size.HeightMm.ToString(CultureInfo.InvariantCulture) + " mm"));
-            AddRow(rows, "Layers", Value(b?.Layers?.ToString(CultureInfo.InvariantCulture)));
+            BoardSize? size = b?.Specifications?.Size;
+            AddRow(rows, "Size", Value(size == null ? null
+                : size.WidthMm.ToString(CultureInfo.InvariantCulture) + " x " + size.HeightMm.ToString(CultureInfo.InvariantCulture) + " mm"));
+            AddRow(rows, "Layers", Value(b?.Specifications?.Layers?.ToString(CultureInfo.InvariantCulture)));
+            if (b?.SourceUrl != null)
+                AddRow(rows, "From", Value("ND PCB catalogue, " + b.SourceUrl));
             System.Text.StringBuilder conn = new();
             for (int i = 0; n.Connectors != null && i < n.Connectors.Count; i++)
             {
@@ -300,6 +305,13 @@ namespace RetroSchematic.Desktop.Controls
                 AddRow(rows, "Typical", Text(s.Typical, "detail-value"));
             if (s.Source != null)
                 AddRow(rows, "Read from", Text((s.Source.Document ?? s.Source.Kind.ToString()) + (s.Source.Place == null ? "" : ", " + s.Source.Place), "detail-value"));
+            // further sources, such as the ND PCB catalogue's switch text, word for word
+            for (int i = 0; s.MoreSources != null && i < s.MoreSources.Count; i++)
+            {
+                DescriptionSource m = s.MoreSources[i];
+                string said = (m.Quote == null ? "" : "\"" + m.Quote + "\"\n") + (m.Document ?? m.Kind.ToString()) + (m.Place == null ? "" : ", " + m.Place) + (m.Note == null ? "" : "\n" + m.Note);
+                AddRow(rows, "Also", Text(said, "detail-value"));
+            }
             if (s.Note != null)
                 AddRow(rows, "Notes", Text(s.Note, "detail-value"));
             head.Children.Add(rows);

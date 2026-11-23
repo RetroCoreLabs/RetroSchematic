@@ -171,7 +171,10 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
   line and a net label like a chip pin, so it is picked and traced the same way.
 
 - `board`, `sources`, `photos`, `switches`, and more fields on `connectors` (2026-11-23): see
-  "Board, sources, photos, switches" below. Both format versions accept them.
+  "Board, sources, photos, switches" below. Both format versions accept them. Later the same
+  day the `board` fields were renamed to the ND PCB catalogue's names (`boardNumber` became
+  `partNumber`, `size` and `layers` moved into `specifications`) and the catalogue's other
+  fields were added; only 2A50 used the old names, and it was changed with them.
 
 - `display` (2026-11-23): how this sheet likes to be shown. Display only - it never changes what
   is connected. Every value is optional; a missing one means "use the viewer's default", and a
@@ -197,16 +200,46 @@ Facts about the printed circuit board itself, the pages the sheet was read from,
 the board. None of them changes what is connected. All are optional and belong to the whole
 sheet (the top level), whatever block is shown.
 
-**`board`** - what the board is. Every value is optional; a missing one is not known.
+**`board`** - what the board is. Every value is optional; a missing one is not known. The field
+names are the ones the ND PCB catalogue uses (`pcb.json`, scraped from norsk-data.com, kept
+outside the repository), wherever a field means the same, so an import is a straight copy.
 
 | Field | What it is |
 |---|---|
-| `ndSystem` | `NORD-10` or `ND-100`: the machine the card plugs into |
-| `boardNumber` | the number printed on the board, such as `322049` |
+| `number` | the card number ND gave the board, such as `1050` |
+| `partNumber` | the part number printed on the board, such as `322049` |
+| `title` | the board's name, such as `Synchronous Modem Buffer` |
+| `ndSystem` | `NORD-10` or `ND-100`: the machine the card plugs into (the catalogue writes `10` and `100`; an import turns them into these names and leaves other machines empty) |
+| `group` | the catalogue's group code, such as `1C` (what the codes mean is not written there) |
+| `description` | what the board is, in words |
 | `printVersion`, `ecoVersion` | the print (PCB) version (`I`) and the engineering change version (`3`) |
-| `size` | `{ "widthMm": 156, "heightMm": 149 }` |
-| `layers` | how many copper layers |
+| `printVersions` | every print version known: `[{ "print": "I", "eco": "3", "note": "" }]` |
+| `specifications` | `{ "size": { "widthMm": 156, "heightMm": 149 }, "layers": 2 }` (the catalogue writes the size as `156 x 149 mm`) |
+| `releaseDate` | as the catalogue writes it, such as `01. Jan. 1981` |
+| `leds`, `straps`, `switches`, `connectors` | the catalogue's lists as they are: `{ id, color, text }` (colour for LEDs only). The sheet's own `switches` and `connectors` lists (below) hold the worked-out facts; these are the catalogue's words |
+| `chipset` | the special chips the catalogue names: `{ name, description, url }` (the URL is the catalogue's, not checked) |
+| `sourceUrl` | the web page the catalogue entry came from |
+| `factSources` | for each field filled from somewhere: `{ "title": { kind, document, place, confidence } }`, the same source form as a signal description's. A fact changed by hand in the Board window loses its entry |
 | `note` | where the values were read |
+
+**Importing from the ND PCB catalogue.** File > "Import board info from the ND PCB catalogue..."
+(edit mode), the MCP tool `import_board_from_catalogue`, or `retroschematic import-board <sheet>
+<pcb.json> [number]`. The board is found by part number first (`322049` or `ND-322049`), then by
+card number (several boards can share one; then the part number is needed). One undo step:
+
+- the board section is replaced by the catalogue's values, each with a `factSources` entry
+  (`kind` `catalogue`, `document` the catalogue, `place` the board's `sourceUrl`, `confidence`
+  `read`); the old `note` is kept;
+- every component- and solder-side photo of the board is copied into the sheet, named
+  `PART-component-side-VERSION-VARIANT.jpg` (a .rsc: on disk in the folder its photos are in
+  already, else `SHEETNAME-files/photos/`; a .rsx or an unsaved sheet: held inside). A photo
+  the sheet has already (the same bytes) keeps its file. Each gets `version`, `variant`,
+  `caption` and `source`;
+- the catalogue's switch text goes on the switch block it names as one of its `moreSources`,
+  word for word in `quote`. The catalogue writes a position row letter first (`E1`); our
+  drawings write the column first (`1E`), so `E1` there is `1E` here, and the note says so.
+
+Nothing of the catalogue other than the one board is copied into the repository.
 
 **More fields on `connectors[]`** - each connector of the card, documented:
 
@@ -240,7 +273,9 @@ a pin reference splits at its last dot into connector and pin, so it is left for
 | `original` | `{ file, pdfPage, dpi }`: the PDF and page a stored picture was rendered from |
 
 **`photos[]`** - photos of the board: `file` (relative to the sheet), `side` (`component` or
-`solder`) and `note`.
+`solder`), `version` (print version), `variant` (which board when there are several, such as
+`old` or `new`: the PCB views have a picker for it), `caption`, `source` (where the photo came
+from) and `note`.
 
 **Where the files are.** In a `.rsc` the `file` fields are links, relative to the sheet file;
 the files stay where they are. In a `.rsx` the files are inside the zip, as `sources/NAME` and
@@ -267,7 +302,12 @@ the files stay where they are. In a `.rsx` the files are inside the zip, as `sou
 | `typical` | the usual setting, in words, with where it comes from |
 | `levers[]` | per lever: `number` (1 first), `signal` (as on the drawing), `bit` (what it sets: `BA9`, `ident bit 2`), `confidence`, `setting` (`on`, `off` or `open` = cannot be read) and `note` |
 | `source` | `{ kind, document, place, confidence }`, as a signal description's source |
+| `moreSources` | further sources in the same form, such as the ND PCB catalogue's switch text; `quote` holds the source's own words and `note` how they map to the sheet |
 | `note` | how it was worked out |
+
+A source (`source`, `moreSources`, `factSources`, a signal's `descriptionSource`) has `kind`
+`drawing`, `manual`, `reading`, `inferred` or `catalogue` (the ND PCB catalogue), and may carry
+`quote` (the words as they are) and `note`.
 
 ```json
 "switches": [ { "ref": "15E", "function": "device address", "leverCount": 4,
