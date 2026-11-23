@@ -13,7 +13,7 @@
       "pdfPage": 64,
       "image": "docs/sources/nord-10/2A50-sync-modem-buffer-1050.png"
     },
-    "note": "First pass. The chip list and the COM2601 pins are complete; most other chip-to-chip wires are not yet read pin by pin. The register-level reading is in docs/2A50-reading.md. Parts and gates completed 2026-11-23 against the printed parts list (40 packages); see docs/2A50-catalogue-map.md."
+    "note": "Parts, gates and wires read pin by pin from the scan on 2026-11-23. Switches, resistors and capacitors are not parts in this format; they are described in net notes. Pins of a 74153/74157 drawn as a stack of small boxes are read with the rule that a pin number sits above its wire. Register-level reading: docs/2A50-reading.md; catalogue map: docs/2A50-catalogue-map.md."
   },
   "parts": [
     {
@@ -1029,92 +1029,2197 @@
   ],
   "nets": [
     {
+      "name": "SMN3",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13E.4",
+          "confidence": "read"
+        }
+      ],
+      "note": "modem number switch 15E position 1 with pull-up (switch and resistor are not parts in this file)"
+    },
+    {
+      "name": "SMN2",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13E.13",
+          "confidence": "read"
+        }
+      ],
+      "note": "switch 15E position 2"
+    },
+    {
+      "name": "SMN1",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13E.10",
+          "confidence": "read"
+        }
+      ],
+      "note": "switch 15E position 3"
+    },
+    {
+      "name": "SMN0",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13E.6",
+          "confidence": "read"
+        }
+      ],
+      "note": "switch 15E position 4"
+    },
+    {
+      "name": "BA9",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.44",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.3",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA5",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.38",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA4",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.37",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA3",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.36",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA6",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.40",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA7",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.41",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA8",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.42",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_11E_3",
+      "active": "none",
+      "pins": [
+        {
+          "at": "11E.3",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.11",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: NAND of BA7 and BA8"
+    },
+    {
+      "name": "N_9E_13",
+      "active": "none",
+      "pins": [
+        {
+          "at": "9E.13",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.2",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name"
+    },
+    {
+      "name": "IOXE",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.11",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.14",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DEQL",
+      "active": "high",
+      "pins": [
+        {
+          "at": "13E.9",
+          "confidence": "read"
+        },
+        {
+          "at": "11C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.10",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.12",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.3",
+          "confidence": "read"
+        }
+      ],
+      "note": "1 kohm pull-up to +5 V on the line"
+    },
+    {
+      "name": "N_11C_8",
+      "active": "none",
+      "pins": [
+        {
+          "at": "11C.8",
+          "confidence": "read"
+        },
+        {
+          "at": "13D.12",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: inverted DEQL enables the 7442"
+    },
+    {
+      "name": "BA0",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.32",
+          "confidence": "read"
+        },
+        {
+          "at": "11C.3",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA0",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11C.4",
+          "confidence": "read"
+        },
+        {
+          "at": "13D.15",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.14",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA1",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.33",
+          "confidence": "read"
+        },
+        {
+          "at": "11C.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA1",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11C.2",
+          "confidence": "read"
+        },
+        {
+          "at": "13D.14",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.2",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BA2",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.34",
+          "confidence": "read"
+        },
+        {
+          "at": "13D.13",
+          "confidence": "read"
+        }
+      ],
+      "note": "no inverter: the decoder sees address bit 2 upside down"
+    },
+    {
+      "name": "ODW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.2",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OSR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.3",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.9",
+          "confidence": "read"
+        },
+        {
+          "at": "11A.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OCW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.4",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.3",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.3",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.3",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IDR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.5",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.10",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.13",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.8",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.9",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "SCW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.6",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.3",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ISR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.7",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.12",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.15",
+          "confidence": "read"
+        },
+        {
+          "at": "11A.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ICW",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13D.9",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.2",
+          "confidence": "read"
+        },
+        {
+          "at": "11C.13",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ICW",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11C.12",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.39",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.11",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.11",
+          "confidence": "read"
+        },
+        {
+          "at": "17B.5",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.9",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IDR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11D.10",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.24",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ISCW",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11D.1",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.21",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OSCW",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11D.4",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.18",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_11D_13",
+      "active": "none",
+      "pins": [
+        {
+          "at": "11D.13",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.20",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: ODW strobe to COM 2601 pin 20"
+    },
+    {
+      "name": "H",
+      "active": "high",
+      "pins": [
+        {
+          "at": "13E.1",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.11",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.4",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.12",
+          "confidence": "read"
+        },
+        {
+          "at": "17D.3",
+          "confidence": "read"
+        },
+        {
+          "at": "17D.11",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.4",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.10",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.25",
+          "confidence": "read"
+        },
+        {
+          "at": "17A.2",
+          "confidence": "read"
+        },
+        {
+          "at": "19A.2",
+          "confidence": "read"
+        }
+      ],
+      "note": "tied high through resistor 15A9; pins marked H on the drawing"
+    },
+    {
+      "name": "H1",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3A.10",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.10",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.10",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.4",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.4",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.14",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.11",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.3",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.6",
+          "confidence": "read"
+        }
+      ],
+      "note": "7402 3A pins 8 and 9 grounded, so pin 10 is a constant 1"
+    },
+    {
+      "name": "GND",
+      "active": "none",
+      "pins": [
+        {
+          "at": "13E.15",
+          "confidence": "read"
+        },
+        {
+          "at": "13E.7",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.15",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.10",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.6",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.15",
+          "confidence": "read"
+        },
+        {
+          "at": "5E.1",
+          "confidence": "read"
+        },
+        {
+          "at": "5E.15",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.1",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.15",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.6",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.5",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.10",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.11",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.1",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.15",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.5",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.3",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.11",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.13",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.1",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.14",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.15",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.2",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.3",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.15",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.8",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.9",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.15",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.6",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.15",
+          "confidence": "read"
+        },
+        {
+          "at": "7E.15",
+          "confidence": "read"
+        },
+        {
+          "at": "7E.1",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.23",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.2",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.11",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.12",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.13",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.14",
+          "confidence": "read"
+        },
+        {
+          "at": "19A.4",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.4",
+          "confidence": "read"
+        },
+        {
+          "at": "P.80",
+          "confidence": "read"
+        },
+        {
+          "at": "P.82",
+          "confidence": "read"
+        },
+        {
+          "at": "P.84",
+          "confidence": "read"
+        },
+        {
+          "at": "P.86",
+          "confidence": "read"
+        },
+        {
+          "at": "P.94",
+          "confidence": "read"
+        }
+      ],
+      "note": "3D pins 10 and 6 are marked (STRAP)(GND): ident bits 0-1. 13C pins 5, 3, 11, 13 read by the rule that a pin number sits above its wire. COM 2601 pin 4 is printed in its box as GND"
+    },
+    {
       "name": "BD0",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.7",
+          "at": "P.10",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.7",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.12",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD1",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.8",
+          "at": "P.12",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.5",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.14",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD2",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.9",
+          "at": "P.13",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.3",
+          "confidence": "read"
+        },
+        {
+          "at": "9B.9",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD3",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.10",
+          "at": "P.14",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.7",
+          "confidence": "read"
+        },
+        {
+          "at": "7B.5",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD4",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.11",
+          "at": "P.16",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.5",
+          "confidence": "read"
+        },
+        {
+          "at": "7B.3",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD5",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.12",
+          "at": "P.17",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "7B.1",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD6",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.13",
+          "at": "P.18",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "7B.13",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
     },
     {
       "name": "BD7",
       "active": "low",
       "pins": [
         {
-          "at": "7-8C-D.14",
+          "at": "P.20",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.9",
+          "confidence": "read"
+        },
+        {
+          "at": "7B.9",
           "confidence": "read"
         }
       ],
-      "note": "bus data bit; the backplane pin is not read yet"
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD8",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.21",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.11",
+          "confidence": "read"
+        },
+        {
+          "at": "9B.11",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD9",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.22",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.13",
+          "confidence": "read"
+        },
+        {
+          "at": "9B.13",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD10",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.24",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.7",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.3",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD11",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.25",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.5",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.38",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD12",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.26",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.3",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.36",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD13",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.28",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "9B.3",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD14",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.29",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.13",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.37",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD15",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.30",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.9",
+          "confidence": "read"
+        },
+        {
+          "at": "9B.5",
+          "confidence": "read"
+        }
+      ],
+      "note": "bus line; driven by an 8098 when the card is read",
+      "drive": "three-state"
+    },
+    {
+      "name": "BD0",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5C.11",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.12",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.2",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.7",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD1",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5C.13",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.12",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.2",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.8",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD2",
+      "active": "high",
+      "pins": [
+        {
+          "at": "9B.8",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.9",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.12",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.2",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.14",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD3",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7B.6",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.10",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD4",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7B.4",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.11",
+          "confidence": "read"
+        },
+        {
+          "at": "17B.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD5",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7B.2",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD6",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7B.12",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD7",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7B.8",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.14",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD8",
+      "active": "high",
+      "pins": [
+        {
+          "at": "9B.10",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.4",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.2",
+          "confidence": "inferred",
+          "note": "label looks like \"BD5\" on the scan; only bit 8 decodes the SINTRAN sync values (docs/2A50-reading.md)"
+        }
+      ]
+    },
+    {
+      "name": "BD9",
+      "active": "high",
+      "pins": [
+        {
+          "at": "9B.12",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "11D.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BD15",
+      "active": "high",
+      "pins": [
+        {
+          "at": "9B.6",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_9B_4",
+      "active": "none",
+      "pins": [
+        {
+          "at": "9B.4",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.40",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: BD13 inverted to COM 2601 pin 40"
+    },
+    {
+      "name": "CLDI",
+      "active": "low",
+      "pins": [
+        {
+          "at": "1C.12",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CLEI",
+      "active": "low",
+      "pins": [
+        {
+          "at": "1C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CLDO",
+      "active": "low",
+      "pins": [
+        {
+          "at": "1C.4",
+          "confidence": "read"
+        },
+        {
+          "at": "3C.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CLEO",
+      "active": "low",
+      "pins": [
+        {
+          "at": "1C.7",
+          "confidence": "read"
+        },
+        {
+          "at": "1D.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IRFTIE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.9",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IERRIE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "1D.9",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ORFTIE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3C.5",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OERRIE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "1D.5",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.4",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IRFT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7E.11",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.10",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.10",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IERR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11E.6",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.13",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.13",
+          "confidence": "read"
+        },
+        {
+          "at": "5E.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ORFT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7E.9",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.2",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OERR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7E.7",
+          "confidence": "read"
+        },
+        {
+          "at": "3B.5",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.4",
+          "confidence": "read"
+        },
+        {
+          "at": "5E.5",
+          "confidence": "read"
+        },
+        {
+          "at": "5E.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_3B_8",
+      "active": "none",
+      "pins": [
+        {
+          "at": "3B.8",
+          "confidence": "read"
+        },
+        {
+          "at": "7B.11",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: level 12 AND-OR-INVERT term"
+    },
+    {
+      "name": "LEV12",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7B.10",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.9",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.10",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "LEV12",
+      "active": "low",
+      "pins": [
+        {
+          "at": "5A.8",
+          "confidence": "read"
+        },
+        {
+          "at": "P.35",
+          "confidence": "read"
+        }
+      ],
+      "drive": "open-collector",
+      "driveConfidence": "inferred",
+      "pullUp": "open"
+    },
+    {
+      "name": "N_3B_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "3B.6",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.11",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: level 10 AND-OR-INVERT term"
+    },
+    {
+      "name": "LEV10",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3A.13",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.1",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.2",
+          "confidence": "read"
+        },
+        {
+          "at": "13C.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "LEV10",
+      "active": "low",
+      "pins": [
+        {
+          "at": "5A.3",
+          "confidence": "read"
+        },
+        {
+          "at": "P.27",
+          "confidence": "read"
+        }
+      ],
+      "drive": "open-collector",
+      "driveConfidence": "inferred",
+      "pullUp": "open"
+    },
+    {
+      "name": "CLINT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "1A.7",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.9",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.12",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.2",
+          "confidence": "read"
+        },
+        {
+          "at": "1B.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_1B_8",
+      "active": "none",
+      "pins": [
+        {
+          "at": "1B.8",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_1B_11",
+      "active": "none",
+      "pins": [
+        {
+          "at": "1B.11",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_1B_3",
+      "active": "none",
+      "pins": [
+        {
+          "at": "1B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_1B_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "1B.6",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "INT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "13C.7",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DINPUT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "13C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TINT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "1A.9",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.5",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.14",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.2",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.3",
+          "confidence": "read"
+        }
+      ],
+      "note": "1A output 9 is fed back to its own inputs"
+    },
+    {
+      "name": "TINPUT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "1A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "9B.1",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.4",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TCONNECT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "1A.4",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "5A.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "INPUT",
+      "active": "low",
+      "pins": [
+        {
+          "at": "5A.6",
+          "confidence": "read"
+        },
+        {
+          "at": "P.15",
+          "confidence": "read"
+        }
+      ],
+      "drive": "open-collector",
+      "driveConfidence": "inferred",
+      "pullUp": "open"
+    },
+    {
+      "name": "CONNECT",
+      "active": "low",
+      "pins": [
+        {
+          "at": "5A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "P.23",
+          "confidence": "read"
+        }
+      ],
+      "drive": "open-collector",
+      "driveConfidence": "inferred",
+      "pullUp": "open"
+    },
+    {
+      "name": "INIDENT",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.7",
+          "confidence": "read"
+        },
+        {
+          "at": "1A.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_3A_1",
+      "active": "none",
+      "pins": [
+        {
+          "at": "3A.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.6",
+          "confidence": "read"
+        },
+        {
+          "at": "3A.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OUTIDENT",
+      "active": "low",
+      "pins": [
+        {
+          "at": "3A.4",
+          "confidence": "read"
+        },
+        {
+          "at": "P.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "INGRANT",
+      "active": "low",
+      "pins": [
+        {
+          "at": "P.9",
+          "confidence": "read"
+        },
+        {
+          "at": "P.8",
+          "confidence": "read"
+        }
+      ],
+      "note": "wired straight through to OUTGRANT (pin 8)"
+    },
+    {
+      "name": "N_11E_8",
+      "active": "none",
+      "pins": [
+        {
+          "at": "11E.8",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.14",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.14",
+          "confidence": "inferred",
+          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+        },
+        {
+          "at": "5E.14",
+          "confidence": "inferred",
+          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+        },
+        {
+          "at": "5D.14",
+          "confidence": "inferred",
+          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+        }
+      ],
+      "note": "automatic name: 74153 select A"
+    },
+    {
+      "name": "N_11E_11",
+      "active": "none",
+      "pins": [
+        {
+          "at": "11E.11",
+          "confidence": "read"
+        },
+        {
+          "at": "3D.2",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.2",
+          "confidence": "inferred",
+          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+        },
+        {
+          "at": "5E.2",
+          "confidence": "inferred",
+          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+        },
+        {
+          "at": "5D.2",
+          "confidence": "inferred",
+          "note": "select wiring taken to match 3D; the bus lines are drawn but not followed pin by pin"
+        }
+      ],
+      "note": "automatic name: 74153 select B"
+    },
+    {
+      "name": "DAT0",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3D.9",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT1",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3D.7",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT2",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3E.7",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT3",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3E.9",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT4",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5E.7",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT5",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5E.9",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT6",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5D.7",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DAT7",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5D.9",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_9B_2",
+      "active": "none",
+      "pins": [
+        {
+          "at": "9B.2",
+          "confidence": "read"
+        },
+        {
+          "at": "5C.1",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.1",
+          "confidence": "read"
+        }
+      ],
+      "note": "automatic name: bus driver enable, 1000 pF to ground"
+    },
+    {
+      "name": "SR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "11A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.15",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.1",
+          "confidence": "read"
+        }
+      ],
+      "note": "1000 pF to ground"
     },
     {
       "name": "IDATA0",
@@ -1123,9 +3228,12 @@
         {
           "at": "7-8C-D.35",
           "confidence": "read"
+        },
+        {
+          "at": "3D.13",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD1"
+      ]
     },
     {
       "name": "IDATA1",
@@ -1134,9 +3242,12 @@
         {
           "at": "7-8C-D.34",
           "confidence": "read"
+        },
+        {
+          "at": "3D.3",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD2"
+      ]
     },
     {
       "name": "IDATA2",
@@ -1145,9 +3256,12 @@
         {
           "at": "7-8C-D.33",
           "confidence": "read"
+        },
+        {
+          "at": "3E.3",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD3"
+      ]
     },
     {
       "name": "IDATA3",
@@ -1156,9 +3270,12 @@
         {
           "at": "7-8C-D.32",
           "confidence": "read"
+        },
+        {
+          "at": "3E.13",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD4"
+      ]
     },
     {
       "name": "IDATA4",
@@ -1167,9 +3284,12 @@
         {
           "at": "7-8C-D.31",
           "confidence": "read"
+        },
+        {
+          "at": "5E.3",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD5"
+      ]
     },
     {
       "name": "IDATA5",
@@ -1178,9 +3298,12 @@
         {
           "at": "7-8C-D.30",
           "confidence": "read"
+        },
+        {
+          "at": "5E.13",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD6"
+      ]
     },
     {
       "name": "IDATA6",
@@ -1189,9 +3312,12 @@
         {
           "at": "7-8C-D.29",
           "confidence": "read"
+        },
+        {
+          "at": "5D.3",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RD7"
+      ]
     },
     {
       "name": "IDATA7",
@@ -1200,86 +3326,224 @@
         {
           "at": "7-8C-D.28",
           "confidence": "read"
-        }
-      ],
-      "note": "chip RD8"
-    },
-    {
-      "name": "ODW",
-      "active": "low",
-      "pins": [
+        },
         {
-          "at": "7-8C-D.20",
+          "at": "5D.13",
           "confidence": "read"
         }
-      ],
-      "note": "chip TDS: writing register 5 loads the transmit buffer"
+      ]
     },
     {
-      "name": "OSCW",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.18",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip TSS: register 1 with bit 9 = 0 loads the transmit fill character"
-    },
-    {
-      "name": "ISCW",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.21",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip RSS: register 1 with bit 8 = 0 loads the receive sync character"
-    },
-    {
-      "name": "IDR",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.24",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip RDAR: reading register 0 resets RDA"
-    },
-    {
-      "name": "ICW",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.39",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip CS: every write to register 3 strobes the control bits"
-    },
-    {
-      "name": "ORFT",
+      "name": "IDENT2",
       "active": "high",
       "pins": [
         {
-          "at": "7-8C-D.2",
+          "at": "3E.6",
           "confidence": "read"
         }
       ],
-      "note": "chip TBMT, transmit buffer empty"
+      "note": "ident switch 1E position 1 with pull-up"
+    },
+    {
+      "name": "IDENT3",
+      "active": "high",
+      "pins": [
+        {
+          "at": "3E.10",
+          "confidence": "read"
+        }
+      ],
+      "note": "ident switch 1E position 2 with pull-up"
+    },
+    {
+      "name": "IDENT4",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5E.6",
+          "confidence": "read"
+        }
+      ],
+      "note": "ident switch 1E position 3 with pull-up"
+    },
+    {
+      "name": "IDENT5",
+      "active": "high",
+      "pins": [
+        {
+          "at": "5E.10",
+          "confidence": "read"
+        }
+      ],
+      "note": "ident switch 1E position 4 with pull-up"
+    },
+    {
+      "name": "OACTIVE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "17B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.5",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "IACTIVE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11B.15",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.1",
+          "confidence": "read"
+        },
+        {
+          "at": "3E.4",
+          "confidence": "read"
+        }
+      ]
     },
     {
       "name": "IPE",
       "active": "high",
       "pins": [
         {
-          "at": "7-8C-D.16",
+          "at": "7E.3",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.9",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.4",
           "confidence": "read"
         }
-      ],
-      "note": "chip RPE, parity error"
+      ]
+    },
+    {
+      "name": "IOR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7E.13",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.5",
+          "confidence": "read"
+        },
+        {
+          "at": "5D.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "ISYNERR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11A.6",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.6",
+          "confidence": "read"
+        },
+        {
+          "at": "5E.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_9E_10",
+      "active": "none",
+      "pins": [
+        {
+          "at": "9E.10",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_9E_4",
+      "active": "none",
+      "pins": [
+        {
+          "at": "9E.4",
+          "confidence": "read"
+        },
+        {
+          "at": "11E.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CARRERR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11A.3",
+          "confidence": "read"
+        },
+        {
+          "at": "9E.8",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CARREN",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11B.2",
+          "confidence": "read"
+        },
+        {
+          "at": "11A.1",
+          "confidence": "read"
+        },
+        {
+          "at": "5B.14",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "SCEE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11B.5",
+          "confidence": "read"
+        },
+        {
+          "at": "11A.5",
+          "confidence": "read"
+        }
+      ]
     },
     {
       "name": "SCR",
@@ -1288,78 +3552,85 @@
         {
           "at": "7-8C-D.17",
           "confidence": "read"
+        },
+        {
+          "at": "11A.4",
+          "confidence": "read"
         }
-      ],
-      "note": "chip SCR, sync character received"
+      ]
     },
     {
-      "name": "IRFT",
+      "name": "TDATA",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.3",
+          "confidence": "read"
+        },
+        {
+          "at": "7E.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TBMT",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.2",
+          "confidence": "read"
+        },
+        {
+          "at": "7E.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DA",
       "active": "high",
       "pins": [
         {
           "at": "7-8C-D.26",
           "confidence": "read"
+        },
+        {
+          "at": "7E.12",
+          "confidence": "read"
         }
-      ],
-      "note": "chip RDA, character available"
+      ]
     },
     {
-      "name": "IOR",
+      "name": "PE",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7-8C-D.16",
+          "confidence": "read"
+        },
+        {
+          "at": "7E.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OR",
       "active": "high",
       "pins": [
         {
           "at": "7-8C-D.27",
           "confidence": "read"
-        }
-      ],
-      "note": "chip ROR, overrun"
-    },
-    {
-      "name": "TSO",
-      "active": "none",
-      "pins": [
+        },
         {
-          "at": "7-8C-D.3",
+          "at": "7E.14",
           "confidence": "read"
         }
-      ],
-      "note": "chip TSO, transmitted serial data; the name on the drawing is not read yet"
+      ]
     },
     {
-      "name": "BD11",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.38",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip NDB1 (character length)"
-    },
-    {
-      "name": "BD12",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.36",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip NDB2 (character length)"
-    },
-    {
-      "name": "BD14",
-      "active": "low",
-      "pins": [
-        {
-          "at": "7-8C-D.37",
-          "confidence": "read"
-        }
-      ],
-      "note": "chip NPB (no parity bit)"
-    },
-    {
-      "name": "OERR",
+      "name": "SCT",
       "active": "high",
       "pins": [
         {
@@ -1370,53 +3641,843 @@
           "at": "7E.6",
           "confidence": "read"
         }
-      ],
-      "note": "chip SCT, sync/fill character transmitted (underrun)"
+      ]
     },
     {
       "name": "RR",
       "active": "high",
       "pins": [
         {
+          "at": "17D.13",
+          "confidence": "read"
+        },
+        {
           "at": "7-8C-D.15",
           "confidence": "read"
         }
       ],
-      "note": "the pin on the other end is not read yet"
+      "note": "74221 one-shot pulse"
     },
     {
-      "name": "POE",
+      "name": "TCLOCK",
       "active": "high",
       "pins": [
         {
-          "at": "7-8C-D.40",
+          "at": "15B.7",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.19",
           "confidence": "read"
         }
-      ],
-      "note": "bus bit 13 through inverter 9B; the pin on the other end is not read yet"
+      ]
+    },
+    {
+      "name": "RCLOCK",
+      "active": "high",
+      "pins": [
+        {
+          "at": "15B.4",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.23",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "RDATA",
+      "active": "high",
+      "pins": [
+        {
+          "at": "15B.12",
+          "confidence": "read"
+        },
+        {
+          "at": "7-8C-D.22",
+          "confidence": "read"
+        }
+      ]
     },
     {
       "name": "+5V",
       "active": "none",
       "pins": [
         {
-          "at": "7-8C-D.25",
+          "at": "7-8C-D.1",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.1",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.24",
           "confidence": "read"
         }
       ],
-      "note": "chip RDE tied high"
+      "note": "COM 2601 supply pins are printed in its box: +5V 1, -12V 6, GND 4"
     },
     {
-      "name": "BA2",
+      "name": "-12V",
+      "active": "none",
+      "pins": [
+        {
+          "at": "7-8C-D.6",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.10",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.15",
+          "confidence": "read"
+        },
+        {
+          "at": "P.62",
+          "confidence": "inferred",
+          "note": "circled 62/63 on the drawing"
+        },
+        {
+          "at": "P.63",
+          "confidence": "inferred",
+          "note": "circled 62/63 on the drawing"
+        }
+      ]
+    },
+    {
+      "name": "+12V",
+      "active": "none",
+      "pins": [
+        {
+          "at": "18-19E.3",
+          "confidence": "read"
+        },
+        {
+          "at": "18-19E.22",
+          "confidence": "read"
+        },
+        {
+          "at": "P.66",
+          "confidence": "inferred",
+          "note": "circled 66/67 on the drawing"
+        },
+        {
+          "at": "P.67",
+          "confidence": "inferred",
+          "note": "circled 66/67 on the drawing"
+        }
+      ]
+    },
+    {
+      "name": "MC",
       "active": "low",
       "pins": [
         {
-          "at": "13D.13",
-          "confidence": "inferred",
-          "note": "the drawing shows BA2 into the 7442 without an inverter; pin 13 is input C on the 7442 pinout"
+          "at": "P.55",
+          "confidence": "read"
+        },
+        {
+          "at": "17B.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_17B_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17B.6",
+          "confidence": "read"
+        },
+        {
+          "at": "17B.9",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CL",
+      "active": "high",
+      "pins": [
+        {
+          "at": "17B.8",
+          "confidence": "read"
+        },
+        {
+          "at": "11C.5",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.10",
+          "confidence": "read"
+        },
+        {
+          "at": "1C.15",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CL1",
+      "active": "low",
+      "pins": [
+        {
+          "at": "11C.6",
+          "confidence": "read"
+        },
+        {
+          "at": "11B.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CL",
+      "active": "low",
+      "pins": [
+        {
+          "at": "17C.8",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.4",
+          "confidence": "read"
+        },
+        {
+          "at": "17D.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TIMEOUT",
+      "active": "low",
+      "pins": [
+        {
+          "at": "19C.5",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_17C_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17C.6",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.1",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_17C_3",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17C.3",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CDSTL",
+      "active": "high",
+      "pins": [
+        {
+          "at": "15C.9",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.1",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CDSTL",
+      "active": "low",
+      "pins": [
+        {
+          "at": "15C.8",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.2",
+          "confidence": "read"
+        },
+        {
+          "at": "17A.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CARR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "15A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "17C.13",
+          "confidence": "read"
+        },
+        {
+          "at": "11A.2",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.4",
+          "confidence": "read"
+        },
+        {
+          "at": "13A.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CARR",
+      "active": "high",
+      "pins": [
+        {
+          "at": "13A.13",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_17C_11",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17C.11",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.13",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "PRQTS",
+      "active": "high",
+      "pins": [
+        {
+          "at": "15C.5",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.9",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TIMEOUTEN",
+      "active": "low",
+      "pins": [
+        {
+          "at": "11B.10",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "OSC",
+      "active": "high",
+      "pins": [
+        {
+          "at": "17D.12",
+          "confidence": "read"
+        },
+        {
+          "at": "19C.9",
+          "confidence": "read"
         }
       ],
-      "note": "goes to the decoder uninverted, so register offsets come out as in the reading document"
+      "note": "through 220 ohm to OSCD"
+    },
+    {
+      "name": "OSCD",
+      "active": "high",
+      "pins": [
+        {
+          "at": "17D.10",
+          "confidence": "read"
+        }
+      ],
+      "note": "OSC through 220 ohm, 10 uF to ground"
+    },
+    {
+      "name": "TTM",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "17D.9",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.4",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_9E_1",
+      "active": "none",
+      "pins": [
+        {
+          "at": "9E.1",
+          "confidence": "read"
+        },
+        {
+          "at": "17D.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_13B_11",
+      "active": "none",
+      "pins": [
+        {
+          "at": "13B.11",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TRQTS",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13B.8",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.11",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "HALF",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11B.7",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.12",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "RFS",
+      "active": "low",
+      "pins": [
+        {
+          "at": "15A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "17B.1",
+          "confidence": "read"
+        },
+        {
+          "at": "17B.2",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.14",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_13B_6",
+      "active": "none",
+      "pins": [
+        {
+          "at": "13B.6",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.5",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "RTM",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "13B.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "N_13B_3",
+      "active": "none",
+      "pins": [
+        {
+          "at": "13B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.2",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "BFQ1",
+      "active": "high",
+      "pins": [
+        {
+          "at": "P.4",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.3",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.6",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "RDA",
+      "active": "high",
+      "pins": [
+        {
+          "at": "15A.13",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.14",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TDA",
+      "active": "high",
+      "pins": [
+        {
+          "at": "7E.5",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.13",
+          "confidence": "read"
+        },
+        {
+          "at": "19A.3",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "TEST",
+      "active": "high",
+      "pins": [
+        {
+          "at": "11B.12",
+          "confidence": "read"
+        },
+        {
+          "at": "15B.1",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "RQTS",
+      "active": "low",
+      "pins": [
+        {
+          "at": "15B.9",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.6",
+          "confidence": "read"
+        },
+        {
+          "at": "17A.3",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "DSR",
+      "active": "low",
+      "pins": [
+        {
+          "at": "15A.10",
+          "confidence": "read"
+        },
+        {
+          "at": "7A.12",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "CAL",
+      "active": "low",
+      "pins": [
+        {
+          "at": "13A.10",
+          "confidence": "read"
+        },
+        {
+          "at": "15C.10",
+          "confidence": "read"
+        }
+      ]
+    },
+    {
+      "name": "RECEIVED DATA",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.87",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "15A.4",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 3"
+    },
+    {
+      "name": "READY FOR SENDING",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.89",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "15A.6",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 5"
+    },
+    {
+      "name": "DATA SET READY",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.90",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "15A.7",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 6"
+    },
+    {
+      "name": "SIGNAL DETECTOR",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.88",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "15A.5",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 8"
+    },
+    {
+      "name": "CALLING INDICATOR",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.85",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "13A.7",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 22"
+    },
+    {
+      "name": "TRANSMITTER TIMING",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.83",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "13A.6",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 15"
+    },
+    {
+      "name": "RECEIVER TIMING",
+      "active": "none",
+      "pins": [
+        {
+          "at": "F.81",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        },
+        {
+          "at": "13A.5",
+          "confidence": "read"
+        }
+      ],
+      "note": "V.24 pin 17"
+    },
+    {
+      "name": "CONNECT TO LINE",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "F.91",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        }
+      ],
+      "note": "V.24 pin 20"
+    },
+    {
+      "name": "REQUEST TO SEND",
+      "active": "none",
+      "pins": [
+        {
+          "at": "17A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "F.92",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        }
+      ],
+      "note": "V.24 pin 4"
+    },
+    {
+      "name": "V24_23",
+      "active": "none",
+      "pins": [
+        {
+          "at": "19A.11",
+          "confidence": "read"
+        },
+        {
+          "at": "F.93",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        }
+      ],
+      "note": "V.24 pin 23; no signal name printed. 19A pin 2 = H, pin 4 = GND"
+    },
+    {
+      "name": "TRANSM DATA",
+      "active": "none",
+      "pins": [
+        {
+          "at": "19A.12",
+          "confidence": "read"
+        },
+        {
+          "at": "F.95",
+          "confidence": "inferred",
+          "note": "circled number with a modem signal name: front connector"
+        }
+      ],
+      "note": "V.24 pin 2; 2200 pF to ground"
     }
   ]
 }

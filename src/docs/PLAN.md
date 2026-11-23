@@ -2,8 +2,16 @@
 
 Outstanding work only. Finished items are deleted.
 
-**Next:** read the wires of sheet 2A50 pin by pin into the netlist, so the viewer can draw them,
-and add the parts the catalogue cannot name yet (see `docs/2A50-catalogue-map.md`).
+**Next:** add the parts the catalogue cannot name yet (see `docs/2A50-catalogue-map.md`), then
+follow the four 74153 select lines on 2A50 (3E, 5E, 5D pins 2 and 14 are `inferred`).
+
+## 0. Sheet 2A50 - what the wire reading left open
+
+- 74153 select pins 2 and 14 on 3E, 5E and 5D: taken to match 3D, not followed on the scan.
+- Front connector pins (circled 81-95 with V.24 names) are written `F.` as `inferred`; the
+  supply pins circled 62/63 and 66/67 are taken as backplane pins, also `inferred`.
+- Switches 15E and 1E, resistors and capacitors have no place in format version 1; they are
+  described in net notes. Nine nets end at a switch or an RC part and so have one pin.
 
 ## 1. Symbol catalogue - what is still missing
 
