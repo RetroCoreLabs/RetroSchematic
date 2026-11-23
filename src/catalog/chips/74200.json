@@ -288,5 +288,61 @@
     "Datasheet is for the Schottky DM74S200; whether ND's '74200' is this part or an earlier non-Schottky part with the same pinout is not settled by any datasheet read.",
     "No minimum delays printed."
   ],
-  "notes": "ND's catalogue id is 74200; the only datasheet found for a 256x1 RAM numbered 200 is the S (Schottky) version."
+  "notes": "ND's catalogue id is 74200; the only datasheet found for a 256x1 RAM numbered 200 is the S (Schottky) version.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "2-11 to 2-13 (PDF pages 114-116) - National Semiconductor 1977 Memory Databook",
+    "memory": {
+      "name": "M",
+      "words": 256,
+      "width": 1,
+      "address": [
+        "A",
+        "B",
+        "C",
+        "H",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "dataIn": [
+        "DATA"
+      ],
+      "write": {
+        "when": "NOT ME1' AND NOT ME2' AND NOT ME3' AND NOT WE'",
+        "edge": "level-high"
+      },
+      "source": "2-11 to 2-13 (PDF pages 114-116) - National Semiconductor 1977 Memory Databook (truth table: the chip stores the complement of DATA and Y shows the stored bit, so Y is NOT of the DATA written; kept here as DATA stored and inverted on read; row A,B,C,H, column D,E,F,G - bit order inside the address not given)"
+    },
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = NOT M1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ME1'",
+              "active": "low"
+            },
+            {
+              "pin": "ME2'",
+              "active": "low"
+            },
+            {
+              "pin": "ME3'",
+              "active": "low"
+            },
+            {
+              "pin": "WE'",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "2-11 to 2-13 (PDF pages 114-116) - National Semiconductor 1977 Memory Databook"
+      }
+    ]
+  }
 }

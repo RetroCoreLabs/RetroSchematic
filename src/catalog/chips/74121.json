@@ -204,5 +204,36 @@
   "unknown": [
     "The resistance of the internal timing resistor Rint is not stated on the pages read."
   ],
-  "notes": "Formula for the pulse width from the datasheet description: tw(out) = Cext RT ln2 = 0.7 Cext RT."
+  "notes": "Formula for the pulse width from the datasheet description: tw(out) = Cext RT ln2 = 0.7 Cext RT.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "1, 3, 4 - TI SN54121",
+    "stored": [
+      {
+        "name": "P",
+        "kind": "one-shot",
+        "clock": {
+          "when": "B AND (NOT A1 OR NOT A2)",
+          "edge": "rising"
+        },
+        "retriggerable": false,
+        "pulseWidth": "tw = Cext RT ln2, about 0.7 Cext RT (RT = Rext or Rint); about 30-35 ns with no timing parts",
+        "source": "1, 3, 4 - TI SN54121 (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "Q",
+        "formula": "Q = P",
+        "type": "totem-pole",
+        "source": "1, 3, 4 - TI SN54121"
+      },
+      {
+        "pin": "Q'",
+        "formula": "Q' = NOT P",
+        "type": "totem-pole",
+        "source": "1, 3, 4 - TI SN54121"
+      }
+    ]
+  }
 }

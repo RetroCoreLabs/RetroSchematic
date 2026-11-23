@@ -134,5 +134,17 @@
   "unknown": [
     "Propagation delay of the 7453 when driven through a 7460 expander: the table gives that row only for the '50."
   ],
-  "notes": "The manual title groups 7453 and 7454; this file describes the expandable 7453. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The manual title groups 7453 and 7454; this file describes the expandable 7453. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-17 (PDF page 17) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = NOT ((A AND B) OR (C AND D) OR (E AND F) OR (G AND H) OR X)",
+        "type": "totem-pole",
+        "source": "5-17 (PDF page 17) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

@@ -92,5 +92,9 @@
     "Rise/fall time printed once per row (300 us); read as typical.",
     "The electrical table text layer mixes the TIL113 and TIL119 columns; the 30 mA on-state minimum is supported by the \"300% minimum at 10 mA\" feature line."
   ],
-  "notes": "Times in ns: 300 us = 300000 ns."
+  "notes": "Times in ns: 300 us = 300000 ns.",
+  "behaviour": {
+    "kind": "none",
+    "reason": "an analog part (LED and phototransistor optocoupler): the datasheet gives currents and transfer ratios, no logic function"
+  }
 }

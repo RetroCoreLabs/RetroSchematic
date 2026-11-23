@@ -336,5 +336,117 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "Edge: the block diagram draws master-slave flip-flops with an inverted clock on A and B; the outputs change on the high-to-low transition. QA is tested at IOL 16 mA plus the B-input load, so QA can drive B and still keep full fan-out. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "Edge: the block diagram draws master-slave flip-flops with an inverted clock on A and B; the outputs change on the high-to-low transition. QA is tested at IOL 16 mA plus the B-input load, so QA can drive B and still keep full fan-out. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "counter",
+        "next": "FA = NOT FA",
+        "clock": {
+          "pin": "A",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R9(1) AND R9(2)",
+            "value": "1"
+          },
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (reset/count function table)"
+      },
+      {
+        "name": "FB",
+        "kind": "counter",
+        "next": "FB = NOT FB AND NOT FD",
+        "clock": {
+          "pin": "B",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R9(1) AND R9(2)",
+            "value": "0"
+          },
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (count sequence table: QD QC QB count 0,1,2,3,4 on falling edges of B; R9 gives 1001 and wins over R0)"
+      },
+      {
+        "name": "FC",
+        "kind": "counter",
+        "next": "FC = FC XOR FB",
+        "clock": {
+          "pin": "B",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R9(1) AND R9(2)",
+            "value": "0"
+          },
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (count sequence table: QD QC QB count 0,1,2,3,4 on falling edges of B; R9 gives 1001 and wins over R0)"
+      },
+      {
+        "name": "FD",
+        "kind": "counter",
+        "next": "FD = FB AND FC",
+        "clock": {
+          "pin": "B",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R9(1) AND R9(2)",
+            "value": "1"
+          },
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (count sequence table: QD QC QB count 0,1,2,3,4 on falling edges of B; R9 gives 1001 and wins over R0)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

@@ -144,5 +144,35 @@
   "unknown": [
     "outputHighMaxCurrentMa: the recommended-operating-conditions row for IOH -0.4 mA names 'SN5400, SN54LS00, and SN74LS00' and does not name SN7400 (the VOH test condition does use IOH -0.4 mA)."
   ],
-  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. The pin table gives 3A=10, 3B=9, 4A=13, 4B=12 (A and B are interchangeable in a NAND)."
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. The pin table gives 3A=10, 3B=9, 4A=13, 4B=12 (A and B are interchangeable in a NAND).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "3-4, 7 - TI SN5400/SN7400/SN74LS00/SN74S00 datasheet SDLS025D",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT(1A AND 1B)",
+        "type": "totem-pole",
+        "source": "3-4, 7 - TI SN5400/SN7400/SN74LS00/SN74S00 datasheet SDLS025D"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT(2A AND 2B)",
+        "type": "totem-pole",
+        "source": "3-4, 7 - TI SN5400/SN7400/SN74LS00/SN74S00 datasheet SDLS025D"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = NOT(3B AND 3A)",
+        "type": "totem-pole",
+        "source": "3-4, 7 - TI SN5400/SN7400/SN74LS00/SN74S00 datasheet SDLS025D"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = NOT(4B AND 4A)",
+        "type": "totem-pole",
+        "source": "3-4, 7 - TI SN5400/SN7400/SN74LS00/SN74S00 datasheet SDLS025D"
+      }
+    ]
+  }
 }

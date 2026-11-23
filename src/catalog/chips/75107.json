@@ -175,5 +175,35 @@
   ],
   "notes": "Truth table: VID >= 25 mV -> H; -25 < VID < 25 mV -> H unless both G and S high (then indeterminate); VID <= -25 mV -> L only with G and S both high. When only one channel is used, ground the other channel's inputs.",
   "state": null,
-  "timingLimits": []
+  "timingLimits": [],
+  "behaviour": {
+    "kind": "logic",
+    "source": "4-6, 4-8, 4-9, 4-11 (PDF pages 70, 72, 73, 75) - TI The Interface Circuits Data Book for Design Engineers",
+    "conditions": [
+      {
+        "name": "1NEG",
+        "meaning": "1 when 1A - 1B <= -25 mV, 0 when >= +25 mV; between, the output is not given (indeterminate)",
+        "source": "4-6, 4-8, 4-9, 4-11 (PDF pages 70, 72, 73, 75) - TI The Interface Circuits Data Book for Design Engineers (truth table)"
+      },
+      {
+        "name": "2NEG",
+        "meaning": "1 when 2A - 2B <= -25 mV, 0 when >= +25 mV; between, the output is not given (indeterminate)",
+        "source": "4-6, 4-8, 4-9, 4-11 (PDF pages 70, 72, 73, 75) - TI The Interface Circuits Data Book for Design Engineers (truth table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT (1NEG AND 1G AND S)",
+        "type": "totem-pole",
+        "source": "4-6, 4-8, 4-9, 4-11 (PDF pages 70, 72, 73, 75) - TI The Interface Circuits Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT (2NEG AND 2G AND S)",
+        "type": "totem-pole",
+        "source": "4-6, 4-8, 4-9, 4-11 (PDF pages 70, 72, 73, 75) - TI The Interface Circuits Data Book for Design Engineers"
+      }
+    ]
+  }
 }

@@ -194,6 +194,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B)` - 2Y is the NAND of 2A, 2B.
   - `3Y = NOT(3B AND 3A)` - 3Y is the NAND of 3B, 3A.
   - `4Y = NOT(4B AND 4A)` - 4Y is the NAND of 4B, 4A.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B)` (totem-pole)
+  - `2Y = NOT(2A AND 2B)` (totem-pole)
+  - `3Y = NOT(3B AND 3A)` (totem-pole)
+  - `4Y = NOT(4B AND 4A)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -244,6 +249,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B)` - 2Y is the NAND of 2A, 2B. Open collector: the high level needs an outside pull-up.
   - `3Y = NOT(3A AND 3B)` - 3Y is the NAND of 3A, 3B. Open collector: the high level needs an outside pull-up.
   - `4Y = NOT(4A AND 4B)` - 4Y is the NAND of 4A, 4B. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B)` (open-collector)
+  - `2Y = NOT(2A AND 2B)` (open-collector)
+  - `3Y = NOT(3A AND 3B)` (open-collector)
+  - `4Y = NOT(4A AND 4B)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -294,6 +304,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A OR 2B)` - 2Y is the NOR of 2A, 2B.
   - `3Y = NOT(3A OR 3B)` - 3Y is the NOR of 3A, 3B.
   - `4Y = NOT(4A OR 4B)` - 4Y is the NOR of 4A, 4B.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A OR 1B)` (totem-pole)
+  - `2Y = NOT(2A OR 2B)` (totem-pole)
+  - `3Y = NOT(3A OR 3B)` (totem-pole)
+  - `4Y = NOT(4A OR 4B)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -343,6 +358,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B)` - 2Y is the NAND of 2A, 2B. Open collector: the high level needs an outside pull-up.
   - `3Y = NOT(3A AND 3B)` - 3Y is the NAND of 3A, 3B. Open collector: the high level needs an outside pull-up.
   - `4Y = NOT(4A AND 4B)` - 4Y is the NAND of 4A, 4B. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B)` (open-collector)
+  - `2Y = NOT(2A AND 2B)` (open-collector)
+  - `3Y = NOT(3A AND 3B)` (open-collector)
+  - `4Y = NOT(4A AND 4B)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -395,6 +415,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = NOT 4A` - 4Y is the inverse of 4A.
   - `5Y = NOT 5A` - 5Y is the inverse of 5A.
   - `6Y = NOT 6A` - 6Y is the inverse of 6A.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT 1A` (totem-pole)
+  - `2Y = NOT 2A` (totem-pole)
+  - `3Y = NOT 3A` (totem-pole)
+  - `4Y = NOT 4A` (totem-pole)
+  - `5Y = NOT 5A` (totem-pole)
+  - `6Y = NOT 6A` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -446,6 +473,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = NOT 4A` - 4Y is the inverse of 4A. Open collector: the high level needs an outside pull-up.
   - `5Y = NOT 5A` - 5Y is the inverse of 5A. Open collector: the high level needs an outside pull-up.
   - `6Y = NOT 6A` - 6Y is the inverse of 6A. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT 1A` (open-collector)
+  - `2Y = NOT 2A` (open-collector)
+  - `3Y = NOT 3A` (open-collector)
+  - `4Y = NOT 4A` (open-collector)
+  - `5Y = NOT 5A` (open-collector)
+  - `6Y = NOT 6A` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -498,6 +532,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = NOT 4A` - 4Y is the inverse of 4A. Open collector: the high level needs an outside pull-up.
   - `5Y = NOT 5A` - 5Y is the inverse of 5A. Open collector: the high level needs an outside pull-up.
   - `6Y = NOT 6A` - 6Y is the inverse of 6A. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT 1A` (open-collector-high-voltage)
+  - `2Y = NOT 2A` (open-collector-high-voltage)
+  - `3Y = NOT 3A` (open-collector-high-voltage)
+  - `4Y = NOT 4A` (open-collector-high-voltage)
+  - `5Y = NOT 5A` (open-collector-high-voltage)
+  - `6Y = NOT 6A` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -550,6 +591,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = 4A` - 4Y follows 4A (open collector: the high level needs an outside pull-up).
   - `5Y = 5A` - 5Y follows 5A (open collector: the high level needs an outside pull-up).
   - `6Y = 6A` - 6Y follows 6A (open collector: the high level needs an outside pull-up).
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A` (open-collector-high-voltage)
+  - `2Y = 2A` (open-collector-high-voltage)
+  - `3Y = 3A` (open-collector-high-voltage)
+  - `4Y = 4A` (open-collector-high-voltage)
+  - `5Y = 5A` (open-collector-high-voltage)
+  - `6Y = 6A` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -602,6 +650,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = 2A AND 2B` - 2Y is the AND of 2A, 2B.
   - `3Y = 3A AND 3B` - 3Y is the AND of 3A, 3B.
   - `4Y = 4A AND 4B` - 4Y is the AND of 4A, 4B.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A AND 1B` (totem-pole)
+  - `2Y = 2A AND 2B` (totem-pole)
+  - `3Y = 3A AND 3B` (totem-pole)
+  - `4Y = 4A AND 4B` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -651,6 +704,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = 2A AND 2B` - 2Y is the AND of 2A, 2B. Open collector: the high level needs an outside pull-up.
   - `3Y = 3A AND 3B` - 3Y is the AND of 3A, 3B. Open collector: the high level needs an outside pull-up.
   - `4Y = 4A AND 4B` - 4Y is the AND of 4A, 4B. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A AND 1B` (open-collector)
+  - `2Y = 2A AND 2B` (open-collector)
+  - `3Y = 3A AND 3B` (open-collector)
+  - `4Y = 4A AND 4B` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -700,6 +758,10 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B AND 2C)` - 2Y is the NAND of 2A, 2B, 2C.
   - `3Y = NOT(3A AND 3B AND 3C)` - 3Y is the NAND of 3A, 3B, 3C.
   - `1Y = NOT(1A AND 1B AND 1C)` - 1Y is the NAND of 1A, 1B, 1C.
+- **Behaviour** (as the simulator reads it):
+  - `2Y = NOT(2A AND 2B AND 2C)` (totem-pole)
+  - `3Y = NOT(3A AND 3B AND 3C)` (totem-pole)
+  - `1Y = NOT(1A AND 1B AND 1C)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -747,6 +809,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT(1A AND 1B AND 1C AND 1D)` - 1Y is the NAND of 1A, 1B, 1C, 1D.
   - `2Y = NOT(2A AND 2B AND 2C AND 2D)` - 2Y is the NAND of 2A, 2B, 2C, 2D.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B AND 1C AND 1D)` (totem-pole)
+  - `2Y = NOT(2A AND 2B AND 2C AND 2D)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -799,6 +864,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = NOT 4A` - 4Y is the inverse of 4A.
   - `5Y = NOT 5A` - 5Y is the inverse of 5A.
   - `6Y = NOT 6A` - 6Y is the inverse of 6A.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT 1A` (totem-pole)
+  - `2Y = NOT 2A` (totem-pole)
+  - `3Y = NOT 3A` (totem-pole)
+  - `4Y = NOT 4A` (totem-pole)
+  - `5Y = NOT 5A` (totem-pole)
+  - `6Y = NOT 6A` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -851,6 +923,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = NOT 4A` - 4Y is the inverse of 4A. Open collector: the high level needs an outside pull-up.
   - `5Y = NOT 5A` - 5Y is the inverse of 5A. Open collector: the high level needs an outside pull-up.
   - `6Y = NOT 6A` - 6Y is the inverse of 6A. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT 1A` (open-collector-high-voltage)
+  - `2Y = NOT 2A` (open-collector-high-voltage)
+  - `3Y = NOT 3A` (open-collector-high-voltage)
+  - `4Y = NOT 4A` (open-collector-high-voltage)
+  - `5Y = NOT 5A` (open-collector-high-voltage)
+  - `6Y = NOT 6A` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -900,6 +979,10 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = 2A AND 2B AND 2C` - 2Y is the AND of 2A, 2B, 2C.
   - `3Y = 3A AND 3B AND 3C` - 3Y is the AND of 3A, 3B, 3C.
   - `1Y = 1A AND 1B AND 1C` - 1Y is the AND of 1A, 1B, 1C.
+- **Behaviour** (as the simulator reads it):
+  - `2Y = 2A AND 2B AND 2C` (totem-pole)
+  - `3Y = 3A AND 3B AND 3C` (totem-pole)
+  - `1Y = 1A AND 1B AND 1C` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -952,6 +1035,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `4Y = 4A` - 4Y follows 4A (open collector: the high level needs an outside pull-up).
   - `5Y = 5A` - 5Y follows 5A (open collector: the high level needs an outside pull-up).
   - `6Y = 6A` - 6Y follows 6A (open collector: the high level needs an outside pull-up).
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A` (open-collector-high-voltage)
+  - `2Y = 2A` (open-collector-high-voltage)
+  - `3Y = 3A` (open-collector-high-voltage)
+  - `4Y = 4A` (open-collector-high-voltage)
+  - `5Y = 5A` (open-collector-high-voltage)
+  - `6Y = 6A` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1002,6 +1092,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT(1A AND 1B AND 1C AND 1D)` - 1Y is the NAND of 1A, 1B, 1C, 1D.
   - `2Y = NOT(2A AND 2B AND 2C AND 2D)` - 2Y is the NAND of 2A, 2B, 2C, 2D.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B AND 1C AND 1D)` (totem-pole)
+  - `2Y = NOT(2A AND 2B AND 2C AND 2D)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1049,6 +1142,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = 1A AND 1B AND 1C AND 1D` - 1Y is the AND of 1A, 1B, 1C, 1D.
   - `2Y = 2A AND 2B AND 2C AND 2D` - 2Y is the AND of 2A, 2B, 2C, 2D.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A AND 1B AND 1C AND 1D` (totem-pole)
+  - `2Y = 2A AND 2B AND 2C AND 2D` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1097,6 +1193,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT(1G AND (1A OR 1B OR 1C OR 1D))` - When 1G is high, 1Y is low if any of 1A, 1B, 1C, 1D is high, else high; when 1G is low, 1Y is high.
   - `2Y = NOT(2G AND (2A OR 2B OR 2C OR 2D))` - When 2G is high, 2Y is low if any of 2A, 2B, 2C, 2D is high, else high; when 2G is low, 2Y is high.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1G AND (1A OR 1B OR 1C OR 1D))` (totem-pole) - drives when 1G high, else 1
+  - `2Y = NOT(2G AND (2A OR 2B OR 2C OR 2D))` (totem-pole) - drives when 2G high, else 1
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1146,6 +1245,10 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A OR 2B OR 2C)` - 2Y is the NOR of 2A, 2B, 2C.
   - `3Y = NOT(3A OR 3B OR 3C)` - 3Y is the NOR of 3A, 3B, 3C.
   - `1Y = NOT(1A OR 1B OR 1C)` - 1Y is the NOR of 1A, 1B, 1C.
+- **Behaviour** (as the simulator reads it):
+  - `2Y = NOT(2A OR 2B OR 2C)` (totem-pole)
+  - `3Y = NOT(3A OR 3B OR 3C)` (totem-pole)
+  - `1Y = NOT(1A OR 1B OR 1C)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1195,6 +1298,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A OR 2B)` - 2Y is the NOR of 2A, 2B.
   - `3Y = NOT(3A OR 3B)` - 3Y is the NOR of 3A, 3B.
   - `4Y = NOT(4A OR 4B)` - 4Y is the NOR of 4A, 4B.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A OR 1B)` (totem-pole)
+  - `2Y = NOT(2A OR 2B)` (totem-pole)
+  - `3Y = NOT(3A OR 3B)` (totem-pole)
+  - `4Y = NOT(4A OR 4B)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1244,6 +1352,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI SN5430/SN7430/SN74LS30/SN74S30 datasheet SDLS099](https://www.ti.com/lit/ds/symlink/sn74ls30.pdf) p. 1, 3 (figures for SN7430)
 - **Formulas:**
   - `Y = NOT(A AND B AND C AND D AND E AND F AND G AND H)` - Y is the NAND of A, B, C, D, E, F, G, H.
+- **Behaviour** (as the simulator reads it):
+  - `Y = NOT(A AND B AND C AND D AND E AND F AND G AND H)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1293,6 +1403,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = 2A OR 2B` - 2Y is the OR of 2A, 2B.
   - `3Y = 3A OR 3B` - 3Y is the OR of 3A, 3B.
   - `4Y = 4A OR 4B` - 4Y is the OR of 4A, 4B.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A OR 1B` (totem-pole)
+  - `2Y = 2A OR 2B` (totem-pole)
+  - `3Y = 3A OR 3B` (totem-pole)
+  - `4Y = 4A OR 4B` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1342,6 +1457,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A OR 2B)` - 2Y is the NOR of 2A, 2B. Open collector: the high level needs an outside pull-up.
   - `3Y = NOT(3A OR 3B)` - 3Y is the NOR of 3A, 3B. Open collector: the high level needs an outside pull-up.
   - `4Y = NOT(4A OR 4B)` - 4Y is the NOR of 4A, 4B. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A OR 1B)` (open-collector)
+  - `2Y = NOT(2A OR 2B)` (open-collector)
+  - `3Y = NOT(3A OR 3B)` (open-collector)
+  - `4Y = NOT(4A OR 4B)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1395,6 +1515,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B)` - 2Y is the NAND of 2A, 2B.
   - `3Y = NOT(3A AND 3B)` - 3Y is the NAND of 3A, 3B.
   - `4Y = NOT(4A AND 4B)` - 4Y is the NAND of 4A, 4B.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B)` (totem-pole)
+  - `2Y = NOT(2A AND 2B)` (totem-pole)
+  - `3Y = NOT(3A AND 3B)` (totem-pole)
+  - `4Y = NOT(4A AND 4B)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1445,6 +1570,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B)` - 2Y is the NAND of 2A, 2B. Open collector: the high level needs an outside pull-up.
   - `3Y = NOT(3A AND 3B)` - 3Y is the NAND of 3A, 3B. Open collector: the high level needs an outside pull-up.
   - `4Y = NOT(4A AND 4B)` - 4Y is the NAND of 4A, 4B. Open collector: the high level needs an outside pull-up.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B)` (open-collector)
+  - `2Y = NOT(2A AND 2B)` (open-collector)
+  - `3Y = NOT(3A AND 3B)` (open-collector)
+  - `4Y = NOT(4A AND 4B)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1493,6 +1623,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT (1A AND 1B AND 1C AND 1D)` - 1Y is low only when all four inputs 1A-1D are high.
   - `2Y = NOT (2A AND 2B AND 2C AND 2D)` - 2Y is low only when all four inputs 2A-2D are high.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT (1A AND 1B AND 1C AND 1D)` (totem-pole)
+  - `2Y = NOT (2A AND 2B AND 2C AND 2D)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1547,6 +1680,17 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `7 = NOT (D' AND C AND B AND A)` - Output 7 is low (active) only when DCBA = 0111; inputs 10-15 leave every output high.
   - `8 = NOT (D AND C' AND B' AND A')` - Output 8 is low (active) only when DCBA = 1000; inputs 10-15 leave every output high.
   - `9 = NOT (D AND C' AND B' AND A)` - Output 9 is low (active) only when DCBA = 1001; inputs 10-15 leave every output high.
+- **Behaviour** (as the simulator reads it):
+  - `0 = NOT (D' AND C' AND B' AND A')` (totem-pole)
+  - `1 = NOT (D' AND C' AND B' AND A)` (totem-pole)
+  - `2 = NOT (D' AND C' AND B AND A')` (totem-pole)
+  - `3 = NOT (D' AND C' AND B AND A)` (totem-pole)
+  - `4 = NOT (D' AND C AND B' AND A')` (totem-pole)
+  - `5 = NOT (D' AND C AND B' AND A)` (totem-pole)
+  - `6 = NOT (D' AND C AND B AND A')` (totem-pole)
+  - `7 = NOT (D' AND C AND B AND A)` (totem-pole)
+  - `8 = NOT (D AND C' AND B' AND A')` (totem-pole)
+  - `9 = NOT (D AND C' AND B' AND A)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1605,6 +1749,17 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `7 = NOT (D' AND C AND B AND A)` - Output 7 is low (on, transistor sinking) only when DCBA = 0111; inputs 10-15 leave every output high.
   - `8 = NOT (D AND C' AND B' AND A')` - Output 8 is low (on, transistor sinking) only when DCBA = 1000; inputs 10-15 leave every output high.
   - `9 = NOT (D AND C' AND B' AND A)` - Output 9 is low (on, transistor sinking) only when DCBA = 1001; inputs 10-15 leave every output high.
+- **Behaviour** (as the simulator reads it):
+  - `0 = NOT (D' AND C' AND B' AND A')` (open-collector-high-voltage)
+  - `1 = NOT (D' AND C' AND B' AND A)` (open-collector-high-voltage)
+  - `2 = NOT (D' AND C' AND B AND A')` (open-collector-high-voltage)
+  - `3 = NOT (D' AND C' AND B AND A)` (open-collector-high-voltage)
+  - `4 = NOT (D' AND C AND B' AND A')` (open-collector-high-voltage)
+  - `5 = NOT (D' AND C AND B' AND A)` (open-collector-high-voltage)
+  - `6 = NOT (D' AND C AND B AND A')` (open-collector-high-voltage)
+  - `7 = NOT (D' AND C AND B AND A)` (open-collector-high-voltage)
+  - `8 = NOT (D AND C' AND B' AND A')` (open-collector-high-voltage)
+  - `9 = NOT (D AND C' AND B' AND A)` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1656,6 +1811,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT ((1A AND 1B) OR (1C AND 1D) OR X)` - Gate 1 (expandable): 1Y is low when 1A and 1B are both high, or 1C and 1D are both high, or an expander on X/X' has all its inputs high. X = output of a 7460 expander.
   - `2Y = NOT ((2A AND 2B) OR (2C AND 2D))` - Gate 2: 2Y is low when 2A and 2B are both high, or 2C and 2D are both high.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT ((1A AND 1B) OR (1C AND 1D) OR X)` (totem-pole)
+  - `2Y = NOT ((2A AND 2B) OR (2C AND 2D))` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1703,6 +1861,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf) p. 5-17 (PDF page 17) (figures for SN7453 (J, N package)); [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf) p. 6-39, 6-40, 6-41 (PDF pages 39-41) (figures for SN7453)
 - **Formulas:**
   - `Y = NOT ((A AND B) OR (C AND D) OR (E AND F) OR (G AND H) OR X)` - Y is low when any of the pairs AB, CD, EF, GH is all high, or an expander on X/X' has all its inputs high (X = output of a 7460).
+- **Behaviour** (as the simulator reads it):
+  - `Y = NOT ((A AND B) OR (C AND D) OR (E AND F) OR (G AND H) OR X)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1749,6 +1909,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf) p. 5-17 (PDF page 17) (figures for SN74H52 (J, N package)); [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf) p. 6-39, 6-40, 6-41 (PDF pages 39-41) (figures for SN74H52)
 - **Formulas:**
   - `Y = (A AND B) OR (C AND D AND E) OR (F AND G) OR (H AND I) OR X` - Y is high when AB, or CDE, or FG, or HI are all high, or an expander on X has all its inputs high (X = output of a 74H61).
+- **Behaviour** (as the simulator reads it):
+  - `Y = (A AND B) OR (C AND D AND E) OR (F AND G) OR (H AND I) OR X` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1797,6 +1959,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf) p. 5-18 (PDF page 18) (figures for SN74H54 (J, N package)); [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf) p. 6-30, 6-31 (PDF pages 30-31) (figures for SN74H54)
 - **Formulas:**
   - `Y = NOT ((A AND B) OR (C AND D) OR (E AND F AND G) OR (H AND I))` - Y is low when AB, or CD, or EFG, or HI are all high.
+- **Behaviour** (as the simulator reads it):
+  - `Y = NOT ((A AND B) OR (C AND D) OR (E AND F AND G) OR (H AND I))` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1841,6 +2005,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf) p. 5-19 (PDF page 19) (figures for SN74H55 (J, N package)); [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf) p. 6-39, 6-40, 6-41 (PDF pages 39-41) (figures for SN74H55)
 - **Formulas:**
   - `Y = NOT ((A AND B AND C AND D) OR (E AND F AND G AND H) OR X)` - Y is low when ABCD are all high, or EFGH are all high, or an expander on X/X' is true (X = output of a 74H60 or 74H62).
+- **Behaviour** (as the simulator reads it):
+  - `Y = NOT ((A AND B AND C AND D) OR (E AND F AND G AND H) OR X)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1898,6 +2064,10 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Preset or clear can occur only when CK is low
   - PR high, CLR high, rising edge of CK: J=0 K=0 hold; J=1 K=0 Q=1; J=0 K=1 Q=0; J=1 K=1 toggle
   - PR high, CLR high, CK low: hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (J1 AND J2 AND NOT J' AND NOT FF1) OR (NOT (K1 AND K2 AND NOT K') AND FF1)` on rising edge (L->H) of CK; set by PR low; clear by CLR low; both: neither wins: Q and Q' are both LOW while both act (table prints L* L*); not stable
+  - `Q = FF1 AND (PR OR CLR)` (totem-pole)
+  - `Q' = NOT FF1 AND (PR OR CLR)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -1950,6 +2120,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf) p. 5-20 (PDF page 20) (figures for SN74S64 (J, N package)); [TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf) p. 6-30, 6-31 (PDF pages 30-31) (figures for SN74S64)
 - **Formulas:**
   - `Y = NOT ((A AND B AND C AND D) OR (E AND F) OR (G AND H AND I) OR (J AND K))` - Y is low when ABCD, or EF, or GHI, or JK are all high.
+- **Behaviour** (as the simulator reads it):
+  - `Y = NOT ((A AND B AND C AND D) OR (E AND F) OR (G AND H AND I) OR (J AND K))` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2005,6 +2177,10 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - PR low, CLR low: Q = 1 and Q' = 1; not stable, does not persist when PR and CLR return high
   - Master-slave, pulse triggered: J and K are taken in while CK is high (setup 0 ns before the rising edge, hold 0 ns after the falling edge); the outputs change on the falling edge of CK
   - On a CK pulse with clear/preset inactive: J=0 K=0 hold; J=1 K=0 Q=1; J=0 K=1 Q=0; J=1 K=1 toggle
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (J1 AND J2 AND J3 AND NOT FF1) OR (NOT (K1 AND K2 AND K3) AND FF1)` on falling edge (H->L) of CK; set by PR low; clear by CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - `Q = FF1 OR (PR' AND CLR')` (totem-pole)
+  - `Q' = NOT FF1 OR (PR' AND CLR')` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2063,6 +2239,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLR low: Q = 0, Q' = 1 at once
   - Master-slave, pulse triggered: J and K are taken in while CK is high (setup 0 ns before the rising edge, hold 0 ns after the falling edge); the outputs change on the falling edge of CK
   - On a CK pulse with clear/preset inactive: J=0 K=0 hold; J=1 K=0 Q=1; J=0 K=1 Q=0; J=1 K=1 toggle
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)` on falling edge (H->L) of 1CK; clear by 1CLR low
+  - stored `FF2` (flip-flop): `FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)` on falling edge (H->L) of 2CK; clear by 2CLR low
+  - `1Q = FF1` (totem-pole)
+  - `1Q' = NOT FF1` (totem-pole)
+  - `2Q = FF2` (totem-pole)
+  - `2Q' = NOT FF2` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2127,6 +2310,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - PR low, CLR low: Q = 1 and Q' = 1; not stable, does not persist when PR and CLR return high
   - PR high, CLR high, rising edge of CK: Q = D
   - PR high, CLR high, CK low: hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = 1D` on rising edge (L->H) of 1CK; set by 1PR low; clear by 1CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - stored `FF2` (flip-flop): `FF2 = 2D` on rising edge (L->H) of 2CK; set by 2PR low; clear by 2CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - `1Q = FF1` (totem-pole)
+  - `1Q' = NOT FF1 OR (1PR' AND 1CLR')` (totem-pole)
+  - `2Q = FF2` (totem-pole)
+  - `2Q' = NOT FF2 OR (2PR' AND 2CLR')` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2197,6 +2387,19 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Stored state:** 4 bits, changes on level of G12 (latches 1, 2) and G34 (latches 3, 4)
   - G high: Q = D, Q' = NOT D (transparent)
   - G low: Q holds the level it had before the high-to-low transition of G
+- **Behaviour** (as the simulator reads it):
+  - stored `L1` (latch): `L1 = 1D` on while high: G12
+  - stored `L2` (latch): `L2 = 2D` on while high: G12
+  - stored `L3` (latch): `L3 = 3D` on while high: G34
+  - stored `L4` (latch): `L4 = 4D` on while high: G34
+  - `1Q = L1` (totem-pole)
+  - `1Q' = NOT L1` (totem-pole)
+  - `2Q = L2` (totem-pole)
+  - `2Q' = NOT L2` (totem-pole)
+  - `3Q = L3` (totem-pole)
+  - `3Q' = NOT L3` (totem-pole)
+  - `4Q = L4` (totem-pole)
+  - `4Q' = NOT L4` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2283,6 +2486,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - PR low, CLR low: Q = 1 and Q' = 1; not stable, does not persist when PR and CLR return high
   - Master-slave, pulse triggered: J and K are taken in while CK is high (setup 0 ns before the rising edge, hold 0 ns after the falling edge); the outputs change on the falling edge of CK
   - On a CK pulse with clear/preset inactive: J=0 K=0 hold; J=1 K=0 Q=1; J=0 K=1 Q=0; J=1 K=1 toggle
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)` on falling edge (H->L) of 1CK; set by 1PR low; clear by 1CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - stored `FF2` (flip-flop): `FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)` on falling edge (H->L) of 2CK; set by 2PR low; clear by 2CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - `1Q = FF1 OR (1PR' AND 1CLR')` (totem-pole)
+  - `1Q' = NOT FF1 OR (1PR' AND 1CLR')` (totem-pole)
+  - `2Q = FF2 OR (2PR' AND 2CLR')` (totem-pole)
+  - `2Q' = NOT FF2 OR (2PR' AND 2CLR')` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2348,6 +2558,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `S3 = A3 XOR B3 XOR C2, C2 = (A2 AND B2) OR ((A2 XOR B2) AND C1)` - Sum bit 3. C2 is the internal carry out of bit 2 (named in the function table note).
   - `S4 = A4 XOR B4 XOR C3, C3 = (A3 AND B3) OR ((A3 XOR B3) AND C2)` - Sum bit 4.
   - `C4 = (A4 AND B4) OR ((A4 XOR B4) AND C3)` - Carry out: C4,S4,S3,S2,S1 = A4..A1 + B4..B1 + C0 in binary. Internally the carry is looked ahead across all four bits (datasheet), so the value is the same as this ripple formula but the delay is not ripple delay.
+- **Behaviour** (as the simulator reads it):
+  - inside: `C1 = (A1 AND B1) OR ((A1 XOR B1) AND C0)`
+  - inside: `C2 = (A2 AND B2) OR ((A2 XOR B2) AND C1)`
+  - inside: `C3 = (A3 AND B3) OR ((A3 XOR B3) AND C2)`
+  - `S1 = A1 XOR B1 XOR C0` (totem-pole)
+  - `S2 = A2 XOR B2 XOR C1` (totem-pole)
+  - `S3 = A3 XOR B3 XOR C2` (totem-pole)
+  - `S4 = A4 XOR B4 XOR C3` (totem-pole)
+  - `C4 = (A4 AND B4) OR ((A4 XOR B4) AND C3)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2404,6 +2623,17 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `A>Bout = (A > B) OR ((A = B) AND A=Bin' AND A<Bin')` - High when the word A3..A0 is greater than B3..B0. When the words are equal it is high when the A=B and A<B cascade inputs are both low (so A>Bin=H gives H, and all three cascade inputs low gives H as well, per the '85 function table).
   - `A<Bout = (A < B) OR ((A = B) AND A=Bin' AND A>Bin')` - High when A3..A0 is less than B3..B0. When the words are equal it is high when the A=B and A>B cascade inputs are both low.
   - `A=Bout = (A = B) AND A=Bin` - High only when the words are equal and the A=B cascade input is high.
+- **Behaviour** (as the simulator reads it):
+  - inside: `EQ0 = NOT (A0 XOR B0)`
+  - inside: `EQ1 = NOT (A1 XOR B1)`
+  - inside: `EQ2 = NOT (A2 XOR B2)`
+  - inside: `EQ3 = NOT (A3 XOR B3)`
+  - inside: `EQ = EQ3 AND EQ2 AND EQ1 AND EQ0`
+  - inside: `GT = (A3 AND NOT B3) OR (EQ3 AND A2 AND NOT B2) OR (EQ3 AND EQ2 AND A1 AND NOT B1) OR (EQ3 AND EQ2 AND EQ1 AND A0 AND NOT B0)`
+  - inside: `LT = (B3 AND NOT A3) OR (EQ3 AND B2 AND NOT A2) OR (EQ3 AND EQ2 AND B1 AND NOT A1) OR (EQ3 AND EQ2 AND EQ1 AND B0 AND NOT A0)`
+  - `A>Bout = GT OR (EQ AND NOT A=Bin AND NOT A<Bin)` (totem-pole)
+  - `A<Bout = LT OR (EQ AND NOT A=Bin AND NOT A>Bin)` (totem-pole)
+  - `A=Bout = EQ AND A=Bin` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2468,6 +2698,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = 2A XOR 2B` - 2Y is high when exactly one of 2A, 2B is high.
   - `3Y = 3A XOR 3B` - 3Y is high when exactly one of 3A, 3B is high.
   - `4Y = 4A XOR 4B` - 4Y is high when exactly one of 4A, 4B is high.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A XOR 1B` (totem-pole)
+  - `2Y = 2A XOR 2B` (totem-pole)
+  - `3Y = 3A XOR 3B` (totem-pole)
+  - `4Y = 4A XOR 4B` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2523,6 +2758,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - ME low, WE high: read; outputs show the complement of the addressed word
   - ME high: hold (no write); outputs at logical 1
   - Read-out is nondestructive
+- **Behaviour** (as the simulator reads it):
+  - memory `M`: 16 words x 4 bits, address A, B, C, D
+  - `S1 = NOT (NOT ME AND WE AND M1)` (open-collector)
+  - `S2 = NOT (NOT ME AND WE AND M2)` (open-collector)
+  - `S3 = NOT (NOT ME AND WE AND M3)` (open-collector)
+  - `S4 = NOT (NOT ME AND WE AND M4)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2586,6 +2827,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - QD QC QB count 0,1,2,3,4 (divide by five) on falling edges of B
   - With QA connected to B and pulses on A: QD QC QB QA count BCD 0-9
   - With QD connected to A and pulses on B: bi-quinary count, QA gives a divide-by-ten square wave
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (counter): `FA = NOT FA` on falling edge (H->L) of A; at once `1` while `R9(1) AND R9(2)`; at once `0` while `R0(1) AND R0(2)`
+  - stored `FB` (counter): `FB = NOT FB AND NOT FD` on falling edge (H->L) of B; at once `0` while `R9(1) AND R9(2)`; at once `0` while `R0(1) AND R0(2)`
+  - stored `FC` (counter): `FC = FC XOR FB` on falling edge (H->L) of B; at once `0` while `R9(1) AND R9(2)`; at once `0` while `R0(1) AND R0(2)`
+  - stored `FD` (counter): `FD = FB AND FC` on falling edge (H->L) of B; at once `1` while `R9(1) AND R9(2)`; at once `0` while `R0(1) AND R0(2)`
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2651,6 +2901,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - QA toggles on each falling edge of A
   - QD QC QB count 0-7 (divide by eight) on falling edges of B
   - With QA connected to B and pulses on A: QD QC QB QA count binary 0-15
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (counter): `FA = NOT FA` on falling edge (H->L) of A; at once `0` while `R0(1) AND R0(2)`
+  - stored `FB` (counter): `FB = NOT FB` on falling edge (H->L) of B; at once `0` while `R0(1) AND R0(2)`
+  - stored `FC` (counter): `FC = NOT FC` on falling edge (H->L) of FB; at once `0` while `R0(1) AND R0(2)`
+  - stored `FD` (counter): `FD = NOT FD` on falling edge (H->L) of FC; at once `0` while `R0(1) AND R0(2)`
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2712,6 +2971,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR low, presets inactive, CLOCK low: hold
   - CLEAR low, presets inactive, rising edge of CLOCK: QA = SER, QB = old QA, QC = old QB, QD = old QC (shift right)
   - Parallel load is done by clearing first and then presetting with PE1 or PE2
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = SER` on rising edge (L->H) of CLOCK; at once `1` while `(PE1 AND P1A) OR (PE2 AND P2A)`; at once `0` while `CLEAR`
+  - stored `FB` (flip-flop): `FB = FA` on rising edge (L->H) of CLOCK; at once `1` while `(PE1 AND P1B) OR (PE2 AND P2B)`; at once `0` while `CLEAR`
+  - stored `FC` (flip-flop): `FC = FB` on rising edge (L->H) of CLOCK; at once `1` while `(PE1 AND P1C) OR (PE2 AND P2C)`; at once `0` while `CLEAR`
+  - stored `FD` (flip-flop): `FD = FC` on rising edge (L->H) of CLOCK; at once `1` while `(PE1 AND P1D) OR (PE2 AND P2D)`; at once `0` while `CLEAR`
+  - `QD = FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2772,6 +3037,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - MODE low, CK1 high: hold
   - MODE low, falling edge of CK1: QA = SER, QB = old QA, QC = old QB, QD = old QC (shift right; CK2 is ignored)
   - Changes on MODE should be made while both clocks are low; the function table also shows hold for MODE rising with CK2 L CK1 L, MODE falling with CK2 L CK1 L, MODE falling with CK2 L CK1 H, MODE rising with CK2 H CK1 L, and MODE rising with CK2 H CK1 H
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (MODE AND A) OR (NOT MODE AND SER)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - stored `FB` (flip-flop): `FB = (MODE AND B) OR (NOT MODE AND FA)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - stored `FC` (flip-flop): `FC = (MODE AND C) OR (NOT MODE AND FB)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - stored `FD` (flip-flop): `FD = (MODE AND D) OR (NOT MODE AND FC)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2829,6 +3103,17 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR high, PE low, CLOCK low: hold
   - CLEAR high, PE low, rising edge of CLOCK: QA = SER, QB = old QA, QC = old QB, QD = old QC, QE = old QD
   - Parallel load: clear first, then apply data on A-E and a high pulse on PE
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = SER` on rising edge (L->H) of CLOCK; at once `0` while `NOT CLEAR`; at once `1` while `PE AND A`
+  - stored `FB` (flip-flop): `FB = FA` on rising edge (L->H) of CLOCK; at once `0` while `NOT CLEAR`; at once `1` while `PE AND B`
+  - stored `FC` (flip-flop): `FC = FB` on rising edge (L->H) of CLOCK; at once `0` while `NOT CLEAR`; at once `1` while `PE AND C`
+  - stored `FD` (flip-flop): `FD = FC` on rising edge (L->H) of CLOCK; at once `0` while `NOT CLEAR`; at once `1` while `PE AND D`
+  - stored `FE` (flip-flop): `FE = FD` on rising edge (L->H) of CLOCK; at once `0` while `NOT CLEAR`; at once `1` while `PE AND E`
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `QE = FE` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2889,6 +3174,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - MODE low, CK1 high: hold
   - MODE low, falling edge of CK1: QA = SER, QB = old QA, QC = old QB, QD = old QC (shift right; CK2 is ignored)
   - Changes on MODE should be made while both clocks are low; the function table also shows hold for MODE rising with CK2 L CK1 L, MODE falling with CK2 L CK1 L, MODE falling with CK2 L CK1 H, MODE rising with CK2 H CK1 L, and MODE rising with CK2 H CK1 H
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (MODE AND A) OR (NOT MODE AND SER)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - stored `FB` (flip-flop): `FB = (MODE AND B) OR (NOT MODE AND FA)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - stored `FC` (flip-flop): `FC = (MODE AND C) OR (NOT MODE AND FB)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - stored `FD` (flip-flop): `FD = (MODE AND D) OR (NOT MODE AND FC)` on falling edge (H->L) of (MODE AND CK2) OR (NOT MODE AND CK1)
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -2945,6 +3239,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Stored state:** 8 bits, changes on level of 1G (latches 1Q1-1Q4) and 2G (latches 2Q1-2Q4)
   - G high: Q = D (transparent)
   - G low: Q holds the level it had before the high-to-low transition of G
+- **Behaviour** (as the simulator reads it):
+  - stored `L1Q1` (latch): `L1Q1 = 1D1` on while high: 1G
+  - stored `L1Q2` (latch): `L1Q2 = 1D2` on while high: 1G
+  - stored `L1Q3` (latch): `L1Q3 = 1D3` on while high: 1G
+  - stored `L1Q4` (latch): `L1Q4 = 1D4` on while high: 1G
+  - stored `L2Q1` (latch): `L2Q1 = 2D1` on while high: 2G
+  - stored `L2Q2` (latch): `L2Q2 = 2D2` on while high: 2G
+  - stored `L2Q3` (latch): `L2Q3 = 2D3` on while high: 2G
+  - stored `L2Q4` (latch): `L2Q4 = 2D4` on while high: 2G
+  - `1Q1 = L1Q1` (totem-pole)
+  - `1Q2 = L1Q2` (totem-pole)
+  - `1Q3 = L1Q3` (totem-pole)
+  - `1Q4 = L1Q4` (totem-pole)
+  - `2Q1 = L2Q1` (totem-pole)
+  - `2Q2 = L2Q2` (totem-pole)
+  - `2Q3 = L2Q3` (totem-pole)
+  - `2Q4 = L2Q4` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3003,12 +3314,22 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Z = NOT( (CLOCK' AND STROBE') AND ( (F AND QA') OR (E AND QA AND QB') OR (D AND QA AND QB AND QC') OR (C AND QA AND QB AND QC AND QD') OR (B AND QA AND QB AND QC AND QD AND QE') OR (A AND QA AND QB AND QC AND QD AND QE AND QF') ) )` - Z is a NOR of six rate gates. Each rate gate is open while CLOCK and STROBE are both low and the 6-bit counter is in the state that belongs to that rate bit; rate input F gives 32 pulses per 64 clocks, E 16, D 8, C 4, B 2, A 1. So with the counter enabled Z gives M low pulses per 64 clock pulses, M = 32F + 16E + 8D + 4C + 2B + A, f_out = M * f_in / 64. With all rate inputs low Z stays high. Gate inputs read from the functional block diagram (see unknown).
   - `Y = NOT(Z AND UNITY/CASCADE)` - Y is the complement of Z while UNITY/CASCADE is high (M high pulses per 64 clocks); a low UNITY/CASCADE forces Y high. Tying UNITY/CASCADE to CLOCK with STROBE high passes the clock inverted to Y.
-  - `ENABLE OUTPUT = NOT(ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE AND QF)` - Goes low once per 64 clocks, when the counter is enabled and reaches all ones (state 63); used as the enable/strobe of the next stage when cascading. Function table gives 1 pulse per 64 clocks. A further input to this gate is drawn in the block diagram but could not be read clearly (see unknown).
+  - `ENABLE OUTPUT = NOT(ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE AND QF)` - Goes low once per 64 clocks, when the counter is enabled and reaches all ones (state 63); used as the enable/strobe of the next stage when cascading. Function table gives 1 pulse per 64 clocks. The block diagram (book page 7-103, read at 600 dpi on 2026-11-23) shows exactly seven inputs to this gate: the enable line and QA..QF.
 - **Stored state:** 6 bits, changes on rising edge of CLOCK
   - CLEAR high: counter QA..QF = 0 at once (function table: Y low, Z high, enable output high; note B says the levels of clock and strobe can change Y and Z, and a low unity/cascade keeps Y high)
   - CLEAR low, ENABLE INPUT low: the 6-bit synchronous binary counter (QA least significant) counts up by one on each rising clock edge, 64 states
   - ENABLE INPUT high: the counter holds
   - STROBE high: rate gates inhibited, Z high
+- **Behaviour** (as the simulator reads it):
+  - stored `QA` (counter): `QA = QA XOR (ENABLE INPUT')` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `QB` (counter): `QB = QB XOR (ENABLE INPUT' AND QA)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `QC` (counter): `QC = QC XOR (ENABLE INPUT' AND QA AND QB)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `QD` (counter): `QD = QD XOR (ENABLE INPUT' AND QA AND QB AND QC)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `QE` (counter): `QE = QE XOR (ENABLE INPUT' AND QA AND QB AND QC AND QD)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `QF` (counter): `QF = QF XOR (ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - `Z = NOT( (CLOCK' AND STROBE') AND ( (F AND QA') OR (E AND QA AND QB') OR (D AND QA AND QB AND QC') OR (C AND QA AND QB AND QC AND QD') OR (B AND QA AND QB AND QC AND QD AND QE') OR (A AND QA AND QB AND QC AND QD AND QE AND QF') ) )` (totem-pole)
+  - `Y = NOT(Z AND UNITY/CASCADE)` (totem-pole)
+  - `ENABLE OUTPUT = NOT(ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE AND QF)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3055,7 +3376,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Timing limits:** max clock frequency CLOCK minMHz 25 typMHz 32; pulse width CLOCK minNs 20; pulse width CLEAR minNs 15; setup ENABLE INPUT to CLOCK rising minNs 25; setup ENABLE INPUT to CLOCK falling edge of the previous clock pulse minNs 0 maxNs tw(clock) - 10; hold ENABLE INPUT to CLOCK rising minNs 0 maxNs tw(clock) - 10; hold ENABLE INPUT to CLOCK falling edge of the previous clock pulse minNs 20 maxNs tcp - 10
 - **Output current:** low 16 mA, high -0.4 mA
 - **Electrical notes:** Clock frequency 0 to 25 MHz (recommended). Clock input equivalent Req 2 kOhm nominal, other inputs 4 kOhm. Clock input low-level input current -3.2 mA max, other inputs -1.6 mA.
-- **Not settled by the datasheet:** Exact gate inputs of the six rate gates and of the enable-output gate were read from a scanned functional block diagram; the gate for rate F reads as using QA', E uses QA and QB', and so on, consistent with the pulse counts in the function table, but the line-by-line wiring is not printed as text.; The enable-output NAND gate has one more input in the block diagram (a line from the QF area) that could not be identified from the scan.
+- **Not settled by the datasheet:** Exact gate inputs of the six rate gates were read from the scanned functional block diagram (book page 7-103); the line-by-line wiring is not printed as text.
 - **Notes:** Pin names follow the datasheet pin-out: B 1, E 2, F 3, A 4, Z 5, Y 6, ENABLE OUTPUT 7, GND 8, CLOCK 9, STROBE 10, ENABLE INPUT 11, UNITY/CASCADE 12, CLEAR 13, C 14, D 15, VCC 16. The recommended-conditions table column header for the 74 part reads 'SN7494' in the book; it is the SN7497 column (misprint in the source).
 
 ### 74107 - Dual J-K master-slave flip-flop
@@ -3083,6 +3404,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLR low: Q = 0, Q' = 1 at once, overriding clock and data
   - CLR high, positive CLK pulse: J=L,K=L hold; J=H,K=L Q=1; J=L,K=H Q=0; J=H,K=H toggle
   - The J-K data is loaded into the master while CLK is high and transferred to the slave and outputs on the high-to-low clock transition; J and K must be stable while CLK is high
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)` on falling edge (H->L) of 1CLK; clear by 1CLR low
+  - stored `FF2` (flip-flop): `FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)` on falling edge (H->L) of 2CLK; clear by 2CLR low
+  - `1Q = FF1` (totem-pole)
+  - `1Q' = NOT FF1` (totem-pole)
+  - `2Q = FF2` (totem-pole)
+  - `2Q' = NOT FF2` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3140,6 +3468,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - PRESET low and CLEAR low: Q = 1 and Q' = 1 (not stable: does not persist when preset and clear return high)
   - PRESET high, CLEAR high, falling CLOCK edge: J=L,K=L hold; J=H,K=L Q=1; J=L,K=H Q=0; J=H,K=H toggle
   - CLOCK high (no falling edge): hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)` on falling edge (H->L) of 1CK; set by 1PR low; clear by 1CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - stored `FF2` (flip-flop): `FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)` on falling edge (H->L) of 2CK; set by 2PR low; clear by 2CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - `1Q = FF1 OR (1PR' AND 1CLR')` (totem-pole)
+  - `1Q' = NOT FF1 OR (1PR' AND 1CLR')` (totem-pole)
+  - `2Q = FF2 OR (2PR' AND 2CLR')` (totem-pole)
+  - `2Q' = NOT FF2 OR (2PR' AND 2CLR')` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3200,6 +3535,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - PRESET low and CLEAR low: Q = 1 and Q' = 1 (not stable: does not persist when preset and clear return high)
   - PRESET high, CLEAR high, falling CLOCK edge: J=L,K=L hold; J=H,K=L Q=1; J=L,K=H Q=0; J=H,K=H toggle
   - CLOCK high (no falling edge): hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)` on falling edge (H->L) of CK; set by 1PR low; clear by CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - stored `FF2` (flip-flop): `FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)` on falling edge (H->L) of CK; set by 2PR low; clear by CLR low; both: neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given
+  - `1Q = FF1 OR (1PR' AND CLR')` (totem-pole)
+  - `1Q' = NOT FF1 OR (1PR' AND CLR')` (totem-pole)
+  - `2Q = FF2 OR (2PR' AND CLR')` (totem-pole)
+  - `2Q' = NOT FF2 OR (2PR' AND CLR')` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3246,6 +3588,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 
 - **What it looks like:** A rectangle for the whole function (or one section of it). Pin numbers are written on the lines where they meet the box; signal names are written beside them.
 
+- **Behaviour:** none - no datasheet found (see unknown); no behaviour is taken from any other part
 - **Output current:** low - mA, high - mA
 - **Not settled by the datasheet:** No datasheet for the SN74118 was found. Tried: TI symlink URLs sn74118 / sn74ls118 (404); the TI TTL Data Book 2nd ed. 1976 (all sections on bitsavers; the part is not in it); the 1977 TI supplement; the 1971 TI IC catalog; web searches. datasheetarchive.com lists a one-page 1975/76 scan of an SN74118N but the file could not be downloaded.; Package, pin-out, pin roles, function, state rules, electrical figures and timing: all unknown. A forum post gives a pin list, but that is not a datasheet and was not used.
 - **Notes:** Placeholder: everything is unknown until a datasheet is found.
@@ -3280,6 +3623,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - After start, M low: pulses keep passing until a stop command; M high: only a single clock pulse is passed
   - When stopped by S or R, the setup times decide which is the last pulse. A low-to-high transition on M meeting tsu(H) passes that positive clock pulse, then inhibits remaining pulses. Low-to-high transitions on M in the 20 ns after the falling edge of the clock pulse may or may not let the next pulse through.
   - Once an output pulse has started it is not cut short (C is latch-controlled)
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3338,6 +3682,10 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Pulse width tw(out) = Cext * RT * ln 2, about 0.7 * Cext * RT (RT = Rext or Rint), within the jitter-free range of Cext 10 pF to 10 uF and RT 2 kOhm to 40 kOhm (SN74121)
   - With no external timing parts (Rint to VCC, Cext and Rext/Cext open) the pulse is typically 30 or 35 ns
   - Input pulses may be of any duration relative to the output pulse
+- **Behaviour** (as the simulator reads it):
+  - stored `P` (one-shot): pulse on rising edge (L->H) of B AND (NOT A1 OR NOT A2), tw = Cext RT ln2, about 0.7 Cext RT (RT = Rext or Rint); about 30-35 ns with no timing parts
+  - `Q = P` (totem-pole)
+  - `Q' = NOT P` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3400,6 +3748,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Pulse width for Cext > 1000 pF: tw = K * RT * Cext * (1 + 0.7/RT), K = 0.28 for the '123, RT in kOhm, Cext in pF, tw in ns
   - With the protection diode of datasheet Figure 2 (electrolytic Cext or when CLR is used): tw = KD * RT * Cext * (1 + 0.7/RT), KD = 0.25 for the '123
   - For Cext <= 1000 pF the width is read from datasheet Figure 4 (graph); no formula
+- **Behaviour** (as the simulator reads it):
+  - stored `P1` (one-shot): pulse on rising edge (L->H) of NOT 1A AND 1B AND 1CLR, tw = K RT Cext (1 + 0.7/RT), K = 0.28, RT in kohm, Cext in pF, tw in ns (Cext > 1000 pF); restarts on each trigger; clear by 1CLR low
+  - stored `P2` (one-shot): pulse on rising edge (L->H) of NOT 2A AND 2B AND 2CLR, tw = K RT Cext (1 + 0.7/RT), K = 0.28, RT in kohm, Cext in pF, tw in ns (Cext > 1000 pF); restarts on each trigger; clear by 2CLR low
+  - `1Q = P1` (totem-pole)
+  - `1Q' = NOT P1` (totem-pole)
+  - `2Q = P2` (totem-pole)
+  - `2Q' = NOT P2` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3455,6 +3810,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = NOT(2A AND 2B)` - Positive-logic NAND with Schmitt-trigger (hysteresis) inputs.
   - `3Y = NOT(3A AND 3B)` - Positive-logic NAND with Schmitt-trigger (hysteresis) inputs.
   - `4Y = NOT(4A AND 4B)` - Positive-logic NAND with Schmitt-trigger (hysteresis) inputs.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT(1A AND 1B)` (totem-pole)
+  - `2Y = NOT(2A AND 2B)` (totem-pole)
+  - `3Y = NOT(3A AND 3B)` (totem-pole)
+  - `4Y = NOT(4A AND 4B)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3500,6 +3860,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 5, pin assignments, 133](http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf) p. book page 5-38 (PDF page 38) (figures for SN74S133); [TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 6, Positive-NAND gates and inverters with totem-pole outputs, Series 74S column 'S133](http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf) p. book pages 6-2, 6-3 (PDF pages 2, 3) (figures for SN74S133)
 - **Formulas:**
   - `Y = NOT(A AND B AND C AND D AND E AND F AND G AND H AND I AND J AND K AND L AND M)` - 13-input NAND: Y is low only when all thirteen inputs are high.
+- **Behaviour** (as the simulator reads it):
+  - `Y = NOT(A AND B AND C AND D AND E AND F AND G AND H AND I AND J AND K AND L AND M)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3553,6 +3915,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `A0 = NOT(EI' AND (7' OR (6 AND 5') OR (6 AND 4 AND 3') OR (6 AND 4 AND 2 AND 1')))` - Inverted bit 0 of the number of the highest-numbered low input.
   - `GS = NOT(EI' AND (0' OR 1' OR 2' OR 3' OR 4' OR 5' OR 6' OR 7'))` - Low when enabled and at least one data input is low.
   - `EO = NOT(EI' AND 0 AND 1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7)` - Low when enabled and no data input is low; feeds EI of the next lower-priority stage.
+- **Behaviour** (as the simulator reads it):
+  - `A2 = NOT(EI' AND (4' OR 5' OR 6' OR 7'))` (totem-pole) - drives when EI low, else 1
+  - `A1 = NOT(EI' AND (7' OR 6' OR (5 AND 4 AND 3') OR (5 AND 4 AND 2')))` (totem-pole) - drives when EI low, else 1
+  - `A0 = NOT(EI' AND (7' OR (6 AND 5') OR (6 AND 4 AND 3') OR (6 AND 4 AND 2 AND 1')))` (totem-pole) - drives when EI low, else 1
+  - `GS = NOT(EI' AND (0' OR 1' OR 2' OR 3' OR 4' OR 5' OR 6' OR 7'))` (totem-pole) - drives when EI low, else 1
+  - `EO = NOT(EI' AND 0 AND 1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7)` (totem-pole) - drives when EI low, else 1
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3612,6 +3980,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54150, SN54151A, SN54152A, SN54LS151, SN54LS152, SN54S151, SN74150, SN74151A, SN74LS151, SN74S151 Data selectors/multiplexers, bulletin DL-S 7611819 (revised October 1976)](http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf) p. book pages 7-157 to 7-160 (PDF pages 156-159) (figures for SN74150)
 - **Formulas:**
   - `W = NOT(STROBE' AND ((D' AND C' AND B' AND A' AND E0) OR (D' AND C' AND B' AND A AND E1) OR (D' AND C' AND B AND A' AND E2) OR (D' AND C' AND B AND A AND E3) OR (D' AND C AND B' AND A' AND E4) OR (D' AND C AND B' AND A AND E5) OR (D' AND C AND B AND A' AND E6) OR (D' AND C AND B AND A AND E7) OR (D AND C' AND B' AND A' AND E8) OR (D AND C' AND B' AND A AND E9) OR (D AND C' AND B AND A' AND E10) OR (D AND C' AND B AND A AND E11) OR (D AND C AND B' AND A' AND E12) OR (D AND C AND B' AND A AND E13) OR (D AND C AND B AND A' AND E14) OR (D AND C AND B AND A AND E15)))` - With STROBE low, W is the complement of the data input E0-E15 picked by D,C,B,A (D most significant). STROBE high forces W high.
+- **Behaviour** (as the simulator reads it):
+  - `W = NOT(STROBE' AND ((D' AND C' AND B' AND A' AND E0) OR (D' AND C' AND B' AND A AND E1) OR (D' AND C' AND B AND A' AND E2) OR (D' AND C' AND B AND A AND E3) OR (D' AND C AND B' AND A' AND E4) OR (D' AND C AND B' AND A AND E5) OR (D' AND C AND B AND A' AND E6) OR (D' AND C AND B AND A AND E7) OR (D AND C' AND B' AND A' AND E8) OR (D AND C' AND B' AND A AND E9) OR (D AND C' AND B AND A' AND E10) OR (D AND C' AND B AND A AND E11) OR (D AND C AND B' AND A' AND E12) OR (D AND C AND B' AND A AND E13) OR (D AND C AND B AND A' AND E14) OR (D AND C AND B AND A AND E15)))` (totem-pole) - drives when STROBE low, else 1
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3671,6 +4041,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Y = STROBE' AND ((C' AND B' AND A' AND D0) OR (C' AND B' AND A AND D1) OR (C' AND B AND A' AND D2) OR (C' AND B AND A AND D3) OR (C AND B' AND A' AND D4) OR (C AND B' AND A AND D5) OR (C AND B AND A' AND D6) OR (C AND B AND A AND D7))` - With STROBE low, Y follows the data input D0-D7 picked by C,B,A. STROBE high forces Y low.
   - `W = NOT Y` - Complement of Y; STROBE high forces W high.
+- **Behaviour** (as the simulator reads it):
+  - `Y = STROBE' AND ((C' AND B' AND A' AND D0) OR (C' AND B' AND A AND D1) OR (C' AND B AND A' AND D2) OR (C' AND B AND A AND D3) OR (C AND B' AND A' AND D4) OR (C AND B' AND A AND D5) OR (C AND B AND A' AND D6) OR (C AND B AND A AND D7))` (totem-pole)
+  - `W = NOT Y` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3729,6 +4102,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = 1G' AND ((B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3))` - When 1G is low, 1Y follows the 1C input picked by B,A; when 1G is high, 1Y is low.
   - `2Y = 2G' AND ((B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3))` - When 2G is low, 2Y follows the 2C input picked by B,A; when 2G is high, 2Y is low.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1G' AND ((B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3))` (totem-pole) - drives when 1G low, else 0
+  - `2Y = 2G' AND ((B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3))` (totem-pole) - drives when 2G low, else 0
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3793,6 +4169,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `13 = NOT(G1' AND G2' AND D AND C AND B' AND A)` - Low only when G1 and G2 are both low and D,C,B,A = 13.
   - `14 = NOT(G1' AND G2' AND D AND C AND B AND A')` - Low only when G1 and G2 are both low and D,C,B,A = 14.
   - `15 = NOT(G1' AND G2' AND D AND C AND B AND A)` - Low only when G1 and G2 are both low and D,C,B,A = 15.
+- **Behaviour** (as the simulator reads it):
+  - `0 = NOT(G1' AND G2' AND D' AND C' AND B' AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `1 = NOT(G1' AND G2' AND D' AND C' AND B' AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `2 = NOT(G1' AND G2' AND D' AND C' AND B AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `3 = NOT(G1' AND G2' AND D' AND C' AND B AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `4 = NOT(G1' AND G2' AND D' AND C AND B' AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `5 = NOT(G1' AND G2' AND D' AND C AND B' AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `6 = NOT(G1' AND G2' AND D' AND C AND B AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `7 = NOT(G1' AND G2' AND D' AND C AND B AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `8 = NOT(G1' AND G2' AND D AND C' AND B' AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `9 = NOT(G1' AND G2' AND D AND C' AND B' AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `10 = NOT(G1' AND G2' AND D AND C' AND B AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `11 = NOT(G1' AND G2' AND D AND C' AND B AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `12 = NOT(G1' AND G2' AND D AND C AND B' AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `13 = NOT(G1' AND G2' AND D AND C AND B' AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `14 = NOT(G1' AND G2' AND D AND C AND B AND A')` (totem-pole) - drives when G1 low and G2 low, else 1
+  - `15 = NOT(G1' AND G2' AND D AND C AND B AND A)` (totem-pole) - drives when G1 low and G2 low, else 1
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3857,6 +4250,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y1 = NOT(2G' AND 2C' AND B'A)` - Low when 2G is low, 2C is low and B,A = 1.
   - `2Y2 = NOT(2G' AND 2C' AND BA')` - Low when 2G is low, 2C is low and B,A = 2.
   - `2Y3 = NOT(2G' AND 2C' AND BA)` - Low when 2G is low, 2C is low and B,A = 3.
+- **Behaviour** (as the simulator reads it):
+  - `1Y0 = NOT(1G' AND 1C AND B'A')` (totem-pole) - drives when 1G low, else 1
+  - `1Y1 = NOT(1G' AND 1C AND B'A)` (totem-pole) - drives when 1G low, else 1
+  - `1Y2 = NOT(1G' AND 1C AND BA')` (totem-pole) - drives when 1G low, else 1
+  - `1Y3 = NOT(1G' AND 1C AND BA)` (totem-pole) - drives when 1G low, else 1
+  - `2Y0 = NOT(2G' AND 2C' AND B'A')` (totem-pole) - drives when 2C low and 2G low, else 1
+  - `2Y1 = NOT(2G' AND 2C' AND B'A)` (totem-pole) - drives when 2C low and 2G low, else 1
+  - `2Y2 = NOT(2G' AND 2C' AND BA')` (totem-pole) - drives when 2C low and 2G low, else 1
+  - `2Y3 = NOT(2G' AND 2C' AND BA)` (totem-pole) - drives when 2C low and 2G low, else 1
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3912,6 +4314,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `2Y = STROBE' AND ((SELECT' AND 2A) OR (SELECT AND 2B))` - 2Y follows 2A when SELECT is low and 2B when SELECT is high; STROBE high forces it low.
   - `3Y = STROBE' AND ((SELECT' AND 3A) OR (SELECT AND 3B))` - 3Y follows 3A when SELECT is low and 3B when SELECT is high; STROBE high forces it low.
   - `4Y = STROBE' AND ((SELECT' AND 4A) OR (SELECT AND 4B))` - 4Y follows 4A when SELECT is low and 4B when SELECT is high; STROBE high forces it low.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = STROBE' AND ((SELECT' AND 1A) OR (SELECT AND 1B))` (totem-pole) - drives when STROBE low, else 0
+  - `2Y = STROBE' AND ((SELECT' AND 2A) OR (SELECT AND 2B))` (totem-pole) - drives when STROBE low, else 0
+  - `3Y = STROBE' AND ((SELECT' AND 3A) OR (SELECT AND 3B))` (totem-pole) - drives when STROBE low, else 0
+  - `4Y = STROBE' AND ((SELECT' AND 4A) OR (SELECT AND 4B))` (totem-pole) - drives when STROBE low, else 0
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -3971,6 +4378,16 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - else (P or T low): hold
   - Low-to-high transitions at LOAD should be avoided while the clock is low if the enable inputs are high at or before the transition
   - High-to-low transitions at ENABLE P or T should occur only while the clock is high
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (counter): `FA = (NOT LOAD AND A) OR (LOAD AND (FA XOR (ENABLE P AND ENABLE T)))` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FB` (counter): `FB = (NOT LOAD AND B) OR (LOAD AND (FB XOR (ENABLE P AND ENABLE T AND FA)))` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FC` (counter): `FC = (NOT LOAD AND C) OR (LOAD AND (FC XOR (ENABLE P AND ENABLE T AND FA AND FB)))` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FD` (counter): `FD = (NOT LOAD AND D) OR (LOAD AND (FD XOR (ENABLE P AND ENABLE T AND FA AND FB AND FC)))` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `RIPPLE CARRY OUTPUT = ENABLE T AND FA AND FB AND FC AND FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4036,6 +4453,16 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Low-to-high transitions at LOAD should be avoided while the clock is low if the enable inputs are high at or before the transition
   - Low-to-high transitions at CLEAR should be avoided while the clock is low if the enable and load inputs are high at or before the transition
   - High-to-low transitions at ENABLE P or T should occur only while the clock is high
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (counter): `FA = CLEAR AND ((NOT LOAD AND A) OR (LOAD AND (FA XOR (ENABLE P AND ENABLE T))))` on rising edge (L->H) of CLOCK
+  - stored `FB` (counter): `FB = CLEAR AND ((NOT LOAD AND B) OR (LOAD AND (FB XOR (ENABLE P AND ENABLE T AND FA))))` on rising edge (L->H) of CLOCK
+  - stored `FC` (counter): `FC = CLEAR AND ((NOT LOAD AND C) OR (LOAD AND (FC XOR (ENABLE P AND ENABLE T AND FA AND FB))))` on rising edge (L->H) of CLOCK
+  - stored `FD` (counter): `FD = CLEAR AND ((NOT LOAD AND D) OR (LOAD AND (FD XOR (ENABLE P AND ENABLE T AND FA AND FB AND FC))))` on rising edge (L->H) of CLOCK
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `RIPPLE CARRY OUTPUT = ENABLE T AND FA AND FB AND FC AND FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4096,6 +4523,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR low: QA..QH = 0 at once
   - CLEAR high, CLOCK low: hold
   - CLEAR high, rising CLOCK edge: QA = A AND B; QB..QH = QA..QG before the edge (one-bit shift)
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = A AND B` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FB` (flip-flop): `FB = FA` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FC` (flip-flop): `FC = FB` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FD` (flip-flop): `FD = FC` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FE` (flip-flop): `FE = FD` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF` (flip-flop): `FF = FE` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FG` (flip-flop): `FG = FF` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FH` (flip-flop): `FH = FG` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `QE = FE` (totem-pole)
+  - `QF = FF` (totem-pole)
+  - `QG = FG` (totem-pole)
+  - `QH = FH` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4153,6 +4597,17 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - SHIFT/LOAD high, CLOCK INHIBIT low, rising CLOCK edge: QA = SERIAL INPUT, QB..QH = QA..QG before the edge (shift toward QH)
   - SHIFT/LOAD high, CLOCK INHIBIT high: hold
   - The clock is a 2-input NOR of CLOCK and CLOCK INHIBIT; holding either high inhibits clocking, holding either low lets the other be the clock
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = SERIAL INPUT` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `A` while `NOT SHIFT/LOAD`
+  - stored `FB` (flip-flop): `FB = FA` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `B` while `NOT SHIFT/LOAD`
+  - stored `FC` (flip-flop): `FC = FB` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `C` while `NOT SHIFT/LOAD`
+  - stored `FD` (flip-flop): `FD = FC` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `D` while `NOT SHIFT/LOAD`
+  - stored `FE` (flip-flop): `FE = FD` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `E` while `NOT SHIFT/LOAD`
+  - stored `FF` (flip-flop): `FF = FE` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `F` while `NOT SHIFT/LOAD`
+  - stored `FG` (flip-flop): `FG = FF` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `G` while `NOT SHIFT/LOAD`
+  - stored `FH` (flip-flop): `FH = FG` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; at once `H` while `NOT SHIFT/LOAD`
+  - `QH = FH` (totem-pole)
+  - `QH' = NOT FH` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4213,6 +4668,16 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR high, SHIFT/LOAD high, clock edge: QA = SERIAL INPUT, QB..QH = QA..QG before the edge
   - No clock edge (CLOCK or CLOCK INHIBIT held high, or clock steady): hold
   - The clock is a 2-input NOR of CLOCK and CLOCK INHIBIT, clocked on the low-to-high edge of the clock pulse
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (NOT SHIFT/LOAD AND A) OR (SHIFT/LOAD AND SERIAL INPUT)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FB` (flip-flop): `FB = (NOT SHIFT/LOAD AND B) OR (SHIFT/LOAD AND FA)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FC` (flip-flop): `FC = (NOT SHIFT/LOAD AND C) OR (SHIFT/LOAD AND FB)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FD` (flip-flop): `FD = (NOT SHIFT/LOAD AND D) OR (SHIFT/LOAD AND FC)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FE` (flip-flop): `FE = (NOT SHIFT/LOAD AND E) OR (SHIFT/LOAD AND FD)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FF` (flip-flop): `FF = (NOT SHIFT/LOAD AND F) OR (SHIFT/LOAD AND FE)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FG` (flip-flop): `FG = (NOT SHIFT/LOAD AND G) OR (SHIFT/LOAD AND FF)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - stored `FH` (flip-flop): `FH = (NOT SHIFT/LOAD AND H) OR (SHIFT/LOAD AND FG)` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR low
+  - `QH = FH` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4269,6 +4734,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - GW low, WB,WA = 1: word 1 = D; GW low, WB,WA = 2: word 2 = D; GW low, WB,WA = 3: word 3 = D
   - GW high: all words hold; data inputs inhibited
   - Writing and reading may happen at the same time at different addresses; a read of a word just written needs the latch time tlatch (25 ns) after the write
+- **Behaviour** (as the simulator reads it):
+  - memory `W`: 4 words x 4 bits, address RA, RB
+  - `Q1 = GR OR W1` (open-collector)
+  - `Q2 = GR OR W2` (open-collector)
+  - `Q3 = GR OR W3` (open-collector)
+  - `Q4 = GR OR W4` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4333,6 +4804,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR low, rising CLOCK, G1 high or G2 high: hold
   - CLEAR low, rising CLOCK, G1 low and G2 low: flip-flop = D
   - The output controls M and N do not affect the flip-flops
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = ((G1 OR G2) AND FF1) OR (G1' AND G2' AND 1D)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `FF2` (flip-flop): `FF2 = ((G1 OR G2) AND FF2) OR (G1' AND G2' AND 2D)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `FF3` (flip-flop): `FF3 = ((G1 OR G2) AND FF3) OR (G1' AND G2' AND 3D)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `FF4` (flip-flop): `FF4 = ((G1 OR G2) AND FF4) OR (G1' AND G2' AND 4D)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - `1Q = FF1` (three-state) - drives when M low and N low, else Z
+  - `2Q = FF2` (three-state) - drives when M low and N low, else Z
+  - `3Q = FF3` (three-state) - drives when M low and N low, else Z
+  - `4Q = FF4` (three-state) - drives when M low and N low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4396,6 +4876,19 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR low: Q = 0 (Q' = 1) at once
   - CLEAR high, rising CLOCK edge: Q = D
   - CLEAR high, CLOCK high or low (no edge): hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = 1D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF2` (flip-flop): `FF2 = 2D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF3` (flip-flop): `FF3 = 3D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF4` (flip-flop): `FF4 = 4D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF5` (flip-flop): `FF5 = 5D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF6` (flip-flop): `FF6 = 6D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - `1Q = FF1` (totem-pole)
+  - `2Q = FF2` (totem-pole)
+  - `3Q = FF3` (totem-pole)
+  - `4Q = FF4` (totem-pole)
+  - `5Q = FF5` (totem-pole)
+  - `6Q = FF6` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4454,6 +4947,19 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR low: Q = 0 (Q' = 1) at once
   - CLEAR high, rising CLOCK edge: Q = D
   - CLEAR high, CLOCK high or low (no edge): hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = 1D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF2` (flip-flop): `FF2 = 2D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF3` (flip-flop): `FF3 = 3D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - stored `FF4` (flip-flop): `FF4 = 4D` on rising edge (L->H) of CLOCK; clear by CLEAR low
+  - `1Q = FF1` (totem-pole)
+  - `1Q' = NOT FF1` (totem-pole)
+  - `2Q = FF2` (totem-pole)
+  - `2Q' = NOT FF2` (totem-pole)
+  - `3Q = FF3` (totem-pole)
+  - `3Q' = NOT FF3` (totem-pole)
+  - `4Q = FF4` (totem-pole)
+  - `4Q' = NOT FF4` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4543,6 +5049,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - H H H H \| F = A \| F = A MINUS 1 \| F = A
   - (*) Each bit is shifted to the next more significant position.
   - Comparator use (subtract mode S3..S0 = L,H,H,L): Cn=H, Cn+4=H -> A >= B (active-low data) / A <= B (active-high); Cn=H, Cn+4=L -> A < B / A > B; Cn=L, Cn+4=H -> A > B / A < B; Cn=L, Cn+4=L -> A <= B / A >= B
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4625,6 +5132,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `Cn+z = G2 OR (P2 AND G1) OR (P2 AND P1 AND G0) OR (P2 AND P1 AND P0 AND Cn)` - Datasheet equation (G = NOT G', P = NOT P').
   - `G' = NOT (G3 OR (P3 AND G2) OR (P3 AND P2 AND G1) OR (P3 AND P2 AND P1 AND G0))` - Datasheet: G' = (G3 + P3G2 + P3P2G1 + P3P2P1G0)'. Low when the group generates a carry.
   - `P' = NOT (P3 AND P2 AND P1 AND P0)` - Low only when P3', P2', P1', P0' are all low.
+- **Behaviour** (as the simulator reads it):
+  - `Cn+x = (NOT G0') OR ((NOT P0') AND Cn)` (totem-pole)
+  - `Cn+y = (NOT G1') OR ((NOT P1') AND (NOT G0')) OR ((NOT P1') AND (NOT P0') AND Cn)` (totem-pole)
+  - `Cn+z = (NOT G2') OR ((NOT P2') AND (NOT G1')) OR ((NOT P2') AND (NOT P1') AND (NOT G0')) OR ((NOT P2') AND (NOT P1') AND (NOT P0') AND Cn)` (totem-pole)
+  - `G' = NOT ((NOT G3') OR ((NOT P3') AND (NOT G2')) OR ((NOT P3') AND (NOT P2') AND (NOT G1')) OR ((NOT P3') AND (NOT P2') AND (NOT P1') AND (NOT G0')))` (totem-pole)
+  - `P' = NOT ((NOT P3') AND (NOT P2') AND (NOT P1') AND (NOT P0'))` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4681,6 +5194,18 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - G' low, D/U' low: Q = Q + 1 (mod 16) at the rising clock edge
   - G' low, D/U' high: Q = Q - 1 (mod 16) at the rising clock edge
   - Change G' and D/U' only while CLOCK is high
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (counter): `FA = FA XOR (G' AND ((D/U' AND 1) OR (NOT D/U' AND 1)))` on rising edge (L->H) of CLOCK; at once `A` while `NOT LOAD'`
+  - stored `FB` (counter): `FB = FB XOR (G' AND ((D/U' AND NOT FA) OR (NOT D/U' AND FA)))` on rising edge (L->H) of CLOCK; at once `B` while `NOT LOAD'`
+  - stored `FC` (counter): `FC = FC XOR (G' AND ((D/U' AND NOT FA AND NOT FB) OR (NOT D/U' AND FA AND FB)))` on rising edge (L->H) of CLOCK; at once `C` while `NOT LOAD'`
+  - stored `FD` (counter): `FD = FD XOR (G' AND ((D/U' AND NOT FA AND NOT FB AND NOT FC) OR (NOT D/U' AND FA AND FB AND FC)))` on rising edge (L->H) of CLOCK; at once `D` while `NOT LOAD'`
+  - inside: `MAXMIN = (NOT D/U' AND FA AND FB AND FC AND FD) OR (D/U' AND NOT FA AND NOT FB AND NOT FC AND NOT FD)`
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `MAX/MIN = MAXMIN` (totem-pole)
+  - `RIPPLE CLOCK' = NOT (MAXMIN AND NOT G' AND NOT CLOCK)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4749,6 +5274,17 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - LOAD' low (CLEAR low): Q = D,C,B,A at once
   - UP rising while DOWN high: Q = Q + 1 (mod 16)
   - DOWN rising while UP high: Q = Q - 1 (mod 16)
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (counter): `FA = FA XOR ((DOWN AND 1) OR (UP AND 1))` on rising edge (L->H) of UP AND DOWN; at once `0` while `CLEAR`; at once `A` while `NOT LOAD'`
+  - stored `FB` (counter): `FB = FB XOR ((DOWN AND FA) OR (UP AND NOT FA))` on rising edge (L->H) of UP AND DOWN; at once `0` while `CLEAR`; at once `B` while `NOT LOAD'`
+  - stored `FC` (counter): `FC = FC XOR ((DOWN AND FA AND FB) OR (UP AND NOT FA AND NOT FB))` on rising edge (L->H) of UP AND DOWN; at once `0` while `CLEAR`; at once `C` while `NOT LOAD'`
+  - stored `FD` (counter): `FD = FD XOR ((DOWN AND FA AND FB AND FC) OR (UP AND NOT FA AND NOT FB AND NOT FC))` on rising edge (L->H) of UP AND DOWN; at once `0` while `CLEAR`; at once `D` while `NOT LOAD'`
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `CARRY' = NOT (FA AND FB AND FC AND FD AND NOT UP)` (totem-pole)
+  - `BORROW' = NOT (NOT FA AND NOT FB AND NOT FC AND NOT FD AND NOT DOWN)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4815,6 +5351,16 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   -   J=L, K'=L: QA = L
   -   J=H, K'=H: QA = H
   -   J=H, K'=L: QA = NOT QAn (toggle)
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (NOT SHIFT/LOAD' AND A) OR (SHIFT/LOAD' AND ((J AND NOT FA) OR (K' AND FA)))` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FB` (flip-flop): `FB = (NOT SHIFT/LOAD' AND B) OR (SHIFT/LOAD' AND (FA))` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FC` (flip-flop): `FC = (NOT SHIFT/LOAD' AND C) OR (SHIFT/LOAD' AND (FB))` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FD` (flip-flop): `FD = (NOT SHIFT/LOAD' AND D) OR (SHIFT/LOAD' AND (FC))` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `QD' = NOT FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4872,6 +5418,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - S1=H, S0=L: shift left (QH toward QA): QH = SL SER, QG = QHn, ..., QA = QBn
   - S1=L, S0=L: clock inhibited, hold
   - Change the mode inputs only while CLOCK is high
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (S1 AND S0 AND A) OR (NOT S1 AND S0 AND SR SER) OR (S1 AND NOT S0 AND FB) OR (NOT S1 AND NOT S0 AND FA)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FB` (flip-flop): `FB = (S1 AND S0 AND B) OR (NOT S1 AND S0 AND FA) OR (S1 AND NOT S0 AND FC) OR (NOT S1 AND NOT S0 AND FB)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FC` (flip-flop): `FC = (S1 AND S0 AND C) OR (NOT S1 AND S0 AND FB) OR (S1 AND NOT S0 AND FD) OR (NOT S1 AND NOT S0 AND FC)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FD` (flip-flop): `FD = (S1 AND S0 AND D) OR (NOT S1 AND S0 AND FC) OR (S1 AND NOT S0 AND FE) OR (NOT S1 AND NOT S0 AND FD)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FE` (flip-flop): `FE = (S1 AND S0 AND E) OR (NOT S1 AND S0 AND FD) OR (S1 AND NOT S0 AND FF) OR (NOT S1 AND NOT S0 AND FE)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FF` (flip-flop): `FF = (S1 AND S0 AND F) OR (NOT S1 AND S0 AND FE) OR (S1 AND NOT S0 AND FG) OR (NOT S1 AND NOT S0 AND FF)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FG` (flip-flop): `FG = (S1 AND S0 AND G) OR (NOT S1 AND S0 AND FF) OR (S1 AND NOT S0 AND FH) OR (NOT S1 AND NOT S0 AND FG)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - stored `FH` (flip-flop): `FH = (S1 AND S0 AND H) OR (NOT S1 AND S0 AND FG) OR (S1 AND NOT S0 AND SL SER) OR (NOT S1 AND NOT S0 AND FH)` on rising edge (L->H) of CLOCK; clear by CLEAR' low
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `QE = FE` (totem-pole)
+  - `QF = FF` (totem-pole)
+  - `QG = FG` (totem-pole)
+  - `QH = FH` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -4939,6 +5502,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   -   J=L, K'=L: QA = L
   -   J=H, K'=H: QA = H
   -   J=H, K'=L: QA = NOT QAn (toggle)
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (NOT SHIFT/LOAD' AND A) OR (SHIFT/LOAD' AND ((J AND NOT FA) OR (K' AND FA)))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FB` (flip-flop): `FB = (NOT SHIFT/LOAD' AND B) OR (SHIFT/LOAD' AND (FA))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FC` (flip-flop): `FC = (NOT SHIFT/LOAD' AND C) OR (SHIFT/LOAD' AND (FB))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FD` (flip-flop): `FD = (NOT SHIFT/LOAD' AND D) OR (SHIFT/LOAD' AND (FC))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FE` (flip-flop): `FE = (NOT SHIFT/LOAD' AND E) OR (SHIFT/LOAD' AND (FD))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FF` (flip-flop): `FF = (NOT SHIFT/LOAD' AND F) OR (SHIFT/LOAD' AND (FE))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FG` (flip-flop): `FG = (NOT SHIFT/LOAD' AND G) OR (SHIFT/LOAD' AND (FF))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - stored `FH` (flip-flop): `FH = (NOT SHIFT/LOAD' AND H) OR (SHIFT/LOAD' AND (FG))` on rising edge (L->H) of CLOCK OR CLOCK INHIBIT; clear by CLEAR' low
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
+  - `QE = FE` (totem-pole)
+  - `QF = FF` (totem-pole)
+  - `QG = FG` (totem-pole)
+  - `QH = FH` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5001,6 +5581,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Read: ME' all low and WE' high: Y = MEM[address]
   - Inhibit: any ME' high: Y = Z, no write
   - Address: row decoder A,B,C,H (pins 1,2,15,14) and column decoder D,E,F,G (pins 7,9,10,11), 16 x 16 matrix
+- **Behaviour** (as the simulator reads it):
+  - memory `M`: 256 words x 1 bits, address A, B, C, H, D, E, F, G
+  - `Y = NOT M1` (three-state) - drives when ME1' low and ME2' low and ME3' low and WE' high, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5067,6 +5650,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLR' rising, A low, B high: one output pulse
   - Pulse width tw(out) = Cext Rext ln2 ~ 0.7 Cext Rext; once fired the output no longer depends on A and B; not retriggerable
   - Cext = 0, Rext = 2 kohm gives typically 30 ns
+- **Behaviour** (as the simulator reads it):
+  - stored `P1` (one-shot): pulse on rising edge (L->H) of NOT 1A AND 1B AND 1CLR', tw = Cext Rext ln2, about 0.7 Cext Rext; Cext 0 and Rext 2 kohm give typically 30 ns; clear by 1CLR' low
+  - stored `P2` (one-shot): pulse on rising edge (L->H) of NOT 2A AND 2B AND 2CLR', tw = Cext Rext ln2, about 0.7 Cext Rext; Cext 0 and Rext 2 kohm give typically 30 ns; clear by 2CLR' low
+  - `1Q = P1` (totem-pole)
+  - `1Q' = NOT P1` (totem-pole)
+  - `2Q = P2` (totem-pole)
+  - `2Q' = NOT P2` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5120,6 +5710,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The TTL Data Book 2nd ed. 1976, SN54S257/SN54S258/SN74S257/SN74S258 (bulletin DL-S 7611734, Oct 1976)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf) p. 7-372, 7-375 (PDF pages 371, 374) (figures for SN74S258)
 - **Formulas:**
   - `nY = NOT ((SELECT' AND nA) OR (SELECT AND nB)), Z when G' high` - Inverting: with G' low, Y is the complement of A (SELECT low) or of B (SELECT high); G' high puts all outputs in high impedance.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT ((NOT SELECT AND 1A) OR (SELECT AND 1B))` (three-state) - drives when G' low, else Z
+  - `2Y = NOT ((NOT SELECT AND 2A) OR (SELECT AND 2B))` (three-state) - drives when G' low, else Z
+  - `3Y = NOT ((NOT SELECT AND 3A) OR (SELECT AND 3B))` (three-state) - drives when G' low, else Z
+  - `4Y = NOT ((NOT SELECT AND 4A) OR (SELECT AND 4B))` (three-state) - drives when G' low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5180,6 +5775,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - S'=H, R'=L: Q = L
   - S'=L, R'=L: Q = H, pseudo-stable: it may not persist when S' and R' return to high
   - Latches 1 and 3: S' is low when either S1' or S2' is low
+- **Behaviour** (as the simulator reads it):
+  - stored `L1` (latch): `L1 = NOT (1S1' AND 1S2') OR (L1 AND 1R')` on while high: 1
+  - stored `L2` (latch): `L2 = NOT (2S') OR (L2 AND 2R')` on while high: 1
+  - stored `L3` (latch): `L3 = NOT (3S1' AND 3S2') OR (L3 AND 3R')` on while high: 1
+  - stored `L4` (latch): `L4 = NOT (4S') OR (L4 AND 4R')` on while high: 1
+  - `1Q = L1` (totem-pole)
+  - `2Q = L2` (totem-pole)
+  - `3Q = L3` (totem-pole)
+  - `4Q = L4` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5229,6 +5833,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `SUM EVEN = NOT (A XOR B XOR C XOR D XOR E XOR F XOR G XOR H XOR I)` - High when an even number (0,2,4,6,8) of inputs A-I are high.
   - `SUM ODD = A XOR B XOR C XOR D XOR E XOR F XOR G XOR H XOR I` - High when an odd number (1,3,5,7,9) of inputs A-I are high.
+- **Behaviour** (as the simulator reads it):
+  - `SUM EVEN = NOT (A XOR B XOR C XOR D XOR E XOR F XOR G XOR H XOR I)` (totem-pole)
+  - `SUM ODD = A XOR B XOR C XOR D XOR E XOR F XOR G XOR H XOR I` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5280,6 +5887,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - WORD SELECT low: QA..QD = A1,B1,C1,D1 at the falling clock edge
   - WORD SELECT high: QA..QD = A2,B2,C2,D2 at the falling clock edge
   - CLOCK high (no falling edge): hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FA` (flip-flop): `FA = (NOT WORD SELECT AND A1) OR (WORD SELECT AND A2)` on falling edge (H->L) of CLOCK
+  - stored `FB` (flip-flop): `FB = (NOT WORD SELECT AND B1) OR (WORD SELECT AND B2)` on falling edge (H->L) of CLOCK
+  - stored `FC` (flip-flop): `FC = (NOT WORD SELECT AND C1) OR (WORD SELECT AND C2)` on falling edge (H->L) of CLOCK
+  - stored `FD` (flip-flop): `FD = (NOT WORD SELECT AND D1) OR (WORD SELECT AND D2)` on falling edge (H->L) of CLOCK
+  - `QA = FA` (totem-pole)
+  - `QB = FB` (totem-pole)
+  - `QC = FC` (totem-pole)
+  - `QD = FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5332,6 +5948,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Stored state:** 8 bits, changes on falling edge of 1A / 2A (each counter separately)
   - nCLEAR high: nQA..nQD = L at once (positive logic note: high input to clear resets all four outputs low)
   - nCLEAR low, falling edge of nA: count = count + 1 (mod 16); ripple: QA toggles on the A edge, QB on QA falling, QC on QB falling, QD on QC falling
+- **Behaviour** (as the simulator reads it):
+  - stored `1FA` (counter): `1FA = NOT 1FA` on falling edge (H->L) of 1A; clear by 1CLEAR high
+  - stored `1FB` (counter): `1FB = NOT 1FB` on falling edge (H->L) of 1FA; clear by 1CLEAR high
+  - stored `1FC` (counter): `1FC = NOT 1FC` on falling edge (H->L) of 1FB; clear by 1CLEAR high
+  - stored `1FD` (counter): `1FD = NOT 1FD` on falling edge (H->L) of 1FC; clear by 1CLEAR high
+  - stored `2FA` (counter): `2FA = NOT 2FA` on falling edge (H->L) of 2A; clear by 2CLEAR high
+  - stored `2FB` (counter): `2FB = NOT 2FB` on falling edge (H->L) of 2FA; clear by 2CLEAR high
+  - stored `2FC` (counter): `2FC = NOT 2FC` on falling edge (H->L) of 2FB; clear by 2CLEAR high
+  - stored `2FD` (counter): `2FD = NOT 2FD` on falling edge (H->L) of 2FC; clear by 2CLEAR high
+  - `1QA = 1FA` (totem-pole)
+  - `1QB = 1FB` (totem-pole)
+  - `1QC = 1FC` (totem-pole)
+  - `1QD = 1FD` (totem-pole)
+  - `2QA = 2FA` (totem-pole)
+  - `2QB = 2FB` (totem-pole)
+  - `2QC = 2FC` (totem-pole)
+  - `2QD = 2FD` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5383,6 +6016,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT ((1A - 1B <= -25 mV) AND 1G AND S)` - Output low only when the differential input is negative (A below B by at least 25 mV) and both strobes are high; high otherwise.
   - `2Y = NOT ((2A - 2B <= -25 mV) AND 2G AND S)` - Same for channel 2.
+- **Behaviour** (as the simulator reads it):
+  - from analog levels: `1NEG` = 1 when 1A - 1B <= -25 mV, 0 when >= +25 mV; between, the output is not given (indeterminate)
+  - from analog levels: `2NEG` = 1 when 2A - 2B <= -25 mV, 0 when >= +25 mV; between, the output is not given (indeterminate)
+  - `1Y = NOT (1NEG AND 1G AND S)` (totem-pole)
+  - `2Y = NOT (2NEG AND 2G AND S)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5432,6 +6070,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT ((1A - 1B <= -25 mV) AND 1G AND S)` - Output low only when the differential input is negative (A below B by at least 25 mV) and both strobes are high; high otherwise.
   - `2Y = NOT ((2A - 2B <= -25 mV) AND 2G AND S)` - Same for channel 2.
+- **Behaviour** (as the simulator reads it):
+  - from analog levels: `1NEG` = 1 when 1A - 1B <= -25 mV, 0 when >= +25 mV; between, the output is not given (indeterminate)
+  - from analog levels: `2NEG` = 1 when 2A - 2B <= -25 mV, 0 when >= +25 mV; between, the output is not given (indeterminate)
+  - `1Y = NOT (1NEG AND 1G AND S)` (open-collector)
+  - `2Y = NOT (2NEG AND 2G AND S)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5481,6 +6124,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Y on (low) = C AND D AND NOT (A AND B); otherwise off (high)` - Truth table: with both inhibitors high, Y is on when A or B is low; when A and B are both high, Y is off and Z is on.
   - `Z on (low) = C AND D AND A AND B; otherwise off (high)` - Complementary current output of the same channel. Either inhibitor low turns both Y and Z off.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A AND 1B` (open-collector) - drives when 1C high and D high, else 1
+  - `1Z = NOT (1A AND 1B)` (open-collector) - drives when 1C high and D high, else 1
+  - `2Y = 2A AND 2B` (open-collector) - drives when 2C high and D high, else 1
+  - `2Z = NOT (2A AND 2B)` (open-collector) - drives when 2C high and D high, else 1
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5532,6 +6180,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT (1A AND S)` - Datasheet positive logic Y = (AS)'. Inverting RS-232-C driver: output goes to the negative level when A and S are both high.
   - `2Y = NOT (2A AND S)` - Same for driver 2.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT (1A AND S)` (totem-pole)
+  - `2Y = NOT (2A AND S)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5585,6 +6236,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Normal operation (T pin to VCC1): output goes low when A rises above VT+ (0.8 min, 2.2 typ, 3 max V), high when A falls below VT- (-3 min, -1.1 typ, 0 max V); between, output keeps its previous level; input at 0 V keeps the previous level
   - Fail-safe operation (T pin open): VT+ 0.8/2.2/3 V, VT- 0.8/1.4/3 V (both above zero); open or 0 V input gives output high
   - Hysteresis VT+ - VT-: normal 0.8/3.3/6 V, fail-safe 0/0.8/2.2 V
+- **Behaviour** (as the simulator reads it):
+  - from analog levels: `1HI` = 1 once 1A rises above VT+ (normal: 0.8/2.2/3 V), 0 once it falls below VT- (normal: -3/-1.1/0 V), keeps its value between (hysteresis); fail-safe mode (T open): VT+ 0.8/2.2/3 V, VT- 0.8/1.4/3 V, open input gives 0
+  - from analog levels: `2HI` = 1 once 2A rises above VT+ (normal: 0.8/2.2/3 V), 0 once it falls below VT- (normal: -3/-1.1/0 V), keeps its value between (hysteresis); fail-safe mode (T open): VT+ 0.8/2.2/3 V, VT- 0.8/1.4/3 V, open input gives 0
+  - from analog levels: `3HI` = 1 once 3A rises above VT+ (normal: 0.8/2.2/3 V), 0 once it falls below VT- (normal: -3/-1.1/0 V), keeps its value between (hysteresis); fail-safe mode (T open): VT+ 0.8/2.2/3 V, VT- 0.8/1.4/3 V, open input gives 0
+  - from analog levels: `4HI` = 1 once 4A rises above VT+ (normal: 0.8/2.2/3 V), 0 once it falls below VT- (normal: -3/-1.1/0 V), keeps its value between (hysteresis); fail-safe mode (T open): VT+ 0.8/2.2/3 V, VT- 0.8/1.4/3 V, open input gives 0
+  - `1Y = NOT 1HI` (totem-pole)
+  - `2Y = NOT 2HI` (totem-pole)
+  - `3Y = NOT 3HI` (totem-pole)
+  - `4Y = NOT 4HI` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5635,6 +6295,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = 1A AND E` - Datasheet positive logic Y = AE. Needs an external p-n-p (TIS149, A5T4260 or A5T4261) per driver on XB/XC.
   - `2Y = 2A AND E` - Same for driver 2.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = 1A AND E` (totem-pole)
+  - `2Y = 2A AND E` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5682,6 +6345,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `1Y = NOT (1A AND E)` - Datasheet positive logic Y = (AE)'. Output high is close to VCC2.
   - `2Y = NOT (2A AND E)` - Same for driver 2.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT (1A AND E)` (totem-pole)
+  - `2Y = NOT (2A AND E)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5729,6 +6395,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Y = NOT (A AND G)` - TTL NAND gate (datasheet: Y = (AG)', gate only).
   - `C = A AND G (with Y wired to B and E to ground)` - Datasheet: C = AG for gate and transistor together; C is off (high, pulled up externally) when A and G are high, on (low) otherwise.
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT (1A AND G)` (totem-pole)
+  - `1C = 1A AND G` (open-collector-high-voltage)
+  - `2Y = NOT (2A AND G)` (totem-pole)
+  - `2C = 2A AND G` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5777,6 +6448,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [TI The Interface Circuits Data Book 2nd ed. 1974, Series 55450B/75450B dual peripheral drivers (bulletin DL-S 7311798, Sep 1973, tentative data sheet)](https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf) p. 6-42, 6-43, 6-51 (PDF pages 272, 273, 281) (figures for SN75452B (page titled 'TYPE SN75452'))
 - **Formulas:**
   - `Y = NOT (A AND B)` - Positive-NAND: output transistor on (low) only when A and B are both high; otherwise off (high, external pull-up).
+- **Behaviour** (as the simulator reads it):
+  - `1Y = NOT (1A AND 1B)` (open-collector-high-voltage)
+  - `2Y = NOT (2A AND 2B)` (open-collector-high-voltage)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5817,6 +6491,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [National Semiconductor 1976 TTL Databook, DM70/DM8093,94 TRI-STATE quad buffers](https://bitsavers.mirrorservice.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf) p. 3-5, 3-6 (PDF pages 350, 351) (figures for DM8093)
 - **Formulas:**
   - `Y = A when C = L; Z when C = H` - Non-inverting buffer; a high on its control input puts the output in the high-impedance state. Pin-equivalent to the 74125.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = A1` (three-state) - drives when C1 low, else Z
+  - `Y2 = A2` (three-state) - drives when C2 low, else Z
+  - `Y3 = A3` (three-state) - drives when C3 low, else Z
+  - `Y4 = A4` (three-state) - drives when C4 low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5866,6 +6545,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [National Semiconductor 1976 TTL Databook, DM70/DM8095,L95,96,L96,97,L97,98,L98 TRI-STATE hex buffers](https://bitsavers.mirrorservice.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf) p. 3-7, 3-8 (PDF pages 352, 353) (figures for DM8095)
 - **Formulas:**
   - `Y = A when G1' = L AND G2' = L; Z when G1' = H OR G2' = H` - Non-inverting buffers; all six share the two control lines. Truth table: G1' H or G2' H -> Hi-Z; both low -> Y = A.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = A1` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y2 = A2` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y3 = A3` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y4 = A4` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y5 = A5` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y6 = A6` (three-state) - drives when G1' low and G2' low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5917,6 +6603,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [National Semiconductor 1976 TTL Databook, DM70/DM8095,L95,96,L96,97,L97,98,L98 TRI-STATE hex buffers](https://bitsavers.mirrorservice.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf) p. 3-7, 3-8 (PDF pages 352, 353) (figures for DM8096)
 - **Formulas:**
   - `Y = NOT A when G1' = L AND G2' = L; Z when G1' = H OR G2' = H` - Inverting buffers; all six share the two control lines. Truth table: G1' H or G2' H -> Hi-Z; both low -> Y = complement of A.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = NOT A1` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y2 = NOT A2` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y3 = NOT A3` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y4 = NOT A4` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y5 = NOT A5` (three-state) - drives when G1' low and G2' low, else Z
+  - `Y6 = NOT A6` (three-state) - drives when G1' low and G2' low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -5969,6 +6662,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Yn = An when G1' ; Z when G1 high` - Y1..Y4 give the same level as A1..A4 while G1 is low; they float (high impedance) while G1 is high.
   - `Yn = An when G2' ; Z when G2 high` - Y5, Y6 give the same level as A5, A6 while G2 is low; they float while G2 is high.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = A1` (three-state) - drives when G1 low, else Z
+  - `Y2 = A2` (three-state) - drives when G1 low, else Z
+  - `Y3 = A3` (three-state) - drives when G1 low, else Z
+  - `Y4 = A4` (three-state) - drives when G1 low, else Z
+  - `Y5 = A5` (three-state) - drives when G2 low, else Z
+  - `Y6 = A6` (three-state) - drives when G2 low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6022,6 +6722,13 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Yn = An' when G1' ; Z when G1 high` - Y1..Y4 give the inverse of A1..A4 while G1 is low; they float (high impedance) while G1 is high.
   - `Yn = An' when G2' ; Z when G2 high` - Y5, Y6 give the inverse of A5, A6 while G2 is low; they float while G2 is high.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = NOT A1` (three-state) - drives when G1 low, else Z
+  - `Y2 = NOT A2` (three-state) - drives when G1 low, else Z
+  - `Y3 = NOT A3` (three-state) - drives when G1 low, else Z
+  - `Y4 = NOT A4` (three-state) - drives when G1 low, else Z
+  - `Y5 = NOT A5` (three-state) - drives when G2 low, else Z
+  - `Y6 = NOT A6` (three-state) - drives when G2 low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6074,6 +6781,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [National Semiconductor 1976 TTL Databook, DM71/DM81L22,23,L23 Quad 2-Input Data Selectors/Multiplexers](https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf) p. pdf 358-360 (printed 3-13..3-15) (figures for DM8123)
 - **Formulas:**
   - `Yn = (S' AND An) OR (S AND Bn) when G'; Z when G high` - With G (strobe/enable) low, each Y follows its A input when S is low and its B input when S is high. With G high all four outputs float.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = (NOT S AND A1) OR (S AND B1)` (three-state) - drives when G low, else Z
+  - `Y2 = (NOT S AND A2) OR (S AND B2)` (three-state) - drives when G low, else Z
+  - `Y3 = (NOT S AND A3) OR (S AND B3)` (three-state) - drives when G low, else Z
+  - `Y4 = (NOT S AND A4) OR (S AND B4)` (three-state) - drives when G low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6128,6 +6840,8 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [National Semiconductor 1976 TTL Databook, DM71/DM8130,60 Magnitude Comparators](https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf) p. pdf 362-363 (printed 3-17, 3-18) (figures for DM8160)
 - **Formulas:**
   - `Y = STROBE OR ((A1 XNOR B1) AND (A2 XNOR B2) AND (A3 XNOR B3) AND (A4 XNOR B4) AND (A5 XNOR B5) AND (A6 XNOR B6))` - Y is high (output transistor off) when the two 6-bit words are equal, or when STROBE is high. Y is low when STROBE is low and the words differ. Open collector, so several can be wired together.
+- **Behaviour** (as the simulator reads it):
+  - `Y = STROBE OR (NOT (A1 XOR B1) AND NOT (A2 XOR B2) AND NOT (A3 XOR B3) AND NOT (A4 XOR B4) AND NOT (A5 XOR B5) AND NOT (A6 XOR B6))` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6179,6 +6893,9 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `Y1 = (B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3) when G1'; Z when G1 high` - Y1 gives the 1C input picked by B,A (true data) while G1 is low; floats while G1 is high.
   - `Y2 = (B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3) when G2'; Z when G2 high` - Same for section 2 with G2.
+- **Behaviour** (as the simulator reads it):
+  - `Y1 = (B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3)` (three-state) - drives when G1 low, else Z
+  - `Y2 = (B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3)` (three-state) - drives when G2 low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6236,6 +6953,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR low, G1 and G2 both low: bit n = Dn at the rising CLOCK edge
   - CLEAR low, G1 or G2 high: bits hold at the clock edge
   - CLOCK low: bits hold
+- **Behaviour** (as the simulator reads it):
+  - stored `FF1` (flip-flop): `FF1 = ((G1 OR G2) AND FF1) OR (G1' AND G2' AND D1)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `FF2` (flip-flop): `FF2 = ((G1 OR G2) AND FF2) OR (G1' AND G2' AND D2)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `FF3` (flip-flop): `FF3 = ((G1 OR G2) AND FF3) OR (G1' AND G2' AND D3)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - stored `FF4` (flip-flop): `FF4 = ((G1 OR G2) AND FF4) OR (G1' AND G2' AND D4)` on rising edge (L->H) of CLOCK; clear by CLEAR high
+  - `Q1 = FF1` (three-state) - drives when M low and N low, else Z
+  - `Q2 = FF2` (three-state) - drives when M low and N low, else Z
+  - `Q3 = FF3` (three-state) - drives when M low and N low, else Z
+  - `Q4 = FF4` (three-state) - drives when M low and N low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6297,6 +7023,23 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - CLEAR L, ENABLE H: do nothing, bus Hi-Z
   - CLEAR L, ENABLE L, WRITE L: write, latches take the bus levels
   - CLEAR L, ENABLE L, READ L, WRITE H: read, bus shows the latches
+- **Behaviour** (as the simulator reads it):
+  - stored `L1` (latch): `L1 = NOT CLEAR AND IO1` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L2` (latch): `L2 = NOT CLEAR AND IO2` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L3` (latch): `L3 = NOT CLEAR AND IO3` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L4` (latch): `L4 = NOT CLEAR AND IO4` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L5` (latch): `L5 = NOT CLEAR AND IO5` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L6` (latch): `L6 = NOT CLEAR AND IO6` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L7` (latch): `L7 = NOT CLEAR AND IO7` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - stored `L8` (latch): `L8 = NOT CLEAR AND IO8` on while high: CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)
+  - `IO1 = L1` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO2 = L2` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO3 = L3` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO4 = L4` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO5 = L5` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO6 = L6` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO7 = L7` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
+  - `IO8 = L8` (three-state) - drives when ENABLE low and READ1 low and READ2 low and WRITE1 high and WRITE2 high, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6353,6 +7096,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - ME L, WE L: D1..D4 written into word A3..A0
   - ME L, WE H: read, outputs show the complement of the stored word
   - ME H: hold, outputs Hi-Z
+- **Behaviour** (as the simulator reads it):
+  - memory `M`: 16 words x 4 bits, address A0, A1, A2, A3
+  - `S1 = NOT (WE AND M1)` (three-state) - drives when ME low, else Z
+  - `S2 = NOT (WE AND M2)` (three-state) - drives when ME low, else Z
+  - `S3 = NOT (WE AND M3)` (three-state) - drives when ME low, else Z
+  - `S4 = NOT (WE AND M4)` (three-state) - drives when ME low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6407,6 +7156,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [National Semiconductor 1975 Interface Integrated Circuits, DS7820/DS8820 dual line receiver](https://www.bitsavers.org/components/national/_dataBooks/1975_National_Interface_Integrated_Circuits.pdf) p. pdf 95-97 (printed 3-22..3-24) (figures for DS8820)
 - **Formulas:**
   - `-` - Differential line receiver: the output is high when IN+ is above IN- by more than the threshold (0 V typ, +-0.5 V max with no common mode, +-1 V over +-15 V common mode), low when below. Input range +-15 V. The output state is defined for open inputs (level not read). STROBE gates the output; its polarity and the forced level are not given in the pages read.
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6454,6 +7204,11 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `OUT_x1 = IN_x1 XOR (MODE1 OR MODE2) when x_DIS1' AND x_DIS2'; Z otherwise` - Channel 1 of each pair passes its input straight through when both mode inputs are 0 and inverts it when either is 1 (differential mode). Floats when either disable input of its side is 1.
   - `OUT_x2 = IN_x2 when x_DIS1' AND x_DIS2'; Z otherwise` - Channel 2 always passes its input non-inverted; floats when either disable input of its side is 1. Tie IN_x1 to IN_x2 for a differential pair.
+- **Behaviour** (as the simulator reads it):
+  - `OUT_A1 = IN_A1 XOR (MODE1 OR MODE2)` (three-state) - drives when A_DIS1 low and A_DIS2 low, else Z
+  - `OUT_A2 = IN_A2` (three-state) - drives when A_DIS1 low and A_DIS2 low, else Z
+  - `OUT_B1 = IN_B1 XOR (MODE1 OR MODE2)` (three-state) - drives when B_DIS1 low and B_DIS2 low, else Z
+  - `OUT_B2 = IN_B2` (three-state) - drives when B_DIS1 low and B_DIS2 low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6507,6 +7262,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `BUSx = INx when DRIVER_DISABLE'; Z when DRIVER_DISABLE high` - The driver puts  INx on the bus while DRIVER DISABLE is low; floats while it is high.
   - `OUTx = BUSx when RECEIVER_DISABLE'; Z when RECEIVER_DISABLE high` - The receiver shows  the bus level while RECEIVER DISABLE is low; floats while it is high. Receiver thresholds (DS88xx): high 1.5..2.0 V, low 0.8..1.5 V, typ 1.75 / 1.35 V (hysteresis).
+- **Behaviour** (as the simulator reads it):
+  - `BUSA = INA` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTA = BUSA` (three-state) - drives when RECEIVER_DISABLE low, else Z
+  - `BUSB = INB` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTB = BUSB` (three-state) - drives when RECEIVER_DISABLE low, else Z
+  - `BUSC = INC` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTC = BUSC` (three-state) - drives when RECEIVER_DISABLE low, else Z
+  - `BUSD = IND` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTD = BUSD` (three-state) - drives when RECEIVER_DISABLE low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6566,6 +7330,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `BUSx = INx' when DRIVER_DISABLE'; Z when DRIVER_DISABLE high` - The driver puts the inverse of INx on the bus while DRIVER DISABLE is low; floats while it is high.
   - `OUTx = BUSx' when RECEIVER_DISABLE'; Z when RECEIVER_DISABLE high` - The receiver shows the inverse of the bus level while RECEIVER DISABLE is low; floats while it is high. Receiver thresholds (DS88xx): high 1.5..2.0 V, low 0.8..1.5 V, typ 1.75 / 1.35 V (hysteresis).
+- **Behaviour** (as the simulator reads it):
+  - `BUSA = NOT INA` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTA = NOT BUSA` (three-state) - drives when RECEIVER_DISABLE low, else Z
+  - `BUSB = NOT INB` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTB = NOT BUSB` (three-state) - drives when RECEIVER_DISABLE low, else Z
+  - `BUSC = NOT INC` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTC = NOT BUSC` (three-state) - drives when RECEIVER_DISABLE low, else Z
+  - `BUSD = NOT IND` (three-state) - drives when DRIVER_DISABLE low, else Z
+  - `OUTD = NOT BUSD` (three-state) - drives when RECEIVER_DISABLE low, else Z
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6627,6 +7400,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - `Q1 = NOT (E' AND X AND Y')` - Q1 low when enabled and X=1, Y=0.
   - `Q2 = NOT (E' AND X' AND Y)` - Q2 low when enabled and X=0, Y=1.
   - `Q3 = NOT (E' AND X AND Y)` - Q3 low when enabled and X=1, Y=1. The formulas assume all outputs are high when E is high (see unknown).
+- **Behaviour** (as the simulator reads it):
+  - `Q0_1 = NOT (E1' AND X1' AND Y1')` (totem-pole)
+  - `Q1_1 = NOT (E1' AND X1 AND Y1')` (totem-pole)
+  - `Q2_1 = NOT (E1' AND X1' AND Y1)` (totem-pole)
+  - `Q3_1 = NOT (E1' AND X1 AND Y1)` (totem-pole)
+  - `Q0_2 = NOT (E2' AND X2' AND Y2')` (totem-pole)
+  - `Q1_2 = NOT (E2' AND X2 AND Y2')` (totem-pole)
+  - `Q2_2 = NOT (E2' AND X2' AND Y2)` (totem-pole)
+  - `Q3_2 = NOT (E2' AND X2 AND Y2)` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6697,6 +7479,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [Fairchild Semiconductor MCT2/MCT2E/MCT210/MCT271/MCT2200/MCT2201/MCT2202 phototransistor optocouplers, 10/10/03](https://www.komponenten.es.aau.dk/fileadmin/komponenten/Data_Sheet/Opto/MCT2.pdf) p. 1-4 (figures for MCT2 (non -M, black package))
 - **Formulas:**
   - `-` - Current through the LED (pins 1 to 2) turns the phototransistor on: collector current is at least 20% of the LED current (CTR min 20% at IF 10 mA, VCE 10 V). LED forward voltage 1.25 V typ, 1.50 V max at 20 mA. VCE(sat) 0.4 V max at IC 2 mA, IF 16 mA. No LED current: collector dark current 50 nA max at VCE 10 V.
+- **Behaviour:** none - an analog part (LED and phototransistor optocoupler): the datasheet gives currents and transfer ratios, no logic function
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6737,6 +7520,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Datasheet:** [Texas Instruments, The Optoelectronics Data Book for Design Engineers 5th ed. 1978, TIL113/TIL119 opto-couplers (bulletin DL-S 12032, rev. Oct 1978)](https://www.bitsavers.org/components/ti/_dataBooks/1978_TI_The_Optoelectronics_Data_Book_for_Design_Engineers_5ed.pdf) p. pdf 124-127 (printed 123-126) (figures for TIL113)
 - **Formulas:**
   - `-` - Current through the LED turns the Darlington phototransistor on: collector current at least 30 mA at IF 10 mA, VCE 1 V (300% minimum transfer ratio). LED forward voltage 1.5 V max at 10 mA. VCE(sat) 1 V max at IC 125 mA, IF 50 mA. Dark current 100 nA max at VCE 10 V.
+- **Behaviour:** none - an analog part (LED and phototransistor optocoupler): the datasheet gives currents and transfer ratios, no logic function
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6772,6 +7556,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 
 - **What it looks like:** A rectangle for the whole function (or one section of it). Pin numbers are written on the lines where they meet the box; signal names are written beside them.
 
+- **Behaviour:** none - no datasheet found (see unknown); no behaviour is taken from any other part
 - **Output current:** low - mA, high - mA
 - **Not settled by the datasheet:** No datasheet found. Sources tried: Web searches for "VP12/12" with datasheet / DC-DC converter / delay line terms; bitsavers component databooks for National, TI, Intel, Mostek, Motorola, Signetics (listings only). Manufacturer unknown. Package, pins, function, electrical figures and timing all unknown.
 - **Notes:** Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: VP12/12).
@@ -6791,6 +7576,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 
 - **What it looks like:** A rectangle for the whole function (or one section of it). Pin numbers are written on the lines where they meet the box; signal names are written beside them.
 
+- **Behaviour:** none - no datasheet found (see unknown); no behaviour is taken from any other part
 - **Output current:** low - mA, high - mA
 - **Not settled by the datasheet:** No datasheet found. Sources tried: Web searches for "VP5" with datasheet / DC-DC converter / delay line terms; bitsavers component databooks for National, TI, Intel, Mostek, Motorola, Signetics (listings only). Manufacturer unknown. Package, pins, function, electrical figures and timing all unknown.
 - **Notes:** Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: VP5).
@@ -6810,6 +7596,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 
 - **What it looks like:** A rectangle for the whole function (or one section of it). Pin numbers are written on the lines where they meet the box; signal names are written beside them.
 
+- **Behaviour:** none - no datasheet found (see unknown); no behaviour is taken from any other part
 - **Output current:** low - mA, high - mA
 - **Not settled by the datasheet:** No datasheet found. Sources tried: Web searches for "DC10-35T" with datasheet / DC-DC converter / delay line terms; bitsavers component databooks for National, TI, Intel, Mostek, Motorola, Signetics (listings only). Manufacturer unknown. Package, pins, function, electrical figures and timing all unknown.
 - **Notes:** Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: DC10-35T).
@@ -6833,6 +7620,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `-` - Three-state output, inverted from the data written (datasheet: "Data-out is inverted from data-in"). Floats while CE is low. If CS was low at the rise of CE, the output is enabled while CE stays high; it first goes low, then shows the data. If CS was high, the output stays floating.
 - **Stored state:** 4096 bits, changes on -
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6902,6 +7690,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
   - Word length WLS1/WLS2: L/L 5, H/L 6, L/H 7, H/H 8 bits.
   - PS high = even parity, low = odd. PI high = no parity bit (PE forced low). SBS high = 2 stop bits, low = 1.
   - TBRL low loads TI1..TI8 into the transmitter buffer; TBRL low-to-high moves it into the transmitter register (delayed until the current word is sent).
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -6980,6 +7769,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `-` - Three-state TTL output, latched and valid into the next cycle. Data valid tRAC after RAS falls and tCAC after CAS falls; turns off tOFF after CAS goes high. Output swings VSS..VCC (VCC feeds only the output buffer).
 - **Stored state:** 4096 bits, changes on -
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -7037,6 +7827,7 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `-` - Three-state output; pin drawn as DOUT with a bar (inverted data). High impedance when CE is low (CE off) or CS is high. Data valid tCO after CE rises.
 - **Stored state:** 4096 bits, changes on -
+- **Behaviour:** not written yet (see BUGS.md B3).
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -7094,6 +7885,12 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Formulas:**
   - `On = NOT mem[A3..A0][n] when CS' AND WE; else high (off)` - Selected (CS low) and reading (WE high): outputs give the complement of the stored word. During a write, or when not selected, the outputs are high (open collector off).
 - **Stored state:** 64 bits, changes on -
+- **Behaviour** (as the simulator reads it):
+  - memory `M`: 16 words x 4 bits, address A0, A1, A2, A3
+  - `O1 = NOT (NOT CS AND WE AND M1)` (open-collector)
+  - `O2 = NOT (NOT CS AND WE AND M2)` (open-collector)
+  - `O3 = NOT (NOT CS AND WE AND M3)` (open-collector)
+  - `O4 = NOT (NOT CS AND WE AND M4)` (open-collector)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|
@@ -7147,6 +7944,15 @@ The standard defines these marks for its rectangle-shaped symbols. Putting them 
 - **Stored state:** 320 bits, changes on clock: data entered while PHI_IN is 1, shifted when it goes to 0
   - RECn = 0: INn is written into register n
   - RECn = 1: register n recirculates (output fed back), INn ignored
+- **Behaviour** (as the simulator reads it):
+  - 320 stored bits; the first two and the last:
+  - stored `R1_1` (flip-flop): `R1_1 = (NOT REC1 AND IN1) OR (REC1 AND R1_80)` on falling edge (H->L) of PHI_IN
+  - stored `R1_2` (flip-flop): `R1_2 = R1_1` on falling edge (H->L) of PHI_IN
+  - stored `R4_80` (flip-flop): `R4_80 = R4_79` on falling edge (H->L) of PHI_IN
+  - `OUT1 = R1_80` (totem-pole)
+  - `OUT2 = R2_80` (totem-pole)
+  - `OUT3 = R3_80` (totem-pole)
+  - `OUT4 = R4_80` (totem-pole)
 
 | Pin | Name | Role | Details |
 |---|---|---|---|

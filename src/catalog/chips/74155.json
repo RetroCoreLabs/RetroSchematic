@@ -242,5 +242,147 @@
   "unknown": [
     "74156 (open-collector) electrical and switching figures were not read; this file describes the 74155."
   ],
-  "notes": "With 1C tied to 2C and 1G tied to 2G it is a 3-line-to-8-line decoder, C (1C/2C) the most significant select: C low selects section 2, C high section 1 (function table)."
+  "notes": "With 1C tied to 2C and 1G tied to 2G it is a 3-line-to-8-line decoder, C (1C/2C) the most significant select: C low selects section 2, C high section 1 (function table).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y0",
+        "formula": "1Y0 = NOT(1G' AND 1C AND B'A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Y1",
+        "formula": "1Y1 = NOT(1G' AND 1C AND B'A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Y2",
+        "formula": "1Y2 = NOT(1G' AND 1C AND BA')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Y3",
+        "formula": "1Y3 = NOT(1G' AND 1C AND BA)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y0",
+        "formula": "2Y0 = NOT(2G' AND 2C' AND B'A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2C",
+              "active": "low"
+            },
+            {
+              "pin": "2G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y1",
+        "formula": "2Y1 = NOT(2G' AND 2C' AND B'A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2C",
+              "active": "low"
+            },
+            {
+              "pin": "2G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y2",
+        "formula": "2Y2 = NOT(2G' AND 2C' AND BA')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2C",
+              "active": "low"
+            },
+            {
+              "pin": "2G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y3",
+        "formula": "2Y3 = NOT(2G' AND 2C' AND BA)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2C",
+              "active": "low"
+            },
+            {
+              "pin": "2G",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-175 to 7-177 (PDF pages 174-176) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

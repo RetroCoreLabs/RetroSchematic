@@ -217,5 +217,26 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "Formulas from the '150 function table (book page 7-158)."
+  "notes": "Formulas from the '150 function table (book page 7-158).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-157 to 7-160 (PDF pages 156-159) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "W",
+        "formula": "W = NOT(STROBE' AND ((D' AND C' AND B' AND A' AND E0) OR (D' AND C' AND B' AND A AND E1) OR (D' AND C' AND B AND A' AND E2) OR (D' AND C' AND B AND A AND E3) OR (D' AND C AND B' AND A' AND E4) OR (D' AND C AND B' AND A AND E5) OR (D' AND C AND B AND A' AND E6) OR (D' AND C AND B AND A AND E7) OR (D AND C' AND B' AND A' AND E8) OR (D AND C' AND B' AND A AND E9) OR (D AND C' AND B AND A' AND E10) OR (D AND C' AND B AND A AND E11) OR (D AND C AND B' AND A' AND E12) OR (D AND C AND B' AND A AND E13) OR (D AND C AND B AND A' AND E14) OR (D AND C AND B AND A AND E15)))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-157 to 7-160 (PDF pages 156-159) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

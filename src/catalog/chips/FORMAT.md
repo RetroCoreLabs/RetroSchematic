@@ -125,3 +125,42 @@ gives none - the path-delay function then uses 0 ns for that minimum and says so
 
 Anything the datasheet that was read does not settle, in words. A field that is not known is
 `null` and listed here; it is never guessed.
+
+## Behaviour
+
+`functions` and `state` say what the chip does in the datasheet's words. `behaviour` says the
+same as data a simulator can run, and the test `ChipBehaviourTests` checks it for every chip
+file: every formula is read by the formula reader (`RetroSchematic.Model/ChipFormula.cs`),
+every pin it names exists, every output pin has an entry, every fact has a `source`.
+
+```json
+"behaviour": {
+  "kind": "logic",
+  "source": "6-46 - TI The TTL Data Book, 2nd ed. 1976",
+  "stored": [
+    {"name": "FF1", "kind": "flip-flop", "next": "FF1 = 1D",
+     "clock": {"pin": "1CK", "edge": "rising"},
+     "set": {"pin": "1PR", "active": "low"}, "clear": {"pin": "1CLR", "active": "low"},
+     "whenSetAndClear": "neither wins: Q and Q' are both high while both act",
+     "source": "6-46 function table"}
+  ],
+  "outputs": [
+    {"pin": "1Q", "formula": "1Q = FF1", "type": "totem-pole", "source": "..."},
+    {"pin": "Y1", "formula": "Y1 = A1", "type": "three-state",
+     "outputEnable": {"pins": [{"pin": "G1", "active": "low"}], "disabled": "Z"}, "source": "..."}
+  ]
+}
+```
+
+| field | meaning |
+|---|---|
+| `kind` | `logic`, or `none` with a `reason` when there is no datasheet or no logic function (an optocoupler). A chip whose datasheet does describe a behaviour never gets `none`. |
+| `outputs[]` | one per output pin: `formula` (its value while it drives), `type` (`totem-pole`, `open-collector`, `open-collector-high-voltage`, `three-state`, `open-emitter`), `outputEnable` |
+| `outputEnable` | `pins`: every pin that must be at its `active` level (`high`/`low`) for the output to drive; `disabled`: `Z` (floats), `0` or `1` while it does not |
+| `stored[]` | one per stored bit. `kind`: `flip-flop`, `latch`, `counter`, `one-shot`. `next`: the value it takes, as a formula with the bit's name as target. `clock`: `pin` or `when` (an expression, for a clock made of several pins or a ripple stage) and `edge`: `rising` (L->H), `falling` (H->L), `level-high`, `level-low` (a latch follows while the level holds). `set`/`clear`: a pin that forces 1/0 at once, with `whenSetAndClear` saying which wins. `async`: a list of `{when, value}` rules for an at-once load that needs more than one pin; the first that acts wins. A one-shot has `pulseWidth` (datasheet words) and `retriggerable` instead of `next`. |
+| `internal[]` | named steps (`formula` with the step's name as target), such as an adder's carries |
+| `conditions[]` | logic values made from analog levels (`name`, `meaning` with the datasheet's thresholds), such as a line receiver's input threshold |
+| `memory` | `name`, `words`, `width`, `address` (least significant first), `writeAddress` when it differs, `dataIn`, `write` (`when` + `edge`); formulas read the addressed word's bit n as name + n (`M1`) |
+
+Names of stored bits, internal steps, conditions and memory bits may be used in formulas like
+pin names, so they must not be the same as a pin name.

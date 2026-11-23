@@ -496,5 +496,101 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "The datasheet table gives setup 20 ns and hold 5 ns without naming the reference edge; the high-to-low transition of G is the edge the function table says the data is kept at. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet table gives setup 20 ns and hold 5 ns without naming the reference edge; the high-to-low transition of G is the edge the function table says the data is kept at. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "L1",
+        "kind": "latch",
+        "next": "L1 = 1D",
+        "clock": {
+          "pin": "G12",
+          "edge": "level-high"
+        },
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L2",
+        "kind": "latch",
+        "next": "L2 = 2D",
+        "clock": {
+          "pin": "G12",
+          "edge": "level-high"
+        },
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L3",
+        "kind": "latch",
+        "next": "L3 = 3D",
+        "clock": {
+          "pin": "G34",
+          "edge": "level-high"
+        },
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L4",
+        "kind": "latch",
+        "next": "L4 = 4D",
+        "clock": {
+          "pin": "G34",
+          "edge": "level-high"
+        },
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = L1",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT L1",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = L2",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT L2",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Q",
+        "formula": "3Q = L3",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Q'",
+        "formula": "3Q' = NOT L3",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Q",
+        "formula": "4Q = L4",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Q'",
+        "formula": "4Q' = NOT L4",
+        "type": "totem-pole",
+        "source": "5-23 (PDF page 23) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

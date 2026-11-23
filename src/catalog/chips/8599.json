@@ -245,5 +245,93 @@
     "The truth table gives the outputs during a write only as part of the \"complement of data\" column header; the write-cycle waveform was not read.",
     "Which edge of WE the setup/hold times refer to was not read from the waveform."
   ],
-  "notes": "Same pinout as 7489, with three-state outputs."
+  "notes": "Same pinout as 7489, with three-state outputs.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 472-475 (printed 3-127..3-130) - National Semiconductor 1976 TTL Databook",
+    "memory": {
+      "name": "M",
+      "words": 16,
+      "width": 4,
+      "address": [
+        "A0",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "dataIn": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "write": {
+        "when": "NOT ME AND NOT WE",
+        "edge": "level-high"
+      },
+      "source": "pdf 472-475 (printed 3-127..3-130) - National Semiconductor 1976 TTL Databook (truth table)"
+    },
+    "outputs": [
+      {
+        "pin": "S1",
+        "formula": "S1 = NOT (WE AND M1)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ME",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 472-475 (printed 3-127..3-130) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "S2",
+        "formula": "S2 = NOT (WE AND M2)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ME",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 472-475 (printed 3-127..3-130) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "S3",
+        "formula": "S3 = NOT (WE AND M3)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ME",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 472-475 (printed 3-127..3-130) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "S4",
+        "formula": "S4 = NOT (WE AND M4)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ME",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 472-475 (printed 3-127..3-130) - National Semiconductor 1976 TTL Databook"
+      }
+    ]
+  }
 }

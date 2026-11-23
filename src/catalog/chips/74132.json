@@ -170,5 +170,35 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "vtPlusV/vtMinusV/hysteresisV are extra fields in the electrical block for the Schmitt thresholds (FORMAT.md asks for VT+ and VT-)."
+  "notes": "vtPlusV/vtMinusV/hysteresisV are extra fields in the electrical block for the Schmitt thresholds (FORMAT.md asks for VT+ and VT-).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book page 5-37 (PDF page 37) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT(1A AND 1B)",
+        "type": "totem-pole",
+        "source": "book page 5-37 (PDF page 37) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT(2A AND 2B)",
+        "type": "totem-pole",
+        "source": "book page 5-37 (PDF page 37) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = NOT(3A AND 3B)",
+        "type": "totem-pole",
+        "source": "book page 5-37 (PDF page 37) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = NOT(4A AND 4B)",
+        "type": "totem-pole",
+        "source": "book page 5-37 (PDF page 37) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

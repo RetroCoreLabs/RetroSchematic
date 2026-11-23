@@ -194,5 +194,71 @@
   ],
   "state": null,
   "timingLimits": [],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "3-5, 3-6 (PDF pages 350, 351) - National Semiconductor 1976 TTL Databook",
+    "outputs": [
+      {
+        "pin": "Y1",
+        "formula": "Y1 = A1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "C1",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "3-5, 3-6 (PDF pages 350, 351) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y2",
+        "formula": "Y2 = A2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "C2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "3-5, 3-6 (PDF pages 350, 351) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y3",
+        "formula": "Y3 = A3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "C3",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "3-5, 3-6 (PDF pages 350, 351) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y4",
+        "formula": "Y4 = A4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "C4",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "3-5, 3-6 (PDF pages 350, 351) - National Semiconductor 1976 TTL Databook"
+      }
+    ]
+  }
 }

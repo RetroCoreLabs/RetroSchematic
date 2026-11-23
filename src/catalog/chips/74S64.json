@@ -148,5 +148,17 @@
     "notes": "Schottky. The 74S65 is the same gate with an open-collector output."
   },
   "unknown": [],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-20 (PDF page 20) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = NOT ((A AND B AND C AND D) OR (E AND F) OR (G AND H AND I) OR (J AND K))",
+        "type": "totem-pole",
+        "source": "5-20 (PDF page 20) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

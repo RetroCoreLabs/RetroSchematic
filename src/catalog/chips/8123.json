@@ -205,5 +205,71 @@
   "unknown": [
     "Switching values read from a partly garbled text layer in column order (min/typ/max of the DM71/81 23 column)."
   ],
-  "notes": "Datasheet: pin equivalent of 74157 / 9322, with three-state outputs."
+  "notes": "Datasheet: pin equivalent of 74157 / 9322, with three-state outputs.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 358-360 (printed 3-13..3-15) - National Semiconductor 1976 TTL Databook",
+    "outputs": [
+      {
+        "pin": "Y1",
+        "formula": "Y1 = (NOT S AND A1) OR (S AND B1)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 358-360 (printed 3-13..3-15) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y2",
+        "formula": "Y2 = (NOT S AND A2) OR (S AND B2)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 358-360 (printed 3-13..3-15) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y3",
+        "formula": "Y3 = (NOT S AND A3) OR (S AND B3)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 358-360 (printed 3-13..3-15) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y4",
+        "formula": "Y4 = (NOT S AND A4) OR (S AND B4)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 358-360 (printed 3-13..3-15) - National Semiconductor 1976 TTL Databook"
+      }
+    ]
+  }
 }

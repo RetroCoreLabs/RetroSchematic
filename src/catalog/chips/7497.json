@@ -36,7 +36,7 @@
     {"output": "6", "formula": "Y = NOT(Z AND UNITY/CASCADE)",
      "text": "Y is the complement of Z while UNITY/CASCADE is high (M high pulses per 64 clocks); a low UNITY/CASCADE forces Y high. Tying UNITY/CASCADE to CLOCK with STROBE high passes the clock inverted to Y."},
     {"output": "7", "formula": "ENABLE OUTPUT = NOT(ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE AND QF)",
-     "text": "Goes low once per 64 clocks, when the counter is enabled and reaches all ones (state 63); used as the enable/strobe of the next stage when cascading. Function table gives 1 pulse per 64 clocks. A further input to this gate is drawn in the block diagram but could not be read clearly (see unknown)."}
+     "text": "Goes low once per 64 clocks, when the counter is enabled and reaches all ones (state 63); used as the enable/strobe of the next stage when cascading. Function table gives 1 pulse per 64 clocks. The block diagram (book page 7-103, read at 600 dpi on 2026-11-23) shows exactly seven inputs to this gate: the enable line and QA..QF."}
   ],
   "state": {"bits": 6, "changesOn": "rising edge of CLOCK",
     "rules": [
@@ -82,8 +82,117 @@
     {"what": "hold", "pin": "ENABLE INPUT", "ref": "CLOCK falling edge of the previous clock pulse", "minNs": 20, "maxNs": "tcp - 10"}
   ],
   "unknown": [
-    "Exact gate inputs of the six rate gates and of the enable-output gate were read from a scanned functional block diagram; the gate for rate F reads as using QA', E uses QA and QB', and so on, consistent with the pulse counts in the function table, but the line-by-line wiring is not printed as text.",
-    "The enable-output NAND gate has one more input in the block diagram (a line from the QF area) that could not be identified from the scan."
+    "Exact gate inputs of the six rate gates were read from the scanned functional block diagram (book page 7-103); the line-by-line wiring is not printed as text."
   ],
-  "notes": "Pin names follow the datasheet pin-out: B 1, E 2, F 3, A 4, Z 5, Y 6, ENABLE OUTPUT 7, GND 8, CLOCK 9, STROBE 10, ENABLE INPUT 11, UNITY/CASCADE 12, CLEAR 13, C 14, D 15, VCC 16. The recommended-conditions table column header for the 74 part reads 'SN7494' in the book; it is the SN7497 column (misprint in the source)."
+  "notes": "Pin names follow the datasheet pin-out: B 1, E 2, F 3, A 4, Z 5, Y 6, ENABLE OUTPUT 7, GND 8, CLOCK 9, STROBE 10, ENABLE INPUT 11, UNITY/CASCADE 12, CLEAR 13, C 14, D 15, VCC 16. The recommended-conditions table column header for the 74 part reads 'SN7494' in the book; it is the SN7497 column (misprint in the source).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "QA",
+        "kind": "counter",
+        "next": "QA = QA XOR (ENABLE INPUT')",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103: each stage toggles when ENABLE INPUT is low and all lower stages are 1)"
+      },
+      {
+        "name": "QB",
+        "kind": "counter",
+        "next": "QB = QB XOR (ENABLE INPUT' AND QA)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103: each stage toggles when ENABLE INPUT is low and all lower stages are 1)"
+      },
+      {
+        "name": "QC",
+        "kind": "counter",
+        "next": "QC = QC XOR (ENABLE INPUT' AND QA AND QB)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103: each stage toggles when ENABLE INPUT is low and all lower stages are 1)"
+      },
+      {
+        "name": "QD",
+        "kind": "counter",
+        "next": "QD = QD XOR (ENABLE INPUT' AND QA AND QB AND QC)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103: each stage toggles when ENABLE INPUT is low and all lower stages are 1)"
+      },
+      {
+        "name": "QE",
+        "kind": "counter",
+        "next": "QE = QE XOR (ENABLE INPUT' AND QA AND QB AND QC AND QD)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103: each stage toggles when ENABLE INPUT is low and all lower stages are 1)"
+      },
+      {
+        "name": "QF",
+        "kind": "counter",
+        "next": "QF = QF XOR (ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103: each stage toggles when ENABLE INPUT is low and all lower stages are 1)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "Z",
+        "formula": "Z = NOT( (CLOCK' AND STROBE') AND ( (F AND QA') OR (E AND QA AND QB') OR (D AND QA AND QB AND QC') OR (C AND QA AND QB AND QC AND QD') OR (B AND QA AND QB AND QC AND QD AND QE') OR (A AND QA AND QB AND QC AND QD AND QE AND QF') ) )",
+        "type": "totem-pole",
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103)"
+      },
+      {
+        "pin": "Y",
+        "formula": "Y = NOT(Z AND UNITY/CASCADE)",
+        "type": "totem-pole",
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103)"
+      },
+      {
+        "pin": "ENABLE OUTPUT",
+        "formula": "ENABLE OUTPUT = NOT(ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE AND QF)",
+        "type": "totem-pole",
+        "source": "book pages 7-102 to 7-105 (PDF pages 101-104) - TI The TTL Data Book for Design Engineers (functional block diagram 7-103)"
+      }
+    ]
+  }
 }

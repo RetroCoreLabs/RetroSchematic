@@ -207,5 +207,71 @@
     "No minimum propagation delays printed."
   ],
   "notes": "Function table rows: G'=H -> Z; G'=L, S=L, A=L -> H; A=H -> L; S=H, B=L -> H; B=H -> L. Output disable is faster than enable, by design.",
-  "state": null
+  "state": null,
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-372, 7-375 (PDF pages 371, 374) - TI The TTL Data Book 2nd ed. 1976",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT ((NOT SELECT AND 1A) OR (SELECT AND 1B))",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G'",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "7-372, 7-375 (PDF pages 371, 374) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT ((NOT SELECT AND 2A) OR (SELECT AND 2B))",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G'",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "7-372, 7-375 (PDF pages 371, 374) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = NOT ((NOT SELECT AND 3A) OR (SELECT AND 3B))",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G'",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "7-372, 7-375 (PDF pages 371, 374) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = NOT ((NOT SELECT AND 4A) OR (SELECT AND 4B))",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G'",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "7-372, 7-375 (PDF pages 371, 374) - TI The TTL Data Book 2nd ed. 1976"
+      }
+    ]
+  }
 }

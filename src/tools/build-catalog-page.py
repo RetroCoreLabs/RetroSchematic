@@ -51,6 +51,49 @@ def cell(v):
     return str(v).replace("|", "\\|").replace("\n", " ")
 
 
+EDGE = {"rising": "rising edge (L->H) of", "falling": "falling edge (H->L) of",
+        "level-high": "while high:", "level-low": "while low:"}
+
+
+def behaviour_lines(b):
+    """The structured behaviour (FORMAT.md, Behaviour), one line per output and stored bit."""
+    if not b:
+        return ["- **Behaviour:** not written yet (see BUGS.md B3)."]
+    if b.get("kind") == "none":
+        return [f"- **Behaviour:** none - {cell(b.get('reason'))}"]
+    out = ["- **Behaviour** (as the simulator reads it):"]
+    stored = b.get("stored") or []
+    if len(stored) > 16:
+        out.append(f"  - {len(stored)} stored bits; the first two and the last:")
+        stored = stored[:2] + stored[-1:]
+    for s in stored:
+        c = s.get("clock") or {}
+        when = f"{EDGE.get(c.get('edge'), c.get('edge'))} {c.get('pin') or c.get('when')}" if c else "no clock"
+        line = f"  - stored `{s['name']}` ({s['kind']}): " + (f"`{cell(s['next'])}` on {cell(when)}" if s.get("next") else f"pulse on {cell(when)}, {cell(s.get('pulseWidth'))}")
+        for k in ("set", "clear"):
+            if s.get(k):
+                line += f"; {k} by {s[k]['pin']} {s[k]['active']}"
+        for a in s.get("async") or []:
+            line += f"; at once `{cell(a['value'])}` while `{cell(a['when'])}`"
+        if s.get("whenSetAndClear"):
+            line += f"; both: {cell(s['whenSetAndClear'])}"
+        out.append(line)
+    for i in b.get("internal") or []:
+        out.append(f"  - inside: `{cell(i['formula'])}`")
+    for c in b.get("conditions") or []:
+        out.append(f"  - from analog levels: `{c['name']}` = {cell(c['meaning'])}")
+    m = b.get("memory")
+    if m:
+        out.append(f"  - memory `{m['name']}`: {m['words']} words x {m['width']} bits, address {', '.join(m['address'])}")
+    for o in b.get("outputs") or []:
+        en = o.get("outputEnable")
+        e = ""
+        if en:
+            e = " - drives when " + " and ".join(f"{p['pin']} {p['active']}" for p in en["pins"]) + f", else {en['disabled']}"
+        out.append(f"  - `{cell(o['formula'])}` ({o['type']}){e}")
+    return out
+
+
 def chip_section(part_id):
     """What the chip is and does, from catalog/chips/<id>.json (datasheet facts with sources)."""
     path = f"catalog/chips/{part_id}.json"
@@ -73,6 +116,7 @@ def chip_section(part_id):
         out.append(f"- **Stored state:** {cell(st.get('bits'))} bits, changes on {cell(st.get('changesOn'))}")
         for r in st.get("rules") or []:
             out.append(f"  - {cell(r)}")
+    out += behaviour_lines(c.get("behaviour"))
     pins = c.get("pins") or []
     if pins:
         out.append("\n| Pin | Name | Role | Details |\n|---|---|---|---|")

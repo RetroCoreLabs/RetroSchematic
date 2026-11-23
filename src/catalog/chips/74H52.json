@@ -151,5 +151,17 @@
   "unknown": [
     "Maximum propagation delay with 15 pF on the expander node: the table gives typical values only."
   ],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-17 (PDF page 17) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = (A AND B) OR (C AND D AND E) OR (F AND G) OR (H AND I) OR X",
+        "type": "totem-pole",
+        "source": "5-17 (PDF page 17) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

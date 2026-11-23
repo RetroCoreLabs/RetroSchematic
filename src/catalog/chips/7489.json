@@ -240,5 +240,57 @@
     "Power-up content of the memory: not stated.",
     "IOH as a source current does not apply (open collector); outputHighMaxCurrentMa is null."
   ],
-  "notes": "ND symbol title says 64-bit read/write memory; this file uses the National DM7489 sheet, which describes the same 16 x 4 part with open-collector inverted outputs. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "ND symbol title says 64-bit read/write memory; this file uses the National DM7489 sheet, which describes the same 16 x 4 part with open-collector inverted outputs. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "2-28, 2-29 (PDF pages 175-176) - National Semiconductor TTL Data Book 1976",
+    "memory": {
+      "name": "M",
+      "words": 16,
+      "width": 4,
+      "address": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "dataIn": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "write": {
+        "when": "NOT ME AND NOT WE",
+        "edge": "level-high"
+      },
+      "source": "2-28, 2-29 (PDF pages 175-176) - National Semiconductor TTL Data Book 1976 (truth table; which select input is the least significant bit is not tied in the sheet - see unknown)"
+    },
+    "outputs": [
+      {
+        "pin": "S1",
+        "formula": "S1 = NOT (NOT ME AND WE AND M1)",
+        "type": "open-collector",
+        "source": "2-28, 2-29 (PDF pages 175-176) - National Semiconductor TTL Data Book 1976"
+      },
+      {
+        "pin": "S2",
+        "formula": "S2 = NOT (NOT ME AND WE AND M2)",
+        "type": "open-collector",
+        "source": "2-28, 2-29 (PDF pages 175-176) - National Semiconductor TTL Data Book 1976"
+      },
+      {
+        "pin": "S3",
+        "formula": "S3 = NOT (NOT ME AND WE AND M3)",
+        "type": "open-collector",
+        "source": "2-28, 2-29 (PDF pages 175-176) - National Semiconductor TTL Data Book 1976"
+      },
+      {
+        "pin": "S4",
+        "formula": "S4 = NOT (NOT ME AND WE AND M4)",
+        "type": "open-collector",
+        "source": "2-28, 2-29 (PDF pages 175-176) - National Semiconductor TTL Data Book 1976"
+      }
+    ]
+  }
 }

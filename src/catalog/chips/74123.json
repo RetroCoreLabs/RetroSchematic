@@ -238,5 +238,67 @@
     }
   ],
   "unknown": [],
-  "notes": "The SN74LS123 has different figures (same datasheet, page 6); this file is the 74123."
+  "notes": "The SN74LS123 has different figures (same datasheet, page 6); this file is the 74123.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "1, 2, 4, 5, 7 - TI SN54122",
+    "stored": [
+      {
+        "name": "P1",
+        "kind": "one-shot",
+        "clock": {
+          "when": "NOT 1A AND 1B AND 1CLR",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "1CLR",
+          "active": "low"
+        },
+        "retriggerable": true,
+        "pulseWidth": "tw = K RT Cext (1 + 0.7/RT), K = 0.28, RT in kohm, Cext in pF, tw in ns (Cext > 1000 pF); restarts on each trigger",
+        "source": "1, 2, 4, 5, 7 - TI SN54122 (function table: trigger on A falling with B high, B rising with A low, or clear rising with A low and B high)"
+      },
+      {
+        "name": "P2",
+        "kind": "one-shot",
+        "clock": {
+          "when": "NOT 2A AND 2B AND 2CLR",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "2CLR",
+          "active": "low"
+        },
+        "retriggerable": true,
+        "pulseWidth": "tw = K RT Cext (1 + 0.7/RT), K = 0.28, RT in kohm, Cext in pF, tw in ns (Cext > 1000 pF); restarts on each trigger",
+        "source": "1, 2, 4, 5, 7 - TI SN54122 (function table: trigger on A falling with B high, B rising with A low, or clear rising with A low and B high)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = P1",
+        "type": "totem-pole",
+        "source": "1, 2, 4, 5, 7 - TI SN54122"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT P1",
+        "type": "totem-pole",
+        "source": "1, 2, 4, 5, 7 - TI SN54122"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = P2",
+        "type": "totem-pole",
+        "source": "1, 2, 4, 5, 7 - TI SN54122"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT P2",
+        "type": "totem-pole",
+        "source": "1, 2, 4, 5, 7 - TI SN54122"
+      }
+    ]
+  }
 }

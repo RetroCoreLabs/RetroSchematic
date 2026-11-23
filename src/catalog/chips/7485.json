@@ -260,5 +260,59 @@
     "Maximum data-to-output delay for the 1- and 2-gate-level paths: the table gives typical values only.",
     "Which data input takes how many gate levels to A<Bout/A>Bout: the table does not say; the 3-level row is the one with a maximum."
   ],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers",
+    "internal": [
+      {
+        "formula": "EQ0 = NOT (A0 XOR B0)",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers (function table: compare from the most significant bit)"
+      },
+      {
+        "formula": "EQ1 = NOT (A1 XOR B1)",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers (function table: compare from the most significant bit)"
+      },
+      {
+        "formula": "EQ2 = NOT (A2 XOR B2)",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers (function table: compare from the most significant bit)"
+      },
+      {
+        "formula": "EQ3 = NOT (A3 XOR B3)",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers (function table: compare from the most significant bit)"
+      },
+      {
+        "formula": "EQ = EQ3 AND EQ2 AND EQ1 AND EQ0",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "formula": "GT = (A3 AND NOT B3) OR (EQ3 AND A2 AND NOT B2) OR (EQ3 AND EQ2 AND A1 AND NOT B1) OR (EQ3 AND EQ2 AND EQ1 AND A0 AND NOT B0)",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "formula": "LT = (B3 AND NOT A3) OR (EQ3 AND B2 AND NOT A2) OR (EQ3 AND EQ2 AND B1 AND NOT A1) OR (EQ3 AND EQ2 AND EQ1 AND B0 AND NOT A0)",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "A>Bout",
+        "formula": "A>Bout = GT OR (EQ AND NOT A=Bin AND NOT A<Bin)",
+        "type": "totem-pole",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "A<Bout",
+        "formula": "A<Bout = LT OR (EQ AND NOT A=Bin AND NOT A>Bin)",
+        "type": "totem-pole",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "A=Bout",
+        "formula": "A=Bout = EQ AND A=Bin",
+        "type": "totem-pole",
+        "source": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

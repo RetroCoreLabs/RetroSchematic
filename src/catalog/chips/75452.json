@@ -104,5 +104,23 @@
     "No minimum delays printed."
   ],
   "state": null,
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "6-42, 6-43, 6-51 (PDF pages 272, 273, 281) - TI The Interface Circuits Data Book 2nd ed. 1974",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT (1A AND 1B)",
+        "type": "open-collector-high-voltage",
+        "source": "6-42, 6-43, 6-51 (PDF pages 272, 273, 281) - TI The Interface Circuits Data Book 2nd ed. 1974"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT (2A AND 2B)",
+        "type": "open-collector-high-voltage",
+        "source": "6-42, 6-43, 6-51 (PDF pages 272, 273, 281) - TI The Interface Circuits Data Book 2nd ed. 1974"
+      }
+    ]
+  }
 }

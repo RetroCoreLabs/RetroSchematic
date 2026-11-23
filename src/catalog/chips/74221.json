@@ -231,5 +231,67 @@
     "Typical clear-to-output delays are not printed (only max).",
     "No minimum propagation delays printed."
   ],
-  "notes": "Pin-compatible with the 74123 except that it does not retrigger."
+  "notes": "Pin-compatible with the 74123 except that it does not retrigger.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976",
+    "stored": [
+      {
+        "name": "P1",
+        "kind": "one-shot",
+        "clock": {
+          "when": "NOT 1A AND 1B AND 1CLR'",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "1CLR'",
+          "active": "low"
+        },
+        "retriggerable": false,
+        "pulseWidth": "tw = Cext Rext ln2, about 0.7 Cext Rext; Cext 0 and Rext 2 kohm give typically 30 ns",
+        "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976 (function table: trigger on A falling with B high, B rising with A low, or clear rising with A low and B high)"
+      },
+      {
+        "name": "P2",
+        "kind": "one-shot",
+        "clock": {
+          "when": "NOT 2A AND 2B AND 2CLR'",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "2CLR'",
+          "active": "low"
+        },
+        "retriggerable": false,
+        "pulseWidth": "tw = Cext Rext ln2, about 0.7 Cext Rext; Cext 0 and Rext 2 kohm give typically 30 ns",
+        "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976 (function table: trigger on A falling with B high, B rising with A low, or clear rising with A low and B high)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = P1",
+        "type": "totem-pole",
+        "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT P1",
+        "type": "totem-pole",
+        "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = P2",
+        "type": "totem-pole",
+        "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT P2",
+        "type": "totem-pole",
+        "source": "6-68 to 6-70 (PDF pages 68-70) - TI The TTL Data Book 2nd ed. 1976"
+      }
+    ]
+  }
 }

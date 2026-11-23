@@ -203,5 +203,101 @@
     "No minimum propagation delays are printed (path-delay function uses 0 ns).",
     "Switching table text layer is partly garbled; values were read in column order (DM70/80 95,97 and 96,98 columns)."
   ],
-  "notes": "Four buffers on G1, two on G2. Datasheet says pin equivalent to DM54367."
+  "notes": "Four buffers on G1, two on G2. Datasheet says pin equivalent to DM54367.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook",
+    "outputs": [
+      {
+        "pin": "Y1",
+        "formula": "Y1 = A1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y2",
+        "formula": "Y2 = A2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y3",
+        "formula": "Y3 = A3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y4",
+        "formula": "Y4 = A4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y5",
+        "formula": "Y5 = A5",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook"
+      },
+      {
+        "pin": "Y6",
+        "formula": "Y6 = A6",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 352-353 (printed 3-7, 3-8) - National Semiconductor 1976 TTL Databook"
+      }
+    ]
+  }
 }

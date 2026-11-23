@@ -197,5 +197,71 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "This file describes the 74157 (true outputs)."
+  "notes": "This file describes the 74157 (true outputs).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-181, 7-184 (PDF pages 180, 183) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = STROBE' AND ((SELECT' AND 1A) OR (SELECT AND 1B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-184 (PDF pages 180, 183) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = STROBE' AND ((SELECT' AND 2A) OR (SELECT AND 2B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-184 (PDF pages 180, 183) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = STROBE' AND ((SELECT' AND 3A) OR (SELECT AND 3B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-184 (PDF pages 180, 183) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = STROBE' AND ((SELECT' AND 4A) OR (SELECT AND 4B))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "STROBE",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-181, 7-184 (PDF pages 180, 183) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

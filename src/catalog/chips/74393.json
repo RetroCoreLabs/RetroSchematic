@@ -207,5 +207,173 @@
     "'393 delays from A to QB and QC are not printed (only to QA and QD).",
     "No minimum propagation delays printed."
   ],
-  "notes": "Ripple-counter rule (QB clocked by QA etc.) is taken from the internal connection shown in the pin diagram and the 'ripple' description; the 7-489 page shows A feeding the first stage of each 4-bit counter."
+  "notes": "Ripple-counter rule (QB clocked by QA etc.) is taken from the internal connection shown in the pin diagram and the 'ripple' description; the 7-489 page shows A feeding the first stage of each 4-bit counter.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976",
+    "stored": [
+      {
+        "name": "1FA",
+        "kind": "counter",
+        "next": "1FA = NOT 1FA",
+        "clock": {
+          "pin": "1A",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "1CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "1FB",
+        "kind": "counter",
+        "next": "1FB = NOT 1FB",
+        "clock": {
+          "when": "1FA",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "1CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "1FC",
+        "kind": "counter",
+        "next": "1FC = NOT 1FC",
+        "clock": {
+          "when": "1FB",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "1CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "1FD",
+        "kind": "counter",
+        "next": "1FD = NOT 1FD",
+        "clock": {
+          "when": "1FC",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "1CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "2FA",
+        "kind": "counter",
+        "next": "2FA = NOT 2FA",
+        "clock": {
+          "pin": "2A",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "2CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "2FB",
+        "kind": "counter",
+        "next": "2FB = NOT 2FB",
+        "clock": {
+          "when": "2FA",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "2CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "2FC",
+        "kind": "counter",
+        "next": "2FC = NOT 2FC",
+        "clock": {
+          "when": "2FB",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "2CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      },
+      {
+        "name": "2FD",
+        "kind": "counter",
+        "next": "2FD = NOT 2FD",
+        "clock": {
+          "when": "2FC",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "2CLEAR",
+          "active": "high"
+        },
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976 (ripple counter: QA toggles on the falling edge of A, each next stage on the falling edge of the one before)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1QA",
+        "formula": "1QA = 1FA",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "1QB",
+        "formula": "1QB = 1FB",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "1QC",
+        "formula": "1QC = 1FC",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "1QD",
+        "formula": "1QD = 1FD",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2QA",
+        "formula": "2QA = 2FA",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2QB",
+        "formula": "2QB = 2FB",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2QC",
+        "formula": "2QC = 2FC",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2QD",
+        "formula": "2QD = 2FD",
+        "type": "totem-pole",
+        "source": "7-489, 7-492, 7-493 (PDF pages 488, 491, 492) - TI The TTL Data Book 2nd ed. 1976"
+      }
+    ]
+  }
 }

@@ -160,5 +160,35 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-64, 7-66 (PDF pages 64-65) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1A XOR 1B",
+        "type": "totem-pole",
+        "source": "7-64, 7-66 (PDF pages 64-65) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2A XOR 2B",
+        "type": "totem-pole",
+        "source": "7-64, 7-66 (PDF pages 64-65) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = 3A XOR 3B",
+        "type": "totem-pole",
+        "source": "7-64, 7-66 (PDF pages 64-65) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = 4A XOR 4B",
+        "type": "totem-pole",
+        "source": "7-64, 7-66 (PDF pages 64-65) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

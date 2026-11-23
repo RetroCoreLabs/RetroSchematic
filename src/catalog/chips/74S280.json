@@ -151,5 +151,23 @@
   ],
   "state": null,
   "timingLimits": [],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-406, 7-408 (PDF pages 405, 407) - TI The TTL Data Book 2nd ed. 1976",
+    "outputs": [
+      {
+        "pin": "SUM EVEN",
+        "formula": "SUM EVEN = NOT (A XOR B XOR C XOR D XOR E XOR F XOR G XOR H XOR I)",
+        "type": "totem-pole",
+        "source": "7-406, 7-408 (PDF pages 405, 407) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "SUM ODD",
+        "formula": "SUM ODD = A XOR B XOR C XOR D XOR E XOR F XOR G XOR H XOR I",
+        "type": "totem-pole",
+        "source": "7-406, 7-408 (PDF pages 405, 407) - TI The TTL Data Book 2nd ed. 1976"
+      }
+    ]
+  }
 }

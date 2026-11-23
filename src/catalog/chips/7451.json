@@ -136,5 +136,23 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "Same pinout as the 7450 without the expander: pins 11 and 12 are marked 'make no external connection' on page 5-16. Positive logic Y = NOT(AB + CD). Switching table on page 6-31 ('51): tPLH 13 typ / 22 max ns, tPHL 8 typ / 15 max ns; IOH -400 uA and IOL 16 mA (74 family) on page 6-30. No minimum delays given; the path-delay function uses 0 ns."
+  "notes": "Same pinout as the 7450 without the expander: pins 11 and 12 are marked 'make no external connection' on page 5-16. Positive logic Y = NOT(AB + CD). Switching table on page 6-31 ('51): tPLH 13 typ / 22 max ns, tPHL 8 typ / 15 max ns; IOH -400 uA and IOL 16 mA (74 family) on page 6-30. No minimum delays given; the path-delay function uses 0 ns.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-16 (PDF page 16) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT ((1A AND 1B) OR (1C AND 1D))",
+        "type": "totem-pole",
+        "source": "5-16 (PDF page 16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT ((2A AND 2B) OR (2C AND 2D))",
+        "type": "totem-pole",
+        "source": "5-16 (PDF page 16) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

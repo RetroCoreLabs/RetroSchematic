@@ -113,5 +113,9 @@
     "Switching times are typical only (the column could be typ; the sheet prints one number per row).",
     "Minimum CTR read as 20% from the MCT2/MCT2E row; the text layer of that table is out of order."
   ],
-  "notes": "Times are in ns (1.1 us = 1100 ns)."
+  "notes": "Times are in ns (1.1 us = 1100 ns).",
+  "behaviour": {
+    "kind": "none",
+    "reason": "an analog part (LED and phototransistor optocoupler): the datasheet gives currents and transfer ratios, no logic function"
+  }
 }

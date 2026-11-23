@@ -192,5 +192,71 @@
     "IOL is not in the recommended-operating-conditions table; 80 mA is the figure from the description and the VO(on) test condition.",
     "IOH as a source current does not apply (open collector); outputHighMaxCurrentMa is null."
   ],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "0",
+        "formula": "0 = NOT (D' AND C' AND B' AND A')",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1",
+        "formula": "1 = NOT (D' AND C' AND B' AND A)",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2",
+        "formula": "2 = NOT (D' AND C' AND B AND A')",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3",
+        "formula": "3 = NOT (D' AND C' AND B AND A)",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4",
+        "formula": "4 = NOT (D' AND C AND B' AND A')",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "5",
+        "formula": "5 = NOT (D' AND C AND B' AND A)",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "6",
+        "formula": "6 = NOT (D' AND C AND B AND A')",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "7",
+        "formula": "7 = NOT (D' AND C AND B AND A)",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "8",
+        "formula": "8 = NOT (D AND C' AND B' AND A')",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "9",
+        "formula": "9 = NOT (D AND C' AND B' AND A)",
+        "type": "open-collector-high-voltage",
+        "source": "7-20, 7-21 (PDF pages 19-20) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

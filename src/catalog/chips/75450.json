@@ -168,5 +168,35 @@
     "No minimum delays printed."
   ],
   "state": null,
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "6-42, 6-43, 6-46, 6-47 (PDF pages 272, 273, 276, 277) - TI The Interface Circuits Data Book 2nd ed. 1974",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT (1A AND G)",
+        "type": "totem-pole",
+        "source": "6-42, 6-43, 6-46, 6-47 (PDF pages 272, 273, 276, 277) - TI The Interface Circuits Data Book 2nd ed. 1974"
+      },
+      {
+        "pin": "1C",
+        "formula": "1C = 1A AND G",
+        "type": "open-collector-high-voltage",
+        "source": "6-42, 6-43, 6-46, 6-47 (PDF pages 272, 273, 276, 277) - TI The Interface Circuits Data Book 2nd ed. 1974 (C = AG with Y wired to B and E to ground)"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT (2A AND G)",
+        "type": "totem-pole",
+        "source": "6-42, 6-43, 6-46, 6-47 (PDF pages 272, 273, 276, 277) - TI The Interface Circuits Data Book 2nd ed. 1974"
+      },
+      {
+        "pin": "2C",
+        "formula": "2C = 2A AND G",
+        "type": "open-collector-high-voltage",
+        "source": "6-42, 6-43, 6-46, 6-47 (PDF pages 272, 273, 276, 277) - TI The Interface Circuits Data Book 2nd ed. 1974 (C = AG with Y wired to B and E to ground)"
+      }
+    ]
+  }
 }

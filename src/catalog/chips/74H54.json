@@ -132,5 +132,17 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "The 1976 TI book draws pins 11 and 12 under 'make no external connection' and gives the 74H54 (J, N) no expander pins, so the 'expandable' in the ND title is not borne out by this datasheet. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The 1976 TI book draws pins 11 and 12 under 'make no external connection' and gives the 74H54 (J, N) no expander pins, so the 'expandable' in the ND title is not borne out by this datasheet. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-18 (PDF page 18) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = NOT ((A AND B) OR (C AND D) OR (E AND F AND G) OR (H AND I))",
+        "type": "totem-pole",
+        "source": "5-18 (PDF page 18) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

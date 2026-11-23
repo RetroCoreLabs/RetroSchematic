@@ -278,5 +278,141 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "Only the Q outputs are brought out to pins; the function table also lists Q-bar, which is internal. Two independent 4-bit latches, each with its own enable. The table gives setup and hold without naming the edge; the high-to-low transition of G is where the function table says the data is kept. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "Only the Q outputs are brought out to pins; the function table also lists Q-bar, which is internal. Two independent 4-bit latches, each with its own enable. The table gives setup and hold without naming the edge; the high-to-low transition of G is where the function table says the data is kept. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "L1Q1",
+        "kind": "latch",
+        "next": "L1Q1 = 1D1",
+        "clock": {
+          "pin": "1G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L1Q2",
+        "kind": "latch",
+        "next": "L1Q2 = 1D2",
+        "clock": {
+          "pin": "1G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L1Q3",
+        "kind": "latch",
+        "next": "L1Q3 = 1D3",
+        "clock": {
+          "pin": "1G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L1Q4",
+        "kind": "latch",
+        "next": "L1Q4 = 1D4",
+        "clock": {
+          "pin": "1G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L2Q1",
+        "kind": "latch",
+        "next": "L2Q1 = 2D1",
+        "clock": {
+          "pin": "2G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L2Q2",
+        "kind": "latch",
+        "next": "L2Q2 = 2D2",
+        "clock": {
+          "pin": "2G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L2Q3",
+        "kind": "latch",
+        "next": "L2Q3 = 2D3",
+        "clock": {
+          "pin": "2G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "L2Q4",
+        "kind": "latch",
+        "next": "L2Q4 = 2D4",
+        "clock": {
+          "pin": "2G",
+          "edge": "level-high"
+        },
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q1",
+        "formula": "1Q1 = L1Q1",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Q2",
+        "formula": "1Q2 = L1Q2",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Q3",
+        "formula": "1Q3 = L1Q3",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Q4",
+        "formula": "1Q4 = L1Q4",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q1",
+        "formula": "2Q1 = L2Q1",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q2",
+        "formula": "2Q2 = L2Q2",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q3",
+        "formula": "2Q3 = L2Q3",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q4",
+        "formula": "2Q4 = L2Q4",
+        "type": "totem-pole",
+        "source": "7-113, 7-114 (PDF pages 112-113) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

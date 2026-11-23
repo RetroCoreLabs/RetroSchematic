@@ -214,5 +214,55 @@
   "unknown": [
     "Delay from Ai/Bi to a higher sum bit (for example A1 to S4): the table lists only Ai/Bi to Si (same bit) and to C4."
   ],
-  "notes": "Datasheet pin names use the Greek sigma for the sum outputs; written S1-S4 here. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "Datasheet pin names use the Greek sigma for the sum outputs; written S1-S4 here. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers",
+    "internal": [
+      {
+        "formula": "C1 = (A1 AND B1) OR ((A1 XOR B1) AND C0)",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "formula": "C2 = (A2 AND B2) OR ((A2 XOR B2) AND C1)",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "formula": "C3 = (A3 AND B3) OR ((A3 XOR B3) AND C2)",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "S1",
+        "formula": "S1 = A1 XOR B1 XOR C0",
+        "type": "totem-pole",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "S2",
+        "formula": "S2 = A2 XOR B2 XOR C1",
+        "type": "totem-pole",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "S3",
+        "formula": "S3 = A3 XOR B3 XOR C2",
+        "type": "totem-pole",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "S4",
+        "formula": "S4 = A4 XOR B4 XOR C3",
+        "type": "totem-pole",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "C4",
+        "formula": "C4 = (A4 AND B4) OR ((A4 XOR B4) AND C3)",
+        "type": "totem-pole",
+        "source": "7-52 to 7-55 (PDF pages 52-54) - TI The TTL Data Book for Design Engineers (value as a ripple sum; the chip looks the carry ahead, so the delay is not ripple delay)"
+      }
+    ]
+  }
 }

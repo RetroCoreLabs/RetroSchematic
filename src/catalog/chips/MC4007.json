@@ -373,5 +373,59 @@
     "Output level with ENABLE high is not in the printed truth table (only E = 0 is shown); whenInactive left null.",
     "Only typical delays are printed; no minimum or maximum."
   ],
-  "notes": "ND title \"Dual 1-of-4 decoder\". Outputs are active low."
+  "notes": "ND title \"Dual 1-of-4 decoder\". Outputs are active low.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book",
+    "outputs": [
+      {
+        "pin": "Q0_1",
+        "formula": "Q0_1 = NOT (E1' AND X1' AND Y1')",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q1_1",
+        "formula": "Q1_1 = NOT (E1' AND X1 AND Y1')",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q2_1",
+        "formula": "Q2_1 = NOT (E1' AND X1' AND Y1)",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q3_1",
+        "formula": "Q3_1 = NOT (E1' AND X1 AND Y1)",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q0_2",
+        "formula": "Q0_2 = NOT (E2' AND X2' AND Y2')",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q1_2",
+        "formula": "Q1_2 = NOT (E2' AND X2 AND Y2')",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q2_2",
+        "formula": "Q2_2 = NOT (E2' AND X2' AND Y2)",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      },
+      {
+        "pin": "Q3_2",
+        "formula": "Q3_2 = NOT (E2' AND X2 AND Y2)",
+        "type": "totem-pole",
+        "source": "pdf 229-230 - Motorola 1971 TTL Integrated Circuits Data Book (truth table, E = 0 rows; level with E high not printed - see unknown)"
+      }
+    ]
+  }
 }

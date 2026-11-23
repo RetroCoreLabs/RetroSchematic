@@ -264,5 +264,44 @@
   "unknown": [
     "Typical preset and clear propagation delays: the table gives the maximum (50 ns) only."
   ],
-  "notes": "The 7470 function table prints PR=L, CLR=L as Q = L, Q' = L (marked nonstable); the 7472/7474/7476 tables in the same book print H H for that case. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The 7470 function table prints PR=L, CLR=L as Q = L, Q' = L (marked nonstable); the 7472/7474/7476 tables in the same book print H H for that case. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-21 (PDF page 21) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = (J1 AND J2 AND NOT J' AND NOT FF1) OR (NOT (K1 AND K2 AND NOT K') AND FF1)",
+        "clock": {
+          "pin": "CK",
+          "edge": "rising"
+        },
+        "set": {
+          "pin": "PR",
+          "active": "low"
+        },
+        "clear": {
+          "pin": "CLR",
+          "active": "low"
+        },
+        "whenSetAndClear": "neither wins: Q and Q' are both LOW while both act (table prints L* L*); not stable",
+        "source": "5-21 (PDF page 21) - TI The TTL Data Book for Design Engineers (function table 6-46; preset and clear act only while CK is low)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "Q",
+        "formula": "Q = FF1 AND (PR OR CLR)",
+        "type": "totem-pole",
+        "source": "5-21 (PDF page 21) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "Q'",
+        "formula": "Q' = NOT FF1 AND (PR OR CLR)",
+        "type": "totem-pole",
+        "source": "5-21 (PDF page 21) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

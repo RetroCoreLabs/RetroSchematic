@@ -70,5 +70,99 @@
     "Clear to QD' (low-to-high) delay is not listed separately.",
     "No minimum propagation delays printed."
   ],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = (NOT SHIFT/LOAD' AND A) OR (SHIFT/LOAD' AND ((J AND NOT FA) OR (K' AND FA)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = (NOT SHIFT/LOAD' AND B) OR (SHIFT/LOAD' AND (FA))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = (NOT SHIFT/LOAD' AND C) OR (SHIFT/LOAD' AND (FB))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = (NOT SHIFT/LOAD' AND D) OR (SHIFT/LOAD' AND (FC))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD'",
+        "formula": "QD' = NOT FD",
+        "type": "totem-pole",
+        "source": "7-324, 7-327 (PDF pages 323, 326) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

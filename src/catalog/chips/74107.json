@@ -210,5 +210,65 @@
     }
   ],
   "unknown": [],
-  "notes": "IOH is -0.4 mA in this datasheet's recommended operating conditions."
+  "notes": "IOH is -0.4 mA in this datasheet's recommended operating conditions.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "1, 3, 4 - TI SN54107",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)",
+        "clock": {
+          "pin": "1CLK",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "1CLR",
+          "active": "low"
+        },
+        "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "name": "FF2",
+        "kind": "flip-flop",
+        "next": "FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)",
+        "clock": {
+          "pin": "2CLK",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "2CLR",
+          "active": "low"
+        },
+        "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = FF1",
+        "type": "totem-pole",
+        "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT FF1",
+        "type": "totem-pole",
+        "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = FF2",
+        "type": "totem-pole",
+        "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT FF2",
+        "type": "totem-pole",
+        "source": "1, 3, 4 - TI SN54107 (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      }
+    ]
+  }
 }

@@ -299,5 +299,65 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "This is the plain '73 (master-slave, pulse triggered). The 74LS73 is negative-edge triggered and behaves differently. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "This is the plain '73 (master-slave, pulse triggered). The 74LS73 is negative-edge triggered and behaves differently. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)",
+        "clock": {
+          "pin": "1CK",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "1CLR",
+          "active": "low"
+        },
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "name": "FF2",
+        "kind": "flip-flop",
+        "next": "FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)",
+        "clock": {
+          "pin": "2CK",
+          "edge": "falling"
+        },
+        "clear": {
+          "pin": "2CLR",
+          "active": "low"
+        },
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = FF1",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT FF1",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = FF2",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT FF2",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      }
+    ]
+  }
 }

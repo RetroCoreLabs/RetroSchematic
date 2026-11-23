@@ -158,5 +158,17 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "Switching figures are the shared row for 'S30 and 'S133."
+  "notes": "Switching figures are the shared row for 'S30 and 'S133.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book page 5-38 (PDF page 38) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = NOT(A AND B AND C AND D AND E AND F AND G AND H AND I AND J AND K AND L AND M)",
+        "type": "totem-pole",
+        "source": "book page 5-38 (PDF page 38) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

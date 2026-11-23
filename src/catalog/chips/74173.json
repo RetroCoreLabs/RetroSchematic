@@ -292,5 +292,145 @@
   "unknown": [
     "The switching table does not name the input for the enable/disable times; M or N is assumed from their role (output control). Marked as an assumption."
   ],
-  "notes": "Edges PZH, PZL, PHZ, PLZ are output enable/disable times (three-state), not PLH/PHL. All switching figures at RL 400 ohm."
+  "notes": "Edges PZH, PZL, PHZ, PLZ are output enable/disable times (three-state), not PLH/PHL. All switching figures at RL 400 ohm.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = ((G1 OR G2) AND FF1) OR (G1' AND G2' AND 1D)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF2",
+        "kind": "flip-flop",
+        "next": "FF2 = ((G1 OR G2) AND FF2) OR (G1' AND G2' AND 2D)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF3",
+        "kind": "flip-flop",
+        "next": "FF3 = ((G1 OR G2) AND FF3) OR (G1' AND G2' AND 3D)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF4",
+        "kind": "flip-flop",
+        "next": "FF4 = ((G1 OR G2) AND FF4) OR (G1' AND G2' AND 4D)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "high"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = FF1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "M",
+              "active": "low"
+            },
+            {
+              "pin": "N",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = FF2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "M",
+              "active": "low"
+            },
+            {
+              "pin": "N",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Q",
+        "formula": "3Q = FF3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "M",
+              "active": "low"
+            },
+            {
+              "pin": "N",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Q",
+        "formula": "4Q = FF4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "M",
+              "active": "low"
+            },
+            {
+              "pin": "N",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "book pages 7-249, 7-251 (PDF pages 248, 250) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

@@ -269,5 +269,59 @@
   "unknown": [
     "Which GW edge the setup and hold times refer to is in datasheet Figure 2 (not read); from the description it is the end (rising edge) of the write-enable pulse, but that was not read from the figure."
   ],
-  "notes": "outputHighMaxCurrentMa is null because the outputs are open collector (no IOH source rating)."
+  "notes": "outputHighMaxCurrentMa is null because the outputs are open collector (no IOH source rating).",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240) - TI The TTL Data Book for Design Engineers",
+    "memory": {
+      "name": "W",
+      "words": 4,
+      "width": 4,
+      "address": [
+        "RA",
+        "RB"
+      ],
+      "writeAddress": [
+        "WA",
+        "WB"
+      ],
+      "dataIn": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "write": {
+        "when": "NOT GW",
+        "edge": "level-high"
+      },
+      "source": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240) - TI The TTL Data Book for Design Engineers (write and read function tables)"
+    },
+    "outputs": [
+      {
+        "pin": "Q1",
+        "formula": "Q1 = GR OR W1",
+        "type": "open-collector",
+        "source": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "Q2",
+        "formula": "Q2 = GR OR W2",
+        "type": "open-collector",
+        "source": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "Q3",
+        "formula": "Q3 = GR OR W3",
+        "type": "open-collector",
+        "source": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "Q4",
+        "formula": "Q4 = GR OR W4",
+        "type": "open-collector",
+        "source": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

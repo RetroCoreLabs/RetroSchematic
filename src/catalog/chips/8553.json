@@ -282,5 +282,341 @@
     "In the truth table READ and WRITE mean \"both READ inputs\" / \"both WRITE inputs\"; behaviour with the two READ (or two WRITE) pins at different levels is not stated.",
     "No minimum delays printed."
   ],
-  "notes": "The IO pins are both inputs and three-state outputs; given role output with a text note."
+  "notes": "The IO pins are both inputs and three-state outputs; given role output with a text note.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook",
+    "stored": [
+      {
+        "name": "L1",
+        "kind": "latch",
+        "next": "L1 = NOT CLEAR AND IO1",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L2",
+        "kind": "latch",
+        "next": "L2 = NOT CLEAR AND IO2",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L3",
+        "kind": "latch",
+        "next": "L3 = NOT CLEAR AND IO3",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L4",
+        "kind": "latch",
+        "next": "L4 = NOT CLEAR AND IO4",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L5",
+        "kind": "latch",
+        "next": "L5 = NOT CLEAR AND IO5",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L6",
+        "kind": "latch",
+        "next": "L6 = NOT CLEAR AND IO6",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L7",
+        "kind": "latch",
+        "next": "L7 = NOT CLEAR AND IO7",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      },
+      {
+        "name": "L8",
+        "kind": "latch",
+        "next": "L8 = NOT CLEAR AND IO8",
+        "clock": {
+          "when": "CLEAR OR (NOT ENABLE AND NOT WRITE1 AND NOT WRITE2)",
+          "edge": "level-high"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (truth table: CLEAR high enters L, WRITE low takes the bus levels)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "IO1",
+        "formula": "IO1 = L1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO2",
+        "formula": "IO2 = L2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO3",
+        "formula": "IO3 = L3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO4",
+        "formula": "IO4 = L4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO5",
+        "formula": "IO5 = L5",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO6",
+        "formula": "IO6 = L6",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO7",
+        "formula": "IO7 = L7",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      },
+      {
+        "pin": "IO8",
+        "formula": "IO8 = L8",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "ENABLE",
+              "active": "low"
+            },
+            {
+              "pin": "READ1",
+              "active": "low"
+            },
+            {
+              "pin": "READ2",
+              "active": "low"
+            },
+            {
+              "pin": "WRITE1",
+              "active": "high"
+            },
+            {
+              "pin": "WRITE2",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 415-416 (printed 3-70, 3-71) - National Semiconductor 1976 TTL Databook (read when ENABLE and both READ low and both WRITE high)"
+      }
+    ]
+  }
 }

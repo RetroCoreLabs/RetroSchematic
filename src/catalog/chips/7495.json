@@ -209,5 +209,77 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "MODE is drawn as an input: it chooses which clock and which data path is used; it does not switch the outputs off. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "MODE is drawn as an input: it chooses which clock and which data path is used; it does not switch the outputs off. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = (MODE AND A) OR (NOT MODE AND SER)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (NOT MODE AND CK1)",
+          "edge": "falling"
+        },
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers (function table: MODE high loads on CK2 falling, MODE low shifts on CK1 falling)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = (MODE AND B) OR (NOT MODE AND FA)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (NOT MODE AND CK1)",
+          "edge": "falling"
+        },
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers (function table: MODE high loads on CK2 falling, MODE low shifts on CK1 falling)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = (MODE AND C) OR (NOT MODE AND FB)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (NOT MODE AND CK1)",
+          "edge": "falling"
+        },
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers (function table: MODE high loads on CK2 falling, MODE low shifts on CK1 falling)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = (MODE AND D) OR (NOT MODE AND FC)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (NOT MODE AND CK1)",
+          "edge": "falling"
+        },
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers (function table: MODE high loads on CK2 falling, MODE low shifts on CK1 falling)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-89, 7-91 (PDF pages 88, 90) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

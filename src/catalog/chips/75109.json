@@ -181,5 +181,87 @@
   ],
   "notes": "ND symbol covers 75109 and 75110; they differ only in on-state current (75109 about 6 mA, 75110 about 12 mA typical per page 4-6).",
   "state": null,
-  "timingLimits": []
+  "timingLimits": [],
+  "behaviour": {
+    "kind": "logic",
+    "source": "4-6, 4-16, 4-17 (PDF pages 70, 80, 81) - TI The Interface Circuits Data Book 2nd ed. 1974",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1A AND 1B",
+        "type": "open-collector",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1C",
+              "active": "high"
+            },
+            {
+              "pin": "D",
+              "active": "high"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "4-6, 4-16, 4-17 (PDF pages 70, 80, 81) - TI The Interface Circuits Data Book 2nd ed. 1974 (Y on (low) when A or B is low)"
+      },
+      {
+        "pin": "1Z",
+        "formula": "1Z = NOT (1A AND 1B)",
+        "type": "open-collector",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1C",
+              "active": "high"
+            },
+            {
+              "pin": "D",
+              "active": "high"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "4-6, 4-16, 4-17 (PDF pages 70, 80, 81) - TI The Interface Circuits Data Book 2nd ed. 1974 (Z on (low) when A and B are high)"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2A AND 2B",
+        "type": "open-collector",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2C",
+              "active": "high"
+            },
+            {
+              "pin": "D",
+              "active": "high"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "4-6, 4-16, 4-17 (PDF pages 70, 80, 81) - TI The Interface Circuits Data Book 2nd ed. 1974 (Y on (low) when A or B is low)"
+      },
+      {
+        "pin": "2Z",
+        "formula": "2Z = NOT (2A AND 2B)",
+        "type": "open-collector",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2C",
+              "active": "high"
+            },
+            {
+              "pin": "D",
+              "active": "high"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "4-6, 4-16, 4-17 (PDF pages 70, 80, 81) - TI The Interface Circuits Data Book 2nd ed. 1974 (Z on (low) when A and B are high)"
+      }
+    ]
+  }
 }

@@ -187,5 +187,57 @@
     "Output pull-up voltage limit for the open collector is only the absolute maximum (-0.5..+7 V); outputMaxVoltageV left null.",
     "Exact reference edges for tDW and tWR were taken from the parameter names; the write-cycle waveform was only partly legible."
   ],
-  "notes": "ND title says \"equal to 7489\". The National DM74L89A sheet (1976 National Memory Databook pdf 73) says pin compatible with SN7489, 3101, MM5501."
+  "notes": "ND title says \"equal to 7489\". The National DM74L89A sheet (1976 National Memory Databook pdf 73) says pin compatible with SN7489, 3101, MM5501.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 97-99 (printed 2-87..2-89) - Intel 1976 Data Catalog",
+    "memory": {
+      "name": "M",
+      "words": 16,
+      "width": 4,
+      "address": [
+        "A0",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "dataIn": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "write": {
+        "when": "NOT CS AND NOT WE",
+        "edge": "level-high"
+      },
+      "source": "pdf 97-99 (printed 2-87..2-89) - Intel 1976 Data Catalog (truth table)"
+    },
+    "outputs": [
+      {
+        "pin": "O1",
+        "formula": "O1 = NOT (NOT CS AND WE AND M1)",
+        "type": "open-collector",
+        "source": "pdf 97-99 (printed 2-87..2-89) - Intel 1976 Data Catalog"
+      },
+      {
+        "pin": "O2",
+        "formula": "O2 = NOT (NOT CS AND WE AND M2)",
+        "type": "open-collector",
+        "source": "pdf 97-99 (printed 2-87..2-89) - Intel 1976 Data Catalog"
+      },
+      {
+        "pin": "O3",
+        "formula": "O3 = NOT (NOT CS AND WE AND M3)",
+        "type": "open-collector",
+        "source": "pdf 97-99 (printed 2-87..2-89) - Intel 1976 Data Catalog"
+      },
+      {
+        "pin": "O4",
+        "formula": "O4 = NOT (NOT CS AND WE AND M4)",
+        "type": "open-collector",
+        "source": "pdf 97-99 (printed 2-87..2-89) - Intel 1976 Data Catalog"
+      }
+    ]
+  }
 }

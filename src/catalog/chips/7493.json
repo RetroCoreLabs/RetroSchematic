@@ -294,5 +294,101 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "Edge: the block diagram draws master-slave flip-flops with an inverted clock on A and B; the outputs change on the high-to-low transition. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "Edge: the block diagram draws master-slave flip-flops with an inverted clock on A and B; the outputs change on the high-to-low transition. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "counter",
+        "next": "FA = NOT FA",
+        "clock": {
+          "pin": "A",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (reset/count function table)"
+      },
+      {
+        "name": "FB",
+        "kind": "counter",
+        "next": "FB = NOT FB",
+        "clock": {
+          "pin": "B",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (QB..QD count 0-7 on falling edges of B)"
+      },
+      {
+        "name": "FC",
+        "kind": "counter",
+        "next": "FC = NOT FC",
+        "clock": {
+          "when": "FB",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (QB..QD count 0-7 on falling edges of B)"
+      },
+      {
+        "name": "FD",
+        "kind": "counter",
+        "next": "FD = NOT FD",
+        "clock": {
+          "when": "FC",
+          "edge": "falling"
+        },
+        "async": [
+          {
+            "when": "R0(1) AND R0(2)",
+            "value": "0"
+          }
+        ],
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers (QB..QD count 0-7 on falling edges of B)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-71 to 7-76 (PDF pages 71-75) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

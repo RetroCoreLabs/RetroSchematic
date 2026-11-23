@@ -79,5 +79,119 @@
     "Setup/hold reference edge for the data inputs is in datasheet figures 1 and 2, which were not read; recorded here as relative to LOAD'.",
     "No minimum propagation delays printed."
   ],
-  "notes": "Master-slave flip-flops triggered on the low-to-high clock transition."
+  "notes": "Master-slave flip-flops triggered on the low-to-high clock transition.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "counter",
+        "next": "FA = FA XOR (G' AND ((D/U' AND 1) OR (NOT D/U' AND 1)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT LOAD'",
+            "value": "A"
+          }
+        ],
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers (function description: LOAD' low loads A..D at once; G' low counts, D/U' low up, high down)"
+      },
+      {
+        "name": "FB",
+        "kind": "counter",
+        "next": "FB = FB XOR (G' AND ((D/U' AND NOT FA) OR (NOT D/U' AND FA)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT LOAD'",
+            "value": "B"
+          }
+        ],
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers (function description: LOAD' low loads A..D at once; G' low counts, D/U' low up, high down)"
+      },
+      {
+        "name": "FC",
+        "kind": "counter",
+        "next": "FC = FC XOR (G' AND ((D/U' AND NOT FA AND NOT FB) OR (NOT D/U' AND FA AND FB)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT LOAD'",
+            "value": "C"
+          }
+        ],
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers (function description: LOAD' low loads A..D at once; G' low counts, D/U' low up, high down)"
+      },
+      {
+        "name": "FD",
+        "kind": "counter",
+        "next": "FD = FD XOR (G' AND ((D/U' AND NOT FA AND NOT FB AND NOT FC) OR (NOT D/U' AND FA AND FB AND FC)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT LOAD'",
+            "value": "D"
+          }
+        ],
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers (function description: LOAD' low loads A..D at once; G' low counts, D/U' low up, high down)"
+      }
+    ],
+    "internal": [
+      {
+        "formula": "MAXMIN = (NOT D/U' AND FA AND FB AND FC AND FD) OR (D/U' AND NOT FA AND NOT FB AND NOT FC AND NOT FD)",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers (description and timing diagram: high at 15 counting up, at 0 counting down)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "MAX/MIN",
+        "formula": "MAX/MIN = MAXMIN",
+        "type": "totem-pole",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "RIPPLE CLOCK'",
+        "formula": "RIPPLE CLOCK' = NOT (MAXMIN AND NOT G' AND NOT CLOCK)",
+        "type": "totem-pole",
+        "source": "7-296, 7-297, 7-299 to 7-301 (PDF pages 295, 296, 298-300) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

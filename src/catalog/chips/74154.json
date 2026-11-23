@@ -324,5 +324,315 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "Outputs active low; all outputs high when either strobe is high."
+  "notes": "Outputs active low; all outputs high when either strobe is high.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "0",
+        "formula": "0 = NOT(G1' AND G2' AND D' AND C' AND B' AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1",
+        "formula": "1 = NOT(G1' AND G2' AND D' AND C' AND B' AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2",
+        "formula": "2 = NOT(G1' AND G2' AND D' AND C' AND B AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3",
+        "formula": "3 = NOT(G1' AND G2' AND D' AND C' AND B AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4",
+        "formula": "4 = NOT(G1' AND G2' AND D' AND C AND B' AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "5",
+        "formula": "5 = NOT(G1' AND G2' AND D' AND C AND B' AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "6",
+        "formula": "6 = NOT(G1' AND G2' AND D' AND C AND B AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "7",
+        "formula": "7 = NOT(G1' AND G2' AND D' AND C AND B AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "8",
+        "formula": "8 = NOT(G1' AND G2' AND D AND C' AND B' AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "9",
+        "formula": "9 = NOT(G1' AND G2' AND D AND C' AND B' AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "10",
+        "formula": "10 = NOT(G1' AND G2' AND D AND C' AND B AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "11",
+        "formula": "11 = NOT(G1' AND G2' AND D AND C' AND B AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "12",
+        "formula": "12 = NOT(G1' AND G2' AND D AND C AND B' AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "13",
+        "formula": "13 = NOT(G1' AND G2' AND D AND C AND B' AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "14",
+        "formula": "14 = NOT(G1' AND G2' AND D AND C AND B AND A')",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "15",
+        "formula": "15 = NOT(G1' AND G2' AND D AND C AND B AND A)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "G1",
+              "active": "low"
+            },
+            {
+              "pin": "G2",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-171 to 7-173 (PDF pages 170-172) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

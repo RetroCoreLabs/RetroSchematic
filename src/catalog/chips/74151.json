@@ -240,5 +240,23 @@
   "unknown": [
     "The datasheet read is for the SN74151A (the 'A' version); the original SN74151 without suffix was not found as a separate datasheet."
   ],
-  "notes": "whenInactive for STROBE is not one of the single words in FORMAT.md: the two outputs go to different levels (Y low, W high). The '151A has address buffers with symmetrical delays through the complementary paths."
+  "notes": "whenInactive for STROBE is not one of the single words in FORMAT.md: the two outputs go to different levels (Y low, W high). The '151A has address buffers with symmetrical delays through the complementary paths.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-157 to 7-160 (PDF pages 156-159) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Y",
+        "formula": "Y = STROBE' AND ((C' AND B' AND A' AND D0) OR (C' AND B' AND A AND D1) OR (C' AND B AND A' AND D2) OR (C' AND B AND A AND D3) OR (C AND B' AND A' AND D4) OR (C AND B' AND A AND D5) OR (C AND B AND A' AND D6) OR (C AND B AND A AND D7))",
+        "type": "totem-pole",
+        "source": "book pages 7-157 to 7-160 (PDF pages 156-159) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "W",
+        "formula": "W = NOT Y",
+        "type": "totem-pole",
+        "source": "book pages 7-157 to 7-160 (PDF pages 156-159) - TI The TTL Data Book for Design Engineers (STROBE high: Y low, W high)"
+      }
+    ]
+  }
 }

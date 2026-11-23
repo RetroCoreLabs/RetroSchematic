@@ -71,3 +71,28 @@ in the diamond's colour, the same colour as the name beside it. The test
 `StyleTests.EveryTagDiamond_IsWhole_AndSolid` checks every diamond on 2A50, the blocks demo and
 the gate demo, in both symbol styles: four equal 45-degree edges, closed, drawn solid. It fails
 on the old rule.
+
+## B3 - seven chip files have no structured behaviour yet (test red)
+
+**What fails.** `ChipBehaviourTests.EveryChip_HasABehaviour_ThatTheReaderAccepts` for 2107B,
+MK4096P, TMS4030, TMS6010, 74181, 74120 and 8820. Each of these has a datasheet that DOES
+describe its behaviour, so `"kind": "none"` would be wrong; the test stays red until the real
+behaviour is written in.
+
+**Cause, chip by chip.**
+
+- **2107B, TMS4030** (4K x 1 dynamic RAM): the address and chip select are latched on the rise
+  of CE and the output has its own timing; the `memory` object has no address latch yet.
+- **MK4096P** (4K x 1 dynamic RAM): row and column address share six pins and are latched by
+  RAS and CAS; the `memory` object cannot express a multiplexed address.
+- **TMS6010** (UART): a serial transmitter/receiver with a control register; not expressible
+  as stored bits and formulas without a model of its own (as COM 2601 will need too).
+- **74181** (ALU): the chip file holds only the function tables; the gate equations on the
+  functional block diagram (TI 1976 book page 7-280) have not been transcribed.
+- **74120** (pulse synchronizer): the levels of Y and Y' while pulses are stopped, and the clock
+  edge each setup time refers to, are not in the pages read (Figures 2-5 on page 7-121).
+- **8820** (line receiver): the STROBE polarity and the level it forces are not in the pages
+  read.
+
+**What fixes it.** For each: read the missing datasheet page (or add the format piece named
+above), write the behaviour, and the test case for that chip turns green.

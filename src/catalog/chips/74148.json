@@ -64,5 +64,86 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "All data inputs and outputs are active low. Formulas are derived from the '148 function table."
+  "notes": "All data inputs and outputs are active low. Formulas are derived from the '148 function table.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "A2",
+        "formula": "A2 = NOT(EI' AND (4' OR 5' OR 6' OR 7'))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "EI",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "A1",
+        "formula": "A1 = NOT(EI' AND (7' OR 6' OR (5 AND 4 AND 3') OR (5 AND 4 AND 2')))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "EI",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "A0",
+        "formula": "A0 = NOT(EI' AND (7' OR (6 AND 5') OR (6 AND 4 AND 3') OR (6 AND 4 AND 2 AND 1')))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "EI",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "GS",
+        "formula": "GS = NOT(EI' AND (0' OR 1' OR 2' OR 3' OR 4' OR 5' OR 6' OR 7'))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "EI",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "EO",
+        "formula": "EO = NOT(EI' AND 0 AND 1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7)",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "EI",
+              "active": "low"
+            }
+          ],
+          "disabled": "1"
+        },
+        "source": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

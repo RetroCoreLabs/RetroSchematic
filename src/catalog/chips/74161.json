@@ -284,5 +284,99 @@
   "unknown": [
     "The ripple-carry formula is from the description text (T fed forward, high-level overflow pulse at the maximum count); the logic diagram page was not read gate by gate."
   ],
-  "notes": "Binary counter with direct (asynchronous) clear."
+  "notes": "Binary counter with direct (asynchronous) clear.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "counter",
+        "next": "FA = (NOT LOAD AND A) OR (LOAD AND (FA XOR (ENABLE P AND ENABLE T)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers (function description)"
+      },
+      {
+        "name": "FB",
+        "kind": "counter",
+        "next": "FB = (NOT LOAD AND B) OR (LOAD AND (FB XOR (ENABLE P AND ENABLE T AND FA)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers (function description)"
+      },
+      {
+        "name": "FC",
+        "kind": "counter",
+        "next": "FC = (NOT LOAD AND C) OR (LOAD AND (FC XOR (ENABLE P AND ENABLE T AND FA AND FB)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers (function description)"
+      },
+      {
+        "name": "FD",
+        "kind": "counter",
+        "next": "FD = (NOT LOAD AND D) OR (LOAD AND (FD XOR (ENABLE P AND ENABLE T AND FA AND FB AND FC)))",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers (function description)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "RIPPLE CARRY OUTPUT",
+        "formula": "RIPPLE CARRY OUTPUT = ENABLE T AND FA AND FB AND FC AND FD",
+        "type": "totem-pole",
+        "source": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

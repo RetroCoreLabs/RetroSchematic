@@ -152,5 +152,23 @@
     "Recommended IOL/IOH are not given; only VOH/VOL test points (in notes), so the current fields are null."
   ],
   "state": null,
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-13 to 7-15 (PDF pages 517-519) - TI The Interface Circuits Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1A AND E",
+        "type": "totem-pole",
+        "source": "7-13 to 7-15 (PDF pages 517-519) - TI The Interface Circuits Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2A AND E",
+        "type": "totem-pole",
+        "source": "7-13 to 7-15 (PDF pages 517-519) - TI The Interface Circuits Data Book for Design Engineers"
+      }
+    ]
+  }
 }

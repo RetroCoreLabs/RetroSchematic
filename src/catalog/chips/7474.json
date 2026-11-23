@@ -357,5 +357,75 @@
   "unknown": [
     "Typical preset and clear propagation delays: the table gives the maximum only."
   ],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = 1D",
+        "clock": {
+          "pin": "1CK",
+          "edge": "rising"
+        },
+        "set": {
+          "pin": "1PR",
+          "active": "low"
+        },
+        "clear": {
+          "pin": "1CLR",
+          "active": "low"
+        },
+        "whenSetAndClear": "neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (function table 6-46)"
+      },
+      {
+        "name": "FF2",
+        "kind": "flip-flop",
+        "next": "FF2 = 2D",
+        "clock": {
+          "pin": "2CK",
+          "edge": "rising"
+        },
+        "set": {
+          "pin": "2PR",
+          "active": "low"
+        },
+        "clear": {
+          "pin": "2CLR",
+          "active": "low"
+        },
+        "whenSetAndClear": "neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (function table 6-46)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = FF1",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT FF1 OR (1PR' AND 1CLR')",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = FF2",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT FF2 OR (2PR' AND 2CLR')",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

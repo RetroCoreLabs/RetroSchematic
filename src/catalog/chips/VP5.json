@@ -21,5 +21,9 @@
   "unknown": [
     "No datasheet found. Sources tried: Web searches for \"VP5\" with datasheet / DC-DC converter / delay line terms; bitsavers component databooks for National, TI, Intel, Mostek, Motorola, Signetics (listings only). Manufacturer unknown. Package, pins, function, electrical figures and timing all unknown."
   ],
-  "notes": "Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: VP5)."
+  "notes": "Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: VP5).",
+  "behaviour": {
+    "kind": "none",
+    "reason": "no datasheet found (see unknown); no behaviour is taken from any other part"
+  }
 }

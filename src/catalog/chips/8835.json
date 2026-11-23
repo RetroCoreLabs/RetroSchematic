@@ -271,5 +271,131 @@
     "Driver Figure-1 / receiver Figure-2 load values were not legible in the text layer.",
     "The DS7835/DS8835 connection diagram was only seen cut off at the page edge; pin order taken from the text listing, which matches the DS8833."
   ],
-  "notes": "BUS pins are driver outputs and receiver inputs at the same time."
+  "notes": "BUS pins are driver outputs and receiver inputs at the same time.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits",
+    "outputs": [
+      {
+        "pin": "BUSA",
+        "formula": "BUSA = NOT INA",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DRIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUTA",
+        "formula": "OUTA = NOT BUSA",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "RECEIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      },
+      {
+        "pin": "BUSB",
+        "formula": "BUSB = NOT INB",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DRIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUTB",
+        "formula": "OUTB = NOT BUSB",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "RECEIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      },
+      {
+        "pin": "BUSC",
+        "formula": "BUSC = NOT INC",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DRIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUTC",
+        "formula": "OUTC = NOT BUSC",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "RECEIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      },
+      {
+        "pin": "BUSD",
+        "formula": "BUSD = NOT IND",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DRIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUTD",
+        "formula": "OUTD = NOT BUSD",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "RECEIVER_DISABLE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 115-118 (printed 3-42..3-45) - National Semiconductor 1975 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      }
+    ]
+  }
 }

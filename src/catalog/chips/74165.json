@@ -272,5 +272,153 @@
   "unknown": [
     "The exact reference edges of the setup times are in datasheet Figures 1 and 2, which were not read; the 'ref' fields follow the parameter names."
   ],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = SERIAL INPUT",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "A"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = FA",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "B"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = FB",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "C"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = FC",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "D"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FE",
+        "kind": "flip-flop",
+        "next": "FE = FD",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "E"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FF",
+        "kind": "flip-flop",
+        "next": "FF = FE",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "F"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FG",
+        "kind": "flip-flop",
+        "next": "FG = FF",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "G"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      },
+      {
+        "name": "FH",
+        "kind": "flip-flop",
+        "next": "FH = FG",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT SHIFT/LOAD",
+            "value": "H"
+          }
+        ],
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers (function table: SHIFT/LOAD low loads at once)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QH",
+        "formula": "QH = FH",
+        "type": "totem-pole",
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QH'",
+        "formula": "QH' = NOT FH",
+        "type": "totem-pole",
+        "source": "book pages 7-212, 7-214 (PDF pages 211, 213) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

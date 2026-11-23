@@ -44,5 +44,23 @@
     "inputSchmitt": false, "notes": "Buffer: IOL 48 mA, three times the 16 mA of a standard 74 gate."
   },
   "unknown": [],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-14 (PDF page 14) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT (1A AND 1B AND 1C AND 1D)",
+        "type": "totem-pole",
+        "source": "5-14 (PDF page 14) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT (2A AND 2B AND 2C AND 2D)",
+        "type": "totem-pole",
+        "source": "5-14 (PDF page 14) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

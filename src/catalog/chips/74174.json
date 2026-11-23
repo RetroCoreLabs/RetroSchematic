@@ -215,5 +215,133 @@
     }
   ],
   "unknown": [],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = 1D",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF2",
+        "kind": "flip-flop",
+        "next": "FF2 = 2D",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF3",
+        "kind": "flip-flop",
+        "next": "FF3 = 3D",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF4",
+        "kind": "flip-flop",
+        "next": "FF4 = 4D",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF5",
+        "kind": "flip-flop",
+        "next": "FF5 = 5D",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF6",
+        "kind": "flip-flop",
+        "next": "FF6 = 6D",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = FF1",
+        "type": "totem-pole",
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = FF2",
+        "type": "totem-pole",
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3Q",
+        "formula": "3Q = FF3",
+        "type": "totem-pole",
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4Q",
+        "formula": "4Q = FF4",
+        "type": "totem-pole",
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "5Q",
+        "formula": "5Q = FF5",
+        "type": "totem-pole",
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "6Q",
+        "formula": "6Q = FF6",
+        "type": "totem-pole",
+        "source": "book pages 7-253, 7-256 (PDF pages 252, 255) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

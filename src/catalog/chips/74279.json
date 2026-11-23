@@ -179,5 +179,77 @@
     "No minimum propagation delays printed."
   ],
   "timingLimits": [],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976",
+    "stored": [
+      {
+        "name": "L1",
+        "kind": "latch",
+        "next": "L1 = NOT (1S1' AND 1S2') OR (L1 AND 1R')",
+        "clock": {
+          "when": "1",
+          "edge": "level-high"
+        },
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976 (function table: S' low and R' low gives Q high, pseudo-stable)"
+      },
+      {
+        "name": "L2",
+        "kind": "latch",
+        "next": "L2 = NOT (2S') OR (L2 AND 2R')",
+        "clock": {
+          "when": "1",
+          "edge": "level-high"
+        },
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976 (function table: S' low and R' low gives Q high, pseudo-stable)"
+      },
+      {
+        "name": "L3",
+        "kind": "latch",
+        "next": "L3 = NOT (3S1' AND 3S2') OR (L3 AND 3R')",
+        "clock": {
+          "when": "1",
+          "edge": "level-high"
+        },
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976 (function table: S' low and R' low gives Q high, pseudo-stable)"
+      },
+      {
+        "name": "L4",
+        "kind": "latch",
+        "next": "L4 = NOT (4S') OR (L4 AND 4R')",
+        "clock": {
+          "when": "1",
+          "edge": "level-high"
+        },
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976 (function table: S' low and R' low gives Q high, pseudo-stable)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = L1",
+        "type": "totem-pole",
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = L2",
+        "type": "totem-pole",
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "3Q",
+        "formula": "3Q = L3",
+        "type": "totem-pole",
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "4Q",
+        "formula": "4Q = L4",
+        "type": "totem-pole",
+        "source": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61) - TI The TTL Data Book 2nd ed. 1976"
+      }
+    ]
+  }
 }

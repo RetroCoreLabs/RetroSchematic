@@ -205,5 +205,173 @@
     }
   ],
   "unknown": [],
-  "notes": "A low at either serial input makes the next bit shifted in a low; data at the serial inputs may change while the clock is high or low, only data meeting the setup time is taken."
+  "notes": "A low at either serial input makes the next bit shifted in a low; data at the serial inputs may change while the clock is high or low, only data meeting the setup time is taken.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = A AND B",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = FA",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = FB",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = FC",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FE",
+        "kind": "flip-flop",
+        "next": "FE = FD",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FF",
+        "kind": "flip-flop",
+        "next": "FF = FE",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FG",
+        "kind": "flip-flop",
+        "next": "FG = FF",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      },
+      {
+        "name": "FH",
+        "kind": "flip-flop",
+        "next": "FH = FG",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QE",
+        "formula": "QE = FE",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QF",
+        "formula": "QF = FF",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QG",
+        "formula": "QG = FG",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QH",
+        "formula": "QH = FH",
+        "type": "totem-pole",
+        "source": "book pages 7-206, 7-208 (PDF pages 205, 207) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

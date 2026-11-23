@@ -234,5 +234,75 @@
     }
   ],
   "unknown": [],
-  "notes": "Data taken from the family tables of the 1976 TTL Data Book, columns 'S114. Pin-out: CLR 1, 1K 2, 1J 3, 1PR 4, 1Q 5, 1Q' 6, GND 7, 2Q' 8, 2Q 9, 2PR 10, 2J 11, 2K 12, CK 13, VCC 14."
+  "notes": "Data taken from the family tables of the 1976 TTL Data Book, columns 'S114. Pin-out: CLR 1, 1K 2, 1J 3, 1PR 4, 1Q 5, 1Q' 6, GND 7, 2Q' 8, 2Q 9, 2PR 10, 2J 11, 2K 12, CK 13, VCC 14.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = (1J AND NOT FF1) OR (NOT (1K) AND FF1)",
+        "clock": {
+          "pin": "CK",
+          "edge": "falling"
+        },
+        "set": {
+          "pin": "1PR",
+          "active": "low"
+        },
+        "clear": {
+          "pin": "CLR",
+          "active": "low"
+        },
+        "whenSetAndClear": "neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given",
+        "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "name": "FF2",
+        "kind": "flip-flop",
+        "next": "FF2 = (2J AND NOT FF2) OR (NOT (2K) AND FF2)",
+        "clock": {
+          "pin": "CK",
+          "edge": "falling"
+        },
+        "set": {
+          "pin": "2PR",
+          "active": "low"
+        },
+        "clear": {
+          "pin": "CLR",
+          "active": "low"
+        },
+        "whenSetAndClear": "neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given",
+        "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Q",
+        "formula": "1Q = FF1 OR (1PR' AND CLR')",
+        "type": "totem-pole",
+        "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1Q'",
+        "formula": "1Q' = NOT FF1 OR (1PR' AND CLR')",
+        "type": "totem-pole",
+        "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q",
+        "formula": "2Q = FF2 OR (2PR' AND CLR')",
+        "type": "totem-pole",
+        "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Q'",
+        "formula": "2Q' = NOT FF2 OR (2PR' AND CLR')",
+        "type": "totem-pole",
+        "source": "book page 5-34 (PDF page 34) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

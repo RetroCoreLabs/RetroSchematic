@@ -280,5 +280,99 @@
     "Typical delays from preset and clear: the table gives the maximum only.",
     "Setup/hold reference edge is not named in the table; the description says the data must be set up before the rising edge of the clock."
   ],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-86, 7-87, 7-88 (PDF pages 85-87) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = SER",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "(PE1 AND P1A) OR (PE2 AND P2A)",
+            "value": "1"
+          },
+          {
+            "when": "CLEAR",
+            "value": "0"
+          }
+        ],
+        "source": "7-86, 7-87, 7-88 (PDF pages 85-87) - TI The TTL Data Book for Design Engineers (function table; which wins when CLEAR is high while a preset acts is not in the table - see unknown)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = FA",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "(PE1 AND P1B) OR (PE2 AND P2B)",
+            "value": "1"
+          },
+          {
+            "when": "CLEAR",
+            "value": "0"
+          }
+        ],
+        "source": "7-86, 7-87, 7-88 (PDF pages 85-87) - TI The TTL Data Book for Design Engineers (function table; which wins when CLEAR is high while a preset acts is not in the table - see unknown)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = FB",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "(PE1 AND P1C) OR (PE2 AND P2C)",
+            "value": "1"
+          },
+          {
+            "when": "CLEAR",
+            "value": "0"
+          }
+        ],
+        "source": "7-86, 7-87, 7-88 (PDF pages 85-87) - TI The TTL Data Book for Design Engineers (function table; which wins when CLEAR is high while a preset acts is not in the table - see unknown)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = FC",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "(PE1 AND P1D) OR (PE2 AND P2D)",
+            "value": "1"
+          },
+          {
+            "when": "CLEAR",
+            "value": "0"
+          }
+        ],
+        "source": "7-86, 7-87, 7-88 (PDF pages 85-87) - TI The TTL Data Book for Design Engineers (function table; which wins when CLEAR is high while a preset acts is not in the table - see unknown)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-86, 7-87, 7-88 (PDF pages 85-87) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

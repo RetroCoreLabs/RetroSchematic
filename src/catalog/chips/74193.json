@@ -69,5 +69,129 @@
     "CARRY'/BORROW' formulas are from the description text, not transcribed from the logic diagram.",
     "No minimum propagation delays printed."
   ],
-  "notes": "Master-slave flip-flops triggered by a low-to-high transition of either count input."
+  "notes": "Master-slave flip-flops triggered by a low-to-high transition of either count input.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "counter",
+        "next": "FA = FA XOR ((DOWN AND 1) OR (UP AND 1))",
+        "clock": {
+          "when": "UP AND DOWN",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "NOT LOAD'",
+            "value": "A"
+          }
+        ],
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers (function table: CLEAR high clears first, LOAD' low loads; UP rising with DOWN high counts up, DOWN rising with UP high counts down)"
+      },
+      {
+        "name": "FB",
+        "kind": "counter",
+        "next": "FB = FB XOR ((DOWN AND FA) OR (UP AND NOT FA))",
+        "clock": {
+          "when": "UP AND DOWN",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "NOT LOAD'",
+            "value": "B"
+          }
+        ],
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers (function table: CLEAR high clears first, LOAD' low loads; UP rising with DOWN high counts up, DOWN rising with UP high counts down)"
+      },
+      {
+        "name": "FC",
+        "kind": "counter",
+        "next": "FC = FC XOR ((DOWN AND FA AND FB) OR (UP AND NOT FA AND NOT FB))",
+        "clock": {
+          "when": "UP AND DOWN",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "NOT LOAD'",
+            "value": "C"
+          }
+        ],
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers (function table: CLEAR high clears first, LOAD' low loads; UP rising with DOWN high counts up, DOWN rising with UP high counts down)"
+      },
+      {
+        "name": "FD",
+        "kind": "counter",
+        "next": "FD = FD XOR ((DOWN AND FA AND FB AND FC) OR (UP AND NOT FA AND NOT FB AND NOT FC))",
+        "clock": {
+          "when": "UP AND DOWN",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "NOT LOAD'",
+            "value": "D"
+          }
+        ],
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers (function table: CLEAR high clears first, LOAD' low loads; UP rising with DOWN high counts up, DOWN rising with UP high counts down)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "CARRY'",
+        "formula": "CARRY' = NOT (FA AND FB AND FC AND FD AND NOT UP)",
+        "type": "totem-pole",
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "BORROW'",
+        "formula": "BORROW' = NOT (NOT FA AND NOT FB AND NOT FC AND NOT FD AND NOT DOWN)",
+        "type": "totem-pole",
+        "source": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

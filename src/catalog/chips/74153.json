@@ -188,5 +188,41 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-165, 7-167 (PDF pages 164, 166) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1G' AND ((B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "1G",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-165, 7-167 (PDF pages 164, 166) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2G' AND ((B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3))",
+        "type": "totem-pole",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "2G",
+              "active": "low"
+            }
+          ],
+          "disabled": "0"
+        },
+        "source": "book pages 7-165, 7-167 (PDF pages 164, 166) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

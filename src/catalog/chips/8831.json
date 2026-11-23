@@ -213,5 +213,87 @@
     "No minimum delays printed.",
     "Load conditions for the switching table are on the waveform page (CL 50 pF / 5 pF jig) and were only partly legible."
   ],
-  "notes": "Mode pins 7 and 9 both feed one NOR gate shared by both sides."
+  "notes": "Mode pins 7 and 9 both feed one NOR gate shared by both sides.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 110-113 (printed 3-37..3-40) - National Semiconductor 1975 Interface Integrated Circuits",
+    "outputs": [
+      {
+        "pin": "OUT_A1",
+        "formula": "OUT_A1 = IN_A1 XOR (MODE1 OR MODE2)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "A_DIS1",
+              "active": "low"
+            },
+            {
+              "pin": "A_DIS2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 110-113 (printed 3-37..3-40) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUT_A2",
+        "formula": "OUT_A2 = IN_A2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "A_DIS1",
+              "active": "low"
+            },
+            {
+              "pin": "A_DIS2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 110-113 (printed 3-37..3-40) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUT_B1",
+        "formula": "OUT_B1 = IN_B1 XOR (MODE1 OR MODE2)",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "B_DIS1",
+              "active": "low"
+            },
+            {
+              "pin": "B_DIS2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 110-113 (printed 3-37..3-40) - National Semiconductor 1975 Interface Integrated Circuits"
+      },
+      {
+        "pin": "OUT_B2",
+        "formula": "OUT_B2 = IN_B2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "B_DIS1",
+              "active": "low"
+            },
+            {
+              "pin": "B_DIS2",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 110-113 (printed 3-37..3-40) - National Semiconductor 1975 Interface Integrated Circuits"
+      }
+    ]
+  }
 }

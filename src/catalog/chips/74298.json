@@ -182,5 +182,77 @@
     "No maximum clock frequency printed for the SN74298.",
     "No minimum propagation delays printed."
   ],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = (NOT WORD SELECT AND A1) OR (WORD SELECT AND A2)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "falling"
+        },
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976 (function table)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = (NOT WORD SELECT AND B1) OR (WORD SELECT AND B2)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "falling"
+        },
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976 (function table)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = (NOT WORD SELECT AND C1) OR (WORD SELECT AND C2)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "falling"
+        },
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976 (function table)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = (NOT WORD SELECT AND D1) OR (WORD SELECT AND D2)",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "falling"
+        },
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976 (function table)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-432, 7-434 (PDF pages 431, 433) - TI The TTL Data Book 2nd ed. 1976"
+      }
+    ]
+  }
 }

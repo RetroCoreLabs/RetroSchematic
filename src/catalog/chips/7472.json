@@ -259,5 +259,44 @@
     "notes": ""
   },
   "unknown": [],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FF1",
+        "kind": "flip-flop",
+        "next": "FF1 = (J1 AND J2 AND J3 AND NOT FF1) OR (NOT (K1 AND K2 AND K3) AND FF1)",
+        "clock": {
+          "pin": "CK",
+          "edge": "falling"
+        },
+        "set": {
+          "pin": "PR",
+          "active": "low"
+        },
+        "clear": {
+          "pin": "CLR",
+          "active": "low"
+        },
+        "whenSetAndClear": "neither wins: Q and Q' are both high while both act; not stable, the bit left when both return high is not given",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "Q",
+        "formula": "Q = FF1 OR (PR' AND CLR')",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      },
+      {
+        "pin": "Q'",
+        "formula": "Q' = NOT FF1 OR (PR' AND CLR')",
+        "type": "totem-pole",
+        "source": "5-22 (PDF page 22) - TI The TTL Data Book for Design Engineers (master-slave: J and K are taken while CK is high, the outputs change on the high-to-low edge)"
+      }
+    ]
+  }
 }

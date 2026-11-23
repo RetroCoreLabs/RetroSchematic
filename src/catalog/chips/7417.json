@@ -172,5 +172,47 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty."
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1A",
+        "type": "open-collector-high-voltage",
+        "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2A",
+        "type": "open-collector-high-voltage",
+        "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = 3A",
+        "type": "open-collector-high-voltage",
+        "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H"
+      },
+      {
+        "pin": "4Y",
+        "formula": "4Y = 4A",
+        "type": "open-collector-high-voltage",
+        "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H"
+      },
+      {
+        "pin": "5Y",
+        "formula": "5Y = 5A",
+        "type": "open-collector-high-voltage",
+        "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H"
+      },
+      {
+        "pin": "6Y",
+        "formula": "6Y = 6A",
+        "type": "open-collector-high-voltage",
+        "source": "3-5 - TI SN5407/SN5417/SN7407/SN7417 datasheet SDLS032H"
+      }
+    ]
+  }
 }

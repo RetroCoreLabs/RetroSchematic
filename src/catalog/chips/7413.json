@@ -138,5 +138,23 @@
   ],
   "timingLimits": [],
   "unknown": [],
-  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. No TI SN7413 datasheet could be downloaded (the TI links return an error page); the figures are from the NTE7413 replacement-part sheet, not an original TI/National sheet."
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. No TI SN7413 datasheet could be downloaded (the TI links return an error page); the figures are from the NTE7413 replacement-part sheet, not an original TI/National sheet.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "1-3 - NTE Electronics NTE7413 datasheet (TTL dual 4-input positive NAND Schmitt trigger",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = NOT(1A AND 1B AND 1C AND 1D)",
+        "type": "totem-pole",
+        "source": "1-3 - NTE Electronics NTE7413 datasheet (TTL dual 4-input positive NAND Schmitt trigger"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = NOT(2A AND 2B AND 2C AND 2D)",
+        "type": "totem-pole",
+        "source": "1-3 - NTE Electronics NTE7413 datasheet (TTL dual 4-input positive NAND Schmitt trigger"
+      }
+    ]
+  }
 }

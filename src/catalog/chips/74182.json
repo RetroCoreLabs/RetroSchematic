@@ -47,5 +47,41 @@
   ],
   "timingLimits": [],
   "unknown": ["No minimum propagation delays printed (path-delay function uses 0 ns)."],
-  "notes": "The same circuit serves active-high data with the alternative names Y0-Y3, X0-X3, Cn', Y, X: Cn+x' = (Y0(X0 + Cn))' etc., as printed on page 7-282."
+  "notes": "The same circuit serves active-high data with the alternative names Y0-Y3, X0-X3, Cn', Y, X: Cn+x' = (Y0(X0 + Cn))' etc., as printed on page 7-282.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-282 to 7-284 (PDF pages 281-283) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "Cn+x",
+        "formula": "Cn+x = (NOT G0') OR ((NOT P0') AND Cn)",
+        "type": "totem-pole",
+        "source": "7-282 to 7-284 (PDF pages 281-283) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "Cn+y",
+        "formula": "Cn+y = (NOT G1') OR ((NOT P1') AND (NOT G0')) OR ((NOT P1') AND (NOT P0') AND Cn)",
+        "type": "totem-pole",
+        "source": "7-282 to 7-284 (PDF pages 281-283) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "Cn+z",
+        "formula": "Cn+z = (NOT G2') OR ((NOT P2') AND (NOT G1')) OR ((NOT P2') AND (NOT P1') AND (NOT G0')) OR ((NOT P2') AND (NOT P1') AND (NOT P0') AND Cn)",
+        "type": "totem-pole",
+        "source": "7-282 to 7-284 (PDF pages 281-283) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "G'",
+        "formula": "G' = NOT ((NOT G3') OR ((NOT P3') AND (NOT G2')) OR ((NOT P3') AND (NOT P2') AND (NOT G1')) OR ((NOT P3') AND (NOT P2') AND (NOT P1') AND (NOT G0')))",
+        "type": "totem-pole",
+        "source": "7-282 to 7-284 (PDF pages 281-283) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "P'",
+        "formula": "P' = NOT ((NOT P3') AND (NOT P2') AND (NOT P1') AND (NOT P0'))",
+        "type": "totem-pole",
+        "source": "7-282 to 7-284 (PDF pages 281-283) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

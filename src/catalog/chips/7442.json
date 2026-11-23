@@ -206,5 +206,71 @@
     "notes": "The SN7442A column of the recommended operating conditions prints IOH as '800' uA without the minus sign; the SN5442A column and the VOH test condition (IOH = -800 uA) show it is -800 uA out of the pin."
   },
   "unknown": [],
-  "notes": "Datasheet does not say which output paths go through 2 and which through 3 levels of logic; timing gives both rows for all outputs. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "Datasheet does not say which output paths go through 2 and which through 3 levels of logic; timing gives both rows for all outputs. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers",
+    "outputs": [
+      {
+        "pin": "0",
+        "formula": "0 = NOT (D' AND C' AND B' AND A')",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "1",
+        "formula": "1 = NOT (D' AND C' AND B' AND A)",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "2",
+        "formula": "2 = NOT (D' AND C' AND B AND A')",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "3",
+        "formula": "3 = NOT (D' AND C' AND B AND A)",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "4",
+        "formula": "4 = NOT (D' AND C AND B' AND A')",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "5",
+        "formula": "5 = NOT (D' AND C AND B' AND A)",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "6",
+        "formula": "6 = NOT (D' AND C AND B AND A')",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "7",
+        "formula": "7 = NOT (D' AND C AND B AND A)",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "8",
+        "formula": "8 = NOT (D AND C' AND B' AND A')",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "9",
+        "formula": "9 = NOT (D AND C' AND B' AND A)",
+        "type": "totem-pole",
+        "source": "7-15, 7-16, 7-17 (PDF pages 14-16) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

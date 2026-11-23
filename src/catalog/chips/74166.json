@@ -200,5 +200,131 @@
     }
   ],
   "unknown": [],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = (NOT SHIFT/LOAD AND A) OR (SHIFT/LOAD AND SERIAL INPUT)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = (NOT SHIFT/LOAD AND B) OR (SHIFT/LOAD AND FA)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = (NOT SHIFT/LOAD AND C) OR (SHIFT/LOAD AND FB)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = (NOT SHIFT/LOAD AND D) OR (SHIFT/LOAD AND FC)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FE",
+        "kind": "flip-flop",
+        "next": "FE = (NOT SHIFT/LOAD AND E) OR (SHIFT/LOAD AND FD)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FF",
+        "kind": "flip-flop",
+        "next": "FF = (NOT SHIFT/LOAD AND F) OR (SHIFT/LOAD AND FE)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FG",
+        "kind": "flip-flop",
+        "next": "FG = (NOT SHIFT/LOAD AND G) OR (SHIFT/LOAD AND FF)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      },
+      {
+        "name": "FH",
+        "kind": "flip-flop",
+        "next": "FH = (NOT SHIFT/LOAD AND H) OR (SHIFT/LOAD AND FG)",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR",
+          "active": "low"
+        },
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers (function table: synchronous load, shift toward QH)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QH",
+        "formula": "QH = FH",
+        "type": "totem-pole",
+        "source": "book pages 7-217, 7-219 (PDF pages 216, 218) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

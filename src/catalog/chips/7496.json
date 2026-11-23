@@ -276,5 +276,143 @@
     "Result when CLEAR is low while PE and a preset input are both high: not in the function table.",
     "Typical delay from CLEAR: the table gives the maximum (55 ns) only."
   ],
-  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = SER",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "PE AND A",
+            "value": "1"
+          }
+        ],
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers (function table; CLEAR low with a preset high is not in the table - see unknown)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = FA",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "PE AND B",
+            "value": "1"
+          }
+        ],
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers (function table; CLEAR low with a preset high is not in the table - see unknown)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = FB",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "PE AND C",
+            "value": "1"
+          }
+        ],
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers (function table; CLEAR low with a preset high is not in the table - see unknown)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = FC",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "PE AND D",
+            "value": "1"
+          }
+        ],
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers (function table; CLEAR low with a preset high is not in the table - see unknown)"
+      },
+      {
+        "name": "FE",
+        "kind": "flip-flop",
+        "next": "FE = FD",
+        "clock": {
+          "pin": "CLOCK",
+          "edge": "rising"
+        },
+        "async": [
+          {
+            "when": "NOT CLEAR",
+            "value": "0"
+          },
+          {
+            "when": "PE AND E",
+            "value": "1"
+          }
+        ],
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers (function table; CLEAR low with a preset high is not in the table - see unknown)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QE",
+        "formula": "QE = FE",
+        "type": "totem-pole",
+        "source": "7-95, 7-98 (PDF pages 94, 97) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }

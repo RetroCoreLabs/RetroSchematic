@@ -246,5 +246,173 @@
     "No minimum propagation delays printed.",
     "Clear-to-output low-to-high is not applicable; no other paths listed."
   ],
-  "notes": ""
+  "notes": "",
+  "behaviour": {
+    "kind": "logic",
+    "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers",
+    "stored": [
+      {
+        "name": "FA",
+        "kind": "flip-flop",
+        "next": "FA = (NOT SHIFT/LOAD' AND A) OR (SHIFT/LOAD' AND ((J AND NOT FA) OR (K' AND FA)))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FB",
+        "kind": "flip-flop",
+        "next": "FB = (NOT SHIFT/LOAD' AND B) OR (SHIFT/LOAD' AND (FA))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FC",
+        "kind": "flip-flop",
+        "next": "FC = (NOT SHIFT/LOAD' AND C) OR (SHIFT/LOAD' AND (FB))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FD",
+        "kind": "flip-flop",
+        "next": "FD = (NOT SHIFT/LOAD' AND D) OR (SHIFT/LOAD' AND (FC))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FE",
+        "kind": "flip-flop",
+        "next": "FE = (NOT SHIFT/LOAD' AND E) OR (SHIFT/LOAD' AND (FD))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FF",
+        "kind": "flip-flop",
+        "next": "FF = (NOT SHIFT/LOAD' AND F) OR (SHIFT/LOAD' AND (FE))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FG",
+        "kind": "flip-flop",
+        "next": "FG = (NOT SHIFT/LOAD' AND G) OR (SHIFT/LOAD' AND (FF))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      },
+      {
+        "name": "FH",
+        "kind": "flip-flop",
+        "next": "FH = (NOT SHIFT/LOAD' AND H) OR (SHIFT/LOAD' AND (FG))",
+        "clock": {
+          "when": "CLOCK OR CLOCK INHIBIT",
+          "edge": "rising"
+        },
+        "clear": {
+          "pin": "CLEAR'",
+          "active": "low"
+        },
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers (function table: J,K' on the first stage as J-K)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FA",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FB",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FC",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FD",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QE",
+        "formula": "QE = FE",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QF",
+        "formula": "QF = FF",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QG",
+        "formula": "QG = FG",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      },
+      {
+        "pin": "QH",
+        "formula": "QH = FH",
+        "type": "totem-pole",
+        "source": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343) - TI The TTL Data Book for Design Engineers"
+      }
+    ]
+  }
 }
