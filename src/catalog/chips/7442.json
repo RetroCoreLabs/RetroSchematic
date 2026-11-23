@@ -1,0 +1,210 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7442",
+  "family": "74",
+  "title": "4-line-to-10-line decoder (1-of-10)",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-15, 7-16, 7-17 (PDF pages 14-16)",
+      "familyUsed": "SN7442A (the 1976 book lists only the A version of the plain 74 part)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "0",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 2,
+      "name": "1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 3,
+      "name": "2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "3",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "4",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "5",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "6",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "7",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "8",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "9",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1",
+      "formula": "0 = NOT (D' AND C' AND B' AND A')",
+      "text": "Output 0 is low (active) only when DCBA = 0000; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "2",
+      "formula": "1 = NOT (D' AND C' AND B' AND A)",
+      "text": "Output 1 is low (active) only when DCBA = 0001; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "3",
+      "formula": "2 = NOT (D' AND C' AND B AND A')",
+      "text": "Output 2 is low (active) only when DCBA = 0010; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "4",
+      "formula": "3 = NOT (D' AND C' AND B AND A)",
+      "text": "Output 3 is low (active) only when DCBA = 0011; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "5",
+      "formula": "4 = NOT (D' AND C AND B' AND A')",
+      "text": "Output 4 is low (active) only when DCBA = 0100; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "6",
+      "formula": "5 = NOT (D' AND C AND B' AND A)",
+      "text": "Output 5 is low (active) only when DCBA = 0101; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "7",
+      "formula": "6 = NOT (D' AND C AND B AND A')",
+      "text": "Output 6 is low (active) only when DCBA = 0110; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "9",
+      "formula": "7 = NOT (D' AND C AND B AND A)",
+      "text": "Output 7 is low (active) only when DCBA = 0111; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "10",
+      "formula": "8 = NOT (D AND C' AND B' AND A')",
+      "text": "Output 8 is low (active) only when DCBA = 1000; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "11",
+      "formula": "9 = NOT (D AND C' AND B' AND A)",
+      "text": "Output 9 is low (active) only when DCBA = 1001; inputs 10-15 leave every output high."
+    }
+  ],
+  "state": null,
+  "timing": [
+    {
+      "from": "A,B,C,D",
+      "to": "any",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, through 2 levels of logic"
+    },
+    {
+      "from": "A,B,C,D",
+      "to": "any",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, through 3 levels of logic"
+    },
+    {
+      "from": "A,B,C,D",
+      "to": "any",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, through 2 levels of logic"
+    },
+    {
+      "from": "A,B,C,D",
+      "to": "any",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, through 3 levels of logic"
+    }
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "The SN7442A column of the recommended operating conditions prints IOH as '800' uA without the minus sign; the SN5442A column and the VOH test condition (IOH = -800 uA) show it is -800 uA out of the pin."
+  },
+  "unknown": [],
+  "notes": "Datasheet does not say which output paths go through 2 and which through 3 levels of logic; timing gives both rows for all outputs. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

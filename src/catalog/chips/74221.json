@@ -1,0 +1,235 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74221",
+  "family": "74",
+  "title": "Dual monostable multivibrator (pin compatible with 74123)",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book 2nd ed. 1976, SN54221/SN74221 (section 6, Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "6-68 to 6-70 (PDF pages 68-70)",
+      "familyUsed": "SN74221"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input",
+      "text": "negative-transition trigger input (fires on a falling edge while B is high)"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input",
+      "schmitt": true,
+      "text": "positive-transition Schmitt-trigger input (fires on a rising edge while A is low)"
+    },
+    {
+      "pin": 3,
+      "name": "1CLR'",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "text": "overriding clear: low ends the pulse, Q low; a rising edge with A low and B high also fires"
+    },
+    {
+      "pin": 13,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "1Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "1Cext",
+      "role": "analog",
+      "text": "timing capacitor terminal"
+    },
+    {
+      "pin": 15,
+      "name": "1Rext/Cext",
+      "role": "analog",
+      "text": "timing resistor to VCC and capacitor terminal"
+    },
+    {
+      "pin": 9,
+      "name": "2A",
+      "role": "input",
+      "text": "negative-transition trigger input (fires on a falling edge while B is high)"
+    },
+    {
+      "pin": 10,
+      "name": "2B",
+      "role": "input",
+      "schmitt": true,
+      "text": "positive-transition Schmitt-trigger input (fires on a rising edge while A is low)"
+    },
+    {
+      "pin": 11,
+      "name": "2CLR'",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "text": "overriding clear: low ends the pulse, Q low; a rising edge with A low and B high also fires"
+    },
+    {
+      "pin": 5,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "2Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "2Cext",
+      "role": "analog",
+      "text": "timing capacitor terminal"
+    },
+    {
+      "pin": 7,
+      "name": "2Rext/Cext",
+      "role": "analog",
+      "text": "timing resistor to VCC and capacitor terminal"
+    }
+  ],
+  "functions": [
+    {
+      "output": "13,5",
+      "formula": "Q = pulse state (high for tw after a trigger)",
+      "text": "Q goes high for tw = Cext * Rext * ln2 (about 0.7 Cext Rext) after a trigger; not retriggerable; once fired it ignores A and B."
+    },
+    {
+      "output": "4,12",
+      "formula": "Q' = NOT Q",
+      "text": "Complement output."
+    }
+  ],
+  "state": {
+    "bits": 1,
+    "changesOn": "trigger edge on A or B, or rising edge of CLR'",
+    "rules": [
+      "CLR' low: Q = L, Q' = H at once, regardless of A and B",
+      "A high or B low (steady): no trigger, Q = L",
+      "CLR' high, A low, B rising: one output pulse",
+      "CLR' high, A falling, B high: one output pulse",
+      "CLR' rising, A low, B high: one output pulse",
+      "Pulse width tw(out) = Cext Rext ln2 ~ 0.7 Cext Rext; once fired the output no longer depends on A and B; not retriggerable",
+      "Cext = 0, Rext = 2 kohm gives typically 30 ns"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": true,
+    "notes": "SN74221: VCC 4.75-5.25 V, TA 0-70 C. B input Schmitt: VT+ typ 1.55 V max 2 V, VT- min 0.8 typ 1.35 V; A input VT+ typ 1.4 max 2, VT- min 0.8 typ 1.4 V. Input edge rate: B min 1 V/s, A min 1 V/us. Rext 1.4-40 kohm, Cext 0-1000 uF. Duty cycle max 67% at Rext 2 kohm, 90% at max Rext. IIL A -1.6 mA, B and clear -3.2 mA."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 45,
+      "maxNs": 70,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 80 pF, Rext 2 kohm"
+    },
+    {
+      "from": "B",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 55,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 80 pF, Rext 2 kohm"
+    },
+    {
+      "from": "A",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 50,
+      "maxNs": 80,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 80 pF, Rext 2 kohm"
+    },
+    {
+      "from": "B",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 40,
+      "maxNs": 65,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 80 pF, Rext 2 kohm"
+    },
+    {
+      "from": "CLR'",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 80 pF, Rext 2 kohm"
+    },
+    {
+      "from": "CLR'",
+      "to": "Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 80 pF, Rext 2 kohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulseWidth",
+      "pin": "A or B",
+      "minNs": 50
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CLR'",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "CLR' inactive",
+      "ref": "trigger",
+      "minNs": 15
+    },
+    {
+      "what": "outputPulseWidth",
+      "pin": "Q",
+      "text": "tw(out): Cext 80 pF, Rext 2k: 70/110/150 ns; Cext 0, Rext 2k: 20/30/50 ns; Cext 100 pF, Rext 10k: 650/700/750 ns; Cext 1 uF, Rext 10k: 6.5/7/7.5 ms (min/typ/max)"
+    }
+  ],
+  "unknown": [
+    "Typical clear-to-output delays are not printed (only max).",
+    "No minimum propagation delays printed."
+  ],
+  "notes": "Pin-compatible with the 74123 except that it does not retrigger."
+}

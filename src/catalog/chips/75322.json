@@ -1,0 +1,156 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "75322",
+  "family": "753xx",
+  "title": "TTL to MOS driver",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The Interface Circuits Data Book for Design Engineers, 2nd ed. 1981, SN75322 dual positive-AND TTL-to-MOS driver (bulletin DL-S 7712336, May 1976, rev. Apr 1977)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1981_TI_The_Interface_Circuits_Data_Book_for_Design_Engineers_2ed.pdf",
+      "pages": "7-13 to 7-15 (PDF pages 517-519)",
+      "familyUsed": "SN75322"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC1",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 11,
+      "name": "VCC2",
+      "role": "power",
+      "voltage": "+12 V nominal (4.75-15 V)",
+      "text": "MOS supply"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 6,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 13,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 3,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "E",
+      "role": "input",
+      "text": "strobe common to both drivers"
+    },
+    {
+      "pin": 12,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "MOS-level output, pulled up through the external p-n-p transistor"
+    },
+    {
+      "pin": 10,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "MOS-level output"
+    },
+    {
+      "pin": 1,
+      "name": "1XC",
+      "role": "analog",
+      "text": "connection to the collector of the external p-n-p transistor for driver 1"
+    },
+    {
+      "pin": 2,
+      "name": "1XB",
+      "role": "analog",
+      "text": "connection to the base of the external p-n-p transistor for driver 1"
+    },
+    {
+      "pin": 9,
+      "name": "2XC",
+      "role": "analog",
+      "text": "collector connection of the external p-n-p for driver 2"
+    },
+    {
+      "pin": 8,
+      "name": "2XB",
+      "role": "analog",
+      "text": "base connection of the external p-n-p for driver 2"
+    }
+  ],
+  "functions": [
+    {
+      "output": "12",
+      "formula": "1Y = 1A AND E",
+      "text": "Datasheet positive logic Y = AE. Needs an external p-n-p (TIS149, A5T4260 or A5T4261) per driver on XB/XC."
+    },
+    {
+      "output": "10",
+      "formula": "2Y = 2A AND E",
+      "text": "Same for driver 2."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 15,
+    "inputSchmitt": false,
+    "notes": "VCC1 4.75-5.25 V, VCC2 4.75-15 V (nom 12), TA 0-70 C, load capacitance min 200 pF (recommended). VOH min VCC2-1.1 V at -10 mA, VCC2-0.5 at -400 uA, VCC2-0.4 at -200 uA; VOL max 0.5 V at IOL 10 mA (VCC2 11.4 V). Inputs VIH 2 V, VIL 0.8 V; IIL A -1.6 mA, E -3.2 mA. Output goes to high impedance if the 5 V supply is lost (forced low with an external pull-down). outputMaxVoltageV is the VCC2 maximum."
+  },
+  "timing": [
+    {
+      "from": "A or E",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": 12,
+      "typNs": 27,
+      "maxNs": 38,
+      "conditions": "VCC1 5 V, VCC2 12 V, TA 25 C, CL 300 pF, external TIS149 p-n-p"
+    },
+    {
+      "from": "A or E",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": 14,
+      "typNs": 31,
+      "maxNs": 44,
+      "conditions": "VCC1 5 V, VCC2 12 V, TA 25 C, CL 300 pF, external TIS149 p-n-p"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "delayTime",
+      "pin": "Y",
+      "text": "tDLH 16 typ / 21 max ns, tDHL 18 typ / 24 max ns"
+    },
+    {
+      "what": "transitionTime",
+      "pin": "Y",
+      "text": "tTLH 11 typ / 17 max ns, tTHL 13 typ / 20 max ns, CL 300 pF"
+    }
+  ],
+  "unknown": [
+    "Recommended IOL/IOH are not given; only VOH/VOL test points (in notes), so the current fields are null."
+  ],
+  "state": null,
+  "notes": ""
+}

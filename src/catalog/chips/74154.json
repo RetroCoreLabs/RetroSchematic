@@ -1,0 +1,328 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74154",
+  "family": "74",
+  "title": "4-line-to-16-line decoder/demultiplexer",
+  "package": "DIP-24",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54154, SN54L154, SN74154, SN74L154, bulletin DL-S 7211805 (December 1972)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-171 to 7-173 (PDF pages 170-172)",
+      "familyUsed": "SN74154"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 24,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 23,
+      "name": "A",
+      "role": "input",
+      "text": "least significant"
+    },
+    {
+      "pin": 22,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 21,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 20,
+      "name": "D",
+      "role": "input",
+      "text": "most significant"
+    },
+    {
+      "pin": 18,
+      "name": "G1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 19,
+      "name": "G2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 1,
+      "name": "0",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 2,
+      "name": "1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 3,
+      "name": "2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "3",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "4",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "5",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "6",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "7",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "8",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "9",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "10",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "11",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "12",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "13",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "14",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 17,
+      "name": "15",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1",
+      "formula": "0 = NOT(G1' AND G2' AND D' AND C' AND B' AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 0."
+    },
+    {
+      "output": "2",
+      "formula": "1 = NOT(G1' AND G2' AND D' AND C' AND B' AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 1."
+    },
+    {
+      "output": "3",
+      "formula": "2 = NOT(G1' AND G2' AND D' AND C' AND B AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 2."
+    },
+    {
+      "output": "4",
+      "formula": "3 = NOT(G1' AND G2' AND D' AND C' AND B AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 3."
+    },
+    {
+      "output": "5",
+      "formula": "4 = NOT(G1' AND G2' AND D' AND C AND B' AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 4."
+    },
+    {
+      "output": "6",
+      "formula": "5 = NOT(G1' AND G2' AND D' AND C AND B' AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 5."
+    },
+    {
+      "output": "7",
+      "formula": "6 = NOT(G1' AND G2' AND D' AND C AND B AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 6."
+    },
+    {
+      "output": "8",
+      "formula": "7 = NOT(G1' AND G2' AND D' AND C AND B AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 7."
+    },
+    {
+      "output": "9",
+      "formula": "8 = NOT(G1' AND G2' AND D AND C' AND B' AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 8."
+    },
+    {
+      "output": "10",
+      "formula": "9 = NOT(G1' AND G2' AND D AND C' AND B' AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 9."
+    },
+    {
+      "output": "11",
+      "formula": "10 = NOT(G1' AND G2' AND D AND C' AND B AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 10."
+    },
+    {
+      "output": "13",
+      "formula": "11 = NOT(G1' AND G2' AND D AND C' AND B AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 11."
+    },
+    {
+      "output": "14",
+      "formula": "12 = NOT(G1' AND G2' AND D AND C AND B' AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 12."
+    },
+    {
+      "output": "15",
+      "formula": "13 = NOT(G1' AND G2' AND D AND C AND B' AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 13."
+    },
+    {
+      "output": "16",
+      "formula": "14 = NOT(G1' AND G2' AND D AND C AND B AND A')",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 14."
+    },
+    {
+      "output": "17",
+      "formula": "15 = NOT(G1' AND G2' AND D AND C AND B AND A)",
+      "text": "Low only when G1 and G2 are both low and D,C,B,A = 15."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Demultiplexer use: data on one strobe input with the other strobe low appears on the addressed output."
+  },
+  "timing": [
+    {
+      "from": "A, B, C or D",
+      "to": "any output",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 36,
+      "conditions": "3 levels of logic; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A, B, C or D",
+      "to": "any output",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "3 levels of logic; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G1 or G2",
+      "to": "any output",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G1 or G2",
+      "to": "any output",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "Outputs active low; all outputs high when either strobe is high."
+}

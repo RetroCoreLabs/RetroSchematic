@@ -1,0 +1,192 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74153",
+  "family": "74",
+  "title": "Dual 4-line-to-1-line data selector/multiplexer",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54153 ... SN74153, SN74L153, SN74LS153, SN74S153, bulletin DL-S 7611852 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-165, 7-167 (PDF pages 164, 166)",
+      "familyUsed": "SN74153"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 14,
+      "name": "A",
+      "role": "input",
+      "text": "select, common to both sections, least significant"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input",
+      "text": "select, common to both sections"
+    },
+    {
+      "pin": 1,
+      "name": "1G",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "7"
+      ],
+      "whenInactive": "low"
+    },
+    {
+      "pin": 6,
+      "name": "1C0",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "1C1",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1C2",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1C3",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "2G",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "9"
+      ],
+      "whenInactive": "low"
+    },
+    {
+      "pin": 10,
+      "name": "2C0",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "2C1",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "2C2",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "2C3",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "7",
+      "formula": "1Y = 1G' AND ((B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3))",
+      "text": "When 1G is low, 1Y follows the 1C input picked by B,A; when 1G is high, 1Y is low."
+    },
+    {
+      "output": "9",
+      "formula": "2Y = 2G' AND ((B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3))",
+      "text": "When 2G is low, 2Y follows the 2C input picked by B,A; when 2G is high, 2Y is low."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "Data",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 400 ohm"
+    },
+    {
+      "from": "Data",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 400 ohm"
+    },
+    {
+      "from": "Select",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 34,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 400 ohm"
+    },
+    {
+      "from": "Select",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 34,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 400 ohm"
+    },
+    {
+      "from": "Strobe",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 400 ohm"
+    },
+    {
+      "from": "Strobe",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": ""
+}

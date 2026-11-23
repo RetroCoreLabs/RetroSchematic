@@ -1,0 +1,209 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8123",
+  "family": "8000",
+  "title": "TRI-STATE quad 2-input data selector/multiplexer",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM71/DM81L22,23,L23 Quad 2-Input Data Selectors/Multiplexers",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "pdf 358-360 (printed 3-13..3-15)",
+      "familyUsed": "DM8123"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "S",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "B1",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "Y1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G"
+    },
+    {
+      "pin": 5,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "B2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "Y2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Y3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G"
+    },
+    {
+      "pin": 10,
+      "name": "B3",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "Y4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G"
+    },
+    {
+      "pin": 13,
+      "name": "B4",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "G",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "7",
+        "9",
+        "12"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,7,9,12",
+      "formula": "Yn = (S' AND An) OR (S AND Bn) when G'; Z when G high",
+      "text": "With G (strobe/enable) low, each Y follows its A input when S is low and its B input when S is high. With G high all four outputs float."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM81 column."
+  },
+  "timing": [
+    {
+      "from": "A/B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": 4,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A/B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": 5,
+      "typNs": 11,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "S",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": 5,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "S",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": 8,
+      "typNs": 17,
+      "maxNs": 24,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": 9,
+      "typNs": 18,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": 10,
+      "typNs": 23,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": 4,
+      "typNs": 7,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": 9,
+      "typNs": 19,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "Switching values read from a partly garbled text layer in column order (min/typ/max of the DM71/81 23 column)."
+  ],
+  "notes": "Datasheet: pin equivalent of 74157 / 9322, with three-state outputs."
+}

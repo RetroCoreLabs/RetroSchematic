@@ -1,0 +1,212 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8214",
+  "family": "8000",
+  "title": "TRI-STATE dual 4-line to 1-line data selector/multiplexer",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM72/DM8214,19 TRI-STATE Data Selectors/Multiplexers",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "pdf 373-376 (printed 3-28..3-31)",
+      "familyUsed": "DM8214"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "G1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "7"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1C3",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1C2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "1C1",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "1C0",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "Y1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G1"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Y2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G2"
+    },
+    {
+      "pin": 10,
+      "name": "2C0",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "2C1",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "2C2",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "2C3",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "G2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "9"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "7",
+      "formula": "Y1 = (B'A' AND 1C0) OR (B'A AND 1C1) OR (BA' AND 1C2) OR (BA AND 1C3) when G1'; Z when G1 high",
+      "text": "Y1 gives the 1C input picked by B,A (true data) while G1 is low; floats while G1 is high."
+    },
+    {
+      "output": "9",
+      "formula": "Y2 = (B'A' AND 2C0) OR (B'A AND 2C1) OR (BA' AND 2C2) OR (BA AND 2C3) when G2'; Z when G2 high",
+      "text": "Same for section 2 with G2."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM82 column."
+  },
+  "timing": [
+    {
+      "from": "C",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "C",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A/B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 34,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A/B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 34,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 21,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 5,
+      "maxNs": 10,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "No minimum delays printed."
+  ],
+  "notes": "Datasheet: three-state pin equivalent of 74153."
+}

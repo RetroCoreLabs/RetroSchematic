@@ -1,0 +1,282 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74100",
+  "family": "74",
+  "title": "8-bit bistable latches",
+  "package": "DIP-24",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-113, 7-114 (PDF pages 112-113)",
+      "familyUsed": "SN74100 (J, N package)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 2,
+      "name": "1D1",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1D2",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1Q2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "1Q1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "2Q1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "2Q2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "2D2",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "2D1",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "2G",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "8",
+        "9",
+        "18",
+        "17"
+      ],
+      "whenInactive": "hold",
+      "text": "ENABLE 2G: latches 2Q1-2Q4 follow their D inputs while high, store while low"
+    },
+    {
+      "pin": 13,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 14,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 15,
+      "name": "2D3",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "2D4",
+      "role": "input"
+    },
+    {
+      "pin": 17,
+      "name": "2Q4",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 18,
+      "name": "2Q3",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 19,
+      "name": "1Q3",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 20,
+      "name": "1Q4",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 21,
+      "name": "1D4",
+      "role": "input"
+    },
+    {
+      "pin": 22,
+      "name": "1D3",
+      "role": "input"
+    },
+    {
+      "pin": 23,
+      "name": "1G",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "5",
+        "4",
+        "19",
+        "20"
+      ],
+      "whenInactive": "hold",
+      "text": "ENABLE 1G: latches 1Q1-1Q4 follow their D inputs while high, store while low"
+    },
+    {
+      "pin": 24,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": "1Q1 = state1Q1",
+      "text": "Latch 1Q1: follows 1D1 while 1G is high, holds while 1G is low."
+    },
+    {
+      "output": "4",
+      "formula": "1Q2 = state1Q2",
+      "text": "Latch 1Q2: follows 1D2 while 1G is high, holds while 1G is low."
+    },
+    {
+      "output": "19",
+      "formula": "1Q3 = state1Q3",
+      "text": "Latch 1Q3: follows 1D3 while 1G is high, holds while 1G is low."
+    },
+    {
+      "output": "20",
+      "formula": "1Q4 = state1Q4",
+      "text": "Latch 1Q4: follows 1D4 while 1G is high, holds while 1G is low."
+    },
+    {
+      "output": "8",
+      "formula": "2Q1 = state2Q1",
+      "text": "Latch 2Q1: follows 2D1 while 2G is high, holds while 2G is low."
+    },
+    {
+      "output": "9",
+      "formula": "2Q2 = state2Q2",
+      "text": "Latch 2Q2: follows 2D2 while 2G is high, holds while 2G is low."
+    },
+    {
+      "output": "18",
+      "formula": "2Q3 = state2Q3",
+      "text": "Latch 2Q3: follows 2D3 while 2G is high, holds while 2G is low."
+    },
+    {
+      "output": "17",
+      "formula": "2Q4 = state2Q4",
+      "text": "Latch 2Q4: follows 2D4 while 2G is high, holds while 2G is low."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "level of 1G (latches 1Q1-1Q4) and 2G (latches 2Q1-2Q4)",
+    "rules": [
+      "G high: Q = D (transparent)",
+      "G low: Q holds the level it had before the high-to-low transition of G"
+    ]
+  },
+  "timing": [
+    {
+      "from": "D",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width high",
+      "pin": "1G,2G",
+      "ref": null,
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "G high-to-low",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "G high-to-low",
+      "minNs": 5
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "Only the Q outputs are brought out to pins; the function table also lists Q-bar, which is internal. Two independent 4-bit latches, each with its own enable. The table gives setup and hold without naming the edge; the high-to-low transition of G is where the function table says the data is kept. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

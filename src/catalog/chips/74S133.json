@@ -1,0 +1,162 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74S133",
+  "family": "74S",
+  "title": "13-input positive NAND gate",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 5, pin assignments, 133",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "book page 5-38 (PDF page 38)",
+      "familyUsed": "SN74S133"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 6, Positive-NAND gates and inverters with totem-pole outputs, Series 74S column 'S133",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "book pages 6-2, 6-3 (PDF pages 2, 3)",
+      "familyUsed": "SN74S133"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "E",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "F",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "G",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "H",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "I",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "J",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "K",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "L",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "M",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "9",
+      "formula": "Y = NOT(A AND B AND C AND D AND E AND F AND G AND H AND I AND J AND K AND L AND M)",
+      "text": "13-input NAND: Y is low only when all thirteen inputs are high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 20,
+    "outputHighMaxCurrentMa": -1.0,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Series 74S: IIL -2 mA max, IIH 50 uA max."
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 4,
+      "maxNs": 6,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 4.5,
+      "maxNs": 7,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 280 ohm"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 5.5,
+      "maxNs": null,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 280 ohm"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 6.5,
+      "maxNs": null,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 280 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "Switching figures are the shared row for 'S30 and 'S133."
+}

@@ -1,0 +1,159 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8160",
+  "family": "8000",
+  "title": "6-bit equality comparator, open-collector output",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM71/DM8130,60 Magnitude Comparators",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "pdf 362-363 (printed 3-17, 3-18)",
+      "familyUsed": "DM8160"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "B1",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "B2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "B3",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "STROBE",
+      "role": "input"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Y",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 10,
+      "name": "B4",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "B5",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "A5",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "B6",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A6",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "9",
+      "formula": "Y = STROBE OR ((A1 XNOR B1) AND (A2 XNOR B2) AND (A3 XNOR B3) AND (A4 XNOR B4) AND (A5 XNOR B5) AND (A6 XNOR B6))",
+      "text": "Y is high (output transistor off) when the two 6-bit words are equal, or when STROBE is high. Y is low when STROBE is low and the words differ. Open collector, so several can be wired together."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 5.5,
+    "inputSchmitt": false,
+    "notes": "Open collector: IOH 100 uA max leakage at VOH 5.5 V."
+  },
+  "timing": [
+    {
+      "from": "A/B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A/B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "No minimum delays printed.",
+    "The pin-7 label in the diagram carries a bar, but the description and truth table say a HIGH strobe forces Y high; the formula follows the truth table."
+  ],
+  "notes": "National calls it a \"magnitude comparator\" but it only tests for equality."
+}

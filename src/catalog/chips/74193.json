@@ -1,0 +1,73 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74193",
+  "family": "74",
+  "title": "Up/down binary counter",
+  "package": "DIP-16",
+  "sources": [
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54192/SN54193/SN74192/SN74193 (bulletin DL-S 7611828, Dec 1972, rev. Oct 1976)",
+     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+     "pages": "7-306, 7-311, 7-314 (PDF pages 305, 310, 313)", "familyUsed": "SN74193"}
+  ],
+  "pins": [
+    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
+    {"pin": 8,  "name": "GND", "role": "ground"},
+    {"pin": 15, "name": "A", "role": "input", "text": "data input"},
+    {"pin": 1,  "name": "B", "role": "input", "text": "data input"},
+    {"pin": 10, "name": "C", "role": "input", "text": "data input"},
+    {"pin": 9,  "name": "D", "role": "input", "text": "data input"},
+    {"pin": 11, "name": "LOAD'", "role": "input", "async": true, "active": "low", "text": "low: QA..QD take A..D, independent of the count pulses"},
+    {"pin": 14, "name": "CLEAR", "role": "input", "async": true, "active": "high", "text": "high forces all outputs low, independent of count and load"},
+    {"pin": 5,  "name": "UP", "role": "clock", "edge": "rising", "text": "count-up clock; the other count input must be high"},
+    {"pin": 4,  "name": "DOWN", "role": "clock", "edge": "rising", "text": "count-down clock; the other count input must be high"},
+    {"pin": 3,  "name": "QA", "role": "output", "outputType": "totem-pole"},
+    {"pin": 2,  "name": "QB", "role": "output", "outputType": "totem-pole"},
+    {"pin": 6,  "name": "QC", "role": "output", "outputType": "totem-pole"},
+    {"pin": 7,  "name": "QD", "role": "output", "outputType": "totem-pole"},
+    {"pin": 12, "name": "CARRY'", "role": "output", "outputType": "totem-pole"},
+    {"pin": 13, "name": "BORROW'", "role": "output", "outputType": "totem-pole"}
+  ],
+  "functions": [
+    {"output": "3,2,6,7", "formula": "QA..QD = Q[0..3]", "text": "The four counter bits (QA least significant)."},
+    {"output": "12", "formula": "CARRY' = NOT (Q = 15 AND UP = L)", "text": "Datasheet: the carry output produces a pulse equal in width to the count-up input when an overflow condition exists. Feeds the next counter's UP input."},
+    {"output": "13", "formula": "BORROW' = NOT (Q = 0 AND DOWN = L)", "text": "Datasheet: the borrow output produces a pulse equal in width to the count-down input when the counter underflows. Feeds the next counter's DOWN input."}
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "rising edge of UP or DOWN",
+    "rules": [
+      "CLEAR high: Q = 0 at once, overrides count and load",
+      "LOAD' low (CLEAR low): Q = D,C,B,A at once",
+      "UP rising while DOWN high: Q = Q + 1 (mod 16)",
+      "DOWN rising while UP high: Q = Q - 1 (mod 16)"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.4, "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74193: VCC 4.75-5.25 V, IOH -400 uA, IOL 16 mA, TA 0-70 C."
+  },
+  "timing": [
+    {"from": "UP", "to": "CARRY'", "edge": "PLH", "minNs": null, "typNs": 17, "maxNs": 26, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "UP", "to": "CARRY'", "edge": "PHL", "minNs": null, "typNs": 16, "maxNs": 24, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "DOWN", "to": "BORROW'", "edge": "PLH", "minNs": null, "typNs": 16, "maxNs": 24, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "DOWN", "to": "BORROW'", "edge": "PHL", "minNs": null, "typNs": 16, "maxNs": 24, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "UP or DOWN", "to": "QA..QD", "edge": "PLH", "minNs": null, "typNs": 25, "maxNs": 38, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "UP or DOWN", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 31, "maxNs": 47, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "LOAD'", "to": "QA..QD", "edge": "PLH", "minNs": null, "typNs": 27, "maxNs": 40, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "LOAD'", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 29, "maxNs": 40, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "CLEAR", "to": "QA..QD", "edge": "PHL", "minNs": null, "typNs": 22, "maxNs": 35, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"}
+  ],
+  "timingLimits": [
+    {"what": "maxClockFrequency", "pin": "UP/DOWN", "minMHz": 25, "typMHz": 32, "text": "recommended fclock 0-25 MHz"},
+    {"what": "pulseWidth", "pin": "any input", "minNs": 20},
+    {"what": "setup", "pin": "A..D", "ref": "LOAD' rising", "minNs": 20, "text": "Figure 1: data setup to the end of the load pulse"},
+    {"what": "hold", "pin": "A..D", "ref": "LOAD' rising", "minNs": 0}
+  ],
+  "unknown": [
+    "CARRY'/BORROW' formulas are from the description text, not transcribed from the logic diagram.",
+    "No minimum propagation delays printed."
+  ],
+  "notes": "Master-slave flip-flops triggered by a low-to-high transition of either count input."
+}

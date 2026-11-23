@@ -1,0 +1,26 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74118",
+  "family": "74",
+  "title": "6-bit set latch",
+  "package": null,
+  "sources": [],
+  "pins": [],
+  "functions": [],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": null,
+    "notes": ""
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [
+    "No datasheet for the SN74118 was found. Tried: TI symlink URLs sn74118 / sn74ls118 (404); the TI TTL Data Book 2nd ed. 1976 (all sections on bitsavers; the part is not in it); the 1977 TI supplement; the 1971 TI IC catalog; web searches. datasheetarchive.com lists a one-page 1975/76 scan of an SN74118N but the file could not be downloaded.",
+    "Package, pin-out, pin roles, function, state rules, electrical figures and timing: all unknown. A forum post gives a pin list, but that is not a datasheet and was not used."
+  ],
+  "notes": "Placeholder: everything is unknown until a datasheet is found."
+}

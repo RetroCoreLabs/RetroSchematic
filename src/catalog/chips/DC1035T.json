@@ -1,0 +1,25 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "DC1035T",
+  "family": null,
+  "title": "100 ns delay line with 10 ns taps",
+  "package": null,
+  "sources": [],
+  "pins": [],
+  "functions": [],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": null,
+    "notes": ""
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [
+    "No datasheet found. Sources tried: Web searches for \"DC10-35T\" with datasheet / DC-DC converter / delay line terms; bitsavers component databooks for National, TI, Intel, Mostek, Motorola, Signetics (listings only). Manufacturer unknown. Package, pins, function, electrical figures and timing all unknown."
+  ],
+  "notes": "Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: DC10-35T)."
+}

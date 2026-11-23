@@ -1,0 +1,500 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7475",
+  "family": "74",
+  "title": "Quadruple bistable latch",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "5-23 (PDF page 23)",
+      "familyUsed": "SN7475 (J, N package)"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-34 to 7-37 (PDF pages 34-36)",
+      "familyUsed": "SN7475"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 2,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "G34",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "10",
+        "11",
+        "9",
+        "8"
+      ],
+      "whenInactive": "hold",
+      "text": "ENABLE 3-4: latches 3 and 4 follow D while high, store while low"
+    },
+    {
+      "pin": 5,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 6,
+      "name": "3D",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "4D",
+      "role": "input"
+    },
+    {
+      "pin": 8,
+      "name": "4Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "4Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "3Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "3Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 13,
+      "name": "G12",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "16",
+        "1",
+        "15",
+        "14"
+      ],
+      "whenInactive": "hold",
+      "text": "ENABLE 1-2: latches 1 and 2 follow D while high, store while low"
+    },
+    {
+      "pin": 14,
+      "name": "2Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "16",
+      "formula": "1Q = state1",
+      "text": "Latch 1 bit."
+    },
+    {
+      "output": "1",
+      "formula": "1Q' = NOT state1",
+      "text": "Inverse of 1Q."
+    },
+    {
+      "output": "15",
+      "formula": "2Q = state2",
+      "text": "Latch 2 bit."
+    },
+    {
+      "output": "14",
+      "formula": "2Q' = NOT state2",
+      "text": "Inverse of 2Q."
+    },
+    {
+      "output": "10",
+      "formula": "3Q = state3",
+      "text": "Latch 3 bit."
+    },
+    {
+      "output": "11",
+      "formula": "3Q' = NOT state3",
+      "text": "Inverse of 3Q."
+    },
+    {
+      "output": "9",
+      "formula": "4Q = state4",
+      "text": "Latch 4 bit."
+    },
+    {
+      "output": "8",
+      "formula": "4Q' = NOT state4",
+      "text": "Inverse of 4Q."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "level of G12 (latches 1, 2) and G34 (latches 3, 4)",
+    "rules": [
+      "G high: Q = D, Q' = NOT D (transparent)",
+      "G low: Q holds the level it had before the high-to-low transition of G"
+    ]
+  },
+  "timing": [
+    {
+      "from": "1D",
+      "to": "1Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1D",
+      "to": "1Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1D",
+      "to": "1Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1D",
+      "to": "1Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "1Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "1Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "1Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "1Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2D",
+      "to": "2Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2D",
+      "to": "2Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2D",
+      "to": "2Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2D",
+      "to": "2Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "2Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "2Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "2Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G12",
+      "to": "2Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "3D",
+      "to": "3Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "3D",
+      "to": "3Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "3D",
+      "to": "3Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "3D",
+      "to": "3Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "3Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "3Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "3Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "3Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "4D",
+      "to": "4Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "4D",
+      "to": "4Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "4D",
+      "to": "4Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "4D",
+      "to": "4Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "4Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "4Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "4Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "G34",
+      "to": "4Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width high",
+      "pin": "G12,G34",
+      "ref": null,
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "G high-to-low",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "G high-to-low",
+      "minNs": 5
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "The datasheet table gives setup 20 ns and hold 5 ns without naming the reference edge; the high-to-low transition of G is the edge the function table says the data is kept at. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

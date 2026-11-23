@@ -1,0 +1,108 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "75452",
+  "family": "754xx",
+  "title": "Dual peripheral driver (75452B)",
+  "package": "DIP-8",
+  "sources": [
+    {
+      "document": "TI The Interface Circuits Data Book 2nd ed. 1974, Series 55450B/75450B dual peripheral drivers (bulletin DL-S 7311798, Sep 1973, tentative data sheet)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf",
+      "pages": "6-42, 6-43, 6-51 (PDF pages 272, 273, 281)",
+      "familyUsed": "SN75452B (page titled 'TYPE SN75452')"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 8,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 4,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 5,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3,5",
+      "formula": "Y = NOT (A AND B)",
+      "text": "Positive-NAND: output transistor on (low) only when A and B are both high; otherwise off (high, external pull-up)."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 30,
+    "inputSchmitt": false,
+    "notes": "VCC 4.75-5.25 V, TA 0-70 C. Abs max output voltage 30 V, output current 300 mA. Off-state IOH max 100 uA at VOH 30 V. VOL 0.25/0.4 V at 100 mA, 0.5/0.7 V at 300 mA. Inputs VIH 2 V, VIL 0.8 V, IIL -1.6 mA."
+  },
+  "timing": [
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 26,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, IO ~200 mA, CL 15 pF, RL 50 ohm"
+    },
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, IO ~200 mA, CL 15 pF, RL 50 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "transitionTime",
+      "pin": "Y",
+      "text": "tTLH 5 typ / 8 max ns, tTHL 7 typ / 12 max ns"
+    }
+  ],
+  "unknown": [
+    "Recommended operating conditions give no output current; only the 300 mA absolute maximum and the 100/300 mA VOL test points are printed, so IOL is null.",
+    "No minimum delays printed."
+  ],
+  "state": null,
+  "notes": ""
+}

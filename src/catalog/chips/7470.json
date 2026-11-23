@@ -1,0 +1,268 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7470",
+  "family": "74",
+  "title": "J-K flip-flop",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "5-21 (PDF page 21)",
+      "familyUsed": "SN7470 (J, N package)"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "6-46, 6-47, 6-48 (PDF pages 46-48)",
+      "familyUsed": "SN7470"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 2,
+      "name": "CLR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "8",
+        "6"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "J1",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "J2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "J'",
+      "role": "input",
+      "text": "inverted J input; must be grounded if not used"
+    },
+    {
+      "pin": 6,
+      "name": "Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "K'",
+      "role": "input",
+      "text": "inverted K input; must be grounded if not used"
+    },
+    {
+      "pin": 10,
+      "name": "K1",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "K2",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "CK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 13,
+      "name": "PR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "8",
+        "6"
+      ]
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "8",
+      "formula": "Q = state",
+      "text": "Q is the stored bit (low while PR and CLR are both low)."
+    },
+    {
+      "output": "6",
+      "formula": "Q' = NOT state",
+      "text": "Q' is the inverse of the stored bit (low while PR and CLR are both low)."
+    }
+  ],
+  "state": {
+    "bits": 1,
+    "changesOn": "rising edge of CK",
+    "rules": [
+      "J = J1 AND J2 AND NOT J'; K = K1 AND K2 AND NOT K'",
+      "PR low, CLR high, CK low: Q = 1, Q' = 0 at once",
+      "PR high, CLR low, CK low: Q = 0, Q' = 1 at once",
+      "PR low, CLR low (CK don't care): Q = 0 and Q' = 0 (table prints L* L*); not stable, does not persist when PR and CLR return high",
+      "Preset or clear can occur only when CK is low",
+      "PR high, CLR high, rising edge of CK: J=0 K=0 hold; J=1 K=0 Q=1; J=0 K=1 Q=0; J=1 K=1 toggle",
+      "PR high, CLR high, CK low: hold"
+    ]
+  },
+  "timing": [
+    {
+      "from": "PR",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "PR",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLR",
+      "to": "Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLR",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CK",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CK",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CK",
+      "to": "Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CK",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width high",
+      "pin": "CK",
+      "ref": null,
+      "minNs": 20
+    },
+    {
+      "what": "pulse width low",
+      "pin": "CK",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "pulse width low",
+      "pin": "PR",
+      "ref": null,
+      "minNs": 25
+    },
+    {
+      "what": "pulse width low",
+      "pin": "CLR",
+      "ref": null,
+      "minNs": 25
+    },
+    {
+      "what": "setup",
+      "pin": "J1,J2,J',K1,K2,K'",
+      "ref": "CK rising",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "J1,J2,J',K1,K2,K'",
+      "ref": "CK rising",
+      "minNs": 5
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "CK",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 20,
+      "typMHz": 35
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [
+    "Typical preset and clear propagation delays: the table gives the maximum (50 ns) only."
+  ],
+  "notes": "The 7470 function table prints PR=L, CLR=L as Q = L, Q' = L (marked nonstable); the 7472/7474/7476 tables in the same book print H H for that case. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

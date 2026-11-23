@@ -1,0 +1,158 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7406",
+  "family": "74",
+  "title": "Hex inverter buffer/driver with open-collector high-voltage output",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5406/SN5416/SN7406/SN7416 datasheet SDLS031A",
+      "url": "https://www.ti.com/lit/ds/symlink/sn7406.pdf",
+      "pages": "1, 3",
+      "familyUsed": "SN7406"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 3,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 5,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 9,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "5Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 11,
+      "name": "5A",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "6Y",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 13,
+      "name": "6A",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "2",
+      "formula": "1Y = NOT 1A",
+      "text": "1Y is the inverse of 1A. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "4",
+      "formula": "2Y = NOT 2A",
+      "text": "2Y is the inverse of 2A. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "6",
+      "formula": "3Y = NOT 3A",
+      "text": "3Y is the inverse of 3A. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "8",
+      "formula": "4Y = NOT 4A",
+      "text": "4Y is the inverse of 4A. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "10",
+      "formula": "5Y = NOT 5A",
+      "text": "5Y is the inverse of 5A. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "12",
+      "formula": "6Y = NOT 6A",
+      "text": "6Y is the inverse of 6A. Open collector: the high level needs an outside pull-up."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 40,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 30,
+    "inputSchmitt": false,
+    "notes": "Buffer/driver: IOL 40 mA vs 16 mA for 7404, so it sinks two and a half times as much (lamps, relays, long lines); the output may be pulled up to 30 V (7416: 15 V). Off-state leakage max 0.25 mA at VOH 30 V."
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 110 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, RL 110 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty."
+}

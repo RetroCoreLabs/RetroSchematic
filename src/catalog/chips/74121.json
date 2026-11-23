@@ -1,0 +1,208 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74121",
+  "family": "74",
+  "title": "Monostable multivibrator",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN54121, SN74121 Monostable multivibrators with Schmitt-trigger inputs, SDLS042A (May 1983, revised May 2005)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74121.pdf",
+      "pages": "1, 3, 4",
+      "familyUsed": "SN74121"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 3,
+      "name": "A1",
+      "role": "input",
+      "text": "negative-transition trigger input"
+    },
+    {
+      "pin": 4,
+      "name": "A2",
+      "role": "input",
+      "text": "negative-transition trigger input"
+    },
+    {
+      "pin": 5,
+      "name": "B",
+      "role": "input",
+      "schmitt": true,
+      "text": "positive-transition trigger input (Schmitt), or inhibit"
+    },
+    {
+      "pin": 6,
+      "name": "Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 1,
+      "name": "Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "Rint",
+      "role": "analog",
+      "text": "internal timing resistor; connect to VCC to use it"
+    },
+    {
+      "pin": 10,
+      "name": "Cext",
+      "role": "analog",
+      "text": "external timing capacitor, one side"
+    },
+    {
+      "pin": 11,
+      "name": "Rext/Cext",
+      "role": "analog",
+      "text": "external timing capacitor other side and external timing resistor (to VCC)"
+    },
+    {
+      "pin": 2,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 8,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 12,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 13,
+      "name": "NC",
+      "role": "nc"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6",
+      "formula": "Q = PULSE",
+      "text": "Q goes high for tw(out) after a trigger, then low. Trigger = a rising edge of T where T = B AND NOT(A1 AND A2): a falling edge on A1 or A2 while B is high and the other A is high, or a rising edge on B while A1 or A2 is low."
+    },
+    {
+      "output": "1",
+      "formula": "Q' = NOT PULSE",
+      "text": "Complement of Q."
+    }
+  ],
+  "state": {
+    "bits": 1,
+    "changesOn": "rising edge of T = B AND (A1' OR A2')",
+    "rules": [
+      "Steady state: Q low, Q' high (function table rows with no trigger transition)",
+      "Trigger: Q goes high and Q' low for tw(out); once fired the outputs do not depend on further input transitions (not retriggerable)",
+      "Pulse width tw(out) = Cext * RT * ln 2, about 0.7 * Cext * RT (RT = Rext or Rint), within the jitter-free range of Cext 10 pF to 10 uF and RT 2 kOhm to 40 kOhm (SN74121)",
+      "With no external timing parts (Rint to VCC, Cext and Rext/Cext open) the pulse is typically 30 or 35 ns",
+      "Input pulses may be of any duration relative to the output pulse"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": true,
+    "notes": "Schmitt input B: VT+ typ 1.55 V, max 2 V; VT- min 0.8 V, typ 1.35 V. Rext 1.4 to 40 kOhm (74), Cext 0 to 1000 uF. Duty cycle max 67% at RT 2 kOhm, 90% at RT = max Rext. Input pulse width min 50 ns. Rate of rise or fall: B min 1 V/s, A1/A2 min 1 V/us. B input IIL -3.2 mA, IIH 80 uA."
+  },
+  "timing": [
+    {
+      "from": "A1 or A2",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 45,
+      "maxNs": 70,
+      "conditions": "Cext 80 pF, Rint to VCC; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 55,
+      "conditions": "Cext 80 pF, Rint to VCC; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A1 or A2",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 50,
+      "maxNs": 80,
+      "conditions": "Cext 80 pF, Rint to VCC; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 40,
+      "maxNs": 65,
+      "conditions": "Cext 80 pF, Rint to VCC; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "A1, A2, B (input pulse)",
+      "minNs": 50
+    },
+    {
+      "what": "output pulse width",
+      "pin": "Q",
+      "minNs": 70,
+      "typNs": 110,
+      "maxNs": 150,
+      "text": "Cext 80 pF, Rint to VCC"
+    },
+    {
+      "what": "output pulse width",
+      "pin": "Q",
+      "typNs": 30,
+      "maxNs": 50,
+      "text": "Cext 0, Rint to VCC"
+    },
+    {
+      "what": "output pulse width",
+      "pin": "Q",
+      "minNs": 600,
+      "typNs": 700,
+      "maxNs": 800,
+      "text": "Cext 100 pF, RT 10 kOhm"
+    },
+    {
+      "what": "output pulse width",
+      "pin": "Q",
+      "minNs": 6000000,
+      "typNs": 7000000,
+      "maxNs": 8000000,
+      "text": "Cext 1 uF, RT 10 kOhm (6, 7, 8 ms)"
+    }
+  ],
+  "unknown": [
+    "The resistance of the internal timing resistor Rint is not stated on the pages read."
+  ],
+  "notes": "Formula for the pulse width from the datasheet description: tw(out) = Cext RT ln2 = 0.7 Cext RT."
+}

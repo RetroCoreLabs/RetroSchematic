@@ -1,0 +1,185 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "75109",
+  "family": "751xx",
+  "title": "Dual line driver (75109-75110)",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The Interface Circuits Data Book 2nd ed. 1974, SN55109/SN55110/SN75109/SN75110 (bulletin DL-S 7111224)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf",
+      "pages": "4-6, 4-16, 4-17 (PDF pages 70, 80, 81)",
+      "familyUsed": "SN75109 (SN75110 figures noted)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC+",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 11,
+      "name": "VCC-",
+      "role": "power",
+      "voltage": "-5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1C",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "13",
+        "12"
+      ],
+      "whenInactive": "float",
+      "text": "inhibitor for channel 1: low turns both outputs of channel 1 off"
+    },
+    {
+      "pin": 4,
+      "name": "2C",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "8",
+        "9"
+      ],
+      "whenInactive": "float",
+      "text": "inhibitor for channel 2"
+    },
+    {
+      "pin": 10,
+      "name": "D",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "13",
+        "12",
+        "8",
+        "9"
+      ],
+      "whenInactive": "float",
+      "text": "inhibitor common to both channels"
+    },
+    {
+      "pin": 13,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "open-collector",
+      "text": "current-switch output (sinks the on-state current when on, off = high impedance); low = on, high = off"
+    },
+    {
+      "pin": 12,
+      "name": "1Z",
+      "role": "output",
+      "outputType": "open-collector",
+      "text": "current-switch output (sinks the on-state current when on, off = high impedance); low = on, high = off"
+    },
+    {
+      "pin": 8,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "open-collector",
+      "text": "current-switch output (sinks the on-state current when on, off = high impedance); low = on, high = off"
+    },
+    {
+      "pin": 9,
+      "name": "2Z",
+      "role": "output",
+      "outputType": "open-collector",
+      "text": "current-switch output (sinks the on-state current when on, off = high impedance); low = on, high = off"
+    }
+  ],
+  "functions": [
+    {
+      "output": "13,8",
+      "formula": "Y on (low) = C AND D AND NOT (A AND B); otherwise off (high)",
+      "text": "Truth table: with both inhibitors high, Y is on when A or B is low; when A and B are both high, Y is off and Z is on."
+    },
+    {
+      "output": "12,9",
+      "formula": "Z on (low) = C AND D AND A AND B; otherwise off (high)",
+      "text": "Complementary current output of the same channel. Either inhibitor low turns both Y and Z off."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 10,
+    "inputSchmitt": false,
+    "notes": "VCC+ 4.75-5.25 V, VCC- -4.75 to -5.25 V, TA 0-70 C. Current-mode outputs: on-state output current SN75109 min 3.5 mA, max 7 mA (SN75110: 6.5 to 15 mA); off-state current max 100 uA. Common-mode output voltage range 0 to +10 V and 0 to -3 V (recommended). Logic and inhibitor inputs VIH 2 V, VIL 0.8 V. When one channel is unused, inhibit it and/or ground its outputs."
+  },
+  "timing": [
+    {
+      "from": "A or B",
+      "to": "Y or Z",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 15,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 50 ohm, CL 40 pF"
+    },
+    {
+      "from": "A or B",
+      "to": "Y or Z",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 15,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 50 ohm, CL 40 pF"
+    },
+    {
+      "from": "C or D",
+      "to": "Y or Z",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 25,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 50 ohm, CL 40 pF"
+    },
+    {
+      "from": "C or D",
+      "to": "Y or Z",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 25,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 50 ohm, CL 40 pF"
+    }
+  ],
+  "unknown": [
+    "IOL/IOH are not meaningful for these current-switch outputs; the datasheet gives on-state current instead (recorded in notes), so both current fields are null.",
+    "No minimum propagation delays printed."
+  ],
+  "notes": "ND symbol covers 75109 and 75110; they differ only in on-state current (75109 about 6 mA, 75110 about 12 mA typical per page 4-6).",
+  "state": null,
+  "timingLimits": []
+}

@@ -1,0 +1,201 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74157",
+  "family": "74",
+  "title": "Quadruple 2-line-to-1-line data selector/multiplexer (74158 has inverted output)",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54157 ... SN74157, SN74L157, SN74LS157, SN74LS158, SN74S157, SN74S158, bulletin DL-S 7611847 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-181, 7-184 (PDF pages 180, 183)",
+      "familyUsed": "SN74157"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "SELECT",
+      "role": "input",
+      "text": "low selects the A inputs, high the B inputs"
+    },
+    {
+      "pin": 15,
+      "name": "STROBE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "7",
+        "9",
+        "12"
+      ],
+      "whenInactive": "low"
+    },
+    {
+      "pin": 2,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "4B",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4",
+      "formula": "1Y = STROBE' AND ((SELECT' AND 1A) OR (SELECT AND 1B))",
+      "text": "1Y follows 1A when SELECT is low and 1B when SELECT is high; STROBE high forces it low."
+    },
+    {
+      "output": "7",
+      "formula": "2Y = STROBE' AND ((SELECT' AND 2A) OR (SELECT AND 2B))",
+      "text": "2Y follows 2A when SELECT is low and 2B when SELECT is high; STROBE high forces it low."
+    },
+    {
+      "output": "9",
+      "formula": "3Y = STROBE' AND ((SELECT' AND 3A) OR (SELECT AND 3B))",
+      "text": "3Y follows 3A when SELECT is low and 3B when SELECT is high; STROBE high forces it low."
+    },
+    {
+      "output": "12",
+      "formula": "4Y = STROBE' AND ((SELECT' AND 4A) OR (SELECT AND 4B))",
+      "text": "4Y follows 4A when SELECT is low and 4B when SELECT is high; STROBE high forces it low."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "The datasheet's '158 types are only 'LS158 and 'S158 (inverted outputs; with STROBE high their outputs are high); no plain 74158 is listed."
+  },
+  "timing": [
+    {
+      "from": "Data",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "Data",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "Strobe",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "Strobe",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 21,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "Select",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "Select",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "This file describes the 74157 (true outputs)."
+}

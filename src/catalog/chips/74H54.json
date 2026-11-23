@@ -1,0 +1,136 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74H54",
+  "family": "74H",
+  "title": "Expandable 2-2-2-3-input AND-OR-INVERT gates",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "5-18 (PDF page 18)",
+      "familyUsed": "SN74H54 (J, N package)"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "6-30, 6-31 (PDF pages 30-31)",
+      "familyUsed": "SN74H54"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "E",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "F",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "G",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "H",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "I",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "NC",
+      "role": "nc",
+      "text": "datasheet: make no external connection"
+    },
+    {
+      "pin": 12,
+      "name": "NC",
+      "role": "nc",
+      "text": "datasheet: make no external connection"
+    },
+    {
+      "pin": 13,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "8",
+      "formula": "Y = NOT ((A AND B) OR (C AND D) OR (E AND F AND G) OR (H AND I))",
+      "text": "Y is low when AB, or CD, or EFG, or HI are all high."
+    }
+  ],
+  "state": null,
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 25 pF, RL 280 ohm"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 6.2,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 25 pF, RL 280 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 20,
+    "outputHighMaxCurrentMa": -0.5,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "The 1976 TI book draws pins 11 and 12 under 'make no external connection' and gives the 74H54 (J, N) no expander pins, so the 'expandable' in the ND title is not borne out by this datasheet. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

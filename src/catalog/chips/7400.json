@@ -1,0 +1,148 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7400",
+  "family": "74",
+  "title": "Quadruple 2-input NAND gate",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5400/SN7400/SN74LS00/SN74S00 datasheet SDLS025D",
+      "url": "https://www.ti.com/lit/ds/symlink/sn7400.pdf",
+      "pages": "3-4, 7",
+      "familyUsed": "SN7400"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "4B",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3",
+      "formula": "1Y = NOT(1A AND 1B)",
+      "text": "1Y is the NAND of 1A, 1B."
+    },
+    {
+      "output": "6",
+      "formula": "2Y = NOT(2A AND 2B)",
+      "text": "2Y is the NAND of 2A, 2B."
+    },
+    {
+      "output": "8",
+      "formula": "3Y = NOT(3B AND 3A)",
+      "text": "3Y is the NAND of 3B, 3A."
+    },
+    {
+      "output": "11",
+      "formula": "4Y = NOT(4B AND 4A)",
+      "text": "4Y is the NAND of 4B, 4A."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "outputHighMaxCurrentMa: the recommended-operating-conditions row for IOH -0.4 mA names 'SN5400, SN54LS00, and SN74LS00' and does not name SN7400 (the VOH test condition does use IOH -0.4 mA)."
+  ],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. The pin table gives 3A=10, 3B=9, 4A=13, 4B=12 (A and B are interchangeable in a NAND)."
+}

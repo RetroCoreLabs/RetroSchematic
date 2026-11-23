@@ -1,0 +1,191 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "3101",
+  "family": "bipolar-memory",
+  "title": "64-bit (16 x 4) bipolar RAM, open-collector outputs",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "Intel 1976 Data Catalog, 3101/3101A high speed fully decoded 64 bit memory",
+      "url": "https://www.bitsavers.org/components/intel/_dataBooks/1976_Intel_Data_Catalog.pdf",
+      "pages": "pdf 97-99 (printed 2-87..2-89)",
+      "familyUsed": "3101 (not 3101A)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A0",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "CS",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "5",
+        "7",
+        "9",
+        "11"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 3,
+      "name": "WE",
+      "role": "input",
+      "active": "low"
+    },
+    {
+      "pin": 4,
+      "name": "D1",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "O1",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 6,
+      "name": "D2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "O2",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "O3",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 10,
+      "name": "D3",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "O4",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 12,
+      "name": "D4",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5,7,9,11",
+      "formula": "On = NOT mem[A3..A0][n] when CS' AND WE; else high (off)",
+      "text": "Selected (CS low) and reading (WE high): outputs give the complement of the stored word. During a write, or when not selected, the outputs are high (open collector off)."
+    }
+  ],
+  "state": {
+    "bits": 64,
+    "organisation": "16 words x 4 bits",
+    "type": "static bipolar",
+    "read": "CS low, WE high.",
+    "write": "CS low, WE low: D1..D4 written into word A3..A0.",
+    "refresh": null
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 15,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "VCC 5 V +-5%, TA 0-75 C. VOL 0.45 V at IOL 15 mA; output leakage 100 uA max at 5.25 V. VIL 0.85 V, VIH 2.0 V."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "O",
+      "edge": "access",
+      "minNs": 10,
+      "typNs": null,
+      "maxNs": 60,
+      "conditions": "VCC 5 V +-5%, TA 0-75 C, output load 15 mA and 30 pF, measured at 1.5 V",
+      "symbol": "tA"
+    },
+    {
+      "from": "CS",
+      "to": "O",
+      "edge": "access",
+      "minNs": 5,
+      "typNs": null,
+      "maxNs": 42,
+      "conditions": "VCC 5 V +-5%, TA 0-75 C, output load 15 mA and 30 pF, measured at 1.5 V",
+      "symbol": "tS, chip select to output"
+    },
+    {
+      "from": "WE",
+      "to": "O",
+      "edge": "recovery",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V +-5%, TA 0-75 C, output load 15 mA and 30 pF, measured at 1.5 V",
+      "symbol": "tSA, sense recovery"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulseWidth",
+      "pin": "WE (tWP)",
+      "ref": null,
+      "minNs": 40
+    },
+    {
+      "what": "setup",
+      "pin": "D (data-write overlap tDW)",
+      "ref": "WE",
+      "minNs": 40
+    },
+    {
+      "what": "hold",
+      "pin": "write recovery tWR",
+      "ref": "WE",
+      "minNs": 5
+    }
+  ],
+  "unknown": [
+    "Output pull-up voltage limit for the open collector is only the absolute maximum (-0.5..+7 V); outputMaxVoltageV left null.",
+    "Exact reference edges for tDW and tWR were taken from the parameter names; the write-cycle waveform was only partly legible."
+  ],
+  "notes": "ND title says \"equal to 7489\". The National DM74L89A sheet (1976 National Memory Databook pdf 73) says pin compatible with SN7489, 3101, MM5501."
+}

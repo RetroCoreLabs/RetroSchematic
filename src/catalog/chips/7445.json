@@ -1,0 +1,196 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7445",
+  "family": "74",
+  "title": "BCD to decimal decoder/driver with open-collector outputs",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-20, 7-21 (PDF pages 19-20)",
+      "familyUsed": "SN7445"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "0",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 2,
+      "name": "1",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 3,
+      "name": "2",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 4,
+      "name": "3",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 5,
+      "name": "4",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 6,
+      "name": "5",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 7,
+      "name": "6",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "7",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 10,
+      "name": "8",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 11,
+      "name": "9",
+      "role": "output",
+      "outputType": "open-collector-high-voltage"
+    },
+    {
+      "pin": 12,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1",
+      "formula": "0 = NOT (D' AND C' AND B' AND A')",
+      "text": "Output 0 is low (on, transistor sinking) only when DCBA = 0000; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "2",
+      "formula": "1 = NOT (D' AND C' AND B' AND A)",
+      "text": "Output 1 is low (on, transistor sinking) only when DCBA = 0001; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "3",
+      "formula": "2 = NOT (D' AND C' AND B AND A')",
+      "text": "Output 2 is low (on, transistor sinking) only when DCBA = 0010; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "4",
+      "formula": "3 = NOT (D' AND C' AND B AND A)",
+      "text": "Output 3 is low (on, transistor sinking) only when DCBA = 0011; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "5",
+      "formula": "4 = NOT (D' AND C AND B' AND A')",
+      "text": "Output 4 is low (on, transistor sinking) only when DCBA = 0100; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "6",
+      "formula": "5 = NOT (D' AND C AND B' AND A)",
+      "text": "Output 5 is low (on, transistor sinking) only when DCBA = 0101; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "7",
+      "formula": "6 = NOT (D' AND C AND B AND A')",
+      "text": "Output 6 is low (on, transistor sinking) only when DCBA = 0110; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "9",
+      "formula": "7 = NOT (D' AND C AND B AND A)",
+      "text": "Output 7 is low (on, transistor sinking) only when DCBA = 0111; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "10",
+      "formula": "8 = NOT (D AND C' AND B' AND A')",
+      "text": "Output 8 is low (on, transistor sinking) only when DCBA = 1000; inputs 10-15 leave every output high."
+    },
+    {
+      "output": "11",
+      "formula": "9 = NOT (D AND C' AND B' AND A)",
+      "text": "Output 9 is low (on, transistor sinking) only when DCBA = 1001; inputs 10-15 leave every output high."
+    }
+  ],
+  "state": null,
+  "timing": [
+    {
+      "from": "A,B,C,D",
+      "to": "any",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 100 ohm"
+    },
+    {
+      "from": "A,B,C,D",
+      "to": "any",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 100 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 80,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 30,
+    "inputSchmitt": false,
+    "notes": "Open-collector, 30 V off-state output voltage (recommended operating conditions). Sinks up to 80 mA per output (description; VO(on) max 0.9 V at 80 mA, 0.4 V at 20 mA). Off-state leakage max 250 uA at 30 V. Lamp, relay or MOS driver."
+  },
+  "unknown": [
+    "Typical propagation delays: the table gives maximum only.",
+    "IOL is not in the recommended-operating-conditions table; 80 mA is the figure from the description and the VO(on) test condition.",
+    "IOH as a source current does not apply (open collector); outputHighMaxCurrentMa is null."
+  ],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

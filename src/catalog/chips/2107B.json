@@ -1,0 +1,293 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "2107B",
+  "family": "MOS-memory",
+  "title": "4096-bit (4K x 1) dynamic RAM, N-channel",
+  "package": "DIP-22",
+  "sources": [
+    {
+      "document": "Intel 1976 Data Catalog, 2107B 4096 bit dynamic RAM",
+      "url": "https://www.bitsavers.org/components/intel/_dataBooks/1976_Intel_Data_Catalog.pdf",
+      "pages": "pdf 68-71 (printed 2-58..2-61)",
+      "familyUsed": "2107B (200 ns grade)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "VBB",
+      "role": "power",
+      "voltage": "-5 V"
+    },
+    {
+      "pin": 2,
+      "name": "A9",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "A10",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "A11",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "CS",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "7"
+      ],
+      "whenInactive": "float",
+      "text": "chip select (TTL); low = selected; output high impedance when CS high"
+    },
+    {
+      "pin": 6,
+      "name": "DIN",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "DOUT",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "CS,CE"
+    },
+    {
+      "pin": 8,
+      "name": "A0",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 12,
+      "name": "WE",
+      "role": "input",
+      "active": "low",
+      "text": "read/write: high = read, low = write"
+    },
+    {
+      "pin": 13,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A5",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 17,
+      "name": "CE",
+      "role": "clock",
+      "edge": "rising",
+      "text": "chip enable: 12 V (MOS level) clock; the cycle runs while it is high"
+    },
+    {
+      "pin": 18,
+      "name": "VDD",
+      "role": "power",
+      "voltage": "+12 V"
+    },
+    {
+      "pin": 19,
+      "name": "A6",
+      "role": "input"
+    },
+    {
+      "pin": 20,
+      "name": "A7",
+      "role": "input"
+    },
+    {
+      "pin": 21,
+      "name": "A8",
+      "role": "input"
+    },
+    {
+      "pin": 22,
+      "name": "VSS",
+      "role": "ground"
+    }
+  ],
+  "functions": [
+    {
+      "output": "7",
+      "formula": null,
+      "text": "Three-state output; pin drawn as DOUT with a bar (inverted data). High impedance when CE is low (CE off) or CS is high. Data valid tCO after CE rises."
+    }
+  ],
+  "state": {
+    "bits": 4096,
+    "organisation": "4096 x 1",
+    "type": "dynamic",
+    "read": "Address and CS set up before CE rises (address registers on chip). WE high. Data out valid tACC after address, tCO after CE.",
+    "write": "WE low pulse while CE is high; DIN set up to WE. If WE is low before CE goes high, DIN must be valid when CE goes high.",
+    "refresh": "One read cycle on each of the 64 row addresses (A0..A5) every 2 ms (1 ms for 2107B-6). Refresh works whether CS is 1 or 0.",
+    "standby": "CE low: low standby power."
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 2,
+    "outputHighMaxCurrentMa": -2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "VDD +12 V +-5%, VCC +5 V +-10%, VBB -5 V +-5%, VSS 0 V. CE high VDD-1..VDD+1 V, CE low -1..+1 V. Other inputs VIH 2.4 V min, VIL 0.6 V max. VOL 0.45 V at 2 mA, VOH 2.4 V at -2 mA."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 200,
+      "conditions": "CLOAD 50 pF, one TTL load",
+      "symbol": "tACC"
+    },
+    {
+      "from": "CE",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 180,
+      "conditions": "CLOAD 50 pF, one TTL load",
+      "symbol": "tCO"
+    },
+    {
+      "from": "CE falling",
+      "to": "DOUT",
+      "edge": "PXZ",
+      "minNs": 0,
+      "typNs": null,
+      "maxNs": null,
+      "conditions": "CE off to output high impedance, min 0 ns, max not printed",
+      "symbol": "tCF"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "cycleTime",
+      "pin": "CE",
+      "ref": null,
+      "minNs": 400,
+      "text": "read or write"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CE high (tCE)",
+      "ref": null,
+      "minNs": 230,
+      "maxNs": 4000
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CE off (tCC)",
+      "ref": null,
+      "minNs": 130
+    },
+    {
+      "what": "setup",
+      "pin": "A,CS",
+      "ref": "CE rising",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "A,CS",
+      "ref": "CE rising",
+      "minNs": 100
+    },
+    {
+      "what": "setup",
+      "pin": "WE high (tWC, read)",
+      "ref": "CE rising",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "WE high (tWL, read)",
+      "ref": "CE",
+      "minNs": 0
+    },
+    {
+      "what": "setup",
+      "pin": "WE low (tW)",
+      "ref": "CE falling",
+      "minNs": 150
+    },
+    {
+      "what": "hold",
+      "pin": "WE (tCW)",
+      "ref": "CE rising",
+      "minNs": 150
+    },
+    {
+      "what": "setup",
+      "pin": "DIN (tDW)",
+      "ref": "WE",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "DIN (tDH)",
+      "ref": "WE",
+      "minNs": 0
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "WE low (tWP)",
+      "ref": null,
+      "minNs": 50
+    },
+    {
+      "what": "riseFallTime",
+      "pin": "CE",
+      "ref": null,
+      "minNs": 10,
+      "maxNs": 40
+    },
+    {
+      "what": "refreshPeriod",
+      "pin": null,
+      "ref": null,
+      "minNs": null,
+      "maxMs": 2
+    }
+  ],
+  "unknown": [
+    "Whether DOUT is the inverse of DIN is only implied by the bar on the pin name in the pin diagram; not stated in the text read.",
+    "Reference edges for tW and tCW (written as \"WE to CE off\" and \"CE to WE\") were taken from the parameter names; the waveform was only partly legible."
+  ],
+  "notes": "ND manual: \"4 K dynamic RAM 22 pin package\". Replacement for 2107A. Same pinout as TMS4030 (which uses VBB -3 V)."
+}

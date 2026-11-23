@@ -1,0 +1,186 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74298",
+  "family": "74",
+  "title": "Quadruple 2-input multiplexer with storage",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book 2nd ed. 1976, SN54298/SN74298 (bulletin DL-S 7611747, Mar 1974, rev. Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-432, 7-434 (PDF pages 431, 433)",
+      "familyUsed": "SN74298"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 3,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "B1",
+      "role": "input"
+    },
+    {
+      "pin": 1,
+      "name": "B2",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "C1",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "C2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "D1",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "D2",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "WORD SELECT",
+      "role": "input",
+      "text": "low: word 1 (A1,B1,C1,D1); high: word 2 (A2,B2,C2,D2)"
+    },
+    {
+      "pin": 11,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "falling"
+    },
+    {
+      "pin": 15,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "15,14,13,12",
+      "formula": "QA..QD = stored bits",
+      "text": "Outputs of the four flip-flops."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "falling edge of CLOCK",
+    "rules": [
+      "WORD SELECT low: QA..QD = A1,B1,C1,D1 at the falling clock edge",
+      "WORD SELECT high: QA..QD = A2,B2,C2,D2 at the falling clock edge",
+      "CLOCK high (no falling edge): hold"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74298: VCC 4.75-5.25 V, TA 0-70 C."
+  },
+  "timing": [
+    {
+      "from": "CLOCK",
+      "to": "QA..QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulseWidth",
+      "pin": "CLOCK",
+      "minNs": 20,
+      "text": "high or low"
+    },
+    {
+      "what": "setup",
+      "pin": "data",
+      "ref": "CLOCK falling",
+      "minNs": 15
+    },
+    {
+      "what": "setup",
+      "pin": "WORD SELECT",
+      "ref": "CLOCK falling",
+      "minNs": 25
+    },
+    {
+      "what": "hold",
+      "pin": "data",
+      "ref": "CLOCK falling",
+      "minNs": 5
+    },
+    {
+      "what": "hold",
+      "pin": "WORD SELECT",
+      "ref": "CLOCK falling",
+      "minNs": 0
+    }
+  ],
+  "unknown": [
+    "The switching table names no input for its single tPLH/tPHL pair; recorded as clock to output (the only path that drives the outputs).",
+    "No maximum clock frequency printed for the SN74298.",
+    "No minimum propagation delays printed."
+  ],
+  "notes": ""
+}

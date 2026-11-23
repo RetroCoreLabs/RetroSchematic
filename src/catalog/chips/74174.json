@@ -1,0 +1,219 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74174",
+  "family": "74",
+  "title": "Hex D-flip-flop",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54174, SN54175, SN54LS174, SN54LS175, SN54S174, SN54S175, SN74174, SN74175, SN74LS174, SN74LS175, SN74S174, SN74S175 Hex/quadruple D-type flip-flops with clear, bulletin DL-S 7611803 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-253, 7-256 (PDF pages 252, 255)",
+      "familyUsed": "SN74174"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 1,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 3,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "3D",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "3Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "4D",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "4Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "5D",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "5Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "6D",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "6Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "2",
+      "formula": "1Q = FF1",
+      "text": "Flip-flop 1 output."
+    },
+    {
+      "output": "5",
+      "formula": "2Q = FF2",
+      "text": "Flip-flop 2 output."
+    },
+    {
+      "output": "7",
+      "formula": "3Q = FF3",
+      "text": "Flip-flop 3 output."
+    },
+    {
+      "output": "10",
+      "formula": "4Q = FF4",
+      "text": "Flip-flop 4 output."
+    },
+    {
+      "output": "12",
+      "formula": "5Q = FF5",
+      "text": "Flip-flop 5 output."
+    },
+    {
+      "output": "15",
+      "formula": "6Q = FF6",
+      "text": "Flip-flop 6 output."
+    }
+  ],
+  "state": {
+    "bits": 6,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "CLEAR low: Q = 0 (Q' = 1) at once",
+      "CLEAR high, rising CLOCK edge: Q = D",
+      "CLEAR high, CLOCK high or low (no edge): hold"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "CLEAR",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 35,
+      "text": "recommended fclock 0 to 25 MHz"
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLOCK or CLEAR",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "CLEAR inactive state",
+      "ref": "CLOCK",
+      "minNs": 25
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "CLOCK",
+      "minNs": 5
+    }
+  ],
+  "unknown": [],
+  "notes": ""
+}

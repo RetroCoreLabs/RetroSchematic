@@ -78,7 +78,8 @@ their behaviour in `text` and `state` as far as the datasheet states it.
 From the datasheet's recommended operating conditions, for the 74 (commercial) part:
 `outputLowMaxCurrentMa` (IOL), `outputHighMaxCurrentMa` (IOH, negative = out of the pin),
 `outputMaxVoltageV` (only for open-collector outputs: the highest voltage the pull-up may go to),
-`inputSchmitt`, and `notes` for anything else that matters (for example "buffer: IOL 48 mA, three
+`inputSchmitt`, for Schmitt inputs `vtPlusV` and `vtMinusV` (the input voltages where the
+input switches going up and going down) and `hysteresisV` (the difference), and `notes` for anything else that matters (for example "buffer: IOL 48 mA, three
 times a standard gate").
 
 ## Timing
@@ -96,6 +97,23 @@ thing measured from the clock edge. One entry per path the datasheet lists:
   {"from": "CLK", "to": "Q", "edge": "PHL", "minNs": null, "typNs": 25, "maxNs": 40, "conditions": "..."}
 ]
 ```
+
+Three-state outputs also have enable and disable times, with `edge` `PZH` (from floating to
+high), `PZL` (floating to low), `PHZ` (high to floating) and `PLZ` (low to floating); `from` is
+the enable pin.
+
+`edge` is one of a fixed list. Besides the six above:
+
+| edge | meaning |
+|---|---|
+| `PZX` / `PXZ` | output enable / disable time where the datasheet does not split it by level |
+| `access` | memory: from the address or chip-select pin (`from`) until the data output is valid |
+| `recovery` | memory: time the output needs after a write before a read is valid (sense recovery) |
+| `rise` / `fall` | how long the output edge itself takes (opto-couplers, line drivers) |
+| `turnOn` / `turnOff` | opto-coupler: from the input current change until the output reaches the stated level |
+| `response` | line receiver: from the line input changing until the output responds |
+
+`symbol` (optional) keeps the datasheet's own name for the figure (`tRAC`, `tACC`, `ta(CE)`).
 
 `from` and `to` are pin names (or `any`/`Y` for all inputs/outputs of identical gates). Setup,
 hold and minimum pulse width go in `"timingLimits": [{"what": "setup", "pin": "D", "ref": "CLK",

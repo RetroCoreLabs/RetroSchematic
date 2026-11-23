@@ -1,0 +1,198 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8093",
+  "family": "DM80",
+  "title": "Tri-state quad buffer",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM70/DM8093,94 TRI-STATE quad buffers",
+      "url": "https://bitsavers.mirrorservice.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "3-5, 3-6 (PDF pages 350, 351)",
+      "familyUsed": "DM8093"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "C1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3"
+      ],
+      "whenInactive": "float",
+      "text": "control: high puts the output in high impedance"
+    },
+    {
+      "pin": 2,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "Y1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1"
+    },
+    {
+      "pin": 4,
+      "name": "C2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "6"
+      ],
+      "whenInactive": "float",
+      "text": "control: high puts the output in high impedance"
+    },
+    {
+      "pin": 5,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "Y2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "4"
+    },
+    {
+      "pin": 10,
+      "name": "C3",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "8"
+      ],
+      "whenInactive": "float",
+      "text": "control: high puts the output in high impedance"
+    },
+    {
+      "pin": 9,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 8,
+      "name": "Y3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "10"
+    },
+    {
+      "pin": 13,
+      "name": "C4",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "11"
+      ],
+      "whenInactive": "float",
+      "text": "control: high puts the output in high impedance"
+    },
+    {
+      "pin": 12,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "Y4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "13"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3,6,8,11",
+      "formula": "Y = A when C = L; Z when C = H",
+      "text": "Non-inverting buffer; a high on its control input puts the output in the high-impedance state. Pin-equivalent to the 74125."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "IOH -5.2 mA and IOL 16 mA are from the electrical table. Off-state current -40/+40 uA. Up to 128 devices on one bus line."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "C",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "C",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "C",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 5,
+      "maxNs": 8,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "C",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    }
+  ],
+  "unknown": [
+    "Recommended supply and temperature range for DM80 are not printed on the two pages read.",
+    "No minimum delays printed."
+  ],
+  "state": null,
+  "timingLimits": [],
+  "notes": ""
+}

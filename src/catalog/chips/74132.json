@@ -1,0 +1,174 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74132",
+  "family": "74",
+  "title": "Quadruple 2-input positive NAND Schmitt trigger",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 5, pin assignments, 132",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "book page 5-37 (PDF page 37)",
+      "familyUsed": "SN74132"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 6, Schmitt-trigger positive-NAND gates and inverters with totem-pole outputs, column '14, '132",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "book pages 6-14, 6-15 (PDF pages 14, 15)",
+      "familyUsed": "SN74132"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 3,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "2A",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 5,
+      "name": "2B",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 6,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "3A",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 10,
+      "name": "3B",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 8,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "4A",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 13,
+      "name": "4B",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 11,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3",
+      "formula": "1Y = NOT(1A AND 1B)",
+      "text": "Positive-logic NAND with Schmitt-trigger (hysteresis) inputs."
+    },
+    {
+      "output": "6",
+      "formula": "2Y = NOT(2A AND 2B)",
+      "text": "Positive-logic NAND with Schmitt-trigger (hysteresis) inputs."
+    },
+    {
+      "output": "8",
+      "formula": "3Y = NOT(3A AND 3B)",
+      "text": "Positive-logic NAND with Schmitt-trigger (hysteresis) inputs."
+    },
+    {
+      "output": "11",
+      "formula": "4Y = NOT(4A AND 4B)",
+      "text": "Positive-logic NAND with Schmitt-trigger (hysteresis) inputs."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": true,
+    "vtPlusV": {
+      "min": 1.5,
+      "typ": 1.7,
+      "max": 2.0
+    },
+    "vtMinusV": {
+      "min": 0.6,
+      "typ": 0.9,
+      "max": 1.1
+    },
+    "hysteresisV": {
+      "min": 0.4,
+      "typ": 0.8
+    },
+    "notes": "Thresholds at VCC 5 V: VT+ 1.5 / 1.7 / 2.0 V (min/typ/max), VT- 0.6 / 0.9 / 1.1 V, hysteresis min 0.4 V, typ 0.8 V. IIL max -1.2 mA, IIH max 40 uA. IT+ typ -0.43 mA, IT- typ -0.56 mA."
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "vtPlusV/vtMinusV/hysteresisV are extra fields in the electrical block for the Schmitt thresholds (FORMAT.md asks for VT+ and VT-)."
+}

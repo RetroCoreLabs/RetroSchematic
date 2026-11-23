@@ -1,0 +1,274 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8833",
+  "family": "8800",
+  "title": "Quad TRI-STATE party-line (bus) transceiver, non-inverting",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1975 Interface Integrated Circuits, DS7833/DS8833, DS7835/DS8835 quad TRI-STATE party line transceivers",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1975_National_Interface_Integrated_Circuits.pdf",
+      "pages": "pdf 115-118 (printed 3-42..3-45)",
+      "familyUsed": "DS8833"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "BUSA",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DRIVER_DISABLE",
+      "text": "bus pin: driver output and receiver input (with hysteresis)"
+    },
+    {
+      "pin": 2,
+      "name": "INA",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "OUTA",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RECEIVER_DISABLE"
+    },
+    {
+      "pin": 4,
+      "name": "BUSB",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DRIVER_DISABLE",
+      "text": "bus pin: driver output and receiver input (with hysteresis)"
+    },
+    {
+      "pin": 5,
+      "name": "INB",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "OUTB",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RECEIVER_DISABLE"
+    },
+    {
+      "pin": 7,
+      "name": "RECEIVER_DISABLE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "6",
+        "10",
+        "13"
+      ],
+      "whenInactive": "float",
+      "text": "high = receiver outputs off"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "DRIVER_DISABLE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "1",
+        "4",
+        "12",
+        "15"
+      ],
+      "whenInactive": "float",
+      "text": "high = bus drivers off"
+    },
+    {
+      "pin": 10,
+      "name": "OUTC",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RECEIVER_DISABLE"
+    },
+    {
+      "pin": 11,
+      "name": "INC",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "BUSC",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DRIVER_DISABLE",
+      "text": "bus pin: driver output and receiver input (with hysteresis)"
+    },
+    {
+      "pin": 13,
+      "name": "OUTD",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RECEIVER_DISABLE"
+    },
+    {
+      "pin": 14,
+      "name": "IND",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "BUSD",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DRIVER_DISABLE",
+      "text": "bus pin: driver output and receiver input (with hysteresis)"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1,4,12,15",
+      "formula": "BUSx = INx when DRIVER_DISABLE'; Z when DRIVER_DISABLE high",
+      "text": "The driver puts  INx on the bus while DRIVER DISABLE is low; floats while it is high."
+    },
+    {
+      "output": "3,6,10,13",
+      "formula": "OUTx = BUSx when RECEIVER_DISABLE'; Z when RECEIVER_DISABLE high",
+      "text": "The receiver shows  the bus level while RECEIVER DISABLE is low; floats while it is high. Receiver thresholds (DS88xx): high 1.5..2.0 V, low 0.8..1.5 V, typ 1.75 / 1.35 V (hysteresis)."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 50,
+    "outputHighMaxCurrentMa": -10.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Bus driver: sink 50 mA at 0.5 V (32 mA at 0.4 V), source -10.4 mA at 2.4 V (DS88xx). Receiver output: IOL 16 mA at 0.4 V, IOH -5.2 mA at 2.4 V. Bus pin leakage 80 uA max, also with VCC = 0 V."
+  },
+  "timing": [
+    {
+      "from": "IN",
+      "to": "BUS",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 30,
+      "conditions": "Figure 1 driver load"
+    },
+    {
+      "from": "IN",
+      "to": "BUS",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 30,
+      "conditions": "Figure 1 driver load"
+    },
+    {
+      "from": "BUS",
+      "to": "OUT",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 45,
+      "conditions": "Figure 2 receiver load"
+    },
+    {
+      "from": "BUS",
+      "to": "OUT",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 30,
+      "conditions": "Figure 2 receiver load"
+    },
+    {
+      "from": "DRIVER_DISABLE",
+      "to": "BUS",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF"
+    },
+    {
+      "from": "DRIVER_DISABLE",
+      "to": "BUS",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF"
+    },
+    {
+      "from": "DRIVER_DISABLE",
+      "to": "BUS",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF"
+    },
+    {
+      "from": "DRIVER_DISABLE",
+      "to": "BUS",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF"
+    },
+    {
+      "from": "RECEIVER_DISABLE",
+      "to": "OUT",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 6,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF"
+    },
+    {
+      "from": "RECEIVER_DISABLE",
+      "to": "OUT",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF"
+    },
+    {
+      "from": "RECEIVER_DISABLE",
+      "to": "OUT",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF"
+    },
+    {
+      "from": "RECEIVER_DISABLE",
+      "to": "OUT",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "No minimum delays printed.",
+    "No truth table printed; function read from the description and connection diagram.",
+    "Driver Figure-1 / receiver Figure-2 load values were not legible in the text layer."
+  ],
+  "notes": "BUS pins are driver outputs and receiver inputs at the same time."
+}

@@ -1,0 +1,74 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74120",
+  "family": "74",
+  "title": "Pulse synchronizer",
+  "package": "DIP-16",
+  "sources": [
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54120, SN74120 Dual pulse synchronizers/drivers, bulletin DL-S 7211537 (revised December 1972)",
+     "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+     "pages": "book pages 7-118 to 7-120 (PDF pages 117-119)", "familyUsed": "SN74120"}
+  ],
+  "pins": [
+    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
+    {"pin": 8,  "name": "GND", "role": "ground"},
+    {"pin": 1,  "name": "1M", "role": "input", "text": "mode control: low passes a train of pulses, high passes a single pulse. Internal pull-up."},
+    {"pin": 2,  "name": "1S1", "role": "input", "text": "start/stop latch input (see function table). Internal pull-up."},
+    {"pin": 3,  "name": "1S2", "role": "input", "text": "start/stop latch input (see function table). Internal pull-up."},
+    {"pin": 4,  "name": "1R", "role": "input", "text": "latch input; a high-to-low transition stops output pulses. Internal pull-up."},
+    {"pin": 5,  "name": "1C", "role": "input", "text": "clock input whose pulses are passed to the outputs; no pull-up"},
+    {"pin": 6,  "name": "1Y", "role": "output", "outputType": "totem-pole"},
+    {"pin": 7,  "name": "1Y'", "role": "output", "outputType": "totem-pole"},
+    {"pin": 15, "name": "2M", "role": "input", "text": "mode control, section 2. Internal pull-up."},
+    {"pin": 13, "name": "2S1", "role": "input", "text": "Internal pull-up."},
+    {"pin": 14, "name": "2S2", "role": "input", "text": "Internal pull-up."},
+    {"pin": 12, "name": "2R", "role": "input", "text": "Internal pull-up."},
+    {"pin": 11, "name": "2C", "role": "input", "text": "clock input, section 2"},
+    {"pin": 10, "name": "2Y", "role": "output", "outputType": "totem-pole"},
+    {"pin": 9,  "name": "2Y'", "role": "output", "outputType": "totem-pole"}
+  ],
+  "functions": [
+    {"output": "6,10", "formula": "Y = C AND PASS",
+     "text": "While the section is passing pulses, Y carries the clock pulses of C (16 ns typical from C); the start/stop latch and the clock latch decide whether a pulse is passed, and a pulse once started is passed in full (latched, not clipped). Formula is the behaviour described in the text, not the gate-level wiring."},
+    {"output": "7,9", "formula": "Y' = NOT Y",
+     "text": "Complement of Y (9 ns typical from C)."}
+  ],
+  "state": {"bits": 2, "changesOn": "levels and high-to-low transitions on R, S1, S2; clock C",
+    "rules": [
+      "R X, S1 L, S2 X: pass output pulses",
+      "R X, S1 X, S2 L: pass output pulses",
+      "R L, S1 H, S2 H: inhibit output pulses",
+      "R H, S1 high-to-low, S2 H: start output pulses",
+      "R H, S1 H, S2 high-to-low: start output pulses",
+      "R high-to-low, S1 H, S2 H: stop output pulses",
+      "R H, S1 H, S2 H: continue (operation started by the last high-to-low transition continues)",
+      "After start, M low: pulses keep passing until a stop command; M high: only a single clock pulse is passed",
+      "When stopped by S or R, the setup times decide which is the last pulse. A low-to-high transition on M meeting tsu(H) passes that positive clock pulse, then inhibits remaining pulses. Low-to-high transitions on M in the 20 ns after the falling edge of the clock pulse may or may not let the next pulse through.",
+      "Once an output pulse has started it is not cut short (C is latch-controlled)"
+    ]},
+  "electrical": {
+    "outputLowMaxCurrentMa": 48, "outputHighMaxCurrentMa": -2.4, "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Clock driver: outputs drive 60 Series 54/74 loads high and 30 loads low. M, R and S inputs have internal pull-up resistors (15 kOhm nominal shown in the input schematic) and may be left open; the C input has none. C input low-level current -3.2 mA max, other inputs -2.1 mA max."
+  },
+  "timing": [
+    {"from": "C", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 14, "maxNs": 22, "conditions": "VCC 5 V, TA 25 C, CL 45 pF, RL 133 ohm"},
+    {"from": "C", "to": "Y", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 25, "conditions": "VCC 5 V, TA 25 C, CL 45 pF, RL 133 ohm"},
+    {"from": "C", "to": "Y'", "edge": "PLH", "minNs": null, "typNs": 10, "maxNs": 16, "conditions": "VCC 5 V, TA 25 C, CL 45 pF, RL 133 ohm"},
+    {"from": "C", "to": "Y'", "edge": "PHL", "minNs": null, "typNs": 8, "maxNs": 13, "conditions": "VCC 5 V, TA 25 C, CL 45 pF, RL 133 ohm"}
+  ],
+  "timingLimits": [
+    {"what": "setup", "pin": "any input except M", "ref": "C", "minNs": 12, "text": "tsu(H or L), see datasheet Figures 2-5"},
+    {"what": "setup", "pin": "M", "ref": "C", "minNs": 0, "text": "tsu(H)"},
+    {"what": "setup", "pin": "M", "ref": "C", "minNs": 12, "text": "tsu(L)"},
+    {"what": "hold", "pin": "any input except M", "ref": "C", "minNs": 3, "text": "th(H or L)"},
+    {"what": "hold", "pin": "M", "ref": "C", "minNs": 20, "text": "th(H or L)"}
+  ],
+  "unknown": [
+    "The exact clock edge each setup/hold time refers to is drawn in Figures 2-5 (book page 7-121), which were not read.",
+    "The resting levels of Y and Y' while pulses are inhibited are not stated in the text that was read.",
+    "Gate-level formula: the functional block diagram was read only as a picture; the formula given is the behaviour from the text and function table."
+  ],
+  "notes": "Typical power 127 mW per driver."
+}

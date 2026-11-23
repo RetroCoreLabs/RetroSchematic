@@ -1,0 +1,296 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74173",
+  "family": "74",
+  "title": "4-bit D-type register with tri-state outputs",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54173, SN54LS173, SN74173, SN74LS173 4-bit D-type registers with 3-state outputs, bulletin DL-S 7611721 (October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-249, 7-251 (PDF pages 248, 250)",
+      "familyUsed": "SN74173"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 7,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 15,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "high"
+    },
+    {
+      "pin": 9,
+      "name": "G1",
+      "role": "input",
+      "active": "low",
+      "text": "data enable: both G1 and G2 low loads D at the clock edge; either high holds"
+    },
+    {
+      "pin": 10,
+      "name": "G2",
+      "role": "input",
+      "active": "low",
+      "text": "data enable (see G1)"
+    },
+    {
+      "pin": 1,
+      "name": "M",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "whenInactive": "float",
+      "text": "output control; M or N high puts the outputs in the high-impedance state; the flip-flops keep working"
+    },
+    {
+      "pin": 2,
+      "name": "N",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 14,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "pin": 13,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "pin": 12,
+      "name": "3D",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "3Q",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "pin": 11,
+      "name": "4D",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "4Q",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "1",
+        "2"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "output": "3",
+      "formula": "1Q = (M' AND N') ? FF1 : Z",
+      "text": "Shows flip-flop 1 when M and N are both low; high impedance when either is high."
+    },
+    {
+      "output": "4",
+      "formula": "2Q = (M' AND N') ? FF2 : Z",
+      "text": "Shows flip-flop 2 when M and N are both low; high impedance when either is high."
+    },
+    {
+      "output": "5",
+      "formula": "3Q = (M' AND N') ? FF3 : Z",
+      "text": "Shows flip-flop 3 when M and N are both low; high impedance when either is high."
+    },
+    {
+      "output": "6",
+      "formula": "4Q = (M' AND N') ? FF4 : Z",
+      "text": "Shows flip-flop 4 when M and N are both low; high impedance when either is high."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "CLEAR high: all four flip-flops = 0 at once",
+      "CLEAR low, CLOCK low (no edge): hold",
+      "CLEAR low, rising CLOCK, G1 high or G2 high: hold",
+      "CLEAR low, rising CLOCK, G1 low and G2 low: flip-flop = D",
+      "The output controls M and N do not affect the flip-flops"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Three-state outputs; off-state current +/-40 uA. Up to 128 SN74173 outputs may share a bus and still drive two standard loads."
+  },
+  "timing": [
+    {
+      "from": "CLEAR",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 50 pF"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 43,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 50 pF"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 31,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 50 pF"
+    },
+    {
+      "from": "M or N",
+      "to": "any Q",
+      "edge": "PZH",
+      "minNs": 7,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 50 pF"
+    },
+    {
+      "from": "M or N",
+      "to": "any Q",
+      "edge": "PZL",
+      "minNs": 7,
+      "typNs": 21,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 50 pF"
+    },
+    {
+      "from": "M or N",
+      "to": "any Q",
+      "edge": "PHZ",
+      "minNs": 3,
+      "typNs": 5,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 5 pF"
+    },
+    {
+      "from": "M or N",
+      "to": "any Q",
+      "edge": "PLZ",
+      "minNs": 3,
+      "typNs": 11,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 5 pF"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 35,
+      "text": "recommended fclock 0 to 25 MHz"
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLOCK or CLEAR",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "G1, G2",
+      "ref": "CLOCK",
+      "minNs": 17
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "CLOCK",
+      "minNs": 10
+    },
+    {
+      "what": "setup",
+      "pin": "CLEAR inactive state",
+      "ref": "CLOCK",
+      "minNs": 10
+    },
+    {
+      "what": "hold",
+      "pin": "G1, G2",
+      "ref": "CLOCK",
+      "minNs": 2
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "CLOCK",
+      "minNs": 10
+    }
+  ],
+  "unknown": [
+    "The switching table does not name the input for the enable/disable times; M or N is assumed from their role (output control). Marked as an assumption."
+  ],
+  "notes": "Edges PZH, PZL, PHZ, PLZ are output enable/disable times (three-state), not PLH/PHL. All switching figures at RL 400 ohm."
+}

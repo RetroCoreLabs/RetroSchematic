@@ -1,0 +1,217 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8831",
+  "family": "8800",
+  "title": "TRI-STATE line driver, quad single-ended or dual differential",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1975 Interface Integrated Circuits, DS7831/DS8831, DS7832/DS8832 TRI-STATE line driver",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1975_National_Interface_Integrated_Circuits.pdf",
+      "pages": "pdf 110-113 (printed 3-37..3-40)",
+      "familyUsed": "DS8831"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "B_DIS1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "5"
+      ],
+      "whenInactive": "float",
+      "text": "\"B\" output disable, NOR with pin 2"
+    },
+    {
+      "pin": 2,
+      "name": "B_DIS2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "5"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 3,
+      "name": "OUT_B2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "B_DIS1,B_DIS2"
+    },
+    {
+      "pin": 4,
+      "name": "IN_B2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "OUT_B1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "B_DIS1,B_DIS2"
+    },
+    {
+      "pin": 6,
+      "name": "IN_B1",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "MODE2",
+      "role": "input",
+      "text": "differential/single-ended mode control"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "MODE1",
+      "role": "input",
+      "text": "differential/single-ended mode control"
+    },
+    {
+      "pin": 10,
+      "name": "IN_A1",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "OUT_A1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "A_DIS1,A_DIS2"
+    },
+    {
+      "pin": 12,
+      "name": "IN_A2",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "OUT_A2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "A_DIS1,A_DIS2"
+    },
+    {
+      "pin": 14,
+      "name": "A_DIS2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "11",
+        "13"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 15,
+      "name": "A_DIS1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "11",
+        "13"
+      ],
+      "whenInactive": "float",
+      "text": "\"A\" output disable, NOR with pin 14"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "11,5",
+      "formula": "OUT_x1 = IN_x1 XOR (MODE1 OR MODE2) when x_DIS1' AND x_DIS2'; Z otherwise",
+      "text": "Channel 1 of each pair passes its input straight through when both mode inputs are 0 and inverts it when either is 1 (differential mode). Floats when either disable input of its side is 1."
+    },
+    {
+      "output": "13,3",
+      "formula": "OUT_x2 = IN_x2 when x_DIS1' AND x_DIS2'; Z otherwise",
+      "text": "Channel 2 always passes its input non-inverted; floats when either disable input of its side is 1. Tie IN_x1 to IN_x2 for a differential pair."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 40,
+    "outputHighMaxCurrentMa": -40,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DS8831: VOL 0.5 V max at 40 mA (0.4 V at 32 mA); VOH 1.8 V min at -40 mA, 2.4 V min at -5.2 mA. Has VCC clamp diodes (DS8832 does not)."
+  },
+  "timing": [
+    {
+      "from": "IN/MODE",
+      "to": "OUT",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C"
+    },
+    {
+      "from": "IN/MODE",
+      "to": "OUT",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C"
+    },
+    {
+      "from": "DIS",
+      "to": "OUT",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 6,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C"
+    },
+    {
+      "from": "DIS",
+      "to": "OUT",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C"
+    },
+    {
+      "from": "DIS",
+      "to": "OUT",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C"
+    },
+    {
+      "from": "DIS",
+      "to": "OUT",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "No minimum delays printed.",
+    "Load conditions for the switching table are on the waveform page (CL 50 pF / 5 pF jig) and were only partly legible."
+  ],
+  "notes": "Mode pins 7 and 9 both feed one NOR gate shared by both sides."
+}

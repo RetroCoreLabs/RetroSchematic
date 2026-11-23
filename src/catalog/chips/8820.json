@@ -1,0 +1,145 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8820",
+  "family": "8800",
+  "title": "Dual differential line receiver with strobe and on-chip termination",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "National Semiconductor 1975 Interface Integrated Circuits, DS7820/DS8820 dual line receiver",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1975_National_Interface_Integrated_Circuits.pdf",
+      "pages": "pdf 95-97 (printed 3-22..3-24)",
+      "familyUsed": "DS8820"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "IN-1",
+      "role": "analog",
+      "text": "inverting differential input (5 k input resistance typ)"
+    },
+    {
+      "pin": 2,
+      "name": "TERM1",
+      "role": "analog",
+      "text": "line termination resistor (170 ohm typ) to the non-inverting input; tie to the inverting input to use it"
+    },
+    {
+      "pin": 3,
+      "name": "IN+1",
+      "role": "analog",
+      "text": "non-inverting differential input"
+    },
+    {
+      "pin": 4,
+      "name": "STROBE1",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "RESP1",
+      "role": "analog",
+      "text": "response time control: capacitor to ground slows the receiver to reject noise spikes"
+    },
+    {
+      "pin": 6,
+      "name": "OUT1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "OUT2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "RESP2",
+      "role": "analog",
+      "text": "response time control: capacitor to ground slows the receiver to reject noise spikes"
+    },
+    {
+      "pin": 10,
+      "name": "STROBE2",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "IN+2",
+      "role": "analog",
+      "text": "non-inverting differential input"
+    },
+    {
+      "pin": 12,
+      "name": "TERM2",
+      "role": "analog",
+      "text": "line termination resistor (170 ohm typ) to the non-inverting input; tie to the inverting input to use it"
+    },
+    {
+      "pin": 13,
+      "name": "IN-2",
+      "role": "analog",
+      "text": "inverting differential input (5 k input resistance typ)"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6,8",
+      "formula": null,
+      "text": "Differential line receiver: the output is high when IN+ is above IN- by more than the threshold (0 V typ, +-0.5 V max with no common mode, +-1 V over +-15 V common mode), low when below. Input range +-15 V. The output state is defined for open inputs (level not read). STROBE gates the output; its polarity and the forced level are not given in the pages read."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 3.5,
+    "outputHighMaxCurrentMa": -0.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Not a 74-style table: VOL <= 0.4 V at 3.5 mA sink, VOH 2.5..5.5 V at 0.2 mA source (fanout of two TTL). VCC 4.75..5.25 V for DS8820."
+  },
+  "timing": [
+    {
+      "from": "IN",
+      "to": "OUT",
+      "edge": "response",
+      "minNs": null,
+      "typNs": 40,
+      "maxNs": null,
+      "conditions": "CDELAY = 0",
+      "symbol": "tr"
+    },
+    {
+      "from": "IN",
+      "to": "OUT",
+      "edge": "response",
+      "minNs": null,
+      "typNs": 150,
+      "maxNs": null,
+      "conditions": "CDELAY = 100 pF",
+      "symbol": "tr"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "STROBE polarity and the output level it forces are not stated in the pages read (only strobe current: 1.0/1.4 mA at 0.4 V).",
+    "Output level for open inputs not stated in the pages read.",
+    "Output stage type: the schematic shows an emitter-follower pull-up with resistor and a transistor pull-down; recorded as totem-pole.",
+    "The ND manual calls this part \"Tri-state line receiver\"; the DS8820 has no three-state output. The ND pinout (1 -, 2 terminate, 3 +, 4 strobe, 6 output) matches the DS8820 exactly.",
+    "Only a typical response time is printed; no tPLH/tPHL split and no maximum."
+  ],
+  "notes": "Two independent receivers. ND symbol shows one half with pin numbers of the other half in brackets."
+}

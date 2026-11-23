@@ -1,0 +1,286 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8553",
+  "family": "8000",
+  "title": "TRI-STATE 8-bit latch with common input/output pins",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM75/DM8553 TRI-STATE 8-Bit Latches",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "pdf 415-416 (printed 3-70, 3-71)",
+      "familyUsed": "DM8553"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "READ1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 2,
+      "name": "ENABLE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 3,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "high"
+    },
+    {
+      "pin": 4,
+      "name": "IO1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 5,
+      "name": "IO2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 6,
+      "name": "IO3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 7,
+      "name": "IO4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "IO5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 10,
+      "name": "IO6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 11,
+      "name": "IO7",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 12,
+      "name": "IO8",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ENABLE,READ1,READ2",
+      "text": "bidirectional: data input when floating, latch output when read"
+    },
+    {
+      "pin": 13,
+      "name": "WRITE2",
+      "role": "input",
+      "active": "low"
+    },
+    {
+      "pin": 14,
+      "name": "WRITE1",
+      "role": "input",
+      "active": "low"
+    },
+    {
+      "pin": 15,
+      "name": "READ2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,5,6,7,9,10,11,12",
+      "formula": "IOn = latch n when ENABLE' AND READ1' AND READ2' AND WRITE1 AND WRITE2; otherwise Z",
+      "text": "The I/O pins drive the stored byte only when ENABLE and both READ inputs are low and both WRITE inputs are high (read). Otherwise they float and act as inputs."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "level (transparent latch while writing)",
+    "rules": [
+      "CLEAR H, ENABLE L, READ L, WRITE H: enter L into all latches, bus shows L",
+      "CLEAR H, ENABLE L, READ L, WRITE L: enter L, bus Hi-Z",
+      "CLEAR L, ENABLE L, READ H, WRITE H: do nothing, bus Hi-Z",
+      "CLEAR L, ENABLE H: do nothing, bus Hi-Z",
+      "CLEAR L, ENABLE L, WRITE L: write, latches take the bus levels",
+      "CLEAR L, ENABLE L, READ L, WRITE H: read, bus shows the latches"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM85 column."
+  },
+  "timing": [
+    {
+      "from": "CLEAR",
+      "to": "IO",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "ENABLE/READ",
+      "to": "IO",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "ENABLE/READ",
+      "to": "IO",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 38,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "ENABLE/READ",
+      "to": "IO",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "ENABLE/READ",
+      "to": "IO",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulseWidth",
+      "pin": "CLEAR",
+      "ref": null,
+      "minNs": 15,
+      "typNs": 10
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "WRITE",
+      "ref": null,
+      "minNs": 40,
+      "typNs": 28
+    },
+    {
+      "what": "setup",
+      "pin": "IO (high level)",
+      "ref": "WRITE",
+      "minNs": 20,
+      "typNs": 14
+    },
+    {
+      "what": "setup",
+      "pin": "IO (low level)",
+      "ref": "WRITE",
+      "minNs": 36,
+      "typNs": 26
+    },
+    {
+      "what": "hold",
+      "pin": "IO (high level)",
+      "ref": "WRITE",
+      "minNs": -15,
+      "typNs": -26
+    },
+    {
+      "what": "hold",
+      "pin": "IO (low level)",
+      "ref": "WRITE",
+      "minNs": -8,
+      "typNs": -14
+    }
+  ],
+  "unknown": [
+    "The reference signal for data setup/hold (taken as WRITE) is not named in the text read; the timing waveform was not read.",
+    "In the truth table READ and WRITE mean \"both READ inputs\" / \"both WRITE inputs\"; behaviour with the two READ (or two WRITE) pins at different levels is not stated.",
+    "No minimum delays printed."
+  ],
+  "notes": "The IO pins are both inputs and three-state outputs; given role output with a text note."
+}

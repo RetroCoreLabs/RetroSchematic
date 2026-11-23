@@ -1,0 +1,209 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74164",
+  "family": "74",
+  "title": "8-bit shift register",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54164, SN54L164, SN54LS164, SN74164, SN74L164, SN74LS164 8-bit parallel-out serial shift registers, bulletin DL-S 7611835 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-206, 7-208 (PDF pages 205, 207)",
+      "familyUsed": "SN74164"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input",
+      "text": "gated serial input"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input",
+      "text": "gated serial input"
+    },
+    {
+      "pin": 8,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 9,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 3,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "QE",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "QF",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QG",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "QH",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3,4,5,6,10,11,12,13",
+      "formula": "QA..QH = register bits 0..7",
+      "text": "Parallel outputs of the 8 stages; QA is the first stage."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "CLEAR low: QA..QH = 0 at once",
+      "CLEAR high, CLOCK low: hold",
+      "CLEAR high, rising CLOCK edge: QA = A AND B; QB..QH = QA..QG before the edge (one-bit shift)"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 8,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Note the low output current: IOL 8 mA, IOH -400 uA (half a standard 74 output)."
+  },
+  "timing": [
+    {
+      "from": "CLEAR",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 36,
+      "conditions": "VCC 5 V, TA 25 C, RL 800 ohm, CL 15 pF"
+    },
+    {
+      "from": "CLEAR",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 42,
+      "conditions": "VCC 5 V, TA 25 C, RL 800 ohm, CL 50 pF"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": 8,
+      "typNs": 17,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, RL 800 ohm, CL 15 pF"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": 10,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, RL 800 ohm, CL 50 pF"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": 10,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, RL 800 ohm, CL 15 pF"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": 10,
+      "typNs": 25,
+      "maxNs": 37,
+      "conditions": "VCC 5 V, TA 25 C, RL 800 ohm, CL 50 pF"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 36,
+      "text": "recommended fclock 0 to 25 MHz"
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLOCK or CLEAR",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "A, B",
+      "ref": "CLOCK",
+      "minNs": 15
+    },
+    {
+      "what": "hold",
+      "pin": "A, B",
+      "ref": "CLOCK",
+      "minNs": 5
+    }
+  ],
+  "unknown": [],
+  "notes": "A low at either serial input makes the next bit shifted in a low; data at the serial inputs may change while the clock is high or low, only data meeting the setup time is taken."
+}

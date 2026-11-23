@@ -1,0 +1,117 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "MCT2",
+  "family": "opto",
+  "title": "Phototransistor optocoupler (GaAs infrared LED + NPN phototransistor)",
+  "package": "DIP-6",
+  "sources": [
+    {
+      "document": "Fairchild Semiconductor MCT2/MCT2E/MCT210/MCT271/MCT2200/MCT2201/MCT2202 phototransistor optocouplers, 10/10/03",
+      "url": "https://www.komponenten.es.aau.dk/fileadmin/komponenten/Data_Sheet/Opto/MCT2.pdf",
+      "pages": "1-4",
+      "familyUsed": "MCT2 (non -M, black package)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "ANODE",
+      "role": "analog",
+      "text": "infrared LED anode"
+    },
+    {
+      "pin": 2,
+      "name": "CATHODE",
+      "role": "analog",
+      "text": "infrared LED cathode"
+    },
+    {
+      "pin": 3,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 4,
+      "name": "EMITTER",
+      "role": "analog",
+      "text": "phototransistor emitter"
+    },
+    {
+      "pin": 5,
+      "name": "COLLECTOR",
+      "role": "analog",
+      "text": "phototransistor collector"
+    },
+    {
+      "pin": 6,
+      "name": "BASE",
+      "role": "analog",
+      "text": "phototransistor base"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": null,
+      "text": "Current through the LED (pins 1 to 2) turns the phototransistor on: collector current is at least 20% of the LED current (CTR min 20% at IF 10 mA, VCE 10 V). LED forward voltage 1.25 V typ, 1.50 V max at 20 mA. VCE(sat) 0.4 V max at IC 2 mA, IF 16 mA. No LED current: collector dark current 50 nA max at VCE 10 V."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 30,
+    "inputSchmitt": false,
+    "notes": "Limits, not recommended conditions: LED IF 100 mA max, VR 3 V; collector current 50 mA max; VCEO 30 V; BVCBO 70 V min; BVECO 7 V min. outputMaxVoltageV = VCEO."
+  },
+  "timing": [
+    {
+      "from": "IF",
+      "to": "COLLECTOR",
+      "edge": "turnOn",
+      "minNs": null,
+      "typNs": 1100,
+      "maxNs": null,
+      "conditions": "IF 15 mA, VCC 5 V, RL 2 k, RB open",
+      "symbol": "turn-on, output 5 V to 0.8 V"
+    },
+    {
+      "from": "IF",
+      "to": "COLLECTOR",
+      "edge": "turnOff",
+      "minNs": null,
+      "typNs": 50000,
+      "maxNs": null,
+      "conditions": "IF 15 mA, VCC 5 V, RL 2 k, RB open",
+      "symbol": "turn-off, output saturated to 2.0 V"
+    },
+    {
+      "from": "IF",
+      "to": "COLLECTOR",
+      "edge": "turnOn",
+      "minNs": null,
+      "typNs": 1300,
+      "maxNs": null,
+      "conditions": "IF 20 mA, VCC 5 V, RL 2 k, RB 100 k",
+      "symbol": "turn-on, output 5 V to 0.8 V"
+    },
+    {
+      "from": "IF",
+      "to": "COLLECTOR",
+      "edge": "turnOff",
+      "minNs": null,
+      "typNs": 20000,
+      "maxNs": null,
+      "conditions": "IF 20 mA, VCC 5 V, RL 2 k, RB 100 k",
+      "symbol": "turn-off, output saturated to 2.0 V"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The only datasheet found is a 2003 Fairchild sheet; no 1970s original (Monsanto/GI/Motorola) was found. Figures may differ from the parts ND used.",
+    "Switching times are typical only (the column could be typ; the sheet prints one number per row).",
+    "Minimum CTR read as 20% from the MCT2/MCT2E row; the text layer of that table is out of order."
+  ],
+  "notes": "Times are in ns (1.1 us = 1100 ns)."
+}

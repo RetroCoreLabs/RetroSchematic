@@ -1,0 +1,204 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74166",
+  "family": "74",
+  "title": "8-bit shift register",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54166, SN54LS166, SN74166, SN74LS166 8-bit shift registers, bulletin DL-S 7611808 (October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-217, 7-219 (PDF pages 216, 218)",
+      "familyUsed": "SN74166"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 15,
+      "name": "SHIFT/LOAD",
+      "role": "input",
+      "text": "high: serial shift; low: synchronous parallel load at the next clock edge"
+    },
+    {
+      "pin": 7,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising",
+      "text": "NORed with CLOCK INHIBIT"
+    },
+    {
+      "pin": 6,
+      "name": "CLOCK INHIBIT",
+      "role": "input",
+      "active": "high",
+      "text": "high inhibits clocking; change it to high only while CLOCK is high"
+    },
+    {
+      "pin": 9,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 1,
+      "name": "SERIAL INPUT",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "A",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 3,
+      "name": "B",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 4,
+      "name": "C",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 5,
+      "name": "D",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 10,
+      "name": "E",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 11,
+      "name": "F",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 12,
+      "name": "G",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 14,
+      "name": "H",
+      "role": "input",
+      "text": "parallel data input"
+    },
+    {
+      "pin": 13,
+      "name": "QH",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "13",
+      "formula": "QH = register bit H (last stage)",
+      "text": "Serial output of the eighth stage."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "rising edge of (CLOCK OR CLOCK INHIBIT)",
+    "rules": [
+      "CLEAR low: all eight flip-flops = 0 at once, overriding all other inputs including the clock",
+      "CLEAR high, SHIFT/LOAD low, clock edge: QA..QH = A..H (synchronous parallel load; serial flow inhibited)",
+      "CLEAR high, SHIFT/LOAD high, clock edge: QA = SERIAL INPUT, QB..QH = QA..QG before the edge",
+      "No clock edge (CLOCK or CLOCK INHIBIT held high, or clock steady): hold",
+      "The clock is a 2-input NOR of CLOCK and CLOCK INHIBIT, clocked on the low-to-high edge of the clock pulse"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "All inputs buffered to one standard load."
+  },
+  "timing": [
+    {
+      "from": "CLEAR",
+      "to": "QH",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QH",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QH",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 26,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 35,
+      "text": "recommended fclock 0 to 25 MHz"
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLOCK or CLEAR",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "SHIFT/LOAD",
+      "ref": "CLOCK",
+      "minNs": 30,
+      "text": "mode-control setup time"
+    },
+    {
+      "what": "setup",
+      "pin": "data (A..H, SERIAL INPUT)",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "any input",
+      "ref": "CLOCK",
+      "minNs": 0
+    }
+  ],
+  "unknown": [],
+  "notes": ""
+}

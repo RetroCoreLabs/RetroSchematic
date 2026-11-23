@@ -1,0 +1,244 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74151",
+  "family": "74",
+  "title": "Data selector/multiplexer 8-1",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54150, SN54151A, SN54152A, SN54LS151, SN54LS152, SN54S151, SN74150, SN74151A, SN74LS151, SN74S151 Data selectors/multiplexers, bulletin DL-S 7611819 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-157 to 7-160 (PDF pages 156-159)",
+      "familyUsed": "SN74151A"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 4,
+      "name": "D0",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "D1",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "D2",
+      "role": "input"
+    },
+    {
+      "pin": 1,
+      "name": "D3",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "D4",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "D5",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "D6",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "D7",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "A",
+      "role": "input",
+      "text": "data select, least significant"
+    },
+    {
+      "pin": 10,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "C",
+      "role": "input",
+      "text": "data select, most significant"
+    },
+    {
+      "pin": 7,
+      "name": "STROBE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "5",
+        "6"
+      ],
+      "whenInactive": "Y low, W high"
+    },
+    {
+      "pin": 5,
+      "name": "Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "W",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": "Y = STROBE' AND ((C' AND B' AND A' AND D0) OR (C' AND B' AND A AND D1) OR (C' AND B AND A' AND D2) OR (C' AND B AND A AND D3) OR (C AND B' AND A' AND D4) OR (C AND B' AND A AND D5) OR (C AND B AND A' AND D6) OR (C AND B AND A AND D7))",
+      "text": "With STROBE low, Y follows the data input D0-D7 picked by C,B,A. STROBE high forces Y low."
+    },
+    {
+      "output": "6",
+      "formula": "W = NOT Y",
+      "text": "Complement of Y; STROBE high forces W high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "A, B or C",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 38,
+      "conditions": "4 levels; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A, B or C",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 38,
+      "conditions": "4 levels; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A, B or C",
+      "to": "W",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 26,
+      "conditions": "3 levels; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A, B or C",
+      "to": "W",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 30,
+      "conditions": "3 levels; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "W",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 21,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "W",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D0 thru D7",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D0 thru D7",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D0 thru D7",
+      "to": "W",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D0 thru D7",
+      "to": "W",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The datasheet read is for the SN74151A (the 'A' version); the original SN74151 without suffix was not found as a separate datasheet."
+  ],
+  "notes": "whenInactive for STROBE is not one of the single words in FORMAT.md: the two outputs go to different levels (Y low, W high). The '151A has address buffers with symmetrical delays through the complementary paths."
+}

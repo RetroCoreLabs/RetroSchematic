@@ -1,0 +1,377 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "MC4007",
+  "family": "MC4000",
+  "title": "Dual binary to one-of-four line decoder (MTTL)",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "Motorola 1971 TTL Integrated Circuits Data Book, MC4007L,P dual binary to one-of-four line decoder (MC4300/MC4000 series)",
+      "url": "https://www.bitsavers.org/components/motorola/_dataBooks/1971_Motorola_TTL_Integrated_Circuits_Data_Book.pdf",
+      "pages": "pdf 229-230",
+      "familyUsed": "MC4007L,P"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "Q3_1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 2,
+      "name": "Q2_1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 3,
+      "name": "Q1_1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "Q0_1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "E1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "whenInactive": null
+    },
+    {
+      "pin": 6,
+      "name": "X1",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "Y1",
+      "role": "input"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Y2",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "X2",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "E2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "whenInactive": null
+    },
+    {
+      "pin": 12,
+      "name": "Q0_2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "Q1_2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "Q2_2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "Q3_2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,12",
+      "formula": "Q0 = NOT (E' AND X' AND Y')",
+      "text": "Q0 low when enabled and X=0, Y=0."
+    },
+    {
+      "output": "3,13",
+      "formula": "Q1 = NOT (E' AND X AND Y')",
+      "text": "Q1 low when enabled and X=1, Y=0."
+    },
+    {
+      "output": "2,14",
+      "formula": "Q2 = NOT (E' AND X' AND Y)",
+      "text": "Q2 low when enabled and X=0, Y=1."
+    },
+    {
+      "output": "1,15",
+      "formula": "Q3 = NOT (E' AND X AND Y)",
+      "text": "Q3 low when enabled and X=1, Y=1. The formulas assume all outputs are high when E is high (see unknown)."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -1.6,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "From the test-current table: VOL 0.4 V max at IOL2 16 mA (IOL1 17.6 mA); VOH 2.5 V min at IOH -1.6 mA. Output loading factor 10. 125 mW typ per package."
+  },
+  "timing": [
+    {
+      "from": "X",
+      "to": "Q0",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q0",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q1",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q1",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q2",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q2",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q3",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "X",
+      "to": "Q3",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q0",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q0",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q1",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q1",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q2",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q2",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q3",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "Y",
+      "to": "Q3",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19.0,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q0",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q0",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q1",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q1",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q2",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q2",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q3",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-on delay)"
+    },
+    {
+      "from": "E",
+      "to": "Q3",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14.5,
+      "maxNs": null,
+      "conditions": "TA 25 C, typical only (turn-off delay)"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "Output level with ENABLE high is not in the printed truth table (only E = 0 is shown); whenInactive left null.",
+    "Only typical delays are printed; no minimum or maximum."
+  ],
+  "notes": "ND title \"Dual 1-of-4 decoder\". Outputs are active low."
+}

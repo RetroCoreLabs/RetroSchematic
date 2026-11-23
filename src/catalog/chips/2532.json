@@ -1,0 +1,145 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "2532",
+  "family": "MOS-shift-register",
+  "title": "Quad 80-bit static shift register (P-channel MOS)",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "Signetics 1972 MOS data book, 2532 quad 80-bit static shift register (ADVANCE SPECIFICATION)",
+      "url": "https://www.bitsavers.org/components/signetics/_dataBooks/1972_Signetics_MOS.pdf",
+      "pages": "pdf 112-113 (printed 111-112)",
+      "familyUsed": "2532B"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "OUT1",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "push-pull 0..+5 V"
+    },
+    {
+      "pin": 2,
+      "name": "REC1",
+      "role": "input",
+      "text": "recirculate: 1 = recirculate, 0 = load IN"
+    },
+    {
+      "pin": 3,
+      "name": "IN1",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "OUT2",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "push-pull 0..+5 V"
+    },
+    {
+      "pin": 5,
+      "name": "REC2",
+      "role": "input",
+      "text": "recirculate: 1 = recirculate, 0 = load IN"
+    },
+    {
+      "pin": 6,
+      "name": "IN2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "OUT3",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "push-pull 0..+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "VDD",
+      "role": "ground",
+      "text": "VDD (ground)"
+    },
+    {
+      "pin": 9,
+      "name": "REC3",
+      "role": "input",
+      "text": "recirculate: 1 = recirculate, 0 = load IN"
+    },
+    {
+      "pin": 10,
+      "name": "IN3",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "PHI_IN",
+      "role": "clock",
+      "edge": "falling",
+      "text": "single-phase clock common to all four registers; data entered while high, shifted when it goes low"
+    },
+    {
+      "pin": 12,
+      "name": "VGG",
+      "role": "power",
+      "voltage": "-12 V"
+    },
+    {
+      "pin": 13,
+      "name": "OUT4",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "push-pull 0..+5 V"
+    },
+    {
+      "pin": 14,
+      "name": "REC4",
+      "role": "input",
+      "text": "recirculate: 1 = recirculate, 0 = load IN"
+    },
+    {
+      "pin": 15,
+      "name": "IN4",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1,4,7,13",
+      "formula": null,
+      "text": "OUTn is the last bit of the 80-bit register n. Each clock fall shifts the register one place."
+    }
+  ],
+  "state": {
+    "bits": 320,
+    "organisation": "4 registers x 80 bits, static",
+    "changesOn": "clock: data entered while PHI_IN is 1, shifted when it goes to 0",
+    "rules": [
+      "RECn = 0: INn is written into register n",
+      "RECn = 1: register n recirculates (output fed back), INn ignored"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 1.6,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Advance specification: sink 1.6 mA (one TTL load). Supplies +5 V and -12 V. DC to 2.5 MHz guaranteed. Inputs have internal pull-ups."
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [
+    "The datasheet read is an ADVANCE SPECIFICATION with no electrical or timing tables: propagation delay, clock widths, setup/hold and supply tolerances are all unknown.",
+    "Output source current not printed."
+  ],
+  "notes": "Not the 2532 EPROM. Datasheet: pin-for-pin replacement for MK1007P and TMS3409."
+}

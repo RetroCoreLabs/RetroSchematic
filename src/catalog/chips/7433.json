@@ -1,0 +1,166 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7433",
+  "family": "74",
+  "title": "Quadruple 2-input NOR buffer with open-collector",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5433/SN54LS33/SN7433/SN74LS33 datasheet SDLS101",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls33.pdf",
+      "pages": "1, 3",
+      "familyUsed": "SN7433"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 2,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 11,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "4B",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1",
+      "formula": "1Y = NOT(1A OR 1B)",
+      "text": "1Y is the NOR of 1A, 1B. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "4",
+      "formula": "2Y = NOT(2A OR 2B)",
+      "text": "2Y is the NOR of 2A, 2B. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "10",
+      "formula": "3Y = NOT(3A OR 3B)",
+      "text": "3Y is the NOR of 3A, 3B. Open collector: the high level needs an outside pull-up."
+    },
+    {
+      "output": "13",
+      "formula": "4Y = NOT(4A OR 4B)",
+      "text": "4Y is the NOR of 4A, 4B. Open collector: the high level needs an outside pull-up."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 48,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 5.5,
+    "inputSchmitt": false,
+    "notes": "Open-collector buffer: IOL 48 mA vs 16 mA for 7402: can drive three times as many inputs or a long line. Open collector: no IOH figure applies; the datasheet gives an off-state leakage of max 0.25 mA at VOH 5.5 V instead."
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 133 (the scan prints kohm), CL 50 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, RL 133 (the scan prints kohm), CL 50 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 133 (the scan prints kohm), CL 150 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 24,
+      "conditions": "VCC 5 V, TA 25 C, RL 133 (the scan prints kohm), CL 150 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "Load resistor unit in the switching table: the scan reads '133 kohm'; the sister parts 7428/7437/7438 print 133 ohm. Not settled from the 7433 sheet itself."
+  ],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty."
+}

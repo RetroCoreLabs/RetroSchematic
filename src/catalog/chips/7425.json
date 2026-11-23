@@ -1,0 +1,144 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7425",
+  "family": "74",
+  "title": "Dual 4-input NOR gate with strobe",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5423/SN5425/SN7423/SN7425 datasheet SDLS082",
+      "url": "https://www.ti.com/lit/ds/symlink/sn7425.pdf",
+      "pages": "1-3",
+      "familyUsed": "SN7425"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1G",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "6"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 4,
+      "name": "1C",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "2G",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "8"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 12,
+      "name": "2C",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6",
+      "formula": "1Y = NOT(1G AND (1A OR 1B OR 1C OR 1D))",
+      "text": "When 1G is high, 1Y is low if any of 1A, 1B, 1C, 1D is high, else high; when 1G is low, 1Y is high."
+    },
+    {
+      "output": "8",
+      "formula": "2Y = NOT(2G AND (2A OR 2B OR 2C OR 2D))",
+      "text": "When 2G is high, 2Y is low if any of 2A, 2B, 2C, 2D is high, else high; when 2G is low, 2Y is high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Strobe inputs load more than data inputs: IIH 160 uA vs 40 uA, IIL -6.4 mA vs -1.6 mA."
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. The switching table covers the '23 and '25 together, measured with fan-out N = 10."
+}

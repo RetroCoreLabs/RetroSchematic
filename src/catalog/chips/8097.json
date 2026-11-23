@@ -1,0 +1,207 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8097",
+  "family": "8000",
+  "title": "TRI-STATE hex buffer, non-inverting",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM70/DM8095,L95,96,L96,97,L97,98,L98 TRI-STATE Hex Buffers",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "pdf 352-353 (printed 3-7, 3-8)",
+      "familyUsed": "DM8097"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "G1",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 2,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "Y1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G1"
+    },
+    {
+      "pin": 4,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "Y2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G1"
+    },
+    {
+      "pin": 6,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "Y3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G1"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Y4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G1"
+    },
+    {
+      "pin": 10,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "Y5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G2"
+    },
+    {
+      "pin": 12,
+      "name": "A5",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "Y6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G2"
+    },
+    {
+      "pin": 14,
+      "name": "A6",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "G2",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "11",
+        "13"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3,5,7,9",
+      "formula": "Yn = An when G1' ; Z when G1 high",
+      "text": "Y1..Y4 give the same level as A1..A4 while G1 is low; they float (high impedance) while G1 is high."
+    },
+    {
+      "output": "11,13",
+      "formula": "Yn = An when G2' ; Z when G2 high",
+      "text": "Y5, Y6 give the same level as A5, A6 while G2 is low; they float while G2 is high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 32,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM80 (commercial) column: IOL 32 mA, IOH -5.2 mA."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 16,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 37,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 6,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "G",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "No minimum propagation delays are printed (path-delay function uses 0 ns).",
+    "Switching table text layer is partly garbled; values were read in column order (DM70/80 95,97 and 96,98 columns)."
+  ],
+  "notes": "Four buffers on G1, two on G2. Datasheet says pin equivalent to DM54367."
+}

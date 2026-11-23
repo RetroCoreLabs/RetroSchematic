@@ -1,0 +1,164 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7486",
+  "family": "74",
+  "title": "Quadruple 2-input exclusive-OR element",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-64, 7-66 (PDF pages 64-65)",
+      "familyUsed": "SN7486 (J, N package)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "4B",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3",
+      "formula": "1Y = 1A XOR 1B",
+      "text": "1Y is high when exactly one of 1A, 1B is high."
+    },
+    {
+      "output": "6",
+      "formula": "2Y = 2A XOR 2B",
+      "text": "2Y is high when exactly one of 2A, 2B is high."
+    },
+    {
+      "output": "8",
+      "formula": "3Y = 3A XOR 3B",
+      "text": "3Y is high when exactly one of 3A, 3B is high."
+    },
+    {
+      "output": "11",
+      "formula": "4Y = 4A XOR 4B",
+      "text": "4Y is high when exactly one of 4A, 4B is high."
+    }
+  ],
+  "state": null,
+  "timing": [
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, other input low"
+    },
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 17,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, other input low"
+    },
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, other input high"
+    },
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, other input high"
+    }
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

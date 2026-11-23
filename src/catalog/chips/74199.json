@@ -1,0 +1,250 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74199",
+  "family": "74",
+  "title": "8-bit shift register",
+  "package": "DIP-24",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54198/SN54199/SN74198/SN74199 (bulletin DL-S 7611841, Dec 1972, rev. Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343)",
+      "familyUsed": "SN74199"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 24,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 2,
+      "name": "J",
+      "role": "input",
+      "text": "serial input"
+    },
+    {
+      "pin": 1,
+      "name": "K'",
+      "role": "input",
+      "text": "serial input (inverted K)"
+    },
+    {
+      "pin": 23,
+      "name": "SHIFT/LOAD'",
+      "role": "input",
+      "text": "low: parallel load; high: shift QA toward QH"
+    },
+    {
+      "pin": 3,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "E",
+      "role": "input"
+    },
+    {
+      "pin": 18,
+      "name": "F",
+      "role": "input"
+    },
+    {
+      "pin": 20,
+      "name": "G",
+      "role": "input"
+    },
+    {
+      "pin": 22,
+      "name": "H",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising",
+      "text": "CLOCK and CLOCK INHIBIT are interchangeable"
+    },
+    {
+      "pin": 11,
+      "name": "CLOCK INHIBIT",
+      "role": "input",
+      "text": "high inhibits clocking; change to high only while CLOCK is high; interchangeable with CLOCK"
+    },
+    {
+      "pin": 14,
+      "name": "CLEAR'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 4,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "QE",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 17,
+      "name": "QF",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 19,
+      "name": "QG",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 21,
+      "name": "QH",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,6,8,10,15,17,19,21",
+      "formula": "QA..QH = Q[0..7]",
+      "text": "Register bits."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "rising edge of CLOCK while CLOCK INHIBIT is low (the two inputs are gated together)",
+    "rules": [
+      "CLEAR' low: QA..QH = L at once",
+      "CLOCK INHIBIT high: hold",
+      "SHIFT/LOAD' low: QA..QH = A..H at the clock edge",
+      "SHIFT/LOAD' high: shift, QB..QH = QAn..QGn, and QA from J,K':",
+      "  J=L, K'=H: QA = QAn (no change)",
+      "  J=L, K'=L: QA = L",
+      "  J=H, K'=H: QA = H",
+      "  J=H, K'=L: QA = NOT QAn (toggle)"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74198/SN74199: VCC 4.75-5.25 V, TA 0-70 C."
+  },
+  "timing": [
+    {
+      "from": "CLEAR'",
+      "to": "QA..QH",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QH",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QH",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 26,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "maxClockFrequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 35,
+      "text": "recommended fclock 0-25 MHz"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CLOCK or CLEAR'",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "SHIFT/LOAD'",
+      "ref": "CLOCK",
+      "minNs": 30,
+      "text": "mode-control setup time"
+    },
+    {
+      "what": "setup",
+      "pin": "data",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "any input",
+      "ref": "CLOCK",
+      "minNs": 0
+    }
+  ],
+  "unknown": [
+    "No minimum propagation delays printed.",
+    "Clear-to-output low-to-high is not applicable; no other paths listed."
+  ],
+  "notes": ""
+}

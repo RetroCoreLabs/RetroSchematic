@@ -1,0 +1,292 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74200",
+  "family": "74S",
+  "title": "256 bit RAM",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1977 Memory Databook, DM54S200/DM74S200 256-bit read/write Schottky memories with TRI-STATE outputs",
+      "url": "https://bitsavers.mirrorservice.org/components/national/_dataBooks/1977_National_Memory_Databook.pdf",
+      "pages": "2-11 to 2-13 (PDF pages 114-116)",
+      "familyUsed": "DM74S200 (Schottky); no datasheet for a plain 74200 was found"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 15,
+      "name": "C",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 14,
+      "name": "H",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 7,
+      "name": "D",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 9,
+      "name": "E",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 10,
+      "name": "F",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 11,
+      "name": "G",
+      "role": "input",
+      "text": "address input"
+    },
+    {
+      "pin": 3,
+      "name": "ME1'",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "6"
+      ],
+      "whenInactive": "float",
+      "text": "memory enable; all three must be low"
+    },
+    {
+      "pin": 4,
+      "name": "ME2'",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "6"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 5,
+      "name": "ME3'",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "6"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 12,
+      "name": "WE'",
+      "role": "input",
+      "text": "write enable, active low; while low the output is in high impedance"
+    },
+    {
+      "pin": 13,
+      "name": "DATA",
+      "role": "input",
+      "text": "data input"
+    },
+    {
+      "pin": 6,
+      "name": "Y",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "3,4,5,12",
+      "text": "output: the stored bit, which is the complement of the data written"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6",
+      "formula": "Y = MEM[address] when ME1'=ME2'=ME3'=L AND WE'=H; otherwise Z",
+      "text": "Read: the stored bit (complement of the data that was written) appears at Y. Any ME' high, or WE' low (write), puts Y in high impedance."
+    }
+  ],
+  "state": {
+    "bits": 256,
+    "changesOn": "WE' low while ME1', ME2', ME3' are all low (level-sensitive write)",
+    "rules": [
+      "Write: ME' all low and WE' low: MEM[address] = NOT DATA (the complement is stored); output Z",
+      "Read: ME' all low and WE' high: Y = MEM[address]",
+      "Inhibit: any ME' high: Y = Z, no write",
+      "Address: row decoder A,B,C,H (pins 1,2,15,14) and column decoder D,E,F,G (pins 7,9,10,11), 16 x 16 matrix"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM74S200: VCC 4.75-5.25 V, TA 0-70 C, IOH -5.2 mA, IOL 16 mA, VOL max 0.45 V. PNP inputs: IIL max -250 uA (one-eighth of a 74S load). Off-state output current 50 / -50 uA."
+  },
+  "timing": [
+    {
+      "from": "address",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 33,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm"
+    },
+    {
+      "from": "address",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 29,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm"
+    },
+    {
+      "from": "ME'",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm"
+    },
+    {
+      "from": "ME'",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm"
+    },
+    {
+      "from": "WE'",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm, sense recovery from write enable"
+    },
+    {
+      "from": "WE'",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL 300 ohm, sense recovery from write enable"
+    },
+    {
+      "from": "ME'",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 300 ohm"
+    },
+    {
+      "from": "ME'",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 300 ohm"
+    },
+    {
+      "from": "WE'",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 300 ohm"
+    },
+    {
+      "from": "WE'",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 300 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulseWidth",
+      "pin": "WE'",
+      "minNs": 40
+    },
+    {
+      "what": "setup",
+      "pin": "address",
+      "ref": "WE'",
+      "minNs": 0
+    },
+    {
+      "what": "setup",
+      "pin": "DATA",
+      "ref": "WE'",
+      "minNs": 0
+    },
+    {
+      "what": "setup",
+      "pin": "ME'",
+      "ref": "WE'",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "address",
+      "ref": "WE'",
+      "minNs": 10
+    },
+    {
+      "what": "hold",
+      "pin": "DATA",
+      "ref": "WE'",
+      "minNs": 10
+    },
+    {
+      "what": "hold",
+      "pin": "ME'",
+      "ref": "WE'",
+      "minNs": 0
+    }
+  ],
+  "unknown": [
+    "Datasheet is for the Schottky DM74S200; whether ND's '74200' is this part or an earlier non-Schottky part with the same pinout is not settled by any datasheet read.",
+    "No minimum delays printed."
+  ],
+  "notes": "ND's catalogue id is 74200; the only datasheet found for a 256x1 RAM numbered 200 is the S (Schottky) version."
+}

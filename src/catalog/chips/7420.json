@@ -1,0 +1,134 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7420",
+  "family": "74",
+  "title": "Dual 4-input NAND gate",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5420/SN7420/SN74LS20/SN74S20 datasheet SDLS079",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls20.pdf",
+      "pages": "1, 3",
+      "familyUsed": "SN7420"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 4,
+      "name": "1C",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 12,
+      "name": "2C",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6",
+      "formula": "1Y = NOT(1A AND 1B AND 1C AND 1D)",
+      "text": "1Y is the NAND of 1A, 1B, 1C, 1D."
+    },
+    {
+      "output": "8",
+      "formula": "2Y = NOT(2A AND 2B AND 2C AND 2D)",
+      "text": "2Y is the NAND of 2A, 2B, 2C, 2D."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty."
+}

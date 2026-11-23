@@ -19,6 +19,45 @@ namespace RetroSchematic.Model
 
         /// <summary>tPHL: the output goes from high to low.</summary>
         HighToLow,
+
+        /// <summary>tPZH: a three-state output starts driving, from floating (Z) to high.</summary>
+        FloatToHigh,
+
+        /// <summary>tPZL: a three-state output starts driving, from floating (Z) to low.</summary>
+        FloatToLow,
+
+        /// <summary>tPHZ: a three-state output stops driving, from high to floating (Z).</summary>
+        HighToFloat,
+
+        /// <summary>tPLZ: a three-state output stops driving, from low to floating (Z).</summary>
+        LowToFloat,
+
+        /// <summary>Output enable time, not split by level (datasheet gives one figure).</summary>
+        FloatToDriven,
+
+        /// <summary>Output disable time, not split by level.</summary>
+        DrivenToFloat,
+
+        /// <summary>Memory access time: from address or chip select until the data out is valid.</summary>
+        Access,
+
+        /// <summary>Memory recovery time after a write before a read is valid.</summary>
+        Recovery,
+
+        /// <summary>How long the output's rising edge itself takes.</summary>
+        Rise,
+
+        /// <summary>How long the output's falling edge itself takes.</summary>
+        Fall,
+
+        /// <summary>Opto-coupler turn-on time to the level the datasheet states.</summary>
+        TurnOn,
+
+        /// <summary>Opto-coupler turn-off time to the level the datasheet states.</summary>
+        TurnOff,
+
+        /// <summary>Line receiver response time.</summary>
+        Response,
     }
 
     /// <summary>
@@ -205,7 +244,20 @@ namespace RetroSchematic.Model
                 {
                     "PLH" => OutputEdge.LowToHigh,
                     "PHL" => OutputEdge.HighToLow,
-                    _ => throw new InvalidDataException($"{chipFilePath}: timing[{i}] edge must be PLH or PHL, not '{edgeText}'"),
+                    "PZH" => OutputEdge.FloatToHigh,
+                    "PZL" => OutputEdge.FloatToLow,
+                    "PHZ" => OutputEdge.HighToFloat,
+                    "PLZ" => OutputEdge.LowToFloat,
+                    "PZX" => OutputEdge.FloatToDriven,
+                    "PXZ" => OutputEdge.DrivenToFloat,
+                    "access" => OutputEdge.Access,
+                    "recovery" => OutputEdge.Recovery,
+                    "rise" => OutputEdge.Rise,
+                    "fall" => OutputEdge.Fall,
+                    "turnOn" => OutputEdge.TurnOn,
+                    "turnOff" => OutputEdge.TurnOff,
+                    "response" => OutputEdge.Response,
+                    _ => throw new InvalidDataException($"{chipFilePath}: timing[{i}] edge is not one of the list in catalog/chips/FORMAT.md: '{edgeText}'"),
                 };
                 result.Add(new TimingArc(Text(t, "from"), Text(t, "to"), edge,
                     new DelayNs(Number(t, "minNs"), Number(t, "typNs"), Number(t, "maxNs")), Text(t, "conditions")));
@@ -225,9 +277,11 @@ namespace RetroSchematic.Model
             {
                 if (arcs[i].From != from || arcs[i].To != to)
                     continue;
+                // only the two data edges make a path stage; the three-state enable and disable
+                // times (PZH, PZL, PHZ, PLZ) are a different kind of path
                 if (arcs[i].Edge == OutputEdge.LowToHigh)
                     rising = arcs[i].Delay;
-                else
+                else if (arcs[i].Edge == OutputEdge.HighToLow)
                     falling = arcs[i].Delay;
             }
             if (!rising.HasValue || !falling.HasValue)

@@ -1,0 +1,295 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74163",
+  "family": "74",
+  "title": "Fully synchronous binary counter",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54160 thru SN54163 ... SN74160 thru SN74163 Synchronous 4-bit counters, bulletin DL-S 7611385 (October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-190, 7-196, 7-197 (PDF pages 189, 195, 196)",
+      "familyUsed": "SN74163"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 2,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 1,
+      "name": "CLEAR",
+      "role": "input",
+      "active": "low",
+      "text": "synchronous clear: acts at the next rising clock edge"
+    },
+    {
+      "pin": 9,
+      "name": "LOAD",
+      "role": "input",
+      "active": "low",
+      "text": "synchronous load: acts at the next rising clock edge"
+    },
+    {
+      "pin": 7,
+      "name": "ENABLE P",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "14",
+        "13",
+        "12",
+        "11"
+      ],
+      "whenInactive": "hold"
+    },
+    {
+      "pin": 10,
+      "name": "ENABLE T",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "14",
+        "13",
+        "12",
+        "11",
+        "15"
+      ],
+      "whenInactive": "hold",
+      "text": "also gates the ripple carry output; when low, the counter holds and RIPPLE CARRY is low"
+    },
+    {
+      "pin": 3,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "RIPPLE CARRY OUTPUT",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "14,13,12,11",
+      "formula": "QA,QB,QC,QD = counter state bits 0..3",
+      "text": "QA is the least significant bit."
+    },
+    {
+      "output": "15",
+      "formula": "RIPPLE CARRY OUTPUT = ENABLE T AND QA AND QB AND QC AND QD",
+      "text": "High at count 15 while ENABLE T is high; the pulse lasts about as long as the high part of QA. Used to enable the next stage."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "CLEAR low: QA-QD = 0 at the next rising clock edge, regardless of load and enable inputs",
+      "else LOAD low: QA,QB,QC,QD = A,B,C,D at the next rising clock edge, regardless of the enable inputs",
+      "else ENABLE P and ENABLE T both high: count up by one (binary, 0-15, wraps to 0) at each rising clock edge",
+      "else (P or T low): hold",
+      "Low-to-high transitions at LOAD should be avoided while the clock is low if the enable inputs are high at or before the transition",
+      "Low-to-high transitions at CLEAR should be avoided while the clock is low if the enable and load inputs are high at or before the transition",
+      "High-to-low transitions at ENABLE P or T should occur only while the clock is high"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Clock and ENABLE T inputs are double loads: IIL -3.2 mA, IIH 80 uA; other inputs -1.6 mA, 40 uA."
+  },
+  "timing": [
+    {
+      "from": "CLOCK",
+      "to": "RIPPLE CARRY OUTPUT",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "RIPPLE CARRY OUTPUT",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "LOAD high; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 23,
+      "conditions": "LOAD high; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 25,
+      "conditions": "LOAD low; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 29,
+      "conditions": "LOAD low; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "ENABLE T",
+      "to": "RIPPLE CARRY OUTPUT",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 16,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "ENABLE T",
+      "to": "RIPPLE CARRY OUTPUT",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 16,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 26,
+      "maxNs": 38,
+      "conditions": "clear delay measured from the clock transition ('163); VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 32,
+      "text": "switching table fmax min 25, typ 32 (unit printed as ns in the table; it is a frequency); recommended fclock 0 to 25 MHz"
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLOCK",
+      "minNs": 25
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLEAR",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "A, B, C, D",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "ENABLE P",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "LOAD",
+      "ref": "CLOCK",
+      "minNs": 25
+    },
+    {
+      "what": "setup",
+      "pin": "CLEAR",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "any input",
+      "ref": "CLOCK",
+      "minNs": 0
+    }
+  ],
+  "unknown": [
+    "The ripple-carry formula is from the description text (T fed forward, high-level overflow pulse at the maximum count); the logic diagram page was not read gate by gate."
+  ],
+  "notes": "Binary counter with synchronous clear (fully synchronous)."
+}

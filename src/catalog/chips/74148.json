@@ -1,0 +1,68 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74148",
+  "family": "74",
+  "title": "8-line-to-3-line priority encoder (equal to 9318)",
+  "package": "DIP-16",
+  "sources": [
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54147, SN54148, SN54LS147, SN54LS148, SN74147, SN74148 (TIM9907), SN74LS147, SN74LS148, bulletin DL-S 7611727 (October 1976)",
+     "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+     "pages": "book pages 7-151, 7-153, 7-154 (PDF pages 150, 152, 153)", "familyUsed": "SN74148"}
+  ],
+  "pins": [
+    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
+    {"pin": 8,  "name": "GND", "role": "ground"},
+    {"pin": 10, "name": "0", "role": "input", "text": "data input, active low, lowest priority"},
+    {"pin": 11, "name": "1", "role": "input", "text": "data input, active low"},
+    {"pin": 12, "name": "2", "role": "input", "text": "data input, active low"},
+    {"pin": 13, "name": "3", "role": "input", "text": "data input, active low"},
+    {"pin": 1,  "name": "4", "role": "input", "text": "data input, active low"},
+    {"pin": 2,  "name": "5", "role": "input", "text": "data input, active low"},
+    {"pin": 3,  "name": "6", "role": "input", "text": "data input, active low"},
+    {"pin": 4,  "name": "7", "role": "input", "text": "data input, active low, highest priority"},
+    {"pin": 5,  "name": "EI", "role": "enable", "active": "low", "controls": ["9", "7", "6", "14", "15"], "whenInactive": "high"},
+    {"pin": 9,  "name": "A0", "role": "output", "outputType": "totem-pole"},
+    {"pin": 7,  "name": "A1", "role": "output", "outputType": "totem-pole"},
+    {"pin": 6,  "name": "A2", "role": "output", "outputType": "totem-pole"},
+    {"pin": 14, "name": "GS", "role": "output", "outputType": "totem-pole"},
+    {"pin": 15, "name": "EO", "role": "output", "outputType": "totem-pole"}
+  ],
+  "functions": [
+    {"output": "6", "formula": "A2 = NOT(EI' AND (4' OR 5' OR 6' OR 7'))",
+     "text": "Low when enabled and any of inputs 4-7 is low."},
+    {"output": "7", "formula": "A1 = NOT(EI' AND (7' OR 6' OR (5 AND 4 AND 3') OR (5 AND 4 AND 2')))",
+     "text": "Inverted bit 1 of the number of the highest-numbered low input."},
+    {"output": "9", "formula": "A0 = NOT(EI' AND (7' OR (6 AND 5') OR (6 AND 4 AND 3') OR (6 AND 4 AND 2 AND 1')))",
+     "text": "Inverted bit 0 of the number of the highest-numbered low input."},
+    {"output": "14", "formula": "GS = NOT(EI' AND (0' OR 1' OR 2' OR 3' OR 4' OR 5' OR 6' OR 7'))",
+     "text": "Low when enabled and at least one data input is low."},
+    {"output": "15", "formula": "EO = NOT(EI' AND 0 AND 1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7)",
+     "text": "Low when enabled and no data input is low; feeds EI of the next lower-priority stage."}
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.8, "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Input 0 is a double load: IIL -3.2 mA max, IIH 80 uA (Req 2 kOhm); other inputs IIL -1.6 mA, IIH 40 uA."
+  },
+  "timing": [
+    {"from": "0 thru 7", "to": "A0, A1, A2", "edge": "PLH", "minNs": null, "typNs": 10, "maxNs": 15, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "A0, A1, A2", "edge": "PHL", "minNs": null, "typNs": 9, "maxNs": 14, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "A0, A1, A2", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 19, "conditions": "out-of-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "A0, A1, A2", "edge": "PHL", "minNs": null, "typNs": 12, "maxNs": 19, "conditions": "out-of-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "EO", "edge": "PLH", "minNs": null, "typNs": 6, "maxNs": 10, "conditions": "out-of-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "EO", "edge": "PHL", "minNs": null, "typNs": 14, "maxNs": 25, "conditions": "out-of-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "GS", "edge": "PLH", "minNs": null, "typNs": 18, "maxNs": 30, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "0 thru 7", "to": "GS", "edge": "PHL", "minNs": null, "typNs": 14, "maxNs": 25, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "EI", "to": "A0, A1, A2", "edge": "PLH", "minNs": null, "typNs": 10, "maxNs": 15, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "EI", "to": "A0, A1, A2", "edge": "PHL", "minNs": null, "typNs": 10, "maxNs": 15, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "EI", "to": "GS", "edge": "PLH", "minNs": null, "typNs": 8, "maxNs": 12, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "EI", "to": "GS", "edge": "PHL", "minNs": null, "typNs": 10, "maxNs": 15, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "EI", "to": "EO", "edge": "PLH", "minNs": null, "typNs": 10, "maxNs": 15, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"},
+    {"from": "EI", "to": "EO", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 30, "conditions": "in-phase output; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"}
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "All data inputs and outputs are active low. Formulas are derived from the '148 function table."
+}

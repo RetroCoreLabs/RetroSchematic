@@ -1,0 +1,213 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7495",
+  "family": "74",
+  "title": "4-bit right-shift, left-shift register",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-89, 7-91 (PDF pages 88, 90)",
+      "familyUsed": "SN7495A (the 1976 book lists only the A version of the plain 74 part)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "SER",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "MODE",
+      "role": "input",
+      "text": "mode control: high = parallel load / shift left on CK2, low = shift right on CK1"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "CK2",
+      "role": "clock",
+      "edge": "falling",
+      "text": "clock 2, L-shift / load"
+    },
+    {
+      "pin": 9,
+      "name": "CK1",
+      "role": "clock",
+      "edge": "falling",
+      "text": "clock 1, R-shift"
+    },
+    {
+      "pin": 10,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "13",
+      "formula": "QA = stateA",
+      "text": "Register stage A (QA is the stage the serial input enters)."
+    },
+    {
+      "output": "12",
+      "formula": "QB = stateB",
+      "text": "Register stage B (QA is the stage the serial input enters)."
+    },
+    {
+      "output": "11",
+      "formula": "QC = stateC",
+      "text": "Register stage C (QA is the stage the serial input enters)."
+    },
+    {
+      "output": "10",
+      "formula": "QD = stateD",
+      "text": "Register stage D (QA is the stage the serial input enters)."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "falling edge of CK1 (MODE low) or of CK2 (MODE high)",
+    "rules": [
+      "MODE high, CK2 high: hold",
+      "MODE high, falling edge of CK2: QA QB QC QD = A B C D (parallel load; CK1 is ignored, serial entry is inhibited)",
+      "Shift left = parallel load with QB wired to A, QC to B, QD to C, and serial data on D",
+      "MODE low, CK1 high: hold",
+      "MODE low, falling edge of CK1: QA = SER, QB = old QA, QC = old QB, QD = old QC (shift right; CK2 is ignored)",
+      "Changes on MODE should be made while both clocks are low; the function table also shows hold for MODE rising with CK2 L CK1 L, MODE falling with CK2 L CK1 L, MODE falling with CK2 L CK1 H, MODE rising with CK2 H CK1 L, and MODE rising with CK2 H CK1 H"
+    ]
+  },
+  "timing": [
+    {
+      "from": "CK1,CK2",
+      "to": "QA,QB,QC,QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CK1,CK2",
+      "to": "QA,QB,QC,QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "CK1,CK2",
+      "ref": null,
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "SER,A,B,C,D",
+      "ref": "clock falling",
+      "minNs": 15
+    },
+    {
+      "what": "hold",
+      "pin": "SER,A,B,C,D",
+      "ref": "clock falling",
+      "minNs": 0
+    },
+    {
+      "what": "time to enable clock 1",
+      "pin": "MODE",
+      "ref": "CK1",
+      "minNs": 15
+    },
+    {
+      "what": "time to enable clock 2",
+      "pin": "MODE",
+      "ref": "CK2",
+      "minNs": 15
+    },
+    {
+      "what": "time to inhibit clock 1",
+      "pin": "MODE",
+      "ref": "CK1",
+      "minNs": 5
+    },
+    {
+      "what": "time to inhibit clock 2",
+      "pin": "MODE",
+      "ref": "CK2",
+      "minNs": 5
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "CK1,CK2",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 25,
+      "typMHz": 36
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "MODE is drawn as an input: it chooses which clock and which data path is used; it does not switch the outputs off. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

@@ -1,0 +1,284 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7494",
+  "family": "74",
+  "title": "4-bit shift register",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-86, 7-87, 7-88 (PDF pages 85-87)",
+      "familyUsed": "SN7494"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "P1A",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 1 of stage A, used when PE1 is high"
+    },
+    {
+      "pin": 2,
+      "name": "P1B",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 1 of stage B"
+    },
+    {
+      "pin": 3,
+      "name": "P1C",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 1 of stage C"
+    },
+    {
+      "pin": 4,
+      "name": "P1D",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 1 of stage D"
+    },
+    {
+      "pin": 5,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 6,
+      "name": "PE1",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset enable 1: while high, every stage whose P1 input is high is set to 1 at once"
+    },
+    {
+      "pin": 7,
+      "name": "SER",
+      "role": "input"
+    },
+    {
+      "pin": 8,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 9,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "the only output (datasheet: OUTPUT); QA-QC are internal"
+    },
+    {
+      "pin": 10,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "high sets all four stages to 0 at once, while the internal presets are inactive"
+    },
+    {
+      "pin": 11,
+      "name": "P2D",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 2 of stage D, used when PE2 is high"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 13,
+      "name": "P2C",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 2 of stage C"
+    },
+    {
+      "pin": 14,
+      "name": "P2B",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 2 of stage B"
+    },
+    {
+      "pin": 15,
+      "name": "PE2",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset enable 2: while high, every stage whose P2 input is high is set to 1 at once"
+    },
+    {
+      "pin": 16,
+      "name": "P2A",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "text": "preset input 2 of stage A"
+    }
+  ],
+  "functions": [
+    {
+      "output": "9",
+      "formula": "QD = stateD",
+      "text": "Serial output: the last of the four stages A, B, C, D."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "Internal preset of stage X is active when (PE1 AND P1X) OR (PE2 AND P2X); preset and clear do not depend on the clock",
+      "CLEAR high and all internal presets inactive: QA = QB = QC = QD = 0 at once",
+      "CLEAR low and the internal preset of a stage active: that stage = 1 at once (all presets active gives 1111)",
+      "CLEAR low, presets inactive, CLOCK low: hold",
+      "CLEAR low, presets inactive, rising edge of CLOCK: QA = SER, QB = old QA, QC = old QB, QD = old QC (shift right)",
+      "Parallel load is done by clearing first and then presetting with PE1 or PE2"
+    ]
+  },
+  "timing": [
+    {
+      "from": "CLOCK",
+      "to": "QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "preset (PEn with Pn)",
+      "to": "QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLEAR",
+      "to": "QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "CLOCK",
+      "ref": null,
+      "minNs": 35
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLEAR",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "pulse width",
+      "pin": "preset",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "setup (high-level data)",
+      "pin": "SER",
+      "ref": "CLOCK rising",
+      "minNs": 35
+    },
+    {
+      "what": "setup (low-level data)",
+      "pin": "SER",
+      "ref": "CLOCK rising",
+      "minNs": 25
+    },
+    {
+      "what": "hold",
+      "pin": "SER",
+      "ref": "CLOCK rising",
+      "minNs": 0
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 10,
+      "typMHz": null
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [
+    "Result when CLEAR is high while an internal preset is active: not in the function table.",
+    "Typical delays from preset and clear: the table gives the maximum only.",
+    "Setup/hold reference edge is not named in the table; the description says the data must be set up before the rising edge of the clock."
+  ],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

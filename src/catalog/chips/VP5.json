@@ -1,0 +1,25 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "VP5",
+  "family": null,
+  "title": "Voltage converter (VP 12 is equal)",
+  "package": null,
+  "sources": [],
+  "pins": [],
+  "functions": [],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": null,
+    "notes": ""
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [
+    "No datasheet found. Sources tried: Web searches for \"VP5\" with datasheet / DC-DC converter / delay line terms; bitsavers component databooks for National, TI, Intel, Mostek, Motorola, Signetics (listings only). Manufacturer unknown. Package, pins, function, electrical figures and timing all unknown."
+  ],
+  "notes": "Title from the ND 1976 circuit-diagram-symbols manual (part number printed there: VP5)."
+}

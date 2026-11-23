@@ -1,0 +1,153 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "75361",
+  "family": "751xx",
+  "title": "MOS driver",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The Interface Circuits Data Book 2nd ed. 1974, SN75361A dual TTL-to-MOS driver (bulletin DL-S 7312054, Sep 1973, tentative data sheet)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf",
+      "pages": "5-15 to 5-17 (PDF pages 183-185)",
+      "familyUsed": "SN75361A"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC1",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "VCC2",
+      "role": "power",
+      "voltage": "+20 V nominal (4.75-24 V)",
+      "text": "MOS output supply"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 2,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 6,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 9,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 11,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 13,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 3,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "E",
+      "role": "input",
+      "text": "enable common to both drivers (input of both NAND gates)"
+    },
+    {
+      "pin": 12,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "MOS-level output swinging to near VCC2"
+    },
+    {
+      "pin": 10,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "MOS-level output"
+    }
+  ],
+  "functions": [
+    {
+      "output": "12",
+      "formula": "1Y = NOT (1A AND E)",
+      "text": "Datasheet positive logic Y = (AE)'. Output high is close to VCC2."
+    },
+    {
+      "output": "10",
+      "formula": "2Y = NOT (2A AND E)",
+      "text": "Same for driver 2."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 24,
+    "inputSchmitt": false,
+    "notes": "VCC1 4.75-5.25 V, VCC2 4.75-24 V (nominal 20 V), TA 0-70 C. VOH min VCC2-1 V at IOH -50 uA, VCC2-2.3 V at -10 mA; VOL max 0.3 V at IOL 10 mA, 0.5 V at 40 mA (VCC2 15-24 V). Output clamp VCC2+1.5 V. Inputs VIH 2 V, VIL 0.8 V; IIL A -1.6 mA, E -3.2 mA. outputMaxVoltageV is the VCC2 maximum."
+  },
+  "timing": [
+    {
+      "from": "A or E",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": 10,
+      "typNs": 36,
+      "maxNs": 55,
+      "conditions": "VCC1 5 V, VCC2 20 V, TA 25 C, CL 390 pF, RD 10 ohm"
+    },
+    {
+      "from": "A or E",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": 10,
+      "typNs": 31,
+      "maxNs": 47,
+      "conditions": "VCC1 5 V, VCC2 20 V, TA 25 C, CL 390 pF, RD 10 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "delayTime",
+      "pin": "Y",
+      "text": "tDLH 11 typ / 20 max ns, tDHL 10 typ / 18 max ns (delay to start of output edge)"
+    },
+    {
+      "what": "transitionTime",
+      "pin": "Y",
+      "text": "tTLH 25 typ / 40 max ns, tTHL 21 typ / 35 max ns, CL 390 pF"
+    }
+  ],
+  "unknown": [
+    "No recommended IOL/IOH are given; output figures exist only as VOH/VOL test conditions (in notes), so the current fields are null.",
+    "Datasheet read is the SN75361A (tentative 1973 sheet); a datasheet for a plain SN75361 was not found."
+  ],
+  "state": null,
+  "notes": ""
+}

@@ -1,0 +1,51 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74182",
+  "family": "74",
+  "title": "Look-ahead carry generator",
+  "package": "DIP-16",
+  "sources": [
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54182/SN74182 (bulletin DL-S 7611823, Dec 1972, rev. Oct 1976)",
+     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+     "pages": "7-282 to 7-284 (PDF pages 281-283)", "familyUsed": "SN74182"}
+  ],
+  "pins": [
+    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
+    {"pin": 8,  "name": "GND", "role": "ground"},
+    {"pin": 3,  "name": "G0'", "role": "input", "text": "carry generate input, active low (alternative name Y0)"},
+    {"pin": 1,  "name": "G1'", "role": "input", "text": "carry generate input, active low (Y1)"},
+    {"pin": 14, "name": "G2'", "role": "input", "text": "carry generate input, active low (Y2)"},
+    {"pin": 5,  "name": "G3'", "role": "input", "text": "carry generate input, active low (Y3)"},
+    {"pin": 4,  "name": "P0'", "role": "input", "text": "carry propagate input, active low (X0)"},
+    {"pin": 2,  "name": "P1'", "role": "input", "text": "carry propagate input, active low (X1)"},
+    {"pin": 15, "name": "P2'", "role": "input", "text": "carry propagate input, active low (X2)"},
+    {"pin": 6,  "name": "P3'", "role": "input", "text": "carry propagate input, active low (X3)"},
+    {"pin": 13, "name": "Cn",  "role": "input", "text": "carry input"},
+    {"pin": 12, "name": "Cn+x", "role": "output", "outputType": "totem-pole"},
+    {"pin": 11, "name": "Cn+y", "role": "output", "outputType": "totem-pole"},
+    {"pin": 9,  "name": "Cn+z", "role": "output", "outputType": "totem-pole"},
+    {"pin": 10, "name": "G'",  "role": "output", "outputType": "totem-pole", "text": "carry generate output, active low (Y)"},
+    {"pin": 7,  "name": "P'",  "role": "output", "outputType": "totem-pole", "text": "carry propagate output, active low (X)"}
+  ],
+  "functions": [
+    {"output": "12", "formula": "Cn+x = G0 OR (P0 AND Cn)", "text": "Datasheet equation, with G0 = NOT G0', P0 = NOT P0'. Function table: high when G0' low, or P0' low and Cn high; low otherwise."},
+    {"output": "11", "formula": "Cn+y = G1 OR (P1 AND G0) OR (P1 AND P0 AND Cn)", "text": "Datasheet equation (G = NOT G', P = NOT P')."},
+    {"output": "9",  "formula": "Cn+z = G2 OR (P2 AND G1) OR (P2 AND P1 AND G0) OR (P2 AND P1 AND P0 AND Cn)", "text": "Datasheet equation (G = NOT G', P = NOT P')."},
+    {"output": "10", "formula": "G' = NOT (G3 OR (P3 AND G2) OR (P3 AND P2 AND G1) OR (P3 AND P2 AND P1 AND G0))", "text": "Datasheet: G' = (G3 + P3G2 + P3P2G1 + P3P2P1G0)'. Low when the group generates a carry."},
+    {"output": "7",  "formula": "P' = NOT (P3 AND P2 AND P1 AND P0)", "text": "Low only when P3', P2', P1', P0' are all low."}
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.8, "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74182 recommended: VCC 4.75-5.25 V, IOH -800 uA, IOL 16 mA, TA 0-70 C. Inputs load unequally: IIL Cn -3.2 mA, P3' -4.8, P2' -6.4, P0'/P1'/G3' -8, G0'/G2' -14.4, G1' -16 mA (several standard loads)."
+  },
+  "timing": [
+    {"from": "any", "to": "any", "edge": "PLH", "minNs": null, "typNs": 11, "maxNs": 17, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm; the datasheet gives one figure for all paths"},
+    {"from": "any", "to": "any", "edge": "PHL", "minNs": null, "typNs": 15, "maxNs": 22, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm; the datasheet gives one figure for all paths"}
+  ],
+  "timingLimits": [],
+  "unknown": ["No minimum propagation delays printed (path-delay function uses 0 ns)."],
+  "notes": "The same circuit serves active-high data with the alternative names Y0-Y3, X0-X3, Cn', Y, X: Cn+x' = (Y0(X0 + Cn))' etc., as printed on page 7-282."
+}

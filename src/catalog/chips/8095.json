@@ -1,0 +1,209 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8095",
+  "family": "DM80",
+  "title": "Tri-state hex buffer",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM70/DM8095,L95,96,L96,97,L97,98,L98 TRI-STATE hex buffers",
+      "url": "https://bitsavers.mirrorservice.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "3-7, 3-8 (PDF pages 352, 353)",
+      "familyUsed": "DM8095"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "G1'",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "5",
+        "7",
+        "9",
+        "11",
+        "13"
+      ],
+      "whenInactive": "float",
+      "text": "both G1' and G2' must be low to enable the outputs"
+    },
+    {
+      "pin": 15,
+      "name": "G2'",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "3",
+        "5",
+        "7",
+        "9",
+        "11",
+        "13"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 2,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "Y1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1,15"
+    },
+    {
+      "pin": 4,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "Y2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1,15"
+    },
+    {
+      "pin": 6,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "Y3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1,15"
+    },
+    {
+      "pin": 10,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "Y4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1,15"
+    },
+    {
+      "pin": 12,
+      "name": "A5",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "Y5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1,15"
+    },
+    {
+      "pin": 14,
+      "name": "A6",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "Y6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "1,15"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3,5,7,9,11,13",
+      "formula": "Y = A when G1' = L AND G2' = L; Z when G1' = H OR G2' = H",
+      "text": "Non-inverting buffers; all six share the two control lines. Truth table: G1' H or G2' H -> Hi-Z; both low -> Y = A."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 32,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM80 figures from the electrical table: IOH -5.2 mA, IOL 32 mA. Off-state current -40/+40 uA. Over 100 like devices can share one bus line. Pin-equivalent to the DM54365."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 16,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 24,
+      "maxNs": 37,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 6,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    }
+  ],
+  "unknown": [
+    "Recommended supply and temperature range for DM80 are not printed on the two pages read.",
+    "No minimum delays printed."
+  ],
+  "state": null,
+  "timingLimits": [],
+  "notes": ""
+}

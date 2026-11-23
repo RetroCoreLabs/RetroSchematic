@@ -1,0 +1,354 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "MK4096P",
+  "family": "MOS-memory",
+  "title": "4096-bit (4K x 1) dynamic RAM, 16-pin, multiplexed address",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "Mostek 1978 Memory Data Book and Designers Guide, MK4096(K/N)-6/16/11 4096x1-bit dynamic RAM",
+      "url": "https://www.bitsavers.org/components/mostek/_dataBooks/1978_Mostek_Memory_Data_Book_and_Designers_Guide.pdf",
+      "pages": "pdf 97-100 (printed 91-94)",
+      "familyUsed": "MK4096-6 / -16 / -11 (K ceramic, N plastic)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "VBB",
+      "role": "power",
+      "voltage": "-5 V"
+    },
+    {
+      "pin": 2,
+      "name": "DIN",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "WRITE",
+      "role": "input",
+      "active": "low"
+    },
+    {
+      "pin": 4,
+      "name": "RAS",
+      "role": "clock",
+      "edge": "falling",
+      "text": "row address strobe: latches A0..A5 as row address"
+    },
+    {
+      "pin": 5,
+      "name": "A0",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 8,
+      "name": "VDD",
+      "role": "power",
+      "voltage": "+12 V"
+    },
+    {
+      "pin": 9,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 10,
+      "name": "A5",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "CS",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "14"
+      ],
+      "whenInactive": "float",
+      "text": "chip select, latched by CAS"
+    },
+    {
+      "pin": 14,
+      "name": "DOUT",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "CS"
+    },
+    {
+      "pin": 15,
+      "name": "CAS",
+      "role": "clock",
+      "edge": "falling",
+      "text": "column address strobe: latches A0..A5 as column address, CS and DIN"
+    },
+    {
+      "pin": 16,
+      "name": "VSS",
+      "role": "ground"
+    }
+  ],
+  "functions": [
+    {
+      "output": "14",
+      "formula": null,
+      "text": "Three-state TTL output, latched and valid into the next cycle. Data valid tRAC after RAS falls and tCAC after CAS falls; turns off tOFF after CAS goes high. Output swings VSS..VCC (VCC feeds only the output buffer)."
+    }
+  ],
+  "state": {
+    "bits": 4096,
+    "organisation": "4096 x 1",
+    "type": "dynamic",
+    "read": "Row address on A0..A5 latched by RAS falling, column address latched by CAS falling (12 address bits on 6 pins). WRITE high (read command set up before CAS).",
+    "write": "WRITE low; data latched at CAS falling (random write) or at WRITE falling (delayed write / read-modify-write).",
+    "refresh": "Every 2 ms; RAS-only cycles are supported (IDD3). After power-up at least one cycle with both RAS and CAS before normal use.",
+    "standby": "RAS and CAS high."
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 2,
+    "outputHighMaxCurrentMa": -5,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "VDD 11.4..12.6 V, VCC = VSS..VDD (5 V +-10% in the AC tables), VBB -4.5..-5.5 V, VSS 0. VIHC (RAS, CAS, WRITE) 2.7 V min (3.0 V for -11), VIH 2.4 V, VIL 0.8 V. VOL 0.4 V at 2 mA, VOH 2.4 V at -5 mA."
+  },
+  "timing": [
+    {
+      "from": "RAS",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 250,
+      "conditions": "MK4096-6, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tRAC"
+    },
+    {
+      "from": "CAS",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 140,
+      "conditions": "MK4096-6, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tCAC"
+    },
+    {
+      "from": "CAS",
+      "to": "DOUT",
+      "edge": "PXZ",
+      "minNs": 0,
+      "typNs": null,
+      "maxNs": 65,
+      "conditions": "MK4096-6, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tOFF"
+    },
+    {
+      "from": "RAS",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 300,
+      "conditions": "MK4096-16, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tRAC"
+    },
+    {
+      "from": "CAS",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 165,
+      "conditions": "MK4096-16, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tCAC"
+    },
+    {
+      "from": "CAS",
+      "to": "DOUT",
+      "edge": "PXZ",
+      "minNs": 0,
+      "typNs": null,
+      "maxNs": 80,
+      "conditions": "MK4096-16, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tOFF"
+    },
+    {
+      "from": "RAS",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 350,
+      "conditions": "MK4096-11, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tRAC"
+    },
+    {
+      "from": "CAS",
+      "to": "DOUT",
+      "edge": "access",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 200,
+      "conditions": "MK4096-11, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tCAC"
+    },
+    {
+      "from": "CAS",
+      "to": "DOUT",
+      "edge": "PXZ",
+      "minNs": 0,
+      "typNs": null,
+      "maxNs": 100,
+      "conditions": "MK4096-11, 1 TTL load + CL 100 pF, tT 5 ns",
+      "symbol": "tOFF"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "cycleTime",
+      "pin": "RAS (tRC)",
+      "ref": null,
+      "minNs": 375,
+      "text": "MK4096-6; -16: 425; -11: 500"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "RAS (tRAS)",
+      "ref": null,
+      "minNs": 250,
+      "maxNs": 10000,
+      "text": "-6; -16: 300; -11: 350"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "RAS precharge (tRP)",
+      "ref": null,
+      "minNs": 115,
+      "text": "-6; -16: 125; -11: 150"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CAS (tCAS)",
+      "ref": null,
+      "minNs": 140,
+      "text": "-6; -16: 165; -11: 200"
+    },
+    {
+      "what": "setup",
+      "pin": "A (tAS)",
+      "ref": "RAS/CAS falling",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "A (tAH)",
+      "ref": "RAS/CAS falling",
+      "minNs": 60,
+      "text": "-6; -16: 80; -11: 100"
+    },
+    {
+      "what": "hold",
+      "pin": "CS (tCH)",
+      "ref": "CAS falling",
+      "minNs": 100
+    },
+    {
+      "what": "delay",
+      "pin": "RAS to CAS (tRCL)",
+      "ref": null,
+      "minNs": 60,
+      "maxNs": 110,
+      "text": "-6; -16: 80-135; -11: 100-150"
+    },
+    {
+      "what": "setup",
+      "pin": "read command (tRCS)",
+      "ref": "CAS falling",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "read command (tRCH)",
+      "ref": "CAS",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "WRITE (tWCH)",
+      "ref": "CAS",
+      "minNs": 110,
+      "text": "-6; -16: 130; -11: 150"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "WRITE (tWP)",
+      "ref": null,
+      "minNs": 110,
+      "text": "-6; -16: 130; -11: 150"
+    },
+    {
+      "what": "setup",
+      "pin": "WRITE to CAS lead (tCWL)",
+      "ref": "CAS",
+      "minNs": 110,
+      "text": "-6; -16: 130; -11: 150"
+    },
+    {
+      "what": "setup",
+      "pin": "DIN (tDS)",
+      "ref": "CAS or WRITE falling",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "DIN (tDH)",
+      "ref": "CAS or WRITE falling",
+      "minNs": 110,
+      "text": "-6; -16: 130; -11: 150"
+    },
+    {
+      "what": "riseFallTime",
+      "pin": "all",
+      "ref": null,
+      "minNs": 3,
+      "maxNs": 50
+    },
+    {
+      "what": "refreshPeriod",
+      "pin": null,
+      "ref": null,
+      "minNs": null,
+      "maxMs": 2
+    }
+  ],
+  "unknown": [
+    "The datasheet read is the 1978 MK4096(K/N) sheet; the \"P\" package suffix in the ND title is not covered by it. Speed grade of the ND parts is unknown, so all three grades are given.",
+    "Pin 1 name was garbled in the text layer; set to VBB (-5 V) from the pin-name list (VBB, VCC, VDD, VSS) - check against the page image.",
+    "Whether data out is inverted relative to data in is not stated in the pages read.",
+    "Read-modify-write and page-mode timing pages were not read."
+  ],
+  "notes": "Two methods of chip select are mentioned in the description; only CS latched by CAS was read."
+}

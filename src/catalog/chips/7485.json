@@ -1,0 +1,264 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7485",
+  "family": "74",
+  "title": "4-bit comparator",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-56, 7-57, 7-60 (PDF pages 56, 57, 59)",
+      "familyUsed": "SN7485"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "B3",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "A<Bin",
+      "role": "input",
+      "text": "cascade input from a less significant stage"
+    },
+    {
+      "pin": 3,
+      "name": "A=Bin",
+      "role": "input",
+      "text": "cascade input; tie high on the least significant stage"
+    },
+    {
+      "pin": 4,
+      "name": "A>Bin",
+      "role": "input",
+      "text": "cascade input from a less significant stage"
+    },
+    {
+      "pin": 5,
+      "name": "A>Bout",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "A=Bout",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "A<Bout",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "B0",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "A0",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "B1",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "B2",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": "A>Bout = (A > B) OR ((A = B) AND A=Bin' AND A<Bin')",
+      "text": "High when the word A3..A0 is greater than B3..B0. When the words are equal it is high when the A=B and A<B cascade inputs are both low (so A>Bin=H gives H, and all three cascade inputs low gives H as well, per the '85 function table)."
+    },
+    {
+      "output": "7",
+      "formula": "A<Bout = (A < B) OR ((A = B) AND A=Bin' AND A>Bin')",
+      "text": "High when A3..A0 is less than B3..B0. When the words are equal it is high when the A=B and A>B cascade inputs are both low."
+    },
+    {
+      "output": "6",
+      "formula": "A=Bout = (A = B) AND A=Bin",
+      "text": "High only when the words are equal and the A=B cascade input is high."
+    }
+  ],
+  "state": null,
+  "timing": [
+    {
+      "from": "any A or B",
+      "to": "A<Bout,A>Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": null,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 1 gate level"
+    },
+    {
+      "from": "any A or B",
+      "to": "A<Bout,A>Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": null,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 2 gate levels"
+    },
+    {
+      "from": "any A or B",
+      "to": "A<Bout,A>Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 26,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 3 gate levels"
+    },
+    {
+      "from": "any A or B",
+      "to": "A=Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 4 gate levels"
+    },
+    {
+      "from": "any A or B",
+      "to": "A<Bout,A>Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": null,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 1 gate level"
+    },
+    {
+      "from": "any A or B",
+      "to": "A<Bout,A>Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": null,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 2 gate levels"
+    },
+    {
+      "from": "any A or B",
+      "to": "A<Bout,A>Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 3 gate levels"
+    },
+    {
+      "from": "any A or B",
+      "to": "A=Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, 4 gate levels"
+    },
+    {
+      "from": "A<Bin,A=Bin",
+      "to": "A>Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A<Bin,A=Bin",
+      "to": "A>Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 17,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A=Bin",
+      "to": "A=Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A=Bin",
+      "to": "A=Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 17,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A>Bin,A=Bin",
+      "to": "A<Bout",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 7,
+      "maxNs": 11,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A>Bin,A=Bin",
+      "to": "A<Bout",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 17,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [
+    "Maximum data-to-output delay for the 1- and 2-gate-level paths: the table gives typical values only.",
+    "Which data input takes how many gate levels to A<Bout/A>Bout: the table does not say; the 3-level row is the one with a maximum."
+  ],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

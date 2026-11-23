@@ -1,0 +1,211 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74S258",
+  "family": "74S",
+  "title": "Quadruple 2-line-to-1-line data selector multiplexer with tri-state outputs",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book 2nd ed. 1976, SN54S257/SN54S258/SN74S257/SN74S258 (bulletin DL-S 7611734, Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-372, 7-375 (PDF pages 371, 374)",
+      "familyUsed": "SN74S258"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "SELECT",
+      "role": "input",
+      "text": "low selects A inputs, high selects B inputs"
+    },
+    {
+      "pin": 15,
+      "name": "G'",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "4",
+        "7",
+        "9",
+        "12"
+      ],
+      "whenInactive": "float",
+      "text": "output control"
+    },
+    {
+      "pin": 2,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "15"
+    },
+    {
+      "pin": 5,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "15"
+    },
+    {
+      "pin": 11,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "15"
+    },
+    {
+      "pin": 14,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "4B",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "15"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,7,9,12",
+      "formula": "nY = NOT ((SELECT' AND nA) OR (SELECT AND nB)), Z when G' high",
+      "text": "Inverting: with G' low, Y is the complement of A (SELECT low) or of B (SELECT high); G' high puts all outputs in high impedance."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 20,
+    "outputHighMaxCurrentMa": -6.5,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74S258: VCC 4.75-5.25 V, IOH -6.5 mA, IOL 20 mA, TA 0-70 C. Off-state current +/-50 uA. S input IIL -4 mA, others -2 mA."
+  },
+  "timing": [
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 4,
+      "maxNs": 6,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
+    },
+    {
+      "from": "A or B",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 4,
+      "maxNs": 6,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
+    },
+    {
+      "from": "SELECT",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
+    },
+    {
+      "from": "SELECT",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 7.5,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 19.5,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 21,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 15 pF"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 5.5,
+      "maxNs": 8.5,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 5 pF"
+    },
+    {
+      "from": "G'",
+      "to": "Y",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, RL 280 ohm, CL 5 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "No minimum propagation delays printed."
+  ],
+  "notes": "Function table rows: G'=H -> Z; G'=L, S=L, A=L -> H; A=H -> L; S=H, B=L -> H; B=H -> L. Output disable is faster than enable, by design.",
+  "state": null
+}

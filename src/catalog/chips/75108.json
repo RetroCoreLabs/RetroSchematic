@@ -1,0 +1,180 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "75108",
+  "family": "751xx",
+  "title": "Dual line receiver (open collector)",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The Interface Circuits Data Book for Design Engineers, 2nd ed. 1974, SN55107A/SN55108A/SN75107A/SN75108A (bulletin DL-S 7111224, Feb 1971)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf",
+      "pages": "4-6, 4-8, 4-9, 4-11 (PDF pages 70, 72, 73, 75)",
+      "familyUsed": "SN75108A"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC+",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 13,
+      "name": "VCC-",
+      "role": "power",
+      "voltage": "-5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 3,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 10,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "analog",
+      "text": "non-inverting differential line input, channel 1"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "analog",
+      "text": "inverting differential line input, channel 1"
+    },
+    {
+      "pin": 12,
+      "name": "2A",
+      "role": "analog",
+      "text": "non-inverting differential line input, channel 2"
+    },
+    {
+      "pin": 11,
+      "name": "2B",
+      "role": "analog",
+      "text": "inverting differential line input, channel 2"
+    },
+    {
+      "pin": 5,
+      "name": "1G",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "4"
+      ],
+      "whenInactive": "high",
+      "text": "strobe for channel 1: when 1G or S is low the output is high"
+    },
+    {
+      "pin": 8,
+      "name": "2G",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "9"
+      ],
+      "whenInactive": "high",
+      "text": "strobe for channel 2"
+    },
+    {
+      "pin": 6,
+      "name": "S",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "4",
+        "9"
+      ],
+      "whenInactive": "high",
+      "text": "strobe common to both channels"
+    },
+    {
+      "pin": 4,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 9,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "open-collector"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4",
+      "formula": "1Y = NOT ((1A - 1B <= -25 mV) AND 1G AND S)",
+      "text": "Output low only when the differential input is negative (A below B by at least 25 mV) and both strobes are high; high otherwise."
+    },
+    {
+      "output": "9",
+      "formula": "2Y = NOT ((2A - 2B <= -25 mV) AND 2G AND S)",
+      "text": "Same for channel 2."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 5.25,
+    "inputSchmitt": false,
+    "notes": "VCC+ 4.75-5.25 V, VCC- -4.75 to -5.25 V, TA 0-70 C. Receiver input thresholds: VIDH 25 mV (output high when A-B >= +25 mV), VIDL -25 mV; between them the output is indeterminate when both strobes are high. Differential input range -5 to +5 V, common-mode range -3 to +3 V. Strobe inputs: VIH 2 V, VIL 0.8 V. Open collector: IOH max 250 uA at VOH = VCC+ max; outputMaxVoltageV is that VCC+ max (5.25 V), no higher pull-up voltage is stated."
+  },
+  "timing": [
+    {
+      "from": "A,B (differential)",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 25,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 390 ohm, CL 15 pF"
+    },
+    {
+      "from": "A,B (differential)",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 25,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 390 ohm, CL 15 pF"
+    },
+    {
+      "from": "G or S",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 390 ohm, CL 15 pF"
+    },
+    {
+      "from": "G or S",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC+ 5 V, VCC- -5 V, TA 25 C, RL 390 ohm, CL 15 pF"
+    }
+  ],
+  "unknown": [
+    "No minimum propagation delays printed.",
+    "Recommended IOH is not stated for the open-collector output (only leakage 250 uA max), so outputHighMaxCurrentMa is null.",
+    "Datasheet read is the improved 'A' version (SN75107A/SN75108A), described as a direct replacement for the original; the original non-A datasheet was not read."
+  ],
+  "notes": "Truth table: VID >= 25 mV -> H; -25 < VID < 25 mV -> H unless both G and S high (then indeterminate); VID <= -25 mV -> L only with G and S both high. When only one channel is used, ground the other channel's inputs.",
+  "state": null,
+  "timingLimits": []
+}

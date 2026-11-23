@@ -1,0 +1,361 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7474",
+  "family": "74",
+  "title": "Dual D-type edge-triggered flip-flop",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments and function tables)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+      "pages": "5-22 (PDF page 22)",
+      "familyUsed": "SN7474 (J, N package)"
+    },
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (gate and flip-flop data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "6-46, 6-47, 6-48 (PDF pages 46-48)",
+      "familyUsed": "SN7474"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1CLR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "1D",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "1CK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 4,
+      "name": "1PR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "5",
+        "6"
+      ]
+    },
+    {
+      "pin": 5,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "1Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "2Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "2PR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "9",
+        "8"
+      ]
+    },
+    {
+      "pin": 11,
+      "name": "2CK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 12,
+      "name": "2D",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "2CLR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "9",
+        "8"
+      ]
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": "1Q = state1",
+      "text": "Stored bit of flip-flop 1."
+    },
+    {
+      "output": "6",
+      "formula": "1Q' = NOT state1",
+      "text": "Inverse of 1Q (both high while 1PR and 1CLR are both low)."
+    },
+    {
+      "output": "9",
+      "formula": "2Q = state2",
+      "text": "Stored bit of flip-flop 2."
+    },
+    {
+      "output": "8",
+      "formula": "2Q' = NOT state2",
+      "text": "Inverse of 2Q (both high while 2PR and 2CLR are both low)."
+    }
+  ],
+  "state": {
+    "bits": 2,
+    "changesOn": "rising edge of nCK, each flip-flop on its own clock",
+    "rules": [
+      "PR low, CLR high: Q = 1, Q' = 0 at once",
+      "PR high, CLR low: Q = 0, Q' = 1 at once",
+      "PR low, CLR low: Q = 1 and Q' = 1; not stable, does not persist when PR and CLR return high",
+      "PR high, CLR high, rising edge of CK: Q = D",
+      "PR high, CLR high, CK low: hold"
+    ]
+  },
+  "timing": [
+    {
+      "from": "1PR",
+      "to": "1Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1PR",
+      "to": "1Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1CLR",
+      "to": "1Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1CLR",
+      "to": "1Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1CK",
+      "to": "1Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1CK",
+      "to": "1Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1CK",
+      "to": "1Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "1CK",
+      "to": "1Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2PR",
+      "to": "2Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2PR",
+      "to": "2Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2CLR",
+      "to": "2Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2CLR",
+      "to": "2Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2CK",
+      "to": "2Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2CK",
+      "to": "2Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2CK",
+      "to": "2Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "2CK",
+      "to": "2Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width high",
+      "pin": "CK",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "pulse width low",
+      "pin": "CK",
+      "ref": null,
+      "minNs": 37
+    },
+    {
+      "what": "pulse width low",
+      "pin": "PR",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "pulse width low",
+      "pin": "CLR",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "CK rising",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "CK rising",
+      "minNs": 5
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "CK",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 15,
+      "typMHz": 25
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [
+    "Typical preset and clear propagation delays: the table gives the maximum only."
+  ],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

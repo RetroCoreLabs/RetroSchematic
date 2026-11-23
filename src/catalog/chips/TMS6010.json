@@ -1,0 +1,482 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "TMS6010",
+  "family": "MOS-LSI",
+  "title": "Universal asynchronous receiver/transmitter (UART)",
+  "package": "DIP-40",
+  "sources": [
+    {
+      "document": "Texas Instruments 1975 The Semiconductor Memory Data Book, TMS 6011 JC, NC asynchronous data interface (UART), bulletin DL-S 7512275, May 1975",
+      "url": "https://www.bitsavers.org/components/ti/_dataBooks/1975_TI_The_Semiconductor_Memory_Data_Book.pdf",
+      "pages": "pdf 153-158 (printed 152-157)",
+      "familyUsed": "TMS 6011"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "VSS",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 2,
+      "name": "VGG",
+      "role": "power",
+      "voltage": "-12 V"
+    },
+    {
+      "pin": 3,
+      "name": "VDD",
+      "role": "ground",
+      "text": "0 V reference"
+    },
+    {
+      "pin": 4,
+      "name": "ROD",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "whenInactive": "float",
+      "text": "receiver output disable"
+    },
+    {
+      "pin": 5,
+      "name": "RO8",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 6,
+      "name": "RO7",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 7,
+      "name": "RO6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 8,
+      "name": "RO5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 9,
+      "name": "RO4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 10,
+      "name": "RO3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 11,
+      "name": "RO2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 12,
+      "name": "RO1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ROD"
+    },
+    {
+      "pin": 13,
+      "name": "PE",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "SFD"
+    },
+    {
+      "pin": 14,
+      "name": "FE",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "SFD"
+    },
+    {
+      "pin": 15,
+      "name": "OE",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "SFD"
+    },
+    {
+      "pin": 16,
+      "name": "SFD",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "13",
+        "14",
+        "15",
+        "19",
+        "22"
+      ],
+      "whenInactive": "float",
+      "text": "status flags disable"
+    },
+    {
+      "pin": 17,
+      "name": "RC",
+      "role": "clock",
+      "edge": null,
+      "text": "receiver clock, 16 x baud rate"
+    },
+    {
+      "pin": 18,
+      "name": "DRR",
+      "role": "input",
+      "active": "low",
+      "text": "data ready reset"
+    },
+    {
+      "pin": 19,
+      "name": "DR",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "SFD"
+    },
+    {
+      "pin": 20,
+      "name": "RI",
+      "role": "input",
+      "text": "serial receiver input; keep high when idle"
+    },
+    {
+      "pin": 21,
+      "name": "MR",
+      "role": "input",
+      "async": true,
+      "active": "high"
+    },
+    {
+      "pin": 22,
+      "name": "TBRE",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "SFD"
+    },
+    {
+      "pin": 23,
+      "name": "TBRL",
+      "role": "input",
+      "active": "low",
+      "text": "transmitter buffer register load; data moves on to the transmitter register on the low-to-high edge"
+    },
+    {
+      "pin": 24,
+      "name": "TRE",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "not three-state"
+    },
+    {
+      "pin": 25,
+      "name": "TO",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "serial transmitter output, not three-state"
+    },
+    {
+      "pin": 26,
+      "name": "TI1",
+      "role": "input"
+    },
+    {
+      "pin": 27,
+      "name": "TI2",
+      "role": "input"
+    },
+    {
+      "pin": 28,
+      "name": "TI3",
+      "role": "input"
+    },
+    {
+      "pin": 29,
+      "name": "TI4",
+      "role": "input"
+    },
+    {
+      "pin": 30,
+      "name": "TI5",
+      "role": "input"
+    },
+    {
+      "pin": 31,
+      "name": "TI6",
+      "role": "input"
+    },
+    {
+      "pin": 32,
+      "name": "TI7",
+      "role": "input"
+    },
+    {
+      "pin": 33,
+      "name": "TI8",
+      "role": "input"
+    },
+    {
+      "pin": 34,
+      "name": "CRL",
+      "role": "input",
+      "active": "high",
+      "text": "control register load"
+    },
+    {
+      "pin": 35,
+      "name": "PI",
+      "role": "input"
+    },
+    {
+      "pin": 36,
+      "name": "SBS",
+      "role": "input"
+    },
+    {
+      "pin": 37,
+      "name": "WLS2",
+      "role": "input"
+    },
+    {
+      "pin": 38,
+      "name": "WLS1",
+      "role": "input"
+    },
+    {
+      "pin": 39,
+      "name": "PS",
+      "role": "input"
+    },
+    {
+      "pin": 40,
+      "name": "TC",
+      "role": "clock",
+      "edge": null,
+      "text": "transmitter clock, 16 x baud rate"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5,6,7,8,9,10,11,12",
+      "formula": null,
+      "text": "Received word, right-justified (RO1 = LSB); unused high bits low. Float while ROD is high. Not affected by MR."
+    },
+    {
+      "output": "13",
+      "formula": null,
+      "text": "PE high = parity error; forced low when PI is high. Floats while SFD is high."
+    },
+    {
+      "output": "14",
+      "formula": null,
+      "text": "FE high = framing error (missing or bad stop bit). Floats while SFD is high."
+    },
+    {
+      "output": "15",
+      "formula": null,
+      "text": "OE high = overrun (DR not reset before the next word arrived). Floats while SFD is high."
+    },
+    {
+      "output": "19",
+      "formula": null,
+      "text": "DR high = a word is in the receiver buffer register. DRR low resets it. Floats while SFD is high."
+    },
+    {
+      "output": "22",
+      "formula": null,
+      "text": "TBRE high = transmitter buffer register empty, ready for a new word. Floats while SFD is high."
+    },
+    {
+      "output": "24",
+      "formula": null,
+      "text": "TRE high = transmitter has sent a whole word including stop bits; stays high until the next word starts."
+    },
+    {
+      "output": "25",
+      "formula": null,
+      "text": "Serial out: start bit, 5-8 data bits, optional parity, 1 or 2 stop bits. High when idle; MR sets it high."
+    }
+  ],
+  "state": {
+    "type": "UART",
+    "changesOn": "TC / RC clocks (16 x baud)",
+    "rules": [
+      "MR high (after power-on): resets status and transmitter registers, TO high; RO not affected.",
+      "CRL high loads WLS1, WLS2, PS, PI, SBS into the control register.",
+      "Word length WLS1/WLS2: L/L 5, H/L 6, L/H 7, H/H 8 bits.",
+      "PS high = even parity, low = odd. PI high = no parity bit (PE forced low). SBS high = 2 stop bits, low = 1.",
+      "TBRL low loads TI1..TI8 into the transmitter buffer; TBRL low-to-high moves it into the transmitter register (delayed until the current word is sent)."
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 1.6,
+    "outputHighMaxCurrentMa": -0.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "P-channel MOS. VSS +5 V +-0.25, VGG -12 V +-0.5, VDD 0 V. VIH VSS-1.5 V min, VIL 0.8 V max. VOL 0.6 V at 1.6 mA, VOH 2.4 V at -200 uA. Inputs have internal pull-ups. Clock 0..200 kHz. TA -25..85 C."
+  },
+  "timing": [
+    {
+      "from": "DRR",
+      "to": "DR",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 800,
+      "maxNs": 1000,
+      "conditions": "1 Series 74 TTL load"
+    },
+    {
+      "from": "TBRL",
+      "to": "TBRE",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 800,
+      "maxNs": 1000,
+      "conditions": "1 Series 74 TTL load"
+    },
+    {
+      "from": "ROD",
+      "to": "RO",
+      "edge": "PZX",
+      "minNs": null,
+      "typNs": 300,
+      "maxNs": 500,
+      "conditions": "1 Series 74 TTL load",
+      "symbol": "enable"
+    },
+    {
+      "from": "ROD",
+      "to": "RO",
+      "edge": "PXZ",
+      "minNs": null,
+      "typNs": 300,
+      "maxNs": 500,
+      "conditions": "1 Series 74 TTL load",
+      "symbol": "disable"
+    },
+    {
+      "from": "SFD",
+      "to": "PE,FE,OE,DR,TBRE",
+      "edge": "PZX",
+      "minNs": null,
+      "typNs": 300,
+      "maxNs": 500,
+      "conditions": "1 Series 74 TTL load",
+      "symbol": "enable"
+    },
+    {
+      "from": "SFD",
+      "to": "PE,FE,OE,DR,TBRE",
+      "edge": "PXZ",
+      "minNs": null,
+      "typNs": 300,
+      "maxNs": 500,
+      "conditions": "1 Series 74 TTL load",
+      "symbol": "disable"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulseWidth",
+      "pin": "TC/RC",
+      "ref": null,
+      "minNs": 2500
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "TBRL",
+      "ref": null,
+      "minNs": 400
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CRL",
+      "ref": null,
+      "minNs": 250
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "PI",
+      "ref": null,
+      "minNs": 400
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "PS",
+      "ref": null,
+      "minNs": 300
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "WLS/SBS",
+      "ref": null,
+      "minNs": 300
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "MR",
+      "ref": null,
+      "minNs": 1500
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "DRR",
+      "ref": null,
+      "minNs": 250
+    },
+    {
+      "what": "setup",
+      "pin": "TI1-TI8",
+      "ref": "TBRL",
+      "minNs": 10
+    },
+    {
+      "what": "hold",
+      "pin": "TI1-TI8",
+      "ref": "TBRL",
+      "minNs": 20
+    },
+    {
+      "what": "maxClockFrequency",
+      "pin": "TC/RC",
+      "ref": null,
+      "minNs": null,
+      "maxKHz": 200
+    }
+  ],
+  "unknown": [
+    "No TMS6010 datasheet was found; the file uses the TMS6011 sheet, which the ND manual title names as equivalent. Differences between 6010 and 6011 are unknown.",
+    "Which clock edge shifts data on TC and RC is not stated in the pages read (edge null).",
+    "Reference edges of TI setup/hold (arrows) were lost in the text layer."
+  ],
+  "notes": "ND title also names AY-5-1012 and AY-5-1013 as equivalents."
+}

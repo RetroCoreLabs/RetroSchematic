@@ -1,0 +1,142 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7413",
+  "family": "74",
+  "title": "Dual 4-input NAND Schmitt trigger",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "NTE Electronics NTE7413 datasheet (TTL dual 4-input positive NAND Schmitt trigger, 7413 replacement)",
+      "url": "https://cdn.shopify.com/s/files/1/0268/7746/0673/files/107413.pdf",
+      "pages": "1-3",
+      "familyUsed": "NTE7413"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 3,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 4,
+      "name": "1C",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 5,
+      "name": "1D",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 6,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "2A",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 10,
+      "name": "2B",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 11,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 12,
+      "name": "2C",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 13,
+      "name": "2D",
+      "role": "input",
+      "schmitt": true
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6",
+      "formula": "1Y = NOT(1A AND 1B AND 1C AND 1D)",
+      "text": "1Y is the NAND of 1A, 1B, 1C, 1D."
+    },
+    {
+      "output": "8",
+      "formula": "2Y = NOT(2A AND 2B AND 2C AND 2D)",
+      "text": "2Y is the NAND of 2A, 2B, 2C, 2D."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": true,
+    "notes": "Schmitt inputs at VCC 5 V: VT+ min 1.5 / typ 1.7 / max 2.0 V; VT- min 0.6 / typ 0.9 / max 1.1 V; hysteresis min 0.4 / typ 0.8 V."
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty. No TI SN7413 datasheet could be downloaded (the TI links return an error page); the figures are from the NTE7413 replacement-part sheet, not an original TI/National sheet."
+}

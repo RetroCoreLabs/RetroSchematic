@@ -1,0 +1,214 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74107",
+  "family": "74",
+  "title": "Dual J-K master-slave flip-flop",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN54107, SN54LS107A, SN74107, SN74LS107A Dual J-K flip-flops with clear, SDLS036 (December 1983, revised March 1988)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn54107.pdf",
+      "pages": "1, 3, 4",
+      "familyUsed": "SN74107"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1J",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "1K",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "1CLK",
+      "role": "clock",
+      "edge": "falling",
+      "text": "master-slave (pulse-triggered): J,K loaded into the master while CLK is high, outputs change on the high-to-low transition"
+    },
+    {
+      "pin": 13,
+      "name": "1CLR",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 3,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 2,
+      "name": "1Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "2J",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "2K",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "2CLK",
+      "role": "clock",
+      "edge": "falling",
+      "text": "master-slave (pulse-triggered): J,K loaded into the master while CLK is high, outputs change on the high-to-low transition"
+    },
+    {
+      "pin": 10,
+      "name": "2CLR",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 5,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "2Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3",
+      "formula": "1Q = FF1",
+      "text": "Flip-flop output."
+    },
+    {
+      "output": "2",
+      "formula": "1Q' = NOT FF1",
+      "text": "Complement output."
+    },
+    {
+      "output": "5",
+      "formula": "2Q = FF2",
+      "text": "Flip-flop output."
+    },
+    {
+      "output": "6",
+      "formula": "2Q' = NOT FF2",
+      "text": "Complement output."
+    }
+  ],
+  "state": {
+    "bits": 2,
+    "changesOn": "high-to-low transition at the end of a positive CLK pulse (master-slave)",
+    "rules": [
+      "CLR low: Q = 0, Q' = 1 at once, overriding clock and data",
+      "CLR high, positive CLK pulse: J=L,K=L hold; J=H,K=L Q=1; J=L,K=H Q=0; J=H,K=H toggle",
+      "The J-K data is loaded into the master while CLK is high and transferred to the slave and outputs on the high-to-low clock transition; J and K must be stable while CLK is high"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Clock and clear are double loads: IIL -3.2 mA, IIH 80 uA; J, K -1.6 mA, 40 uA."
+  },
+  "timing": [
+    {
+      "from": "CLR",
+      "to": "Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLR",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLK",
+      "to": "Q or Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 16,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLK",
+      "to": "Q or Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "max clock frequency",
+      "pin": "CLK",
+      "minMHz": 15,
+      "typMHz": 20
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLK high",
+      "minNs": 20
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLK low",
+      "minNs": 47
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLR low",
+      "minNs": 25
+    },
+    {
+      "what": "setup",
+      "pin": "J, K",
+      "ref": "CLK rising",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "J, K",
+      "ref": "CLK rising",
+      "minNs": 0
+    }
+  ],
+  "unknown": [],
+  "notes": "IOH is -0.4 mA in this datasheet's recommended operating conditions."
+}

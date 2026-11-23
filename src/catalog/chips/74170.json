@@ -1,0 +1,273 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74170",
+  "family": "74",
+  "title": "4-by-4 register file",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54170, SN54LS170, SN74170, SN74LS170 4-by-4 register files with open-collector outputs, bulletin DL-S 7611349 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-237, 7-238, 7-240, 7-241 (PDF pages 236, 237, 239, 240)",
+      "familyUsed": "SN74170"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 15,
+      "name": "D1",
+      "role": "input"
+    },
+    {
+      "pin": 1,
+      "name": "D2",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "D3",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "D4",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "WA",
+      "role": "input",
+      "text": "write address, least significant"
+    },
+    {
+      "pin": 13,
+      "name": "WB",
+      "role": "input",
+      "text": "write address, most significant"
+    },
+    {
+      "pin": 12,
+      "name": "GW",
+      "role": "input",
+      "active": "low",
+      "text": "write enable: while low, the addressed word's latches follow D1-D4 (level, not edge)"
+    },
+    {
+      "pin": 5,
+      "name": "RA",
+      "role": "input",
+      "text": "read address, least significant"
+    },
+    {
+      "pin": 4,
+      "name": "RB",
+      "role": "input",
+      "text": "read address, most significant"
+    },
+    {
+      "pin": 11,
+      "name": "GR",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "10",
+        "9",
+        "7",
+        "6"
+      ],
+      "whenInactive": "high",
+      "text": "read enable; high: outputs off (open collector, pulled high)"
+    },
+    {
+      "pin": 10,
+      "name": "Q1",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 9,
+      "name": "Q2",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 7,
+      "name": "Q3",
+      "role": "output",
+      "outputType": "open-collector"
+    },
+    {
+      "pin": 6,
+      "name": "Q4",
+      "role": "output",
+      "outputType": "open-collector"
+    }
+  ],
+  "functions": [
+    {
+      "output": "10",
+      "formula": "Q1 = NOT(GR') OR ((RB'RA' AND W0B1) OR (RB'RA AND W1B1) OR (RBRA' AND W2B1) OR (RBRA AND W3B1))",
+      "text": "With GR low, Q1 shows bit 1 of the word picked by RB,RA (true data, non-destructive read); with GR high the output is off (high with a pull-up)."
+    },
+    {
+      "output": "9",
+      "formula": "Q2 = NOT(GR') OR ((RB'RA' AND W0B2) OR (RB'RA AND W1B2) OR (RBRA' AND W2B2) OR (RBRA AND W3B2))",
+      "text": "With GR low, Q2 shows bit 2 of the word picked by RB,RA (true data, non-destructive read); with GR high the output is off (high with a pull-up)."
+    },
+    {
+      "output": "7",
+      "formula": "Q3 = NOT(GR') OR ((RB'RA' AND W0B3) OR (RB'RA AND W1B3) OR (RBRA' AND W2B3) OR (RBRA AND W3B3))",
+      "text": "With GR low, Q3 shows bit 3 of the word picked by RB,RA (true data, non-destructive read); with GR high the output is off (high with a pull-up)."
+    },
+    {
+      "output": "6",
+      "formula": "Q4 = NOT(GR') OR ((RB'RA' AND W0B4) OR (RB'RA AND W1B4) OR (RBRA' AND W2B4) OR (RBRA AND W3B4))",
+      "text": "With GR low, Q4 shows bit 4 of the word picked by RB,RA (true data, non-destructive read); with GR high the output is off (high with a pull-up)."
+    }
+  ],
+  "state": {
+    "bits": 16,
+    "changesOn": "level of GW (transparent latches)",
+    "rules": [
+      "GW low, WB,WA = 0: word 0 latches = D1..D4 (follow the data inputs); other words hold",
+      "GW low, WB,WA = 1: word 1 = D; GW low, WB,WA = 2: word 2 = D; GW low, WB,WA = 3: word 3 = D",
+      "GW high: all words hold; data inputs inhibited",
+      "Writing and reading may happen at the same time at different addresses; a read of a word just written needs the latch time tlatch (25 ns) after the write"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 5.5,
+    "inputSchmitt": false,
+    "notes": "Open-collector outputs: recommended VOH max 5.5 V; IOH (off-state) 30 uA max at VOH 5.5 V. Up to 256 outputs may be wire-AND connected."
+  },
+  "timing": [
+    {
+      "from": "GR",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "GR",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "RA, RB",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "RA, RB",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 30,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "GW",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "GW",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 34,
+      "maxNs": 45,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "D",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 30,
+      "maxNs": 45,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "GW or GR",
+      "minNs": 25
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "GW",
+      "minNs": 10
+    },
+    {
+      "what": "setup",
+      "pin": "WA, WB",
+      "ref": "GW",
+      "minNs": 15
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "GW",
+      "minNs": 15
+    },
+    {
+      "what": "hold",
+      "pin": "WA, WB",
+      "ref": "GW",
+      "minNs": 5
+    },
+    {
+      "what": "latch time",
+      "pin": "D",
+      "ref": "GW",
+      "minNs": 25,
+      "text": "time for the latch output to take the new data before reading that word"
+    }
+  ],
+  "unknown": [
+    "Which GW edge the setup and hold times refer to is in datasheet Figure 2 (not read); from the description it is the end (rising edge) of the write-enable pulse, but that was not read from the figure."
+  ],
+  "notes": "outputHighMaxCurrentMa is null because the outputs are open collector (no IOH source rating)."
+}

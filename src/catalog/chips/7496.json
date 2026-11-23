@@ -1,0 +1,280 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7496",
+  "family": "74",
+  "title": "5-bit shift register",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-95, 7-98 (PDF pages 94, 97)",
+      "familyUsed": "SN7496"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 2,
+      "name": "A",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "15"
+      ],
+      "text": "preset input of stage A: sets it to 1 at once while PE is high"
+    },
+    {
+      "pin": 3,
+      "name": "B",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "14"
+      ],
+      "text": "preset input of stage B: sets it to 1 at once while PE is high"
+    },
+    {
+      "pin": 4,
+      "name": "C",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "13"
+      ],
+      "text": "preset input of stage C: sets it to 1 at once while PE is high"
+    },
+    {
+      "pin": 5,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 6,
+      "name": "D",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "11"
+      ],
+      "text": "preset input of stage D: sets it to 1 at once while PE is high"
+    },
+    {
+      "pin": 7,
+      "name": "E",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "10"
+      ],
+      "text": "preset input of stage E: sets it to 1 at once while PE is high"
+    },
+    {
+      "pin": 8,
+      "name": "PE",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "15",
+        "14",
+        "13",
+        "11",
+        "10"
+      ],
+      "text": "PRESET ENABLE: while high, every stage whose preset input is high is set to 1"
+    },
+    {
+      "pin": 9,
+      "name": "SER",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "QE",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 13,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "CLEAR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "controls": [
+        "15",
+        "14",
+        "13",
+        "11",
+        "10"
+      ],
+      "text": "low sets all five stages to 0 at once while the preset is inactive"
+    }
+  ],
+  "functions": [
+    {
+      "output": "15",
+      "formula": "QA = stateA",
+      "text": "Register stage A."
+    },
+    {
+      "output": "14",
+      "formula": "QB = stateB",
+      "text": "Register stage B."
+    },
+    {
+      "output": "13",
+      "formula": "QC = stateC",
+      "text": "Register stage C."
+    },
+    {
+      "output": "11",
+      "formula": "QD = stateD",
+      "text": "Register stage D."
+    },
+    {
+      "output": "10",
+      "formula": "QE = stateE",
+      "text": "Register stage E."
+    }
+  ],
+  "state": {
+    "bits": 5,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "Clear and preset do not depend on the clock",
+      "CLEAR low, PE low: QA-QE = 0 at once",
+      "CLEAR low, all preset inputs A-E low (PE don't care): QA-QE = 0",
+      "CLEAR high, PE high: each stage whose preset input is high is set to 1 at once; a stage whose preset input is low holds",
+      "CLEAR high, PE low, CLOCK low: hold",
+      "CLEAR high, PE low, rising edge of CLOCK: QA = SER, QB = old QA, QC = old QB, QD = old QC, QE = old QD",
+      "Parallel load: clear first, then apply data on A-E and a high pulse on PE"
+    ]
+  },
+  "timing": [
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "preset or PE",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLEAR",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 55,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "CLOCK",
+      "ref": null,
+      "minNs": 35
+    },
+    {
+      "what": "pulse width",
+      "pin": "CLEAR,PE",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "setup",
+      "pin": "SER",
+      "ref": "CLOCK rising",
+      "minNs": 30
+    },
+    {
+      "what": "hold",
+      "pin": "SER",
+      "ref": "CLOCK rising",
+      "minNs": 0
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "CLOCK",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 10,
+      "typMHz": null,
+      "text": "recommended clock frequency 0 to 10 MHz; no fmax row in the switching table"
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [
+    "Result when CLEAR is low while PE and a preset input are both high: not in the function table.",
+    "Typical delay from CLEAR: the table gives the maximum (55 ns) only."
+  ],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

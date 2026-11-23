@@ -1,0 +1,221 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74150",
+  "family": "74",
+  "title": "Data selector/multiplexer 16-1",
+  "package": "DIP-24",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN54150, SN54151A, SN54152A, SN54LS151, SN54LS152, SN54S151, SN74150, SN74151A, SN74LS151, SN74S151 Data selectors/multiplexers, bulletin DL-S 7611819 (revised October 1976)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "book pages 7-157 to 7-160 (PDF pages 156-159)",
+      "familyUsed": "SN74150"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 24,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "E0",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "E1",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "E2",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "E3",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "E4",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "E5",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "E6",
+      "role": "input"
+    },
+    {
+      "pin": 1,
+      "name": "E7",
+      "role": "input"
+    },
+    {
+      "pin": 23,
+      "name": "E8",
+      "role": "input"
+    },
+    {
+      "pin": 22,
+      "name": "E9",
+      "role": "input"
+    },
+    {
+      "pin": 21,
+      "name": "E10",
+      "role": "input"
+    },
+    {
+      "pin": 20,
+      "name": "E11",
+      "role": "input"
+    },
+    {
+      "pin": 19,
+      "name": "E12",
+      "role": "input"
+    },
+    {
+      "pin": 18,
+      "name": "E13",
+      "role": "input"
+    },
+    {
+      "pin": 17,
+      "name": "E14",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "E15",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A",
+      "role": "input",
+      "text": "data select, least significant"
+    },
+    {
+      "pin": 14,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "D",
+      "role": "input",
+      "text": "data select, most significant"
+    },
+    {
+      "pin": 9,
+      "name": "STROBE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "10"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 10,
+      "name": "W",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "10",
+      "formula": "W = NOT(STROBE' AND ((D' AND C' AND B' AND A' AND E0) OR (D' AND C' AND B' AND A AND E1) OR (D' AND C' AND B AND A' AND E2) OR (D' AND C' AND B AND A AND E3) OR (D' AND C AND B' AND A' AND E4) OR (D' AND C AND B' AND A AND E5) OR (D' AND C AND B AND A' AND E6) OR (D' AND C AND B AND A AND E7) OR (D AND C' AND B' AND A' AND E8) OR (D AND C' AND B' AND A AND E9) OR (D AND C' AND B AND A' AND E10) OR (D AND C' AND B AND A AND E11) OR (D AND C AND B' AND A' AND E12) OR (D AND C AND B' AND A AND E13) OR (D AND C AND B AND A' AND E14) OR (D AND C AND B AND A AND E15)))",
+      "text": "With STROBE low, W is the complement of the data input E0-E15 picked by D,C,B,A (D most significant). STROBE high forces W high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "A, B, C or D",
+      "to": "W",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "3 levels; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A, B, C or D",
+      "to": "W",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "3 levels; VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "W",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 15.5,
+      "maxNs": 24,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "STROBE",
+      "to": "W",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "E0 thru E15",
+      "to": "W",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "E0 thru E15",
+      "to": "W",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8.5,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "Formulas from the '150 function table (book page 7-158)."
+}

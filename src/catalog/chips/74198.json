@@ -1,0 +1,248 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74198",
+  "family": "74",
+  "title": "8-bit shift register",
+  "package": "DIP-24",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, SN54198/SN54199/SN74198/SN74199 (bulletin DL-S 7611841, Dec 1972, rev. Oct 1976)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-338, 7-339, 7-343, 7-344 (PDF pages 337, 338, 342, 343)",
+      "familyUsed": "SN74198"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 24,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "S0",
+      "role": "input",
+      "text": "mode control"
+    },
+    {
+      "pin": 23,
+      "name": "S1",
+      "role": "input",
+      "text": "mode control; change S0/S1 only while CLOCK is high"
+    },
+    {
+      "pin": 2,
+      "name": "SR SER",
+      "role": "input",
+      "text": "shift-right serial input"
+    },
+    {
+      "pin": 22,
+      "name": "SL SER",
+      "role": "input",
+      "text": "shift-left serial input"
+    },
+    {
+      "pin": 3,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 9,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "E",
+      "role": "input"
+    },
+    {
+      "pin": 17,
+      "name": "F",
+      "role": "input"
+    },
+    {
+      "pin": 19,
+      "name": "G",
+      "role": "input"
+    },
+    {
+      "pin": 21,
+      "name": "H",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "CLOCK",
+      "role": "clock",
+      "edge": "rising"
+    },
+    {
+      "pin": 13,
+      "name": "CLEAR'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 4,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "QE",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "QF",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 18,
+      "name": "QG",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 20,
+      "name": "QH",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,6,8,10,14,16,18,20",
+      "formula": "QA..QH = Q[0..7]",
+      "text": "Register bits."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "CLEAR' low: QA..QH = L at once",
+      "CLOCK low (no edge): hold",
+      "S1=H, S0=H: parallel load QA..QH = A..H at the clock edge",
+      "S1=L, S0=H: shift right (QA toward QH): QA = SR SER, QB = QAn, ..., QH = QGn",
+      "S1=H, S0=L: shift left (QH toward QA): QH = SL SER, QG = QHn, ..., QA = QBn",
+      "S1=L, S0=L: clock inhibited, hold",
+      "Change the mode inputs only while CLOCK is high"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74198/SN74199: VCC 4.75-5.25 V, TA 0-70 C."
+  },
+  "timing": [
+    {
+      "from": "CLEAR'",
+      "to": "QA..QH",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QH",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "CLOCK",
+      "to": "QA..QH",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 17,
+      "maxNs": 26,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "maxClockFrequency",
+      "pin": "CLOCK",
+      "minMHz": 25,
+      "typMHz": 35,
+      "text": "recommended fclock 0-25 MHz"
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "CLOCK or CLEAR'",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "S0, S1",
+      "ref": "CLOCK",
+      "minNs": 30,
+      "text": "mode-control setup time"
+    },
+    {
+      "what": "setup",
+      "pin": "data",
+      "ref": "CLOCK",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "any input",
+      "ref": "CLOCK",
+      "minNs": 0
+    }
+  ],
+  "unknown": [
+    "No minimum propagation delays printed.",
+    "Clear-to-output low-to-high is not applicable; no other paths listed."
+  ],
+  "notes": "Bidirectional; four modes: load, shift right, shift left, inhibit."
+}

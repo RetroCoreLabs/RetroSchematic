@@ -1,0 +1,244 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7489",
+  "family": "74",
+  "title": "64-bit read/write memory",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor TTL Data Book 1976, DM54/DM7489, L89A 64-Bit Read/Write Memories",
+      "url": "https://bitsavers.mirrorservice.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "2-28, 2-29 (PDF pages 175-176)",
+      "familyUsed": "DM7489 (National; TI's 1976 TTL book does not carry the 7489)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "ME",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "5",
+        "7",
+        "9",
+        "11"
+      ],
+      "whenInactive": "high",
+      "text": "MEMORY ENABLE: low selects the chip; high = hold, outputs at logical 1 (off)"
+    },
+    {
+      "pin": 3,
+      "name": "WE",
+      "role": "input",
+      "active": "low",
+      "text": "WRITE ENABLE: low together with ME low writes D1-D4 into the addressed word; high reads"
+    },
+    {
+      "pin": 4,
+      "name": "D1",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "S1",
+      "role": "output",
+      "outputType": "open-collector",
+      "enabledBy": "2"
+    },
+    {
+      "pin": 6,
+      "name": "D2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "S2",
+      "role": "output",
+      "outputType": "open-collector",
+      "enabledBy": "2"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "S3",
+      "role": "output",
+      "outputType": "open-collector",
+      "enabledBy": "2"
+    },
+    {
+      "pin": 10,
+      "name": "D3",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "S4",
+      "role": "output",
+      "outputType": "open-collector",
+      "enabledBy": "2"
+    },
+    {
+      "pin": 12,
+      "name": "D4",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": "S1 = NOT (ME' AND WE AND M[D,C,B,A].bit1)",
+      "text": "Sense output 1: while reading (ME low, WE high) it is the complement of bit 1 of the addressed word; while writing (ME low, WE low) and while ME is high it is at logical 1 (open-collector off)."
+    },
+    {
+      "output": "7",
+      "formula": "S2 = NOT (ME' AND WE AND M[D,C,B,A].bit2)",
+      "text": "Sense output 2: while reading (ME low, WE high) it is the complement of bit 2 of the addressed word; while writing (ME low, WE low) and while ME is high it is at logical 1 (open-collector off)."
+    },
+    {
+      "output": "9",
+      "formula": "S3 = NOT (ME' AND WE AND M[D,C,B,A].bit3)",
+      "text": "Sense output 3: while reading (ME low, WE high) it is the complement of bit 3 of the addressed word; while writing (ME low, WE low) and while ME is high it is at logical 1 (open-collector off)."
+    },
+    {
+      "output": "11",
+      "formula": "S4 = NOT (ME' AND WE AND M[D,C,B,A].bit4)",
+      "text": "Sense output 4: while reading (ME low, WE high) it is the complement of bit 4 of the addressed word; while writing (ME low, WE low) and while ME is high it is at logical 1 (open-collector off)."
+    }
+  ],
+  "state": {
+    "bits": 64,
+    "changesOn": "while ME and WE are both low (write)",
+    "rules": [
+      "16 words of 4 bits, selected by the four select inputs A, B, C, D (fully decoded)",
+      "ME low, WE low: write D1-D4 into the addressed word; outputs at logical 1",
+      "ME low, WE high: read; outputs show the complement of the addressed word",
+      "ME high: hold (no write); outputs at logical 1",
+      "Read-out is nondestructive"
+    ]
+  },
+  "timing": [
+    {
+      "from": "ME",
+      "to": "S1-S4",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL1 300 ohm, RL2 600 ohm"
+    },
+    {
+      "from": "ME",
+      "to": "S1-S4",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL1 300 ohm, RL2 600 ohm"
+    },
+    {
+      "from": "A,B,C,D",
+      "to": "S1-S4",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 34,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL1 300 ohm, RL2 600 ohm"
+    },
+    {
+      "from": "A,B,C,D",
+      "to": "S1-S4",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL1 300 ohm, RL2 600 ohm"
+    },
+    {
+      "from": "WE (sense recovery after writing)",
+      "to": "S1-S4",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 35,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 30 pF, RL1 300 ohm, RL2 600 ohm; tSR: sense recovery time after writing (edge not stated)"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width low",
+      "pin": "WE",
+      "ref": null,
+      "minNs": 40
+    },
+    {
+      "what": "setup",
+      "pin": "D1-D4",
+      "ref": "WE",
+      "minNs": 0
+    },
+    {
+      "what": "setup",
+      "pin": "A,B,C,D",
+      "ref": "WE",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "D1-D4",
+      "ref": "WE",
+      "minNs": 0
+    },
+    {
+      "what": "hold",
+      "pin": "A,B,C,D",
+      "ref": "end of write",
+      "minNs": 5
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 12,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 5.5,
+    "inputSchmitt": false,
+    "notes": "Open-collector outputs (wire-OR). IOL 12 mA, VOL max 0.4 V (DM74). Off-state output current IOH max 20 uA at VOH 5.5 V (DM74). Highest output voltage given: VOH 5.5 V. National lists these under electrical characteristics; the sheet has no separate recommended-operating-conditions table."
+  },
+  "unknown": [
+    "Which select input is the least significant address bit: the connection diagram names them A, B, C, D and the logic diagram A0-A3, but the sheet does not tie the two sets of names together.",
+    "Reference edge of the setup and hold times with respect to Write Enable: not stated.",
+    "Power-up content of the memory: not stated.",
+    "IOH as a source current does not apply (open collector); outputHighMaxCurrentMa is null."
+  ],
+  "notes": "ND symbol title says 64-bit read/write memory; this file uses the National DM7489 sheet, which describes the same 16 x 4 part with open-collector inverted outputs. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

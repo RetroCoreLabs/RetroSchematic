@@ -1,0 +1,48 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7440",
+  "family": "74",
+  "title": "Dual 4-input NAND buffer",
+  "package": "DIP-14",
+  "sources": [
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 5 (pin assignments)",
+     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf",
+     "pages": "5-14 (PDF page 14)", "familyUsed": "SN7440 (J, N package)"},
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 6 (buffers/clock drivers with totem-pole outputs)",
+     "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+     "pages": "6-20, 6-21 (PDF pages 20-21)", "familyUsed": "SN7440"}
+  ],
+  "pins": [
+    {"pin": 14, "name": "VCC", "role": "power", "voltage": "+5 V"},
+    {"pin": 7,  "name": "GND", "role": "ground"},
+    {"pin": 1,  "name": "1A", "role": "input"},
+    {"pin": 2,  "name": "1B", "role": "input"},
+    {"pin": 3,  "name": "NC", "role": "nc"},
+    {"pin": 4,  "name": "1C", "role": "input"},
+    {"pin": 5,  "name": "1D", "role": "input"},
+    {"pin": 6,  "name": "1Y", "role": "output", "outputType": "totem-pole"},
+    {"pin": 8,  "name": "2Y", "role": "output", "outputType": "totem-pole"},
+    {"pin": 9,  "name": "2A", "role": "input"},
+    {"pin": 10, "name": "2B", "role": "input"},
+    {"pin": 11, "name": "NC", "role": "nc"},
+    {"pin": 12, "name": "2C", "role": "input"},
+    {"pin": 13, "name": "2D", "role": "input"}
+  ],
+  "functions": [
+    {"output": "6", "formula": "1Y = NOT (1A AND 1B AND 1C AND 1D)", "text": "1Y is low only when all four inputs 1A-1D are high."},
+    {"output": "8", "formula": "2Y = NOT (2A AND 2B AND 2C AND 2D)", "text": "2Y is low only when all four inputs 2A-2D are high."}
+  ],
+  "state": null,
+  "timing": [
+    {"from": "any", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 22, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 133 ohm"},
+    {"from": "any", "to": "Y", "edge": "PHL", "minNs": null, "typNs": 8, "maxNs": 15, "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 133 ohm"}
+  ],
+  "timingLimits": [],
+  "electrical": {
+    "outputLowMaxCurrentMa": 48, "outputHighMaxCurrentMa": -1.2, "outputMaxVoltageV": null,
+    "inputSchmitt": false, "notes": "Buffer: IOL 48 mA, three times the 16 mA of a standard 74 gate."
+  },
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

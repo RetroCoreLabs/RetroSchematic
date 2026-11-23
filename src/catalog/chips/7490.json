@@ -1,0 +1,340 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7490",
+  "family": "74",
+  "title": "Decade counter",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. 1976, section 7 (MSI/LSI data sheets)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+      "pages": "7-71 to 7-76 (PDF pages 71-75)",
+      "familyUsed": "SN7490A (the 1976 book lists only the A version of the plain 74 part)"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "B",
+      "role": "clock",
+      "edge": "falling",
+      "text": "clock of the divide-by-five section"
+    },
+    {
+      "pin": 2,
+      "name": "R0(1)",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "12",
+        "9",
+        "8",
+        "11"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "R0(2)",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "12",
+        "9",
+        "8",
+        "11"
+      ]
+    },
+    {
+      "pin": 4,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 5,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 6,
+      "name": "R9(1)",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "12",
+        "9",
+        "8",
+        "11"
+      ]
+    },
+    {
+      "pin": 7,
+      "name": "R9(2)",
+      "role": "input",
+      "async": true,
+      "active": "high",
+      "controls": [
+        "12",
+        "9",
+        "8",
+        "11"
+      ]
+    },
+    {
+      "pin": 8,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 11,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 14,
+      "name": "A",
+      "role": "clock",
+      "edge": "falling",
+      "text": "clock of the divide-by-two section"
+    }
+  ],
+  "functions": [
+    {
+      "output": "12",
+      "formula": "QA = stateA",
+      "text": "Divide-by-two stage, clocked by input A."
+    },
+    {
+      "output": "9",
+      "formula": "QB = stateB",
+      "text": "Bit B of the second section, clocked by input B."
+    },
+    {
+      "output": "8",
+      "formula": "QC = stateC",
+      "text": "Bit C of the second section."
+    },
+    {
+      "output": "11",
+      "formula": "QD = stateD",
+      "text": "Bit D of the second section."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "falling edge of A (QA) and of B (QB, QC, QD)",
+    "rules": [
+      "R0(1) and R0(2) both high, and R9(1) or R9(2) low: QD QC QB QA = 0000 at once",
+      "R9(1) and R9(2) both high: QD QC QB QA = 1001 at once (takes priority over R0)",
+      "Otherwise (at least one R0 low and at least one R9 low): count",
+      "QA toggles on each falling edge of A",
+      "QD QC QB count 0,1,2,3,4 (divide by five) on falling edges of B",
+      "With QA connected to B and pulses on A: QD QC QB QA count BCD 0-9",
+      "With QD connected to A and pulses on B: bi-quinary count, QA gives a divide-by-ten square wave"
+    ]
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "QA",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 16,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A",
+      "to": "QA",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "A",
+      "to": "QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 32,
+      "maxNs": 48,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, QA connected to B"
+    },
+    {
+      "from": "A",
+      "to": "QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 34,
+      "maxNs": 50,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, QA connected to B"
+    },
+    {
+      "from": "B",
+      "to": "QB",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 16,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "QB",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 21,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "QC",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "QC",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "B",
+      "to": "QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 23,
+      "maxNs": 35,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "R0(1),R0(2)",
+      "to": "QA,QB,QC,QD",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 26,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "R9(1),R9(2)",
+      "to": "QA,QD",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "R9(1),R9(2)",
+      "to": "QB,QC",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 26,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "A",
+      "ref": null,
+      "minNs": 15
+    },
+    {
+      "what": "pulse width",
+      "pin": "B",
+      "ref": null,
+      "minNs": 30
+    },
+    {
+      "what": "pulse width",
+      "pin": "R0(1),R0(2)",
+      "ref": null,
+      "minNs": 15
+    },
+    {
+      "what": "pulse width",
+      "pin": "R9(1),R9(2)",
+      "ref": null,
+      "minNs": 15
+    },
+    {
+      "what": "setup (reset inactive-state)",
+      "pin": "R0",
+      "ref": "A,B",
+      "minNs": 25
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "A",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 32,
+      "typMHz": 42
+    },
+    {
+      "what": "max clock frequency",
+      "pin": "B",
+      "ref": null,
+      "minNs": null,
+      "minMHz": 16,
+      "typMHz": null
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "unknown": [],
+  "notes": "Edge: the block diagram draws master-slave flip-flops with an inverted clock on A and B; the outputs change on the high-to-low transition. QA is tested at IOL 16 mA plus the B-input load, so QA can drive B and still keep full fan-out. The datasheet gives no minimum propagation delays; the path-delay function uses 0 ns for the minimum."
+}

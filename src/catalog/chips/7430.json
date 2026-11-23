@@ -1,0 +1,128 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7430",
+  "family": "74",
+  "title": "8-input NAND gate",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5430/SN7430/SN74LS30/SN74S30 datasheet SDLS099",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls30.pdf",
+      "pages": "1, 3",
+      "familyUsed": "SN7430"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "E",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "F",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 10,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 11,
+      "name": "G",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "H",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "8",
+      "formula": "Y = NOT(A AND B AND C AND D AND E AND F AND G AND H)",
+      "text": "Y is the NAND of A, B, C, D, E, F, G, H."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty."
+}

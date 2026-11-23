@@ -1,0 +1,249 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "8599",
+  "family": "8000",
+  "title": "TRI-STATE 64-bit RAM (16 x 4), outputs inverted",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "National Semiconductor 1976 TTL Databook, DM75/DM8599 TRI-STATE 64-Bit Random Access Memories",
+      "url": "https://www.bitsavers.org/components/national/_dataBooks/1976_National_TTL_Databook.pdf",
+      "pages": "pdf 472-475 (printed 3-127..3-130)",
+      "familyUsed": "DM8599"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A0",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "ME",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "5",
+        "7",
+        "9",
+        "11"
+      ],
+      "whenInactive": "float"
+    },
+    {
+      "pin": 3,
+      "name": "WE",
+      "role": "input",
+      "active": "low"
+    },
+    {
+      "pin": 4,
+      "name": "D1",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "S1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ME"
+    },
+    {
+      "pin": 6,
+      "name": "D2",
+      "role": "input"
+    },
+    {
+      "pin": 7,
+      "name": "S2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ME"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "S3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ME"
+    },
+    {
+      "pin": 10,
+      "name": "D3",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "S4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "ME"
+    },
+    {
+      "pin": 12,
+      "name": "D4",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5,7,9,11",
+      "formula": "Sn = NOT mem[A3..A0][n] when ME' AND WE; Z when ME high",
+      "text": "With ME low and WE high, S1..S4 show the COMPLEMENT of the 4-bit word stored at address A3..A0. With ME high the outputs float."
+    }
+  ],
+  "state": {
+    "bits": 64,
+    "organisation": "16 words x 4 bits",
+    "changesOn": "level: ME low and WE low",
+    "rules": [
+      "ME L, WE L: D1..D4 written into word A3..A0",
+      "ME L, WE H: read, outputs show the complement of the stored word",
+      "ME H: hold, outputs Hi-Z"
+    ],
+    "refresh": null
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 12,
+    "outputHighMaxCurrentMa": -5.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DM85: IOL 12 mA, IOH -5.2 mA."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "S",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 45,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "A",
+      "to": "S",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 28,
+      "maxNs": 45,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "ME",
+      "to": "S",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "ME",
+      "to": "S",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm"
+    },
+    {
+      "from": "ME",
+      "to": "S",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "ME",
+      "to": "S",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 30,
+      "conditions": "VCC 5 V, TA 25 C, CL 5 pF, RL 400 ohm"
+    },
+    {
+      "from": "WE",
+      "to": "S",
+      "edge": "recovery",
+      "minNs": null,
+      "typNs": 42,
+      "maxNs": 60,
+      "conditions": "VCC 5 V, TA 25 C, CL 50 pF, RL 400 ohm",
+      "symbol": "tSR, sense recovery"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "setup",
+      "pin": "A",
+      "ref": "WE",
+      "minNs": 0,
+      "typNs": -17
+    },
+    {
+      "what": "setup",
+      "pin": "D",
+      "ref": "WE",
+      "minNs": 0,
+      "typNs": -15
+    },
+    {
+      "what": "hold",
+      "pin": "A",
+      "ref": "WE",
+      "minNs": 5,
+      "typNs": -7
+    },
+    {
+      "what": "hold",
+      "pin": "D",
+      "ref": "WE",
+      "minNs": 0,
+      "typNs": -14
+    },
+    {
+      "what": "pulseWidth",
+      "pin": "WE",
+      "ref": null,
+      "minNs": 40,
+      "typNs": 23
+    }
+  ],
+  "unknown": [
+    "The truth table gives the outputs during a write only as part of the \"complement of data\" column header; the write-cycle waveform was not read.",
+    "Which edge of WE the setup/hold times refer to was not read from the waveform."
+  ],
+  "notes": "Same pinout as 7489, with three-state outputs."
+}

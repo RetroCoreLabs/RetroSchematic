@@ -1,0 +1,242 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74123",
+  "family": "74",
+  "title": "Retriggerable monostable multivibrator with clear",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI SN54122, SN54123, SN54130, SN54LS122, SN54LS123, SN74122, SN74123, SN74130, SN74LS122, SN74LS123 Retriggerable monostable multivibrators, SDLS043 (December 1983, revised March 1988)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74123.pdf",
+      "pages": "1, 2, 4, 5, 7",
+      "familyUsed": "SN74123"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input",
+      "text": "active-low trigger input (falling edge triggers)"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input",
+      "text": "active-high trigger input (rising edge triggers)"
+    },
+    {
+      "pin": 3,
+      "name": "1CLR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "text": "overriding clear, ends the output pulse; a rising edge on CLR with A low and B high also triggers"
+    },
+    {
+      "pin": 13,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 4,
+      "name": "1Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "1Cext",
+      "role": "analog",
+      "text": "external timing capacitor (to the Rext/Cext pin)"
+    },
+    {
+      "pin": 15,
+      "name": "1Rext/Cext",
+      "role": "analog",
+      "text": "external timing capacitor (positive side) and timing resistor RT to VCC"
+    },
+    {
+      "pin": 9,
+      "name": "2A",
+      "role": "input",
+      "text": "active-low trigger input (falling edge triggers)"
+    },
+    {
+      "pin": 10,
+      "name": "2B",
+      "role": "input",
+      "text": "active-high trigger input (rising edge triggers)"
+    },
+    {
+      "pin": 11,
+      "name": "2CLR",
+      "role": "input",
+      "async": true,
+      "active": "low",
+      "text": "overriding clear, ends the output pulse; a rising edge on CLR with A low and B high also triggers"
+    },
+    {
+      "pin": 5,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "2Q'",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 6,
+      "name": "2Cext",
+      "role": "analog",
+      "text": "external timing capacitor (to the Rext/Cext pin)"
+    },
+    {
+      "pin": 7,
+      "name": "2Rext/Cext",
+      "role": "analog",
+      "text": "external timing capacitor (positive side) and timing resistor RT to VCC"
+    }
+  ],
+  "functions": [
+    {
+      "output": "13",
+      "formula": "1Q = PULSE1",
+      "text": "High for tw after a trigger; trigger = rising edge of T where T = 1CLR AND 1A' AND 1B; low at once when 1CLR is low."
+    },
+    {
+      "output": "4",
+      "formula": "1Q' = NOT PULSE1",
+      "text": "Complement of Q."
+    },
+    {
+      "output": "5",
+      "formula": "2Q = PULSE2",
+      "text": "High for tw after a trigger; trigger = rising edge of T where T = 2CLR AND 2A' AND 2B; low at once when 2CLR is low."
+    },
+    {
+      "output": "12",
+      "formula": "2Q' = NOT PULSE2",
+      "text": "Complement of Q."
+    }
+  ],
+  "state": {
+    "bits": 2,
+    "changesOn": "trigger edges on A, B or CLR (each section)",
+    "rules": [
+      "CLR low: Q = 0, Q' = 1 at once (overriding clear ends the pulse)",
+      "A high or B low (steady): no trigger; Q low, Q' high once any started pulse has ended",
+      "CLR high, A low, B rising: trigger",
+      "CLR high, A falling, B high: trigger",
+      "CLR rising, A low, B high: trigger",
+      "Retriggerable: a new trigger during the pulse restarts the timing, so the pulse ends tw after the last trigger (plus tPLH); retrigger pulses starting before 0.22 * Cext (pF) ns after the first trigger are ignored",
+      "Pulse width for Cext > 1000 pF: tw = K * RT * Cext * (1 + 0.7/RT), K = 0.28 for the '123, RT in kOhm, Cext in pF, tw in ns",
+      "With the protection diode of datasheet Figure 2 (electrolytic Cext or when CLR is used): tw = KD * RT * Cext * (1 + 0.7/RT), KD = 0.25 for the '123",
+      "For Cext <= 1000 pF the width is read from datasheet Figure 4 (graph); no formula"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74123: Rext 5 to 50 kOhm, Cext no restriction, wiring capacitance at Rext/Cext max 50 pF, input pulse duration min 40 ns. Clear input IIL -3.2 mA, IIH 80 uA; data inputs -1.6 mA, 40 uA. The datasheet calls only the 'LS122/'LS123 B input Schmitt; the 74123 is not."
+  },
+  "timing": [
+    {
+      "from": "A",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 22,
+      "maxNs": 33,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 0, Rext 5 kOhm"
+    },
+    {
+      "from": "B",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 19,
+      "maxNs": 28,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 0, Rext 5 kOhm"
+    },
+    {
+      "from": "A",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 30,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 0, Rext 5 kOhm"
+    },
+    {
+      "from": "B",
+      "to": "Q'",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 36,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 0, Rext 5 kOhm"
+    },
+    {
+      "from": "CLR",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 0, Rext 5 kOhm"
+    },
+    {
+      "from": "CLR",
+      "to": "Q'",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 30,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm, Cext 0, Rext 5 kOhm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "inputs (tw)",
+      "minNs": 40
+    },
+    {
+      "what": "output pulse width",
+      "pin": "Q",
+      "minNs": null,
+      "typNs": 45,
+      "maxNs": 76,
+      "text": "twQ(min): shortest output pulse, from A or B, Cext 0, Rext 5 kOhm, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "what": "output pulse width",
+      "pin": "Q",
+      "minNs": 2760,
+      "typNs": 3030,
+      "maxNs": 3370,
+      "text": "Cext 1000 pF, Rext 10 kOhm, CL 15 pF, RL 400 ohm (2.76, 3.03, 3.37 us)"
+    }
+  ],
+  "unknown": [],
+  "notes": "The SN74LS123 has different figures (same datasheet, page 6); this file is the 74123."
+}

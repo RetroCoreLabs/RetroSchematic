@@ -1,0 +1,148 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "75150",
+  "family": "751xx",
+  "title": "2-input line driver",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The Interface Circuits Data Book 2nd ed. 1974, SN75150 dual line driver (bulletin DL-S 7111428, Jan 1971)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1974_TI_The_Interface_Data_Book_for_Design_Engineers_Second_Edition.pdf",
+      "pages": "4-68, 4-69 (PDF pages 132, 133)",
+      "familyUsed": "SN75150"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 13,
+      "name": "VCC+",
+      "role": "power",
+      "voltage": "+12 V"
+    },
+    {
+      "pin": 10,
+      "name": "VCC-",
+      "role": "power",
+      "voltage": "-12 V"
+    },
+    {
+      "pin": 5,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 6,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 7,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 8,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 9,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 14,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 3,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "S",
+      "role": "input",
+      "text": "strobe common to both drivers"
+    },
+    {
+      "pin": 12,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "RS-232-C line output, swings about +/-5..8 V"
+    },
+    {
+      "pin": 11,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole",
+      "text": "RS-232-C line output"
+    }
+  ],
+  "functions": [
+    {
+      "output": "12",
+      "formula": "1Y = NOT (1A AND S)",
+      "text": "Datasheet positive logic Y = (AS)'. Inverting RS-232-C driver: output goes to the negative level when A and S are both high."
+    },
+    {
+      "output": "11",
+      "formula": "2Y = NOT (2A AND S)",
+      "text": "Same for driver 2."
+    }
+  ],
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": 15,
+    "inputSchmitt": false,
+    "notes": "VCC+ 10.8-13.2 V, VCC- -10.8 to -13.2 V, TA 0-70 C. Applied output voltage max +/-15 V (recommended); withstands short circuit to -25..+25 V. Output levels at RL 3-7 kohm: VOH min 5 V typ 8 V; VOL typ -8 V max -5 V. Inputs TTL/DTL: VIH 2 V, VIL 0.8 V, input voltage 0-5.5 V. Short-circuit current at VO 0 V: 15 mA (VI 3 V), -15 mA (VI 0 V) typical. Slew rate can be set with an external capacitor at the output."
+  },
+  "timing": [
+    {
+      "from": "A or S",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 60,
+      "maxNs": null,
+      "conditions": "VCC+ 12 V, VCC- -12 V, TA 25 C, CL 15 pF, RL 7 kohm"
+    },
+    {
+      "from": "A or S",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 45,
+      "maxNs": null,
+      "conditions": "VCC+ 12 V, VCC- -12 V, TA 25 C, CL 15 pF, RL 7 kohm"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "transitionTime",
+      "pin": "Y",
+      "text": "tTLH and tTHL at CL 2500 pF, RL 3-7 kohm: min 0.2 us, typ 1.4 us (tTLH) / 1.5 us (tTHL), max 2 us; at CL 15 pF, RL 7 kohm typ 40 ns (tTLH), 20 ns (tTHL)"
+    }
+  ],
+  "unknown": [
+    "Recommended IOL/IOH are not given (RS-232 line driver; output levels are given into 3-7 kohm instead).",
+    "Maximum propagation delays are not printed (typical only).",
+    "The datasheet's delay table does not say whether the A or the S input was switched."
+  ],
+  "notes": "The ND symbol draws one driver (Y = NOT(A AND S)); the package holds two drivers sharing S.",
+  "state": null
+}

@@ -1,0 +1,183 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74279",
+  "family": "74",
+  "title": "Quadruple S-R latches",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book 2nd ed. 1976, SN54279/SN74279: pin assignment and function table on page 5-60; recommended conditions, electrical and switching characteristics on pages 6-60 and 6-61",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/05.pdf and https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/06.pdf",
+      "pages": "5-60 (05.pdf PDF page 60), 6-60 and 6-61 (06.pdf PDF pages 60, 61)",
+      "familyUsed": "SN74279"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 1,
+      "name": "1R'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 2,
+      "name": "1S1'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 3,
+      "name": "1S2'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 4,
+      "name": "1Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "2R'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 6,
+      "name": "2S'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 7,
+      "name": "2Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "3R'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 11,
+      "name": "3S1'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 12,
+      "name": "3S2'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 9,
+      "name": "3Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "4R'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 15,
+      "name": "4S'",
+      "role": "input",
+      "async": true,
+      "active": "low"
+    },
+    {
+      "pin": 13,
+      "name": "4Q",
+      "role": "output",
+      "outputType": "totem-pole"
+    }
+  ],
+  "functions": [
+    {
+      "output": "4,7,9,13",
+      "formula": "Q = latch state",
+      "text": "Each output is its latch's stored bit (two cross-coupled NAND gates). For latches 1 and 3, S' means both S' inputs: S'=H when both are high, S'=L when one or both are low."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "levels on S' and R' (no clock)",
+    "rules": [
+      "S'=H, R'=H: Q = Q0 (hold)",
+      "S'=L, R'=H: Q = H",
+      "S'=H, R'=L: Q = L",
+      "S'=L, R'=L: Q = H, pseudo-stable: it may not persist when S' and R' return to high",
+      "Latches 1 and 3: S' is low when either S1' or S2' is low"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.8,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74279: VCC 4.75-5.25 V, TA 0-70 C. Diode-clamped inputs, totem-pole outputs."
+  },
+  "timing": [
+    {
+      "from": "S'",
+      "to": "Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "S'",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 9,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    },
+    {
+      "from": "R'",
+      "to": "Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, CL 15 pF, RL 400 ohm"
+    }
+  ],
+  "unknown": [
+    "The datasheet lists tPHL from S' (9/15 ns) without saying which condition makes S' drive Q low; recorded as printed.",
+    "No minimum propagation delays printed."
+  ],
+  "timingLimits": [],
+  "notes": ""
+}

@@ -1,0 +1,158 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7404",
+  "family": "74",
+  "title": "Hex inverter",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN5404/SN7404/SN74LS04/SN74S04 datasheet SDLS029C",
+      "url": "https://www.ti.com/lit/ds/symlink/sn7404.pdf",
+      "pages": "1, 5-6",
+      "familyUsed": "SN7404"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 3,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 5,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "4Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "4A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "5Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "5A",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "6Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "6A",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "2",
+      "formula": "1Y = NOT 1A",
+      "text": "1Y is the inverse of 1A."
+    },
+    {
+      "output": "4",
+      "formula": "2Y = NOT 2A",
+      "text": "2Y is the inverse of 2A."
+    },
+    {
+      "output": "6",
+      "formula": "3Y = NOT 3A",
+      "text": "3Y is the inverse of 3A."
+    },
+    {
+      "output": "8",
+      "formula": "4Y = NOT 4A",
+      "text": "4Y is the inverse of 4A."
+    },
+    {
+      "output": "10",
+      "formula": "5Y = NOT 5A",
+      "text": "5Y is the inverse of 5A."
+    },
+    {
+      "output": "12",
+      "formula": "6Y = NOT 6A",
+      "text": "6Y is the inverse of 6A."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 16,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": ""
+  },
+  "timing": [
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 22,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    },
+    {
+      "from": "any",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 400 ohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "The datasheet gives no minimum propagation delay; minNs is null (the path-delay function uses 0 ns). No setup/hold/pulse-width limits apply to a gate, so timingLimits is empty."
+}

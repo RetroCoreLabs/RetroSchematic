@@ -1,0 +1,89 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7497",
+  "family": "74",
+  "title": "Synchronous 6-bit binary rate multiplier",
+  "package": "DIP-16",
+  "sources": [
+    {"document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1976), section 7, TYPES SN5497, SN7497, bulletin DL-S 7611802 (revised October 1976)",
+     "url": "http://www.bitsavers.org/components/ti/_dataBooks/1976_TI_The_TTL_Data_Book_2ed/07.pdf",
+     "pages": "book pages 7-102 to 7-105 (PDF pages 101-104)", "familyUsed": "SN7497"}
+  ],
+  "pins": [
+    {"pin": 16, "name": "VCC", "role": "power", "voltage": "+5 V"},
+    {"pin": 8,  "name": "GND", "role": "ground"},
+    {"pin": 4,  "name": "A", "role": "input", "text": "rate input, weight 2^0"},
+    {"pin": 1,  "name": "B", "role": "input", "text": "rate input, weight 2^1"},
+    {"pin": 14, "name": "C", "role": "input", "text": "rate input, weight 2^2"},
+    {"pin": 15, "name": "D", "role": "input", "text": "rate input, weight 2^3"},
+    {"pin": 2,  "name": "E", "role": "input", "text": "rate input, weight 2^4"},
+    {"pin": 3,  "name": "F", "role": "input", "text": "rate input, weight 2^5"},
+    {"pin": 9,  "name": "CLOCK", "role": "clock", "edge": "rising"},
+    {"pin": 13, "name": "CLEAR", "role": "input", "async": true, "active": "high"},
+    {"pin": 11, "name": "ENABLE INPUT", "role": "enable", "active": "low", "controls": ["7"], "whenInactive": "hold",
+     "text": "Low lets the counter count; high holds the counter. Also gates the enable output."},
+    {"pin": 10, "name": "STROBE", "role": "enable", "active": "low", "controls": ["5", "6"], "whenInactive": "high",
+     "text": "Low enables the rate decoding gates; high inhibits them, so Z stays high (and Y then follows only the unity/cascade input)."},
+    {"pin": 12, "name": "UNITY/CASCADE", "role": "input", "text": "Second input of the Y gate. Low forces Y high."},
+    {"pin": 5,  "name": "Z", "role": "output", "outputType": "totem-pole"},
+    {"pin": 6,  "name": "Y", "role": "output", "outputType": "totem-pole"},
+    {"pin": 7,  "name": "ENABLE OUTPUT", "role": "output", "outputType": "totem-pole"}
+  ],
+  "functions": [
+    {"output": "5", "formula": "Z = NOT( (CLOCK' AND STROBE') AND ( (F AND QA') OR (E AND QA AND QB') OR (D AND QA AND QB AND QC') OR (C AND QA AND QB AND QC AND QD') OR (B AND QA AND QB AND QC AND QD AND QE') OR (A AND QA AND QB AND QC AND QD AND QE AND QF') ) )",
+     "text": "Z is a NOR of six rate gates. Each rate gate is open while CLOCK and STROBE are both low and the 6-bit counter is in the state that belongs to that rate bit; rate input F gives 32 pulses per 64 clocks, E 16, D 8, C 4, B 2, A 1. So with the counter enabled Z gives M low pulses per 64 clock pulses, M = 32F + 16E + 8D + 4C + 2B + A, f_out = M * f_in / 64. With all rate inputs low Z stays high. Gate inputs read from the functional block diagram (see unknown)."},
+    {"output": "6", "formula": "Y = NOT(Z AND UNITY/CASCADE)",
+     "text": "Y is the complement of Z while UNITY/CASCADE is high (M high pulses per 64 clocks); a low UNITY/CASCADE forces Y high. Tying UNITY/CASCADE to CLOCK with STROBE high passes the clock inverted to Y."},
+    {"output": "7", "formula": "ENABLE OUTPUT = NOT(ENABLE INPUT' AND QA AND QB AND QC AND QD AND QE AND QF)",
+     "text": "Goes low once per 64 clocks, when the counter is enabled and reaches all ones (state 63); used as the enable/strobe of the next stage when cascading. Function table gives 1 pulse per 64 clocks. A further input to this gate is drawn in the block diagram but could not be read clearly (see unknown)."}
+  ],
+  "state": {"bits": 6, "changesOn": "rising edge of CLOCK",
+    "rules": [
+      "CLEAR high: counter QA..QF = 0 at once (function table: Y low, Z high, enable output high; note B says the levels of clock and strobe can change Y and Z, and a low unity/cascade keeps Y high)",
+      "CLEAR low, ENABLE INPUT low: the 6-bit synchronous binary counter (QA least significant) counts up by one on each rising clock edge, 64 states",
+      "ENABLE INPUT high: the counter holds",
+      "STROBE high: rate gates inhibited, Z high"
+    ]},
+  "electrical": {
+    "outputLowMaxCurrentMa": 16, "outputHighMaxCurrentMa": -0.4, "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Clock frequency 0 to 25 MHz (recommended). Clock input equivalent Req 2 kOhm nominal, other inputs 4 kOhm. Clock input low-level input current -3.2 mA max, other inputs -1.6 mA."
+  },
+  "timing": [
+    {"from": "ENABLE INPUT", "to": "ENABLE OUTPUT", "edge": "PLH", "minNs": null, "typNs": 13, "maxNs": 20, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "ENABLE INPUT", "to": "ENABLE OUTPUT", "edge": "PHL", "minNs": null, "typNs": 14, "maxNs": 21, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "STROBE", "to": "Z", "edge": "PLH", "minNs": null, "typNs": 12, "maxNs": 18, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "STROBE", "to": "Z", "edge": "PHL", "minNs": null, "typNs": 15, "maxNs": 23, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLOCK", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 26, "maxNs": 39, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLOCK", "to": "Y", "edge": "PHL", "minNs": null, "typNs": 20, "maxNs": 30, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLOCK", "to": "Z", "edge": "PLH", "minNs": null, "typNs": 12, "maxNs": 18, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLOCK", "to": "Z", "edge": "PHL", "minNs": null, "typNs": 17, "maxNs": 26, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "RATE", "to": "Z", "edge": "PLH", "minNs": null, "typNs": 6, "maxNs": 10, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "RATE", "to": "Z", "edge": "PHL", "minNs": null, "typNs": 9, "maxNs": 14, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "UNITY/CASCADE", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 9, "maxNs": 14, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "UNITY/CASCADE", "to": "Y", "edge": "PHL", "minNs": null, "typNs": 6, "maxNs": 10, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "STROBE", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 19, "maxNs": 30, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "STROBE", "to": "Y", "edge": "PHL", "minNs": null, "typNs": 22, "maxNs": 33, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLOCK", "to": "ENABLE OUTPUT", "edge": "PLH", "minNs": null, "typNs": 19, "maxNs": 30, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLOCK", "to": "ENABLE OUTPUT", "edge": "PHL", "minNs": null, "typNs": 22, "maxNs": 33, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLEAR", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 24, "maxNs": 36, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "CLEAR", "to": "Z", "edge": "PHL", "minNs": null, "typNs": 15, "maxNs": 23, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm; the table prints this row under tPHL for the Clear-to-Z path"},
+    {"from": "any rate input", "to": "Y", "edge": "PLH", "minNs": null, "typNs": 15, "maxNs": 23, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"},
+    {"from": "any rate input", "to": "Y", "edge": "PHL", "minNs": null, "typNs": 15, "maxNs": 23, "conditions": "VCC 5 V, TA 25 C, N = 10, CL 15 pF, RL 400 ohm"}
+  ],
+  "timingLimits": [
+    {"what": "max clock frequency", "pin": "CLOCK", "minMHz": 25, "typMHz": 32, "text": "switching table fmax min 25, typ 32 MHz; recommended clock frequency 0 to 25 MHz"},
+    {"what": "pulse width", "pin": "CLOCK", "minNs": 20},
+    {"what": "pulse width", "pin": "CLEAR", "minNs": 15},
+    {"what": "setup", "pin": "ENABLE INPUT", "ref": "CLOCK rising", "minNs": 25},
+    {"what": "setup", "pin": "ENABLE INPUT", "ref": "CLOCK falling edge of the previous clock pulse", "minNs": 0, "maxNs": "tw(clock) - 10"},
+    {"what": "hold", "pin": "ENABLE INPUT", "ref": "CLOCK rising", "minNs": 0, "maxNs": "tw(clock) - 10"},
+    {"what": "hold", "pin": "ENABLE INPUT", "ref": "CLOCK falling edge of the previous clock pulse", "minNs": 20, "maxNs": "tcp - 10"}
+  ],
+  "unknown": [
+    "Exact gate inputs of the six rate gates and of the enable-output gate were read from a scanned functional block diagram; the gate for rate F reads as using QA', E uses QA and QB', and so on, consistent with the pulse counts in the function table, but the line-by-line wiring is not printed as text.",
+    "The enable-output NAND gate has one more input in the block diagram (a line from the QF area) that could not be identified from the scan."
+  ],
+  "notes": "Pin names follow the datasheet pin-out: B 1, E 2, F 3, A 4, Z 5, Y 6, ENABLE OUTPUT 7, GND 8, CLOCK 9, STROBE 10, ENABLE INPUT 11, UNITY/CASCADE 12, CLEAR 13, C 14, D 15, VCC 16. The recommended-conditions table column header for the 74 part reads 'SN7494' in the book; it is the SN7497 column (misprint in the source)."
+}
