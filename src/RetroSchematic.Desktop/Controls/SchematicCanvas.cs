@@ -28,16 +28,16 @@ namespace RetroSchematic.Desktop.Controls
     /// </summary>
     public sealed class SchematicCanvas : Control
     {
+        private SheetSession? _session;
+        private double _zoom = 1;
+        private Vector _offset;
+        private Point? _dragFrom;
+
         private const double MinZoom = 0.1;
         private const double MaxZoom = 20;
 
         private static readonly Typeface s_mono = new("Consolas, Courier New, monospace");
         private static readonly Typeface s_monoBold = new(new FontFamily("Consolas, Courier New, monospace"), FontStyle.Normal, FontWeight.Bold);
-
-        private SheetSession? _session;
-        private double _zoom = 1;
-        private Vector _offset;
-        private Point? _dragFrom;
 
         /// <summary>Creates the canvas; it repaints when the theme changes.</summary>
         public SchematicCanvas()
@@ -269,7 +269,7 @@ namespace RetroSchematic.Desktop.Controls
 
         /// <summary>
         /// A theme brush looked up NOW, so it follows a theme change. A key no theme supplies is a
-        /// defect in ThemeManager; it is drawn magenta so it is seen at once (ThemeTests also
+        /// defect in ThemeManager; it is drawn magenta so it is seen at once (MainWindowTests.EveryTheme_GivesEveryBrush also
         /// checks every key in every theme).
         /// </summary>
         private IBrush Brush(string key)

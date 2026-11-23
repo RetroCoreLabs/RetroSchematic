@@ -23,7 +23,7 @@ namespace RetroSchematic.Desktop.Themes
         /// For tests: when set, settings are read from and written to this folder instead of
         /// %APPDATA%, so a test run never touches the user's own preferences.
         /// </summary>
-        internal static string? DirectoryOverride;
+        internal static string? DirectoryOverride { get; set; }
 
         /// <summary>The loaded settings (read from disk on first use).</summary>
         public static UiSettings Instance => s_instance ??= Load();

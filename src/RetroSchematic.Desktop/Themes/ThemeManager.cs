@@ -32,8 +32,11 @@ namespace RetroSchematic.Desktop.Themes
     /// </summary>
     public sealed class ThemeManager
     {
+        private readonly List<ThemeDefinition> _themes = new();
+        private Application? _app;
+
         // The brush keys, in the same order as Palette.ToArray(). Keep the two lists aligned;
-        // ThemeTests checks that every theme gives every key.
+        // MainWindowTests.EveryTheme_GivesEveryBrush checks that every theme gives every key.
         private static readonly string[] s_brushKeys =
         {
             "FluentBackgroundPrimaryBrush",
@@ -62,9 +65,6 @@ namespace RetroSchematic.Desktop.Themes
             SchematicNoteKey,
             SchematicSelectionKey,
         };
-
-        private readonly List<ThemeDefinition> _themes = new();
-        private Application? _app;
 
         /// <summary>Brush key: the paper behind the drawing.</summary>
         public const string SchematicPaperKey = "SchematicPaperBrush";
