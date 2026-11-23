@@ -62,6 +62,11 @@ namespace RetroSchematic.Render
         /// changes the picture.
         /// </summary>
         public bool ShowBuses { get; set; } = true;
+
+        /// <summary>
+        /// How active-low and active-high signal names are written (default: /NAME).
+        /// </summary>
+        public SignalNameStyle NameStyle { get; set; } = SignalNames.Default;
     }
 
     /// <summary>
@@ -188,13 +193,14 @@ namespace RetroSchematic.Render
                 bottom = Math.Max(bottom, plans[i].Y + plans[i].Height + 12);
             }
             // instance boxes: at their position, or in a row below everything else
-            List<InstancePlan> boxes = PlaceInstances(netlist, plans, netByPin, bottom);
+            List<InstancePlan> boxes = PlaceInstances(netlist, plans, netByPin, bottom, options.NameStyle);
             for (int i = 0; i < boxes.Count; i++)
             {
                 right = Math.Max(right, boxes[i].X + boxes[i].Width + boxes[i].RightReach);
                 bottom = Math.Max(bottom, boxes[i].Y + boxes[i].Height + boxes[i].BottomReach + 12);
             }
             SchematicDrawing d = new(Snap(right + Margin), Snap(bottom + Margin));
+            d.NameStyle = options.NameStyle;
             Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
                 netlist.Sheet.Id + "  " + netlist.Sheet.Title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
                 16, TextAnchor.Start);
@@ -415,7 +421,7 @@ namespace RetroSchematic.Render
                 PinPlan p = plan.Pins[i];
                 if (p.Net == null)
                     continue;
-                double reach = PinOut + LabelWidth(p.Net) + 4;
+                double reach = PinOut + LabelWidth(p.Net, options.NameStyle) + 4;
                 if (p.Side < 0)
                     plan.LeftReach = Math.Max(plan.LeftReach, reach);
                 else
@@ -446,10 +452,31 @@ namespace RetroSchematic.Render
         /// <param name="net">
         /// The signal.
         /// </param>
+        /// <param name="style">
+        /// How the name is written.
+        /// </param>
         /// <returns>
         /// The width in drawing units.
         /// </returns>
-        private static double LabelWidth(Net net) => LabelOffset + Diamond + 3 + TextWidth(net.Name, Subscript(net), SignalFont);
+        private static double LabelWidth(Net net, SignalNameStyle style) => LabelOffset + Diamond + 3 + NameWidth(net, style);
+
+        /// <summary>
+        /// The width of a signal's name as drawn in a style.
+        /// </summary>
+        private static double NameWidth(Net net, SignalNameStyle style)
+        {
+            string text = SignalNames.Format(net.Name, net.Active, style, out string sub);
+            return TextWidth(text, sub, SignalFont);
+        }
+
+        /// <summary>
+        /// Writes a signal's name into a text step in a style: its text and subscript.
+        /// </summary>
+        private static void SetName(DrawItem t, Net net, SignalNameStyle style)
+        {
+            t.Text = SignalNames.Format(net.Name, net.Active, style, out string sub);
+            t.Subscript = sub;
+        }
 
         /// <summary>
         /// Puts every chip on the sheet: first the ones at their board position, on a grid whose
@@ -701,7 +728,7 @@ namespace RetroSchematic.Render
                     router.Block(p.X - 1, p.Y - 1, p.X + 1, p.Y + 1);
                     continue;
                 }
-                LabelBox(p, out double l, out double t, out double r, out double b);
+                LabelBox(p, d.NameStyle, out double l, out double t, out double r, out double b);
                 // a little room round each label, so a wire passing by does not touch the text
                 router.Reserve(Math.Min(l, p.X) - 4, t - 2, Math.Max(r, p.X) + 4, b + 2, netNumber[p.Net]);
             }
@@ -852,6 +879,9 @@ namespace RetroSchematic.Render
         /// <param name="p">
         /// The pin, with a signal.
         /// </param>
+        /// <param name="style">
+        /// How signal names are written.
+        /// </param>
         /// <param name="left">
         /// Left edge.
         /// </param>
@@ -864,9 +894,9 @@ namespace RetroSchematic.Render
         /// <param name="bottom">
         /// Bottom edge.
         /// </param>
-        private static void LabelBox(PinPlan p, out double left, out double top, out double right, out double bottom)
+        private static void LabelBox(PinPlan p, SignalNameStyle style, out double left, out double top, out double right, out double bottom)
         {
-            double w = LabelWidth(p.Net!);
+            double w = LabelWidth(p.Net!, style);
             left = p.Side < 0 ? p.X - w : p.X;
             right = p.Side < 0 ? p.X : p.X + w;
             top = p.Y - SignalFont + 3;
@@ -995,10 +1025,10 @@ namespace RetroSchematic.Render
             // the diamond), never right-aligned: a renderer whose font is narrower than the
             // estimate then leaves a gap, where right alignment without the subscript would run
             // the subscript into the diamond.
-            double width = TextWidth(net.Name, Subscript(net), SignalFont);
+            double width = NameWidth(net, d.NameStyle);
             double tx = p.Side < 0 ? x - Diamond - 3 - width : x + Diamond + 3;
             DrawItem t = Text(d, DrawRole.SignalName, c, owner, tx, y + 3, net.Name, SignalFont, TextAnchor.Start);
-            t.Subscript = Subscript(net);
+            SetName(t, net, d.NameStyle);
         }
 
         /// <summary>

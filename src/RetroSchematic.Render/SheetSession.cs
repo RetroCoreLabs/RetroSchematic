@@ -171,6 +171,48 @@ namespace RetroSchematic.Render
         public bool ShowBuses => _options.ShowBuses;
 
         /// <summary>
+        /// How signal names are written on the sheet and in every text about it.
+        /// </summary>
+        public SignalNameStyle NameStyle => _options.NameStyle;
+
+        /// <summary>
+        /// Changes how signal names are written and draws the sheet again. Display only.
+        /// </summary>
+        /// <param name="style">
+        /// The style.
+        /// </param>
+        public void SetNameStyle(SignalNameStyle style)
+        {
+            if (style == _options.NameStyle)
+                return;
+            _options.NameStyle = style;
+            Relayout();
+        }
+
+        /// <summary>
+        /// A signal's name on one line of text, in the chosen style.
+        /// </summary>
+        /// <param name="net">
+        /// The signal.
+        /// </param>
+        /// <returns>
+        /// The name.
+        /// </returns>
+        public string NameOf(Net net) => SignalNames.Line(net, _options.NameStyle);
+
+        /// <summary>
+        /// The traced signal's name in the chosen style, or empty when nothing is traced.
+        /// </summary>
+        public string TracedName
+        {
+            get
+            {
+                Net? n = Traced.Length == 0 ? null : Editor.FindNetByKey(Traced);
+                return n == null ? Traced : NameOf(n);
+            }
+        }
+
+        /// <summary>
         /// The laid-out drawing for <see cref="Style"/>.
         /// </summary>
         public SchematicDrawing Drawing { get; private set; }
@@ -598,9 +640,11 @@ namespace RetroSchematic.Render
                 if (Has(n.Parts[i].Ref, t) || Has(n.Parts[i].Type, t))
                     found.Add("part:" + n.Parts[i].Ref);
             }
+            // a signal typed in any name style: /NAME, ~NAME, NAME_0, NAME_1 or plain NAME
+            ActiveLevel? level = SignalNames.Parse(t, out string bare);
             for (int i = 0; i < n.Nets.Count; i++)
             {
-                if (Has(n.Nets[i].Name, t))
+                if (Has(n.Nets[i].Name, bare) && (level == null || n.Nets[i].Active == level))
                     found.Add("net:" + SheetLayout.NetKey(n.Nets[i]));
             }
             // only text with a dot looks for pins, else "1" would list every pin 1
@@ -721,7 +765,7 @@ namespace RetroSchematic.Render
             sb.Append("  ").Append(pin.ToString(CultureInfo.InvariantCulture).PadLeft(2));
             if (name.Length > 0)
                 sb.Append(' ').Append(name.PadRight(5));
-            sb.Append("  ").Append(net == null ? "-" : net.Name);
+            sb.Append("  ").Append(net == null ? "-" : NameOf(net));
             if (net != null)
             {
                 PinReference? r = FindPin(net, at);
@@ -766,9 +810,9 @@ namespace RetroSchematic.Render
             Net? n = Editor.FindNetByKey(name);
             if (n == null)
                 return "";
-            sb.Append("Signal ").Append(n.Name);
+            sb.Append("Signal ").Append(NameOf(n));
             if (n.Active != ActiveLevel.None)
-                sb.Append(n.Active == ActiveLevel.High ? " (active high, subscript 1)" : " (active low, subscript 0)");
+                sb.Append(n.Active == ActiveLevel.High ? " (active high)" : " (active low)");
             sb.Append('\n');
             if (n.Drive.HasValue)
                 sb.Append("Line type: ").Append(n.Drive.Value.ToString()).Append('\n');
@@ -836,7 +880,7 @@ namespace RetroSchematic.Render
                 sb.Append("Signal: none\n");
             else
             {
-                sb.Append("Signal: ").Append(net.Name).Append('\n');
+                sb.Append("Signal: ").Append(NameOf(net)).Append('\n');
                 PinReference? r = FindPin(net, at);
                 if (r != null)
                 {
@@ -864,7 +908,7 @@ namespace RetroSchematic.Render
             for (int i = 0; bus != null && i < bus.Members.Count; i++)
             {
                 Net? n = SheetLayout.FindMember(Netlist, bus.Members[i]);
-                list.Add(n == null ? bus.Members[i].Net + " (not on the sheet)" : SheetLayout.NetKey(n));
+                list.Add(n == null ? bus.Members[i].Net + " (not on the sheet)" : NameOf(n));
             }
             return list;
         }

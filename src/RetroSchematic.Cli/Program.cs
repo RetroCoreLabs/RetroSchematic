@@ -18,8 +18,8 @@ namespace RetroSchematic.Cli
     {
         private const string Help =
             "retroschematic check <sheet.json>                          check a netlist file\n" +
-            "retroschematic render <sheet.json> <out.svg> [nd|modern] [--theme <name>] [--no-buses]\n" +
-            "    draw it as SVG (default: nd symbols, the Light theme, buses drawn)\n";
+            "retroschematic render <sheet.json> <out.svg> [nd|modern] [--theme <name>] [--no-buses] [--names slash|tilde|subscript]\n" +
+            "    draw it as SVG (default: nd symbols, the Light theme, buses drawn, /NAME for active low)\n";
 
         /// <summary>
         /// Entry point.
@@ -56,6 +56,7 @@ namespace RetroSchematic.Cli
                         SymbolStyle style = SymbolStyle.NorskData;
                         SchematicTheme theme = SchematicTheme.Default;
                         bool buses = true;
+                        SignalNameStyle names = SignalNames.Default;
                         for (int a = 3; a < args.Length; a++)
                         {
                             if (args[a] == "--theme" && a + 1 < args.Length)
@@ -68,20 +69,28 @@ namespace RetroSchematic.Cli
                                 }
                                 theme = t;
                             }
+                            else if (args[a] == "--names" && a + 1 < args.Length)
+                            {
+                                if (!SignalNames.TryParseStyle(args[++a], out names))
+                                {
+                                    Console.Error.WriteLine($"Unknown name style \"{args[a]}\": use slash, tilde or subscript.");
+                                    return 2;
+                                }
+                            }
                             else if (args[a] == "--no-buses")
                                 buses = false;
                             else if (args[a] == "modern")
                                 style = SymbolStyle.Modern;
                             else if (args[a] != "nd")
                             {
-                                Console.Error.WriteLine($"Unknown option \"{args[a]}\": use nd, modern, --theme <name> or --no-buses.");
+                                Console.Error.WriteLine($"Unknown option \"{args[a]}\": use nd, modern, --theme <name>, --no-buses or --names <style>.");
                                 return 2;
                             }
                         }
                         // drawn with the chip catalogue when one is found above the sheet, exactly as the
                         // window draws it (a chip without gates then shows every pin)
                         string? catalog = ChipCatalog.Find(args[1]);
-                        LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog), ShowBuses = buses };
+                        LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog), ShowBuses = buses, NameStyle = names };
                         SchematicDrawing drawing = SheetLayout.Build(netlist, style, options);
                         File.WriteAllText(args[2], SvgRenderer.Write(drawing, theme));
                         Console.WriteLine($"Wrote {args[2]}");

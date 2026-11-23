@@ -149,7 +149,7 @@ namespace RetroSchematic.Render
                         d.BusProblems.Add(bus.Name + ": member " + bus.Members[m].Net + " is not a signal on this sheet");
                         continue;
                     }
-                    widest = Math.Max(widest, TextWidth(n.Name, Subscript(n), SignalFont));
+                    widest = Math.Max(widest, NameWidth(n, d.NameStyle));
                     for (int j = 0; j < n.Pins.Count; j++)
                     {
                         if (pinPlans.TryGetValue(n.Pins[j].At, out PinPlan? p))
@@ -241,7 +241,7 @@ namespace RetroSchematic.Render
         private static bool JoinBus(SchematicDrawing d, WireRouter router, int number, Net net, PinPlan p, List<BusSlot> slots, List<double[]> segments)
         {
             double s = WireRouter.Step;
-            double w = TextWidth(net.Name, Subscript(net), SignalFont);
+            double w = NameWidth(net, d.NameStyle);
             for (int attempt = 0; attempt < 3; attempt++)
             {
                 int best = -1, bestSide = 0;
@@ -305,7 +305,7 @@ namespace RetroSchematic.Render
                     X1 = a.X, Y1 = a.Y, X2 = e.X, Y2 = e.Y, Dashed = c == Confidence.Open,
                 });
                 DrawItem t = Text(d, DrawRole.SignalName, c, owner, tx, ty, net.Name, SignalFont, TextAnchor.Start);
-                t.Subscript = Subscript(net);
+                SetName(t, net, d.NameStyle);
                 return true;
             }
             return false;

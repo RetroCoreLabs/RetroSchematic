@@ -500,7 +500,7 @@ namespace RetroSchematic.Render
         private string TraceMessage()
         {
             int blocks = _session.TracedPortMarks().Count;
-            return "Tracing " + _session.Traced + ": " + _session.TracedPins().Count + " pins"
+            return "Tracing " + _session.TracedName + ": " + _session.TracedPins().Count + " pins"
                 + (blocks > 0 ? ", into " + blocks + " block port(s) (double-click one to follow it inside)" : "")
                 + ". Tab jumps to each place.";
         }

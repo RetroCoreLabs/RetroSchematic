@@ -123,8 +123,9 @@ namespace RetroSchematic.Tests
             string text = s.Describe();
             Assert.That(text, Does.Contain("Source: sheet DEMO"));
             Assert.That(text, Does.Contain("Pins:"));
-            Assert.That(text, Does.Contain(" 1 1A     NAB"));
-            Assert.That(text, Does.Contain(" 2 1Y     DATA"));
+            // signal names in the chosen style
+            Assert.That(text, Does.Contain(" 1 1A     " + s.NameOf(s.Editor.NetOf("3A.1")!)));
+            Assert.That(text, Does.Contain(" 2 1Y     " + s.NameOf(s.Editor.NetOf("3A.2")!)));
             Assert.That(text, Does.Contain(" 3 2A     -"), "a free pin shows no signal");
         }
 

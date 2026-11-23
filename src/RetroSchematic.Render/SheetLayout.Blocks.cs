@@ -165,7 +165,7 @@ namespace RetroSchematic.Render
         /// Measures and places every instance box: at its position (pushed down past any chip it
         /// would cover), or, without one, in a row below everything else.
         /// </summary>
-        private static List<InstancePlan> PlaceInstances(Netlist netlist, PartPlan[] parts, Dictionary<string, Net> netByPin, double bottom)
+        private static List<InstancePlan> PlaceInstances(Netlist netlist, PartPlan[] parts, Dictionary<string, Net> netByPin, double bottom, SignalNameStyle style)
         {
             List<InstancePlan> list = new();
             double rowX = Margin, rowY = bottom + PartGap;
@@ -175,7 +175,7 @@ namespace RetroSchematic.Render
                 BlockDefinition? b = Hierarchy.FindBlock(netlist, inst.Block);
                 if (b == null)
                     continue;
-                InstancePlan plan = Measure(inst, b, netlist, netByPin);
+                InstancePlan plan = Measure(inst, b, netlist, netByPin, style);
                 if (inst.Position != null)
                 {
                     plan.X = Snap(Math.Max(FromMm(inst.Position.X), Margin + plan.LeftReach));
@@ -221,7 +221,7 @@ namespace RetroSchematic.Render
             return list;
         }
 
-        private static InstancePlan Measure(BlockInstance inst, BlockDefinition b, Netlist netlist, Dictionary<string, Net> netByPin)
+        private static InstancePlan Measure(BlockInstance inst, BlockDefinition b, Netlist netlist, Dictionary<string, Net> netByPin, SignalNameStyle style)
         {
             InstancePlan plan = new() { Instance = inst, Block = b };
             List<BlockPort>[] bySide = { new(), new(), new(), new() };
@@ -281,7 +281,7 @@ namespace RetroSchematic.Render
                         if (net != null)
                         {
                             pp.Pin = new PinPlan { At = at, Number = 0, Side = side == PortSide.Left ? -1 : 1, Owner = "inst:" + inst.Name, Net = net, Confidence = Confidence.Read };
-                            double reach = PinOut + LabelWidth(net) + 4;
+                            double reach = PinOut + LabelWidth(net, style) + 4;
                             if (side == PortSide.Left)
                                 plan.LeftReach = Math.Max(plan.LeftReach, reach);
                             else

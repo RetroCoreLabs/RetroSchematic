@@ -517,6 +517,11 @@ namespace RetroSchematic.Render
         public Dictionary<string, DrawPoint> PortEdges { get; } = new(StringComparer.Ordinal);
 
         /// <summary>
+        /// How the signal names in this drawing are written.
+        /// </summary>
+        public SignalNameStyle NameStyle { get; set; } = SignalNames.Default;
+
+        /// <summary>
         /// Every wired signal's branches as laid (bend points in drawing units), so the editor can
         /// fix a wire's current path into the sheet's layout section.
         /// </summary>

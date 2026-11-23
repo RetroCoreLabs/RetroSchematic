@@ -47,7 +47,7 @@ namespace RetroSchematic.Tests
             DrawPoint at = s.Drawing.Pins[pin];
             tool.PointerDown(at.X, at.Y);
             Assert.That(s.Traced, Is.EqualTo(SheetLayout.NetKey(n)), "a click on a pin traces its signal");
-            Assert.That(tool.Message, Does.StartWith("Tracing " + SheetLayout.NetKey(n)));
+            Assert.That(tool.Message, Does.StartWith("Tracing " + s.NameOf(n)));
             PartFrame f = s.Drawing.Frames["13B"];
             tool.PointerDown(f.X + (f.Width / 2), f.Y + (f.Height / 2));
             Assert.That(s.Traced, Is.Empty, "a click on a chip body clears the trace");

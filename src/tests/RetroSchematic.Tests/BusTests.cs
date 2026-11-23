@@ -75,7 +75,9 @@ namespace RetroSchematic.Tests
                         if (it.Role == DrawRole.SignalName)
                         {
                             names++;
-                            Assert.That(it.Subscript, Is.EqualTo(n.Active == ActiveLevel.High ? "1" : "0"), owner + " shows its subscript");
+                            // its level shows in the default name style (/NAME for active low)
+                            Assert.That(it.Text, Is.EqualTo(SignalNames.Format(n.Name, n.Active, SignalNames.Default, out string sub)), owner + " shows its level");
+                            Assert.That(it.Subscript, Is.EqualTo(sub));
                         }
                         if (it.Role == DrawRole.NetLabel)
                             labels++;
