@@ -142,6 +142,11 @@ Go over the whole page at 400 dpi in a grid of tiles, then zoom to 1200 dpi roun
 
 ## 8. Finish
 
+- [ ] Mark where each part, gate, circle, passive and label sits on the scanned page (a box on
+      the source page, linked to the part). These boxes are the training data for a symbol
+      finder that will read new cards first (`docs/PLAN.md`); they cost little now and cannot
+      be recovered later. Until the window can draw them, note that the card still needs them.
+
 - [ ] Open the sheet in the app: Drawing (F5), Original (F6), PCB front (F7), PCB back (F8).
       Trace a few signals end to end. Look at the drawing: nothing on top of anything else.
 - [ ] Pack it: File > Save As `.rsx` (or `retroschematic pack`), so one file carries the sheet,
