@@ -91,21 +91,34 @@ double-click (File menu, current Windows user only).
 
 ## Status
 
-Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
+Version 0.1.0, the first release, built for Windows, Linux and macOS (Intel and Apple
+silicon) from a tag by `.github/workflows/release.yml`. Downloads are on the
+[Releases page](https://github.com/RetroCoreLabs/RetroSchematic/releases); they are unsigned
+(see Getting started).
 
 - **One card is read:** NORD-10 sheet 2A50, the synchronous modem buffer card 1050. Every
   chip, gate and wire is read pin by pin, then re-read by a second reader, which corrected
   the clock of the receive interrupt enables. How its interrupts work is explained in
-  `src/docs/2A50-interrupts.md`.
+  `src/docs/2A50-interrupts.md`. Its passive parts (resistors, capacitors, switches, straps)
+  and all 57 connector pins are in the file, with board photos of both sides.
+- **NORD-10 card edge and backplane:** which gold finger is which pin (proven on 2A50), the
+  supply pins, and the backplane slots and IDENT/GRANT chains, with the places where ND's
+  documents disagree listed (`src/docs/NORD10-EDGE-FINGERS.md`, `src/docs/NORD10-BACKPLANE.md`).
+- **Assisted reading:** the page analyser marks chips, gates and position codes on a scan
+  offline. It is a helper, not an automatic reader: on 2A50 it finds about 6 % of the
+  connections (`src/docs/RECOGNITION-LEARNINGS.md`).
 - **Symbol catalogue:** all 128 parts of ND-13.003.01, drawn in ND and modern style.
 - **Chip catalogue:** 131 chip files from datasheets, with behaviour as data. A few have no
   behaviour, and say why: no datasheet was found, or the datasheet gives no logic function.
-- **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
+- **Bus catalogues:** NORD-10 (56 signals, with supply pins and line types) and ND-100 (68 signals, with the ND-120 names),
   plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
   ND-120 CPU's A and B plugs.
 - **Tests:** 648, all passing (run 2026-11-24): 592 for the libraries, 56 for the window. Run
   them with the command in Quick start. Known test problems are in `src/docs/BUGS.md`.
-- **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
+- **Board types:** NORD-10 and ND-100 card grids (`src/catalog/boards/`), used to place chip
+  boxes and edge-finger labels on the photos.
+- **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards,
+  smaller downloads, a macOS app bundle) is in
   `src/docs/PLAN.md`.
 
 ## Getting started
