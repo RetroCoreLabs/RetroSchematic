@@ -264,7 +264,7 @@ namespace RetroSchematic.Desktop.Controls
                 ConnectorUse c = n.Connectors[i];
                 if (conn.Length > 0)
                     conn.Append('\n');
-                conn.Append(ConnectorPins.Name(c.Ref)).Append(c.Used == false ? ": not used" : c.Use == null ? "" : ": " + c.Use);
+                conn.Append(ConnectorPins.Name(c.Ref, n.Sheet.Bus)).Append(c.Used == false ? ": not used" : c.Use == null ? "" : ": " + c.Use);
             }
             AddRow(rows, "Connectors", Value(conn.Length == 0 ? null : conn.ToString()));
             AddRow(rows, "Originals", Value(Count(n.Sources?.Count, "page", "pages")));

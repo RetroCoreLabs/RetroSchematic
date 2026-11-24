@@ -94,7 +94,7 @@ namespace RetroSchematic.Render
 
         private static SignalList Connector(SheetSession session, string reference)
         {
-            SignalList l = new() { Kind = "Connector", Title = ConnectorPins.Name(reference), Columns = new[] { "Pin", "Signal", "Backplane name" } };
+            SignalList l = new() { Kind = "Connector", Title = ConnectorPins.Name(reference, session.Bus), Columns = new[] { "Pin", "Signal", "Backplane name" } };
             List<ConnectorUse>? uses = session.Editor.Root.Connectors;
             for (int i = 0; uses != null && i < uses.Count; i++)
             {
@@ -123,7 +123,7 @@ namespace RetroSchematic.Render
                 BusSignal? bs = ConnectorPins.Kind(reference) == 'P' ? session.BusSignals.ByPin(ConnectorPins.Letter(reference), pins[i].Key) : null;
                 l.Rows.Add(new SignalLink
                 {
-                    Label = ConnectorPins.Letter(reference) == null ? pins[i].Key.ToString(System.Globalization.CultureInfo.InvariantCulture) : ConnectorPins.Show(reference, pins[i].Key),
+                    Label = ConnectorPins.Letter(reference) == null ? pins[i].Key.ToString(System.Globalization.CultureInfo.InvariantCulture) : ConnectorPins.Show(reference, pins[i].Key, session.Bus),
                     NetKey = SheetLayout.NetKey(pins[i].Value),
                     NetName = session.NameOf(pins[i].Value),
                     Extra = bs == null || string.Equals(bs.Name, pins[i].Value.Name, System.StringComparison.OrdinalIgnoreCase) ? "" : bs.Name,

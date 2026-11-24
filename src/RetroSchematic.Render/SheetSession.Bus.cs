@@ -73,7 +73,7 @@ namespace RetroSchematic.Render
         private string DescribeConnector(string reference)
         {
             System.Text.StringBuilder sb = new();
-            sb.Append(ConnectorPins.Name(reference)).Append('\n');
+            sb.Append(ConnectorPins.Name(reference, Bus)).Append('\n');
             List<ConnectorUse>? uses = Editor.Root.Connectors;
             for (int i = 0; uses != null && i < uses.Count; i++)
             {
@@ -90,7 +90,7 @@ namespace RetroSchematic.Render
                 for (int j = 0; j < n.Pins.Count; j++)
                 {
                     if (n.Pins[j].PartRef == reference)
-                        sb.Append(ConnectorPins.Show(reference, n.Pins[j].Pin)).Append("  ").Append(NameOf(n)).Append('\n');
+                        sb.Append(ConnectorPins.Show(reference, n.Pins[j].Pin, Bus)).Append("  ").Append(NameOf(n)).Append('\n');
                 }
             }
             return sb.ToString();

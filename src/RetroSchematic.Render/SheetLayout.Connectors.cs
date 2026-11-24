@@ -92,7 +92,7 @@ namespace RetroSchematic.Render
                 List<int> pins = used[reference];
                 pins.Sort();
                 ConnectorInfo? type = TypeOf(netlist, reference, options);
-                ConnectorPlan plan = new() { Ref = reference, Title = ConnectorPins.Name(reference), TypeTitle = type?.Title, Use = UseOf(netlist, reference) };
+                ConnectorPlan plan = new() { Ref = reference, Title = ConnectorPins.Name(reference, netlist.Sheet.Bus), TypeTitle = type?.Title, Use = UseOf(netlist, reference) };
                 double numberWidth = 0, nameWidth = 0, otherWidth = 0;
                 for (int i = 0; i < pins.Count; i++)
                 {
@@ -100,7 +100,7 @@ namespace RetroSchematic.Render
                     Net net = netByPin[at];
                     ConnectorRow row = new()
                     {
-                        Number = ConnectorPins.Letter(reference) == null ? pins[i].ToString(CultureInfo.InvariantCulture) : ConnectorPins.Show(reference, pins[i]),
+                        Number = ConnectorPins.Letter(reference) == null ? pins[i].ToString(CultureInfo.InvariantCulture) : ConnectorPins.Show(reference, pins[i], netlist.Sheet.Bus),
                         Net = net,
                         Other = CatalogueName(reference, pins[i], net, type, options),
                     };

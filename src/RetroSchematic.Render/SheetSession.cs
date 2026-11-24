@@ -943,7 +943,7 @@ namespace RetroSchematic.Render
             if (part == null && int.TryParse(at.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int cpin))
             {
                 // a connector pin: which connector, and what the bus catalogue says of the pin
-                sb.Append(": ").Append(ConnectorPins.Name(reference)).Append(", pin ").Append(ConnectorPins.Show(reference, cpin)).Append('\n');
+                sb.Append(": ").Append(ConnectorPins.Name(reference, Bus)).Append(", pin ").Append(ConnectorPins.Show(reference, cpin, Bus)).Append('\n');
                 BusSignal? bs = ConnectorPins.Kind(reference) == 'P' ? BusSignals.ByPin(ConnectorPins.Letter(reference), cpin) : null;
                 if (bs != null)
                 {

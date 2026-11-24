@@ -153,6 +153,10 @@ namespace RetroSchematic.Render
         /// </summary>
         public Net Net { get; }
 
+        // the sheet's machine bus: a NORD-10 backplane pin with no letter is shown as its
+        // plain number (one connector), an ND-100 one as "?.n" (plug not placed yet)
+        private MachineBus? _machineBus;
+
         /// <summary>
         /// Its name in the chosen name style.
         /// </summary>
@@ -305,7 +309,7 @@ namespace RetroSchematic.Render
                 {
                     string part = Net.Pins[i].PartRef;
                     if (ConnectorPins.IsConnector(part))
-                        list.Add((ConnectorPins.Kind(part) == 'P' ? "backplane " : "front ") + ConnectorPins.Show(part, Net.Pins[i].Pin)
+                        list.Add((ConnectorPins.Kind(part) == 'P' ? "backplane " : "front ") + ConnectorPins.Show(part, Net.Pins[i].Pin, _machineBus)
                             + (CatalogueSignal != null && ConnectorPins.Kind(part) == 'P' ? " " + CatalogueSignal.Name : ""));
                 }
                 for (int i = 0; i < Levels.Count; i++)
@@ -358,7 +362,7 @@ namespace RetroSchematic.Render
         /// </returns>
         public static SignalInfo Of(SheetEditor editor, Net net, SignalNameStyle style, BusCatalog? busSignals = null)
         {
-            SignalInfo s = new(net) { Name = SignalNames.Line(net, style) };
+            SignalInfo s = new(net) { Name = SignalNames.Line(net, style), _machineBus = editor.Root.Sheet.Bus };
             string? firstType = null;
             for (int i = 0; i < net.Pins.Count; i++)
             {
@@ -673,7 +677,7 @@ namespace RetroSchematic.Render
                 {
                     At = at,
                     ChipType = ConnectorPins.Kind(conn) == 'P' ? "backplane" : "front",
-                    PinName = ConnectorPins.Show(conn, r.Pin),
+                    PinName = ConnectorPins.Show(conn, r.Pin, editor.Root.Sheet.Bus),
                     Confidence = r.Confidence,
                     IsConnector = true,
                 };

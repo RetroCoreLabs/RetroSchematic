@@ -126,7 +126,7 @@ namespace RetroSchematic.Desktop
             _root.Children.Add(Header("Connectors"));
             _root.Children.Add(Note(n.Sheet.Bus == MachineBus.Nd100
                 ? "ND-100: plugs A, B and C, each its own entry (P.A, P.B, P.C), rows a/b/c x 32 pins (DIN 41612). C is the ND-100 bus; A and B are card specific or not used."
-                : "NORD-10: one backplane connector (P, pins 0-99, its letter not known) and a front connector (F) if the card has one."));
+                : "NORD-10: one backplane connector (P, pins 0-99, no letter needed) and a front connector (F) if the card has one."));
             for (int i = 0; n.Connectors != null && i < n.Connectors.Count; i++)
                 AddConnectorRow(n.Connectors[i], editing);
             _root.Children.Add(Action("Add a connector", editing, (s, e) => AddConnectorRow(new ConnectorUse { Ref = "" }, true, at: _root.Children.IndexOf((Control)s!))));

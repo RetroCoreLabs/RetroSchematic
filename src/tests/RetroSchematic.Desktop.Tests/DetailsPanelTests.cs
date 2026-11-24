@@ -35,7 +35,7 @@ namespace RetroSchematic.Desktop.Tests
             string text = d.AllText();
             Assert.That(text, Does.Contain("active low"));
             Assert.That(text, Does.Contain("OPEN-COLLECTOR"));
-            Assert.That(text, Does.Contain("backplane ?.35 BINT12"));
+            Assert.That(text, Does.Contain("backplane 35 BINT12"));
             Save(w, "panel-signal");
 
             // a pin row moves the view to that pin

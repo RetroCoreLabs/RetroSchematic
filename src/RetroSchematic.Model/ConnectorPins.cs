@@ -76,8 +76,18 @@ namespace RetroSchematic.Model
         /// <returns>
         /// The text.
         /// </returns>
-        public static string Show(string partRef, int pin)
-            => (Letter(partRef) ?? "?") + "." + pin.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        /// <param name="bus">
+        /// The sheet's machine bus, when known. On a NORD-10 card (one connector) a pin with no
+        /// letter is shown as its plain number, not "?.n".
+        /// </param>
+        public static string Show(string partRef, int pin, MachineBus? bus = null)
+        {
+            string n = pin.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            string? letter = Letter(partRef);
+            if (letter == null && bus == MachineBus.Nord10)
+                return n;
+            return (letter ?? "?") + "." + n;
+        }
 
         /// <summary>
         /// The connector's name in plain words: "Backplane A", "Backplane (connector not known)",
@@ -86,13 +96,21 @@ namespace RetroSchematic.Model
         /// <param name="partRef">
         /// The connector reference.
         /// </param>
+        /// <param name="bus">
+        /// The sheet's machine bus, when known. A NORD-10 card has ONE backplane connector
+        /// (pins 0-99, no letter), so a plain <c>P</c> there is fully known and must not be
+        /// called "not known" - the "not known" wording is for ND-100 cards, where a pin with
+        /// no letter has not been placed on plug A, B or C yet.
+        /// </param>
         /// <returns>
         /// The name.
         /// </returns>
-        public static string Name(string partRef)
+        public static string Name(string partRef, MachineBus? bus = null)
         {
             string? letter = Letter(partRef);
             string kind = Kind(partRef) == 'P' ? "Backplane" : "Front connector";
+            if (letter == null && bus == MachineBus.Nord10)
+                return kind == "Backplane" ? "Backplane (pins 0-99)" : kind;
             return letter == null ? kind + " (connector not known)" : kind + " " + letter;
         }
 

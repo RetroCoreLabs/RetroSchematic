@@ -44,6 +44,26 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void OnAnNd100Sheet_APinWithNoLetter_IsStillNotKnown()
+        {
+            Assert.That(ConnectorPins.Show("P", 32, MachineBus.Nd100), Is.EqualTo("?.32"));
+            Assert.That(ConnectorPins.Show("P.A", 32, MachineBus.Nd100), Is.EqualTo("A.32"));
+            Assert.That(ConnectorPins.Name("P", MachineBus.Nd100), Is.EqualTo("Backplane (connector not known)"));
+            Assert.That(ConnectorPins.Name("F", MachineBus.Nd100), Is.EqualTo("Front connector (connector not known)"));
+            Assert.That(ConnectorPins.Name("P.C", MachineBus.Nd100), Is.EqualTo("Backplane C"));
+        }
+
+        [Test]
+        public void OnANord10Sheet_TheOneBackplaneConnector_IsKnown()
+        {
+            // a NORD-10 card has ONE backplane connector, pins 0-99: P.n is fully known
+            Assert.That(ConnectorPins.Name("P", MachineBus.Nord10), Is.EqualTo("Backplane (pins 0-99)"));
+            Assert.That(ConnectorPins.Show("P", 32, MachineBus.Nord10), Is.EqualTo("32"));
+            Assert.That(ConnectorPins.Name("F", MachineBus.Nord10), Is.EqualTo("Front connector"));
+            Assert.That(ConnectorPins.Show("F", 7, MachineBus.Nord10), Is.EqualTo("7"));
+        }
+
+        [Test]
         public void ALetteredPin_AndPinZero_Load_AndAreDrawnInTheirOwnBox()
         {
             Netlist n = SheetEditor.NewSheet("X", "x", MachineBus.Nd100);
@@ -89,6 +109,9 @@ namespace RetroSchematic.Tests
             // the front connector's catalogue adds the modem plug pin
             Assert.That(texts, Does.Contain("(V.24 17)"));
             Assert.That(texts, Does.Contain("NORD-10 I/O device card: connector to the backplane"));
+            // the connector box title: one connector on a NORD-10 card, so it is known
+            Assert.That(texts, Does.Contain("Backplane (pins 0-99)"));
+            Assert.That(texts, Does.Not.Contain("Backplane (connector not known)"));
         }
 
         [Test]
@@ -100,11 +123,11 @@ namespace RetroSchematic.Tests
             Assert.That(s.TracedPins(), Does.Contain("P.11"));
             s.Select("pin:P.11");
             string text = s.Describe();
-            Assert.That(text, Does.Contain("Backplane (connector not known), pin ?.11"));
+            Assert.That(text, Does.Contain("Backplane (pins 0-99), pin 11\n"));
             Assert.That(text, Does.Contain("Backplane name: BIOXE"));
             Assert.That(text, Does.Contain("IOX enable"));
             s.Select("conn:P");
-            Assert.That(s.Describe(), Does.StartWith("Backplane (connector not known)\nCatalogue: nord10-io-card-backplane"));
+            Assert.That(s.Describe(), Does.StartWith("Backplane (pins 0-99)\nCatalogue: nord10-io-card-backplane"));
         }
 
         [Test]

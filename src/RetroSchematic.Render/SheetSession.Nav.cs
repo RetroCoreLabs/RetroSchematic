@@ -87,7 +87,7 @@ namespace RetroSchematic.Render
                 return p == null ? owner.Substring(5) : p.Ref + " " + p.Type;
             }
             if (owner.StartsWith("conn:", StringComparison.Ordinal))
-                return ConnectorPins.Name(owner.Substring(5));
+                return ConnectorPins.Name(owner.Substring(5), Bus);
             if (owner.StartsWith("bus:", StringComparison.Ordinal))
                 return "bus " + owner.Substring(4);
             if (owner.StartsWith("inst:", StringComparison.Ordinal))

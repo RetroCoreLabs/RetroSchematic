@@ -163,7 +163,7 @@ namespace RetroSchematic.Tests
             Assert.That(info.DriveBadge, Is.EqualTo("OPEN-COLLECTOR"));
             Assert.That(info.DescriptionConfidence, Is.EqualTo(Confidence.Read));
             Assert.That(info.DescriptionSourcePlace, Does.Not.EndWith("(read)"));
-            Assert.That(info.Places, Does.Contain("backplane ?.35 BINT12"));
+            Assert.That(info.Places, Does.Contain("backplane 35 BINT12"));
             SignalPin conn = info.Pins.Find(p => p.At == "P.35")!;
             Assert.That(conn.Direction, Is.EqualTo("connector"));
             Assert.That(conn.ChipType, Is.EqualTo("backplane"));
