@@ -55,6 +55,28 @@ Every part, pin and wire records:
 The app colours by this and can list "everything not yet checked by a person". Every accepted
 box, pin and correction is saved as training data, with its source, for the offline networks.
 
+## Feeding results back into the models
+
+Every read card makes the offline networks better. How:
+
+1. **What is saved while reading:** every accepted or corrected symbol box (kind, gate kind,
+   position code, chip type) on its source page; every pin-number spot and wire end that was
+   connected; the "made by" and "checked in" of each item; and every correction - what the
+   network said and what the right answer was.
+2. **What may be used:** only items checked in at least review round 1 with zero rule
+   failures. Human-checked items count more than AI-checked ones. Test cards are never used
+   for training (today: 2A50 page 64 and the SCSI card 3207); they are only measured.
+3. **How a retrain runs:** collect the saved boxes and corrections from all finished cards,
+   add the generated training pages, retrain, and pick the new model on held-out cards.
+4. **When a new model is accepted:** only if, on the test cards, it is not worse at anything,
+   measured as connections found and connections right (pairs of pins), not pins. The scores
+   are written into `src/models/README.md` with the date and the cards it learned from.
+5. **Corrections also say why.** A correction may carry a cause (for example "code inside a
+   gate box", "pin number misread"). Counting causes over all cards shows what to fix next -
+   sometimes a rule or the generated training pages, not more data.
+
+How this was measured and what was learned so far: `RECOGNITION-LEARNINGS.md`.
+
 ## Finished
 
 - **AI-checked:** an LLM may mark a card finished when every round passes.
@@ -67,4 +89,5 @@ box, pin and correction is saved as training data, with its source, for the offl
   `retroschematic check` (part of round 1).
 - Being built: pre-analyse and assisted reading in the app (steps 5-6).
 - Not built: the "Import card" panel, page picking/turning/rendering in the app (steps 1-2),
-  the review-round records, the "made by / checked in" fields, the finished states.
+  the review-round records, the "made by / checked in" fields, the finished states, the
+  saved corrections and the retrain step.
