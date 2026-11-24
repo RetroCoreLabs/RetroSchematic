@@ -7,6 +7,8 @@
 
 [What it does](#what-you-can-use-it-for) · [Quick start](#quick-start) · [Format](src/docs/FORMAT.md) · [About the drawings](#about-norsk-data-circuit-drawings)
 
+![RetroSchematic on the NORD-10 sync modem card 2A50: the scanned drawing, the board photos with the gold-finger pin labels on both sides, the redrawn circuit, and signals traced across it with their details.](src/docs/images/readme/demo.gif)
+
 ## Why it exists
 
 The only record of how many Norsk Data cards worked is a scanned drawing. The scans are hard
