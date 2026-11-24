@@ -67,7 +67,8 @@ namespace RetroSchematic.Desktop
 
         /// <summary>
         /// Opens a sheet file, read-only. The catalogue is found by walking up from the sheet to
-        /// the folder that holds <c>catalog/</c> (the repository's <c>src</c> folder).
+        /// the folder that holds <c>catalog/</c> (the repository's <c>src</c> folder), else the one
+        /// beside the program (<see cref="ChipCatalog.FindForSheet"/>).
         /// </summary>
         /// <param name="path">
         /// The sheet file (a netlist JSON file).
@@ -75,7 +76,7 @@ namespace RetroSchematic.Desktop
         public void OpenSheet(string path)
         {
             SymbolStyle style = UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern;
-            Show(new SheetSession(path, style, ChipCatalog.Find(path)));
+            Show(new SheetSession(path, style, ChipCatalog.FindForSheet(path)));
             StatusText.Text = path + "  -  " + _session!.Netlist.Parts.Count + " parts, " + _session.Netlist.Gates.Count + " gates, "
                 + _session.Netlist.Nets.Count + " signals" + (_session.BusWarning == null ? "" : ".  " + _session.BusWarning);
             UiSettings.Instance.LastSheet = path;

@@ -147,6 +147,30 @@ namespace RetroSchematic.Model
         }
 
         /// <summary>
+        /// The catalogue to use for a sheet: the one found by walking up from the sheet, else the
+        /// one found by walking up from the running program's folder.
+        /// </summary>
+        /// <remarks>
+        /// <para><b>The lookup order, and why</b></para>
+        /// 1. Up from the sheet: a sheet inside a checkout of the repository (or inside the
+        /// unpacked download, under <c>sheets/</c>) uses the <c>catalog</c> folder beside it, so a
+        /// newer catalogue copied there wins.
+        /// 2. Up from the program's folder (<see cref="AppContext.BaseDirectory"/>): a sheet kept
+        /// anywhere else - the user's own folder - still gets the catalogue that ships beside the
+        /// program in the download. Before this fallback the command-line tool and the window's
+        /// File &gt; Open drew such a sheet with no chip files at all (found 24 November 2026 while
+        /// writing the release workflow).
+        /// </remarks>
+        /// <param name="sheetPath">
+        /// The sheet file, or null for a sheet not saved yet.
+        /// </param>
+        /// <returns>
+        /// The catalogue folder, or null when neither place has one.
+        /// </returns>
+        public static string? FindForSheet(string? sheetPath)
+            => (sheetPath == null ? null : Find(sheetPath)) ?? Find(AppContext.BaseDirectory);
+
+        /// <summary>
         /// The chip types that have a file, sorted by name.
         /// </summary>
         /// <returns>

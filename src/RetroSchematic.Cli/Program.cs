@@ -66,7 +66,7 @@ namespace RetroSchematic.Cli
 
                     case "stats":
                     {
-                        string? cat = ChipCatalog.Find(args[1]);
+                        string? cat = ChipCatalog.FindForSheet(args[1]);
                         SchematicDrawing measured = SheetLayout.Build(netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = cat == null ? null : new ChipCatalog(cat) });
                         WireStats st = WireStats.Measure(measured);
                         Console.WriteLine($"{args[1]}: wire length {st.Length / WireRouter.Step:0} grid steps in {st.Pieces} pieces, {st.Crossings} crossings");
@@ -134,7 +134,7 @@ namespace RetroSchematic.Cli
                         // a file without pages is measured as if converted (nothing is written)
                         if (!CardPages.HasPages(netlist))
                             CardPages.ToVersion3(netlist);
-                        string? cat = ChipCatalog.Find(args[1]);
+                        string? cat = ChipCatalog.FindForSheet(args[1]);
                         ChipCatalog? chips = cat == null ? null : new ChipCatalog(cat);
                         Console.Write(PageStats.Report(netlist, chips, PageLayoutMode.AsOriginal, limit));
                         Console.Write(PageStats.Report(netlist, chips, PageLayoutMode.Split, limit));
@@ -189,9 +189,9 @@ namespace RetroSchematic.Cli
                                 return 2;
                             }
                         }
-                        // drawn with the chip catalogue when one is found above the sheet, exactly as the
+                        // drawn with the chip catalogue found above the sheet, else beside this program, exactly as the
                         // window draws it (a chip without gates then shows every pin)
-                        string? catalog = ChipCatalog.Find(args[1]);
+                        string? catalog = ChipCatalog.FindForSheet(args[1]);
                         LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog), ShowBuses = buses, NameStyle = names };
                         if (CardPages.HasPages(netlist))
                             options.Pages = PageSet.Of(netlist, mode ?? netlist.PageLayout ?? PageLayoutMode.AsOriginal, PageSet.DefaultChipLimit);
