@@ -9,6 +9,8 @@
 [![licence](https://img.shields.io/github/license/RetroCoreLabs/RetroSchematic)](LICENSE)
 [![downloads](https://img.shields.io/github/downloads/RetroCoreLabs/RetroSchematic/total)](https://github.com/RetroCoreLabs/RetroSchematic/releases)
 
+**[Documentation site](https://retrocorelabs.github.io/RetroSchematic/)** - the guides and file formats, beside a page for every chip and bus signal in the catalogues, generated from the catalogue files; built from this repository by `.github/workflows/docs.yml`.
+
 **RetroSchematic turns hand-drawn Norsk Data circuit drawings from the 1970s into a machine-readable list of chips and wires, and draws them again in either ND's own gate symbols or modern ones.**
 
 [What it does](#what-you-can-use-it-for) · [Getting started](#getting-started) · [Quick start](#quick-start) · [Format](src/docs/FORMAT.md) · [About the drawings](#about-norsk-data-circuit-drawings)

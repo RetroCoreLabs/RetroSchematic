@@ -71,6 +71,34 @@ breaks `MERMAID_COLOR_STANDARDS.md`.
 > variable such as `%USERPROFILE%` or `~` is fine - that is the portable way to name a per-user
 > location.
 
+### The documentation site
+
+<https://retrocorelabs.github.io/RetroSchematic/> is built by MkDocs from the Markdown in this
+repository (`.github/workflows/docs.yml`, on every push to `master`). The chip, bus signal and
+reference pages under `src/docs/reference/` and the page tree in `src/docs-site/mkdocs.yml` are
+generated from the catalogue files. After changing a file in `src/catalog/`, a sheet, or adding
+or moving a guide, regenerate them and commit the result - CI runs the same script with
+`--check` and fails when they are out of date:
+
+```powershell
+# from the src folder
+python -I docs-site/gen_site.py
+```
+
+A new guide is placed in the page tree by the policy at the top of `src/docs-site/gen_site.py`;
+one the policy does not name lands under "More". To build the site locally (Python 3.12, a
+virtual environment outside the checkout; MkDocs refuses an output folder inside the repository):
+
+```powershell
+# from the src folder
+python -m venv $env:TEMP\retroschematic-site
+& $env:TEMP\retroschematic-site\Scripts\pip install -r docs-site/requirements.txt
+& $env:TEMP\retroschematic-site\Scripts\mkdocs build --strict -f docs-site/mkdocs.yml -d $env:TEMP\retroschematic-site-out
+```
+
+It must finish with no warning. Git LFS must be installed: the site shows the symbol pictures
+and the icon, which are LFS files.
+
 A README follows `README-TEMPLATE.md`, beside the repositories: one sentence at the top that a
 stranger to the subject understands, four badges that can each be wrong, install before
 build-from-source, every application in a table linking its own README, licence last.
