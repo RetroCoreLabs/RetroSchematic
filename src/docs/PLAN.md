@@ -4,6 +4,25 @@ Outstanding work only. Finished items are deleted.
 
 **Next:** pin function text (chip catalogue step 4).
 
+## Cards with pages: open items
+
+The format (version 3), the window, the command line and the MCP tools are built. Left:
+
+- A connector box sits on one page only. A card whose backplane pins are drawn on several
+  pages needs a connector box per page (each showing its own pins).
+- In split mode the stored wire paths and buses belong to the card page, so every drawn part of
+  a split page gets them. Seen on 2A50 split at 16: page 1.2 draws the BD_0 and BD_1 buses as
+  empty bars that nothing on that page connects to. A bus should only be drawn on a drawn page
+  that has members on it.
+- The split's chip limit is not kept when a group the splitter will not break (passives,
+  register groups) is bigger: 2A50 at limit 20 gives a 27-chip page. At limit 12 it leaves a
+  page with one chip.
+- The off-page marker can overlap the room the router keeps for a label.
+- Fit to window on a page leaves out the drawing's title, so a long title runs off the right.
+- The schema file (schema/nd-netlist-3.schema.json) is not checked by a test.
+- The Desktop README does not describe pages yet (page tabs, F4 overview, Page Up/Down, the
+  three File menu items, the split switch, the new MCP tools, the CLI to-pages/pages commands).
+
 ## Symbol boxes on the scanned page (training data for a symbol finder)
 
 Owner approved 2026-11-23. Plan item only, not built yet.
