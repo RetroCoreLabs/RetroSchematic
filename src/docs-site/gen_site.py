@@ -516,7 +516,9 @@ def main():
         old = None
         if os.path.exists(full):
             with open(full, encoding="utf-8", newline="") as f:
-                old = f.read()
+                # a Windows checkout may hold the file with CRLF line ends (core.autocrlf);
+                # that is the same content
+                old = f.read().replace("\r\n", "\n")
         if old != text:
             bad.append(p)
             if not check:
