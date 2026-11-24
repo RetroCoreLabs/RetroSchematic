@@ -146,6 +146,12 @@ Symbols" (July 1976), which is in `src/docs/sources/manuals/`.
 - [Chip file format](src/catalog/chips/FORMAT.md) - pins and behaviour from datasheets
 - [Bus signals](src/docs/BUS-SIGNALS.md) - NORD-10 and ND-100 bus, sources and where they disagree
 - [The viewer](src/RetroSchematic.Desktop/README.md)
+- [Importing a new card](src/docs/IMPORT-WORKFLOW.md) - the workflow from PDF pages to a
+  checked card, in AI mode or by hand with AI on demand, and how read cards improve the models
+- [Reading a card: the checklist](src/docs/READING-A-CARD.md) and
+  [adding an unknown symbol](src/docs/ADDING-A-SYMBOL.md)
+- [The offline reader: what was learned](src/docs/RECOGNITION-LEARNINGS.md) and
+  [how to run an improvement round](src/tools/recognition/README.md#running-an-improvement-round)
 - [Plan](src/docs/PLAN.md) - outstanding work
 - [Known bugs](src/docs/BUGS.md)
 

@@ -27,3 +27,35 @@ not these scripts.
   `ND100_IOSYS` to the PDFs (see `scripts/books.py`).
 - These scripts were written to explore, not as a finished tool: some take their settings as
   constants at the top of the file. `rounds.json` gives the exact command of each round.
+
+## Running an improvement round
+
+For a person or an LLM agent. One round = make drafts, score them, find the biggest loss, fix
+it, retrain if needed, score again, keep or throw. The app cannot start this yet (planned:
+an "Improve the models" button, `src/docs/IMPORT-WORKFLOW.md`).
+
+1. **Set up the work folder.** `RECOG_WORK` = a temporary folder of your own. Render the work
+   pages and page 64 into it (`scripts/pageio.py`, pages turned by `scripts/rotate2.py`), and
+   copy the current models from `src/models/` to `$RECOG_WORK/model/`.
+2. **Add new training material.** New answer keys go in `data/keys/` (one JSON per page, same
+   form as the others). A key must pass the rule checks first: `python -I scripts/keyrules.py
+   <key>` reports zero failures. Cards read in the app give keys from their accepted symbol
+   boxes and connected pins. Never add 2A50 page 64 or any SCSI card (3207) page: those are the
+   test cards.
+3. **Make the drafts** with the latest kept settings - the `run` line of the last entry in
+   `loop/rounds.json`, for example
+   `GRIDFIX=1 FIX4=1 ... DETH=model/det-L3.onnx sh loop/draftall.sh r6`.
+4. **Score by connections** (pairs of pins that should be joined), never by pins alone:
+   `sh loop/conn.sh r6` prints found (recall) and right (precision) for page 64 and the work
+   pages. `scripts/stageloss.py` and `scripts/pinfail.py` show where pins are lost.
+5. **Fix the biggest loss** at its cause: a rule in `draft.py` (behind a new flag), more
+   realistic generated pages (`gendet.py`, `gen2.py`), or retraining on the keys
+   (`detnet.py` for the symbol finder, `train3.py` for the letters).
+6. **Keep or throw.** Keep a change only if page 64 and the SCSI test pages are not worse on
+   anything. Write the round into `loop/rounds.json`: what changed, both scores, kept or
+   thrown, and the run command.
+7. **Ship a kept model** by copying the `.onnx` into `src/models/`, updating
+   `src/models/README.md` (date, cards it learned from, test scores), and running the tests
+   (`dotnet test RetroSchematic.slnx -nodeReuse:false` from `src`). Commit with a plain message.
+
+Where the model stands and what was learned: `src/docs/RECOGNITION-LEARNINGS.md`.
