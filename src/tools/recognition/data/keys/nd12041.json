@@ -1,0 +1,1670 @@
+{
+ "format": "nd-netlist-key",
+ "page": "nd12041",
+ "parts": [
+  {
+   "ref": "27A",
+   "type": "74PCT244",
+   "kind": "chip",
+   "box": [
+    1842,
+    655,
+    170,
+    382
+   ],
+   "draft_id": "C0",
+   "confidence": "read"
+  },
+  {
+   "ref": "25A",
+   "type": "74PCT244",
+   "kind": "chip",
+   "box": [
+    1842,
+    1562,
+    170,
+    382
+   ],
+   "draft_id": "C3",
+   "confidence": "read"
+  },
+  {
+   "ref": "24A",
+   "type": "74PCT244",
+   "kind": "chip",
+   "box": [
+    1842,
+    2307,
+    170,
+    385
+   ],
+   "draft_id": "C2",
+   "confidence": "read"
+  },
+  {
+   "ref": "28A",
+   "type": "74LS273",
+   "kind": "chip",
+   "box": [
+    2500,
+    1070,
+    125,
+    392
+   ],
+   "draft_id": "C1",
+   "confidence": "read"
+  },
+  {
+   "ref": "29A",
+   "type": "74F08",
+   "kind": "gatepack",
+   "box": [
+    3130,
+    1480,
+    100,
+    75
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "14A",
+   "type": "74LS38",
+   "kind": "gatepack",
+   "box": [
+    3337,
+    1500,
+    107,
+    520
+   ],
+   "draft_id": "G14",
+   "confidence": "read"
+  },
+  {
+   "ref": "11B",
+   "type": "74LS04",
+   "kind": "gatepack",
+   "box": [
+    3130,
+    1112,
+    570,
+    1007
+   ],
+   "draft_id": "G19",
+   "confidence": "read"
+  },
+  {
+   "ref": "2A",
+   "type": "7438",
+   "kind": "gatepack",
+   "box": [
+    3875,
+    1092,
+    105,
+    70
+   ],
+   "draft_id": "G17",
+   "confidence": "read"
+  },
+  {
+   "ref": "RN8",
+   "type": "R 4610X-101-103",
+   "kind": "passive",
+   "box": [
+    825,
+    487,
+    425,
+    112
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "RN7",
+   "type": "R 4610X-101-103",
+   "kind": "passive",
+   "box": [
+    750,
+    1400,
+    150,
+    100
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "RN9",
+   "type": "R 4610X-101-102",
+   "kind": "passive",
+   "box": [
+    1437,
+    1725,
+    42,
+    112
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "RN14",
+   "type": "R 4610X-101-102",
+   "kind": "passive",
+   "box": [
+    2725,
+    655,
+    125,
+    95
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "LED2",
+   "type": "LED red",
+   "kind": "passive",
+   "box": [
+    2720,
+    837,
+    42,
+    62
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "LED3",
+   "type": "LED green",
+   "kind": "passive",
+   "box": [
+    2812,
+    837,
+    50,
+    62
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "TH1",
+   "type": "2170576F (hex switch)",
+   "kind": "other",
+   "box": [
+    1562,
+    1720,
+    152,
+    185
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "STR5",
+   "type": "STR2 strap",
+   "kind": "passive",
+   "box": [
+    512,
+    857,
+    87,
+    42
+   ],
+   "draft_id": "G26",
+   "confidence": "read"
+  },
+  {
+   "ref": "STR6",
+   "type": "STR2 strap",
+   "kind": "passive",
+   "box": [
+    512,
+    927,
+    87,
+    42
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "STR7",
+   "type": "STR2 strap",
+   "kind": "passive",
+   "box": [
+    512,
+    997,
+    87,
+    42
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "STR8",
+   "type": "STR2 strap",
+   "kind": "passive",
+   "box": [
+    512,
+    1067,
+    87,
+    42
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "STR9",
+   "type": "STR2 strap",
+   "kind": "passive",
+   "box": [
+    512,
+    1137,
+    87,
+    42
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  }
+ ],
+ "gates": [
+  {
+   "id": "29A/2",
+   "part": "29A",
+   "kind": "and",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    3130,
+    1480,
+    100,
+    75
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "14A/1",
+   "part": "14A",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    3337,
+    1500,
+    107,
+    75
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "14A/2",
+   "part": "14A",
+   "kind": "nand",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    3337,
+    1805,
+    107,
+    75
+   ],
+   "draft_id": "G14"
+  },
+  {
+   "id": "14A/3",
+   "part": "14A",
+   "kind": "nand",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    3337,
+    1945,
+    107,
+    75
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11B/2",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    3
+   ],
+   "output": 4,
+   "box": [
+    3612,
+    1112,
+    87,
+    67
+   ],
+   "draft_id": "G19"
+  },
+  {
+   "id": "11B/3",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    3130,
+    1630,
+    90,
+    70
+   ],
+   "draft_id": "G27"
+  },
+  {
+   "id": "11B/4",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    3130,
+    2050,
+    90,
+    70
+   ],
+   "draft_id": "G18"
+  },
+  {
+   "id": "2A/4",
+   "part": "2A",
+   "kind": "nand",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    3875,
+    1092,
+    105,
+    70
+   ],
+   "draft_id": "G17"
+  }
+ ],
+ "nets": [
+  {
+   "name": "IDB15",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.18"
+    }
+   ]
+  },
+  {
+   "name": "IDB7",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.18"
+    },
+    {
+     "at": "24A.18"
+    },
+    {
+     "at": "28A.3"
+    }
+   ]
+  },
+  {
+   "name": "INR7",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.2"
+    }
+   ]
+  },
+  {
+   "name": "IDB14",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.16"
+    }
+   ]
+  },
+  {
+   "name": "IDB6",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.16"
+    },
+    {
+     "at": "24A.16"
+    },
+    {
+     "at": "28A.4"
+    }
+   ]
+  },
+  {
+   "name": "INR6",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.4"
+    }
+   ]
+  },
+  {
+   "name": "IDB13",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.14"
+    }
+   ]
+  },
+  {
+   "name": "IDB5",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.14"
+    },
+    {
+     "at": "24A.14"
+    },
+    {
+     "at": "28A.7"
+    }
+   ]
+  },
+  {
+   "name": "INR5",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.6"
+    }
+   ]
+  },
+  {
+   "name": "IDB12",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.12"
+    }
+   ]
+  },
+  {
+   "name": "IDB4",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.12"
+    },
+    {
+     "at": "24A.12"
+    },
+    {
+     "at": "28A.8"
+    }
+   ]
+  },
+  {
+   "name": "INR4",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.8"
+    }
+   ]
+  },
+  {
+   "name": "IDB11",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.9"
+    }
+   ]
+  },
+  {
+   "name": "IDB3",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.9"
+    },
+    {
+     "at": "24A.9"
+    },
+    {
+     "at": "28A.13"
+    }
+   ]
+  },
+  {
+   "name": "INR3",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.11"
+    }
+   ]
+  },
+  {
+   "name": "IDB10",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.7"
+    }
+   ]
+  },
+  {
+   "name": "IDB2",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.7"
+    },
+    {
+     "at": "24A.7"
+    },
+    {
+     "at": "28A.14"
+    }
+   ]
+  },
+  {
+   "name": "INR2",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.13"
+    }
+   ]
+  },
+  {
+   "name": "IDB9",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.5"
+    }
+   ]
+  },
+  {
+   "name": "IDB1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.5"
+    },
+    {
+     "at": "24A.5"
+    },
+    {
+     "at": "28A.17"
+    }
+   ]
+  },
+  {
+   "name": "INR1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.15"
+    }
+   ]
+  },
+  {
+   "name": "IDB8",
+   "active": "high",
+   "pins": [
+    {
+     "at": "27A.3"
+    }
+   ]
+  },
+  {
+   "name": "IDB0",
+   "active": "high",
+   "pins": [
+    {
+     "at": "25A.3"
+    },
+    {
+     "at": "24A.3"
+    },
+    {
+     "at": "28A.18"
+    }
+   ]
+  },
+  {
+   "name": "INR0",
+   "active": "high",
+   "pins": [
+    {
+     "at": "24A.17"
+    }
+   ]
+  },
+  {
+   "name": "RINR~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "24A.1"
+    },
+    {
+     "at": "24A.19"
+    }
+   ]
+  },
+  {
+   "name": "TRAALD~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "27A.1"
+    },
+    {
+     "at": "27A.19"
+    },
+    {
+     "at": "25A.1"
+    },
+    {
+     "at": "25A.19"
+    }
+   ]
+  },
+  {
+   "name": "N_RN8_2",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.2"
+    },
+    {
+     "at": "RN8.2"
+    }
+   ]
+  },
+  {
+   "name": "N_RN8_3",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.4"
+    },
+    {
+     "at": "RN8.3"
+    }
+   ]
+  },
+  {
+   "name": "N_RN8_4",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.6"
+    },
+    {
+     "at": "RN8.4"
+    }
+   ]
+  },
+  {
+   "name": "N_STR5",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.8"
+    },
+    {
+     "at": "RN8.5"
+    },
+    {
+     "at": "STR5.2"
+    }
+   ]
+  },
+  {
+   "name": "N_STR6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.11"
+    },
+    {
+     "at": "RN8.6"
+    },
+    {
+     "at": "STR6.2"
+    }
+   ]
+  },
+  {
+   "name": "N_STR7",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.13"
+    },
+    {
+     "at": "RN8.7"
+    },
+    {
+     "at": "STR7.2"
+    }
+   ]
+  },
+  {
+   "name": "N_STR8",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.15"
+    },
+    {
+     "at": "RN8.8"
+    },
+    {
+     "at": "STR8.2"
+    }
+   ]
+  },
+  {
+   "name": "N_STR9",
+   "active": "none",
+   "pins": [
+    {
+     "at": "27A.17"
+    },
+    {
+     "at": "RN8.9"
+    },
+    {
+     "at": "STR9.2"
+    }
+   ]
+  },
+  {
+   "name": "GND",
+   "active": "none",
+   "pins": [
+    {
+     "at": "STR5.1"
+    },
+    {
+     "at": "STR6.1"
+    },
+    {
+     "at": "STR7.1"
+    },
+    {
+     "at": "STR8.1"
+    },
+    {
+     "at": "STR9.1"
+    },
+    {
+     "at": "25A.4"
+    },
+    {
+     "at": "TH1.1"
+    }
+   ]
+  },
+  {
+   "name": "VCC",
+   "active": "none",
+   "pins": [
+    {
+     "at": "RN8.1"
+    },
+    {
+     "at": "RN7.1"
+    },
+    {
+     "at": "RN9.1"
+    },
+    {
+     "at": "RN14.1"
+    }
+   ]
+  },
+  {
+   "name": "CX~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "25A.2"
+    }
+   ]
+  },
+  {
+   "name": "N_RN7_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "25A.6"
+    },
+    {
+     "at": "RN7.6"
+    }
+   ]
+  },
+  {
+   "name": "N_RN7_7",
+   "active": "none",
+   "pins": [
+    {
+     "at": "25A.8"
+    },
+    {
+     "at": "RN7.7"
+    }
+   ]
+  },
+  {
+   "name": "N_TH1_3",
+   "active": "none",
+   "pins": [
+    {
+     "at": "25A.11"
+    },
+    {
+     "at": "TH1.3"
+    }
+   ]
+  },
+  {
+   "name": "N_TH1_5",
+   "active": "none",
+   "pins": [
+    {
+     "at": "25A.13"
+    },
+    {
+     "at": "TH1.5"
+    }
+   ]
+  },
+  {
+   "name": "N_TH1_2",
+   "active": "none",
+   "pins": [
+    {
+     "at": "25A.15"
+    },
+    {
+     "at": "TH1.2"
+    }
+   ]
+  },
+  {
+   "name": "N_TH1_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "25A.17"
+    },
+    {
+     "at": "TH1.6"
+    }
+   ]
+  },
+  {
+   "name": "N_RN9_3",
+   "active": "none",
+   "pins": [
+    {
+     "at": "RN9.3"
+    },
+    {
+     "at": "TH1.4"
+    }
+   ]
+  },
+  {
+   "name": "SIOC~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "28A.11"
+    }
+   ]
+  },
+  {
+   "name": "CLEAR~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "28A.1"
+    }
+   ]
+  },
+  {
+   "name": "RESET",
+   "active": "high",
+   "pins": [
+    {
+     "at": "28A.2"
+    }
+   ]
+  },
+  {
+   "name": "SCONS~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "28A.5"
+    },
+    {
+     "at": "29A.4"
+    },
+    {
+     "at": "11B.3"
+    }
+   ]
+  },
+  {
+   "name": "EMCL~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "28A.6"
+    },
+    {
+     "at": "LED2.2"
+    }
+   ]
+  },
+  {
+   "name": "N_28A_9",
+   "active": "none",
+   "pins": [
+    {
+     "at": "28A.9"
+    },
+    {
+     "at": "LED3.2"
+    }
+   ]
+  },
+  {
+   "name": "N_RN14_4",
+   "active": "none",
+   "pins": [
+    {
+     "at": "RN14.4"
+    },
+    {
+     "at": "LED2.1"
+    }
+   ]
+  },
+  {
+   "name": "N_RN14_5",
+   "active": "none",
+   "pins": [
+    {
+     "at": "RN14.5"
+    },
+    {
+     "at": "LED3.1"
+    }
+   ]
+  },
+  {
+   "name": "IOC3",
+   "active": "high",
+   "pins": [
+    {
+     "at": "28A.12"
+    },
+    {
+     "at": "14A.4"
+    }
+   ]
+  },
+  {
+   "name": "IOC2",
+   "active": "high",
+   "pins": [
+    {
+     "at": "28A.15"
+    },
+    {
+     "at": "14A.9"
+    }
+   ]
+  },
+  {
+   "name": "IOC1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "28A.16"
+    },
+    {
+     "at": "29A.5"
+    }
+   ]
+  },
+  {
+   "name": "IOC0",
+   "active": "high",
+   "pins": [
+    {
+     "at": "28A.19"
+    },
+    {
+     "at": "14A.5"
+    }
+   ]
+  },
+  {
+   "name": "N_29A_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "29A.6"
+    },
+    {
+     "at": "14A.1"
+    }
+   ]
+  },
+  {
+   "name": "N_11B_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11B.6"
+    },
+    {
+     "at": "14A.2"
+    }
+   ]
+  },
+  {
+   "name": "DA~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11B.5"
+    }
+   ]
+  },
+  {
+   "name": "BINT~12",
+   "active": "none",
+   "pins": [
+    {
+     "at": "14A.3"
+    }
+   ]
+  },
+  {
+   "name": "BINT~13",
+   "active": "none",
+   "pins": [
+    {
+     "at": "14A.6"
+    }
+   ]
+  },
+  {
+   "name": "TBMT~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11B.9"
+    }
+   ]
+  },
+  {
+   "name": "N_11B_8",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11B.8"
+    },
+    {
+     "at": "14A.10"
+    }
+   ]
+  },
+  {
+   "name": "BINT~10",
+   "active": "none",
+   "pins": [
+    {
+     "at": "14A.8"
+    }
+   ]
+  },
+  {
+   "name": "N_11B_4",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11B.4"
+    },
+    {
+     "at": "2A.12"
+    },
+    {
+     "at": "2A.13"
+    }
+   ]
+  },
+  {
+   "name": "CONSOLE~",
+   "active": "low",
+   "pins": [
+    {
+     "at": "2A.11"
+    }
+   ]
+  }
+ ],
+ "corrections": [
+  {
+   "what": "code-missed",
+   "draft_id": "C0",
+   "key": "27A",
+   "draft_said": "null",
+   "truth": "27A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C0",
+   "key": "27A",
+   "draft_said": "",
+   "truth": "74PCT244",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "C1",
+   "key": "28A",
+   "draft_said": "null",
+   "truth": "28A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C1",
+   "key": "28A",
+   "draft_said": "7440",
+   "truth": "74LS273",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "C2",
+   "key": "24A",
+   "draft_said": "null",
+   "truth": "24A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C2",
+   "key": "24A",
+   "draft_said": "",
+   "truth": "74PCT244",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "C3",
+   "key": "25A",
+   "draft_said": "3A",
+   "truth": "25A",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C3",
+   "key": "25A",
+   "draft_said": "7416",
+   "truth": "74PCT244",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C4",
+   "key": null,
+   "draft_said": "chip",
+   "truth": "IOC bus lines and labels",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C5",
+   "key": null,
+   "draft_said": "chip",
+   "truth": "LED2/LED3 with RN14 resistors",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G0",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN7 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G1",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN7 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G3",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G4",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G5",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G7",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G8",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G9",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G10",
+   "key": null,
+   "draft_said": "and",
+   "truth": "RN8 resistor",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G2",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "ND logo in title block",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G11",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "ND logo in title block",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G6",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "turned file-path text at right edge",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G12",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G13",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G15",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G16",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G20",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G21",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G22",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G23",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G24",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G25",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G28",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "binder punch hole at left margin",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G26",
+   "key": "STR5",
+   "draft_said": "nand",
+   "truth": "STR2 strap",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G18",
+   "key": "11B/4",
+   "draft_said": "buffer",
+   "truth": "not (74LS04 inverter, bubble on input)",
+   "cause": "kind-generator-unlike-real",
+   "note": "bubble drawn at input side"
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G19",
+   "key": "11B/2",
+   "draft_said": "buffer",
+   "truth": "not (74LS04 inverter, bubble on input)",
+   "cause": "kind-generator-unlike-real",
+   "note": "bubble drawn at input side"
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G27",
+   "key": "11B/3",
+   "draft_said": "buffer",
+   "truth": "not (74LS04 inverter, bubble on input)",
+   "cause": "kind-generator-unlike-real",
+   "note": "bubble drawn at input side"
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "29A/2",
+   "draft_said": "",
+   "truth": "and 74F08 at 29A",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "14A/1",
+   "draft_said": "",
+   "truth": "nand 74LS38",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "14A/3",
+   "draft_said": "",
+   "truth": "nand 74LS38",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "RN8",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "RN7",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "RN9",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "RN14",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "LED2",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "LED3",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "STR6",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "STR7",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "STR8",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "STR9",
+   "draft_said": "",
+   "truth": "passive",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": "G26",
+   "key": "STR5",
+   "draft_said": "nand gate",
+   "truth": "strap",
+   "cause": "not-a-symbol",
+   "note": "same strap as G26 entry"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "TH1",
+   "draft_said": "",
+   "truth": "2170576F hex switch",
+   "cause": "box-not-found",
+   "note": ""
+  }
+ ],
+ "coverage": "All pins of the 4 chips, 4 gate packages' drawn gates, resistor packs, LEDs, straps and TH1 that are drawn on the page are listed; supply pins of chips (VCC/GND, 2A 14/7 note) and RN7.5 (drawn unconnected) left out; pins of IDB nets go off-page.",
+ "check": {
+  "status": "checked",
+  "violations": 0,
+  "by": {},
+  "rules": "pinout, one net per pin, gate pattern, pin in two gates, two totem-pole outputs on one net (scripts/keyrules.py)",
+  "corrections": "none",
+  "gate_boxes_snapped_to_drawn_rectangle": 0,
+  "gates": 8,
+  "not_done": "parts-list count not compared; pins missing from nets only spot-checked (n10-63 14B, 12A: undrawn pins)"
+ }
+}

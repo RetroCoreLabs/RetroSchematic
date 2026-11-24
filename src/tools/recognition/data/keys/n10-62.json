@@ -1,0 +1,4188 @@
+{
+ "format": "nd-netlist-key",
+ "page": "n10-62",
+ "sheet": "2A48 MAGTAPE CONTROL A 1048/IV",
+ "parts": [
+  {
+   "ref": "9A",
+   "type": "8098",
+   "kind": "gatepack",
+   "box": [
+    457,
+    208,
+    62,
+    358
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "9B",
+   "type": "8098",
+   "kind": "gatepack",
+   "box": [
+    457,
+    686,
+    62,
+    355
+   ],
+   "draft_id": "G36",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "7A",
+   "type": "8098",
+   "kind": "gatepack",
+   "box": [
+    1472,
+    195,
+    62,
+    368
+   ],
+   "draft_id": "C7",
+   "confidence": "read"
+  },
+  {
+   "ref": "7B",
+   "type": "8098",
+   "kind": "gatepack",
+   "box": [
+    1472,
+    683,
+    62,
+    357
+   ],
+   "draft_id": null,
+   "confidence": "inferred"
+  },
+  {
+   "ref": "11A",
+   "type": "8098",
+   "kind": "gatepack",
+   "box": [
+    2124,
+    197,
+    70,
+    366
+   ],
+   "draft_id": "C0",
+   "confidence": "read"
+  },
+  {
+   "ref": "18A",
+   "type": "74175",
+   "kind": "chip",
+   "box": [
+    1122,
+    330,
+    93,
+    358
+   ],
+   "draft_id": "C5",
+   "confidence": "read"
+  },
+  {
+   "ref": "16C",
+   "type": "74S64",
+   "kind": "gatepack",
+   "box": [
+    2963,
+    195,
+    62,
+    320
+   ],
+   "draft_id": "G12",
+   "confidence": "read"
+  },
+  {
+   "ref": "13B",
+   "type": "74S64",
+   "kind": "gatepack",
+   "box": [
+    1400,
+    1690,
+    80,
+    345
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "13C",
+   "type": "74175",
+   "kind": "chip",
+   "box": [
+    1800,
+    1630,
+    92,
+    360
+   ],
+   "draft_id": "C9",
+   "confidence": "read"
+  },
+  {
+   "ref": "16B",
+   "type": "7474",
+   "kind": "chip",
+   "box": [
+    2129,
+    917,
+    93,
+    480
+   ],
+   "draft_id": "C4",
+   "confidence": "read"
+  },
+  {
+   "ref": "2C",
+   "type": "74123",
+   "kind": "chip",
+   "box": [
+    756,
+    1320,
+    400,
+    200
+   ],
+   "draft_id": "C10",
+   "confidence": "read"
+  },
+  {
+   "ref": "4C",
+   "type": "74123",
+   "kind": "chip",
+   "box": [
+    461,
+    1780,
+    400,
+    190
+   ],
+   "draft_id": "C2",
+   "confidence": "read"
+  },
+  {
+   "ref": "5A",
+   "type": "7414",
+   "kind": "gatepack",
+   "box": [
+    1738,
+    555,
+    35,
+    64
+   ],
+   "draft_id": "G0",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "11B",
+   "type": "7414",
+   "kind": "gatepack",
+   "box": [
+    2876,
+    898,
+    29,
+    57
+   ],
+   "draft_id": "G17",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "18C",
+   "type": "7414",
+   "kind": "gatepack",
+   "box": [
+    1714,
+    1157,
+    27,
+    57
+   ],
+   "draft_id": "G16",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "2A",
+   "type": "7400",
+   "kind": "gatepack",
+   "box": [
+    2571,
+    1124,
+    45,
+    68
+   ],
+   "draft_id": "G30",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "7C",
+   "type": "7402",
+   "kind": "gatepack",
+   "box": [
+    547,
+    1291,
+    36,
+    65
+   ],
+   "draft_id": "G1",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "4B",
+   "type": "7402",
+   "kind": "gatepack",
+   "box": [
+    3116,
+    880,
+    28,
+    58
+   ],
+   "draft_id": "G18",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "9C",
+   "type": "7427",
+   "kind": "gatepack",
+   "box": [
+    2429,
+    1574,
+    28,
+    85
+   ],
+   "draft_id": "G13",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "11C",
+   "type": "7408",
+   "kind": "gatepack",
+   "box": [
+    3083,
+    670,
+    30,
+    60
+   ],
+   "draft_id": "G8",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "19C",
+   "type": "7410",
+   "kind": "gatepack",
+   "box": [
+    2639,
+    1299,
+    30,
+    88
+   ],
+   "draft_id": "G7",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "R-1",
+   "type": "R 33K",
+   "kind": "passive",
+   "box": [
+    1000,
+    1290,
+    80,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-2",
+   "type": "R 15K",
+   "kind": "passive",
+   "box": [
+    1310,
+    1300,
+    80,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-3",
+   "type": "C 2200pF",
+   "kind": "passive",
+   "box": [
+    1240,
+    1290,
+    40,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-4",
+   "type": "R 1K",
+   "kind": "passive",
+   "box": [
+    1125,
+    1380,
+    20,
+    80
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-5",
+   "type": "R 220",
+   "kind": "passive",
+   "box": [
+    300,
+    1475,
+    70,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-6",
+   "type": "C 10nF",
+   "kind": "passive",
+   "box": [
+    370,
+    1520,
+    40,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-7",
+   "type": "R 10K",
+   "kind": "passive",
+   "box": [
+    560,
+    1730,
+    80,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-8",
+   "type": "C 1000pF",
+   "kind": "passive",
+   "box": [
+    480,
+    1730,
+    40,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-9",
+   "type": "R 10K",
+   "kind": "passive",
+   "box": [
+    870,
+    1730,
+    80,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-10",
+   "type": "C 330pF",
+   "kind": "passive",
+   "box": [
+    790,
+    1730,
+    40,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-11",
+   "type": "R (no value) +5V to H",
+   "kind": "passive",
+   "box": [
+    2150,
+    700,
+    20,
+    80
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-12",
+   "type": "R 220",
+   "kind": "passive",
+   "box": [
+    380,
+    2090,
+    20,
+    60
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-13",
+   "type": "R 220",
+   "kind": "passive",
+   "box": [
+    380,
+    2150,
+    20,
+    60
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "R-14",
+   "type": "R 330",
+   "kind": "passive",
+   "box": [
+    380,
+    2230,
+    20,
+    60
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "L-1",
+   "type": "lamp",
+   "kind": "passive",
+   "box": [
+    3000,
+    1475,
+    30,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "L-2",
+   "type": "lamp",
+   "kind": "passive",
+   "box": [
+    3000,
+    1565,
+    30,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "L-3",
+   "type": "lamp",
+   "kind": "passive",
+   "box": [
+    3000,
+    1655,
+    30,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "L-4",
+   "type": "lamp",
+   "kind": "passive",
+   "box": [
+    3000,
+    1745,
+    30,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "P",
+   "type": "NORD-10 connector",
+   "kind": "connector",
+   "box": null,
+   "draft_id": null,
+   "confidence": "read"
+  }
+ ],
+ "gates": [
+  {
+   "id": "9A/1",
+   "part": "9A",
+   "kind": "buffer",
+   "inputs": [
+    4
+   ],
+   "output": 5,
+   "box": [
+    457,
+    209,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9A/2",
+   "part": "9A",
+   "kind": "buffer",
+   "inputs": [
+    6
+   ],
+   "output": 7,
+   "box": [
+    457,
+    269,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9A/3",
+   "part": "9A",
+   "kind": "buffer",
+   "inputs": [
+    12
+   ],
+   "output": 11,
+   "box": [
+    457,
+    327,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9A/4",
+   "part": "9A",
+   "kind": "buffer",
+   "inputs": [
+    14
+   ],
+   "output": 13,
+   "box": [
+    457,
+    385,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9A/5",
+   "part": "9A",
+   "kind": "buffer",
+   "inputs": [
+    10
+   ],
+   "output": 9,
+   "box": [
+    457,
+    444,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9B/1",
+   "part": "9B",
+   "kind": "buffer",
+   "inputs": [
+    4
+   ],
+   "output": 5,
+   "box": [
+    457,
+    686,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9B/2",
+   "part": "9B",
+   "kind": "buffer",
+   "inputs": [
+    2
+   ],
+   "output": 3,
+   "box": [
+    457,
+    745,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9B/3",
+   "part": "9B",
+   "kind": "buffer",
+   "inputs": [
+    10
+   ],
+   "output": 9,
+   "box": [
+    457,
+    804,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9B/4",
+   "part": "9B",
+   "kind": "buffer",
+   "inputs": [
+    6
+   ],
+   "output": 7,
+   "box": [
+    457,
+    862,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9B/5",
+   "part": "9B",
+   "kind": "buffer",
+   "inputs": [
+    14
+   ],
+   "output": 13,
+   "box": [
+    457,
+    925,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9B/6",
+   "part": "9B",
+   "kind": "buffer",
+   "inputs": [
+    12
+   ],
+   "output": 11,
+   "box": [
+    457,
+    984,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7A/1",
+   "part": "7A",
+   "kind": "buffer",
+   "inputs": [
+    4
+   ],
+   "output": 5,
+   "box": [
+    1472,
+    204,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7A/2",
+   "part": "7A",
+   "kind": "buffer",
+   "inputs": [
+    6
+   ],
+   "output": 7,
+   "box": [
+    1472,
+    264,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7A/3",
+   "part": "7A",
+   "kind": "buffer",
+   "inputs": [
+    12
+   ],
+   "output": 11,
+   "box": [
+    1472,
+    324,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7A/4",
+   "part": "7A",
+   "kind": "buffer",
+   "inputs": [
+    14
+   ],
+   "output": 13,
+   "box": [
+    1472,
+    382,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7A/5",
+   "part": "7A",
+   "kind": "buffer",
+   "inputs": [
+    10
+   ],
+   "output": 9,
+   "box": [
+    1472,
+    440,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7B/1",
+   "part": "7B",
+   "kind": "buffer",
+   "inputs": [
+    4
+   ],
+   "output": 5,
+   "box": [
+    1472,
+    684,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7B/2",
+   "part": "7B",
+   "kind": "buffer",
+   "inputs": [
+    2
+   ],
+   "output": 3,
+   "box": [
+    1472,
+    743,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7B/3",
+   "part": "7B",
+   "kind": "buffer",
+   "inputs": [
+    10
+   ],
+   "output": 9,
+   "box": [
+    1472,
+    802,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7B/4",
+   "part": "7B",
+   "kind": "buffer",
+   "inputs": [
+    6
+   ],
+   "output": 7,
+   "box": [
+    1472,
+    862,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7B/5",
+   "part": "7B",
+   "kind": "buffer",
+   "inputs": [
+    12
+   ],
+   "output": 11,
+   "box": [
+    1472,
+    924,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "7B/6",
+   "part": "7B",
+   "kind": "buffer",
+   "inputs": [
+    14
+   ],
+   "output": 13,
+   "box": [
+    1472,
+    984,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11A/1",
+   "part": "11A",
+   "kind": "buffer",
+   "inputs": [
+    4
+   ],
+   "output": 5,
+   "box": [
+    2124,
+    202,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11A/2",
+   "part": "11A",
+   "kind": "buffer",
+   "inputs": [
+    2
+   ],
+   "output": 3,
+   "box": [
+    2124,
+    260,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11A/3",
+   "part": "11A",
+   "kind": "buffer",
+   "inputs": [
+    6
+   ],
+   "output": 7,
+   "box": [
+    2124,
+    319,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11A/4",
+   "part": "11A",
+   "kind": "buffer",
+   "inputs": [
+    14
+   ],
+   "output": 13,
+   "box": [
+    2124,
+    377,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11A/5",
+   "part": "11A",
+   "kind": "buffer",
+   "inputs": [
+    12
+   ],
+   "output": 11,
+   "box": [
+    2124,
+    502,
+    62,
+    56
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "16C/1",
+   "part": "16C",
+   "kind": "and-or-invert",
+   "inputs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    9,
+    10,
+    11,
+    12,
+    13
+   ],
+   "output": 8,
+   "box": [
+    2963,
+    193,
+    60,
+    354
+   ],
+   "draft_id": "G12",
+   "box0": [
+    2963,
+    195,
+    62,
+    320
+   ]
+  },
+  {
+   "id": "13B/1",
+   "part": "13B",
+   "kind": "and-or-invert",
+   "inputs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    9,
+    10,
+    11,
+    12,
+    13
+   ],
+   "output": 8,
+   "box": [
+    1400,
+    1690,
+    80,
+    345
+   ],
+   "draft_id": "G6"
+  },
+  {
+   "id": "5A/1",
+   "part": "5A",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    1738,
+    555,
+    31,
+    59
+   ],
+   "draft_id": "G0",
+   "box0": [
+    1738,
+    555,
+    35,
+    64
+   ]
+  },
+  {
+   "id": "5A/2",
+   "part": "5A",
+   "kind": "not",
+   "inputs": [
+    1
+   ],
+   "output": 2,
+   "box": [
+    459,
+    1458,
+    30,
+    59
+   ],
+   "draft_id": "G38",
+   "box0": [
+    457,
+    1467,
+    43,
+    56
+   ]
+  },
+  {
+   "id": "5A/3",
+   "part": "5A",
+   "kind": "not",
+   "inputs": [
+    3
+   ],
+   "output": 4,
+   "box": [
+    542,
+    1521,
+    48,
+    50
+   ],
+   "draft_id": "G39"
+  },
+  {
+   "id": "5A/4",
+   "part": "5A",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    2729,
+    1315,
+    29,
+    57
+   ],
+   "draft_id": "G15"
+  },
+  {
+   "id": "5A/5",
+   "part": "5A",
+   "kind": "not",
+   "inputs": [
+    13
+   ],
+   "output": 12,
+   "box": [
+    1715,
+    2165,
+    60,
+    70
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "11B/1",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    13
+   ],
+   "output": 12,
+   "box": [
+    2546,
+    674,
+    28,
+    58
+   ],
+   "draft_id": "G19"
+  },
+  {
+   "id": "11B/2",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    1
+   ],
+   "output": 2,
+   "box": [
+    2876,
+    898,
+    29,
+    57
+   ],
+   "draft_id": "G17"
+  },
+  {
+   "id": "11B/3",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    277,
+    1141,
+    43,
+    41
+   ],
+   "draft_id": "G46"
+  },
+  {
+   "id": "11B/4",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    11
+   ],
+   "output": 10,
+   "box": [
+    907,
+    1127,
+    29,
+    62
+   ],
+   "draft_id": "G44",
+   "box0": [
+    904,
+    1137,
+    45,
+    43
+   ]
+  },
+  {
+   "id": "11B/5",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    1566,
+    1853,
+    30,
+    61
+   ],
+   "draft_id": "G41",
+   "box0": [
+    1560,
+    1857,
+    46,
+    49
+   ]
+  },
+  {
+   "id": "11B/6",
+   "part": "11B",
+   "kind": "not",
+   "inputs": [
+    3
+   ],
+   "output": 4,
+   "box": [
+    489,
+    2194,
+    49,
+    33
+   ],
+   "draft_id": "G47"
+  },
+  {
+   "id": "18C/1",
+   "part": "18C",
+   "kind": "not",
+   "inputs": [
+    1
+   ],
+   "output": 2,
+   "box": [
+    1714,
+    1157,
+    27,
+    57
+   ],
+   "draft_id": "G16"
+  },
+  {
+   "id": "18C/2",
+   "part": "18C",
+   "kind": "not",
+   "inputs": [
+    13
+   ],
+   "output": 12,
+   "box": [
+    1713,
+    1331,
+    31,
+    59
+   ],
+   "draft_id": "G2",
+   "box0": [
+    1713,
+    1330,
+    35,
+    66
+   ]
+  },
+  {
+   "id": "18C/3",
+   "part": "18C",
+   "kind": "not",
+   "inputs": [
+    3
+   ],
+   "output": 4,
+   "box": [
+    2910,
+    1449,
+    29,
+    58
+   ],
+   "draft_id": "G14"
+  },
+  {
+   "id": "18C/4",
+   "part": "18C",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    2899,
+    1542,
+    54,
+    49
+   ],
+   "draft_id": "G33"
+  },
+  {
+   "id": "18C/5",
+   "part": "18C",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    2901,
+    1630,
+    52,
+    49
+   ],
+   "draft_id": "G35"
+  },
+  {
+   "id": "18C/6",
+   "part": "18C",
+   "kind": "not",
+   "inputs": [
+    11
+   ],
+   "output": 10,
+   "box": [
+    2901,
+    1718,
+    57,
+    50
+   ],
+   "draft_id": "G32"
+  },
+  {
+   "id": "2A/1",
+   "part": "2A",
+   "kind": "nand",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    2577,
+    1121,
+    31,
+    61
+   ],
+   "draft_id": "G30",
+   "box0": [
+    2571,
+    1124,
+    45,
+    68
+   ]
+  },
+  {
+   "id": "2A/2",
+   "part": "2A",
+   "kind": "nand",
+   "inputs": [
+    10,
+    9
+   ],
+   "output": 8,
+   "box": [
+    1090,
+    2179,
+    29,
+    60
+   ],
+   "draft_id": "G40",
+   "box0": [
+    1085,
+    2180,
+    39,
+    58
+   ]
+  },
+  {
+   "id": "7C/1",
+   "part": "7C",
+   "kind": "nor",
+   "inputs": [
+    2,
+    3
+   ],
+   "output": 1,
+   "box": [
+    549,
+    1293,
+    30,
+    60
+   ],
+   "draft_id": "G1",
+   "box0": [
+    547,
+    1291,
+    36,
+    65
+   ]
+  },
+  {
+   "id": "7C/2",
+   "part": "7C",
+   "kind": "nor",
+   "inputs": [
+    12,
+    11
+   ],
+   "output": 13,
+   "box": [
+    1566,
+    1601,
+    28,
+    62
+   ],
+   "draft_id": "G43",
+   "box0": [
+    1565,
+    1600,
+    35,
+    62
+   ]
+  },
+  {
+   "id": "4B/1",
+   "part": "4B",
+   "kind": "nor",
+   "inputs": [
+    11,
+    12
+   ],
+   "output": 13,
+   "box": [
+    3116,
+    880,
+    28,
+    58
+   ],
+   "draft_id": "G18"
+  },
+  {
+   "id": "4B/2",
+   "part": "4B",
+   "kind": "nor",
+   "inputs": [
+    8,
+    9
+   ],
+   "output": 10,
+   "box": [
+    2430,
+    1748,
+    28,
+    62
+   ],
+   "draft_id": "G28",
+   "box0": [
+    2424,
+    1740,
+    43,
+    76
+   ]
+  },
+  {
+   "id": "4B/3",
+   "part": "4B",
+   "kind": "nor",
+   "inputs": [
+    6,
+    5
+   ],
+   "output": 4,
+   "box": [
+    2430,
+    1892,
+    28,
+    66
+   ],
+   "draft_id": "G29",
+   "box0": [
+    2424,
+    1893,
+    43,
+    74
+   ]
+  },
+  {
+   "id": "4B/4",
+   "part": "4B",
+   "kind": "nor",
+   "inputs": [
+    3,
+    2
+   ],
+   "output": 1,
+   "box": [
+    2410,
+    2030,
+    50,
+    70
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "9C/1",
+   "part": "9C",
+   "kind": "nor",
+   "inputs": [
+    4,
+    5,
+    3
+   ],
+   "output": 6,
+   "box": [
+    2429,
+    1574,
+    28,
+    85
+   ],
+   "draft_id": "G13"
+  },
+  {
+   "id": "9C/2",
+   "part": "9C",
+   "kind": "nor",
+   "inputs": [
+    1,
+    2,
+    13
+   ],
+   "output": 12,
+   "box": [
+    1642,
+    2118,
+    88,
+    120
+   ],
+   "draft_id": "C11"
+  },
+  {
+   "id": "11C/1",
+   "part": "11C",
+   "kind": "and",
+   "inputs": [
+    2,
+    1
+   ],
+   "output": 3,
+   "box": [
+    3083,
+    670,
+    30,
+    60
+   ],
+   "draft_id": "G8"
+  },
+  {
+   "id": "11C/2",
+   "part": "11C",
+   "kind": "and",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    2399,
+    2205,
+    61,
+    60
+   ],
+   "draft_id": "G5",
+   "box0": [
+    2398,
+    2204,
+    66,
+    65
+   ]
+  },
+  {
+   "id": "11C/3",
+   "part": "11C",
+   "kind": "and",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    1684,
+    1720,
+    30,
+    60
+   ],
+   "draft_id": "G4",
+   "box0": [
+    1683,
+    1721,
+    35,
+    62
+   ]
+  },
+  {
+   "id": "11C/4",
+   "part": "11C",
+   "kind": "and",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    1655,
+    1840,
+    59,
+    59
+   ],
+   "draft_id": "G25",
+   "box0": [
+    1641,
+    1850,
+    66,
+    57
+   ]
+  },
+  {
+   "id": "19C/1",
+   "part": "19C",
+   "kind": "nand",
+   "inputs": [
+    10,
+    11,
+    9
+   ],
+   "output": 8,
+   "box": [
+    2639,
+    1299,
+    30,
+    88
+   ],
+   "draft_id": "G7"
+  }
+ ],
+ "nets": [
+  {
+   "name": "ENCOM_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "9A.15"
+    },
+    {
+     "at": "9A.1"
+    },
+    {
+     "at": "9B.1"
+    },
+    {
+     "at": "16B.5"
+    },
+    {
+     "at": "16B.13"
+    }
+   ]
+  },
+  {
+   "name": "ENCOM_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "7A.15"
+    },
+    {
+     "at": "7A.1"
+    },
+    {
+     "at": "7B.1"
+    },
+    {
+     "at": "16B.6"
+    },
+    {
+     "at": "2A.12"
+    },
+    {
+     "at": "2A.13"
+    },
+    {
+     "at": "18C.3"
+    }
+   ]
+  },
+  {
+   "name": "GND",
+   "active": "none",
+   "pins": [
+    {
+     "at": "9B.15"
+    },
+    {
+     "at": "7B.15"
+    },
+    {
+     "at": "11A.15"
+    },
+    {
+     "at": "11A.1"
+    },
+    {
+     "at": "11A.12"
+    },
+    {
+     "at": "16C.4"
+    },
+    {
+     "at": "16C.10"
+    },
+    {
+     "at": "4C.9"
+    },
+    {
+     "at": "4C.1"
+    },
+    {
+     "at": "P.68"
+    },
+    {
+     "at": "P.70"
+    },
+    {
+     "at": "P.80"
+    },
+    {
+     "at": "P.82"
+    },
+    {
+     "at": "P.84"
+    },
+    {
+     "at": "P.72"
+    },
+    {
+     "at": "P.74"
+    },
+    {
+     "at": "P.76"
+    },
+    {
+     "at": "P.92"
+    },
+    {
+     "at": "P.86"
+    },
+    {
+     "at": "P.62"
+    },
+    {
+     "at": "P.64"
+    },
+    {
+     "at": "P.66"
+    },
+    {
+     "at": "P.90"
+    },
+    {
+     "at": "P.88"
+    },
+    {
+     "at": "P.56"
+    },
+    {
+     "at": "P.58"
+    },
+    {
+     "at": "P.60"
+    },
+    {
+     "at": "R-14.2"
+    },
+    {
+     "at": "L-1.2"
+    },
+    {
+     "at": "L-2.2"
+    },
+    {
+     "at": "L-3.2"
+    },
+    {
+     "at": "L-4.2"
+    },
+    {
+     "at": "C-6.2"
+    }
+   ]
+  },
+  {
+   "name": "DA0_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.37"
+    },
+    {
+     "at": "9A.4"
+    }
+   ]
+  },
+  {
+   "name": "DA1_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.36"
+    },
+    {
+     "at": "9A.6"
+    }
+   ]
+  },
+  {
+   "name": "DA6_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.43"
+    },
+    {
+     "at": "9A.12"
+    }
+   ]
+  },
+  {
+   "name": "DA7_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.42"
+    },
+    {
+     "at": "9A.14"
+    }
+   ]
+  },
+  {
+   "name": "DA8_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.45"
+    },
+    {
+     "at": "9A.10"
+    }
+   ]
+  },
+  {
+   "name": "FIS00_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9A.5"
+    },
+    {
+     "at": "P.69"
+    },
+    {
+     "at": "7A.13"
+    }
+   ]
+  },
+  {
+   "name": "FIS01_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9A.7"
+    },
+    {
+     "at": "P.71"
+    },
+    {
+     "at": "7A.11"
+    }
+   ]
+  },
+  {
+   "name": "FIS06_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9A.11"
+    },
+    {
+     "at": "P.81"
+    },
+    {
+     "at": "7A.7"
+    }
+   ]
+  },
+  {
+   "name": "FIS07_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9A.13"
+    },
+    {
+     "at": "P.83"
+    },
+    {
+     "at": "7A.5"
+    }
+   ]
+  },
+  {
+   "name": "FIS08_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9A.9"
+    },
+    {
+     "at": "P.85"
+    },
+    {
+     "at": "7A.9"
+    }
+   ]
+  },
+  {
+   "name": "DA2_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.39"
+    },
+    {
+     "at": "9B.4"
+    },
+    {
+     "at": "13B.13"
+    },
+    {
+     "at": "13B.9"
+    }
+   ]
+  },
+  {
+   "name": "DA3_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.38"
+    },
+    {
+     "at": "9B.2"
+    },
+    {
+     "at": "13B.5"
+    },
+    {
+     "at": "13B.6"
+    },
+    {
+     "at": "13B.10"
+    },
+    {
+     "at": "11C.13"
+    }
+   ]
+  },
+  {
+   "name": "DA4_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.41"
+    },
+    {
+     "at": "9B.10"
+    },
+    {
+     "at": "7C.12"
+    }
+   ]
+  },
+  {
+   "name": "DA5_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.40"
+    },
+    {
+     "at": "9B.6"
+    },
+    {
+     "at": "7C.11"
+    }
+   ]
+  },
+  {
+   "name": "FIS02_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9B.5"
+    },
+    {
+     "at": "P.73"
+    },
+    {
+     "at": "7B.5"
+    }
+   ]
+  },
+  {
+   "name": "FIS03_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9B.3"
+    },
+    {
+     "at": "P.75"
+    },
+    {
+     "at": "7B.3"
+    }
+   ]
+  },
+  {
+   "name": "FIS04_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9B.9"
+    },
+    {
+     "at": "P.77"
+    },
+    {
+     "at": "7B.9"
+    }
+   ]
+  },
+  {
+   "name": "FIS05_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9B.7"
+    },
+    {
+     "at": "P.79"
+    },
+    {
+     "at": "7B.7"
+    }
+   ]
+  },
+  {
+   "name": "FRWUC_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "9B.14"
+    },
+    {
+     "at": "4B.1"
+    }
+   ]
+  },
+  {
+   "name": "FRWUC_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9B.13"
+    },
+    {
+     "at": "P.93"
+    }
+   ]
+  },
+  {
+   "name": "FREWC_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "9B.12"
+    },
+    {
+     "at": "4B.4"
+    }
+   ]
+  },
+  {
+   "name": "FREWC_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9B.11"
+    },
+    {
+     "at": "P.87"
+    }
+   ]
+  },
+  {
+   "name": "DW0_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.29"
+    },
+    {
+     "at": "7A.4"
+    }
+   ]
+  },
+  {
+   "name": "DW1_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.27"
+    },
+    {
+     "at": "7A.6"
+    }
+   ]
+  },
+  {
+   "name": "DW6_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.35"
+    },
+    {
+     "at": "7A.12"
+    }
+   ]
+  },
+  {
+   "name": "DW7_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.34"
+    },
+    {
+     "at": "7A.14"
+    }
+   ]
+  },
+  {
+   "name": "LWD_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "18A.10"
+    },
+    {
+     "at": "7A.10"
+    }
+   ]
+  },
+  {
+   "name": "DW5_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.31"
+    },
+    {
+     "at": "7B.4"
+    }
+   ]
+  },
+  {
+   "name": "DW4_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.32"
+    },
+    {
+     "at": "7B.2"
+    }
+   ]
+  },
+  {
+   "name": "DW3_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.28"
+    },
+    {
+     "at": "7B.10"
+    }
+   ]
+  },
+  {
+   "name": "DW2_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.33"
+    },
+    {
+     "at": "7B.6"
+    }
+   ]
+  },
+  {
+   "name": "WSWCP_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "4B.10"
+    },
+    {
+     "at": "7B.12"
+    }
+   ]
+  },
+  {
+   "name": "FSWCP_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "7B.11"
+    },
+    {
+     "at": "P.91"
+    }
+   ]
+  },
+  {
+   "name": "FCCKP_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "9C.6"
+    },
+    {
+     "at": "7B.14"
+    },
+    {
+     "at": "2A.10"
+    }
+   ]
+  },
+  {
+   "name": "FCCKP_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "7B.13"
+    },
+    {
+     "at": "P.89"
+    }
+   ]
+  },
+  {
+   "name": "DA12_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.49"
+    },
+    {
+     "at": "11A.4"
+    }
+   ]
+  },
+  {
+   "name": "DA13_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.48"
+    },
+    {
+     "at": "11A.2"
+    }
+   ]
+  },
+  {
+   "name": "DA14_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.51"
+    },
+    {
+     "at": "11A.6"
+    }
+   ]
+  },
+  {
+   "name": "FSLT0_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11A.5"
+    },
+    {
+     "at": "P.63"
+    }
+   ]
+  },
+  {
+   "name": "FSLT1_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11A.3"
+    },
+    {
+     "at": "P.65"
+    }
+   ]
+  },
+  {
+   "name": "FSLT2_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11A.7"
+    },
+    {
+     "at": "P.67"
+    }
+   ]
+  },
+  {
+   "name": "MCLP_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "2C.5"
+    },
+    {
+     "at": "11A.14"
+    }
+   ]
+  },
+  {
+   "name": "FMCLP_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11A.13"
+    },
+    {
+     "at": "P.95"
+    }
+   ]
+  },
+  {
+   "name": "SL_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "11A.11"
+    },
+    {
+     "at": "P.12"
+    }
+   ]
+  },
+  {
+   "name": "T3_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "4C.4"
+    },
+    {
+     "at": "18A.1"
+    },
+    {
+     "at": "16B.3"
+    },
+    {
+     "at": "9C.1"
+    }
+   ]
+  },
+  {
+   "name": "WCZ_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "11B.2"
+    },
+    {
+     "at": "18A.4"
+    },
+    {
+     "at": "4B.12"
+    },
+    {
+     "at": "11C.4"
+    }
+   ]
+  },
+  {
+   "name": "N_18A_2",
+   "active": "none",
+   "pins": [
+    {
+     "at": "18A.2"
+    },
+    {
+     "at": "18A.5"
+    }
+   ]
+  },
+  {
+   "name": "N_18A_7",
+   "active": "none",
+   "pins": [
+    {
+     "at": "18A.7"
+    },
+    {
+     "at": "18A.12"
+    }
+   ]
+  },
+  {
+   "name": "CL_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "18C.2"
+    },
+    {
+     "at": "18A.9"
+    },
+    {
+     "at": "16C.3"
+    }
+   ]
+  },
+  {
+   "name": "WRITE_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "13C.6"
+    },
+    {
+     "at": "5A.9"
+    },
+    {
+     "at": "18C.5"
+    }
+   ]
+  },
+  {
+   "name": "WRITETA_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "5A.8"
+    },
+    {
+     "at": "P.15"
+    }
+   ]
+  },
+  {
+   "name": "H",
+   "active": "high",
+   "pins": [
+    {
+     "at": "R-11.2"
+    },
+    {
+     "at": "16B.10"
+    },
+    {
+     "at": "16B.2"
+    },
+    {
+     "at": "16B.4"
+    },
+    {
+     "at": "2C.3"
+    },
+    {
+     "at": "2C.10"
+    },
+    {
+     "at": "2C.11"
+    },
+    {
+     "at": "4C.11"
+    },
+    {
+     "at": "4C.3"
+    }
+   ]
+  },
+  {
+   "name": "+5V",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-11.1"
+    }
+   ]
+  },
+  {
+   "name": "DCL_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.21"
+    },
+    {
+     "at": "18C.13"
+    },
+    {
+     "at": "16C.12"
+    },
+    {
+     "at": "16C.13"
+    }
+   ]
+  },
+  {
+   "name": "DCL_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "18C.12"
+    },
+    {
+     "at": "16C.1"
+    },
+    {
+     "at": "19C.10"
+    }
+   ]
+  },
+  {
+   "name": "WRITE_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "13C.7"
+    },
+    {
+     "at": "16C.11"
+    },
+    {
+     "at": "16C.6"
+    },
+    {
+     "at": "11C.1"
+    },
+    {
+     "at": "2A.9"
+    }
+   ]
+  },
+  {
+   "name": "READ_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "13C.10"
+    },
+    {
+     "at": "16C.2"
+    }
+   ]
+  },
+  {
+   "name": "FB_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "16B.8"
+    },
+    {
+     "at": "16B.12"
+    },
+    {
+     "at": "16C.5"
+    },
+    {
+     "at": "11C.2"
+    },
+    {
+     "at": "19C.11"
+    }
+   ]
+  },
+  {
+   "name": "FB_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "16B.9"
+    }
+   ]
+  },
+  {
+   "name": "PL_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "16C.8"
+    },
+    {
+     "at": "P.13"
+    }
+   ]
+  },
+  {
+   "name": "DATAREADY_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.53"
+    },
+    {
+     "at": "11B.13"
+    }
+   ]
+  },
+  {
+   "name": "NC_11B_12",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11B.12"
+    }
+   ]
+  },
+  {
+   "name": "SEL_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "11C.3"
+    },
+    {
+     "at": "P.11"
+    }
+   ]
+  },
+  {
+   "name": "WCZ_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.44"
+    },
+    {
+     "at": "11B.1"
+    },
+    {
+     "at": "19C.9"
+    }
+   ]
+  },
+  {
+   "name": "DMA_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "4B.11"
+    }
+   ]
+  },
+  {
+   "name": "M2STAR_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "4B.13"
+    },
+    {
+     "at": "P.10"
+    }
+   ]
+  },
+  {
+   "name": "READ_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "13C.11"
+    },
+    {
+     "at": "11B.9"
+    },
+    {
+     "at": "11B.11"
+    },
+    {
+     "at": "18C.9"
+    }
+   ]
+  },
+  {
+   "name": "WRITECORE_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "11B.8"
+    },
+    {
+     "at": "P.55"
+    }
+   ]
+  },
+  {
+   "name": "READTA_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "11B.10"
+    },
+    {
+     "at": "P.17"
+    }
+   ]
+  },
+  {
+   "name": "MC_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.6"
+    },
+    {
+     "at": "7C.2"
+    }
+   ]
+  },
+  {
+   "name": "STO_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "7C.1"
+    },
+    {
+     "at": "13C.1"
+    }
+   ]
+  },
+  {
+   "name": "ST_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "5A.4"
+    },
+    {
+     "at": "16B.1"
+    }
+   ]
+  },
+  {
+   "name": "N_START_RC",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-5.2"
+    },
+    {
+     "at": "C-6.1"
+    },
+    {
+     "at": "5A.1"
+    }
+   ]
+  },
+  {
+   "name": "START_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.30"
+    },
+    {
+     "at": "R-5.1"
+    }
+   ]
+  },
+  {
+   "name": "N_5A_2",
+   "active": "none",
+   "pins": [
+    {
+     "at": "5A.2"
+    },
+    {
+     "at": "7C.3"
+    },
+    {
+     "at": "5A.3"
+    },
+    {
+     "at": "2C.1"
+    }
+   ]
+  },
+  {
+   "name": "MCLP_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "2C.12"
+    },
+    {
+     "at": "2C.2"
+    }
+   ]
+  },
+  {
+   "name": "T1_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "2C.4"
+    },
+    {
+     "at": "4C.10"
+    },
+    {
+     "at": "13C.9"
+    }
+   ]
+  },
+  {
+   "name": "N_2C_15",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2C.15"
+    },
+    {
+     "at": "R-1.1"
+    }
+   ]
+  },
+  {
+   "name": "N_2C_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2C.6"
+    },
+    {
+     "at": "C-3.1"
+    }
+   ]
+  },
+  {
+   "name": "N_2C_7",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2C.7"
+    },
+    {
+     "at": "C-3.2"
+    },
+    {
+     "at": "R-2.1"
+    }
+   ]
+  },
+  {
+   "name": "MC_0_P47",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.47"
+    },
+    {
+     "at": "R-4.2"
+    },
+    {
+     "at": "2C.9"
+    }
+   ]
+  },
+  {
+   "name": "N_R1K_TOP",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-4.1"
+    }
+   ]
+  },
+  {
+   "name": "CL_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.19"
+    },
+    {
+     "at": "18C.1"
+    },
+    {
+     "at": "16B.11"
+    },
+    {
+     "at": "18C.11"
+    }
+   ]
+  },
+  {
+   "name": "T2_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "4C.12"
+    },
+    {
+     "at": "4C.2"
+    },
+    {
+     "at": "9C.3"
+    },
+    {
+     "at": "4B.8"
+    },
+    {
+     "at": "4B.6"
+    },
+    {
+     "at": "4B.3"
+    }
+   ]
+  },
+  {
+   "name": "N_4C_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "4C.6"
+    },
+    {
+     "at": "C-8.1"
+    }
+   ]
+  },
+  {
+   "name": "N_4C_7",
+   "active": "none",
+   "pins": [
+    {
+     "at": "4C.7"
+    },
+    {
+     "at": "C-8.2"
+    },
+    {
+     "at": "R-7.1"
+    }
+   ]
+  },
+  {
+   "name": "N_4C_14",
+   "active": "none",
+   "pins": [
+    {
+     "at": "4C.14"
+    },
+    {
+     "at": "C-10.1"
+    }
+   ]
+  },
+  {
+   "name": "N_4C_15",
+   "active": "none",
+   "pins": [
+    {
+     "at": "4C.15"
+    },
+    {
+     "at": "C-10.2"
+    },
+    {
+     "at": "R-9.1"
+    }
+   ]
+  },
+  {
+   "name": "N_19C_8",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19C.8"
+    },
+    {
+     "at": "5A.5"
+    },
+    {
+     "at": "P.46"
+    },
+    {
+     "at": "P.20"
+    }
+   ]
+  },
+  {
+   "name": "IRQ_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "5A.6"
+    },
+    {
+     "at": "P.26"
+    }
+   ]
+  },
+  {
+   "name": "TEST_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.22"
+    },
+    {
+     "at": "9C.4"
+    }
+   ]
+  },
+  {
+   "name": "LEG_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "13C.14"
+    },
+    {
+     "at": "9C.5"
+    }
+   ]
+  },
+  {
+   "name": "LEG_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "13C.15"
+    },
+    {
+     "at": "9C.13"
+    }
+   ]
+  },
+  {
+   "name": "M0_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "9C.2"
+    }
+   ]
+  },
+  {
+   "name": "N_9C_12",
+   "active": "none",
+   "pins": [
+    {
+     "at": "9C.12"
+    },
+    {
+     "at": "5A.13"
+    }
+   ]
+  },
+  {
+   "name": "SB5_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.12"
+    },
+    {
+     "at": "P.25"
+    }
+   ]
+  },
+  {
+   "name": "M1_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.7"
+    },
+    {
+     "at": "4B.9"
+    }
+   ]
+  },
+  {
+   "name": "M2_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.8"
+    },
+    {
+     "at": "4B.5"
+    }
+   ]
+  },
+  {
+   "name": "M3_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.9"
+    },
+    {
+     "at": "4B.2"
+    }
+   ]
+  },
+  {
+   "name": "SIMWCL_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "2A.8"
+    },
+    {
+     "at": "P.4"
+    }
+   ]
+  },
+  {
+   "name": "NC_11C",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11C.5"
+    },
+    {
+     "at": "11C.6"
+    }
+   ]
+  },
+  {
+   "name": "FWENS_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.57"
+    },
+    {
+     "at": "13B.4"
+    }
+   ]
+  },
+  {
+   "name": "FONLS_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.59"
+    },
+    {
+     "at": "13B.2"
+    },
+    {
+     "at": "13B.3"
+    },
+    {
+     "at": "13B.1"
+    }
+   ]
+  },
+  {
+   "name": "FBUTS_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "11B.4"
+    },
+    {
+     "at": "13B.11"
+    },
+    {
+     "at": "13B.12"
+    }
+   ]
+  },
+  {
+   "name": "FBUTS_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.61"
+    },
+    {
+     "at": "11B.3"
+    },
+    {
+     "at": "R-12.2"
+    },
+    {
+     "at": "R-14.1"
+    }
+   ]
+  },
+  {
+   "name": "N_FBUTS_R",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-12.1"
+    },
+    {
+     "at": "R-13.2"
+    }
+   ]
+  },
+  {
+   "name": "N_7C_13",
+   "active": "none",
+   "pins": [
+    {
+     "at": "7C.13"
+    },
+    {
+     "at": "13C.4"
+    },
+    {
+     "at": "11C.12"
+    },
+    {
+     "at": "11C.9"
+    }
+   ]
+  },
+  {
+   "name": "N_11C_11",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11C.11"
+    },
+    {
+     "at": "13C.5"
+    },
+    {
+     "at": "11B.5"
+    }
+   ]
+  },
+  {
+   "name": "N_11B_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11B.6"
+    },
+    {
+     "at": "11C.10"
+    }
+   ]
+  },
+  {
+   "name": "N_11C_8",
+   "active": "none",
+   "pins": [
+    {
+     "at": "11C.8"
+    },
+    {
+     "at": "13C.12"
+    }
+   ]
+  },
+  {
+   "name": "N_13B_8",
+   "active": "none",
+   "pins": [
+    {
+     "at": "13B.8"
+    },
+    {
+     "at": "13C.13"
+    }
+   ]
+  },
+  {
+   "name": "DMA1_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "13C.3"
+    }
+   ]
+  },
+  {
+   "name": "N_16C_9",
+   "active": "none",
+   "pins": [
+    {
+     "at": "16C.9"
+    }
+   ]
+  },
+  {
+   "name": "N_LAMP1",
+   "active": "none",
+   "pins": [
+    {
+     "at": "18C.4"
+    },
+    {
+     "at": "L-1.1"
+    }
+   ]
+  },
+  {
+   "name": "N_LAMP2",
+   "active": "none",
+   "pins": [
+    {
+     "at": "18C.6"
+    },
+    {
+     "at": "L-2.1"
+    }
+   ]
+  },
+  {
+   "name": "N_LAMP3",
+   "active": "none",
+   "pins": [
+    {
+     "at": "18C.8"
+    },
+    {
+     "at": "L-3.1"
+    }
+   ]
+  },
+  {
+   "name": "N_LAMP4",
+   "active": "none",
+   "pins": [
+    {
+     "at": "18C.10"
+    },
+    {
+     "at": "L-4.1"
+    }
+   ]
+  },
+  {
+   "name": "N_2A11",
+   "pins": [
+    {
+     "at": "2A.11"
+    },
+    {
+     "at": "P.5"
+    }
+   ]
+  }
+ ],
+ "corrections": [
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "9A",
+   "draft_said": "nothing",
+   "truth": "8098 at 9A",
+   "cause": "box-split-merge",
+   "note": "draft put gate boxes G26/G45 inside it"
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "G36",
+   "key": "9B",
+   "draft_said": "nand gate 9B",
+   "truth": "8098",
+   "cause": "box-split-merge",
+   "note": "whole hex buffer read as a small gate; G34 also inside"
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C7",
+   "key": "7A",
+   "draft_said": "no type",
+   "truth": "8098",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "7B",
+   "draft_said": "nothing",
+   "truth": "8098 at 7B",
+   "cause": "box-split-merge",
+   "note": "G21/G22 boxes inside it"
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "C0",
+   "key": "11A",
+   "draft_said": "no code",
+   "truth": "11A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C0",
+   "key": "11A",
+   "draft_said": "type 'A'",
+   "truth": "8098",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C5",
+   "key": "18A",
+   "draft_said": "no type (C6 holds 74175)",
+   "truth": "74175",
+   "cause": "box-split-merge",
+   "note": "one chip split into C5/C6 plus G9/G10"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C6",
+   "key": "18A",
+   "draft_said": "second chip 74175, no code",
+   "truth": "part of 18A",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G12",
+   "key": "16C",
+   "draft_said": "6C",
+   "truth": "16C",
+   "cause": "code-misread",
+   "note": "G11 is the other half of the same box"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "G12",
+   "key": "16C",
+   "draft_said": "7400",
+   "truth": "74S64",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "13B",
+   "draft_said": "nothing (G6,G24,G31 inside)",
+   "truth": "74S64 at 13B",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "C9",
+   "key": "13C",
+   "draft_said": "no code",
+   "truth": "13C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C9",
+   "key": "13C",
+   "draft_said": "7475",
+   "truth": "74175",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C1",
+   "key": "16B",
+   "draft_said": "second 16B chip",
+   "truth": "same 7474 package, other half",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C10",
+   "key": "2C",
+   "draft_said": "no type",
+   "truth": "74123",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C2",
+   "key": "4C",
+   "draft_said": "no type",
+   "truth": "74123",
+   "cause": "type-not-read",
+   "note": "C12 is the other half"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "G5",
+   "key": "11C",
+   "draft_said": "7451",
+   "truth": "7408",
+   "cause": "kind-other",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "G30",
+   "key": "2A",
+   "draft_said": "7402",
+   "truth": "7400",
+   "cause": "kind-generator-unlike-real",
+   "note": "plain box with code written inside"
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "C11",
+   "key": "9C",
+   "draft_said": "8C",
+   "truth": "9C",
+   "cause": "code-misread",
+   "note": "drawn as a chip box; it is 9C gate 1,2,13->12"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "7C",
+   "draft_said": "nothing",
+   "truth": "7402 at 7C",
+   "cause": "code-not-read",
+   "note": "its gates G1/G43 found without code"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "4B",
+   "draft_said": "nothing",
+   "truth": "7402 at 4B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "19C",
+   "draft_said": "nothing",
+   "truth": "7410 at 19C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": null,
+   "key": "5A",
+   "draft_said": "no type",
+   "truth": "7414",
+   "cause": "type-not-read",
+   "note": "type only from parts list"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "11B",
+   "draft_said": "7404",
+   "truth": "7414",
+   "cause": "type-misread",
+   "note": "parts list has 3 x 7414, no 7404"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "18C",
+   "draft_said": "7404",
+   "truth": "7414",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C3",
+   "key": null,
+   "draft_said": "chip 'EI'",
+   "truth": "title block",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C8",
+   "key": null,
+   "draft_said": "chip '1O48N'",
+   "truth": "title block",
+   "cause": "not-a-symbol",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G1",
+   "key": "7C/1",
+   "draft_said": "no code",
+   "truth": "7C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G43",
+   "key": "7C/2",
+   "draft_said": "no code",
+   "truth": "7C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G18",
+   "key": "4B/1",
+   "draft_said": "no code",
+   "truth": "4B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G28",
+   "key": "4B/2",
+   "draft_said": "no code",
+   "truth": "4B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G29",
+   "key": "4B/3",
+   "draft_said": "no code",
+   "truth": "4B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G13",
+   "key": "9C/1",
+   "draft_said": "no code",
+   "truth": "9C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G8",
+   "key": "11C/1",
+   "draft_said": "no code",
+   "truth": "11C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G25",
+   "key": "11C/4",
+   "draft_said": "no code",
+   "truth": "11C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G4",
+   "key": "11C/3",
+   "draft_said": "no code",
+   "truth": "11C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G7",
+   "key": "19C/1",
+   "draft_said": "no code",
+   "truth": "19C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G46",
+   "key": "11B/3",
+   "draft_said": "no code",
+   "truth": "11B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G41",
+   "key": "11B/5",
+   "draft_said": "no code",
+   "truth": "11B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G47",
+   "key": "11B/6",
+   "draft_said": "no code",
+   "truth": "11B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G19",
+   "key": "11B/1",
+   "draft_said": "no code",
+   "truth": "11B",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G14",
+   "key": "18C/3",
+   "draft_said": "no code",
+   "truth": "18C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G35",
+   "key": "18C/5",
+   "draft_said": "no code",
+   "truth": "18C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G32",
+   "key": "18C/6",
+   "draft_said": "no code",
+   "truth": "18C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G38",
+   "key": "5A/2",
+   "draft_said": "no code",
+   "truth": "5A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G40",
+   "key": "2A/2",
+   "draft_said": "no code",
+   "truth": "2A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G5",
+   "key": "11C/2",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G30",
+   "key": "2A/1",
+   "draft_said": "nor",
+   "truth": "nand",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G4",
+   "key": "11C/3",
+   "draft_said": "not",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G25",
+   "key": "11C/4",
+   "draft_said": "nand",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G8",
+   "key": "11C/1",
+   "draft_said": "nand",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G44",
+   "key": "11B/4",
+   "draft_said": "nor",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G47",
+   "key": "11B/6",
+   "draft_said": "or",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G33",
+   "key": "18C/4",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G35",
+   "key": "18C/5",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G32",
+   "key": "18C/6",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G38",
+   "key": "5A/2",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G39",
+   "key": "5A/3",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G41",
+   "key": "11B/5",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G46",
+   "key": "11B/3",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G12",
+   "key": "16C/1",
+   "draft_said": "nand",
+   "truth": "and-or-invert",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G3",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "inside 2C box"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G6",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 13B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G24",
+   "key": null,
+   "draft_said": "and",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 13B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G31",
+   "key": null,
+   "draft_said": "and",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 13B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G9",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 18A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G10",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 18A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G11",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "second half of 16C box"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G20",
+   "key": null,
+   "draft_said": "not",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "duplicate of 11C/1"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G21",
+   "key": null,
+   "draft_said": "and-or-invert",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 7B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G22",
+   "key": null,
+   "draft_said": "and",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 7B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G26",
+   "key": null,
+   "draft_said": "and",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 9A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G45",
+   "key": null,
+   "draft_said": "nand",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 9A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G34",
+   "key": null,
+   "draft_said": "not",
+   "truth": "no gate",
+   "cause": "box-split-merge",
+   "note": "piece of 9B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G23",
+   "key": null,
+   "draft_said": "buffer",
+   "truth": "no gate",
+   "cause": "not-a-symbol",
+   "note": "diamond/label by FRWUC"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G27",
+   "key": null,
+   "draft_said": "buffer",
+   "truth": "no gate",
+   "cause": "not-a-symbol",
+   "note": "circled pin DA1"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G37",
+   "key": null,
+   "draft_said": "buffer",
+   "truth": "no gate",
+   "cause": "not-a-symbol",
+   "note": "diamond by FIS06"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G42",
+   "key": null,
+   "draft_said": "not",
+   "truth": "no gate",
+   "cause": "not-a-symbol",
+   "note": "circled pin 46"
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "5A/5",
+   "draft_said": "nothing",
+   "truth": "7414 13->12 to SB5",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "4B/4",
+   "draft_said": "nothing",
+   "truth": "7402 3,2->1 FRWUC",
+   "cause": "page-damage",
+   "note": "faint drawing"
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": "C11",
+   "key": "9C/2",
+   "draft_said": "chip 8C",
+   "truth": "NOR 1,2,13->12",
+   "cause": "kind-other",
+   "note": "taken as a chip box"
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "9A/*",
+   "draft_said": "no gates",
+   "truth": "5-6 buffers of the 8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "9B/*",
+   "draft_said": "no gates",
+   "truth": "5-6 buffers of the 8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "7A/*",
+   "draft_said": "no gates",
+   "truth": "5-6 buffers of the 8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "7B/*",
+   "draft_said": "no gates",
+   "truth": "5-6 buffers of the 8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "11A/*",
+   "draft_said": "no gates",
+   "truth": "5-6 buffers of the 8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-1..R-14",
+   "draft_said": "none",
+   "truth": "14 resistors/capacitors (RC on 2C,4C, START RC, 1K, FBUTS 220/220/330, +5V pull-up)",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "L-1..L-4",
+   "draft_said": "none",
+   "truth": "4 lamps on 18C outputs",
+   "cause": "box-not-found",
+   "note": ""
+  }
+ ],
+ "notes": [
+  "8098 lower boxes: top labels 9B/7B, bottom labels 7B/9B swapped on the drawing; top labels taken",
+  "11B FBUTS gate drawn as pins 11->10 (same pins as the READTA gate, marked !!! on the drawing); key uses the free gate 3->4 (inferred)",
+  "Parts list says 1 x 74175 and 20 pk, but 18A and 13C are both drawn as 74175",
+  "13B and 16C 74S64 input pins read roughly; 13B pins 1, 9, 11, 13 inferred",
+  "9A outputs drawn 10/9 for inputs 14/10; 8098 pinout gives 13/9 - key uses 13",
+  "Lamp grounds and passive boxes approximate"
+ ],
+ "coverage": "About 90% of drawn chip pins are in nets; 13B/16C input pins partly inferred, undrawn power pins left out.",
+ "check": {
+  "status": "checked",
+  "violations": 0,
+  "by": {},
+  "rules": "pinout, one net per pin, gate pattern, pin in two gates, two totem-pole outputs on one net (scripts/keyrules.py)",
+  "corrections": "ENCOM_1: 2A.11 + P.5 moved to their own net (2A inputs are ENCOM_0)",
+  "gate_boxes_snapped_to_drawn_rectangle": 15,
+  "gates": 61,
+  "not_done": "parts-list count not compared; pins missing from nets only spot-checked (n10-63 14B, 12A: undrawn pins)"
+ }
+}

@@ -1,0 +1,1607 @@
+{
+ "format": "nd-netlist-key",
+ "page": "scsi13",
+ "parts": [
+  {
+   "ref": "RN19",
+   "type": "4610X_101_472",
+   "kind": "passive",
+   "box": [
+    772,
+    522,
+    391,
+    152
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RN19",
+   "type": "4610X_101_472",
+   "kind": "passive",
+   "box": [
+    859,
+    968,
+    304,
+    141
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "20F",
+   "type": "Z80A_CPU",
+   "kind": "chip",
+   "box": [
+    1229,
+    685,
+    157,
+    924
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "21F",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    1822,
+    685,
+    152,
+    370
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "22F",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    1822,
+    1185,
+    152,
+    363
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "R45",
+   "type": "1KOHM",
+   "kind": "passive",
+   "box": [
+    2240,
+    435,
+    48,
+    135
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "OSC2",
+   "type": "32MHZ",
+   "kind": "other",
+   "box": [
+    2340,
+    487,
+    96,
+    83
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "29A",
+   "type": "74S00",
+   "kind": "gatepack",
+   "box": [
+    2616,
+    489,
+    117,
+    87
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "27H",
+   "type": "74F161",
+   "kind": "chip",
+   "box": [
+    3316,
+    511,
+    146,
+    348
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "R46",
+   "type": "1KOHM",
+   "kind": "passive",
+   "box": [
+    2757,
+    663,
+    52,
+    141
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "16H",
+   "type": "74S04",
+   "kind": "gatepack",
+   "box": [
+    2475,
+    920,
+    96,
+    74
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "R4",
+   "type": "220OHM",
+   "kind": "passive",
+   "box": [
+    2762,
+    1018,
+    48,
+    117
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "LD3",
+   "type": "YELLOW",
+   "kind": "other",
+   "box": [
+    2657,
+    1157,
+    78,
+    57
+   ],
+   "confidence": "inferred"
+  },
+  {
+   "ref": "C26",
+   "type": "33PF",
+   "kind": "passive",
+   "box": [
+    2909,
+    881,
+    87,
+    76
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "R48",
+   "type": "220OHM",
+   "kind": "passive",
+   "box": [
+    3131,
+    887,
+    91,
+    43
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "R50",
+   "type": "220HM",
+   "kind": "passive",
+   "box": [
+    3366,
+    896,
+    96,
+    52
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "R49",
+   "type": ".2KOHM",
+   "kind": "passive",
+   "box": [
+    3049,
+    994,
+    87,
+    41
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "T1",
+   "type": "2N3906",
+   "kind": "other",
+   "box": [
+    3257,
+    957,
+    87,
+    146
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "22H",
+   "type": "74LS393",
+   "kind": "chip",
+   "box": [
+    3638,
+    844,
+    150,
+    161
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "15H",
+   "type": "74LS04",
+   "kind": "gatepack",
+   "box": [
+    1007,
+    1348,
+    85,
+    78
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "10J",
+   "type": "MC14536BCP",
+   "kind": "chip",
+   "box": [
+    3818,
+    1431,
+    126,
+    498
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RN22",
+   "type": "4610X_101_332",
+   "kind": "passive",
+   "box": [
+    2549,
+    1392,
+    687,
+    135
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RN20",
+   "type": "4610X_101_472",
+   "kind": "passive",
+   "box": [
+    2592,
+    1816,
+    674,
+    146
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "21G",
+   "type": "74LS245",
+   "kind": "chip",
+   "box": [
+    2362,
+    1518,
+    144,
+    378
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "18H",
+   "type": "74LS00",
+   "kind": "gatepack",
+   "box": [
+    996,
+    1605,
+    117,
+    96
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "26H",
+   "type": "74LS20",
+   "kind": "gatepack",
+   "box": [
+    1992,
+    1779,
+    104,
+    96
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "19H",
+   "type": "74LS74",
+   "kind": "gatepack",
+   "box": [
+    752,
+    1800,
+    111,
+    172
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "30G",
+   "type": "74LS04",
+   "kind": "gatepack",
+   "box": [
+    1724,
+    1942,
+    96,
+    85
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "13H",
+   "type": "74LS00",
+   "kind": "gatepack",
+   "box": [
+    3540,
+    1779,
+    107,
+    96
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "24G",
+   "type": "74LS125",
+   "kind": "gatepack",
+   "box": [
+    2875,
+    2061,
+    87,
+    87
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "21H",
+   "type": "74LS74",
+   "kind": "gatepack",
+   "box": [
+    3420,
+    2094,
+    117,
+    172
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RN21",
+   "type": "4606X_101_272",
+   "kind": "passive",
+   "box": [
+    605,
+    2192,
+    217,
+    117
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "24F",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    985,
+    2311,
+    161,
+    389
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "2H",
+   "type": "74LS02",
+   "kind": "gatepack",
+   "box": [
+    1996,
+    2279,
+    113,
+    85
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "24H",
+   "type": "74LS95B",
+   "kind": "chip",
+   "box": [
+    2235,
+    2431,
+    150,
+    313
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "29G",
+   "type": "74LS32",
+   "kind": "gatepack",
+   "box": [
+    1703,
+    2725,
+    107,
+    85
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "A(15:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1283,
+    576,
+    87,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "CKDIS~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1870,
+    544,
+    65,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "BA(15:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2446,
+    663,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "BA(03:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2392,
+    822,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "TFRQ",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2501,
+    805,
+    65,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "H4",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2946,
+    805,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "32MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3120,
+    424,
+    76,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "16MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3708,
+    598,
+    80,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "8MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3838,
+    631,
+    72,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "4MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3708,
+    670,
+    50,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "2MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3838,
+    705,
+    72,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "1MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    4001,
+    842,
+    76,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "HACK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2203,
+    946,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "HACK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2479,
+    1055,
+    39,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZCLK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3403,
+    1087,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ACLK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3403,
+    1229,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3425,
+    1011,
+    37,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3316,
+    1174,
+    39,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZNMI~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    4110,
+    1244,
+    43,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZWAIT~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    496,
+    1094,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZINT~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    381,
+    1163,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZNMI~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    757,
+    1229,
+    43,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MC~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    381,
+    1272,
+    65,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "HACK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    739,
+    1374,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "HACK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    913,
+    1424,
+    43,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZCLK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    865,
+    1492,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZCLK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1109,
+    1463,
+    39,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "D(07:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2392,
+    1348,
+    87,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MBD(07:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3566,
+    1418,
+    83,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "HREQ",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    700,
+    1616,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZDMAEN~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    548,
+    1724,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ENCDMA",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    483,
+    1848,
+    67,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "DMAINT~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    381,
+    1903,
+    65,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "IREN~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1648,
+    1750,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZDMAEN~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1648,
+    1783,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "FLOCE~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1648,
+    1831,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "IORD~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1511,
+    1968,
+    43,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RFT~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3283,
+    1909,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "DISTO",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3512,
+    1964,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MOE~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    2088,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ACLK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3127,
+    2190,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ACLK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3283,
+    2251,
+    39,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "OE~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3679,
+    2196,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MWE~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    2283,
+    37,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "4MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1540,
+    2322,
+    39,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZIORQ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    391,
+    2322,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZMREQ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    391,
+    2359,
+    72,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    289,
+    2364,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZRD~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    391,
+    2396,
+    72,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MIORD~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    289,
+    2501,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MIOWR~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    289,
+    2538,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ZM1~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    289,
+    2572,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MWE~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    391,
+    2609,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "IORQ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1331,
+    2322,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RD~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2442,
+    2425,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "WR~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1418,
+    2429,
+    39,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "IORD~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1331,
+    2501,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "IOWR~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1453,
+    2533,
+    70,
+    39
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "M1~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1331,
+    2572,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "WE~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1453,
+    2609,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    794,
+    2679,
+    39,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    739,
+    2751,
+    39,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    674,
+    2823,
+    39,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1366,
+    2729,
+    74,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ARCK~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2638,
+    2457,
+    74,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MIOWR~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2957,
+    2583,
+    39,
+    33
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "8MHZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1974,
+    2692,
+    39,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "WR~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2501,
+    2692,
+    39,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "MIORD~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2957,
+    2777,
+    39,
+    35
+   ],
+   "confidence": "read"
+  }
+ ],
+ "gates": [
+  {
+   "id": "29A/1",
+   "part": "29A",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    2616,
+    489,
+    117,
+    87
+   ]
+  },
+  {
+   "id": "29A/2",
+   "part": "29A",
+   "kind": "nand",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    2905,
+    522,
+    111,
+    87
+   ]
+  },
+  {
+   "id": "16H/1",
+   "part": "16H",
+   "kind": "not",
+   "inputs": [
+    11
+   ],
+   "output": 10,
+   "box": [
+    2475,
+    920,
+    96,
+    74
+   ]
+  },
+  {
+   "id": "16H/2",
+   "part": "16H",
+   "kind": "not",
+   "inputs": [
+    13
+   ],
+   "output": 12,
+   "box": [
+    2475,
+    1148,
+    96,
+    85
+   ]
+  },
+  {
+   "id": "16H/3",
+   "part": "16H",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    2927,
+    1061,
+    96,
+    85
+   ]
+  },
+  {
+   "id": "16H/4",
+   "part": "16H",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    2927,
+    1202,
+    96,
+    85
+   ]
+  },
+  {
+   "id": "15H/1",
+   "part": "15H",
+   "kind": "not",
+   "inputs": [
+    11
+   ],
+   "output": 10,
+   "box": [
+    1007,
+    1348,
+    85,
+    78
+   ]
+  },
+  {
+   "id": "15H/2",
+   "part": "15H",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    3866,
+    1235,
+    96,
+    74
+   ]
+  },
+  {
+   "id": "18H/1",
+   "part": "18H",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    996,
+    1605,
+    117,
+    96
+   ]
+  },
+  {
+   "id": "26H/1",
+   "part": "26H",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2,
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    1992,
+    1779,
+    104,
+    96
+   ]
+  },
+  {
+   "id": "30G/1",
+   "part": "30G",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    1724,
+    1942,
+    96,
+    85
+   ]
+  },
+  {
+   "id": "13H/1",
+   "part": "13H",
+   "kind": "nand",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    3540,
+    1779,
+    107,
+    96
+   ]
+  },
+  {
+   "id": "24G/1",
+   "part": "24G",
+   "kind": "buffer",
+   "inputs": [
+    5,
+    4
+   ],
+   "output": 6,
+   "box": [
+    2875,
+    2061,
+    87,
+    87
+   ]
+  },
+  {
+   "id": "24G/2",
+   "part": "24G",
+   "kind": "buffer",
+   "inputs": [
+    2,
+    1
+   ],
+   "output": 3,
+   "box": [
+    2875,
+    2257,
+    87,
+    87
+   ]
+  },
+  {
+   "id": "24G/3",
+   "part": "24G",
+   "kind": "buffer",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    2649,
+    2551,
+    87,
+    96
+   ]
+  },
+  {
+   "id": "24G/4",
+   "part": "24G",
+   "kind": "buffer",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    2649,
+    2746,
+    87,
+    96
+   ]
+  },
+  {
+   "id": "2H/1",
+   "part": "2H",
+   "kind": "nor",
+   "inputs": [
+    9,
+    8
+   ],
+   "output": 10,
+   "box": [
+    1996,
+    2279,
+    113,
+    85
+   ]
+  },
+  {
+   "id": "29G/1",
+   "part": "29G",
+   "kind": "or",
+   "inputs": [
+    5,
+    4
+   ],
+   "output": 6,
+   "box": [
+    1703,
+    2725,
+    107,
+    85
+   ]
+  },
+  {
+   "id": "19H/1",
+   "part": "19H",
+   "kind": "other",
+   "inputs": [
+    12,
+    11,
+    10,
+    13
+   ],
+   "output": 9,
+   "box": [
+    752,
+    1800,
+    111,
+    172
+   ]
+  },
+  {
+   "id": "21H/1",
+   "part": "21H",
+   "kind": "other",
+   "inputs": [
+    12,
+    11,
+    10,
+    13
+   ],
+   "output": 9,
+   "box": [
+    3420,
+    2094,
+    117,
+    172
+   ]
+  },
+  {
+   "id": "21H/2",
+   "part": "21H",
+   "kind": "other",
+   "inputs": [
+    2,
+    3,
+    4,
+    1
+   ],
+   "output": 5,
+   "box": [
+    1761,
+    2225,
+    109,
+    172
+   ]
+  }
+ ],
+ "nets": [],
+ "coverage": "Read from the whole page (scale 2.1745 from the 2000-px view); boxes are approximate. All chips, gates with printed pins (74LS125 buffers: inputs = data, enable), 74LS74 flip-flops as kind other (D,CK,PR,CLR -> Q). Resistor packs RN19 (drawn twice, two entries), RN20, RN21, RN22; resistors R4 R45 R46 R48 R49 R50; C26. OSC2 oscillator, LD3 LED and transistor T1 as other. 21G printed in a font where G looks like 6. Connectors: off-page arrows, bus connectors and diamond net labels; '?' where no name is printed next to it. Left out: title block, supply/ground symbols, nets."
+}

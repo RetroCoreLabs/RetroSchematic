@@ -1,0 +1,237 @@
+{
+ "note": "Offline recognition loop. Draft flags: BOX2 FIX1 FIX2 FIX3, DETMODE=add, letters-A, DETTHR 0.3; detector picked per page by style/pagestyle.json (hand -> DETH, CAD -> DETC=det-A). Run: DETH=<onnx> sh loop/draftall.sh <dir>; sh loop/scoreall.sh <dir>. Keys: loop/key (work, training data), loop/testkey (SCSI, never trained). Detector training: scripts/key2det.py -> loop/detreal, gen pages loop/gen1 (140) + loop/genval (20), scripts/detnet.py with per-page class mask.",
+ "r0": {
+  "det": "det-A",
+  "dir": "loop/r0",
+  "p64": [
+   191,
+   65
+  ]
+ },
+ "r1": {
+  "det_hand": "det-L1 (det-A + 1500 iters, keys x6)",
+  "dir": "loop/r1s",
+  "p64": [
+   199,
+   66
+  ],
+  "scsi": "unchanged (det-A on CAD)",
+  "kept": true,
+  "rejected": "det-L1 on CAD pages too: SCSI gates 15->12 on page 13, codes 8->4 on page 21"
+ },
+ "r2": {
+  "det_hand": "det-L2 (det-L1 + 2000 iters, keys x12)",
+  "dir": "loop/r2",
+  "p64": [
+   202,
+   64
+  ],
+  "scsi": "unchanged",
+  "kept": true,
+  "note": "work pins fell 812 -> 727 (binder8 95 -> 39), codes 200 -> 178; gates and kinds rose"
+ },
+ "r3": {
+  "keys": "loop/key checked by scripts/keyrules.py (originals in loop/key-r2, fixes in loop/keyfix); 9 of 10 keys 'checked', n10-65 not (74118 has no pin table in the catalog); gate boxes snapped to drawn rectangles (box0 = old box)",
+  "baseline_new_keys": {
+   "dir": "loop/r3base",
+   "p64": [
+    202,
+    64
+   ],
+   "work": [
+    727,
+    167
+   ]
+  },
+  "kept": "FIX4 (FIX4Q=2.0) FIX5 FIX6 FIX7 on top of r2 flags; det-L2 hand, det-A CAD",
+  "per_change_p64": {
+   "FIX4 q5.9": [
+    215,
+    82
+   ],
+   "FIX4 q2": [
+    212,
+    69
+   ],
+   "FIX4+5": [
+    217,
+    74
+   ],
+   "FIX5 alone": [
+    210,
+    70
+   ],
+   "+FIX6": [
+    219,
+    76
+   ],
+   "+FIX7": [
+    221,
+    79
+   ],
+   "+FIX8 (rejected)": [
+    223,
+    80
+   ]
+  },
+  "work": {
+   "FIX4-6 (loop/r3f6all)": [
+    797,
+    212
+   ],
+   "FIX4-7 (loop/r3f7)": [
+    813,
+    221
+   ]
+  },
+  "scsi": "unchanged by every change (chips, gates, codes, kinds identical)",
+  "run": "FIX4=1 FIX4Q=2.0 FIX5=1 FIX6=1 FIX7=1 DETH=model/det-L2.onnx sh loop/draftall.sh <dir>; sh loop/scoreall.sh <dir>; sh loop/stageall.sh <dir>; page 64 alone: loop/p64.sh"
+ },
+ "r4": {
+  "dir": "loop/r4c",
+  "kept": "FIX9 (BOARD=nd100 grid A-H,J x 1-29 on non-NORD-10 pages, draftall GRIDFIX=1) FIX10 (sliding-window code reader) FIX11 (column code inference, ref_inferred); dump gains pinfeat",
+  "per_change": {
+   "FIX9": {
+    "p64": [
+     221,
+     79
+    ],
+    "work": [
+     941,
+     305
+    ],
+    "scsi_codes": 34
+   },
+   "FIX10": {
+    "p64": [
+     237,
+     86
+    ],
+    "work": [
+     1055,
+     344
+    ],
+    "scsi_codes": 38
+   },
+   "FIX11": {
+    "p64": [
+     237,
+     86
+    ],
+    "work": [
+     1061,
+     349
+    ],
+    "scsi_codes": 38
+   }
+  },
+  "code_split_work": {
+   "before": {
+    "right": 215,
+    "wrong-symbol": 4,
+    "misread": 215,
+    "no box": 119
+   },
+   "after": {
+    "right": 320,
+    "wrong-symbol": 15,
+    "misread": 121,
+    "no box": 97
+   }
+  },
+  "confidence": "scripts/pinconf.py loop/r4c loop/r3f7; code split: sh loop/splitall.sh <dir>",
+  "run": "GRIDFIX=1 FIX4=1 FIX4Q=2.0 FIX5=1 FIX6=1 FIX7=1 FIX10=1 FIX11=1 DETH=model/det-L2.onnx sh loop/draftall.sh <dir>",
+  "not_done": "code-box detector retrain on key code positions; 3 new ND-120 CAD pages"
+ },
+ "r5": {
+  "dir": "loop/r5f",
+  "measure": "connections: scripts/connscore.py (pairs of pins joined), sh loop/conn.sh <dir>; pin-number failures scripts/pinfail.py; confidence scripts/connconf.py",
+  "r4c": {
+   "p64": {
+    "recall": 0.0489,
+    "precision": 0.1731,
+    "right": 121,
+    "draft_pairs": 699,
+    "key_pairs": 2473
+   },
+   "work": {
+    "recall": 0.0412,
+    "precision": 0.0982,
+    "right": 442,
+    "draft_pairs": 4502,
+    "key_pairs": 10724
+   }
+  },
+  "FIX12 edge fill (thrown)": {
+   "p64": [
+    0.0489,
+    0.1716
+   ],
+   "work": [
+    0.0412,
+    0.0965
+   ]
+  },
+  "FIX13 N=2 (thrown)": {
+   "p64": [
+    0.034,
+    0.2471
+   ],
+   "work": [
+    0.0325,
+    0.175
+   ]
+  },
+  "FIX13 N=3": {
+   "p64": [
+    0.034,
+    0.2188
+   ],
+   "work": [
+    0.0388,
+    0.1809
+   ]
+  },
+  "FIX13 N=3 + GND joins kept (FIX13K, kept)": {
+   "p64": [
+    0.0485,
+    0.2564
+   ],
+   "work": [
+    0.0388,
+    0.1809
+   ],
+   "old_pins_p64": [
+    246,
+    77
+   ],
+   "old_pins_work": [
+    1108,
+    302
+   ]
+  },
+  "det-L3 hand detector, code boxes from keys (kept)": {
+   "p64": [
+    0.059,
+    0.288
+   ],
+   "work": [
+    0.0396,
+    0.1714
+   ],
+   "codes_work": "293 -> 319 of 586",
+   "old_pins_p64": [
+    252,
+    74
+   ],
+   "old_pins_work": [
+    1230,
+    330
+   ],
+   "scsi": "unchanged (CAD uses det-A)",
+   "note": "work pages are training pages for det-L3"
+  },
+  "run": "GRIDFIX=1 FIX4=1 FIX4Q=2.0 FIX5=1 FIX6=1 FIX7=1 FIX10=1 FIX11=1 FIX13=1 FIX13N=3 FIX13K=1 DETH=model/det-L3.onnx sh loop/draftall.sh <dir>",
+  "not_done": "pin numbering by spacing+pinout beyond FIX12; 3 new ND-120 CAD keys"
+ }
+}

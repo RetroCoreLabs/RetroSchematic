@@ -1,0 +1,803 @@
+{
+ "format": "nd-netlist-key",
+ "page": "scsi21",
+ "parts": [
+  {
+   "ref": "8B",
+   "type": "74LS461",
+   "kind": "chip",
+   "box": [
+    659,
+    626,
+    107,
+    531
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "9B",
+   "type": "74LS461",
+   "kind": "chip",
+   "box": [
+    659,
+    1381,
+    107,
+    537
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "11A",
+   "type": "74LS461",
+   "kind": "chip",
+   "box": [
+    659,
+    2170,
+    107,
+    541
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "12A",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    2659,
+    626,
+    165,
+    389
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "12B",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    3616,
+    626,
+    161,
+    389
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "1A",
+   "type": "74LS32",
+   "kind": "gatepack",
+   "box": [
+    2649,
+    1137,
+    107,
+    85
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "12C",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    2659,
+    1376,
+    165,
+    389
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "13B",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    3616,
+    1376,
+    161,
+    389
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "18H",
+   "type": "74LS00",
+   "kind": "gatepack",
+   "box": [
+    3431,
+    1898,
+    107,
+    85
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "19H",
+   "type": "74LS74",
+   "kind": "gatepack",
+   "box": [
+    3631,
+    2040,
+    113,
+    150
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "C30",
+   "type": "100nF",
+   "kind": "passive",
+   "box": [
+    3914,
+    2246,
+    70,
+    139
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "11B",
+   "type": "74LS244",
+   "kind": "chip",
+   "box": [
+    1242,
+    2148,
+    165,
+    400
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "12F",
+   "type": "74LS469",
+   "kind": "chip",
+   "box": [
+    1905,
+    2148,
+    144,
+    563
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "14F",
+   "type": "74LS469",
+   "kind": "chip",
+   "box": [
+    2496,
+    2148,
+    144,
+    563
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "12E",
+   "type": "74LS469",
+   "kind": "chip",
+   "box": [
+    3057,
+    2148,
+    144,
+    563
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "28C",
+   "type": "74F04",
+   "kind": "gatepack",
+   "box": [
+    826,
+    2692,
+    91,
+    74
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "20B",
+   "type": "74LS32",
+   "kind": "gatepack",
+   "box": [
+    1300,
+    2692,
+    113,
+    107
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "SDIN(15:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    261,
+    489,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "SMBD",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1674,
+    435,
+    83,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "SMBD(07:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3066,
+    474,
+    83,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "SDOUT(23:00)",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    4027,
+    544,
+    78,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    261,
+    696,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    261,
+    765,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    261,
+    837,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    261,
+    909,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    261,
+    979,
+    76,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    713,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    750,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    783,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    820,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ESCSI~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    887,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "PSING",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    924,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "LADR0~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2366,
+    1152,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3440,
+    1257,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "DRQ",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    1396,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "SINT",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    1431,
+    72,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "SDACK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    1466,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "STRERR",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    1500,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "BSYIN",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    1570,
+    70,
+    39
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "REQ",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    1605,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "ACK",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3273,
+    1644,
+    70,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "PDIFF",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    1679,
+    72,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2366,
+    1731,
+    70,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2555,
+    1770,
+    37,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RRST",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3179,
+    1918,
+    76,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    844,
+    2072,
+    74,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "TRST",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3440,
+    2327,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1453,
+    2527,
+    74,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "CKWL",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1540,
+    2562,
+    74,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RWCL~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1540,
+    2614,
+    74,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "CKWM",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2170,
+    2562,
+    74,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2751,
+    2562,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "RWCH~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    2751,
+    2614,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "NCR~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    515,
+    2757,
+    39,
+    35
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "TEST",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1022,
+    2757,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "?",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3164,
+    2805,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "WCZ~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    3283,
+    2838,
+    72,
+    37
+   ],
+   "confidence": "read"
+  },
+  {
+   "ref": "LDWC~",
+   "type": "?",
+   "kind": "connector",
+   "box": [
+    1440,
+    2877,
+    72,
+    37
+   ],
+   "confidence": "read"
+  }
+ ],
+ "gates": [
+  {
+   "id": "1A/1",
+   "part": "1A",
+   "kind": "or",
+   "inputs": [
+    13,
+    12
+   ],
+   "output": 11,
+   "box": [
+    2649,
+    1137,
+    107,
+    85
+   ]
+  },
+  {
+   "id": "18H/1",
+   "part": "18H",
+   "kind": "nand",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    3431,
+    1898,
+    107,
+    85
+   ]
+  },
+  {
+   "id": "18H/2",
+   "part": "18H",
+   "kind": "nand",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    3442,
+    2279,
+    107,
+    96
+   ]
+  },
+  {
+   "id": "19H/1",
+   "part": "19H",
+   "kind": "other",
+   "inputs": [
+    2,
+    3,
+    4,
+    1
+   ],
+   "output": 5,
+   "box": [
+    3631,
+    2040,
+    113,
+    150
+   ]
+  },
+  {
+   "id": "28C/1",
+   "part": "28C",
+   "kind": "not",
+   "inputs": [
+    3
+   ],
+   "output": 12,
+   "box": [
+    826,
+    2692,
+    91,
+    74
+   ]
+  },
+  {
+   "id": "20B/1",
+   "part": "20B",
+   "kind": "or",
+   "inputs": [
+    13,
+    12
+   ],
+   "output": 11,
+   "box": [
+    1300,
+    2692,
+    113,
+    107
+   ]
+  }
+ ],
+ "nets": [],
+ "coverage": "Read from the whole page (scale 2.1745); boxes approximate. All chips (74LS461 x3, 74LS244 x5, 74LS469 x3), gates with printed pins, 74LS74 flip-flop as kind other (D,CK,PR,CLR -> Q), C30. Connectors: off-page arrows, bus connectors and diamond net labels; '?' where no name is printed beside the arrow itself (the name is on the pin). Left out: title block, supply/ground symbols, nets."
+}

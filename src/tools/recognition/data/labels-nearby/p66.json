@@ -1,0 +1,2828 @@
+{
+"page": 66,
+"pdf": "docs/sources/nord-10/NORD-10-drawings.pdf",
+"dpi": 300,
+"image_size": [
+3507,
+2496
+],
+"letters": [
+{
+"box": [
+3160,
+156,
+9,
+25
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1058,
+472,
+8,
+19
+],
+"small": false,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+613,
+564,
+7,
+20
+],
+"small": false,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+3106,
+628,
+9,
+24
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1920,
+654,
+9,
+22
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+719,
+749,
+23,
+31
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2152,
+783,
+9,
+24
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+321,
+868,
+22,
+19
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+212,
+919,
+8,
+21
+],
+"small": false,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+1930,
+1011,
+7,
+19
+],
+"small": false,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+1365,
+1138,
+6,
+14
+],
+"small": true,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+1458,
+1216,
+24,
+29
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1205,
+1440,
+8,
+20
+],
+"small": false,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+713,
+1473,
+8,
+21
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+258,
+1675,
+4,
+26
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2446,
+1767,
+14,
+32
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+729,
+1999,
+10,
+27
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1106,
+2058,
+9,
+25
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1215,
+2104,
+10,
+25
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+723,
+2115,
+9,
+25
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2339,
+2136,
+12,
+14
+],
+"small": true,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+845,
+2198,
+7,
+19
+],
+"small": false,
+"pipeline": "1",
+"label": "1",
+"checked": true
+},
+{
+"box": [
+1636,
+2225,
+7,
+19
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1646,
+2224,
+7,
+21
+],
+"small": false,
+"pipeline": "1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+821,
+230,
+17,
+24
+],
+"small": false,
+"pipeline": "2",
+"label": "2",
+"checked": true
+},
+{
+"box": [
+1308,
+1462,
+23,
+20
+],
+"small": false,
+"pipeline": "2",
+"label": "2",
+"checked": true
+},
+{
+"box": [
+1317,
+1995,
+12,
+16
+],
+"small": true,
+"pipeline": "2",
+"label": "2",
+"checked": true
+},
+{
+"box": [
+966,
+1913,
+14,
+21
+],
+"small": false,
+"pipeline": "3",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+3111,
+2071,
+14,
+21
+],
+"small": false,
+"pipeline": "3",
+"label": "3",
+"checked": true
+},
+{
+"box": [
+1421,
+378,
+14,
+22
+],
+"small": false,
+"pipeline": "4",
+"label": "4",
+"checked": true
+},
+{
+"box": [
+184,
+1034,
+10,
+23
+],
+"small": false,
+"pipeline": "4",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+371,
+1374,
+14,
+19
+],
+"small": false,
+"pipeline": "4",
+"label": "4",
+"checked": true
+},
+{
+"box": [
+2483,
+1593,
+15,
+20
+],
+"small": false,
+"pipeline": "4",
+"label": "4",
+"checked": true
+},
+{
+"box": [
+2745,
+1798,
+13,
+20
+],
+"small": false,
+"pipeline": "4",
+"label": "4",
+"checked": true
+},
+{
+"box": [
+3137,
+586,
+16,
+29
+],
+"small": false,
+"pipeline": "5",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1326,
+615,
+15,
+23
+],
+"small": false,
+"pipeline": "5",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2574,
+1135,
+14,
+12
+],
+"small": true,
+"pipeline": "5",
+"label": "5",
+"checked": true
+},
+{
+"box": [
+2701,
+1148,
+14,
+22
+],
+"small": false,
+"pipeline": "5",
+"label": "5",
+"checked": true
+},
+{
+"box": [
+1493,
+1286,
+11,
+16
+],
+"small": true,
+"pipeline": "5",
+"label": "5",
+"checked": true
+},
+{
+"box": [
+2631,
+951,
+10,
+15
+],
+"small": true,
+"pipeline": "6",
+"label": "6",
+"checked": true
+},
+{
+"box": [
+893,
+2056,
+10,
+16
+],
+"small": true,
+"pipeline": "6",
+"label": "6",
+"checked": true
+},
+{
+"box": [
+1281,
+556,
+14,
+22
+],
+"small": false,
+"pipeline": "7",
+"label": "7",
+"checked": true
+},
+{
+"box": [
+1622,
+769,
+14,
+21
+],
+"small": false,
+"pipeline": "7",
+"label": "7",
+"checked": true
+},
+{
+"box": [
+328,
+843,
+15,
+22
+],
+"small": false,
+"pipeline": "7",
+"label": "7",
+"checked": true
+},
+{
+"box": [
+1603,
+858,
+13,
+21
+],
+"small": false,
+"pipeline": "7",
+"label": "7",
+"checked": true
+},
+{
+"box": [
+3075,
+1014,
+14,
+22
+],
+"small": false,
+"pipeline": "7",
+"label": "7",
+"checked": true
+},
+{
+"box": [
+3360,
+2159,
+14,
+21
+],
+"small": false,
+"pipeline": "7",
+"label": "7",
+"checked": true
+},
+{
+"box": [
+1423,
+614,
+14,
+23
+],
+"small": false,
+"pipeline": "8",
+"label": "8",
+"checked": true
+},
+{
+"box": [
+2175,
+915,
+20,
+26
+],
+"small": false,
+"pipeline": "8",
+"label": "9",
+"checked": true
+},
+{
+"box": [
+1697,
+1599,
+15,
+23
+],
+"small": false,
+"pipeline": "8",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2498,
+1410,
+28,
+19
+],
+"small": false,
+"pipeline": "9",
+"label": "9",
+"checked": true
+},
+{
+"box": [
+641,
+330,
+17,
+19
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+592,
+430,
+16,
+20
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+1033,
+589,
+18,
+20
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+136,
+731,
+19,
+20
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+1871,
+1513,
+19,
+20
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+1146,
+1615,
+17,
+19
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+1318,
+1758,
+9,
+14
+],
+"small": true,
+"pipeline": "A",
+"label": "4",
+"checked": true
+},
+{
+"box": [
+1021,
+1795,
+17,
+20
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+633,
+1943,
+17,
+19
+],
+"small": false,
+"pipeline": "A",
+"label": "A",
+"checked": true
+},
+{
+"box": [
+2079,
+138,
+17,
+22
+],
+"small": false,
+"pipeline": "B",
+"label": "B",
+"checked": true
+},
+{
+"box": [
+3060,
+631,
+17,
+21
+],
+"small": false,
+"pipeline": "B",
+"label": "B",
+"checked": true
+},
+{
+"box": [
+2694,
+927,
+19,
+22
+],
+"small": false,
+"pipeline": "B",
+"label": "B",
+"checked": true
+},
+{
+"box": [
+1876,
+1975,
+17,
+21
+],
+"small": false,
+"pipeline": "B",
+"label": "B",
+"checked": true
+},
+{
+"box": [
+3233,
+750,
+38,
+20
+],
+"small": false,
+"pipeline": "C",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1605,
+1204,
+16,
+21
+],
+"small": false,
+"pipeline": "C",
+"label": "C",
+"checked": true
+},
+{
+"box": [
+2773,
+1663,
+17,
+22
+],
+"small": false,
+"pipeline": "C",
+"label": "C",
+"checked": true
+},
+{
+"box": [
+945,
+1797,
+35,
+21
+],
+"small": false,
+"pipeline": "C",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2864,
+1914,
+17,
+22
+],
+"small": false,
+"pipeline": "C",
+"label": "C",
+"checked": true
+},
+{
+"box": [
+1635,
+2162,
+16,
+22
+],
+"small": false,
+"pipeline": "C",
+"label": "C",
+"checked": true
+},
+{
+"box": [
+154,
+184,
+19,
+22
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+561,
+298,
+19,
+23
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+2829,
+396,
+16,
+22
+],
+"small": false,
+"pipeline": "D",
+"label": "0",
+"checked": true
+},
+{
+"box": [
+1220,
+1027,
+19,
+23
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+2992,
+1213,
+19,
+24
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+99,
+1255,
+19,
+23
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+2827,
+1281,
+19,
+22
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+3307,
+1544,
+24,
+24
+],
+"small": false,
+"pipeline": "D",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+568,
+1620,
+19,
+23
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+919,
+1706,
+19,
+22
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+1450,
+2133,
+18,
+21
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+1158,
+2135,
+19,
+22
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+2470,
+2141,
+20,
+22
+],
+"small": false,
+"pipeline": "D",
+"label": "D",
+"checked": true
+},
+{
+"box": [
+3155,
+193,
+18,
+23
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+2068,
+786,
+20,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+722,
+1277,
+39,
+32
+],
+"small": false,
+"pipeline": "E",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+574,
+1463,
+19,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+1718,
+1528,
+17,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+3194,
+1852,
+19,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+590,
+1886,
+18,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+2066,
+2170,
+17,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+559,
+2179,
+18,
+23
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+646,
+2316,
+17,
+22
+],
+"small": false,
+"pipeline": "E",
+"label": "E",
+"checked": true
+},
+{
+"box": [
+2891,
+195,
+18,
+22
+],
+"small": false,
+"pipeline": "F",
+"label": "F",
+"checked": true
+},
+{
+"box": [
+739,
+245,
+16,
+4
+],
+"small": false,
+"pipeline": "F",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2252,
+917,
+4,
+26
+],
+"small": false,
+"pipeline": "F",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+984,
+2062,
+17,
+21
+],
+"small": false,
+"pipeline": "F",
+"label": "F",
+"checked": true
+},
+{
+"box": [
+2762,
+2080,
+11,
+14
+],
+"small": true,
+"pipeline": "F",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2064,
+51,
+20,
+21
+],
+"small": false,
+"pipeline": "H",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+1883,
+666,
+11,
+3
+],
+"small": false,
+"pipeline": "H",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2450,
+1155,
+20,
+21
+],
+"small": false,
+"pipeline": "H",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+980,
+1706,
+18,
+20
+],
+"small": false,
+"pipeline": "H",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+203,
+1789,
+21,
+21
+],
+"small": false,
+"pipeline": "H",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+1091,
+1796,
+19,
+20
+],
+"small": false,
+"pipeline": "H",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+684,
+2350,
+20,
+20
+],
+"small": false,
+"pipeline": "H",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+2082,
+761,
+11,
+21
+],
+"small": false,
+"pipeline": "I",
+"label": "I",
+"checked": true
+},
+{
+"box": [
+2093,
+840,
+9,
+24
+],
+"small": false,
+"pipeline": "I",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+3236,
+1613,
+12,
+23
+],
+"small": false,
+"pipeline": "I",
+"label": "I",
+"checked": true
+},
+{
+"box": [
+1566,
+1701,
+9,
+26
+],
+"small": false,
+"pipeline": "I",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1888,
+1868,
+11,
+22
+],
+"small": false,
+"pipeline": "I",
+"label": "I",
+"checked": true
+},
+{
+"box": [
+1076,
+2059,
+10,
+25
+],
+"small": false,
+"pipeline": "I",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1185,
+2104,
+9,
+26
+],
+"small": false,
+"pipeline": "I",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2520,
+754,
+14,
+22
+],
+"small": false,
+"pipeline": "L",
+"label": "L",
+"checked": true
+},
+{
+"box": [
+613,
+858,
+14,
+21
+],
+"small": false,
+"pipeline": "L",
+"label": "L",
+"checked": true
+},
+{
+"box": [
+1021,
+1119,
+15,
+22
+],
+"small": false,
+"pipeline": "L",
+"label": "L",
+"checked": true
+},
+{
+"box": [
+614,
+1125,
+13,
+21
+],
+"small": false,
+"pipeline": "L",
+"label": "L",
+"checked": true
+},
+{
+"box": [
+3303,
+1410,
+16,
+22
+],
+"small": false,
+"pipeline": "L",
+"label": "L",
+"checked": true
+},
+{
+"box": [
+1296,
+1479,
+12,
+3
+],
+"small": false,
+"pipeline": "L",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+645,
+1886,
+12,
+22
+],
+"small": false,
+"pipeline": "L",
+"label": "L",
+"checked": true
+},
+{
+"box": [
+703,
+1938,
+9,
+25
+],
+"small": false,
+"pipeline": "L",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2141,
+2168,
+9,
+24
+],
+"small": false,
+"pipeline": "L",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+941,
+2252,
+21,
+32
+],
+"small": false,
+"pipeline": "L",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2952,
+475,
+34,
+22
+],
+"small": false,
+"pipeline": "M",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1214,
+675,
+22,
+20
+],
+"small": false,
+"pipeline": "M",
+"label": "M",
+"checked": true
+},
+{
+"box": [
+2536,
+754,
+32,
+21
+],
+"small": false,
+"pipeline": "M",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1193,
+1028,
+23,
+21
+],
+"small": false,
+"pipeline": "M",
+"label": "M",
+"checked": true
+},
+{
+"box": [
+2769,
+1281,
+18,
+22
+],
+"small": false,
+"pipeline": "O",
+"label": "O",
+"checked": true
+},
+{
+"box": [
+1797,
+1528,
+16,
+14
+],
+"small": true,
+"pipeline": "O",
+"label": "O",
+"checked": true
+},
+{
+"box": [
+1856,
+1586,
+17,
+22
+],
+"small": false,
+"pipeline": "O",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1992,
+248,
+19,
+28
+],
+"small": false,
+"pipeline": "P",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2573,
+1149,
+14,
+8
+],
+"small": true,
+"pipeline": "P",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1426,
+1286,
+15,
+16
+],
+"small": true,
+"pipeline": "P",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+839,
+870,
+24,
+22
+],
+"small": false,
+"pipeline": "Q",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+631,
+1125,
+18,
+21
+],
+"small": false,
+"pipeline": "Q",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+854,
+2197,
+15,
+21
+],
+"small": false,
+"pipeline": "Q",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1994,
+1228,
+18,
+20
+],
+"small": false,
+"pipeline": "R",
+"label": "R",
+"checked": true
+},
+{
+"box": [
+3238,
+1522,
+16,
+22
+],
+"small": false,
+"pipeline": "S",
+"label": "S",
+"checked": true
+},
+{
+"box": [
+588,
+140,
+14,
+22
+],
+"small": false,
+"pipeline": "T",
+"label": "T",
+"checked": true
+},
+{
+"box": [
+2883,
+753,
+6,
+21
+],
+"small": false,
+"pipeline": "T",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+2411,
+1126,
+16,
+21
+],
+"small": false,
+"pipeline": "T",
+"label": "T",
+"checked": true
+},
+{
+"box": [
+2031,
+1227,
+13,
+21
+],
+"small": false,
+"pipeline": "T",
+"label": "T",
+"checked": true
+},
+{
+"box": [
+1833,
+1250,
+15,
+21
+],
+"small": false,
+"pipeline": "T",
+"label": "T",
+"checked": true
+},
+{
+"box": [
+3266,
+1703,
+15,
+22
+],
+"small": false,
+"pipeline": "T",
+"label": "T",
+"checked": true
+},
+{
+"box": [
+138,
+1789,
+14,
+22
+],
+"small": false,
+"pipeline": "T",
+"label": "T",
+"checked": true
+},
+{
+"box": [
+195,
+650,
+26,
+26
+],
+"small": false,
+"pipeline": "U",
+"label": "U",
+"checked": true
+},
+{
+"box": [
+1105,
+1526,
+9,
+24
+],
+"small": false,
+"pipeline": "U",
+"label": "H",
+"checked": true
+},
+{
+"box": [
+1600,
+272,
+17,
+22
+],
+"small": false,
+"pipeline": "V",
+"label": "V",
+"checked": true
+},
+{
+"box": [
+1948,
+313,
+24,
+22
+],
+"small": false,
+"pipeline": "W",
+"label": "W",
+"checked": true
+},
+{
+"box": [
+2195,
+1371,
+24,
+21
+],
+"small": false,
+"pipeline": "W",
+"label": "W",
+"checked": true
+},
+{
+"box": [
+2660,
+2081,
+26,
+23
+],
+"small": false,
+"pipeline": "W",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1318,
+1228,
+10,
+12
+],
+"small": true,
+"pipeline": "sub0",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1890,
+1466,
+11,
+16
+],
+"small": true,
+"pipeline": "sub0",
+"label": "sub0",
+"checked": true
+},
+{
+"box": [
+1222,
+1658,
+8,
+8
+],
+"small": true,
+"pipeline": "sub0",
+"label": "sub0",
+"checked": true
+},
+{
+"box": [
+2943,
+2036,
+15,
+14
+],
+"small": true,
+"pipeline": "sub0",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+3223,
+2239,
+8,
+11
+],
+"small": true,
+"pipeline": "sub0",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+780,
+732,
+12,
+12
+],
+"small": true,
+"pipeline": "sub1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1753,
+1258,
+10,
+7
+],
+"small": true,
+"pipeline": "sub1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1643,
+1582,
+17,
+7
+],
+"small": false,
+"pipeline": "sub1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+304,
+1824,
+16,
+19
+],
+"small": false,
+"pipeline": "sub1",
+"label": "x",
+"checked": true
+},
+{
+"box": [
+1511,
+2194,
+6,
+8
+],
+"small": true,
+"pipeline": "sub1",
+"label": "sub1",
+"checked": true
+}
+],
+"boxes": [
+{
+"box": [
+2943,
+1172,
+96,
+183
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+796,
+1245,
+95,
+183
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+2525,
+1263,
+64,
+240
+],
+"pipeline": "chip",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+3082,
+2148,
+327,
+222
+],
+"pipeline": "chip",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+798,
+1512,
+91,
+178
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+1332,
+1157,
+90,
+354
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+798,
+983,
+90,
+178
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+797,
+718,
+90,
+177
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+317,
+428,
+92,
+177
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+2645,
+824,
+93,
+351
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+3122,
+229,
+89,
+356
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+796,
+187,
+90,
+178
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+317,
+162,
+91,
+178
+],
+"pipeline": "chip",
+"shape": "chip",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+2649,
+2265,
+438,
+104
+],
+"pipeline": "chip",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+2650,
+2151,
+436,
+115
+],
+"pipeline": "chip",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+2106,
+1639,
+35,
+64
+],
+"pipeline": "nor",
+"shape": "plain",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+1273,
+1714,
+64,
+66
+],
+"pipeline": "and-or-invert",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+1629,
+2128,
+36,
+65
+],
+"pipeline": "nand",
+"shape": "plain",
+"pipeline_right": true,
+"checked": true
+},
+{
+"box": [
+2947,
+1837,
+30,
+60
+],
+"pipeline": "nor",
+"shape": "plain",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+1273,
+1303,
+60,
+61
+],
+"pipeline": "and-or-invert",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+1273,
+1245,
+60,
+59
+],
+"pipeline": "and-or-invert",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+1273,
+1187,
+60,
+59
+],
+"pipeline": "and-or-invert",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+257,
+457,
+61,
+60
+],
+"pipeline": "and-or-invert",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+767,
+541,
+31,
+61
+],
+"pipeline": "nand",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+},
+{
+"box": [
+767,
+482,
+31,
+60
+],
+"pipeline": "nand",
+"shape": "none",
+"pipeline_right": false,
+"checked": true
+}
+],
+"unchecked": {
+"circles": [
+[
+971.5,
+333.5,
+27.5
+],
+[
+3091.5,
+1862.5,
+27.299999237060547
+],
+[
+1326.5,
+744.5,
+23.899999618530273
+],
+[
+972.5,
+1657.5,
+27.5
+],
+[
+3179.5,
+1715.5,
+27.0
+],
+[
+2202.5,
+2169.5,
+27.100000381469727
+],
+[
+494.5,
+1102.5,
+23.600000381469727
+],
+[
+2220.5,
+1668.5,
+23.799999237060547
+],
+[
+2200.5,
+1902.5,
+23.5
+],
+[
+972.5,
+1394.5,
+27.100000381469727
+],
+[
+1328.5,
+1036.5,
+25.700000762939453
+],
+[
+497.5,
+2163.5,
+27.899999618530273
+],
+[
+713.5,
+1217.5,
+23.5
+],
+[
+970.5,
+1924.5,
+28.0
+],
+[
+969.5,
+598.5,
+27.399999618530273
+],
+[
+3207.5,
+1509.5,
+23.5
+],
+[
+496.5,
+1366.5,
+27.100000381469727
+],
+[
+1326.5,
+449.5,
+23.5
+],
+[
+714.5,
+1747.5,
+26.799999237060547
+],
+[
+493.5,
+310.5,
+25.700000762939453
+],
+[
+493.5,
+573.5,
+28.100000381469727
+],
+[
+494.5,
+838.5,
+23.299999237060547
+],
+[
+1326.5,
+862.5,
+26.799999237060547
+],
+[
+1326.5,
+508.5,
+24.0
+],
+[
+713.5,
+1483.5,
+23.5
+],
+[
+2201.5,
+1990.5,
+23.5
+],
+[
+497.5,
+1630.5,
+27.100000381469727
+],
+[
+1326.5,
+979.5,
+23.299999237060547
+],
+[
+1325.5,
+332.5,
+26.799999237060547
+],
+[
+1324.5,
+272.5,
+25.700000762939453
+],
+[
+1574.5,
+1982.5,
+28.600000381469727
+],
+[
+970.5,
+863.5,
+24.0
+],
+[
+1930.5,
+1462.5,
+23.299999237060547
+],
+[
+2862.5,
+1615.5,
+26.799999237060547
+],
+[
+1454.5,
+1569.5,
+25.200000762939453
+],
+[
+710.5,
+954.5,
+25.200000762939453
+],
+[
+1326.5,
+625.5,
+23.5
+],
+[
+1326.5,
+568.5,
+23.299999237060547
+],
+[
+1713.5,
+1610.5,
+27.899999618530273
+],
+[
+714.5,
+687.5,
+26.799999237060547
+],
+[
+1326.5,
+918.5,
+25.100000381469727
+],
+[
+1327.5,
+391.5,
+26.799999237060547
+],
+[
+1327.5,
+802.5,
+23.5
+],
+[
+1327.5,
+215.5,
+25.600000381469727
+],
+[
+975.5,
+2190.5,
+23.799999237060547
+],
+[
+1325.5,
+156.5,
+27.0
+],
+[
+3207.5,
+1420.5,
+28.0
+],
+[
+970.5,
+1129.5,
+23.299999237060547
+],
+[
+498.5,
+1895.5,
+26.0
+],
+[
+1324.5,
+684.5,
+24.899999618530273
+]
+],
+"diamonds": [
+[
+1127,
+2289,
+21,
+13
+],
+[
+1694,
+2241,
+24,
+15
+],
+[
+1694,
+2153,
+23,
+14
+],
+[
+2380,
+2146,
+26,
+16
+],
+[
+950,
+2067,
+26,
+16
+],
+[
+2380,
+1969,
+24,
+15
+],
+[
+1485,
+1887,
+23,
+14
+],
+[
+2380,
+1881,
+24,
+15
+],
+[
+2981,
+1837,
+26,
+26
+],
+[
+1840,
+1971,
+26,
+17
+],
+[
+1840,
+1855,
+25,
+16
+],
+[
+951,
+1800,
+24,
+15
+],
+[
+2021,
+1659,
+25,
+26
+],
+[
+3159,
+1621,
+21,
+14
+],
+[
+1483,
+1709,
+24,
+15
+],
+[
+1544,
+1571,
+25,
+26
+],
+[
+2199,
+1514,
+23,
+14
+],
+[
+2770,
+1521,
+26,
+15
+],
+[
+2682,
+1500,
+26,
+26
+],
+[
+952,
+1534,
+23,
+16
+],
+[
+2020,
+1478,
+25,
+27
+],
+[
+2162,
+1350,
+25,
+16
+],
+[
+2019,
+1329,
+27,
+26
+],
+[
+951,
+1270,
+23,
+15
+],
+[
+1779,
+1266,
+24,
+15
+],
+[
+1689,
+1243,
+28,
+29
+],
+[
+1960,
+1039,
+25,
+26
+],
+[
+949,
+1005,
+24,
+16
+],
+[
+2317,
+1144,
+25,
+15
+],
+[
+3245,
+1018,
+22,
+15
+],
+[
+3244,
+930,
+23,
+14
+],
+[
+3243,
+842,
+24,
+15
+],
+[
+3244,
+753,
+23,
+14
+],
+[
+949,
+741,
+24,
+14
+],
+[
+2798,
+402,
+24,
+15
+],
+[
+2800,
+1139,
+23,
+14
+],
+[
+2801,
+1051,
+22,
+15
+],
+[
+2800,
+962,
+23,
+15
+],
+[
+2801,
+874,
+22,
+14
+],
+[
+2799,
+668,
+22,
+13
+],
+[
+2800,
+579,
+22,
+14
+],
+[
+2799,
+490,
+23,
+15
+],
+[
+3243,
+546,
+24,
+15
+],
+[
+3244,
+458,
+23,
+14
+],
+[
+3243,
+368,
+24,
+15
+],
+[
+3243,
+281,
+22,
+14
+],
+[
+1720,
+277,
+19,
+13
+],
+[
+948,
+475,
+24,
+15
+],
+[
+948,
+210,
+24,
+14
+],
+[
+2242,
+519,
+12,
+13
+],
+[
+2346,
+140,
+24,
+14
+],
+[
+2206,
+104,
+14,
+15
+]
+],
+"junction_dots": [
+[
+258.14285714285717,
+781.4285714285714
+],
+[
+768.0,
+807.0
+],
+[
+289.25,
+899.0
+],
+[
+1274.4,
+1303.2
+]
+],
+"note": "pipeline output, NOT checked by eye"
+},
+"corrections": {
+"letters_checked": 160,
+"letters_changed": 60,
+"letters_not_a_letter": 55,
+"letters_other_char": 5,
+"boxes_checked": 25,
+"boxes_changed": 13
+}
+}

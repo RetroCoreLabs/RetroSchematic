@@ -1,0 +1,7 @@
+{"note": "10-page loop setup, the 5 ND-100 pages, checked by eye 2026-11-24 at 110 dpi. All five are drawn turned 90 degrees on the page.",
+ "pages": [
+  {"book": "binder", "page": 8,   "drawing": "5A05", "card": "3002 NORD-100 CPU, Bus Data, page 3 of 5", "style": "hand"},
+  {"book": "binder", "page": 96,  "drawing": "5A64", "card": "3021 Bus Expander, sheet 1", "style": "hand"},
+  {"book": "iosys",  "page": 228, "drawing": "5A21", "card": "3010 Floppy and 4 terminal interface, page 2", "style": "hand"},
+  {"book": "iosys",  "page": 237, "drawing": "5A11", "card": "3004 10 MB disk controller, page 3 of 4", "style": "hand", "replaces": "ND-120 page 10"},
+  {"book": "nd120",  "page": 41,  "drawing": "sheet 41 of 50", "card": "3202 ND-120 CPU, IOC/ALD/IHR registers", "style": "CAD", "replaces": "ND-120 page 33"}]}

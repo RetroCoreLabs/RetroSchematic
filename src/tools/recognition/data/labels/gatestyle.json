@@ -1,0 +1,864 @@
+{
+ "p64": {
+  "style_used": 0,
+  "A": {
+   "gates": 50,
+   "found": 27,
+   "kind_right": 25,
+   "none": 151,
+   "false_gates": 3,
+   "wrong": [
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "not"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "nor",
+     "not"
+    ]
+   ]
+  },
+  "B": {
+   "gates": 50,
+   "found": 22,
+   "kind_right": 21,
+   "none": 151,
+   "false_gates": 2,
+   "wrong": [
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "nor",
+     "other"
+    ]
+   ]
+  },
+  "C": {
+   "gates": 50,
+   "found": 33,
+   "kind_right": 33,
+   "none": 151,
+   "false_gates": 3,
+   "wrong": [
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ]
+   ]
+  }
+ },
+ "scsi10": {
+  "style_used": 1,
+  "A": {
+   "gates": 28,
+   "found": 25,
+   "kind_right": 24,
+   "none": 184,
+   "false_gates": 15,
+   "wrong": [
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ]
+   ]
+  },
+  "B": {
+   "gates": 28,
+   "found": 27,
+   "kind_right": 27,
+   "none": 184,
+   "false_gates": 8,
+   "wrong": [
+    [
+     "and",
+     "none"
+    ]
+   ]
+  },
+  "C": {
+   "gates": 28,
+   "found": 28,
+   "kind_right": 26,
+   "none": 184,
+   "false_gates": 60,
+   "wrong": [
+    [
+     "not",
+     "other"
+    ],
+    [
+     "not",
+     "other"
+    ]
+   ]
+  }
+ },
+ "scsi22": {
+  "style_used": 1,
+  "A": {
+   "gates": 33,
+   "found": 27,
+   "kind_right": 25,
+   "none": 135,
+   "false_gates": 19,
+   "wrong": [
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "and"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ]
+   ]
+  },
+  "B": {
+   "gates": 33,
+   "found": 31,
+   "kind_right": 30,
+   "none": 135,
+   "false_gates": 5,
+   "wrong": [
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ]
+   ]
+  },
+  "C": {
+   "gates": 33,
+   "found": 33,
+   "kind_right": 29,
+   "none": 135,
+   "false_gates": 48,
+   "wrong": [
+    [
+     "not",
+     "other"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "not",
+     "other"
+    ]
+   ]
+  }
+ },
+ "scsi23": {
+  "style_used": 0,
+  "A": {
+   "gates": 42,
+   "found": 33,
+   "kind_right": 25,
+   "none": 188,
+   "false_gates": 23,
+   "wrong": [
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nand",
+     "and"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "nand",
+     "and"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ]
+   ]
+  },
+  "B": {
+   "gates": 42,
+   "found": 7,
+   "kind_right": 0,
+   "none": 188,
+   "false_gates": 47,
+   "wrong": [
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nor",
+     "and"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "not",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ]
+   ]
+  },
+  "C": {
+   "gates": 42,
+   "found": 20,
+   "kind_right": 13,
+   "none": 188,
+   "false_gates": 39,
+   "wrong": [
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "and"
+    ],
+    [
+     "nor",
+     "none"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "and",
+     "none"
+    ],
+    [
+     "nor",
+     "other"
+    ],
+    [
+     "other",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "nand",
+     "none"
+    ],
+    [
+     "not",
+     "other"
+    ],
+    [
+     "other",
+     "none"
+    ]
+   ]
+  }
+ },
+ "train_info": {
+  "A": {
+   "heldout": 0.9872340425531915,
+   "epoch": 11
+  },
+  "B_hand": {
+   "heldout": 0.9961538461538462,
+   "epoch": 1
+  },
+  "B_cad": {
+   "heldout": 0.9809523809523809,
+   "epoch": 7
+  },
+  "C": {
+   "heldout": 0.9914893617021276,
+   "epoch": 6
+  }
+ }
+}

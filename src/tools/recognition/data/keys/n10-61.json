@@ -1,0 +1,4976 @@
+{
+ "format": "nd-netlist-key",
+ "page": "n10-61",
+ "sheet": "2A47 CDC LINE PRINTER INTERFACE 1047/III",
+ "parts": [
+  {
+   "ref": "1A",
+   "type": "74155",
+   "kind": "chip",
+   "box": [
+    301,
+    264,
+    92,
+    297
+   ],
+   "draft_id": "C15",
+   "confidence": "read"
+  },
+  {
+   "ref": "1C",
+   "type": "7474",
+   "kind": "chip",
+   "box": [
+    1226,
+    260,
+    90,
+    176
+   ],
+   "draft_id": "C14",
+   "confidence": "inferred",
+   "note": "dual flip-flop drawn twice: STROB half here, TEST half at draft C2 [2441,250]"
+  },
+  {
+   "ref": "18D",
+   "type": "7474",
+   "kind": "chip",
+   "box": [
+    1787,
+    255,
+    95,
+    180
+   ],
+   "draft_id": "C4",
+   "confidence": "inferred",
+   "note": "drawn twice: INT RFT here, INT ERR half at draft C3"
+  },
+  {
+   "ref": "2D",
+   "type": "74123",
+   "kind": "chip",
+   "box": [
+    2768,
+    247,
+    98,
+    181
+   ],
+   "draft_id": "C0",
+   "confidence": "read",
+   "note": "written 123; drawn twice: CHSIM half here, MCP half at draft C20"
+  },
+  {
+   "ref": "3C",
+   "type": "74157",
+   "kind": "chip",
+   "box": [
+    3093,
+    246,
+    98,
+    360
+   ],
+   "draft_id": "C1",
+   "confidence": "read"
+  },
+  {
+   "ref": "19B",
+   "type": "74157",
+   "kind": "chip",
+   "box": [
+    932,
+    706,
+    91,
+    356
+   ],
+   "draft_id": "C11",
+   "confidence": "read"
+  },
+  {
+   "ref": "19A",
+   "type": "74174",
+   "kind": "chip",
+   "box": [
+    1200,
+    704,
+    90,
+    356
+   ],
+   "draft_id": "C12",
+   "confidence": "read"
+  },
+  {
+   "ref": "17A",
+   "type": "8098",
+   "kind": "chip",
+   "box": [
+    1468,
+    700,
+    60,
+    355
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "8A",
+   "type": "8097",
+   "kind": "chip",
+   "box": [
+    2147,
+    521,
+    61,
+    237
+   ],
+   "draft_id": "C13",
+   "confidence": "read",
+   "note": "also marked (8095)"
+  },
+  {
+   "ref": "12C",
+   "type": "74S157",
+   "kind": "chip",
+   "box": [
+    2536,
+    661,
+    92,
+    265
+   ],
+   "draft_id": "C19",
+   "confidence": "read"
+  },
+  {
+   "ref": "8C",
+   "type": "8123",
+   "kind": "chip",
+   "box": [
+    3098,
+    751,
+    97,
+    361
+   ],
+   "draft_id": "C5",
+   "confidence": "read"
+  },
+  {
+   "ref": "17B",
+   "type": "74153",
+   "kind": "chip",
+   "box": [
+    934,
+    1267,
+    96,
+    301
+   ],
+   "draft_id": "C7",
+   "confidence": "read"
+  },
+  {
+   "ref": "15B",
+   "type": "74174",
+   "kind": "chip",
+   "box": [
+    1321,
+    1267,
+    92,
+    352
+   ],
+   "draft_id": "C10",
+   "confidence": "read"
+  },
+  {
+   "ref": "15A",
+   "type": "8098",
+   "kind": "chip",
+   "box": [
+    1590,
+    1263,
+    60,
+    357
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "3A",
+   "type": "8098",
+   "kind": "chip",
+   "box": [
+    2212,
+    1232,
+    58,
+    353
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "3B",
+   "type": "8097",
+   "kind": "chip",
+   "box": [
+    2658,
+    1230,
+    58,
+    355
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "5A",
+   "type": "8098",
+   "kind": "chip",
+   "box": [
+    1976,
+    1703,
+    60,
+    360
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "5B",
+   "type": "8097",
+   "kind": "chip",
+   "box": [
+    2335,
+    1700,
+    60,
+    365
+   ],
+   "draft_id": "C8",
+   "confidence": "read"
+  },
+  {
+   "ref": "5C",
+   "type": "8123",
+   "kind": "chip",
+   "box": [
+    3101,
+    1253,
+    95,
+    357
+   ],
+   "draft_id": "C6",
+   "confidence": "read"
+  },
+  {
+   "ref": "19C",
+   "type": "74155",
+   "kind": "chip",
+   "box": [
+    319,
+    1879,
+    94,
+    152
+   ],
+   "draft_id": "C21",
+   "confidence": "read"
+  },
+  {
+   "ref": "10C",
+   "type": "7402",
+   "kind": "gatepack",
+   "box": [
+    958,
+    262,
+    32,
+    60
+   ],
+   "draft_id": "G0",
+   "confidence": "inferred",
+   "note": "pin pattern of 7402; parts list 2 x 7402"
+  },
+  {
+   "ref": "6D",
+   "type": "7402",
+   "kind": "gatepack",
+   "box": [
+    910,
+    1888,
+    30,
+    60
+   ],
+   "draft_id": "G19",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "1B",
+   "type": "7408",
+   "kind": "gatepack",
+   "box": [
+    1078,
+    320,
+    60,
+    60
+   ],
+   "draft_id": "G1",
+   "confidence": "inferred",
+   "note": "box + triangle = AND; parts list 2 x 7408"
+  },
+  {
+   "ref": "17C",
+   "type": "7408",
+   "kind": "gatepack",
+   "box": [
+    930,
+    378,
+    60,
+    62
+   ],
+   "draft_id": "G22",
+   "confidence": "inferred"
+  },
+  {
+   "ref": "15C",
+   "type": "74S04",
+   "kind": "gatepack",
+   "box": [
+    542,
+    320,
+    32,
+    60
+   ],
+   "draft_id": "G2",
+   "confidence": "inferred",
+   "note": "six inverters; parts list 74S04"
+  },
+  {
+   "ref": "8B",
+   "type": "7400",
+   "kind": "gatepack",
+   "box": [
+    1612,
+    580,
+    32,
+    60
+   ],
+   "draft_id": "G9",
+   "confidence": "inferred",
+   "note": "only 7400 on list"
+  },
+  {
+   "ref": "12B",
+   "type": "7420",
+   "kind": "gatepack",
+   "box": [
+    910,
+    1712,
+    30,
+    118
+   ],
+   "draft_id": "G21",
+   "confidence": "inferred",
+   "note": "two 4-input NANDs"
+  },
+  {
+   "ref": "10A",
+   "type": "7486",
+   "kind": "gatepack",
+   "box": [
+    333,
+    683,
+    62,
+    55
+   ],
+   "draft_id": "G10",
+   "confidence": "inferred",
+   "note": "= sign in box"
+  },
+  {
+   "ref": "10B",
+   "type": "7430",
+   "kind": "gatepack",
+   "box": [
+    548,
+    872,
+    30,
+    240
+   ],
+   "draft_id": null,
+   "confidence": "inferred",
+   "note": "8-input NAND"
+  },
+  {
+   "ref": "4D",
+   "type": "7432",
+   "kind": "gatepack",
+   "box": [
+    460,
+    1655,
+    62,
+    60
+   ],
+   "draft_id": "G16",
+   "confidence": "inferred",
+   "note": "last unassigned 2-input type on list"
+  },
+  {
+   "ref": "15D",
+   "type": "7438",
+   "kind": "gatepack",
+   "box": [
+    2250,
+    985,
+    62,
+    55
+   ],
+   "draft_id": "G37",
+   "confidence": "inferred",
+   "note": "D shape driving bus interrupt"
+  },
+  {
+   "ref": "12A",
+   "type": "7414",
+   "kind": "gatepack",
+   "box": [
+    1502,
+    1740,
+    30,
+    40
+   ],
+   "draft_id": "G17",
+   "confidence": "inferred",
+   "note": "only 7414 on list"
+  },
+  {
+   "ref": "R-1",
+   "type": "R 1k",
+   "kind": "passive",
+   "box": [
+    622,
+    145,
+    22,
+    95
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "pull-up making H"
+  },
+  {
+   "ref": "R-2",
+   "type": "R 1k",
+   "kind": "passive",
+   "box": [
+    295,
+    625,
+    20,
+    60
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "pull-up on BA2 / 10A.4"
+  },
+  {
+   "ref": "R-3",
+   "type": "R 5.6k",
+   "kind": "passive",
+   "box": [
+    484,
+    1800,
+    20,
+    95
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "pull-up on CR"
+  },
+  {
+   "ref": "R-4",
+   "type": "R 1.5k",
+   "kind": "passive",
+   "box": [
+    2388,
+    1133,
+    65,
+    18
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "pull-up on INTW"
+  },
+  {
+   "ref": "R-5",
+   "type": "R 33k",
+   "kind": "passive",
+   "box": [
+    2565,
+    197,
+    60,
+    18
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "2D timing 10 ms"
+  },
+  {
+   "ref": "C-1",
+   "type": "C 0.1uF",
+   "kind": "passive",
+   "box": [
+    2475,
+    195,
+    40,
+    25
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "2D pins 6-7"
+  },
+  {
+   "ref": "R-6",
+   "type": "R 33k",
+   "kind": "passive",
+   "box": [
+    945,
+    2047,
+    60,
+    18
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "2D MCP timing 7 us"
+  },
+  {
+   "ref": "C-2",
+   "type": "C 1000pF",
+   "kind": "passive",
+   "box": [
+    870,
+    2040,
+    40,
+    25
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "2D pins 14-15"
+  },
+  {
+   "ref": "R-7",
+   "type": "R 220",
+   "kind": "passive",
+   "box": [
+    1898,
+    1665,
+    60,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "INPUT0 to DEINPUT0"
+  },
+  {
+   "ref": "C-3",
+   "type": "C 330pF",
+   "kind": "passive",
+   "box": [
+    1925,
+    1595,
+    45,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "on DEINPUT0"
+  },
+  {
+   "ref": "C-4",
+   "type": "C 100pF",
+   "kind": "passive",
+   "box": [
+    2660,
+    655,
+    30,
+    35
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "on IDR0"
+  },
+  {
+   "ref": "C-5",
+   "type": "C 100pF",
+   "kind": "passive",
+   "box": [
+    2655,
+    835,
+    30,
+    50
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "on CON0"
+  },
+  {
+   "ref": "R-8",
+   "type": "R 47",
+   "kind": "passive",
+   "box": [
+    1355,
+    1740,
+    60,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "READY"
+  },
+  {
+   "ref": "R-9",
+   "type": "R 47",
+   "kind": "passive",
+   "box": [
+    1355,
+    1900,
+    60,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "LINE READY"
+  },
+  {
+   "ref": "R-10",
+   "type": "R 47",
+   "kind": "passive",
+   "box": [
+    1355,
+    2055,
+    60,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "LOAD IMAG"
+  },
+  {
+   "ref": "R-11",
+   "type": "R 47",
+   "kind": "passive",
+   "box": [
+    1355,
+    2200,
+    60,
+    20
+   ],
+   "draft_id": null,
+   "confidence": "read",
+   "note": "CHREQ"
+  },
+  {
+   "ref": "C-6",
+   "type": "C 330pF",
+   "kind": "passive",
+   "box": [
+    1435,
+    1790,
+    25,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-7",
+   "type": "C 330pF",
+   "kind": "passive",
+   "box": [
+    1435,
+    1935,
+    25,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-8",
+   "type": "C 330pF",
+   "kind": "passive",
+   "box": [
+    1435,
+    2085,
+    25,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "C-9",
+   "type": "C 330pF",
+   "kind": "passive",
+   "box": [
+    1435,
+    2235,
+    25,
+    30
+   ],
+   "draft_id": null,
+   "confidence": "read"
+  },
+  {
+   "ref": "P",
+   "type": "NORD-10 backplane/cable connector",
+   "kind": "connector",
+   "box": null,
+   "draft_id": null,
+   "confidence": "read"
+  }
+ ],
+ "gates": [
+  {
+   "id": "10C/1",
+   "part": "10C",
+   "kind": "nor",
+   "inputs": [
+    5,
+    6
+   ],
+   "output": 4,
+   "box": [
+    958,
+    262,
+    32,
+    60
+   ],
+   "draft_id": "G0"
+  },
+  {
+   "id": "10C/2",
+   "part": "10C",
+   "kind": "nor",
+   "inputs": [
+    2,
+    3
+   ],
+   "output": 1,
+   "box": [
+    458,
+    1185,
+    30,
+    57
+   ],
+   "draft_id": "G40"
+  },
+  {
+   "id": "10C/3",
+   "part": "10C",
+   "kind": "nor",
+   "inputs": [
+    11,
+    12
+   ],
+   "output": 13,
+   "box": [
+    458,
+    1420,
+    30,
+    60
+   ],
+   "draft_id": "G46"
+  },
+  {
+   "id": "10C/4",
+   "part": "10C",
+   "kind": "nor",
+   "inputs": [
+    8,
+    9
+   ],
+   "output": 10,
+   "box": [
+    2386,
+    905,
+    30,
+    58
+   ],
+   "draft_id": "G47",
+   "box0": [
+    2385,
+    905,
+    30,
+    55
+   ]
+  },
+  {
+   "id": "1B/1",
+   "part": "1B",
+   "kind": "and",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    1078,
+    320,
+    60,
+    60
+   ],
+   "draft_id": "G1"
+  },
+  {
+   "id": "1B/2",
+   "part": "1B",
+   "kind": "and",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    1078,
+    465,
+    60,
+    60
+   ],
+   "draft_id": "G4"
+  },
+  {
+   "id": "1B/3",
+   "part": "1B",
+   "kind": "and",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    810,
+    557,
+    60,
+    60
+   ],
+   "draft_id": "G7"
+  },
+  {
+   "id": "1B/4",
+   "part": "1B",
+   "kind": "and",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    1405,
+    450,
+    60,
+    60
+   ],
+   "draft_id": "G26"
+  },
+  {
+   "id": "17C/1",
+   "part": "17C",
+   "kind": "and",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    928,
+    377,
+    62,
+    62
+   ],
+   "draft_id": "G22",
+   "box0": [
+    930,
+    378,
+    60,
+    62
+   ]
+  },
+  {
+   "id": "17C/2",
+   "part": "17C",
+   "kind": "and",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    1732,
+    506,
+    58,
+    62
+   ],
+   "draft_id": "G5",
+   "box0": [
+    1732,
+    505,
+    60,
+    62
+   ]
+  },
+  {
+   "id": "17C/3",
+   "part": "17C",
+   "kind": "and",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    2028,
+    445,
+    60,
+    62
+   ],
+   "draft_id": "G33"
+  },
+  {
+   "id": "17C/4",
+   "part": "17C",
+   "kind": "and",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    467,
+    2246,
+    60,
+    58
+   ],
+   "draft_id": "G20",
+   "box0": [
+    468,
+    2240,
+    60,
+    60
+   ]
+  },
+  {
+   "id": "15C/1",
+   "part": "15C",
+   "kind": "not",
+   "inputs": [
+    13
+   ],
+   "output": 12,
+   "box": [
+    542,
+    320,
+    32,
+    60
+   ],
+   "draft_id": "G2"
+  },
+  {
+   "id": "15C/2",
+   "part": "15C",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    810,
+    364,
+    30,
+    57
+   ],
+   "draft_id": "G3",
+   "box0": [
+    810,
+    362,
+    32,
+    62
+   ]
+  },
+  {
+   "id": "15C/3",
+   "part": "15C",
+   "kind": "not",
+   "inputs": [
+    3
+   ],
+   "output": 4,
+   "box": [
+    2742,
+    560,
+    28,
+    58
+   ],
+   "draft_id": "G8",
+   "box0": [
+    2745,
+    560,
+    32,
+    55
+   ]
+  },
+  {
+   "id": "15C/4",
+   "part": "15C",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    2744,
+    887,
+    28,
+    60
+   ],
+   "draft_id": "G43",
+   "box0": [
+    2745,
+    885,
+    32,
+    55
+   ]
+  },
+  {
+   "id": "15C/5",
+   "part": "15C",
+   "kind": "not",
+   "inputs": [
+    1
+   ],
+   "output": 2,
+   "box": [
+    1589,
+    1146,
+    27,
+    60
+   ],
+   "draft_id": "G15",
+   "box0": [
+    1590,
+    1145,
+    30,
+    60
+   ]
+  },
+  {
+   "id": "15C/6",
+   "part": "15C",
+   "kind": "not",
+   "inputs": [
+    11
+   ],
+   "output": 10,
+   "box": [
+    497,
+    2113,
+    27,
+    58
+   ],
+   "draft_id": "G44",
+   "box0": [
+    498,
+    2115,
+    30,
+    58
+   ]
+  },
+  {
+   "id": "8B/1",
+   "part": "8B",
+   "kind": "nand",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    1612,
+    580,
+    32,
+    60
+   ],
+   "draft_id": "G9"
+  },
+  {
+   "id": "8B/2",
+   "part": "8B",
+   "kind": "nand",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    1940,
+    551,
+    28,
+    58
+   ],
+   "draft_id": "G6",
+   "box0": [
+    1940,
+    550,
+    32,
+    58
+   ]
+  },
+  {
+   "id": "8B/3",
+   "part": "8B",
+   "kind": "nand",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    338,
+    1331,
+    29,
+    62
+   ],
+   "draft_id": null,
+   "box0": [
+    340,
+    1330,
+    30,
+    60
+   ]
+  },
+  {
+   "id": "12B/1",
+   "part": "12B",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2,
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    340,
+    1540,
+    30,
+    115
+   ],
+   "draft_id": null
+  },
+  {
+   "id": "12B/2",
+   "part": "12B",
+   "kind": "nand",
+   "inputs": [
+    9,
+    10,
+    12,
+    13
+   ],
+   "output": 8,
+   "box": [
+    910,
+    1712,
+    30,
+    118
+   ],
+   "draft_id": "G21"
+  },
+  {
+   "id": "10A/1",
+   "part": "10A",
+   "kind": "xor",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    333,
+    680,
+    60,
+    57
+   ],
+   "draft_id": "G10",
+   "box0": [
+    333,
+    683,
+    62,
+    55
+   ]
+  },
+  {
+   "id": "10A/2",
+   "part": "10A",
+   "kind": "xor",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    334,
+    768,
+    60,
+    58
+   ],
+   "draft_id": "G11",
+   "box0": [
+    333,
+    770,
+    62,
+    55
+   ]
+  },
+  {
+   "id": "10A/3",
+   "part": "10A",
+   "kind": "xor",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    333,
+    856,
+    60,
+    60
+   ],
+   "draft_id": "G12",
+   "box0": [
+    333,
+    857,
+    62,
+    55
+   ]
+  },
+  {
+   "id": "10A/4",
+   "part": "10A",
+   "kind": "xor",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    333,
+    945,
+    62,
+    58
+   ],
+   "draft_id": "G13"
+  },
+  {
+   "id": "10B/1",
+   "part": "10B",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    11,
+    12
+   ],
+   "output": 8,
+   "box": [
+    546,
+    870,
+    30,
+    240
+   ],
+   "draft_id": null,
+   "box0": [
+    548,
+    872,
+    30,
+    240
+   ]
+  },
+  {
+   "id": "4D/1",
+   "part": "4D",
+   "kind": "or",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    460,
+    1655,
+    62,
+    60
+   ],
+   "draft_id": "G16"
+  },
+  {
+   "id": "4D/2",
+   "part": "4D",
+   "kind": "or",
+   "inputs": [
+    9,
+    10
+   ],
+   "output": 8,
+   "box": [
+    318,
+    2233,
+    60,
+    58
+   ],
+   "draft_id": "G24",
+   "box0": [
+    320,
+    2232,
+    62,
+    60
+   ]
+  },
+  {
+   "id": "4D/3",
+   "part": "4D",
+   "kind": "or",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    1507,
+    2308,
+    58,
+    60
+   ],
+   "draft_id": "G36",
+   "box0": [
+    1508,
+    2305,
+    60,
+    65
+   ]
+  },
+  {
+   "id": "4D/4",
+   "part": "4D",
+   "kind": "or",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    2743,
+    992,
+    60,
+    60
+   ],
+   "draft_id": "G14",
+   "box0": [
+    2745,
+    990,
+    62,
+    60
+   ]
+  },
+  {
+   "id": "6D/1",
+   "part": "6D",
+   "kind": "nor",
+   "inputs": [
+    11,
+    12
+   ],
+   "output": 13,
+   "box": [
+    910,
+    1888,
+    30,
+    60
+   ],
+   "draft_id": "G19"
+  },
+  {
+   "id": "6D/2",
+   "part": "6D",
+   "kind": "nor",
+   "inputs": [
+    2,
+    3
+   ],
+   "output": 1,
+   "box": [
+    2516,
+    2097,
+    30,
+    58
+   ],
+   "draft_id": "G45",
+   "box0": [
+    2515,
+    2065,
+    30,
+    60
+   ]
+  },
+  {
+   "id": "15D/1",
+   "part": "15D",
+   "kind": "nand",
+   "inputs": [
+    1,
+    2
+   ],
+   "output": 3,
+   "box": [
+    2250,
+    985,
+    62,
+    55
+   ],
+   "draft_id": "G37"
+  },
+  {
+   "id": "15D/2",
+   "part": "15D",
+   "kind": "nand",
+   "inputs": [
+    4,
+    5
+   ],
+   "output": 6,
+   "box": [
+    2250,
+    1085,
+    62,
+    58
+   ],
+   "draft_id": "G42"
+  },
+  {
+   "id": "15D/3",
+   "part": "15D",
+   "kind": "nand",
+   "inputs": [
+    12,
+    13
+   ],
+   "output": 11,
+   "box": [
+    1708,
+    1118,
+    45,
+    60
+   ],
+   "draft_id": "G39"
+  },
+  {
+   "id": "12A/1",
+   "part": "12A",
+   "kind": "not",
+   "inputs": [
+    11
+   ],
+   "output": 10,
+   "box": [
+    1534,
+    1735,
+    27,
+    28
+   ],
+   "draft_id": "G17",
+   "box0": [
+    1502,
+    1740,
+    30,
+    40
+   ]
+  },
+  {
+   "id": "12A/2",
+   "part": "12A",
+   "kind": "not",
+   "inputs": [
+    5
+   ],
+   "output": 6,
+   "box": [
+    1651,
+    1734,
+    30,
+    58
+   ],
+   "draft_id": "G50",
+   "box0": [
+    1652,
+    1740,
+    30,
+    40
+   ]
+  },
+  {
+   "id": "12A/3",
+   "part": "12A",
+   "kind": "not",
+   "inputs": [
+    13
+   ],
+   "output": 12,
+   "box": [
+    1506,
+    1885,
+    30,
+    56
+   ],
+   "draft_id": "G18",
+   "box0": [
+    1505,
+    1895,
+    30,
+    40
+   ]
+  },
+  {
+   "id": "12A/4",
+   "part": "12A",
+   "kind": "not",
+   "inputs": [
+    1
+   ],
+   "output": 2,
+   "box": [
+    1505,
+    2031,
+    30,
+    58
+   ],
+   "draft_id": "G49",
+   "box0": [
+    1505,
+    2040,
+    30,
+    45
+   ]
+  },
+  {
+   "id": "12A/5",
+   "part": "12A",
+   "kind": "not",
+   "inputs": [
+    9
+   ],
+   "output": 8,
+   "box": [
+    1506,
+    2178,
+    30,
+    58
+   ],
+   "draft_id": "G53",
+   "box0": [
+    1505,
+    2190,
+    30,
+    45
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "name": "BA0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.32"
+    },
+    {
+     "at": "1A.13"
+    }
+   ]
+  },
+  {
+   "name": "BA1",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.33"
+    },
+    {
+     "at": "1A.3"
+    }
+   ]
+  },
+  {
+   "name": "BA2",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.34"
+    },
+    {
+     "at": "10A.4"
+    },
+    {
+     "at": "R-2.1"
+    }
+   ]
+  },
+  {
+   "name": "BA3",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.36"
+    },
+    {
+     "at": "10A.13"
+    }
+   ]
+  },
+  {
+   "name": "BA4",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.37"
+    },
+    {
+     "at": "10A.1"
+    }
+   ]
+  },
+  {
+   "name": "BA5",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.38"
+    },
+    {
+     "at": "10A.10"
+    }
+   ]
+  },
+  {
+   "name": "BA6",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.40"
+    },
+    {
+     "at": "10B.3"
+    }
+   ]
+  },
+  {
+   "name": "BA7",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.41"
+    },
+    {
+     "at": "10B.4"
+    }
+   ]
+  },
+  {
+   "name": "BA9",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.44"
+    },
+    {
+     "at": "10B.5"
+    }
+   ]
+  },
+  {
+   "name": "BA8",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.42"
+    },
+    {
+     "at": "10C.2"
+    }
+   ]
+  },
+  {
+   "name": "BIOX",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.11"
+    },
+    {
+     "at": "10C.3"
+    }
+   ]
+  },
+  {
+   "name": "N_1",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10A.6"
+    },
+    {
+     "at": "10B.1"
+    }
+   ]
+  },
+  {
+   "name": "N_2",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10A.11"
+    },
+    {
+     "at": "10B.11"
+    }
+   ]
+  },
+  {
+   "name": "N_3",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10A.3"
+    },
+    {
+     "at": "10B.2"
+    }
+   ]
+  },
+  {
+   "name": "N_4",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10A.8"
+    },
+    {
+     "at": "10B.12"
+    }
+   ]
+  },
+  {
+   "name": "N_5",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10C.1"
+    },
+    {
+     "at": "10B.6"
+    }
+   ]
+  },
+  {
+   "name": "DEQL",
+   "active": "low",
+   "pins": [
+    {
+     "at": "10B.8"
+    },
+    {
+     "at": "1A.15"
+    },
+    {
+     "at": "1A.14"
+    },
+    {
+     "at": "12C.3"
+    },
+    {
+     "at": "8C.15"
+    },
+    {
+     "at": "5C.15"
+    }
+   ]
+  },
+  {
+   "name": "WC",
+   "active": "low",
+   "pins": [
+    {
+     "at": "1A.9"
+    },
+    {
+     "at": "10C.6"
+    },
+    {
+     "at": "18D.3"
+    },
+    {
+     "at": "18D.11"
+    },
+    {
+     "at": "1C.11"
+    },
+    {
+     "at": "4D.10"
+    }
+   ]
+  },
+  {
+   "name": "RS",
+   "active": "low",
+   "pins": [
+    {
+     "at": "1A.10"
+    },
+    {
+     "at": "1B.13"
+    },
+    {
+     "at": "3A.15"
+    },
+    {
+     "at": "8C.1"
+    },
+    {
+     "at": "5C.1"
+    }
+   ]
+  },
+  {
+   "name": "N_6",
+   "active": "none",
+   "pins": [
+    {
+     "at": "1A.11"
+    },
+    {
+     "at": "15C.13"
+    }
+   ]
+  },
+  {
+   "name": "WD",
+   "active": "high",
+   "pins": [
+    {
+     "at": "15C.12"
+    },
+    {
+     "at": "19A.9"
+    },
+    {
+     "at": "15B.9"
+    }
+   ]
+  },
+  {
+   "name": "RD",
+   "active": "low",
+   "pins": [
+    {
+     "at": "1A.12"
+    },
+    {
+     "at": "3C.3"
+    }
+   ]
+  },
+  {
+   "name": "BAINT",
+   "active": "low",
+   "pins": [
+    {
+     "at": "1A.4"
+    },
+    {
+     "at": "10C.9"
+    }
+   ]
+  },
+  {
+   "name": "A0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3B.3"
+    },
+    {
+     "at": "18D.2"
+    },
+    {
+     "at": "19B.13"
+    },
+    {
+     "at": "19C.13"
+    }
+   ]
+  },
+  {
+   "name": "A1",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3B.5"
+    },
+    {
+     "at": "18D.12"
+    },
+    {
+     "at": "19B.6"
+    },
+    {
+     "at": "19C.3"
+    }
+   ]
+  },
+  {
+   "name": "A2",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3B.7"
+    },
+    {
+     "at": "10C.5"
+    },
+    {
+     "at": "19B.10"
+    },
+    {
+     "at": "19C.15"
+    },
+    {
+     "at": "19C.1"
+    }
+   ]
+  },
+  {
+   "name": "A3",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3B.9"
+    },
+    {
+     "at": "1C.12"
+    },
+    {
+     "at": "19B.3"
+    },
+    {
+     "at": "10C.11"
+    },
+    {
+     "at": "4D.12"
+    }
+   ]
+  },
+  {
+   "name": "A4",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5B.3"
+    },
+    {
+     "at": "12B.1"
+    },
+    {
+     "at": "12B.2"
+    },
+    {
+     "at": "19A.13"
+    },
+    {
+     "at": "4D.9"
+    }
+   ]
+  },
+  {
+   "name": "A5",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5B.5"
+    },
+    {
+     "at": "8B.4"
+    },
+    {
+     "at": "12B.4"
+    },
+    {
+     "at": "17B.3"
+    }
+   ]
+  },
+  {
+   "name": "A6",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5B.7"
+    },
+    {
+     "at": "8B.5"
+    },
+    {
+     "at": "12B.5"
+    },
+    {
+     "at": "15B.4"
+    }
+   ]
+  },
+  {
+   "name": "A7",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5B.9"
+    },
+    {
+     "at": "15B.6"
+    }
+   ]
+  },
+  {
+   "name": "N_7",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10C.4"
+    },
+    {
+     "at": "1B.9"
+    }
+   ]
+  },
+  {
+   "name": "INH",
+   "active": "high",
+   "pins": [
+    {
+     "at": "15C.9"
+    },
+    {
+     "at": "15B.10"
+    },
+    {
+     "at": "3A.14"
+    }
+   ]
+  },
+  {
+   "name": "N_8",
+   "active": "none",
+   "pins": [
+    {
+     "at": "15C.8"
+    },
+    {
+     "at": "17C.5"
+    }
+   ]
+  },
+  {
+   "name": "RFT",
+   "active": "high",
+   "pins": [
+    {
+     "at": "17C.4"
+    },
+    {
+     "at": "1B.3"
+    },
+    {
+     "at": "8B.9"
+    },
+    {
+     "at": "15D.1"
+    },
+    {
+     "at": "8C.14"
+    }
+   ]
+  },
+  {
+   "name": "N_9",
+   "active": "none",
+   "pins": [
+    {
+     "at": "17C.6"
+    },
+    {
+     "at": "1B.10"
+    }
+   ]
+  },
+  {
+   "name": "N_10",
+   "active": "none",
+   "pins": [
+    {
+     "at": "1B.8"
+    },
+    {
+     "at": "1C.3"
+    }
+   ]
+  },
+  {
+   "name": "STROB",
+   "active": "high",
+   "pins": [
+    {
+     "at": "1C.5"
+    },
+    {
+     "at": "2D.10"
+    },
+    {
+     "at": "3C.5"
+    }
+   ]
+  },
+  {
+   "name": "N_11",
+   "active": "none",
+   "pins": [
+    {
+     "at": "1C.6"
+    },
+    {
+     "at": "1B.2"
+    }
+   ]
+  },
+  {
+   "name": "N_12",
+   "active": "none",
+   "pins": [
+    {
+     "at": "1B.6"
+    },
+    {
+     "at": "1C.1"
+    },
+    {
+     "at": "1B.1"
+    }
+   ]
+  },
+  {
+   "name": "ENCHREQ",
+   "active": "high",
+   "pins": [
+    {
+     "at": "3C.12"
+    },
+    {
+     "at": "1B.5"
+    }
+   ]
+  },
+  {
+   "name": "MCP_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "2D.4"
+    },
+    {
+     "at": "1B.4"
+    }
+   ]
+  },
+  {
+   "name": "MCP_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "2D.13"
+    },
+    {
+     "at": "15A.12"
+    }
+   ]
+  },
+  {
+   "name": "TERD",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3C.4"
+    },
+    {
+     "at": "1B.12"
+    },
+    {
+     "at": "5A.15"
+    }
+   ]
+  },
+  {
+   "name": "TERDRS",
+   "active": "low",
+   "pins": [
+    {
+     "at": "1B.11"
+    },
+    {
+     "at": "12C.6"
+    }
+   ]
+  },
+  {
+   "name": "INTRFT",
+   "active": "high",
+   "pins": [
+    {
+     "at": "18D.6"
+    },
+    {
+     "at": "15D.2"
+    },
+    {
+     "at": "8C.11"
+    }
+   ]
+  },
+  {
+   "name": "N_13",
+   "active": "none",
+   "pins": [
+    {
+     "at": "17C.8"
+    },
+    {
+     "at": "18D.4"
+    }
+   ]
+  },
+  {
+   "name": "CL",
+   "active": "low",
+   "pins": [
+    {
+     "at": "17C.3"
+    },
+    {
+     "at": "17C.10"
+    },
+    {
+     "at": "17C.12"
+    },
+    {
+     "at": "1C.10"
+    },
+    {
+     "at": "2D.1"
+    }
+   ]
+  },
+  {
+   "name": "N_14",
+   "active": "none",
+   "pins": [
+    {
+     "at": "8B.8"
+    },
+    {
+     "at": "17C.9"
+    }
+   ]
+  },
+  {
+   "name": "IDR_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "15C.4"
+    },
+    {
+     "at": "8B.10"
+    },
+    {
+     "at": "8B.12"
+    }
+   ]
+  },
+  {
+   "name": "INTERR",
+   "active": "high",
+   "pins": [
+    {
+     "at": "18D.8"
+    },
+    {
+     "at": "15D.5"
+    },
+    {
+     "at": "8C.5"
+    }
+   ]
+  },
+  {
+   "name": "N_15",
+   "active": "none",
+   "pins": [
+    {
+     "at": "17C.11"
+    },
+    {
+     "at": "18D.10"
+    }
+   ]
+  },
+  {
+   "name": "N_16",
+   "active": "none",
+   "pins": [
+    {
+     "at": "8B.11"
+    },
+    {
+     "at": "17C.13"
+    }
+   ]
+  },
+  {
+   "name": "ERR",
+   "active": "high",
+   "pins": [
+    {
+     "at": "4D.3"
+    },
+    {
+     "at": "8B.13"
+    },
+    {
+     "at": "15D.4"
+    },
+    {
+     "at": "5C.5"
+    }
+   ]
+  },
+  {
+   "name": "TEST",
+   "active": "high",
+   "pins": [
+    {
+     "at": "1C.8"
+    },
+    {
+     "at": "3C.1"
+    }
+   ]
+  },
+  {
+   "name": "CHSIM",
+   "active": "high",
+   "pins": [
+    {
+     "at": "2D.12"
+    },
+    {
+     "at": "3C.13"
+    }
+   ]
+  },
+  {
+   "name": "CHREQ_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "12A.8"
+    },
+    {
+     "at": "3C.14"
+    }
+   ]
+  },
+  {
+   "name": "ENSTROB",
+   "active": "high",
+   "pins": [
+    {
+     "at": "3C.7"
+    },
+    {
+     "at": "15A.14"
+    }
+   ]
+  },
+  {
+   "name": "IDR_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "12C.12"
+    },
+    {
+     "at": "15C.3"
+    },
+    {
+     "at": "8A.1"
+    },
+    {
+     "at": "8A.15"
+    },
+    {
+     "at": "5B.15"
+    },
+    {
+     "at": "C-4.1"
+    }
+   ]
+  },
+  {
+   "name": "INPUT_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "12C.7"
+    },
+    {
+     "at": "3B.12"
+    },
+    {
+     "at": "R-7.1"
+    }
+   ]
+  },
+  {
+   "name": "CON",
+   "active": "low",
+   "pins": [
+    {
+     "at": "12C.4"
+    },
+    {
+     "at": "3B.15"
+    },
+    {
+     "at": "C-5.1"
+    }
+   ]
+  },
+  {
+   "name": "INT_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "12C.9"
+    },
+    {
+     "at": "12C.11"
+    },
+    {
+     "at": "15C.5"
+    },
+    {
+     "at": "4D.5"
+    }
+   ]
+  },
+  {
+   "name": "INT_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "15C.6"
+    },
+    {
+     "at": "12C.14"
+    },
+    {
+     "at": "12C.5"
+    },
+    {
+     "at": "12C.2"
+    }
+   ]
+  },
+  {
+   "name": "N_17",
+   "active": "none",
+   "pins": [
+    {
+     "at": "10C.10"
+    },
+    {
+     "at": "12C.10"
+    }
+   ]
+  },
+  {
+   "name": "IDENT",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.7"
+    },
+    {
+     "at": "12C.1"
+    },
+    {
+     "at": "4D.4"
+    }
+   ]
+  },
+  {
+   "name": "N_18",
+   "active": "none",
+   "pins": [
+    {
+     "at": "4D.6"
+    },
+    {
+     "at": "P.6"
+    }
+   ]
+  },
+  {
+   "name": "GRANT",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.9"
+    },
+    {
+     "at": "P.8"
+    }
+   ]
+  },
+  {
+   "name": "INTW",
+   "active": "low",
+   "pins": [
+    {
+     "at": "15D.3"
+    },
+    {
+     "at": "15D.6"
+    },
+    {
+     "at": "10C.8"
+    },
+    {
+     "at": "15C.1"
+    },
+    {
+     "at": "R-4.1"
+    }
+   ]
+  },
+  {
+   "name": "N_19",
+   "active": "none",
+   "pins": [
+    {
+     "at": "15C.2"
+    },
+    {
+     "at": "15D.12"
+    },
+    {
+     "at": "15D.13"
+    }
+   ]
+  },
+  {
+   "name": "BINT10",
+   "active": "low",
+   "pins": [
+    {
+     "at": "15D.11"
+    },
+    {
+     "at": "P.27"
+    }
+   ]
+  },
+  {
+   "name": "E0",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.3"
+    },
+    {
+     "at": "8C.9"
+    },
+    {
+     "at": "3A.2"
+    }
+   ]
+  },
+  {
+   "name": "E1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.5"
+    },
+    {
+     "at": "8C.7"
+    },
+    {
+     "at": "3A.4"
+    }
+   ]
+  },
+  {
+   "name": "E2",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.7"
+    },
+    {
+     "at": "8C.4"
+    },
+    {
+     "at": "3A.6"
+    }
+   ]
+  },
+  {
+   "name": "E3",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.9"
+    },
+    {
+     "at": "8C.12"
+    },
+    {
+     "at": "3A.10"
+    }
+   ]
+  },
+  {
+   "name": "E4",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.13"
+    },
+    {
+     "at": "5C.7"
+    },
+    {
+     "at": "5A.2"
+    }
+   ]
+  },
+  {
+   "name": "E5",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.11"
+    },
+    {
+     "at": "5C.4"
+    },
+    {
+     "at": "5A.4"
+    }
+   ]
+  },
+  {
+   "name": "E6",
+   "active": "high",
+   "pins": [
+    {
+     "at": "5C.12"
+    },
+    {
+     "at": "5B.13"
+    },
+    {
+     "at": "5A.6"
+    }
+   ]
+  },
+  {
+   "name": "E7",
+   "active": "high",
+   "pins": [
+    {
+     "at": "5C.9"
+    },
+    {
+     "at": "5B.11"
+    },
+    {
+     "at": "5A.10"
+    }
+   ]
+  },
+  {
+   "name": "I3",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.10"
+    }
+   ]
+  },
+  {
+   "name": "I4",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.14"
+    }
+   ]
+  },
+  {
+   "name": "I5",
+   "active": "high",
+   "pins": [
+    {
+     "at": "8A.12"
+    }
+   ]
+  },
+  {
+   "name": "N_20",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19B.12"
+    },
+    {
+     "at": "19A.11"
+    }
+   ]
+  },
+  {
+   "name": "N_21",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19B.7"
+    },
+    {
+     "at": "19A.6"
+    }
+   ]
+  },
+  {
+   "name": "N_22",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19B.9"
+    },
+    {
+     "at": "19A.4"
+    }
+   ]
+  },
+  {
+   "name": "N_23",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19B.4"
+    },
+    {
+     "at": "19A.3"
+    }
+   ]
+  },
+  {
+   "name": "N_24",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19A.10"
+    },
+    {
+     "at": "17A.10"
+    }
+   ]
+  },
+  {
+   "name": "N_25",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19A.7"
+    },
+    {
+     "at": "17A.6"
+    }
+   ]
+  },
+  {
+   "name": "N_26",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19A.5"
+    },
+    {
+     "at": "17A.4"
+    }
+   ]
+  },
+  {
+   "name": "N_27",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19A.2"
+    },
+    {
+     "at": "17A.2"
+    }
+   ]
+  },
+  {
+   "name": "N_28",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19A.12"
+    },
+    {
+     "at": "17A.12"
+    }
+   ]
+  },
+  {
+   "name": "N_29",
+   "active": "none",
+   "pins": [
+    {
+     "at": "19A.15"
+    },
+    {
+     "at": "17A.14"
+    }
+   ]
+  },
+  {
+   "name": "LP0",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.95"
+    },
+    {
+     "at": "17A.9"
+    },
+    {
+     "at": "8C.10"
+    }
+   ]
+  },
+  {
+   "name": "LP1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.93"
+    },
+    {
+     "at": "17A.7"
+    },
+    {
+     "at": "8C.6"
+    }
+   ]
+  },
+  {
+   "name": "LP2",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.91"
+    },
+    {
+     "at": "17A.5"
+    },
+    {
+     "at": "8C.3"
+    }
+   ]
+  },
+  {
+   "name": "LP3",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.89"
+    },
+    {
+     "at": "17A.3"
+    },
+    {
+     "at": "8C.13"
+    }
+   ]
+  },
+  {
+   "name": "LP4",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.87"
+    },
+    {
+     "at": "17A.11"
+    },
+    {
+     "at": "5C.6"
+    }
+   ]
+  },
+  {
+   "name": "LP5",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.85"
+    },
+    {
+     "at": "17A.13"
+    },
+    {
+     "at": "5C.3"
+    }
+   ]
+  },
+  {
+   "name": "B5",
+   "active": "low",
+   "pins": [
+    {
+     "at": "17B.7"
+    },
+    {
+     "at": "19A.14"
+    }
+   ]
+  },
+  {
+   "name": "B9",
+   "active": "low",
+   "pins": [
+    {
+     "at": "17B.9"
+    },
+    {
+     "at": "15B.13"
+    }
+   ]
+  },
+  {
+   "name": "N_30",
+   "active": "none",
+   "pins": [
+    {
+     "at": "15B.5"
+    },
+    {
+     "at": "15A.2"
+    }
+   ]
+  },
+  {
+   "name": "N_31",
+   "active": "none",
+   "pins": [
+    {
+     "at": "15B.7"
+    },
+    {
+     "at": "15A.4"
+    }
+   ]
+  },
+  {
+   "name": "N_32",
+   "active": "none",
+   "pins": [
+    {
+     "at": "15B.2"
+    },
+    {
+     "at": "15A.6"
+    }
+   ]
+  },
+  {
+   "name": "N_33",
+   "active": "none",
+   "pins": [
+    {
+     "at": "15B.12"
+    },
+    {
+     "at": "15A.10"
+    }
+   ]
+  },
+  {
+   "name": "LP6",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.69"
+    },
+    {
+     "at": "15A.3"
+    },
+    {
+     "at": "5C.13"
+    }
+   ]
+  },
+  {
+   "name": "LP7",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.67"
+    },
+    {
+     "at": "15A.5"
+    },
+    {
+     "at": "5C.10"
+    }
+   ]
+  },
+  {
+   "name": "LP8",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.65"
+    },
+    {
+     "at": "15A.7"
+    },
+    {
+     "at": "5A.12"
+    }
+   ]
+  },
+  {
+   "name": "LCB",
+   "active": "high",
+   "pins": [
+    {
+     "at": "P.83"
+    },
+    {
+     "at": "15A.9"
+    },
+    {
+     "at": "5A.14"
+    }
+   ]
+  },
+  {
+   "name": "LSTROB",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.79"
+    },
+    {
+     "at": "15A.13"
+    }
+   ]
+  },
+  {
+   "name": "LMCP",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.73"
+    },
+    {
+     "at": "15A.11"
+    }
+   ]
+  },
+  {
+   "name": "ILLCC",
+   "active": "low",
+   "pins": [
+    {
+     "at": "12B.6"
+    },
+    {
+     "at": "4D.13"
+    },
+    {
+     "at": "19B.1"
+    },
+    {
+     "at": "17B.14"
+    },
+    {
+     "at": "6D.11"
+    },
+    {
+     "at": "6D.2"
+    }
+   ]
+  },
+  {
+   "name": "SPE",
+   "active": "low",
+   "pins": [
+    {
+     "at": "8B.6"
+    },
+    {
+     "at": "10C.12"
+    },
+    {
+     "at": "17B.2"
+    }
+   ]
+  },
+  {
+   "name": "LINC",
+   "active": "high",
+   "pins": [
+    {
+     "at": "10C.13"
+    },
+    {
+     "at": "17B.5"
+    }
+   ]
+  },
+  {
+   "name": "CC",
+   "active": "low",
+   "pins": [
+    {
+     "at": "4D.11"
+    },
+    {
+     "at": "19C.14"
+    },
+    {
+     "at": "19C.2"
+    }
+   ]
+  },
+  {
+   "name": "OKCC",
+   "active": "high",
+   "pins": [
+    {
+     "at": "12B.8"
+    },
+    {
+     "at": "6D.12"
+    }
+   ]
+  },
+  {
+   "name": "ILLCA",
+   "active": "high",
+   "pins": [
+    {
+     "at": "6D.13"
+    },
+    {
+     "at": "15B.11"
+    }
+   ]
+  },
+  {
+   "name": "CR",
+   "active": "low",
+   "pins": [
+    {
+     "at": "19C.11"
+    },
+    {
+     "at": "12B.10"
+    },
+    {
+     "at": "R-3.1"
+    }
+   ]
+  },
+  {
+   "name": "FF",
+   "active": "low",
+   "pins": [
+    {
+     "at": "19C.12"
+    },
+    {
+     "at": "17B.6"
+    },
+    {
+     "at": "17B.4"
+    },
+    {
+     "at": "12B.13"
+    }
+   ]
+  },
+  {
+   "name": "LF",
+   "active": "low",
+   "pins": [
+    {
+     "at": "19C.6"
+    },
+    {
+     "at": "19B.14"
+    },
+    {
+     "at": "12B.9"
+    }
+   ]
+  },
+  {
+   "name": "HT_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "19C.5"
+    },
+    {
+     "at": "15C.11"
+    },
+    {
+     "at": "12B.12"
+    }
+   ]
+  },
+  {
+   "name": "HT_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "15C.10"
+    },
+    {
+     "at": "17B.10"
+    },
+    {
+     "at": "17B.12"
+    },
+    {
+     "at": "17B.1"
+    }
+   ]
+  },
+  {
+   "name": "N_34",
+   "active": "none",
+   "pins": [
+    {
+     "at": "4D.8"
+    },
+    {
+     "at": "17C.2"
+    }
+   ]
+  },
+  {
+   "name": "BMCL",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.55"
+    },
+    {
+     "at": "17C.1"
+    }
+   ]
+  },
+  {
+   "name": "BD0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.3"
+    },
+    {
+     "at": "P.10"
+    },
+    {
+     "at": "3B.2"
+    }
+   ]
+  },
+  {
+   "name": "BD1",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.5"
+    },
+    {
+     "at": "P.12"
+    },
+    {
+     "at": "3B.4"
+    }
+   ]
+  },
+  {
+   "name": "BD2",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.7"
+    },
+    {
+     "at": "P.13"
+    },
+    {
+     "at": "3B.6"
+    }
+   ]
+  },
+  {
+   "name": "BD3",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.9"
+    },
+    {
+     "at": "P.14"
+    },
+    {
+     "at": "3B.10"
+    }
+   ]
+  },
+  {
+   "name": "BD11",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.11"
+    },
+    {
+     "at": "P.25"
+    }
+   ]
+  },
+  {
+   "name": "BD12",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.13"
+    },
+    {
+     "at": "P.26"
+    }
+   ]
+  },
+  {
+   "name": "BINPUT",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3B.11"
+    },
+    {
+     "at": "P.15"
+    }
+   ]
+  },
+  {
+   "name": "BCON",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3B.13"
+    },
+    {
+     "at": "P.23"
+    }
+   ]
+  },
+  {
+   "name": "BD4",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.3"
+    },
+    {
+     "at": "P.16"
+    },
+    {
+     "at": "5B.2"
+    }
+   ]
+  },
+  {
+   "name": "BD5",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.5"
+    },
+    {
+     "at": "P.17"
+    },
+    {
+     "at": "5B.4"
+    }
+   ]
+  },
+  {
+   "name": "BD6",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.7"
+    },
+    {
+     "at": "P.18"
+    },
+    {
+     "at": "5B.6"
+    }
+   ]
+  },
+  {
+   "name": "BD7",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.9"
+    },
+    {
+     "at": "P.20"
+    },
+    {
+     "at": "5B.10"
+    }
+   ]
+  },
+  {
+   "name": "BD8",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.11"
+    },
+    {
+     "at": "P.21"
+    },
+    {
+     "at": "15B.3"
+    }
+   ]
+  },
+  {
+   "name": "BD9",
+   "active": "low",
+   "pins": [
+    {
+     "at": "5A.13"
+    },
+    {
+     "at": "P.22"
+    }
+   ]
+  },
+  {
+   "name": "DEINPUT",
+   "active": "low",
+   "pins": [
+    {
+     "at": "3A.1"
+    },
+    {
+     "at": "5A.1"
+    },
+    {
+     "at": "R-7.2"
+    },
+    {
+     "at": "C-3.1"
+    }
+   ]
+  },
+  {
+   "name": "READY_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.75"
+    },
+    {
+     "at": "R-8.1"
+    }
+   ]
+  },
+  {
+   "name": "N_35",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-8.2"
+    },
+    {
+     "at": "C-6.1"
+    },
+    {
+     "at": "12A.11"
+    }
+   ]
+  },
+  {
+   "name": "N_36",
+   "active": "none",
+   "pins": [
+    {
+     "at": "12A.10"
+    },
+    {
+     "at": "12A.5"
+    }
+   ]
+  },
+  {
+   "name": "NOREADY",
+   "active": "high",
+   "pins": [
+    {
+     "at": "12A.6"
+    },
+    {
+     "at": "4D.2"
+    },
+    {
+     "at": "5C.2"
+    }
+   ]
+  },
+  {
+   "name": "LINEREADY_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.71"
+    },
+    {
+     "at": "R-9.1"
+    }
+   ]
+  },
+  {
+   "name": "N_37",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-9.2"
+    },
+    {
+     "at": "C-7.1"
+    },
+    {
+     "at": "12A.13"
+    }
+   ]
+  },
+  {
+   "name": "LINEREADY_1",
+   "active": "high",
+   "pins": [
+    {
+     "at": "12A.12"
+    },
+    {
+     "at": "3A.12"
+    }
+   ]
+  },
+  {
+   "name": "LOADIMAG_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.63"
+    },
+    {
+     "at": "R-10.1"
+    }
+   ]
+  },
+  {
+   "name": "N_38",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-10.2"
+    },
+    {
+     "at": "C-8.1"
+    },
+    {
+     "at": "12A.1"
+    }
+   ]
+  },
+  {
+   "name": "LOADIM",
+   "active": "high",
+   "pins": [
+    {
+     "at": "12A.2"
+    },
+    {
+     "at": "4D.1"
+    },
+    {
+     "at": "5C.14"
+    },
+    {
+     "at": "6D.3"
+    }
+   ]
+  },
+  {
+   "name": "CHREQ_0",
+   "active": "low",
+   "pins": [
+    {
+     "at": "P.81"
+    },
+    {
+     "at": "R-11.1"
+    }
+   ]
+  },
+  {
+   "name": "N_39",
+   "active": "none",
+   "pins": [
+    {
+     "at": "R-11.2"
+    },
+    {
+     "at": "C-9.1"
+    },
+    {
+     "at": "12A.9"
+    }
+   ]
+  },
+  {
+   "name": "N_40",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2D.6"
+    },
+    {
+     "at": "C-1.1"
+    }
+   ]
+  },
+  {
+   "name": "N_41",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2D.7"
+    },
+    {
+     "at": "C-1.2"
+    },
+    {
+     "at": "R-5.1"
+    }
+   ]
+  },
+  {
+   "name": "N_42",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2D.14"
+    },
+    {
+     "at": "C-2.1"
+    }
+   ]
+  },
+  {
+   "name": "N_43",
+   "active": "none",
+   "pins": [
+    {
+     "at": "2D.15"
+    },
+    {
+     "at": "C-2.2"
+    },
+    {
+     "at": "R-6.1"
+    }
+   ]
+  },
+  {
+   "name": "H",
+   "active": "high",
+   "pins": [
+    {
+     "at": "R-1.2"
+    },
+    {
+     "at": "1A.1"
+    },
+    {
+     "at": "1C.4"
+    },
+    {
+     "at": "1C.2"
+    },
+    {
+     "at": "18D.1"
+    },
+    {
+     "at": "18D.13"
+    },
+    {
+     "at": "1C.13"
+    },
+    {
+     "at": "2D.11"
+    },
+    {
+     "at": "2D.2"
+    },
+    {
+     "at": "2D.3"
+    },
+    {
+     "at": "3C.2"
+    },
+    {
+     "at": "19B.5"
+    },
+    {
+     "at": "19B.11"
+    },
+    {
+     "at": "19B.2"
+    },
+    {
+     "at": "19A.1"
+    },
+    {
+     "at": "15B.1"
+    },
+    {
+     "at": "8A.2"
+    },
+    {
+     "at": "8A.4"
+    },
+    {
+     "at": "12C.13"
+    },
+    {
+     "at": "17B.13"
+    }
+   ]
+  },
+  {
+   "name": "GND",
+   "active": "none",
+   "pins": [
+    {
+     "at": "1A.2"
+    },
+    {
+     "at": "2D.9"
+    },
+    {
+     "at": "3C.6"
+    },
+    {
+     "at": "3C.15"
+    },
+    {
+     "at": "19B.15"
+    },
+    {
+     "at": "17B.11"
+    },
+    {
+     "at": "17B.15"
+    },
+    {
+     "at": "17A.1"
+    },
+    {
+     "at": "17A.15"
+    },
+    {
+     "at": "15A.1"
+    },
+    {
+     "at": "15A.15"
+    },
+    {
+     "at": "8A.6"
+    },
+    {
+     "at": "12C.15"
+    },
+    {
+     "at": "8C.2"
+    },
+    {
+     "at": "5C.11"
+    },
+    {
+     "at": "3B.1"
+    },
+    {
+     "at": "3B.14"
+    },
+    {
+     "at": "5B.1"
+    },
+    {
+     "at": "5B.14"
+    },
+    {
+     "at": "5B.12"
+    },
+    {
+     "at": "P.74"
+    },
+    {
+     "at": "P.70"
+    },
+    {
+     "at": "P.62"
+    },
+    {
+     "at": "P.80"
+    },
+    {
+     "at": "C-6.2"
+    },
+    {
+     "at": "C-7.2"
+    },
+    {
+     "at": "C-8.2"
+    },
+    {
+     "at": "C-9.2"
+    },
+    {
+     "at": "C-4.2"
+    },
+    {
+     "at": "C-5.2"
+    },
+    {
+     "at": "P.94"
+    },
+    {
+     "at": "P.92"
+    },
+    {
+     "at": "P.90"
+    },
+    {
+     "at": "P.88"
+    },
+    {
+     "at": "P.86"
+    },
+    {
+     "at": "P.84"
+    },
+    {
+     "at": "P.68"
+    },
+    {
+     "at": "P.64"
+    },
+    {
+     "at": "P.82"
+    },
+    {
+     "at": "P.78"
+    },
+    {
+     "at": "P.72"
+    }
+   ]
+  }
+ ],
+ "corrections": [
+  {
+   "what": "type-wrong",
+   "draft_id": "C0",
+   "key": "2D",
+   "draft_said": "8123",
+   "truth": "74123",
+   "cause": "type-misread",
+   "note": "written 123"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C14",
+   "key": "1C",
+   "draft_said": "TEST",
+   "truth": "7474",
+   "cause": "type-misread",
+   "note": "label TEST taken as type"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C3",
+   "key": "18D",
+   "draft_said": "ERR",
+   "truth": "7474",
+   "cause": "type-misread",
+   "note": "label INT ERR taken as type"
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C7",
+   "key": "17B",
+   "draft_said": "741531",
+   "truth": "74153",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C8",
+   "key": "5B",
+   "draft_said": "?",
+   "truth": "8097",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C10",
+   "key": "15B",
+   "draft_said": "7474",
+   "truth": "74174",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C12",
+   "key": "19A",
+   "draft_said": "7474",
+   "truth": "74174",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": "C13",
+   "key": "8A",
+   "draft_said": "8A7",
+   "truth": "8097",
+   "cause": "type-misread",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C19",
+   "key": "12C",
+   "draft_said": "?",
+   "truth": "74S157",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-missed",
+   "draft_id": "C21",
+   "key": "19C",
+   "draft_said": "?",
+   "truth": "74155",
+   "cause": "type-not-read",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "10A",
+   "draft_said": "7400",
+   "truth": "7486",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "12B",
+   "draft_said": "7400",
+   "truth": "7420",
+   "cause": "kind-other",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "15D",
+   "draft_said": "7451",
+   "truth": "7438",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "1B",
+   "draft_said": "7451",
+   "truth": "7408",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "4D",
+   "draft_said": "7451",
+   "truth": "7432",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "8B",
+   "draft_said": "7402",
+   "truth": "7400",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "15C",
+   "draft_said": "7404",
+   "truth": "74S04",
+   "cause": "other: speed grade only on parts list",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "3A",
+   "draft_said": "7400",
+   "truth": "8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "type-wrong",
+   "draft_id": null,
+   "key": "5A",
+   "draft_said": "7408",
+   "truth": "8098",
+   "cause": "box-split-merge",
+   "note": ""
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C9",
+   "key": "none",
+   "draft_said": "box",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "wiring / title block / table"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C16",
+   "key": "none",
+   "draft_said": "box",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "wiring / title block / table"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C17",
+   "key": "none",
+   "draft_said": "box",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "wiring / title block / table"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": "C18",
+   "key": "none",
+   "draft_said": "box",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "wiring / title block / table"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": null,
+   "key": "2A",
+   "draft_said": "2A",
+   "truth": "none",
+   "cause": "code-misread",
+   "note": "no such position on the sheet"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": null,
+   "key": "6A",
+   "draft_said": "6A",
+   "truth": "none",
+   "cause": "code-misread",
+   "note": "no such position on the sheet"
+  },
+  {
+   "what": "part-extra",
+   "draft_id": null,
+   "key": "7C",
+   "draft_said": "7C",
+   "truth": "none",
+   "cause": "code-misread",
+   "note": "no such position on the sheet"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "17A",
+   "draft_said": "",
+   "truth": "8098/8097",
+   "cause": "box-split-merge",
+   "note": "driver taken as gate boxes"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "15A",
+   "draft_said": "",
+   "truth": "8098/8097",
+   "cause": "box-split-merge",
+   "note": "driver taken as gate boxes"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "3B",
+   "draft_said": "",
+   "truth": "8098/8097",
+   "cause": "box-split-merge",
+   "note": "driver taken as gate boxes"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "10B",
+   "draft_said": "",
+   "truth": "7430",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "12A",
+   "draft_said": "",
+   "truth": "7414",
+   "cause": "code-misread",
+   "note": "gates read as 1A/2A"
+  },
+  {
+   "what": "part-missed",
+   "draft_id": null,
+   "key": "17C",
+   "draft_said": "",
+   "truth": "7408",
+   "cause": "code-misread",
+   "note": "gates read as 7C"
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G47",
+   "key": "10C/4",
+   "draft_said": "",
+   "truth": "10C",
+   "cause": "code-inside-gate",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G47",
+   "key": "10C/4",
+   "draft_said": "and-or-invert",
+   "truth": "nor",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G1",
+   "key": "1B/1",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G4",
+   "key": "1B/2",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G7",
+   "key": "1B/3",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G26",
+   "key": "1B/4",
+   "draft_said": "nor",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G22",
+   "key": "17C/1",
+   "draft_said": "7C",
+   "truth": "17C",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G22",
+   "key": "17C/1",
+   "draft_said": "nor",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G5",
+   "key": "17C/2",
+   "draft_said": "7C",
+   "truth": "17C",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G5",
+   "key": "17C/2",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G33",
+   "key": "17C/3",
+   "draft_said": "",
+   "truth": "17C",
+   "cause": "code-inside-gate",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G33",
+   "key": "17C/3",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G20",
+   "key": "17C/4",
+   "draft_said": "7C",
+   "truth": "17C",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G20",
+   "key": "17C/4",
+   "draft_said": "and-or-invert",
+   "truth": "and",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G2",
+   "key": "15C/1",
+   "draft_said": "",
+   "truth": "15C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G43",
+   "key": "15C/4",
+   "draft_said": "4D",
+   "truth": "15C",
+   "cause": "code-assigned-wrong-box",
+   "note": "4D label just below"
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G43",
+   "key": "15C/4",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G44",
+   "key": "15C/6",
+   "draft_said": "",
+   "truth": "15C",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G44",
+   "key": "15C/6",
+   "draft_said": "buffer",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G9",
+   "key": "8B/1",
+   "draft_said": "nor",
+   "truth": "nand",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G6",
+   "key": "8B/2",
+   "draft_said": "nor",
+   "truth": "nand",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "8B/3",
+   "draft_said": "",
+   "truth": "nand",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "12B/1",
+   "draft_said": "",
+   "truth": "nand",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G10",
+   "key": "10A/1",
+   "draft_said": "nand",
+   "truth": "xor",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G11",
+   "key": "10A/2",
+   "draft_said": "and-or-invert",
+   "truth": "xor",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G12",
+   "key": "10A/3",
+   "draft_said": "6A",
+   "truth": "10A",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G12",
+   "key": "10A/3",
+   "draft_said": "nand",
+   "truth": "xor",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G13",
+   "key": "10A/4",
+   "draft_said": "6A",
+   "truth": "10A",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G13",
+   "key": "10A/4",
+   "draft_said": "nand",
+   "truth": "xor",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-missed",
+   "draft_id": null,
+   "key": "10B/1",
+   "draft_said": "",
+   "truth": "nand",
+   "cause": "box-not-found",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G16",
+   "key": "4D/1",
+   "draft_said": "and-or-invert",
+   "truth": "or",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G24",
+   "key": "4D/2",
+   "draft_said": "",
+   "truth": "4D",
+   "cause": "code-inside-gate",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G24",
+   "key": "4D/2",
+   "draft_said": "nor",
+   "truth": "or",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G36",
+   "key": "4D/3",
+   "draft_said": "and-or-invert",
+   "truth": "or",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G14",
+   "key": "4D/4",
+   "draft_said": "and-or-invert",
+   "truth": "or",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G37",
+   "key": "15D/1",
+   "draft_said": "and-or-invert",
+   "truth": "nand",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G42",
+   "key": "15D/2",
+   "draft_said": "and-or-invert",
+   "truth": "nand",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G39",
+   "key": "15D/3",
+   "draft_said": "and-or-invert",
+   "truth": "nand",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G17",
+   "key": "12A/1",
+   "draft_said": "1A",
+   "truth": "12A",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G17",
+   "key": "12A/1",
+   "draft_said": "nor",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G50",
+   "key": "12A/2",
+   "draft_said": "",
+   "truth": "12A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "code-wrong",
+   "draft_id": "G18",
+   "key": "12A/3",
+   "draft_said": "2A",
+   "truth": "12A",
+   "cause": "code-misread",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G18",
+   "key": "12A/3",
+   "draft_said": "nor",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G49",
+   "key": "12A/4",
+   "draft_said": "",
+   "truth": "12A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G49",
+   "key": "12A/4",
+   "draft_said": "nand",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "code-missed",
+   "draft_id": "G53",
+   "key": "12A/5",
+   "draft_said": "",
+   "truth": "12A",
+   "cause": "code-not-read",
+   "note": ""
+  },
+  {
+   "what": "gate-kind-wrong",
+   "draft_id": "G53",
+   "key": "12A/5",
+   "draft_said": "nand",
+   "truth": "not",
+   "cause": "kind-generator-unlike-real",
+   "note": ""
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G23",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "4D/2 split"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G48",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "4D/2 split"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G25",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 3B"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G27",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 5A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G28",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 5A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G29",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 3A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G52",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 3A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G31",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 15A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G51",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 15A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G32",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "part of a bigger symbol",
+   "cause": "box-split-merge",
+   "note": "inside 17A"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G30",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "circle 88 junction"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G34",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "100 pF capacitor"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G35",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "connector circle / diamond"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G38",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "connector circle / diamond"
+  },
+  {
+   "what": "gate-extra",
+   "draft_id": "G41",
+   "key": "none",
+   "draft_said": "gate",
+   "truth": "none",
+   "cause": "not-a-symbol",
+   "note": "connector circle / diamond"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-1",
+   "draft_said": "",
+   "truth": "R 1k",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-2",
+   "draft_said": "",
+   "truth": "R 1k",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-3",
+   "draft_said": "",
+   "truth": "R 5.6k",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-4",
+   "draft_said": "",
+   "truth": "R 1.5k",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-5",
+   "draft_said": "",
+   "truth": "R 33k",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-1",
+   "draft_said": "",
+   "truth": "C 0.1uF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-6",
+   "draft_said": "",
+   "truth": "R 33k",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-2",
+   "draft_said": "",
+   "truth": "C 1000pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-7",
+   "draft_said": "",
+   "truth": "R 220",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-3",
+   "draft_said": "",
+   "truth": "C 330pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-4",
+   "draft_said": "",
+   "truth": "C 100pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-5",
+   "draft_said": "",
+   "truth": "C 100pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-8",
+   "draft_said": "",
+   "truth": "R 47",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-9",
+   "draft_said": "",
+   "truth": "R 47",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-10",
+   "draft_said": "",
+   "truth": "R 47",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "R-11",
+   "draft_said": "",
+   "truth": "R 47",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-6",
+   "draft_said": "",
+   "truth": "C 330pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-7",
+   "draft_said": "",
+   "truth": "C 330pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-8",
+   "draft_said": "",
+   "truth": "C 330pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  },
+  {
+   "what": "passive-missed",
+   "draft_id": null,
+   "key": "C-9",
+   "draft_said": "",
+   "truth": "C 330pF",
+   "cause": "box-not-found",
+   "note": "draft netlist had a few R-/C- pins but no boxes"
+  }
+ ],
+ "coverage": "Nearly every chip and gate pin is listed with its net, including H and GND ties; left out are the 74123 pins not drawn (2D 5,8 none), the 8097/8098 VCC, the DIP switches D2-D5 / I3-I5 as parts (their nets are named), and 6D.1 which goes nowhere. Gate-pack types are inferred from shape plus the parts list count.",
+ "check": {
+  "status": "checked",
+  "violations": 0,
+  "by": {},
+  "rules": "pinout, one net per pin, gate pattern, pin in two gates, two totem-pole outputs on one net (scripts/keyrules.py)",
+  "corrections": "none",
+  "gate_boxes_snapped_to_drawn_rectangle": 24,
+  "gates": 42,
+  "not_done": "parts-list count not compared; pins missing from nets only spot-checked (n10-63 14B, 12A: undrawn pins)"
+ }
+}
