@@ -48,6 +48,10 @@ was read from, and the tools that check and draw it.
   schematic page, with signals shared across the card. Page tabs (Page Up / Page Down), a card
   overview (F4), and off-page markers that jump to the page a signal continues on. The Original
   view follows the drawn page. Crowded pages can be split automatically (View menu).
+- **Assisted reading of a scanned page** - on the Original view (F6), Analyse page marks chips,
+  gates and position codes, offline with small trained networks (`src/models/`). Accept a find
+  as a part and connect wire ends to pins by hand, or let an LLM do it through the MCP tools.
+  Everything the networks find is inferred until accepted.
 - **Choose how names look** - an active-low signal as `/NAME` (default), `~NAME`, or ND's own
   0/1 subscript. Settings can follow the file.
 - **Check a sheet file** - `retroschematic check` refuses a file with an unknown format
@@ -92,7 +96,7 @@ Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
 - **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
   plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
   ND-120 CPU's A and B plugs.
-- **Tests:** 612, all passing (run 2026-11-24): 558 for the libraries, 54 for the window. Run
+- **Tests:** 637, all passing (run 2026-11-24): 582 for the libraries, 55 for the window. Run
   them with the command in Quick start. Known test problems are in `src/docs/BUGS.md`.
 - **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
   `src/docs/PLAN.md`.
