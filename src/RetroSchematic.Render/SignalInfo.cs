@@ -217,6 +217,12 @@ namespace RetroSchematic.Render
         public List<string> Levels { get; } = new();
 
         /// <summary>
+        /// The drawn pages the signal is on (a card with pages), in page order; empty without
+        /// pages. Filled by <see cref="SheetSession.SignalInfoOf"/>.
+        /// </summary>
+        public List<string> Pages { get; } = new();
+
+        /// <summary>
         /// The difference between the stored drive and the catalogue's, or null when they agree
         /// or either is missing.
         /// </summary>
@@ -304,6 +310,8 @@ namespace RetroSchematic.Render
                 }
                 for (int i = 0; i < Levels.Count; i++)
                     list.Add(Levels[i]);
+                if (Pages.Count > 1)
+                    list.Add("pages " + string.Join(", ", Pages));
                 return list;
             }
         }
@@ -602,6 +610,8 @@ namespace RetroSchematic.Render
                 sb.Append("WARNING: ").Append(PullUpWarning).Append('\n');
             if (Bus != null)
                 sb.Append("On bus: ").Append(Bus).Append('\n');
+            if (Pages.Count > 0)
+                sb.Append(Pages.Count == 1 ? "On page: " : "On pages: ").Append(string.Join(", ", Pages)).Append('\n');
             if (Levels.Count > 0)
             {
                 sb.Append("Through block ports, the same signal is:\n");

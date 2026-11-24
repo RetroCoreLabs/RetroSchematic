@@ -91,7 +91,7 @@ namespace RetroSchematic.Desktop
         /// </param>
         public void ShowView(string view)
         {
-            if (view != ViewDrawing && view != ViewOriginal && view != ViewFront && view != ViewBack)
+            if (view != ViewDrawing && view != ViewOriginal && view != ViewFront && view != ViewBack && view != ViewOverview)
                 throw new ArgumentException("No view called " + view + ".", nameof(view));
             if (_session == null && view != ViewDrawing)
                 return;
@@ -100,6 +100,10 @@ namespace RetroSchematic.Desktop
             OriginalView.IsVisible = view == ViewOriginal;
             FrontView.IsVisible = view == ViewFront;
             BackView.IsVisible = view == ViewBack;
+            OverviewView.IsVisible = view == ViewOverview;
+            if (view == ViewOverview)
+                FillOverview();
+            FillPageTabs();
             PagePickerBar.IsVisible = view == ViewOriginal && PagePicker.ItemCount > 1;
             FillPhotoPicker();
             TbViewDrawing.IsChecked = view == ViewDrawing;
@@ -125,6 +129,11 @@ namespace RetroSchematic.Desktop
             if (!_fillingPages)
                 ShowPage(PagePicker.SelectedIndex);
         }
+
+        /// <summary>
+        /// Which original page the Original view shows (0 = first), or -1.
+        /// </summary>
+        public int OriginalPageShown => PagePicker.SelectedIndex;
 
         /// <summary>
         /// Loads the original pages and the photos of the open sheet into their views (again
@@ -158,6 +167,8 @@ namespace RetroSchematic.Desktop
             PagePicker.SelectedIndex = titles.Count > 0 ? 0 : -1;
             _fillingPages = false;
             ShowPage(titles.Count > 0 ? 0 : -1);
+            // the original page of the drawn page shown, unless picked by hand
+            FollowOriginal();
             _frontPick = 0;
             _backPick = 0;
             ShowPhoto(BoardSide.Component);

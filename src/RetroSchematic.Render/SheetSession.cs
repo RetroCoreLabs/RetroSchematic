@@ -866,7 +866,12 @@ namespace RetroSchematic.Render
         public SignalInfo? SignalInfoOf(string key)
         {
             Net? n = Editor.FindNetByKey(key);
-            return n == null ? null : SignalInfo.Of(Editor, n, NameStyle, BusSignals);
+            if (n == null)
+                return null;
+            SignalInfo info = SignalInfo.Of(Editor, n, NameStyle, BusSignals);
+            // the drawn pages it is on (a card with pages)
+            info.Pages.AddRange(PagesOfSignal(key));
+            return info;
         }
 
         /// <summary>

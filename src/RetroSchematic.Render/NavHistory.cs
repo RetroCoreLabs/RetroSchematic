@@ -81,17 +81,18 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
-        /// True when the two places are on the same block level.
+        /// True when the two places are on the same block level and the same drawn page (a
+        /// page change is a place of its own, even with nothing picked).
         /// </summary>
         /// <param name="other">
         /// The other place.
         /// </param>
         /// <returns>
-        /// True when the levels match.
+        /// True when the levels and pages match.
         /// </returns>
         public bool SameLevel(NavPlace other)
         {
-            if (Level.Length != other.Level.Length)
+            if (Page != other.Page || Level.Length != other.Level.Length)
                 return false;
             for (int i = 0; i < Level.Length; i++)
             {

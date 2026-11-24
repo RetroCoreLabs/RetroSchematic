@@ -21,6 +21,11 @@
         <Separator/>
         <MenuItem Header="_Save sheet" Click="OnSave" x:Name="SaveItem" IsEnabled="False" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
         <MenuItem Header="Save sheet _as..." Click="OnSaveAs" x:Name="SaveAsItem" IsEnabled="False"/>
+        <MenuItem Header="Convert to a card with _pages" Click="OnConvertToPages" x:Name="ConvertPagesItem" IsEnabled="False"
+                  ToolTip.Tip="Format version 3: one file holds every schematic page of the card. The sheet becomes page 1; nothing that is connected changes"/>
+        <MenuItem Header="Add a pa_ge..." Click="OnAddPage" x:Name="AddPageItem" IsEnabled="False"
+                  ToolTip.Tip="A new, empty page at the end; chips placed while it is shown go on it"/>
+        <MenuItem Header="Put the picked part on page..." Click="OnPartToPage" x:Name="PartToPageItem" IsEnabled="False"/>
         <MenuItem Header="_Board info..." Click="OnBoardInfo" x:Name="BoardInfoItem" IsEnabled="False"
                   ToolTip.Tip="The board: machine, card and part numbers, versions, size, connectors, original pages and photos"/>
         <MenuItem Header="_Import board info from the ND PCB catalogue..." Click="OnImportCatalogue" x:Name="ImportCatalogueItem" IsEnabled="False"
@@ -70,6 +75,12 @@
         <Separator/>
         <MenuItem Header="_Fit to window" Click="OnFit" HotKey="Ctrl+D0" InputGesture="Ctrl+0"/>
         <Separator/>
+        <MenuItem Header="Card _overview" Tag="overview" Click="OnViewItem" x:Name="OverviewItem" HotKey="F4" InputGesture="F4"
+                  ToolTip.Tip="The card's pages with their titles, and the board photos"/>
+        <MenuItem Header="_Next page" Click="OnNextPage" x:Name="NextPageItem" IsEnabled="False" InputGesture="PageDown"/>
+        <MenuItem Header="Pre_vious page" Click="OnPreviousPage" x:Name="PreviousPageItem" IsEnabled="False" InputGesture="PageUp"/>
+        <MenuItem Header="Split crowded pages automatically" x:Name="SplitPagesItem" Click="OnToggleSplitPages" ToggleType="CheckBox" IsEnabled="False"
+                  ToolTip.Tip="Off: one drawn page per original page. On: a page with more than 16 chips is drawn as several pages, grouped by shared signals (saved with the card)"/>
         <MenuItem Header="_Drawing" Tag="drawing" Click="OnViewItem" HotKey="F5" InputGesture="F5"/>
         <MenuItem Header="_Original page" Tag="original" Click="OnViewItem" HotKey="F6" InputGesture="F6"/>
         <MenuItem Header="PCB _front (component side)" Tag="front" Click="OnViewItem" HotKey="F7" InputGesture="F7"/>
@@ -184,11 +195,17 @@
       <!-- middle: the drawing -->
       <DockPanel Grid.Column="2">
         <!-- where you are: Top > U2 (read-multiplexers); click a level to go back up to it -->
+        <!-- a card with pages: the overview, then one tab per drawn page (Page Up / Page Down) -->
+        <ScrollViewer DockPanel.Dock="Top" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+          <StackPanel x:Name="PageTabs" Orientation="Horizontal" Spacing="2" Margin="0,6,0,0" IsVisible="False"/>
+        </ScrollViewer>
         <StackPanel x:Name="LevelBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="2" Margin="0,6,0,0" IsVisible="False"/>
         <!-- several original pages: pick which one the Original view shows -->
         <StackPanel x:Name="PagePickerBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,6,0,0" IsVisible="False">
           <TextBlock Classes="fluent-text" Text="Page" VerticalAlignment="Center"/>
           <ComboBox x:Name="PagePicker" Classes="fluent-combobox" MinWidth="260" SelectionChanged="OnPagePicked"/>
+          <CheckBox x:Name="PageByHand" Content="Pick by hand" VerticalAlignment="Center" Click="OnPageByHand"
+                    ToolTip.Tip="Off: the original page follows the drawn page shown. On: the page picked here stays"/>
         </StackPanel>
         <!-- several photos of the side shown (the old and the new board, say): pick which one -->
         <StackPanel x:Name="PhotoPickerBar" DockPanel.Dock="Top" Orientation="Horizontal" Spacing="6" Margin="0,6,0,0" IsVisible="False">
@@ -202,6 +219,10 @@
             <c:ImageView x:Name="OriginalView" IsVisible="False" EmptyText="This sheet has no original page"/>
             <c:ImageView x:Name="FrontView" IsVisible="False" EmptyText="This sheet has no photo of the component side"/>
             <c:ImageView x:Name="BackView" IsVisible="False" EmptyText="This sheet has no photo of the solder side"/>
+            <!-- the card overview: its pages (click one to draw it) and the board photos -->
+            <ScrollViewer x:Name="OverviewView" IsVisible="False" Background="{DynamicResource FluentBackgroundSecondaryBrush}">
+              <StackPanel x:Name="OverviewPanel" Margin="16" Spacing="10"/>
+            </ScrollViewer>
           </Grid>
         </Border>
       </DockPanel>

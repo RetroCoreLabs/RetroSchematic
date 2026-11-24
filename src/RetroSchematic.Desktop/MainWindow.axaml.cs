@@ -133,6 +133,7 @@ namespace RetroSchematic.Desktop
             _session.DrawingChanged += OnDrawingChanged;
             _session.TraceChanged += OnTraceChanged;
             Canvas.Session = s;
+            AttachPages();
             // the app's defaults, with the sheet's own display values winning
             ApplyDisplay();
             FillLists();
@@ -189,6 +190,7 @@ namespace RetroSchematic.Desktop
             TbUpLevel.IsEnabled = inside;
             UpLevelItem.IsEnabled = inside;
             ShowLevelBar();
+            FillPageTabs();
             // leaving edit mode drops an editing tool back to Select (Trace stays: it works read-only)
             if (!editing && (TbPlace.IsChecked == true || TbWire.IsChecked == true))
                 PickTool(TbSelect);
@@ -272,6 +274,24 @@ namespace RetroSchematic.Desktop
 
         // a found item: kind icon | name | where it is (muted)
         private SideRow FoundRow(string owner)
+        {
+            // on a card with several pages the row says which page(s) it is on
+            SideRow row = FoundRowOnly(owner);
+            string page = _session!.PageLabelOf(owner);
+            if (page.Length == 0)
+                return row;
+            return new SideRow
+            {
+                Icon = row.Icon,
+                Main = row.Main,
+                Second = row.Second,
+                Badge = row.Badge,
+                Muted = string.IsNullOrEmpty(row.Muted) ? page : row.Muted + ", " + page,
+                Owner = row.Owner,
+            };
+        }
+
+        private SideRow FoundRowOnly(string owner)
         {
             Netlist n = _session!.Netlist;
             if (owner.StartsWith("part:", StringComparison.Ordinal))

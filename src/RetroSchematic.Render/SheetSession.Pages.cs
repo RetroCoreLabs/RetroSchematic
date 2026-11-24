@@ -114,6 +114,29 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// Where an item is, for a search result or a list row: "page 2", "pages 1, 3", or empty
+        /// for a card without pages.
+        /// </summary>
+        /// <param name="owner">
+        /// The owner name, such as part:13D or net:BD3_0.
+        /// </param>
+        /// <returns>
+        /// The text.
+        /// </returns>
+        public string PageLabelOf(string owner)
+        {
+            if (_options.Pages == null || _options.Pages.Pages.Count < 2)
+                return "";
+            if (owner.StartsWith("net:", StringComparison.Ordinal))
+            {
+                List<string> ids = PagesOfSignal(owner.Substring(4));
+                return ids.Count == 0 ? "" : (ids.Count == 1 ? "page " : "pages ") + string.Join(", ", ids);
+            }
+            int p = PageOfOwner(owner);
+            return p < 0 ? "" : "page " + _options.Pages.Pages[p].Id;
+        }
+
+        /// <summary>
         /// Follows a signal to another page: the next page after this one that the signal is on
         /// (round to the first again), with the signal picked and traced there. This is what a
         /// click on an off-page marker does.
