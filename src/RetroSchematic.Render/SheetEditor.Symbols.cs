@@ -258,6 +258,38 @@ namespace RetroSchematic.Render
             return chip == null ? new List<ChipPin>() : chip.Pins;
         }
 
+        /// <summary>
+        /// The picture of an original page, as stored, for reading: a picture source as it is, a
+        /// PDF source rendered at <paramref name="pdfDpi"/>.
+        /// </summary>
+        /// <param name="source">
+        /// The original page, 1 = first.
+        /// </param>
+        /// <param name="pdfDpi">
+        /// The dpi to render a PDF page at.
+        /// </param>
+        /// <param name="dpi">
+        /// The dpi of a rendered PDF page (the symbol boxes' <c>dpi</c>), null for a picture.
+        /// </param>
+        /// <returns>
+        /// The PNG or JPEG bytes.
+        /// </returns>
+        public byte[] SourcePicture(int source, int pdfDpi, out int? dpi)
+        {
+            dpi = null;
+            int sources = Root.Sources?.Count ?? 0;
+            if (source < 1 || source > sources)
+                throw new SheetEditException($"Source {source} does not exist: the card has {sources} source page(s).");
+            SourcePage s = Root.Sources![source - 1];
+            byte[] data = Files.Read(s.File) ?? throw new SheetEditException("The page file " + s.File + " cannot be found.");
+            if (!SheetAttachments.IsPdf(s.File))
+                return data;
+            if (Pdf == null || s.PdfPage == null)
+                throw new SheetEditException("The PDF page of " + s.File + " cannot be shown.");
+            dpi = pdfDpi;
+            return Pdf(data, s.PdfPage.Value, pdfDpi);
+        }
+
         private void CheckBox(SymbolBox b)
         {
             int sources = Root.Sources?.Count ?? 0;

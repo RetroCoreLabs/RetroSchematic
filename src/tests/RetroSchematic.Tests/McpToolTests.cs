@@ -128,8 +128,9 @@ namespace RetroSchematic.Tests
             }
             // every tool of every tools file; add_passive (passive parts, 2026-11-23) made it 49,
             // the page tools (list_pages, add_page, set_part_page, set_page, get_page,
-            // set_page_layout; format version 3) 55
-            Assert.That(tools, Is.EqualTo(55));
+            // set_page_layout; format version 3) 55, assisted reading (analyse_page, accept_find,
+            // set_symbol_box, connect_pin_on_page) 59
+            Assert.That(tools, Is.EqualTo(59));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 

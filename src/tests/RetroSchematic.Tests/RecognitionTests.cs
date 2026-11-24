@@ -209,7 +209,7 @@ namespace RetroSchematic.Tests
 
             int pChips = proto.GetProperty("chips").GetArrayLength();
             int pGates = proto.GetProperty("gates").GetArrayLength();
-            TestContext.Out.WriteLine($"C#: {chips} chips ({typed} typed), {gates} gates, {coded} codes, turn {a.TurnCw}, style {a.Style}, {a.Pieces} pieces, {a.Milliseconds} ms; prototype {pChips} chips, {pGates} gates");
+            TestContext.Out.WriteLine($"C#: {chips} chips ({typed} typed), {gates} gates, {coded} codes, turn {a.TurnCw}, style {a.Style}, {a.Pieces} pieces, {a.Milliseconds} ms (turn {a.TurnMs}, pieces {a.PiecesMs}, detector {a.DetectMs}); prototype {pChips} chips, {pGates} gates");
             Assert.That(a.TurnCw, Is.EqualTo(0));
             Assert.That(a.Scale, Is.EqualTo(1.0));
             Assert.That(a.Style, Is.EqualTo(PageStyle.Hand));

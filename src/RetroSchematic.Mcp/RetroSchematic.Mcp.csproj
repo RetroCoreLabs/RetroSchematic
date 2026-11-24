@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
     <ProjectReference Include="..\RetroSchematic.Render\RetroSchematic.Render.csproj" />
+    <ProjectReference Include="..\RetroSchematic.Recognition\RetroSchematic.Recognition.csproj" />
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="RetroSchematic.Tests" />

@@ -98,16 +98,22 @@ public sealed class PageAnalyser : IDisposable
         }
 
         result.Scale = f;
+        long t0 = sw.ElapsedMilliseconds;
         int turn = FindTurn ? Turn(g) : 0;
+        result.TurnMs = sw.ElapsedMilliseconds - t0;
         result.TurnCw = turn;
         GreyImage page = g.Rotate(turn);
 
+        t0 = sw.ElapsedMilliseconds;
         PageWork w = new PageWork(page, letters, board);
+        result.PiecesMs = sw.ElapsedMilliseconds - t0;
         PageStyle st = style ?? StyleOf(w);
         result.Style = st;
         SymbolDetector det = st == PageStyle.Cad ? cadDetector : handDetector;
         result.Detector = st == PageStyle.Cad ? "det-A" : "det-L3";
+        t0 = sw.ElapsedMilliseconds;
         List<Detection> dets = det.Detect(page, Threshold);
+        result.DetectMs = sw.ElapsedMilliseconds - t0;
         List<PageFind> finds = w.Symbols(dets, chipIds);
         result.Pieces = w.PieceCount;
 
@@ -220,8 +226,9 @@ public sealed class PageAnalyser : IDisposable
         bool across = hp >= vp;
         int a = across ? 0 : 90;
         int b = across ? 180 : 270;
-        double ca = TurnConfidence(g.Rotate(a));
-        double cb = TurnConfidence(g.Rotate(b));
+        // turn 0 is the page as it is, so its pieces are the ones just cut
+        double ca = TurnConfidence(g.Rotate(a), a == 0 ? pcs0 : null);
+        double cb = TurnConfidence(g.Rotate(b), null);
         return cb > ca ? b : a;
     }
 
@@ -276,9 +283,9 @@ public sealed class PageAnalyser : IDisposable
         return (hp, vp);
     }
 
-    private double TurnConfidence(GreyImage g)
+    private double TurnConfidence(GreyImage g, List<Blob>? cut)
     {
-        List<Blob> pcs = Every(PageWork.LetterPieces(g), 800);
+        List<Blob> pcs = Every(cut ?? PageWork.LetterPieces(g), 800);
         if (pcs.Count == 0)
         {
             return 0;

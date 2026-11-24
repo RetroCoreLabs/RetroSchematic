@@ -111,6 +111,15 @@ public sealed class PageAnalysis
     /// <summary>Gets or sets the number of letter pieces read.</summary>
     public int Pieces { get; set; }
 
+    /// <summary>Gets or sets the time spent finding the turn, milliseconds.</summary>
+    public long TurnMs { get; set; }
+
+    /// <summary>Gets or sets the time spent cutting and reading the letter pieces, milliseconds.</summary>
+    public long PiecesMs { get; set; }
+
+    /// <summary>Gets or sets the time the detector took, milliseconds.</summary>
+    public long DetectMs { get; set; }
+
     /// <summary>Gets or sets the time taken, milliseconds.</summary>
     public long Milliseconds { get; set; }
 }
