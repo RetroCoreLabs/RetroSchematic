@@ -564,7 +564,41 @@ Everything versions 1 and 2 check, plus:
 - a connector, instance, wire path or bus that names a page names one in the list;
 - a page's `source` is a place in the `sources` list;
 - no part inside a block names a page (the block's instance has the page);
-- a version 1 or 2 file has no `pages`, no `pageLayout` and no `page` on a part or connector.
+- a version 1 or 2 file has no `pages`, no `pageLayout` and no `page` on a part or connector;
+- the symbol boxes pass their checks (see Symbol boxes below).
+
+## Symbol boxes
+
+`symbolBoxes[]` (version 3 only, card-wide) says where a read symbol is drawn on an original
+page: a chip, one gate of a chip, a passive part, a circled backplane pin, a net-label diamond,
+a wire dot or a label. A box never changes what is connected. The boxes tie the reading to the
+drawing (the Original view draws them, and clicking one selects its part), and they are the
+training data for the symbol finder (`models/README.md`).
+
+| Field | What it is |
+|---|---|
+| `source` | the original page: its place in `sources`, 1 = first |
+| `x`, `y`, `width`, `height` | the box in pixels of the source picture; for a PDF source, of the page rendered at `dpi` |
+| `dpi` | for a PDF source only: the dots per inch the pixels are counted at |
+| `kind` | `chip`, `gate`, `resistor`, `capacitor`, `switch`, `strap`, `ground`, `supply`, `circle`, `offpage`, `dot` or `label` |
+| `ref` | the part it is (`13D`, `R5`); not for a circle, diamond, dot or label |
+| `gate` | for a gate: which gate of the part, 1 = the part's first |
+| `gateKind` | the gate kind the box shows (`nand`, `nor`, ...), for training |
+| `text` | a label's text, or the pin a circle names (`P.81`) |
+| `by` | `hand` (a person drew it) or `tool` (the page analyser found it and a person or an agent accepted it) |
+| `score` | for a box by the tool: how sure the finder was, 0..1 |
+| `note` | free text |
+
+```json
+"symbolBoxes": [ { "source": 1, "x": 2219, "y": 1081, "width": 92, "height": 418,
+  "kind": "chip", "ref": "15B", "by": "tool", "score": 0.909 } ]
+```
+
+A reader checks that each box names a source page the card has, has a width and height above
+0, holds a kind from the list, names a part that is on the card (when it names one), names a
+gate only together with a part, and was drawn by `hand` or `tool`. A version 1 or 2 file has no
+`symbolBoxes`; adding the first box to such a card converts it to version 3 (one page) in the
+same step.
 
 ## Converting an older file
 

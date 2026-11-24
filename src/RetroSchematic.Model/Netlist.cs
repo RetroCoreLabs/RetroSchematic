@@ -232,6 +232,13 @@ namespace RetroSchematic.Model
         /// too crowded. Drawing only - it never changes what is connected.
         /// </summary>
         public PageLayoutMode? PageLayout { get; set; }
+
+        /// <summary>
+        /// Where the read symbols are drawn on the original pages (format version 3), or null:
+        /// boxes in page pixels tying a part, a gate, a circled pin or a label to the drawing.
+        /// They never change what is connected. See <see cref="SymbolBox"/>.
+        /// </summary>
+        public List<SymbolBox>? SymbolBoxes { get; set; }
     }
 
     /// <summary>

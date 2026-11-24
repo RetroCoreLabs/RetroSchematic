@@ -700,6 +700,100 @@
         "split"
       ],
       "description": "How the redrawn drawing is cut into pages: one per original page (default) or split automatically. Drawing only."
+    },
+    "symbolBoxes": {
+      "type": "array",
+      "description": "Where read symbols are drawn on the original pages, in page pixels: chips, gates, passive parts, circled pins, labels. Training data for the symbol finder; never changes what is connected.",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "x",
+          "y",
+          "width",
+          "height",
+          "kind",
+          "by"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "source": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "The original page: its place in sources, 1 = first."
+          },
+          "x": {
+            "type": "number",
+            "description": "Left edge, pixels of the source picture (a PDF page: rendered at dpi)."
+          },
+          "y": {
+            "type": "number",
+            "description": "Top edge, pixels."
+          },
+          "width": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "height": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "dpi": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "For a PDF source: the dpi the pixels are counted at."
+          },
+          "kind": {
+            "enum": [
+              "chip",
+              "gate",
+              "resistor",
+              "capacitor",
+              "switch",
+              "strap",
+              "ground",
+              "supply",
+              "circle",
+              "offpage",
+              "dot",
+              "label"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "description": "The part it is, such as 13D."
+          },
+          "gate": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Which gate of the part, 1 = first."
+          },
+          "gateKind": {
+            "type": "string",
+            "description": "The gate kind the box shows, for training."
+          },
+          "text": {
+            "type": "string",
+            "description": "A label's text, or the pin a circle names (P.81)."
+          },
+          "by": {
+            "enum": [
+              "hand",
+              "tool"
+            ],
+            "description": "Drawn by a person, or found by the page analyser and accepted."
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "For a box by the tool: how sure the finder was."
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "$defs": {

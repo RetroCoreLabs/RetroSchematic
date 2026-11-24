@@ -103,6 +103,7 @@ namespace RetroSchematic.Model
 
             Check(netlist);
             CardPages.Check(netlist);
+            SymbolBoxes.Check(netlist);
             return netlist;
         }
 
