@@ -1,0 +1,115 @@
+{
+  "catalogFormat": "nd-backplane",
+  "catalogFormatVersion": 1,
+  "id": "nord10-backplane",
+  "machine": "NORD-10",
+  "title": "NORD-10 CPU crate backplane (backwiring): slots, bus wiring, chains, supply and cable side",
+  "sources": [
+    {
+      "id": "BW",
+      "document": "Backwiring til NORD-10 (A/S Norsk Data-Elektronikk): connector specification list (PDF page 3), a connector list per position (PDF pages 4-35), signal code list (PDF pages 36-54). NDInsight repository, Reference-Manuals/10/Backwiring_Til_NORD-10.md (OCR text; the A22 and A25 pages were checked against the page images earlier, see catalog/signals/nd-bus-nord10.json)."
+    },
+    {
+      "id": "N10S",
+      "document": "ND-06.008.01 NORD-10/S Reference Manual, Revision A, section 4.1 (Input/Output hardware)."
+    },
+    {
+      "id": "PCB",
+      "document": "ND PCB catalogue (pcb.json, scraped from norsk-data.com): boards 501062 (card 6022, NORD-10 I/O bus, 156 x 219 mm, 4 layers), xx6022 (NORD-10 I/O bus, 156 x 119 mm), 501048 (card 6009, NORD-10 Bus Receiver, 156 x 219 mm), 6017 and 6021 (NORD-10 multiport memory buses), with photos."
+    },
+    {
+      "id": "S2A50",
+      "document": "Sheet 2A50 (card 1050) as read in this repository, and its board photos (docs/NORD10-EDGE-FINGERS.md)."
+    }
+  ],
+  "positions": {
+    "value": [
+      { "slot": "A01", "connector": 101, "board": "STATUS" },
+      { "slot": "A02", "connector": 102, "board": "ARITHMETICS" },
+      { "slot": "A03", "connector": 103, "board": "ARITHMETICA" },
+      { "slot": "A04", "connector": 104, "board": "REGISTERS" },
+      { "slot": "A05", "connector": 105, "board": "REGISTERS" },
+      { "slot": "A06", "connector": 106, "board": "REGISTERS" },
+      { "slot": "A07", "connector": 107, "board": "REGISTERS" },
+      { "slot": "A08", "connector": 108, "board": "DECODING" },
+      { "slot": "A09", "connector": 109, "board": "OR LOGIC" },
+      { "slot": "A10", "connector": 110, "board": "1K PROM" },
+      { "slot": "A11", "connector": 111, "board": "MICRO ADDR." },
+      { "slot": "A12", "connector": 112, "board": "TIMING" },
+      { "slot": "A13", "connector": 113, "board": "MEM. CONTROL" },
+      { "slot": "A14", "connector": 114, "board": "PAGING" },
+      { "slot": "A15", "connector": 115, "board": "INTERR. CONT." },
+      { "slot": "A16", "connector": 116, "board": "INTERR. REG." },
+      { "slot": "A17", "connector": 117, "board": "PANEL DRIVER" },
+      { "slot": "A18", "connector": 118, "board": "MEM. ADDRESS" },
+      { "slot": "A19", "connector": 119, "board": "MEM. DATA" },
+      { "slot": "A20", "connector": 120, "board": "MEM. ADDRESS" },
+      { "slot": "A21", "connector": 121, "board": "MEM. DATA" },
+      { "slot": "A22", "connector": 122, "board": "I/O CONTROL" },
+      { "slot": "A23", "connector": 123, "board": "I/O ADDRESS" },
+      { "slot": "A24", "connector": 124, "board": "I/O DATA" },
+      { "slot": "A25", "connector": 125, "board": "I/O DEVICE" },
+      { "slot": "A26", "connector": 126, "board": "I/O DEVICE" },
+      { "slot": "A27", "connector": 127, "board": "I/O DEVICE" },
+      { "slot": "A28", "connector": 128, "board": "I/O DEVICE" },
+      { "slot": "A29", "connector": 129, "board": "I/O DEVICE" },
+      { "slot": "A30", "connector": 130, "board": "I/O DEVICE" },
+      { "slot": "A31", "connector": 131, "board": "I/O DEVICE" },
+      { "slot": "A32", "connector": 132, "board": "I/O DEVICE" }
+    ],
+    "source": "BW",
+    "page": "connector specification list, PDF page 3",
+    "confidence": "read",
+    "note": "32 positions, each one connector with pins 0-99. A01-A17 are the CPU, A18-A21 memory address and data, A22-A24 the I/O control, address and data cards, A25-A32 eight I/O device positions. The column 'Pin Sequen.' reads 6 for every position and its meaning is open; the coordinates and 'Pin Dist.' columns are all 0."
+  },
+  "ioBus": {
+    "value": "At the eight I/O device positions A25-A32 pins 10-55 are the I/O bus. Address lines BA0-BA17 run from A23 (I/O ADDRESS) to the same pin on A25-A32; data lines BD0-BD15 from A24 (I/O DATA) to A25-A32; BIOXE (pin 11) and BMCL (pin 55) are driven from A22 (marked G there) to every I/O position. The interrupt lines BINT10-BINT15, BINPUT, BCON, BSKIP, IOTE and RESTART are bussed over the I/O positions. Pin numbers per signal: catalog/signals/nd-bus-nord10.json.",
+    "source": "BW",
+    "page": "connector lists A22-A32 (PDF pages 25-35) and the signal code list",
+    "confidence": "read",
+    "note": "Example rows of the signal code list: BIOXE 0 = A22:G10, A25:11 ... A32:11; BMCL 0 = A22:G52, A25:55 ... A32:55; BD0 0 = A24:W40, A25:W10 ... A32:W10. BCON 0 is listed at A25-A31 only in the OCR text (A32 missing): whether A32 really lacks it is OPEN until the page image is read."
+  },
+  "chains": {
+    "value": "IDENT and GRANT are chains, not busses: pin 7 (IDENT in) and pin 9 (GRANT in) of each I/O position come from pins 6 (IDENT out) and 8 (GRANT out) of the position before. The chain starts at A22 (BIDENT from A22 pin 10, marked G, to A25 pin 7) and ends at A32 (IDENT15 = A32:G06 and GRANT15 = A32:G08 have no further connection, marked X). So an empty I/O position breaks the chain unless something joins its pins 6-7 and 8-9.",
+    "source": "BW",
+    "page": "signal code list: IDENT1 0 = A25:G06 A26:07, IDENT3 0 = A26:G06 A27:07 ... IDENT13 0 = A31:G06 A32:07, X IDENT15 0 = A32:G06; GRANT1 0 = A25:G08 ... X GRANT15 0 = A32:G08",
+    "confidence": "read",
+    "note": "That an empty position breaks the chain is INFERRED from the wiring. On 2A50 the card joins pin 8 to pin 9 straight (INGRANT = P.8 = P.9, READ on the drawing), so it passes GRANT on without using it. The OCR has a few odd chain names (GRANT11 = A30:G08 A26:09, GRANT13 = A31:G08 A31:09, GRANT3J): those rows need the page image."
+  },
+  "perSlotPins": {
+    "value": "Pins 0-5 and 56-99 are empty in the connector list of every I/O position: the backwiring list bus-wires nothing there.",
+    "source": "BW",
+    "page": "connector lists A25-A32",
+    "confidence": "read",
+    "note": "Pin 4 (BFQ1 on the 2A50 drawing, a test clock into the card) is also empty in the list, so where BFQ1 comes from is OPEN."
+  },
+  "cableSide": {
+    "value": "Pins 56-99 of an I/O position are the card's own cable pins: a device cable plugs onto the backplane's pins at the back of that position.",
+    "source": "N10S",
+    "page": "section 4.1.1: 'Cable connectors are plugged directly into the backplane' and 'Device plugs are also to a common standard'",
+    "confidence": "inferred",
+    "note": "Inferred from that sentence plus 56-99 being empty in the backwiring list (READ) and 2A50 putting its modem lines on 81-95 (READ). The photos of 501062 and the EMI rack show long wire-wrap posts at the back of every position (READ on the photos), which a cable plug can go onto. The cable plug type and how many pins it covers are OPEN."
+  },
+  "supply": {
+    "value": "open",
+    "confidence": "open",
+    "note": "The backwiring list names no supply pin at any position. The I/O bus backplane 501062 has heavy screw lugs along one side and on the far end (READ on the photos), which look like supply feeds; which connector pins carry +5V and ground is not shown. On the 2A50 card the fingers of pins 0, 1, 98 and 99 (the ends of the edge) and 60 and 64 run into wide copper (READ on the photos, see docs/NORD10-EDGE-FINGERS.md): candidates, not proven. 2A50 makes its own +-12V from +5V (VP12/12) and puts it out on 62/63 and 66/67, so -12V and +12V are not taken from the backplane by that card."
+  },
+  "pullUps": {
+    "value": "open",
+    "confidence": "open",
+    "note": "The backwiring list has no resistors or terminations, and no photo shows resistors on the I/O backplane boards 501062, xx6022 or 501048 (READ: the component sides carry only connectors and the supply lugs). The open-collector lines a device card drives without a pull-up of its own (on 2A50: LEV10/BINT10 pin 27, LEV12/BINT12 pin 35, CONNECT/BCON pin 23, INPUT/BINPUT pin 15) have one other end besides the device positions: A22 I/O CONTROL (BINT11, BINT12, BINT13, BINT15 and BINPUT are in A22's connector list, READ; BINT10 shows there only as the OCR misreading 'GINIT10', to be checked on the page image). So the pull-ups are most likely on the I/O control card A22 (INFERRED from the wiring only); the A22 card drawing has not been read, so this stays open."
+  },
+  "mechanics": {
+    "value": "Each position takes a 156 mm card edge with 50 contacts on each side (two rows of contacts in the backplane socket, READ on the 501062 and 501048 photos; 50 per card side, READ on the 2A50 card). The crate is an 'EMI RACK SYSTEM 19 x 1/2 INCH', Art. M-1001, made by Elektro Mek. Industri A.S., Horten, Norway, with positions numbered 1-24 on the rail in the photo (READ on the photo 501062 'usage in a card crate').",
+    "source": "PCB",
+    "confidence": "read",
+    "note": "The crate photo shows two backplane boards in one 24-position rail: 501062 (I/O bus, cut after a slot, per the catalogue text) and one marked 6023. How the 32 positions A01-A32 of the backwiring list map onto rails of 24 is OPEN."
+  },
+  "photos": [
+    { "board": "501062", "what": "NORD-10 I/O bus backplane, 8 positions, component and solder side, and two pictures of it in a card crate", "source": "PCB" },
+    { "board": "xx6022", "what": "NORD-10 I/O bus backplane, shorter (156 x 119 mm), component and solder side", "source": "PCB" },
+    { "board": "501048", "what": "NORD-10 Bus Receiver backplane (card 6009), 16 positions, component and solder side", "source": "PCB" }
+  ],
+  "note": "The pin-by-pin signals of an I/O device position are in catalog/connectors/nord10-io-card-backplane.json (pinMap) and catalog/signals/nd-bus-nord10.json. The NORD-10 Input/Output manual ND-06.004, which the NORD-10/S manual names for signal levels and timing, was not found; it is the document most likely to settle the supply pins and the terminations."
+}

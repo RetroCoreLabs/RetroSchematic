@@ -142,3 +142,6 @@ list and the sheet in step):
 - **CONNECT** (P.23), **INPUT** (P.15), **LEV10** (P.27), **LEV12** (P.35): driven by the 7438
   open-collector buffers 5A onto the bus. No resistor is drawn on this sheet. Where the bus
   pulls them high (CPU card or backplane) is OPEN: no NORD-10 document found says.
+  The backwiring list has no resistors and the I/O backplane photos show none; the lines' only
+  other end is A22, I/O CONTROL, so the pull-ups are most likely there (INFERRED, see
+  [NORD10-BACKPLANE.md](NORD10-BACKPLANE.md)).
