@@ -125,6 +125,24 @@ photo), drag a chip box to move it, drag a box corner to size it, or Shift and a
 turn it; a box changed by hand is saved in the sheet and wins over the cell. Each change is one
 undo step. See `docs/FORMAT.md`, "pcb".
 
+**Assisted reading** (Original view, the bar above the page). **Analyse page** runs the page
+analyser on the page shown: offline, on the CPU, a few seconds (models in `models/`, described in
+`models/README.md`). It draws a box on every chip, gate, passive part, circled backplane pin,
+net-label diamond and wire dot it finds, with the position code it read on a tag: solid (success
+colour) when it is sure (detector at least 0.6 and a code read at the symbol), dashed (warning
+colour) when not. Every find is a guess. Click one: the find bar shows what it is, the code read
+and the chip type matched in the catalogue, both editable, and **or link to** an existing part.
+**Accept** (edit mode) stores the box as the part's symbol box on the page (format version 3,
+`symbolBoxes`, `docs/FORMAT.md`): the part at the code is used when there is one (a second gate of
+a package goes on its next gate), else a new part of the type is made there, confidence inferred.
+An accepted box is drawn in the accent colour with its part name and the find disappears.
+**Wire assist**: click a wire end next to an accepted part's box; the pin bar lists the chip's pins
+(number and name) from the catalogue; pick the pin the wire ends on and name the signal (or
+another pin) it goes on; **Connect** puts the pin on it and keeps the signal's name in the bar, so
+the next wire end joins the same signal. Each accept and each connection is one undo step. The
+analyser reads about half the position codes and does not read pin numbers, so wires are always
+connected this way, by a person (or by an agent through the MCP tools below).
+
 ## The board
 
 With nothing picked, Details shows the **Board** card: title, machine, card and part numbers, print and ECO
@@ -217,7 +235,8 @@ All of this is done by `RetroSchematic.Render/SheetEditor.cs` (the changes) and 
 standard input and output: `new_sheet` (with the machine bus: nord-10, nd-100 or unknown), `open_sheet` (read-only unless `edit` is true),
 `set_edit_mode`, `list_parts`, `list_nets`, `place_part`, `move_part`, `connect_pins`,
 `disconnect_pin`, `delete`, `create_bus`, `set_bus_path`, `add_bus_member`, `remove_bus_member`, `delete_bus`, `list_buses`, `make_block`, `dissolve_block`, `enter_block`, `leave_block`,
-`list_blocks`, `list_instances`, `set_port_position`, `get_signal_info`, `set_signal_description`, `undo`, `redo`, `save_sheet`. It uses the same `SheetEditor`, so the
+`list_blocks`, `list_instances`, `set_port_position`, `get_signal_info`, `set_signal_description`, `undo`, `redo`, `save_sheet`, and for assisted reading `analyse_page`,
+`accept_find`, `set_symbol_box` and `connect_pin_on_page`. It uses the same `SheetEditor`, so the
 rules are the same as in the window.
 
 ## Themes

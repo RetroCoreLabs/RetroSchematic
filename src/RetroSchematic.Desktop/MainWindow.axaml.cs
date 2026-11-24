@@ -129,6 +129,9 @@ namespace RetroSchematic.Desktop
             }
             _session = s;
             _history.Clear();
+            _analysis = null;
+            _pickedFind = null;
+            _wirePart = null;
             _session.SelectionChanged += OnSelectionChanged;
             _session.DrawingChanged += OnDrawingChanged;
             _session.TraceChanged += OnTraceChanged;
@@ -717,6 +720,7 @@ namespace RetroSchematic.Desktop
             if (session.Selected.Length > 0)
                 ShowDetails(session, session.Selected);
             ShowEditState();
+            ShowReading();
         }
 
         private void OnToolMessage(string message)

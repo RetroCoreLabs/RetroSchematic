@@ -54,6 +54,13 @@ namespace RetroSchematic.Desktop.Controls
         public IReadOnlyList<PcbBox>? Boxes { get; set; }
 
         /// <summary>
+        /// The page analyser's finds drawn on the picture (the Original view), or null: a sure
+        /// find has a solid edge in the success colour, an unsure one a dashed edge in the warning
+        /// colour, the picked one the selection colour. Each shows its label (the code read).
+        /// </summary>
+        public IReadOnlyList<FindMark>? Finds { get; set; }
+
+        /// <summary>
         /// True to draw <see cref="Boxes"/>: see-through boxes with their position names.
         /// </summary>
         public bool ShowBoxes { get; set; }
@@ -295,6 +302,7 @@ namespace RetroSchematic.Desktop.Controls
                 context.FillRectangle(paper, tag, 3);
                 context.DrawText(t, new Point(tag.X + 3, tag.Y + 1));
             }
+            DrawFinds(context, paper, ink, pc);
             if (ShowOutline && Outline != null && Outline.Count == 4)
             {
                 Pen line = new(pick, 2, new DashStyle(new double[] { 6, 3 }, 0));
@@ -305,6 +313,33 @@ namespace RetroSchematic.Desktop.Controls
                     Point p = ToScreen(Outline[i]);
                     context.DrawRectangle(paper, new Pen(pick, 2), new Rect(p.X - (HandleSize / 2), p.Y - (HandleSize / 2), HandleSize, HandleSize));
                 }
+            }
+        }
+
+        // the analyser's finds: an accepted one is drawn by its symbol box instead (Boxes), so
+        // only the open ones come here
+        private void DrawFinds(DrawingContext context, IBrush paper, IBrush ink, Color pickColour)
+        {
+            if (Finds == null)
+                return;
+            Color sure = Brush("FluentSuccessBorderBrush", Brushes.SeaGreen) is ISolidColorBrush s1 ? s1.Color : Colors.SeaGreen;
+            Color unsure = Brush("FluentWarningBorderBrush", Brushes.DarkOrange) is ISolidColorBrush s2 ? s2.Color : Colors.DarkOrange;
+            for (int i = 0; i < Finds.Count; i++)
+            {
+                FindMark f = Finds[i];
+                Color c = f.Picked ? pickColour : f.Sure ? sure : unsure;
+                Point a = ToScreen(new GridPoint(f.X, f.Y));
+                Point b = ToScreen(new GridPoint(f.X + f.Width, f.Y + f.Height));
+                Rect r = new(a, b);
+                Pen edge = new(new SolidColorBrush(c), f.Picked ? 2.5 : 1.5, f.Sure || f.Picked ? null : new DashStyle(new double[] { 3, 2 }, 0));
+                context.DrawRectangle(new SolidColorBrush(Color.FromArgb((byte)(f.Picked ? 0x50 : 0x20), c.R, c.G, c.B)), edge, r);
+                if (f.Label.Length == 0 || r.Width < 14)
+                    continue;
+                FormattedText t = new(f.Label, System.Globalization.CultureInfo.InvariantCulture, FlowDirection.LeftToRight, Typeface.Default, 11, ink);
+                Rect tag = new(r.X, r.Y - t.Height - 2, t.Width + 6, t.Height + 2);
+                context.FillRectangle(paper, tag, 3);
+                context.DrawRectangle(null, new Pen(new SolidColorBrush(c), 1), tag, 3);
+                context.DrawText(t, new Point(tag.X + 3, tag.Y + 1));
             }
         }
 

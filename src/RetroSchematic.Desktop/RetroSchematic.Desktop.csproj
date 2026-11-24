@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
     <ProjectReference Include="..\RetroSchematic.Render\RetroSchematic.Render.csproj" />
+    <ProjectReference Include="..\RetroSchematic.Recognition\RetroSchematic.Recognition.csproj" />
   </ItemGroup>
   <ItemGroup>
     <!-- File > Open the demo sheet finds this copy next to the program; the chip files let a

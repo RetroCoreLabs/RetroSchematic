@@ -23,19 +23,27 @@ The format (version 3), the window, the command line and the MCP tools are built
 - The Desktop README does not describe pages yet (page tabs, F4 overview, Page Up/Down, the
   three File menu items, the split switch, the new MCP tools, the CLI to-pages/pages commands).
 
-## Symbol boxes on the scanned page (training data for a symbol finder)
+## Assisted reading: open items
 
-Owner approved 2026-11-23. Plan item only, not built yet.
+Phase 1 is built: the models (`models/`), the page analyser (`RetroSchematic.Recognition`, a port
+of the offline prototype that gives the same 19 chips, 74 gates and 81 codes on the 2A50 page),
+symbol boxes in the format (version 3), the Original view's Analyse page / accept / wire assist,
+and the MCP tools. Left:
 
-- Each read part, gate, circled pin, passive part and label gets an optional box on its source
-  page: the source page id, x/y/width/height in page pixels at the stored dpi (or the four
-  corners), what it is (part ref, gate, circled pin, label text) and who drew the box (hand or
-  tool).
-- Window: in the Original view (F6) draw or move a box and link it to a part, like the chip
-  boxes on the PCB photos. An MCP tool to set one.
-- Later, once 10-20 cards are read: train a detector (symbols and printed text) on these boxes
-  and use it as a first pass on new cards, every result marked inferred and checked by a
-  reader. Measure it on a card it has never seen before trusting it.
+- A symbol box is drawn by the tool or accepted only; the window cannot draw a box by hand or
+  move one yet (the MCP tool `set_symbol_box` can). Clicking an accepted box does not pick its
+  part.
+- Circles, diamonds and dots can be accepted as boxes, but a circled pin is not tied to its
+  connector pin (`text`) and a diamond is not tied to its signal from the window.
+- The prototype's rule-based boxes (`classic.py`) and its wire tracing are not ported; the
+  analyser is the detector path only.
+- A page needing a turn or a scale change is read the prototype's way, but no such page is in
+  the repository, so those paths have no test against the prototype. A grown page uses bilinear
+  filtering where the prototype used cubic.
+- The analysis runs once per click and is not kept in the file; reopening the sheet needs a new
+  run.
+- Training: once 10-20 cards have accepted boxes, retrain the detector on them and measure it on
+  a card it has never seen before trusting it.
 
 ## Queue from the 2026-11-23 session (in this order)
 

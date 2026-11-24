@@ -105,6 +105,7 @@ namespace RetroSchematic.Desktop
                 FillOverview();
             FillPageTabs();
             PagePickerBar.IsVisible = view == ViewOriginal && PagePicker.ItemCount > 1;
+            ReadBar.IsVisible = _session != null && view == ViewOriginal;
             FillPhotoPicker();
             TbViewDrawing.IsChecked = view == ViewDrawing;
             TbViewOriginal.IsChecked = view == ViewOriginal;
@@ -313,6 +314,7 @@ namespace RetroSchematic.Desktop
             string? problem = null;
             byte[]? bytes = PictureOf(n.Sources[index], ref problem);
             OriginalView.SetPicture(bytes, problem ?? "");
+            ShowReading();
         }
 
         // a source page as picture bytes: a PDF page is rendered, a picture is used as it is

@@ -212,6 +212,34 @@
           <TextBlock Classes="fluent-text" Text="Photo" VerticalAlignment="Center"/>
           <ComboBox x:Name="PhotoPicker" Classes="fluent-combobox" MinWidth="320" SelectionChanged="OnPhotoPicked"/>
         </StackPanel>
+        <!-- assisted reading on the Original view: the page analyser marks what it finds; a click
+             on a find accepts it as a part, wire assist connects a pin at a wire end -->
+        <StackPanel x:Name="ReadBar" DockPanel.Dock="Top" Margin="0,6,0,0" Spacing="4" IsVisible="False">
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <Button x:Name="AnalyseButton" Classes="fluent-button" Content="Analyse page" Click="OnAnalysePage"
+                    ToolTip.Tip="Find the chips, gates, circled pins and dots on this page (offline). Every find is a guess until accepted"/>
+            <CheckBox x:Name="WireAssist" Content="Wire assist" VerticalAlignment="Center" Click="OnWireAssist"
+                      ToolTip.Tip="Click a wire end next to a part's box, pick the pin, and it goes on the signal named here"/>
+            <TextBlock x:Name="ReadStatus" Classes="fluent-text" VerticalAlignment="Center" TextWrapping="Wrap"/>
+          </StackPanel>
+          <StackPanel x:Name="FindBar" Orientation="Horizontal" Spacing="6" IsVisible="False">
+            <TextBlock x:Name="FindText" Classes="fluent-text" VerticalAlignment="Center"/>
+            <TextBlock Classes="fluent-text" Text="Code" VerticalAlignment="Center"/>
+            <TextBox x:Name="FindCode" MinWidth="70"/>
+            <TextBlock Classes="fluent-text" Text="Type" VerticalAlignment="Center"/>
+            <TextBox x:Name="FindType" MinWidth="90"/>
+            <TextBlock Classes="fluent-text" Text="or link to" VerticalAlignment="Center"/>
+            <ComboBox x:Name="FindLink" Classes="fluent-combobox" MinWidth="150"/>
+            <Button x:Name="AcceptFindButton" Classes="fluent-button" Content="Accept" Click="OnAcceptFind"/>
+          </StackPanel>
+          <StackPanel x:Name="PinBar" Orientation="Horizontal" Spacing="6" IsVisible="False">
+            <TextBlock x:Name="PinText" Classes="fluent-text" VerticalAlignment="Center"/>
+            <ComboBox x:Name="PinPicker" Classes="fluent-combobox" MinWidth="160"/>
+            <TextBlock Classes="fluent-text" Text="onto signal or pin" VerticalAlignment="Center"/>
+            <TextBox x:Name="PinTarget" MinWidth="120"/>
+            <Button x:Name="ConnectPinButton" Classes="fluent-button" Content="Connect" Click="OnConnectPin"/>
+          </StackPanel>
+        </StackPanel>
         <Border Classes="panel-border" Margin="0,6" ClipToBounds="True">
           <Grid>
             <c:SchematicCanvas x:Name="Canvas"/>
@@ -248,7 +276,7 @@
                      Background="{DynamicResource FluentBackgroundSecondaryBrush}"/>
             <DockPanel>
               <Button DockPanel.Dock="Right" Classes="fluent-button" Content="Add" Click="OnBusAdd" Margin="4,0,0,0"/>
-              <TextBox x:Name="BusAddBox" Classes="fluent-textbox" Watermark="signal, e.g. BD15_0"/>
+              <TextBox x:Name="BusAddBox" Watermark="signal, e.g. BD15_0"/>
             </DockPanel>
             <StackPanel Orientation="Horizontal" Spacing="4">
               <Button Classes="fluent-button" Content="Remove picked" Click="OnBusRemove"/>
@@ -258,15 +286,15 @@
           </StackPanel>
           <StackPanel DockPanel.Dock="Bottom" x:Name="SignalEditPanel" IsVisible="False" Margin="0,8,0,0" Spacing="4">
             <TextBlock x:Name="SignalEditTitle" Classes="fluent-text-header"/>
-            <TextBox x:Name="DescriptionBox" Classes="fluent-textbox" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="90"
+            <TextBox x:Name="DescriptionBox" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="90"
                      Watermark="What the signal does (never invent one: say where it is read)"/>
             <ComboBox x:Name="SourceKindBox" Classes="fluent-combobox" HorizontalAlignment="Stretch"
                       ToolTip.Tip="Where the description comes from"/>
-            <TextBox x:Name="SourceDocumentBox" Classes="fluent-textbox" Watermark="Document, e.g. docs/2A50-reading.md"/>
-            <TextBox x:Name="SourcePlaceBox" Classes="fluent-textbox" Watermark="Place in it: section or page"/>
+            <TextBox x:Name="SourceDocumentBox" Watermark="Document, e.g. docs/2A50-reading.md"/>
+            <TextBox x:Name="SourcePlaceBox" Watermark="Place in it: section or page"/>
             <ComboBox x:Name="SourceConfidenceBox" Classes="fluent-combobox" HorizontalAlignment="Stretch"
                       ToolTip.Tip="How sure the description is"/>
-            <TextBox x:Name="NotesBox" Classes="fluent-textbox" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="70" Watermark="Notes"/>
+            <TextBox x:Name="NotesBox" AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="70" Watermark="Notes"/>
             <Button Classes="fluent-button" Content="Save signal text" Click="OnSignalTextSave"/>
           </StackPanel>
           <StackPanel DockPanel.Dock="Bottom" x:Name="TracePanel" IsVisible="False" Margin="0,8,0,0">
