@@ -5,7 +5,7 @@
 
 **RetroSchematic turns hand-drawn Norsk Data circuit drawings from the 1970s into a machine-readable list of chips and wires, and draws them again in either ND's own gate symbols or modern ones.**
 
-[What it does](#what-you-can-use-it-for) · [Quick start](#quick-start) · [Format](src/docs/FORMAT.md) · [About the drawings](#about-norsk-data-circuit-drawings)
+[What it does](#what-you-can-use-it-for) · [Getting started](#getting-started) · [Quick start](#quick-start) · [Format](src/docs/FORMAT.md) · [About the drawings](#about-norsk-data-circuit-drawings)
 
 ![RetroSchematic on the NORD-10 sync modem card 2A50: the scanned drawing, the board photos with the gold-finger pin labels on both sides, the redrawn circuit, and signals traced across it with their details.](src/docs/images/readme/demo.gif)
 
@@ -103,10 +103,153 @@ Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
 - **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
   plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
   ND-120 CPU's A and B plugs.
-- **Tests:** 642, all passing (run 2026-11-24): 586 for the libraries, 56 for the window. Run
+- **Tests:** 648, all passing (run 2026-11-24): 592 for the libraries, 56 for the window. Run
   them with the command in Quick start. Known test problems are in `src/docs/BUGS.md`.
 - **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
   `src/docs/PLAN.md`.
+
+## Getting started
+
+This is for using the programs from a download, with no source code and no .NET install. To
+build from source instead, see [Quick start](#quick-start).
+
+### 1. Download and unpack
+
+Open the [Releases page](https://github.com/RetroCoreLabs/RetroSchematic/releases) and take the
+file for your computer. Each one unpacks to a single folder, `RetroSchematic-<version>-<platform>`.
+`SHA256SUMS.txt` on the same page holds the checksum of every file.
+
+| Computer | File |
+|---|---|
+| Windows (64-bit) | `RetroSchematic-<version>-win-x64.zip` |
+| Linux (64-bit Intel/AMD) | `RetroSchematic-<version>-linux-x64.tar.gz` |
+| Mac with Apple silicon (M1 and later) | `RetroSchematic-<version>-osx-arm64.tar.gz` |
+| Mac with an Intel processor | `RetroSchematic-<version>-osx-x64.tar.gz` |
+
+**Windows** - right-click the zip, Extract All, or in PowerShell:
+
+```powershell
+Expand-Archive RetroSchematic-<version>-win-x64.zip -DestinationPath .
+cd RetroSchematic-<version>-win-x64
+.\cli\retroschematic.exe --version
+```
+
+The programs are not signed, so Windows SmartScreen may warn the first time; choose
+More info, Run anyway.
+
+**Linux:**
+
+```sh
+tar -xzf RetroSchematic-<version>-linux-x64.tar.gz
+cd RetroSchematic-<version>-linux-x64
+chmod +x RetroSchematic retroschematic-mcp cli/retroschematic
+./cli/retroschematic --version
+```
+
+The `chmod` is only needed if your unpacking tool lost the executable flags; `tar` keeps them.
+The window program uses X11 through Avalonia. Not checked on a plain Linux desktop yet: if it
+will not start, the X11 and font libraries are the first thing to look at (on Ubuntu
+`libx11-6`, `libice6`, `libsm6`, `libfontconfig1`).
+
+**macOS** - unpack with `tar -xzf` as on Linux. The programs are
+signed ad hoc but not notarised by Apple, so macOS blocks a downloaded copy until the
+quarantine flag is removed. Run this once in Terminal, in the folder that holds the unpacked
+folder (use `osx-x64` on an Intel Mac):
+
+```sh
+xattr -dr com.apple.quarantine RetroSchematic-<version>-osx-arm64
+```
+
+The macOS builds are made and signed on GitHub's Mac machines; they have not been started on a
+Mac by us yet.
+
+### 2. What is in the folder
+
+| Path | What it is |
+|---|---|
+| `RetroSchematic` (`.exe` on Windows) | the viewer and editor window |
+| `retroschematic-mcp` (`.exe`) | the MCP server, for an AI assistant |
+| `cli/retroschematic` (`.exe`) | the command-line tool (in its own folder because on Windows and macOS its name would clash with the window program's) |
+| `catalog/` | the chip, bus signal, connector, board and passive-part files the programs read |
+| `models/` | the three small trained networks for reading a scanned page |
+| `sheets/` | the sample sheets: `demo/demo-gates.rsc` and the NORD-10 card 2A50 in `nord-10/` |
+
+Each program is one self-contained file: nothing else to install. Keep the folder together -
+the programs find `catalog/` and `models/` beside themselves.
+
+### 3. Open the 2A50 sample
+
+Start `RetroSchematic` (double-click `RetroSchematic.exe` on Windows), then File > Open sheet...
+and pick `sheets/nord-10/2A50-sync-modem-buffer-1050.rsx`. The `.rsx` holds the scanned drawing
+page and the board photos as well (F5-F8 switch between them). File > Open the demo sheet opens
+the small demo. A sheet can also be given on the command line:
+`RetroSchematic.exe sheets\nord-10\2A50-sync-modem-buffer-1050.rsx`. (The window program from a
+download has not been started by us yet on any system; the command-line tool and the MCP
+server have, on Windows and Linux.)
+
+### 4. Open your own sheets
+
+File > Open sheet... opens any `.rsc` or `.rsx`, wherever it is kept. On Windows, File > Open
+.rsc/.rsx files with RetroSchematic makes a double-click on such a file open it (for the
+current Windows user only; it records where `RetroSchematic.exe` is, so run it again if you
+move the folder). There is no file association on Linux or macOS yet.
+
+**Which catalogue a sheet uses.** Every program looks for a `catalog` folder (one holding
+`catalog/chips`) in this order:
+
+1. the sheet's own folder, then each folder above it;
+2. the program's own folder, then each folder above it.
+
+So a sheet kept next to its own `catalog` folder (in a checkout of this repository, for
+example) uses that one, and a sheet kept anywhere else uses the one in the download. The page
+reader always uses `models/` beside the program.
+
+**Newer catalogues.** The catalogue grows as cards are read. To update a download without a
+new release, copy the folders `chips`, `signals`, `connectors`, `boards` and `passives` from
+[`src/catalog/`](src/catalog/) in this repository over the ones in the download's `catalog/`.
+Newer sample sheets are in [`src/sheets/`](src/sheets/) (the `.rsx` files are stored with Git
+LFS; download them from GitHub's file page, not as raw text).
+
+### 5. The command-line tool
+
+From the unpacked folder (Windows shown; on Linux and macOS use `./cli/retroschematic`):
+
+```powershell
+.\cli\retroschematic.exe --version
+.\cli\retroschematic.exe check sheets\nord-10\2A50-sync-modem-buffer-1050.rsx
+.\cli\retroschematic.exe render sheets\nord-10\2A50-sync-modem-buffer-1050.rsx 2A50.svg nd
+```
+
+`retroschematic` with no arguments lists every command.
+
+### 6. The MCP server
+
+`retroschematic-mcp` talks MCP over standard input and output, so an MCP client starts it
+itself. Give the client the full path of the program in the unpacked folder. Most clients
+(Claude Code's `.mcp.json`, Claude Desktop's `claude_desktop_config.json`) take this form,
+with your own path:
+
+```json
+{
+  "mcpServers": {
+    "retroschematic": {
+      "command": "<unpacked folder>/retroschematic-mcp"
+    }
+  }
+}
+```
+
+On Windows the command ends in `retroschematic-mcp.exe` (write `\\` for each `\` in JSON).
+The server answers the MCP handshake and `open_sheet` / `analyse_page` on the 2A50 sample from
+the unpacked folder (tested on Windows and Linux); the client setup above has not been tried
+with each client. Give `open_sheet` a full path to the sheet. The tools are listed in
+[the viewer's README](src/RetroSchematic.Desktop/README.md#mcp-server).
+
+### Building from source instead
+
+Clone the repository with Git LFS and follow [Quick start](#quick-start); the programs then
+use `src/catalog`, `src/models` and `src/sheets` directly. A release is made by pushing a
+`v*` tag: `.github/workflows/release.yml` runs every test, then builds the downloads above.
 
 ## Prerequisites
 

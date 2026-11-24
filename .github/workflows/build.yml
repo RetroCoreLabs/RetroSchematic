@@ -15,10 +15,10 @@ jobs:
       # The tests read Git LFS files: the trained models (src/models/*.onnx), the 2A50 drawing
       # page and board photos, and the packed .rsx sheets. All LFS files together are about
       # 69 MB (measured 2026-11-24).
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           lfs: true
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v6
         with:
           global-json-file: src/global.json
       # dotnet test builds only the test projects and what they use, so the command-line tool

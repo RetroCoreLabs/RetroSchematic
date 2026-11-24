@@ -1,0 +1,229 @@
+# Turn a v* tag into a GitHub release with a download for every platform.
+#
+# THREE JOBS, in plain words:
+#
+#   test     The same checks as build.yml (build, every test, every sheet, the documentation),
+#            run again on the tagged commit. Nothing is published unless this is green: RetroTerm's
+#            first tag runs (28 September 2026) failed on tests that slept and then asserted, which
+#            passed on the development machine and on main but not on a busy hosted runner. This
+#            repository has no such test today (no Task.Delay or Thread.Sleep under src/, checked
+#            24 November 2026); if one appears, fix the test, never the sleep length.
+#
+#   publish  One download per platform, each built ON ITS OWN operating system's runner (as
+#            RetroTerm does), so the native libraries (Avalonia's SkiaSharp and HarfBuzzSharp,
+#            ONNX Runtime, PDFium) are the ones for that system and macOS binaries can be signed
+#            there. Every program is self-contained (no .NET install needed) and one file; the
+#            native libraries are packed inside it and unpacked at first start.
+#
+#   release  Downloads the archives, writes SHA256SUMS.txt and creates the GitHub release.
+#
+# WHAT ONE DOWNLOAD HOLDS (the folder RetroSchematic-<version>-<rid>/):
+#   RetroSchematic(.exe)       the viewer and editor (Desktop)
+#   retroschematic-mcp(.exe)   the MCP server (stdio)
+#   cli/retroschematic(.exe)   the command-line tool. In its own folder because on Windows and
+#                              macOS file names ignore case, and RetroSchematic.exe and
+#                              retroschematic.exe would be the same file.
+#   catalog/                   chips, signals, connectors, boards, passives - the folders the
+#                              programs read (catalog/symbols is only used by the tests)
+#   models/                    the three ONNX networks the page reader uses
+#   sheets/                    every sample sheet from src/sheets, the 2A50 card included
+#   README.md, LICENSE
+# Every program finds catalog/ by walking up from the sheet, then up from its own folder
+# (ChipCatalog.FindForSheet), and models/ beside the Desktop program and the MCP server
+# (PageAnalyser.DefaultModelsDir) - so this layout works from wherever the folder is unpacked.
+#
+# The version comes from the tag: v0.2.0 builds as 0.2.0 (-p:Version), which is what the About
+# box, `retroschematic --version` and the MCP server report, next to the git commit
+# (BuildIdentity, Directory.Build.props).
+#
+# Action versions checked 24 November 2026 with `gh api repos/actions/<name>/releases/latest`:
+# checkout v7.0.1, setup-dotnet v6.1.0, upload-artifact v7.0.2, download-artifact v8.0.2. The v4
+# majors run on Node 20, which GitHub warned is deprecated.
+name: release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      # The tests and the downloads need the Git LFS files: the models, the 2A50 drawing page and
+      # board photos, the packed .rsx sheets.
+      - uses: actions/checkout@v7
+        with:
+          lfs: true
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: src/global.json
+      - name: Build
+        run: dotnet build RetroSchematic.slnx -c Release -nodeReuse:false
+      - name: Test
+        run: dotnet test RetroSchematic.slnx -c Release -nodeReuse:false --no-build
+      - name: Check every sheet
+        run: |
+          for f in $(find sheets -name '*.rsc' -o -name '*.rsx'); do
+            dotnet run --project RetroSchematic.Cli -c Release --no-build -- check "$f"
+          done
+      - name: Check the documentation
+        working-directory: .
+        run: python3 src/eng/check-docs.py
+
+  publish:
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+            exe: .exe
+          - os: ubuntu-latest
+            rid: linux-x64
+            exe: ''
+          # macos-15-intel: the image RetroTerm moved to when macos-13 was retired (28 September 2026)
+          - os: macos-15-intel
+            rid: osx-x64
+            exe: ''
+          - os: macos-latest
+            rid: osx-arm64
+            exe: ''
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          lfs: true
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: src/global.json
+
+      - name: Publish the three programs
+        run: |
+          set -e
+          version="${GITHUB_REF_NAME#v}"
+          pkg="out/pkg/RetroSchematic-${version}-${{ matrix.rid }}"
+          echo "PKG=$pkg" >> "$GITHUB_ENV"
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          # No XML documentation files and no .pdb files in a download: they are for building
+          # against the libraries, not for running the programs.
+          common="-c Release -r ${{ matrix.rid }} --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none -p:PublishDocumentationFile=false -p:PublishReferencesDocumentationFiles=false -p:Version=$version -nodeReuse:false"
+          dotnet publish RetroSchematic.Desktop/RetroSchematic.Desktop.csproj $common -o "$pkg"
+          dotnet publish RetroSchematic.Mcp/RetroSchematic.Mcp.csproj $common -o "$pkg"
+          dotnet publish RetroSchematic.Cli/RetroSchematic.Cli.csproj $common -o "$pkg/cli"
+
+      - name: Add the catalogues, models and sample sheets
+        run: |
+          set -e
+          # The ONNX Runtime package leaves two Windows import libraries (.lib) in the publish
+          # folder; they are for linking C++ code against it, not for running.
+          find "$PKG" -name '*.lib' -delete
+          # The whole catalogue folders the programs read, replacing the partial copy the Desktop
+          # project makes, so the download and the repository carry the same files.
+          rm -rf "$PKG/catalog"
+          for d in chips signals connectors boards passives; do
+            mkdir -p "$PKG/catalog/$d"
+            cp -R "catalog/$d/." "$PKG/catalog/$d/"
+          done
+          rm -rf "$PKG/sheets"
+          cp -R sheets "$PKG/sheets"
+          cp ../README.md ../LICENSE "$PKG/"
+          chmod +x "$PKG/RetroSchematic${{ matrix.exe }}" "$PKG/retroschematic-mcp${{ matrix.exe }}" "$PKG/cli/retroschematic${{ matrix.exe }}"
+          ls -la "$PKG" "$PKG/cli" "$PKG/models"
+
+      # The SDK signs a macOS program when it is published on a Mac; this signs the three again
+      # ad hoc (no identity) and checks them, since Apple silicon refuses to start an unsigned
+      # binary. Ad hoc is not notarised: a downloaded copy is still held by Gatekeeper until the
+      # quarantine flag is removed (the release notes and README say how).
+      - name: macOS - sign ad hoc
+        if: runner.os == 'macOS'
+        run: |
+          set -e
+          for f in "$PKG/RetroSchematic" "$PKG/retroschematic-mcp" "$PKG/cli/retroschematic"; do
+            codesign --force --sign - "$f"
+            codesign --verify --strict --verbose=2 "$f"
+          done
+
+      # Proof that each published program starts on its own system, from the download folder and
+      # not from the repository: the command-line tool's version and a check of the 2A50 sheet.
+      - name: Start the published command-line tool
+        run: |
+          set -e
+          "$PKG/cli/retroschematic${{ matrix.exe }}" --version
+          "$PKG/cli/retroschematic${{ matrix.exe }}" check "$PKG/sheets/nord-10/2A50-sync-modem-buffer-1050.rsx"
+
+      # Windows gets a zip; Linux and macOS get a tar.gz, which keeps the executable bits.
+      - name: Windows - build the zip
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Compress-Archive -Path $env:PKG -DestinationPath "out/RetroSchematic-$env:VERSION-${{ matrix.rid }}.zip"
+          Get-Item "out/RetroSchematic-$env:VERSION-${{ matrix.rid }}.zip"
+      - name: Linux and macOS - build the tar.gz
+        if: runner.os != 'Windows'
+        run: |
+          set -e
+          tar -C out/pkg -czf "out/RetroSchematic-${VERSION}-${{ matrix.rid }}.tar.gz" "RetroSchematic-${VERSION}-${{ matrix.rid }}"
+          ls -la out
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: RetroSchematic-${{ matrix.rid }}
+          path: |
+            src/out/*.zip
+            src/out/*.tar.gz
+          if-no-files-found: error
+
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Checksums
+        working-directory: artifacts
+        run: |
+          set -e
+          sha256sum RetroSchematic-* > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          v="${GITHUB_REF_NAME#v}"
+          cat > notes.md <<EOF
+          Self-contained builds: no .NET install is needed. Each download is one folder holding the
+          viewer (RetroSchematic), the MCP server (retroschematic-mcp), the command-line tool
+          (cli/retroschematic), the chip and signal catalogues, the page-reading models and the
+          sample sheets (sheets/, the 2A50 card included). The README's Getting started section
+          explains each step.
+
+          - Windows x64: RetroSchematic-${v}-win-x64.zip - unzip, run RetroSchematic.exe.
+          - Linux x64: RetroSchematic-${v}-linux-x64.tar.gz - tar -xzf it, run ./RetroSchematic.
+          - macOS Apple silicon: RetroSchematic-${v}-osx-arm64.tar.gz; macOS Intel: RetroSchematic-${v}-osx-x64.tar.gz.
+            Signed ad hoc, not notarised: after unpacking run
+            xattr -dr com.apple.quarantine RetroSchematic-${v}-osx-arm64 (or -osx-x64) once.
+
+          SHA256SUMS.txt holds the SHA-256 of every download.
+          EOF
+          # a tag with a dash in it (v0.2.0-beta.1) is marked as a pre-release
+          pre=""
+          case "$v" in *-*) pre="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" $pre \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "RetroSchematic $GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            artifacts/RetroSchematic-* artifacts/SHA256SUMS.txt
