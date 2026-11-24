@@ -202,13 +202,17 @@ namespace RetroSchematic.Mcp
         /// <param name="reference">
         /// The board position to give it, or null for the first free one.
         /// </param>
+        /// <param name="page">
+        /// The card page, or empty (see the tool's description).
+        /// </param>
         /// <returns>
         /// The new part's reference.
         /// </returns>
         [McpServerTool(Name = "place_part"), Description("Place a chip from the catalogue (e.g. 7400). Its gates come from the chip file. Returns the new part's board position.")]
         public string PlacePart([Description("Chip type, e.g. 7400")] string type, [Description("Frame left edge in mm")] double xMm,
-            [Description("Frame top edge in mm")] double yMm, [Description("Board position to use, e.g. 3C; empty for the first free one")] string? reference = null)
-            => Run(e => "Placed " + type + " as " + e.PlacePart(type, xMm, yMm, string.IsNullOrEmpty(reference) ? null : reference) + ".");
+            [Description("Frame top edge in mm")] double yMm, [Description("Board position to use, e.g. 3C; empty for the first free one")] string? reference = null,
+            [Description("Card page to put it on (a card with pages); empty for the page the tools work on (set_page)")] string? page = null)
+            => OnPage(page, e => "Placed " + type + " as " + e.PlacePart(type, xMm, yMm, string.IsNullOrEmpty(reference) ? null : reference) + ".");
 
         /// <summary>
         /// Adds a passive part.
@@ -228,14 +232,18 @@ namespace RetroSchematic.Mcp
         /// <param name="tolerance">
         /// The tolerance as written on the drawing, or empty.
         /// </param>
+        /// <param name="page">
+        /// The card page, or empty (see the tool's description).
+        /// </param>
         /// <returns>
         /// What was done.
         /// </returns>
         [McpServerTool(Name = "add_passive"), Description("Add a passive part (edit mode; undoable): type R (resistor, pins 1-2), RN-SIP-n (n resistors from common pin 1 to pins 2..n+1), C, C-POL (pin 1 plus), D (pin 1 anode, 2 cathode), STRAP (wire link), SW-DIP-n (n levers, lever k = pins k and 2n+1-k). Give the reference the drawing writes (R1, C3); with none, give the chip it serves and an automatic name (R-13D-1, inferred) is made. Value and tolerance only as written on the drawing, never guessed. Wire its pins with the usual connect tools.")]
         public string AddPassive([Description("R, RN-SIP-n, C, C-POL, D, STRAP or SW-DIP-n")] string type, [Description("Name on the drawing, e.g. R1; empty when the drawing gives none")] string? reference = null,
             [Description("Board position of the chip it serves, e.g. 13D")] string? serves = null, [Description("Value as written, e.g. 1k")] string? value = null,
-            [Description("Tolerance as written, e.g. 5%")] string? tolerance = null)
-            => Run(e => "Added " + type + " as " + e.AddPassive(type, string.IsNullOrEmpty(reference) ? null : reference, string.IsNullOrEmpty(serves) ? null : serves,
+            [Description("Tolerance as written, e.g. 5%")] string? tolerance = null,
+            [Description("Card page to put it on (a card with pages); empty for the page the tools work on (set_page)")] string? page = null)
+            => OnPage(page, e => "Added " + type + " as " + e.AddPassive(type, string.IsNullOrEmpty(reference) ? null : reference, string.IsNullOrEmpty(serves) ? null : serves,
                 string.IsNullOrEmpty(value) ? null : value, string.IsNullOrEmpty(tolerance) ? null : tolerance) + ".");
 
         /// <summary>
@@ -276,16 +284,22 @@ namespace RetroSchematic.Mcp
         /// <param name="pinSide">
         /// left or right, or empty to keep.
         /// </param>
+        /// <param name="page">
+        /// The card page, or empty (see the tool's description).
+        /// </param>
         /// <returns>
         /// What was done.
         /// </returns>
         [McpServerTool(Name = "move_connector"), Description("Move a connector box (P backplane, F front, P.A ...) to a place of its own (mm), kept in the sheet. Without this a box goes where its wires are shortest.")]
         public string MoveConnector([Description("Connector, e.g. P")] string reference, [Description("New left edge in mm")] double xMm, [Description("New top edge in mm")] double yMm,
-            [Description("Pins on the left or right side of the box; empty to keep")] string? pinSide = null)
+            [Description("Pins on the left or right side of the box; empty to keep")] string? pinSide = null,
+            [Description("Card page to draw the box on (a card with pages); empty to keep")] string? page = null)
             => Run(e =>
             {
                 e.MoveConnector(reference, xMm, yMm, string.IsNullOrEmpty(pinSide) ? null : pinSide);
-                return "Moved connector " + reference + ".";
+                if (!string.IsNullOrEmpty(page))
+                    e.SetConnectorPage(reference, page);
+                return "Moved connector " + reference + (string.IsNullOrEmpty(page) ? "." : " onto page " + page + ".");
             });
 
         /// <summary>
@@ -362,12 +376,16 @@ namespace RetroSchematic.Mcp
         /// <param name="branches">
         /// The branches as text.
         /// </param>
+        /// <param name="page">
+        /// The card page, or empty (see the tool's description).
+        /// </param>
         /// <returns>
         /// What was done, and whether the path was kept or had to be routed afresh.
         /// </returns>
         [McpServerTool(Name = "set_wire_path"), Description("Fix a signal's wire path (drawing only, never changes connections). branches: one branch per ';', each a list of x,y points in whole mm separated by spaces, every piece level or upright - e.g. \"60,40 80,40 80,70; 70,90 70,70\". The first branch joins two pins, each later one runs from a pin to the wire before it. If the path crosses a chip, the signal is routed afresh and the reason is given.")]
-        public string SetWirePath([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty: which of two same-named signals")] string level, [Description("The branches, see the tool description")] string branches)
-            => Run(e =>
+        public string SetWirePath([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty: which of two same-named signals")] string level, [Description("The branches, see the tool description")] string branches,
+            [Description("Card page the path is drawn on (a card with pages); empty for the page the tools work on")] string? page = null)
+            => OnPage(page, e =>
             {
                 ActiveLevel? active = Level(level);
                 e.SetWirePath(net, ParseBranches(branches), active);
@@ -383,16 +401,20 @@ namespace RetroSchematic.Mcp
         /// <param name="level">
         /// "0" or "1" when two signals share the name, else empty.
         /// </param>
+        /// <param name="page">
+        /// The card page, or empty (see the tool's description).
+        /// </param>
         /// <returns>
         /// The fixed path.
         /// </returns>
         [McpServerTool(Name = "fix_wire"), Description("Fix a signal's wire path as it is drawn now, so later changes elsewhere do not move it. Returns the stored path.")]
-        public string FixWire([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty")] string level)
-            => Run(e =>
+        public string FixWire([Description("Signal name")] string net, [Description("\"0\", \"1\" or empty")] string level,
+            [Description("Card page whose drawing is fixed (a card with pages); empty for the page the tools work on")] string? page = null)
+            => OnPage(page, e =>
             {
                 ActiveLevel? active = Level(level);
                 Net n = e.FindNet(net, active) ?? throw new SheetEditException("There is no signal " + net + ".");
-                SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData);
+                SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData, PageOptions(e));
                 if (!d.WireBranches.TryGetValue(SheetLayout.NetKey(n), out List<List<DrawPoint>>? laid))
                     throw new SheetEditException("Signal " + net + " has no wire on the drawing (it is shown with labels).");
                 StringBuilder sb = new();
@@ -533,7 +555,7 @@ namespace RetroSchematic.Mcp
             Net? n = e.FindNet(net, active);
             if (n == null)
                 return "";
-            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData);
+            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData, PageOptions(e));
             string key = SheetLayout.NetKey(n);
             for (int i = 0; i < d.RerouteReasons.Count; i++)
             {
@@ -541,6 +563,15 @@ namespace RetroSchematic.Mcp
                     return "It is NOT used as given and the signal was routed afresh - " + d.RerouteReasons[i];
             }
             return d.KeptWires.Contains(key) ? "It is drawn exactly as given." : "";
+        }
+
+        // the page the tools work on (a card with pages), drawn as before without the chip
+        // catalogue, so a fixed path is the same one the tools always gave
+        private static LayoutOptions PageOptions(SheetEditor e)
+        {
+            LayoutOptions o = e.LayoutForPage();
+            o.Catalog = null;
+            return o;
         }
 
         private SheetEditor Open() => _editor ?? throw new McpException("No sheet is open; use open_sheet or new_sheet first.");

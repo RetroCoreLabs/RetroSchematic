@@ -31,13 +31,17 @@ namespace RetroSchematic.Mcp
         /// <param name="path">
         /// The path as x,y points in mm, or empty.
         /// </param>
+        /// <param name="page">
+        /// The card page, or empty (see the tool's description).
+        /// </param>
         /// <returns>
         /// What was done, and how the bus is drawn.
         /// </returns>
         [McpServerTool(Name = "create_bus"), Description("Create a virtual bus (drawing only, never changes connections). members: signal keys (BD15_0) and/or patterns, separated by commas or spaces - BD*_0 (any characters for *) or IDATA0-7 / BD0-15_1 (a numbered range). path: x,y points in whole mm separated by spaces, every piece level or upright; empty to set later with set_bus_path.")]
         public string CreateBus([Description("Bus name, e.g. BD_0")] string name, [Description("Members or patterns")] string members,
-            [Description("Path points, e.g. \"120,50 120,220\"; empty for none yet")] string? path = null)
-            => Run(e =>
+            [Description("Path points, e.g. \"120,50 120,220\"; empty for none yet")] string? path = null,
+            [Description("Card page the bus is drawn on (a card with pages); empty for the page the tools work on")] string? page = null)
+            => OnPage(page, e =>
             {
                 List<Point>? points = string.IsNullOrWhiteSpace(path) ? null : ParseBranches(path)[0];
                 e.CreateBus(name, new List<string> { members }, points);
@@ -164,7 +168,7 @@ namespace RetroSchematic.Mcp
         /// </returns>
         private static string BusReport(SheetEditor e, string name)
         {
-            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = e.Catalog });
+            SchematicDrawing d = SheetLayout.Build(e.Netlist, SymbolStyle.NorskData, e.LayoutForPage());
             StringBuilder sb = new();
             for (int i = 0; i < d.BusProblems.Count; i++)
             {

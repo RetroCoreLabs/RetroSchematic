@@ -55,7 +55,8 @@ namespace RetroSchematic.Render
             for (int i = 0; i < nets.Count; i++)
                 CheckNotOnBus(nets[i], null);
             Snapshot();
-            BusLine bus = new() { Name = name, Path = path == null ? new List<Point>() : new List<Point>(path) };
+            // on a card with pages the bus is drawn on the page shown
+            BusLine bus = new() { Name = name, Path = path == null ? new List<Point>() : new List<Point>(path), Page = WirePage() };
             for (int i = 0; i < nets.Count; i++)
                 bus.Members.Add(Member(nets[i]));
             Netlist.Layout ??= new SheetLayoutSection();

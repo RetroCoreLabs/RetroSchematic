@@ -126,8 +126,10 @@ namespace RetroSchematic.Tests
                 Assert.That(methods[i].GetCustomAttribute<System.ComponentModel.DescriptionAttribute>(), Is.Not.Null, methods[i].Name);
                 tools++;
             }
-            // every tool of every tools file; add_passive (passive parts, 2026-11-23) made it 49
-            Assert.That(tools, Is.EqualTo(49));
+            // every tool of every tools file; add_passive (passive parts, 2026-11-23) made it 49,
+            // the page tools (list_pages, add_page, set_part_page, set_page, get_page,
+            // set_page_layout; format version 3) 55
+            Assert.That(tools, Is.EqualTo(55));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 
@@ -214,6 +216,38 @@ namespace RetroSchematic.Tests
             Assert.Throws<McpException>(() => t.SetPhotoCorners(2, "1 2 3"));
             t.SetPhotoCorners(2);
             Assert.That(t.GetPcbGrid(), Does.Not.Contain(": corners 10,20"));
+        }
+
+        /// <summary>
+        /// The page tools on 2A50: list the one page, add a second, move the address decoder
+        /// onto it, place a chip there, and read back which signals cross between the pages.
+        /// </summary>
+        [Test]
+        public void PageTools_AddAPage_MoveParts_AndShowTheCrossingSignals()
+        {
+            SheetTools t = Tools();
+            string sheet = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
+            t.OpenSheet(sheet);
+            Assert.That(t.ListPages(), Does.StartWith("* 1: SYNCHRONOUS MODEM BUFFER 1050, source 1, sheet 2A50, 40 chips, 62 parts"));
+            Assert.Throws<McpException>(() => t.AddPage("Decoder"), "read-only");
+            t.SetEditMode(true);
+            Assert.That(t.AddPage("Decoder", 0, "2A50/2"), Is.EqualTo("Added page 2."));
+            Assert.That(t.SetPartPage("13D, 13E", "2"), Is.EqualTo("Put 13D, 13E on page 2."));
+            Assert.Throws<McpException>(() => t.SetPartPage("13D", "9"));
+            string placed = t.PlacePart("7400", 20, 20, null, "2");
+            string reference = placed.Substring(placed.LastIndexOf(' ') + 1).TrimEnd('.');
+            Assert.That(t.Editor!.FindPart(reference)!.Page, Is.EqualTo("2"));
+            Assert.That(t.Editor.Page, Is.Null, "the page argument does not change the page the tools work on");
+            string page2 = t.GetPage("2");
+            Assert.That(page2, Does.StartWith("Page 2: Decoder").And.Contain(" 13D 7442;").And.Contain(" 13E DM8160;"));
+            Assert.That(page2, Does.Contain("Signals that cross to other pages").And.Contain(" -> page 1"));
+            Assert.That(t.ListPages(), Does.Contain("  2: Decoder, sheet 2A50/2, 3 chips, 3 parts"));
+            Assert.That(t.SetPage("2"), Is.EqualTo("Working on page 2."));
+            Assert.That(t.ListPages(), Does.Contain("* 2: Decoder"));
+            t.SetPageLayout("split");
+            Assert.That(t.ListPages(), Does.Contain("split automatically; drawn pages: 1.1 1.2"));
+            t.Undo();
+            Assert.That(t.ListPages(), Does.Contain("as the original; drawn pages: 1 2"));
         }
 
         private static SheetTools Tools() => new(TestContext.CurrentContext.TestDirectory);

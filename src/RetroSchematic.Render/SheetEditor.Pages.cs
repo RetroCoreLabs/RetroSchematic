@@ -186,6 +186,24 @@ namespace RetroSchematic.Render
             return options;
         }
 
+        /// <summary>
+        /// The layout options that draw the page shown (<see cref="Page"/>, its first drawn page
+        /// when the card is split), or the whole level when it has no pages.
+        /// </summary>
+        /// <returns>
+        /// The options.
+        /// </returns>
+        public LayoutOptions LayoutForPage()
+        {
+            LayoutOptions options = new() { Catalog = Catalog };
+            if (LevelPath.Count == 0 && CardPages.HasPages(Netlist))
+            {
+                options.Pages = PageSet.Of(Netlist);
+                options.Page = System.Math.Max(0, options.Pages.FirstOfCardPage(CardPages.PageOrFirst(Netlist, Page)!));
+            }
+            return options;
+        }
+
         private void CheckTopLevel()
         {
             if (LevelPath.Count > 0)

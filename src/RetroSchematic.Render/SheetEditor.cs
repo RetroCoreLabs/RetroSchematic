@@ -488,9 +488,11 @@ namespace RetroSchematic.Render
                 }
             }
             Snapshot();
+            // a card with pages keeps one path per page: the path is drawn on the page shown
+            string? page = WirePage();
             RemoveWirePath(name, active);
             Netlist.Layout ??= new SheetLayoutSection();
-            Netlist.Layout.Wires.Add(new WirePath { Net = name, Active = active, Branches = branches });
+            Netlist.Layout.Wires.Add(new WirePath { Net = name, Active = active, Branches = branches, Page = page });
             Done();
         }
 
@@ -530,10 +532,22 @@ namespace RetroSchematic.Render
             List<WirePath>? wires = Netlist.Layout?.Wires;
             for (int i = 0; wires != null && i < wires.Count; i++)
             {
-                if (wires[i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active))
+                if (wires[i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active) && OnWirePage(wires[i].Page))
                     return wires[i];
             }
             return null;
+        }
+
+        // the card page a wire path set now is drawn on: the page shown, at the top level of a
+        // card with pages; null otherwise
+        private string? WirePage()
+            => LevelPath.Count == 0 && CardPages.HasPages(Netlist) ? CardPages.PageOrFirst(Netlist, Page != null && CardPages.Find(Netlist, Page) != null ? Page : null) : null;
+
+        // true when a stored path (with its page, or null for the first page) belongs to the page shown
+        private bool OnWirePage(string? page)
+        {
+            string? shown = WirePage();
+            return shown == null || (page ?? CardPages.FirstPage(Netlist)) == shown;
         }
 
         private void RemoveWirePath(string name, ActiveLevel? active = null)
@@ -541,7 +555,7 @@ namespace RetroSchematic.Render
             List<WirePath>? wires = Netlist.Layout?.Wires;
             for (int i = wires == null ? -1 : wires.Count - 1; i >= 0; i--)
             {
-                if (wires![i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active))
+                if (wires![i].Net == name && (active == null || wires[i].Active == null || wires[i].Active == active) && OnWirePage(wires[i].Page))
                     wires.RemoveAt(i);
             }
             if (Netlist.Layout != null && Netlist.Layout.Wires.Count == 0 && Netlist.Layout.Buses == null)
