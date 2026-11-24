@@ -85,6 +85,17 @@ namespace RetroSchematic.Render
         /// <see cref="BusSignals"/>.
         /// </summary>
         public ConnectorCatalog? ConnectorTypes { get; set; }
+
+        /// <summary>
+        /// The card's drawn pages (format version 3), or null to draw the whole card on one
+        /// page. Used only for a level with pages (the top level of a card that has them).
+        /// </summary>
+        public PageSet? Pages { get; set; }
+
+        /// <summary>
+        /// Which of <see cref="Pages"/> to draw (0 = first).
+        /// </summary>
+        public int Page { get; set; }
     }
 
     /// <summary>
@@ -188,6 +199,13 @@ namespace RetroSchematic.Render
             // an instance's port ends take part in the drawing as pins of their signals; a copy
             // of the sheet carries them, so the sheet itself is never changed
             netlist = WithPortEnds(netlist);
+            // a card with pages: only the parts, connector boxes and instances of one drawn page;
+            // the signals stay card-wide (docs/FORMAT.md, "Format version 3: pages")
+            PageSet? pages = options.Pages;
+            int pageNo = options.Page;
+            bool paged = pages != null && CardPages.HasPages(netlist) && pageNo >= 0 && pageNo < pages.Pages.Count;
+            if (paged)
+                netlist = PageView(netlist, pages!.Pages[pageNo]);
             Dictionary<string, Net> netByPin = new(StringComparer.Ordinal);
             Dictionary<string, PinReference> pinRef = new(StringComparer.Ordinal);
             for (int i = 0; i < netlist.Nets.Count; i++)
@@ -195,6 +213,10 @@ namespace RetroSchematic.Render
                 Net net = netlist.Nets[i];
                 for (int j = 0; j < net.Pins.Count; j++)
                 {
+                    // a connector box drawn on another page is not on this one
+                    string owner = net.Pins[j].At.Substring(0, Math.Max(0, net.Pins[j].At.LastIndexOf('.')));
+                    if (paged && ConnectorPins.IsConnector(owner) && !pages!.Pages[pageNo].Connectors.Contains(owner))
+                        continue;
                     netByPin[net.Pins[j].At] = net;
                     pinRef[net.Pins[j].At] = net.Pins[j];
                 }
@@ -240,8 +262,11 @@ namespace RetroSchematic.Render
             d.NameStyle = options.NameStyle;
             d.LineScale = options.LineScale;
             d.ShiftX = shift;
+            string title = netlist.Sheet.Id + "  " + netlist.Sheet.Title;
+            if (paged)
+                title += "  - page " + pages!.Pages[pageNo].Id + ": " + pages.Pages[pageNo].Title;
             Text(d, DrawRole.Title, Confidence.Read, "", Margin, 24,
-                netlist.Sheet.Id + "  " + netlist.Sheet.Title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
+                title + "  (" + (style == SymbolStyle.NorskData ? "ND symbols" : "modern symbols") + ")",
                 16, TextAnchor.Start);
 
             // 3. which signals get a wire
@@ -299,7 +324,11 @@ namespace RetroSchematic.Render
                 if (p.Passive && SupplyNets.IsSupply(p.Net.Name))
                     DrawSupply(d, p, pinRef[p.At].Confidence);
                 else
+                {
                     DrawLabel(d, p, pinRef[p.At].Confidence);
+                    if (paged && !SupplyNets.IsSupply(p.Net.Name))
+                        DrawOffPage(d, p, pages!, pageNo);
+                }
             }
 
             // 7. a dot wherever a wire branches

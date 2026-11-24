@@ -1,5 +1,8 @@
 # The netlist file format, version 1
 
+(Versions 2 and 3 are further down: "Format version 2: blocks" and "Format version 3: pages".
+Every version is still read.)
+
 One JSON file describes one sheet of an ND card drawing: the chips on it, the gates inside
 the chips, and the signal lines (nets) between their pins. Every converter (KiCad, Logisim,
 EDIF), the renderer and the viewer read this file and nothing else.
@@ -514,3 +517,84 @@ leave it through a port is `U1/NAME`. A signal that leaves through a port is the
 the one it is connected to on the level above, and takes that name. The flattened netlist is
 what the connections mean; making a block from a selection, or dissolving an instance back
 into its level, never changes it (only the instance path in front of the names).
+
+# Format version 3: pages
+
+Version 3 makes one file hold a whole card with all its schematic pages (the SCSI card has 24,
+the ND-120 CPU 50). The schema is `schema/nd-netlist-3.schema.json`. A file is written as version
+3 exactly when it has a `pages` list; otherwise it stays version 1 or 2 as before, and versions 1
+and 2 are still read. Blocks (version 2) are allowed in a version 3 file too.
+
+## What belongs to a page and what to the card
+
+| Belongs to | What |
+|---|---|
+| a page | every top-level part (chips and passive parts) names its page in `page`; a connector box (`connectors[].page`), an instance box (`instances[].page`), a stored wire path (`layout.wires[].page`) and a bus (`layout.buses[].page`) may name one, absent meaning the first page |
+| the card | the signals (`nets`), the board, the PCB grid, the photos, the switches, the source pages, the display settings and the block definitions |
+
+A signal is card-wide: one `nets` entry with every pin it joins, on whatever pages those pins
+are. The reader's checks (every pin in one net at most, unique part references, the switch
+blocks) are made over the whole card, not per page.
+
+## Fields
+
+| Field | What it is |
+|---|---|
+| `pages[]` | the card's pages, in order; at least one |
+| `pages[].id` | unique in the file, such as `1`; parts name their page by it |
+| `pages[].title` | the page's title |
+| `pages[].source` | the original page it was read from: its place in `sources`, 1 = first |
+| `pages[].sheetNumber` | the sheet number in the page's title block, as written |
+| `pages[].note` | free text |
+| `parts[].page` | the page the part is on; required on every top-level part, never on a part inside a block |
+| `pageLayout` | how the redrawn drawing is cut into pages: `as-original` (the default, also when absent) or `split`; drawing only |
+
+```json
+{ "format": "nd-netlist", "formatVersion": 3,
+  "pages": [ { "id": "1", "title": "SYNCHRONOUS MODEM BUFFER 1050", "source": 1, "sheetNumber": "2A50" } ],
+  "parts": [ { "ref": "13D", "type": "7442", "confidence": "read", "page": "1" } ] }
+```
+
+## Checks a version 3 reader makes
+
+Everything versions 1 and 2 check, plus:
+
+- the `pages` list has at least one page, ids are not empty and are unique;
+- every top-level part names a page, and that page is in the list;
+- a connector, instance, wire path or bus that names a page names one in the list;
+- a page's `source` is a place in the `sources` list;
+- no part inside a block names a page (the block's instance has the page);
+- a version 1 or 2 file has no `pages`, no `pageLayout` and no `page` on a part or connector.
+
+## Converting an older file
+
+`retroschematic to-pages <sheet> [out]` (the window: File > "Convert to a card with pages"; MCP:
+`add_page` on a card without pages converts it first) turns a version 1 or 2 file into version 3
+with one page: the page takes the sheet's title and number, is read from the first source page,
+and holds every part and connector box. Nothing that is connected changes, and the file reads
+back exactly as written. Sheet 2A50 is stored this way (`.rsc` and `.rsx`).
+
+## Drawn pages
+
+The file holds the card's own pages; what the window draws is worked out from them, by the
+card's `pageLayout`:
+
+- **as the original** (`as-original`, default): one drawn page per card page, with the parts
+  read from it. Drawn page ids are the card page ids.
+- **split automatically** (`split`): a card page with more than 16 chips (passive parts not
+  counted; the number is a choice) is drawn as several pages, `1.1`, `1.2`, ... The steps: every
+  chip is a unit; a passive part joins the chip it serves, else the first chip it shares a
+  signal with; chips of one type that share two or more signals (a register group: common
+  clock and clear, common selects) are one unit; the number of pages is the chip count divided
+  by 16, rounded up, and a page may take a quarter more than an even share; the two units that
+  share the most signals are joined over and over while the result fits; then the smallest
+  groups are joined until there are no more groups than pages. Supply lines do not count as
+  shared signals. A connector box goes on the drawn page that shares the most signals with it.
+  The file never changes.
+
+**Off-page markers.** On a drawn page only that page's parts, connector boxes and instances are
+drawn. A signal with a pin on another page is never wired on this page; each of its pins here
+gets the usual net-label diamond and name, followed by a small box naming the other drawn pages
+it is on (`p. 2, 3`), the way a hand-drawn schematic names the sheet a line goes on to. Supply
+lines get no marker. Clicking the box goes to the next of those pages and picks and traces the
+signal there.

@@ -139,6 +139,7 @@ namespace RetroSchematic.Render
             _options.ShowBoardPositions = Display.BoardPositions;
             _options.ShowPortArrows = Display.PortArrows;
             _options.ShowBuses = Display.Buses;
+            PlanPages();
             Drawing = SheetLayout.Build(netlist, Style, _options);
         }
 
@@ -332,7 +333,15 @@ namespace RetroSchematic.Render
         /// <param name="y">
         /// Point Y in drawing units.
         /// </param>
-        public void TraceAt(double x, double y) => TraceOwner(Drawing.HitTest(x, y));
+        public void TraceAt(double x, double y)
+        {
+            string hit = Drawing.HitTest(x, y);
+            // a click on an off-page marker follows the signal to its next page
+            if (hit.StartsWith(SheetLayout.OffPageOwner, StringComparison.Ordinal))
+                Select(hit);
+            else
+                TraceOwner(hit);
+        }
 
         /// <summary>
         /// Shows one whole signal: its wires, labels and pins lit, the chips and gates it joins
@@ -584,6 +593,13 @@ namespace RetroSchematic.Render
         /// </param>
         public void Select(string owner)
         {
+            // an off-page marker is a way to another page: go there and pick the signal
+            if (owner.StartsWith(SheetLayout.OffPageOwner, StringComparison.Ordinal))
+            {
+                if (FollowOffPage(owner.Substring(SheetLayout.OffPageOwner.Length)))
+                    return;
+                owner = "net:" + owner.Substring(SheetLayout.OffPageOwner.Length);
+            }
             if (owner == Selected)
                 return;
             Selected = owner;
@@ -714,6 +730,7 @@ namespace RetroSchematic.Render
 
         private void Relayout()
         {
+            PlanPages();
             Drawing = SheetLayout.Build(Netlist, Style, _options);
             DrawingChanged?.Invoke(this);
         }

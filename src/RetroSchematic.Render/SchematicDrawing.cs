@@ -101,6 +101,12 @@ namespace RetroSchematic.Render
         /// The band across the top of a block instance box, behind its name.
         /// </summary>
         BlockHeader,
+
+        /// <summary>
+        /// An off-page marker: the small box after a signal's label naming the other pages the
+        /// signal is on. Clicking it goes there.
+        /// </summary>
+        OffPage,
     }
 
     /// <summary>
@@ -594,6 +600,12 @@ namespace RetroSchematic.Render
         public List<string> BusProblems { get; } = new();
 
         /// <summary>
+        /// For each signal with an off-page marker on this page, by key: the other drawn pages
+        /// it is on, in page order.
+        /// </summary>
+        public Dictionary<string, List<string>> OffPage { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
         /// The owner ("part:11D", "gate:11D/1", "net:BD0", "pin:11D.3") of what lies under a point,
         /// or an empty string. The smaller, deliberate target wins: a pin dot, then a signal name
         /// or part label, then a gate, then a wire, then the rest of the part frame. A wire that
@@ -643,7 +655,7 @@ namespace RetroSchematic.Render
         {
             if (it.Role == DrawRole.PinDot)
                 return 0;
-            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.NetLabel || it.Role == DrawRole.PartLabel || it.Role == DrawRole.BoardPosition || it.Role == DrawRole.PinName)
+            if (it.Role == DrawRole.SignalName || it.Role == DrawRole.NetLabel || it.Role == DrawRole.OffPage || it.Role == DrawRole.PartLabel || it.Role == DrawRole.BoardPosition || it.Role == DrawRole.PinName)
                 return 1;
             if (it.Owner.StartsWith("gate:", StringComparison.Ordinal))
                 return 2;

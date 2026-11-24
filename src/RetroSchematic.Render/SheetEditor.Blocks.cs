@@ -700,6 +700,9 @@ namespace RetroSchematic.Render
                 Hierarchy.WriteBack(Netlist, b);
             else if (_path.Count == 0 && Netlist.Instances != null && Netlist.Instances.Count == 0)
                 Netlist.Instances = null;
+            // a part placed or brought back to the top level goes on the page shown; a part
+            // moved into a block loses its page (format version 3)
+            CardPages.Normalize(Root, Page);
         }
 
         /// <summary>

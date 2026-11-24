@@ -23,7 +23,13 @@ namespace RetroSchematic.Cli
             "retroschematic import-board <sheet> <pcb.json> [number]     fill the board info from the ND PCB catalogue (part or card number;\n" +
             "    default the sheet's own) and save the sheet; the photos are copied in\n" +
             "retroschematic render <sheet.rsc> <out.svg> [nd|modern] [--theme <name>] [--no-buses] [--names slash|tilde|subscript]\n" +
-            "    draw it as SVG (default: nd symbols, the Light theme, buses drawn, /NAME for active low)\n";
+            "    [--page <id>|all] [--split] [--as-original]\n" +
+            "    draw it as SVG (default: nd symbols, the Light theme, buses drawn, /NAME for active low; a card with\n" +
+            "    pages: the first page in the card's own page layout; all writes out-<page>.svg for every page)\n" +
+            "retroschematic to-pages <sheet> [out]                     turn a version 1 or 2 file into format version 3 with one page\n" +
+            "    holding every part (written back to the same file unless out is given; .rsc or .rsx)\n" +
+            "retroschematic pages <sheet> [--limit n]                  list the drawn pages and measure both page layouts: pages,\n" +
+            "    wire length, crossings, labels and off-page markers\n";
 
         /// <summary>
         /// Entry point.
@@ -106,6 +112,35 @@ namespace RetroSchematic.Cli
                         return 0;
                     }
 
+                    case "to-pages":
+                    {
+                        // the same change as the MCP tool convert_to_pages: one page with every part
+                        string target = args.Length > 2 ? args[2] : args[1];
+                        bool changed = CardPages.ToVersion3(netlist);
+                        SheetEditor converter = new(netlist, null) { Files = SheetAttachments.Load(args[1]) };
+                        converter.Save(target);
+                        Console.WriteLine(changed ? $"Wrote {target}: format version 3, one page." : $"{args[1]} has pages already; wrote {target} unchanged.");
+                        return 0;
+                    }
+
+                    case "pages":
+                    {
+                        int limit = PageSet.DefaultChipLimit;
+                        for (int a = 2; a + 1 < args.Length; a++)
+                        {
+                            if (args[a] == "--limit")
+                                limit = int.Parse(args[++a], System.Globalization.CultureInfo.InvariantCulture);
+                        }
+                        // a file without pages is measured as if converted (nothing is written)
+                        if (!CardPages.HasPages(netlist))
+                            CardPages.ToVersion3(netlist);
+                        string? cat = ChipCatalog.Find(args[1]);
+                        ChipCatalog? chips = cat == null ? null : new ChipCatalog(cat);
+                        Console.Write(PageStats.Report(netlist, chips, PageLayoutMode.AsOriginal, limit));
+                        Console.Write(PageStats.Report(netlist, chips, PageLayoutMode.Split, limit));
+                        return 0;
+                    }
+
                     case "render":
                         if (args.Length < 3)
                         {
@@ -116,9 +151,17 @@ namespace RetroSchematic.Cli
                         SchematicTheme theme = SchematicTheme.Default;
                         bool buses = true;
                         SignalNameStyle names = SignalNames.Default;
+                        string? pageId = null;
+                        PageLayoutMode? mode = null;
                         for (int a = 3; a < args.Length; a++)
                         {
-                            if (args[a] == "--theme" && a + 1 < args.Length)
+                            if (args[a] == "--page" && a + 1 < args.Length)
+                                pageId = args[++a];
+                            else if (args[a] == "--split")
+                                mode = PageLayoutMode.Split;
+                            else if (args[a] == "--as-original")
+                                mode = PageLayoutMode.AsOriginal;
+                            else if (args[a] == "--theme" && a + 1 < args.Length)
                             {
                                 SchematicTheme? t = SchematicTheme.Find(args[++a]);
                                 if (t == null)
@@ -150,13 +193,35 @@ namespace RetroSchematic.Cli
                         // window draws it (a chip without gates then shows every pin)
                         string? catalog = ChipCatalog.Find(args[1]);
                         LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog), ShowBuses = buses, NameStyle = names };
-                        SchematicDrawing drawing = SheetLayout.Build(netlist, style, options);
-                        File.WriteAllText(args[2], SvgRenderer.Write(drawing, theme));
-                        Console.WriteLine($"Wrote {args[2]}");
-                        for (int i = 0; i < drawing.RerouteReasons.Count; i++)
-                            Console.WriteLine("Wire routed afresh: " + drawing.RerouteReasons[i]);
-                        for (int i = 0; i < drawing.BusProblems.Count; i++)
-                            Console.WriteLine("Bus: " + drawing.BusProblems[i]);
+                        if (CardPages.HasPages(netlist))
+                            options.Pages = PageSet.Of(netlist, mode ?? netlist.PageLayout ?? PageLayoutMode.AsOriginal, PageSet.DefaultChipLimit);
+                        int first = 0, last = 0;
+                        if (options.Pages != null && pageId == "all")
+                            last = options.Pages.Pages.Count - 1;
+                        else if (options.Pages != null && pageId != null)
+                        {
+                            first = last = options.Pages.IndexOf(pageId);
+                            if (first < 0)
+                            {
+                                Console.Error.WriteLine($"No drawn page \"{pageId}\".");
+                                return 2;
+                            }
+                        }
+                        for (int pg = first; pg <= last; pg++)
+                        {
+                            options.Page = pg;
+                            // "all": one file per drawn page, named after the page
+                            string outPath = pageId == "all"
+                                ? Path.Combine(Path.GetDirectoryName(Path.GetFullPath(args[2]))!, Path.GetFileNameWithoutExtension(args[2]) + "-" + options.Pages!.Pages[pg].Id + ".svg")
+                                : args[2];
+                            SchematicDrawing drawing = SheetLayout.Build(netlist, style, options);
+                            File.WriteAllText(outPath, SvgRenderer.Write(drawing, theme));
+                            Console.WriteLine($"Wrote {outPath}");
+                            for (int i = 0; i < drawing.RerouteReasons.Count; i++)
+                                Console.WriteLine("Wire routed afresh: " + drawing.RerouteReasons[i]);
+                            for (int i = 0; i < drawing.BusProblems.Count; i++)
+                                Console.WriteLine("Bus: " + drawing.BusProblems[i]);
+                        }
                         return 0;
 
                     default:

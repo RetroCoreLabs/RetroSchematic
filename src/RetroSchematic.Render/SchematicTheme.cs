@@ -344,6 +344,12 @@ namespace RetroSchematic.Render
                     return new ItemStyle(SchematicColour.PinDot, null, LineWidths.Pin, LineStyle.Solid, false, false);
                 case DrawRole.PortArrow:
                     return new ItemStyle(SchematicColour.PortArrow, SchematicColour.PortArrow, LineWidths.Pin, LineStyle.Solid, false, true);
+                case DrawRole.OffPage:
+                    // the off-page box and its page numbers, in the block colour so it reads as
+                    // a way to somewhere else, not as a signal name
+                    if (it.Kind == DrawKind.Text)
+                        return new ItemStyle(SchematicColour.BlockOutline, null, LineWidths.Wire, LineStyle.Solid, true, false);
+                    return new ItemStyle(SchematicColour.BlockOutline, null, LineWidths.Pin, LineStyle.Solid, false, false);
                 case DrawRole.Note:
                     return new ItemStyle(SchematicColour.Note, null, LineWidths.Wire, LineStyle.Solid, false, false);
                 default:

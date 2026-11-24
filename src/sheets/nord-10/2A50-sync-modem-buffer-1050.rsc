@@ -1,6 +1,6 @@
 {
   "format": "nd-netlist",
-  "formatVersion": 1,
+  "formatVersion": 3,
   "sheet": {
     "id": "2A50",
     "title": "SYNCHRONOUS MODEM BUFFER 1050",
@@ -22,320 +22,370 @@
       "type": "COM2601",
       "function": "USRT, synchronous receiver/transmitter",
       "confidence": "read",
-      "note": "pin use matched against the SMC COM2601 datasheet"
+      "note": "pin use matched against the SMC COM2601 datasheet",
+      "page": "1"
     },
     {
       "ref": "13E",
       "type": "DM8160",
       "function": "address comparator against the modem number switches 15E",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "13D",
       "type": "7442",
       "function": "register decoder",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "11C",
       "type": "7404",
       "function": "inverters for BA0, BA1",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "11D",
       "type": "7402",
       "function": "sync register strobes ISCW, OSCW",
       "confidence": "read",
-      "note": "type proved by pin numbers 2,3>1 5,6>4 8,9>10 and the parts-list count"
+      "note": "type proved by pin numbers 2,3>1 5,6>4 8,9>10 and the parts-list count",
+      "page": "1"
     },
     {
       "ref": "3D",
       "type": "74153",
       "function": "status multiplexer",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "3E",
       "type": "74153",
       "function": "status multiplexer",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "5E",
       "type": "74153",
       "function": "status multiplexer",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "5D",
       "type": "74153",
       "function": "status multiplexer",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "1C",
       "type": "74157",
       "function": "clears the interrupt enable that answered IDENT",
       "confidence": "read",
-      "note": "corrected 2026-11-23: the box is printed 74157 (earlier entry said 74153); pins 14,13>12 11,10>9 2,3>4 5,6>7, select 1 = BA1, strobe 15 = CL"
+      "note": "corrected 2026-11-23: the box is printed 74157 (earlier entry said 74153); pins 14,13>12 11,10>9 2,3>4 5,6>7, select 1 = BA1, strobe 15 = CL",
+      "page": "1"
     },
     {
       "ref": "13C",
       "type": "74153",
       "function": "bus answer multiplexer: INT (pins 6,5,4,3 > 7, LEV10/LEV12 selected by BA0/BA1) and DINPUT (pins 10,11,12,13 > 9, from DEQL)",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "5B",
       "type": "8098",
       "function": "status buffer",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "7A",
       "type": "8098",
       "function": "status buffer, bits 10-15",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "7E",
       "type": "8097",
       "function": "chip status buffer",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "3C",
       "type": "7474",
       "function": "character interrupt enables IRFTIE, ORFTIE",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "1D",
       "type": "7474",
       "function": "error interrupt enables IERRIE, OERRIE",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "15C",
       "type": "7474",
       "function": "CDSTL and PRQTS",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "11B",
       "type": "74174",
       "function": "input control latch",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "15B",
       "type": "74157",
       "function": "test mode: swaps modem clocks and data for internal clock and loop-back",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "17D",
       "type": "74221",
       "function": "one-shot for the receiver reset, and the timeout oscillator",
       "confidence": "read",
-      "note": "Pins 4 (2A) and 5 (2B) are unused: not drawn on the sheet (drawing page 64). Timing parts: R-17D-1..3 and C-17D-1..3."
+      "note": "Pins 4 (2A) and 5 (2B) are unused: not drawn on the sheet (drawing page 64). Timing parts: R-17D-1..3 and C-17D-1..3.",
+      "page": "1"
     },
     {
       "ref": "19C",
       "type": "7497",
       "function": "timeout counter",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "3B",
       "type": "7451",
       "function": "level 12 request (gate 1, pins 9,10,13,1>8) and level 10 request (gate 2, pins 3,2,5,4>6)",
       "confidence": "read",
-      "note": "one 7451 holds both AND-OR-INVERT gates; the parts list has 1 x 7451. Gate 1 output pin 8 goes only to inverter 7B pin 11 (net N_3B_8); 7B pin 10 is LEV12_1. Read again at 1200 dpi 2026-11-23: inputs 9 IRFTIE, 10 IRFT, 13 IERR, 1 IERRIE; 3 ORFTIE, 2 ORFT, 5 OERR, 4 OERRIE. The pairs (1,13)(9,10)(2,3)(4,5) are the AND pairs of the 7450/7451 pinout, so each enable is ANDed with its own condition."
+      "note": "one 7451 holds both AND-OR-INVERT gates; the parts list has 1 x 7451. Gate 1 output pin 8 goes only to inverter 7B pin 11 (net N_3B_8); 7B pin 10 is LEV12_1. Read again at 1200 dpi 2026-11-23: inputs 9 IRFTIE, 10 IRFT, 13 IERR, 1 IERRIE; 3 ORFTIE, 2 ORFT, 5 OERR, 4 OERRIE. The pairs (1,13)(9,10)(2,3)(4,5) are the AND pairs of the 7450/7451 pinout, so each enable is ANDed with its own condition.",
+      "page": "1"
     },
     {
       "ref": "5A",
       "type": "7438",
       "function": "open-collector NAND buffers driving LEV12, LEV10, INPUT and CONNECT onto the bus",
       "confidence": "read",
-      "note": "corrected 2026-11-23: drawn as a pointed box with a bar (7438 shape), pins 9,10>8 1,2>3 4,5>6 12,13>11; the earlier entry said 7451. The parts list has one 7451 and one 7438."
+      "note": "corrected 2026-11-23: drawn as a pointed box with a bar (7438 shape), pins 9,10>8 1,2>3 4,5>6 12,13>11; the earlier entry said 7451. The parts list has one 7451 and one 7438.",
+      "page": "1"
     },
     {
       "ref": "9B",
       "type": "7404",
       "function": "bus receivers (inverters) for BD2, BD8, BD9, BD13, BD15 and the TINPUT enable",
       "confidence": "read",
-      "note": "box-with-triangle inverter shape; all six gates read: 1>2 3>4 5>6 9>8 11>10 13>12"
+      "note": "box-with-triangle inverter shape; all six gates read: 1>2 3>4 5>6 9>8 11>10 13>12",
+      "page": "1"
     },
     {
       "ref": "11E",
       "type": "7400",
       "function": "NAND gates: BA7/BA8 decode, OSR/IDR and ISR/IDR status enables, IERR",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "13B",
       "type": "7400",
       "function": "NAND gates: TRQTS (half duplex), OACTIVE path, test-mode clock selects",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "17B",
       "type": "7400",
       "function": "NAND gates: clear (ICW and BD4, master clear MC), OACTIVE from RFS",
       "confidence": "read",
-      "note": "gate 4 not found on the sheet"
+      "note": "gate 4 not found on the sheet",
+      "page": "1"
     },
     {
       "ref": "17C",
       "type": "7400",
       "function": "NAND gates: CL, timeout clear, timeout counter clear, CDSTL clear",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "1B",
       "type": "7400",
       "function": "NAND gates: feed the IDENT clear multiplexer 1C",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "9E",
       "type": "7402",
       "function": "NOR gates: address decode (BA6), receiver reset strobe, IERR",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "3A",
       "type": "7402",
       "function": "NOR gates: interrupt level combine, constant H1, OUTIDENT",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "7B",
       "type": "7404",
       "function": "bus receivers (inverters) for BD3-BD7 and the level 12 path",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "11A",
       "type": "7408",
       "function": "AND gates: CARRERR, ISYNERR, SR (status read)",
       "confidence": "read",
-      "note": "gate 3 not found on the sheet"
+      "note": "gate 3 not found on the sheet",
+      "page": "1"
     },
     {
       "ref": "1A",
       "type": "74S157",
       "function": "IDENT answer multiplexer: CLINT, TINPUT, TCONNECT, TINT",
       "confidence": "read",
-      "note": "printed 74S157 in the box; the parts list has 1 x 745157 = 74S157"
+      "note": "printed 74S157 in the box; the parts list has 1 x 745157 = 74S157",
+      "page": "1"
     },
     {
       "ref": "5C",
       "type": "8098",
       "function": "bus drivers for status bits 0, 1, 2, 6 (pins 2,4,6,10 > 3,5,7,9) and bus receivers BD0, BD1 (pins 12,14 > 11,13)",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "13A",
       "type": "75154",
       "function": "line receivers: CALLING INDICATOR, TRANSMITTER TIMING, RECEIVER TIMING, CARR",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "15A",
       "type": "75154",
       "function": "line receivers: RECEIVED DATA, READY FOR SENDING, DATA SET READY, SIGNAL DETECTOR",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "17A",
       "type": "75150",
       "function": "line drivers: CONNECT TO LINE, REQUEST TO SEND",
-      "confidence": "read"
+      "confidence": "read",
+      "page": "1"
     },
     {
       "ref": "19A",
       "type": "75150",
       "function": "line drivers: modem pin 93 and TRANSMITTED DATA",
       "confidence": "inferred",
-      "note": "position code read as 19A; the 9 could also be a 3, but 13A already holds four 75154 receivers, so it cannot be 13A"
+      "note": "position code read as 19A; the 9 could also be a 3, but 13A already holds four 75154 receivers, so it cannot be 13A",
+      "page": "1"
     },
     {
       "ref": "18-19E",
       "type": "VP12/12",
       "function": "voltage converter: +5 V in, +12 V and -12 V out (for the COM 2601 and the line drivers)",
       "confidence": "read",
-      "note": "pins: 1,24 = +5V; 2,11,12,13,14,23 = GND; 3,22 = +12V; 10,15 = -12V"
+      "note": "pins: 1,24 = +5V; 2,11,12,13,14,23 = GND; 3,22 = +12V; 10,15 = -12V",
+      "page": "1"
     },
     {
       "ref": "15E",
       "type": "SW-DIP-4",
       "confidence": "read",
-      "note": "Switch block 15E, 4 levers (drawing 2A50, NORD-10 drawing book PDF page 64); each lever joins its line to a common ground rail (read). Which DIP pins are the line side and which the rail side follows the usual DIP layout (pins 1-4 lines, 5-8 rail): inferred. The switches section says what each lever means."
+      "note": "Switch block 15E, 4 levers (drawing 2A50, NORD-10 drawing book PDF page 64); each lever joins its line to a common ground rail (read). Which DIP pins are the line side and which the rail side follows the usual DIP layout (pins 1-4 lines, 5-8 rail): inferred. The switches section says what each lever means.",
+      "page": "1"
     },
     {
       "ref": "R-15E-1",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN3 at lever 1 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "15E"
+      "serves": "15E",
+      "page": "1"
     },
     {
       "ref": "R-15E-2",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN2 at lever 2 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "15E"
+      "serves": "15E",
+      "page": "1"
     },
     {
       "ref": "R-15E-3",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN1 at lever 3 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "15E"
+      "serves": "15E",
+      "page": "1"
     },
     {
       "ref": "R-15E-4",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to SMN0 at lever 4 of 15E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "15E"
+      "serves": "15E",
+      "page": "1"
     },
     {
       "ref": "1E",
       "type": "SW-DIP-4",
       "confidence": "read",
-      "note": "Switch block 1E, 4 levers (drawing 2A50, NORD-10 drawing book PDF page 64); each lever joins its line to a common ground rail (read). Which DIP pins are the line side and which the rail side follows the usual DIP layout (pins 1-4 lines, 5-8 rail): inferred. The switches section says what each lever means."
+      "note": "Switch block 1E, 4 levers (drawing 2A50, NORD-10 drawing book PDF page 64); each lever joins its line to a common ground rail (read). Which DIP pins are the line side and which the rail side follows the usual DIP layout (pins 1-4 lines, 5-8 rail): inferred. The switches section says what each lever means.",
+      "page": "1"
     },
     {
       "ref": "R-1E-1",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT2 at lever 1 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "1E"
+      "serves": "1E",
+      "page": "1"
     },
     {
       "ref": "R-1E-2",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT3 at lever 2 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "1E"
+      "serves": "1E",
+      "page": "1"
     },
     {
       "ref": "R-1E-3",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT4 at lever 3 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "1E"
+      "serves": "1E",
+      "page": "1"
     },
     {
       "ref": "R-1E-4",
       "type": "R",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up from +5V to IDENT5 at lever 4 of 1E (drawing 2A50, NORD-10 drawing book PDF page 64). No value written on the drawing and none readable on the photo: value open. One resistor is drawn solid to line 1, lines 2-4 have dashed stubs; four separate resistors (read on the photo; inferred from the logic too, since one shared resistor would join the lines).",
-      "serves": "1E"
+      "serves": "1E",
+      "page": "1"
     },
     {
       "ref": "R-13E-1",
@@ -343,7 +393,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. Pull-up on DEQL, \"1k\" written (drawing 2A50, NORD-10 drawing book PDF page 64).",
       "value": "1k",
-      "serves": "13E"
+      "serves": "13E",
+      "page": "1"
     },
     {
       "ref": "R-17D-1",
@@ -351,7 +402,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"47k\" from +5V (labelled \"+5V\") to 17D pin 7 (drawing 2A50, NORD-10 drawing book PDF page 64).",
       "value": "47k",
-      "serves": "17D"
+      "serves": "17D",
+      "page": "1"
     },
     {
       "ref": "C-17D-1",
@@ -359,7 +411,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"10µF\" between 17D pins 6 and 7 (drawing 2A50, NORD-10 drawing book PDF page 64). Drawn as a plain capacitor, no polarity marked.",
       "value": "10µF",
-      "serves": "17D"
+      "serves": "17D",
+      "page": "1"
     },
     {
       "ref": "R-17D-2",
@@ -367,7 +420,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"10k\" from 17D pin 15 to a bare supply bar, taken as +5V (drawing 2A50, NORD-10 drawing book PDF page 64).",
       "value": "10k",
-      "serves": "17D"
+      "serves": "17D",
+      "page": "1"
     },
     {
       "ref": "C-17D-2",
@@ -375,7 +429,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"220pF\" between 17D pins 14 and 15 (drawing 2A50, NORD-10 drawing book PDF page 64). The photo shows a red \"220pF +-5%\" beside the 74221 (inferred to be this one).",
       "value": "220pF",
-      "serves": "17D"
+      "serves": "17D",
+      "page": "1"
     },
     {
       "ref": "R-17D-3",
@@ -383,7 +438,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"220Ω\" from OSC (17D pin 12) to OSCD (17D pin 10) (drawing 2A50, NORD-10 drawing book PDF page 64).",
       "value": "220Ω",
-      "serves": "17D"
+      "serves": "17D",
+      "page": "1"
     },
     {
       "ref": "C-17D-3",
@@ -391,7 +447,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"10µF\" from OSCD to ground (drawing 2A50, NORD-10 drawing book PDF page 64). Drawn as a plain capacitor, no polarity marked.",
       "value": "10µF",
-      "serves": "17D"
+      "serves": "17D",
+      "page": "1"
     },
     {
       "ref": "C-9B-1",
@@ -399,7 +456,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"1000 pF\" from the bus driver enable 9B.2 = 5C.1 = 5B.1 to ground (drawing 2A50, NORD-10 drawing book PDF page 64). The old board photo shows two red \"2200pF +-5%\" where the drawing has one 2200 pF and two 1000 pF: mismatch, open (docs/2A50-passives-and-pins.md).",
       "value": "1000 pF",
-      "serves": "9B"
+      "serves": "9B",
+      "page": "1"
     },
     {
       "ref": "C-11A-1",
@@ -407,7 +465,8 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"1000 pF\" from SR (11A.11 = 7A.1 = 7A.15) to ground (drawing 2A50, NORD-10 drawing book PDF page 64). The old board photo shows two red \"2200pF +-5%\" where the drawing has one 2200 pF and two 1000 pF: mismatch, open (docs/2A50-passives-and-pins.md).",
       "value": "1000 pF",
-      "serves": "11A"
+      "serves": "11A",
+      "page": "1"
     },
     {
       "ref": "C-19A-1",
@@ -415,21 +474,24 @@
       "confidence": "inferred",
       "note": "No name on the drawing; the name is made from the chip it serves. \"2200 pF\" from line 95, TRANSM DATA (19A.12) to ground (drawing 2A50, NORD-10 drawing book PDF page 64). The old board photo shows two red \"2200pF +-5%\" where the drawing has one 2200 pF and two 1000 pF: mismatch, open (docs/2A50-passives-and-pins.md).",
       "value": "2200 pF",
-      "serves": "19A"
+      "serves": "19A",
+      "page": "1"
     },
     {
       "ref": "W-3D-1",
       "type": "STRAP",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Marked \"(STRAP)(GND)\" at 3D.10 (drawing 2A50, NORD-10 drawing book PDF page 64); fitted as drawn (read), so ident bits 0 and 1 are 0.",
-      "serves": "3D"
+      "serves": "3D",
+      "page": "1"
     },
     {
       "ref": "W-3D-2",
       "type": "STRAP",
       "confidence": "read",
       "note": "No name on the drawing; the name is made from the chip it serves. Marked \"(STRAP)(GND)\" at 3D.6 (drawing 2A50, NORD-10 drawing book PDF page 64); fitted as drawn (read), so ident bits 0 and 1 are 0.",
-      "serves": "3D"
+      "serves": "3D",
+      "page": "1"
     }
   ],
   "gates": [
@@ -5707,7 +5769,7 @@
   },
   "sources": [
     {
-      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/sources/2A50-sync-modem-buffer-1050-p64.png",
+      "file": "2A50-files/sources/2A50-sync-modem-buffer-1050-p64.png",
       "title": "2A50 Synchronous modem buffer 1050",
       "note": "The only drawing page for card 1050: PDF pages 63 and 65 are sheets 2A49 and 2A51.",
       "original": {
@@ -5719,7 +5781,7 @@
   ],
   "photos": [
     {
-      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-component-side-I-old.jpg",
+      "file": "2A50-files/photos/322049-component-side-I-old.jpg",
       "side": "component",
       "version": "I",
       "variant": "old",
@@ -5734,7 +5796,7 @@
       "note": "Board 322049, print version I (an old card). Title on the board: SYNCHRONOUS MODEM BUFFER 1050. Two 4-lever switch blocks at the bottom edge: left one beside the 74153 status multiplexers, middle one beside the DM8160 comparator. COM 2601 in the middle."
     },
     {
-      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-solder-side-I-old.jpg",
+      "file": "2A50-files/photos/322049-solder-side-I-old.jpg",
       "side": "solder",
       "version": "I",
       "variant": "old",
@@ -5749,7 +5811,7 @@
       "note": "Board 322049, print version I, solder side."
     },
     {
-      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-component-side-I-new.jpg",
+      "file": "2A50-files/photos/322049-component-side-I-new.jpg",
       "side": "component",
       "version": "I",
       "variant": "new",
@@ -5763,7 +5825,7 @@
       }
     },
     {
-      "file": "E:/Dev/RCL/ND-Schematics/src/sheets/nord-10/2A50-files/photos/322049-solder-side-I-new.jpg",
+      "file": "2A50-files/photos/322049-solder-side-I-new.jpg",
       "side": "solder",
       "version": "I",
       "variant": "new",
@@ -5895,6 +5957,14 @@
         }
       ],
       "note": "Lever-to-signal from the net notes (\"ident switch 1E position 1\" = IDENT2 ... position 4 = IDENT5). Bits 0-1: 3D pins 10 and 6 are marked (STRAP)(GND) on the drawing (read). The same ident answers on both interrupt levels (read). On means 0 is INFERRED: each IDENT line has a pull-up and is active high, so a lever that is on pulls it low, a 0; that the bus drivers after the multiplexers keep that sense is assumed. Which block on the photo is 1E is inferred: the bottom-left block sits beside the 74153 multiplexers. Lever positions on the photo cannot be read (open)."
+    }
+  ],
+  "pages": [
+    {
+      "id": "1",
+      "title": "SYNCHRONOUS MODEM BUFFER 1050",
+      "source": 1,
+      "sheetNumber": "2A50"
     }
   ]
 }

@@ -218,6 +218,70 @@ namespace RetroSchematic.Model
         /// Instances of blocks on this level (format version 2), or null for none.
         /// </summary>
         public List<BlockInstance>? Instances { get; set; }
+
+        /// <summary>
+        /// The card's schematic pages (format version 3), or null for a file with one page and no
+        /// list. Every top-level part, connector box and instance names the page it is on; the
+        /// signals, the board, the photos and the switches belong to the whole card.
+        /// </summary>
+        public List<CardPage>? Pages { get; set; }
+
+        /// <summary>
+        /// How the redrawn drawing is cut into pages (format version 3): one drawn page per
+        /// original page (the default, also when null), or split automatically when a page is
+        /// too crowded. Drawing only - it never changes what is connected.
+        /// </summary>
+        public PageLayoutMode? PageLayout { get; set; }
+    }
+
+    /// <summary>
+    /// How the redrawn drawing of a card with pages is cut into drawn pages.
+    /// </summary>
+    public enum PageLayoutMode
+    {
+        /// <summary>
+        /// One drawn page per original page, holding the parts read from it. Written "as-original".
+        /// </summary>
+        AsOriginal,
+
+        /// <summary>
+        /// A crowded page is split into several drawn pages by grouping the parts that share the
+        /// most signals, with off-page markers between them. Written "split".
+        /// </summary>
+        Split,
+    }
+
+    /// <summary>
+    /// One schematic page of a card (format version 3).
+    /// </summary>
+    public sealed class CardPage
+    {
+        /// <summary>
+        /// The page's id, unique in the file, such as "1". Parts name their page by it.
+        /// </summary>
+        public string Id { get; set; } = "";
+
+        /// <summary>
+        /// The page's title, as in its title block or in words.
+        /// </summary>
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// The original page it was read from: its place in the card's <c>sources</c> list, 1 =
+        /// first; null when not known.
+        /// </summary>
+        public int? Source { get; set; }
+
+        /// <summary>
+        /// The sheet number written in the page's title block, such as "2A50" or "3 of 24"; null
+        /// when not read.
+        /// </summary>
+        public string? SheetNumber { get; set; }
+
+        /// <summary>
+        /// Free text.
+        /// </summary>
+        public string? Note { get; set; }
     }
 
     /// <summary>
@@ -381,6 +445,12 @@ namespace RetroSchematic.Model
         /// One per connected port: the signals on this level it joins, bit for bit.
         /// </summary>
         public List<PortConnection>? Connections { get; set; }
+
+        /// <summary>
+        /// The card page the instance box is drawn on (format version 3, top level only), or
+        /// null for the first page.
+        /// </summary>
+        public string? Page { get; set; }
     }
 
     /// <summary>
@@ -438,6 +508,11 @@ namespace RetroSchematic.Model
         /// The signals that join the bus.
         /// </summary>
         public List<BusMember> Members { get; set; } = new();
+
+        /// <summary>
+        /// The card page the bus path is drawn on (format version 3), or null for the first page.
+        /// </summary>
+        public string? Page { get; set; }
     }
 
     /// <summary>
@@ -478,6 +553,12 @@ namespace RetroSchematic.Model
         /// The branches; every point in whole mm from the top left, each piece level or upright.
         /// </summary>
         public List<List<Point>> Branches { get; set; } = new();
+
+        /// <summary>
+        /// The card page the path is drawn on (format version 3), or null for the first page. A
+        /// signal on several pages may have one path per page.
+        /// </summary>
+        public string? Page { get; set; }
     }
 
     /// <summary>
@@ -638,6 +719,12 @@ namespace RetroSchematic.Model
         /// (<see cref="PassiveParts.AutoName"/>). Null for a part the drawing names.
         /// </summary>
         public string? Serves { get; set; }
+
+        /// <summary>
+        /// The id of the card page the part is on (format version 3); null in older files and
+        /// inside a block.
+        /// </summary>
+        public string? Page { get; set; }
     }
 
     /// <summary>

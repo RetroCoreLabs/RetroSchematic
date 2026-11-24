@@ -25,6 +25,11 @@ namespace RetroSchematic.Render
         public string Selected { get; init; } = "";
 
         /// <summary>
+        /// The drawn page shown (format version 3), or empty for a level without pages.
+        /// </summary>
+        public string Page { get; init; } = "";
+
+        /// <summary>
         /// The traced signal's key, or empty.
         /// </summary>
         public string Traced { get; set; } = "";
@@ -65,7 +70,7 @@ namespace RetroSchematic.Render
         /// </returns>
         public bool SameAs(NavPlace other)
         {
-            if (Selected != other.Selected || Level.Length != other.Level.Length)
+            if (Selected != other.Selected || Page != other.Page || Level.Length != other.Level.Length)
                 return false;
             for (int i = 0; i < Level.Length; i++)
             {

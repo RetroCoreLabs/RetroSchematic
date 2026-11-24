@@ -25,7 +25,11 @@ namespace RetroSchematic.Render
             string[] level = new string[Editor.LevelPath.Count];
             for (int i = 0; i < level.Length; i++)
                 level[i] = Editor.LevelPath[i];
-            return new NavPlace { Level = level, Selected = Selected, Traced = Traced, Label = LabelOf(Selected, level) };
+            string page = CurrentPage?.Id ?? "";
+            string label = LabelOf(Selected, level);
+            if (page.Length > 0 && PageCount > 1)
+                label += " (page " + page + ")";
+            return new NavPlace { Level = level, Page = page, Selected = Selected, Traced = Traced, Label = label };
         }
 
         /// <summary>
@@ -53,6 +57,9 @@ namespace RetroSchematic.Render
                     Editor.EnterInstance(place.Level[i]);
                 AfterLevelChange();
             }
+            // the page first, so the pick and the trace are shown on it
+            if (place.Page.Length > 0)
+                SetPage(place.Page);
             Select(place.Selected);
             Trace(place.Traced);
         }

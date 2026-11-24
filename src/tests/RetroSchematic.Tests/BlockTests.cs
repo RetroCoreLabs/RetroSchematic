@@ -33,13 +33,14 @@ namespace RetroSchematic.Tests
             => new(NetlistReader.ReadFile(Sheet2A50), new ChipCatalog(ChipCatalog.Find(Sheet2A50)!)) { ReadOnly = false };
 
         [Test]
-        public void AVersion1File_LoadsAsOneLevel_AndIsWrittenAsVersion1()
+        public void TheCard_LoadsAsOneLevel_AndIsWrittenWithItsPages()
         {
             Netlist n = NetlistReader.ReadFile(Sheet2A50);
             Assert.That(n.Blocks, Is.Null);
             Assert.That(n.Instances, Is.Null);
             string written = NetlistReader.Write(n);
-            Assert.That(written, Does.Contain("\"formatVersion\": 1"));
+            // 2A50 has a pages list (one page), so it is written as version 3
+            Assert.That(written, Does.Contain("\"formatVersion\": 3"));
             // a pin is written as "at" only; its part and number are worked out from it
             Assert.That(written, Does.Not.Contain("\"partRef\"").And.Not.Contain("\"pin\":"));
             // flattening a design with no blocks changes nothing
@@ -62,9 +63,10 @@ namespace RetroSchematic.Tests
             Netlist flat = Hierarchy.Flatten(e.Root);
             Assert.That(flat.Parts.Exists(p => p.Ref == "U1/13E"), Is.True);
 
-            // a version 2 file is written, read back and connects the same
+            // a file with blocks is written (version 3, since 2A50 has pages), read back and
+            // connects the same
             string json = NetlistReader.Write(e.Root);
-            Assert.That(json, Does.Contain("\"formatVersion\": 2"));
+            Assert.That(json, Does.Contain("\"formatVersion\": 3"));
             Netlist back = NetlistReader.Parse(json);
             Assert.That(Hierarchy.Connections(back), Is.EqualTo(before), "after a write and read");
             Assert.That(NetlistReader.Write(back), Is.EqualTo(json), "read and written back unchanged");
@@ -200,7 +202,7 @@ namespace RetroSchematic.Tests
             SheetEditor e = Open();
             e.MakeBlock("b", null, new List<string>(Modem), null);
             string good = NetlistReader.Write(e.Root);
-            Assert.That(() => NetlistReader.Parse(good.Replace("\"formatVersion\": 2", "\"formatVersion\": 1")),
+            Assert.That(() => NetlistReader.Parse(good.Replace("\"formatVersion\": 3", "\"formatVersion\": 1")),
                 Throws.TypeOf<NetlistException>().With.Message.Contains("version 2"));
             Assert.That(() => NetlistReader.Parse(good.Replace("\"block\": \"b\"", "\"block\": \"x\"")),
                 Throws.TypeOf<NetlistException>().With.Message.Contains("not defined"));

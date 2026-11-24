@@ -28,6 +28,11 @@ namespace RetroSchematic.Model
         /// </summary>
         public const int BlocksFormatVersion = 2;
 
+        /// <summary>
+        /// The newest format version this reader understands: version 3 adds a card's pages.
+        /// </summary>
+        public const int PagesFormatVersion = 3;
+
         private static readonly JsonSerializerOptions s_options = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -78,8 +83,8 @@ namespace RetroSchematic.Model
                 if (!root.TryGetProperty("formatVersion", out JsonElement version) || version.ValueKind != JsonValueKind.Number)
                     throw new NetlistException("\"formatVersion\" is missing.");
                 int v = version.GetInt32();
-                if (v != SupportedFormatVersion && v != BlocksFormatVersion)
-                    throw new NetlistException($"Format version {v} is not supported; this reader knows versions {SupportedFormatVersion} and {BlocksFormatVersion}.");
+                if (v != SupportedFormatVersion && v != BlocksFormatVersion && v != PagesFormatVersion)
+                    throw new NetlistException($"Format version {v} is not supported; this reader knows versions {SupportedFormatVersion}, {BlocksFormatVersion} and {PagesFormatVersion}.");
                 if (v == SupportedFormatVersion && (root.TryGetProperty("blocks", out _) || root.TryGetProperty("instances", out _)))
                     throw new NetlistException("A version 1 file cannot have blocks or instances; they need format version 2.");
             }
@@ -97,6 +102,7 @@ namespace RetroSchematic.Model
                 throw new NetlistException("Empty netlist file.");
 
             Check(netlist);
+            CardPages.Check(netlist);
             return netlist;
         }
 
@@ -111,9 +117,11 @@ namespace RetroSchematic.Model
         /// </returns>
         public static string Write(Netlist netlist)
         {
-            // version 2 exactly when the design has blocks or instances (docs/FORMAT.md)
+            // version 3 exactly when the card has a pages list; else version 2 exactly when the
+            // design has blocks or instances (docs/FORMAT.md)
             bool blocks = (netlist.Blocks != null && netlist.Blocks.Count > 0) || (netlist.Instances != null && netlist.Instances.Count > 0);
-            netlist.FormatVersion = blocks ? BlocksFormatVersion : SupportedFormatVersion;
+            bool pages = netlist.Pages != null && netlist.Pages.Count > 0;
+            netlist.FormatVersion = pages ? PagesFormatVersion : blocks ? BlocksFormatVersion : SupportedFormatVersion;
             return JsonSerializer.Serialize(netlist, s_options);
         }
 

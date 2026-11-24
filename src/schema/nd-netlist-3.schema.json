@@ -1,0 +1,1299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://retrocorelabs.github.io/RetroSchematic/schema/nd-netlist-3.schema.json",
+  "title": "ND card netlist, format version 3 (a card with pages)",
+  "type": "object",
+  "required": [
+    "format",
+    "formatVersion",
+    "sheet",
+    "parts",
+    "nets",
+    "pages"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "nd-netlist"
+    },
+    "formatVersion": {
+      "const": 3
+    },
+    "sheet": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "source"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "machine": {
+          "type": "string"
+        },
+        "bus": {
+          "description": "Which machine bus the card is for; picks the bus-signal and connector catalogues. Missing means unknown (shown as a warning).",
+          "enum": [
+            "nord-10",
+            "nd-100",
+            "unknown"
+          ]
+        },
+        "company": {
+          "type": "string"
+        },
+        "drawn": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "document"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "document": {
+              "type": "string"
+            },
+            "pdfPage": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "image": {
+              "type": "string"
+            }
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "parts": {
+      "$ref": "#/$defs/parts"
+    },
+    "gates": {
+      "$ref": "#/$defs/gates"
+    },
+    "nets": {
+      "$ref": "#/$defs/nets"
+    },
+    "layout": {
+      "$ref": "#/$defs/layout"
+    },
+    "blocks": {
+      "type": "array",
+      "description": "Block definitions (Verilog modules).",
+      "items": {
+        "$ref": "#/$defs/block"
+      }
+    },
+    "instances": {
+      "type": "array",
+      "description": "Instances of blocks on the top level.",
+      "items": {
+        "$ref": "#/$defs/instance"
+      }
+    },
+    "display": {
+      "$ref": "#/$defs/display"
+    },
+    "connectors": {
+      "type": "array",
+      "description": "Which catalogue entry (a file id in catalog/connectors, for the sheet's bus) describes each of the card's connectors. Optional; a connector without an entry is still drawn.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "The connector as pin references name it: P or F (connector not known yet), or P.A, F.B ... with the connector letter.",
+            "pattern": "^[PF](\\.[A-Za-z0-9]+)?$"
+          },
+          "catalog": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "#/$defs/point",
+            "description": "Top-left corner of the connector box in millimetres, when it was put there by hand. Missing: placed where its wires are shortest."
+          },
+          "pinSide": {
+            "enum": [
+              "left",
+              "right"
+            ],
+            "description": "Which side of the box the pins are on. Missing: the side facing the chips."
+          },
+          "use": {
+            "type": "string",
+            "description": "What this connector carries on this card, or \"not used\"."
+          },
+          "used": {
+            "type": "boolean",
+            "description": "False when the card uses no pin of it."
+          },
+          "standard": {
+            "type": "string",
+            "description": "Such as DIN 41612."
+          },
+          "pins": {
+            "type": "string",
+            "description": "The pin numbers in words, such as 0-99."
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Row letters of a plug with rows (a, b, c)."
+          },
+          "pinsPerRow": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "page": {
+            "type": "string",
+            "description": "The card page the box is drawn on; absent = the first page."
+          }
+        }
+      }
+    },
+    "board": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "What the printed circuit board is. Field names are the ND PCB catalogue's own (pcb.json). Every value optional; missing = not known.",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "The card number, such as 1050."
+        },
+        "partNumber": {
+          "type": "string",
+          "description": "The part number printed on the board, such as 322049."
+        },
+        "title": {
+          "type": "string"
+        },
+        "ndSystem": {
+          "enum": [
+            "NORD-10",
+            "ND-100"
+          ],
+          "description": "The ND machine the card plugs into."
+        },
+        "group": {
+          "type": "string",
+          "description": "The catalogue's group code, such as 1C."
+        },
+        "description": {
+          "type": "string"
+        },
+        "printVersion": {
+          "type": "string",
+          "description": "The print (PCB) version, such as I."
+        },
+        "ecoVersion": {
+          "type": "string",
+          "description": "The ECO (engineering change) version."
+        },
+        "printVersions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "print"
+            ],
+            "properties": {
+              "print": {
+                "type": "string"
+              },
+              "eco": {
+                "type": "string"
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "specifications": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "size": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "widthMm",
+                "heightMm"
+              ],
+              "properties": {
+                "widthMm": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "heightMm": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              }
+            },
+            "layers": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "releaseDate": {
+          "type": "string",
+          "description": "As the catalogue writes it, such as 01. Jan. 1981."
+        },
+        "leds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string",
+                "description": "The catalogue's text, as it is."
+              }
+            }
+          }
+        },
+        "straps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string",
+                "description": "The catalogue's text, as it is."
+              }
+            }
+          }
+        },
+        "switches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string",
+                "description": "The catalogue's text, as it is."
+              }
+            }
+          },
+          "description": "The catalogue's switch text; the sheet's own switches list holds the worked-out blocks."
+        },
+        "connectors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string",
+                "description": "The catalogue's text, as it is."
+              }
+            }
+          },
+          "description": "The catalogue's connector text."
+        },
+        "chipset": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "sourceUrl": {
+          "type": "string",
+          "description": "The web page the catalogue entry was scraped from."
+        },
+        "factSources": {
+          "type": "object",
+          "description": "Field name -> where that fact came from.",
+          "additionalProperties": {
+            "$ref": "#/$defs/boardSource"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "pcb": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The chip grid on the board photos: the board type (catalog/boards/TEMPLATE.json gives the size and the columns), this board's rows, and boxes set by hand. A chip's area is the cell(s) its position code names (7-8C-D: columns 7 to 8, rows C to D); a hand-set box wins over the cell.",
+      "properties": {
+        "template": {
+          "type": "string",
+          "description": "The board type, such as nord10-card."
+        },
+        "rows": {
+          "type": "array",
+          "description": "This board's rows, mm from the top (finger) edge.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "fromMm",
+              "toMm"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Z]$"
+              },
+              "fromMm": {
+                "type": "number"
+              },
+              "toMm": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "rowsSource": {
+          "$ref": "#/$defs/boardSource"
+        },
+        "boxes": {
+          "type": "array",
+          "description": "Chip boxes set by hand, mm on the component side; each wins over its grid cell.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "xMm",
+              "yMm",
+              "widthMm",
+              "heightMm"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string"
+              },
+              "xMm": {
+                "type": "number",
+                "description": "Centre, mm from the left edge."
+              },
+              "yMm": {
+                "type": "number",
+                "description": "Centre, mm from the top edge."
+              },
+              "widthMm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "heightMm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "rotationDeg": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "The original schematic pages. file is relative to the sheet; in a .rsx it is an entry inside the zip (sources/...).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file"
+        ],
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "A picture (PNG, JPEG) or a PDF, relative to the sheet, forward slashes."
+          },
+          "pdfPage": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "For a PDF: the page, 1 = first."
+          },
+          "title": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "original": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "file"
+            ],
+            "description": "The PDF and page a stored picture was rendered from.",
+            "properties": {
+              "file": {
+                "type": "string"
+              },
+              "pdfPage": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "dpi": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "photos": {
+      "type": "array",
+      "description": "Photos of the board. file is relative to the sheet; in a .rsx it is an entry inside the zip (photos/...).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file",
+          "side"
+        ],
+        "properties": {
+          "file": {
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "component",
+              "solder"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "variant": {
+            "type": "string",
+            "description": "Which board the photo shows when there are several, such as old or new."
+          },
+          "caption": {
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/$defs/boardSource"
+          },
+          "note": {
+            "type": "string"
+          },
+          "corners": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "description": "Where the board's corners are in the photo, in its pixels: top left, top right, bottom right, bottom left of the board as the grid sees it (the finger edge at the top). Set by hand; without it the viewer looks for the board, else uses the whole picture.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "x",
+                "y"
+              ],
+              "properties": {
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "switches": {
+      "type": "array",
+      "description": "The switch blocks on the card and what each lever sets.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "leverCount",
+          "levers"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "The board position, such as 15E."
+          },
+          "function": {
+            "type": "string"
+          },
+          "leverCount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "onMeans": {
+            "enum": [
+              "0",
+              "1",
+              "open"
+            ],
+            "description": "The bit value a lever that is on (closed) gives."
+          },
+          "onMeansConfidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "typical": {
+            "type": "string"
+          },
+          "levers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "number",
+                "confidence"
+              ],
+              "properties": {
+                "number": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "signal": {
+                  "type": "string"
+                },
+                "bit": {
+                  "type": "string"
+                },
+                "confidence": {
+                  "$ref": "#/$defs/confidence"
+                },
+                "setting": {
+                  "enum": [
+                    "on",
+                    "off",
+                    "open"
+                  ]
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "source": {
+            "$ref": "#/$defs/boardSource"
+          },
+          "moreSources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/boardSource"
+            },
+            "description": "Further sources, such as the ND PCB catalogue's switch text (quote)."
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The card's schematic pages. Every top-level part names one; signals, board, photos and switches are card-wide.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique in the file; parts name their page by it."
+          },
+          "title": {
+            "type": "string",
+            "description": "The page's title."
+          },
+          "source": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "The original page it was read from: its place in sources, 1 = first."
+          },
+          "sheetNumber": {
+            "type": "string",
+            "description": "The sheet number in the page's title block."
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pageLayout": {
+      "enum": [
+        "as-original",
+        "split"
+      ],
+      "description": "How the redrawn drawing is cut into pages: one per original page (default) or split automatically. Drawing only."
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": [
+        "x",
+        "y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "confidence": {
+      "enum": [
+        "read",
+        "inferred",
+        "open"
+      ]
+    },
+    "parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "type",
+          "confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "function": {
+            "type": "string"
+          },
+          "confidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "note": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "#/$defs/point"
+          },
+          "value": {
+            "type": "string",
+            "description": "passive part: the value as written on the drawing (1k, 470p)"
+          },
+          "tolerance": {
+            "type": "string",
+            "description": "passive part: the tolerance as written on the drawing"
+          },
+          "valueConfidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "serves": {
+            "type": "string",
+            "description": "passive part with no name on the drawing: the chip it serves"
+          },
+          "page": {
+            "type": "string",
+            "description": "The card page the part is on. Required on every top-level part; never inside a block (the reader checks both)."
+          }
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "part",
+          "kind",
+          "inputs",
+          "output",
+          "confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "part": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "nand",
+              "nor",
+              "not",
+              "and",
+              "or",
+              "buffer",
+              "and-or-invert",
+              "other"
+            ]
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "output": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "position": {
+            "type": "object",
+            "required": [
+              "x",
+              "y"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "x": {
+                "type": "number"
+              },
+              "y": {
+                "type": "number"
+              }
+            }
+          },
+          "confidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "active",
+          "pins"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "enum": [
+              "high",
+              "low",
+              "none"
+            ]
+          },
+          "pins": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "at",
+                "confidence"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "at": {
+                  "type": "string",
+                  "pattern": "^.+\\.[0-9]+$"
+                },
+                "confidence": {
+                  "$ref": "#/$defs/confidence"
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "note": {
+            "type": "string"
+          },
+          "drive": {
+            "enum": [
+              "totem-pole",
+              "open-collector",
+              "open-collector-high-voltage",
+              "three-state",
+              "none"
+            ],
+            "description": "What kind of output drives the line: normal TTL (totem-pole), open collector (several outputs may share the line, it needs a pull-up and reads as the AND of them), three-state bus, or none (supply, input-only from outside the sheet). Absent = not read yet. open-collector-high-voltage: open collector rated for a higher pull-up voltage than 5 V (7406, 7407, 7416, 7417: up to 30 or 15 V), used to drive lamps, relays or lines."
+          },
+          "pullUp": {
+            "type": "string",
+            "description": "For an open-collector line: the pull-up resistor as written on the drawing (e.g. '1k to +5V'), or 'open' if not read."
+          },
+          "driveConfidence": {
+            "$ref": "#/$defs/confidence"
+          },
+          "description": {
+            "type": "string",
+            "description": "What the signal does, in plain words. Only what a source says; never made up. Optional (added within version 1)."
+          },
+          "descriptionSource": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "confidence"
+            ],
+            "description": "Where the description came from and how sure it is.",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "drawing",
+                  "manual",
+                  "reading",
+                  "inferred",
+                  "catalogue"
+                ]
+              },
+              "document": {
+                "type": "string",
+                "description": "The document, such as docs/2A50-reading.md or a manual number."
+              },
+              "place": {
+                "type": "string",
+                "description": "Where in it: a section heading or a page."
+              },
+              "confidence": {
+                "$ref": "#/$defs/confidence"
+              },
+              "quote": {
+                "type": "string",
+                "description": "The source's own words, as they are."
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          },
+          "function": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Short tags for what the signal is for, such as interrupt, status, clock."
+          }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "description": "Drawing only, never connections: wire paths fixed by hand. Optional (added within version 1).",
+      "additionalProperties": false,
+      "properties": {
+        "wires": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "net",
+              "branches"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "net": {
+                "type": "string",
+                "description": "The signal's name."
+              },
+              "active": {
+                "enum": [
+                  "high",
+                  "low",
+                  "none"
+                ],
+                "description": "The signal's active level; tells apart two signals of the same name."
+              },
+              "branches": {
+                "type": "array",
+                "description": "The first branch joins two pins; each later one runs from a pin to the wire before it. Points in whole mm from the top left; every piece level or upright.",
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "items": {
+                    "$ref": "#/$defs/point"
+                  }
+                }
+              },
+              "page": {
+                "type": "string",
+                "description": "The card page the path is drawn on; absent = the first page."
+              }
+            }
+          }
+        },
+        "buses": {
+          "type": "array",
+          "description": "Virtual buses (drawing only, never connections). Optional (added within version 1).",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "path",
+              "members"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The bus name."
+              },
+              "path": {
+                "type": "array",
+                "description": "Bend points in whole mm; every piece level or upright. Empty: not drawn yet.",
+                "items": {
+                  "$ref": "#/$defs/point"
+                }
+              },
+              "members": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "net"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "net": {
+                      "type": "string"
+                    },
+                    "active": {
+                      "enum": [
+                        "high",
+                        "low",
+                        "none"
+                      ]
+                    }
+                  }
+                }
+              },
+              "page": {
+                "type": "string",
+                "description": "The card page the bus is drawn on; absent = the first page."
+              }
+            }
+          }
+        }
+      }
+    },
+    "signalRef": {
+      "type": "object",
+      "required": [
+        "net"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "net": {
+          "type": "string",
+          "description": "A signal's name on this level."
+        },
+        "active": {
+          "enum": [
+            "high",
+            "low",
+            "none"
+          ],
+          "description": "Its level; tells apart two signals of the same name."
+        }
+      }
+    },
+    "port": {
+      "type": "object",
+      "required": [
+        "name",
+        "direction",
+        "signals"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "input",
+            "output",
+            "inout"
+          ],
+          "description": "Seen from inside the block."
+        },
+        "signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/signalRef"
+          },
+          "description": "The signals inside the block; one = single port, more = bus port, entry 0 the lowest bit."
+        },
+        "side": {
+          "enum": [
+            "left",
+            "right",
+            "top",
+            "bottom"
+          ],
+          "description": "Drawing only."
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Drawing only: place along the side."
+        }
+      }
+    },
+    "instance": {
+      "type": "object",
+      "required": [
+        "name",
+        "block"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "block": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/$defs/point"
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "port",
+              "nets"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "port": {
+                "type": "string"
+              },
+              "nets": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/signalRef"
+                }
+              }
+            }
+          }
+        },
+        "page": {
+          "type": "string",
+          "description": "The card page the instance box is drawn on (top level only); absent = the first page."
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "required": [
+        "name",
+        "ports",
+        "parts",
+        "nets"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/port"
+          }
+        },
+        "parts": {
+          "$ref": "#/$defs/parts"
+        },
+        "gates": {
+          "$ref": "#/$defs/gates"
+        },
+        "nets": {
+          "$ref": "#/$defs/nets"
+        },
+        "layout": {
+          "$ref": "#/$defs/layout"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/instance"
+          }
+        }
+      }
+    },
+    "display": {
+      "type": "object",
+      "description": "How this sheet likes to be shown: each value overrides the viewer's default for this sheet. A missing value means use the default. Display only, never connections. Optional.",
+      "additionalProperties": false,
+      "properties": {
+        "nameStyle": {
+          "enum": [
+            "slash",
+            "tilde",
+            "subscript"
+          ],
+          "description": "Active-low names as /NAME, ~NAME, or NAME with ND's subscript 0/1."
+        },
+        "symbols": {
+          "enum": [
+            "nd",
+            "modern"
+          ],
+          "description": "ND 1976 symbols or modern ones."
+        },
+        "theme": {
+          "type": "string",
+          "description": "Colour theme by name, such as Light or Dark."
+        },
+        "pinNumbers": {
+          "type": "boolean"
+        },
+        "boardPositions": {
+          "type": "boolean"
+        },
+        "portArrows": {
+          "type": "boolean"
+        },
+        "buses": {
+          "type": "boolean",
+          "description": "Draw the buses; false draws every member on its own."
+        },
+        "tracePulse": {
+          "type": "boolean",
+          "description": "A traced signal pulses; false shows it still."
+        },
+        "lineWidth": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 3,
+          "description": "How thick every line is drawn, as a factor of the normal widths (1 = normal)."
+        }
+      }
+    },
+    "boardSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "confidence"
+      ],
+      "description": "Where the facts come from.",
+      "properties": {
+        "kind": {
+          "enum": [
+            "drawing",
+            "manual",
+            "reading",
+            "inferred",
+            "catalogue"
+          ]
+        },
+        "document": {
+          "type": "string"
+        },
+        "place": {
+          "type": "string"
+        },
+        "confidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "quote": {
+          "type": "string",
+          "description": "The source's own words, as they are."
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -182,5 +182,11 @@ namespace RetroSchematic.Model
         /// Pins in each row of a plug with rows (32 on a DIN 41612 plug).
         /// </summary>
         public int? PinsPerRow { get; set; }
+
+        /// <summary>
+        /// The card page the connector's box is drawn on (format version 3), or null for the
+        /// first page. A signal from another page reaches the box through an off-page marker.
+        /// </summary>
+        public string? Page { get; set; }
     }
 }

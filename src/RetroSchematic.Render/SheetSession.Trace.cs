@@ -74,6 +74,8 @@ namespace RetroSchematic.Render
         {
             if (owner.StartsWith("net:", StringComparison.Ordinal))
                 return owner.Substring(4);
+            if (owner.StartsWith(SheetLayout.OffPageOwner, StringComparison.Ordinal))
+                return owner.Substring(SheetLayout.OffPageOwner.Length);
             if (owner.StartsWith("pin:", StringComparison.Ordinal))
             {
                 string at = owner.Substring(4);
@@ -113,6 +115,8 @@ namespace RetroSchematic.Render
         /// </param>
         public void PickAndTrace(string owner)
         {
+            // an item on another page (a search result, a list pick): that page first
+            ShowPageOf(owner);
             TraceOwner(owner);
             Select(owner);
         }

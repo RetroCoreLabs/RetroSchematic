@@ -74,6 +74,13 @@ namespace RetroSchematic.Render
         public ChipCatalog? Catalog { get; }
 
         /// <summary>
+        /// The card page being shown and edited (format version 3): a chip or passive placed now
+        /// goes on it. Null for the first page, and for a card without pages. Not a change to
+        /// the card.
+        /// </summary>
+        public string? Page { get; set; }
+
+        /// <summary>
         /// True (the default) refuses every change.
         /// </summary>
         public bool ReadOnly { get; set; } = true;
@@ -269,7 +276,8 @@ namespace RetroSchematic.Render
         {
             CheckWritable();
             Part part = FindPart(reference) ?? throw new SheetEditException($"There is no part {reference} on the sheet.");
-            SchematicDrawing now = SheetLayout.Build(Netlist, SymbolStyle.NorskData, new LayoutOptions { Catalog = Catalog });
+            // drawn on its own page (a card with pages), where the frame is measured
+            SchematicDrawing now = SheetLayout.Build(Netlist, SymbolStyle.NorskData, LayoutFor(reference));
             PartFrame f = now.Frames[reference];
             double dx = xMm - SheetLayout.XToMm(now, f.X), dy = yMm - SheetLayout.ToMm(f.Y);
             if (dx == 0 && dy == 0)
@@ -898,6 +906,22 @@ namespace RetroSchematic.Render
         {
             Snapshot();
             Root.Sheet.Bus = bus;
+            Done();
+        }
+
+        /// <summary>
+        /// Sets how the redrawn drawing is cut into pages (format version 3). Drawing only, so
+        /// allowed in read-only mode; it is marked as needing saving and can be undone.
+        /// </summary>
+        /// <param name="mode">
+        /// The layout; as the original is written as no value (the default).
+        /// </param>
+        public void SetPageLayout(PageLayoutMode mode)
+        {
+            if (!CardPages.HasPages(Root))
+                throw new SheetEditException("The card has no pages list (format version 3); convert it first.");
+            Snapshot();
+            Root.PageLayout = mode == PageLayoutMode.AsOriginal ? null : mode;
             Done();
         }
 
