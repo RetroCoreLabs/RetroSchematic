@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ModelContextProtocol.Protocol;
+using RetroSchematic.Model;
 
 namespace RetroSchematic.Mcp
 {
@@ -32,7 +34,19 @@ namespace RetroSchematic.Mcp
             // standard output carries the protocol; nothing else may be written there
             builder.Logging.ClearProviders();
             builder.Logging.AddConsole(o => o.LogToStandardErrorThreshold = LogLevel.Trace);
-            builder.Services.AddMcpServer()
+            // which build this is, on standard error (standard output is the protocol) and in the
+            // server info a client sees at the handshake - from the build stamp, see
+            // RetroSchematic.Model/BuildIdentity.cs
+            Console.Error.WriteLine(BuildIdentity.Describe("retroschematic-mcp"));
+            builder.Services.AddMcpServer(o =>
+                {
+                    o.ServerInfo = new Implementation
+                    {
+                        Name = "retroschematic-mcp",
+                        Version = BuildIdentity.Version + "+" + BuildIdentity.Commit + (BuildIdentity.IsDirty ? "+" : ""),
+                        Title = BuildIdentity.Describe("RetroSchematic MCP server"),
+                    };
+                })
                 .WithStdioServerTransport()
                 .WithTools(new SheetTools(AppContext.BaseDirectory));
             await builder.Build().RunAsync();

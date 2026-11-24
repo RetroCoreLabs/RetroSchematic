@@ -445,6 +445,17 @@ namespace RetroSchematic.Desktop
         private void OnSettings(object? sender, RoutedEventArgs e) => OpenSettings();
 
         /// <summary>
+        /// Help > About: shows which build is running.
+        /// </summary>
+        /// <param name="sender">
+        /// The menu item.
+        /// </param>
+        /// <param name="e">
+        /// Not used.
+        /// </param>
+        private async void OnAbout(object? sender, RoutedEventArgs e) => await new AboutWindow().ShowDialog(this);
+
+        /// <summary>
         /// The key of the signal the editing fields are for, or empty.
         /// </summary>
         private string _editedSignal = "";

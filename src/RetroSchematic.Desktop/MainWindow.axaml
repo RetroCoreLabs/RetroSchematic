@@ -79,6 +79,9 @@
         <Separator/>
         <MenuItem Header="_Theme" x:Name="ThemeMenu"/>
       </MenuItem>
+      <MenuItem Header="_Help">
+        <MenuItem Header="_About RetroSchematic..." x:Name="AboutItem" Click="OnAbout"/>
+      </MenuItem>
     </Menu>
 
     <!-- toolbar: icon buttons for the common commands. The icons are outlines from

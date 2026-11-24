@@ -17,6 +17,7 @@ namespace RetroSchematic.Cli
     public static class Program
     {
         private const string Help =
+            "retroschematic --version                                  show the build: version, commit, branch, build date and time\n" +
             "retroschematic check <sheet.rsc>                          check a netlist file\n" +
             "retroschematic pack <sheet.rsc> <sheet.rsx>                save as one zipped file with every source page and photo inside\n" +
             "retroschematic import-board <sheet> <pcb.json> [number]     fill the board info from the ND PCB catalogue (part or card number;\n" +
@@ -35,6 +36,13 @@ namespace RetroSchematic.Cli
         /// </returns>
         public static int Main(string[] args)
         {
+            // the build stamp from Directory.Build.props (see RetroSchematic.Model/BuildIdentity.cs)
+            if (args.Length == 1 && (args[0] == "--version" || args[0] == "version"))
+            {
+                Console.WriteLine(BuildIdentity.Describe("retroschematic"));
+                return 0;
+            }
+
             if (args.Length < 2)
             {
                 Console.Error.Write(Help);

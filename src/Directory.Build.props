@@ -11,5 +11,90 @@
     <Copyright>Copyright (c) 1985-2026 Ronny Hansen</Copyright>
     <RepositoryUrl>https://github.com/RetroCoreLabs/RetroSchematic</RepositoryUrl>
     <Version>0.1.0</Version>
+
+    <!-- Build Date/Time Capture -->
+    <CurrentDate>$([System.DateTime]::Now.ToString("dd.MMM.yyyy"))</CurrentDate>
+    <CurrentTime>$([System.DateTime]::Now.ToString("HH:mm:ss"))</CurrentTime>
   </PropertyGroup>
+
+  <!-- Embed build date/time as assembly metadata -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>BuildDate</_Parameter1>
+      <_Parameter2>$(CurrentDate)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>BuildTime</_Parameter1>
+      <_Parameter2>$(CurrentTime)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <!-- Git identity, stamped into every assembly.
+
+       Copied from RetroTerm's Directory.Build.props, where it was added on 27 August 2026 after two
+       copies of that program ran from one folder and nobody could tell which build answered. Here
+       it feeds the Desktop About box, the CLI's version command and the MCP server's version,
+       read back by RetroSchematic.Model/BuildIdentity.cs. BuildDate and BuildTime above answer
+       "when"; these answer "which code".
+
+       Captured in a TARGET rather than the ItemGroup above because MSBuild evaluates properties
+       before any target runs, so an Exec's output cannot reach a static ItemGroup. This one adds
+       the attributes itself, just before the compiler is asked for them.
+
+       Every step tolerates git being absent or this not being a checkout - a build must not fail
+       because somebody unzipped the source. The values then read "unknown", which is honest. -->
+  <Target Name="CaptureGitIdentity" BeforeTargets="GetAssemblyAttributes">
+
+    <Exec Command="git rev-parse --short=12 HEAD"
+          ConsoleToMSBuild="true"
+          StandardOutputImportance="low"
+          ContinueOnError="true"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitCommitCaptured" />
+    </Exec>
+
+    <Exec Command="git rev-parse --abbrev-ref HEAD"
+          ConsoleToMSBuild="true"
+          StandardOutputImportance="low"
+          ContinueOnError="true"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitBranchCaptured" />
+    </Exec>
+
+    <!-- Any output at all means something is uncommitted, which is the whole question a stamp
+         has to answer: the hash alone would claim a clean tree that is not there. -->
+    <Exec Command="git status --porcelain"
+          ConsoleToMSBuild="true"
+          StandardOutputImportance="low"
+          ContinueOnError="true"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitStatusCaptured" />
+    </Exec>
+
+    <PropertyGroup>
+      <GitCommit Condition="'$(GitCommitCaptured)' != ''">$(GitCommitCaptured.Trim())</GitCommit>
+      <GitCommit Condition="'$(GitCommit)' == ''">unknown</GitCommit>
+
+      <GitBranch Condition="'$(GitBranchCaptured)' != ''">$(GitBranchCaptured.Trim())</GitBranch>
+      <GitBranch Condition="'$(GitBranch)' == ''">unknown</GitBranch>
+
+      <GitDirty Condition="'$(GitStatusCaptured.Trim())' != ''">true</GitDirty>
+      <GitDirty Condition="'$(GitDirty)' == ''">false</GitDirty>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>GitCommit</_Parameter1>
+        <_Parameter2>$(GitCommit)</_Parameter2>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>GitBranch</_Parameter1>
+        <_Parameter2>$(GitBranch)</_Parameter2>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>GitDirty</_Parameter1>
+        <_Parameter2>$(GitDirty)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+  </Target>
 </Project>
