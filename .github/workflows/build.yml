@@ -12,16 +12,25 @@ jobs:
       run:
         working-directory: src
     steps:
-      # The scans under src/docs/sources are Git LFS files and are not needed to build or test.
+      # The tests read Git LFS files: the trained models (src/models/*.onnx), the 2A50 drawing
+      # page and board photos, and the packed .rsx sheets. All LFS files together are about
+      # 69 MB (measured 2026-11-24).
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - uses: actions/setup-dotnet@v4
         with:
           global-json-file: src/global.json
+      # dotnet test builds only the test projects and what they use, so the command-line tool
+      # is built on its own for the sheet check below.
+      - name: Build
+        run: dotnet build RetroSchematic.slnx -c Release -nodeReuse:false
       - name: Test
-        run: dotnet test RetroSchematic.slnx -c Release -nodeReuse:false
+        run: dotnet test RetroSchematic.slnx -c Release -nodeReuse:false --no-build
       - name: Check every sheet
         run: |
-          for f in $(find sheets -name '*.json'); do
+          # Sheets are .rsc (JSON text) and .rsx (zipped); the old .json ending is gone.
+          for f in $(find sheets -name '*.rsc' -o -name '*.rsx'); do
             dotnet run --project RetroSchematic.Cli -c Release --no-build -- check "$f"
           done
       - name: Check the documentation
