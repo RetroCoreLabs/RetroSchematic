@@ -129,8 +129,8 @@ namespace RetroSchematic.Tests
             // every tool of every tools file; add_passive (passive parts, 2026-11-23) made it 49,
             // the page tools (list_pages, add_page, set_part_page, set_page, get_page,
             // set_page_layout; format version 3) 55, assisted reading (analyse_page, accept_find,
-            // set_symbol_box, connect_pin_on_page) 59
-            Assert.That(tools, Is.EqualTo(59));
+            // set_symbol_box, connect_pin_on_page) 59, get_edge_fingers 60
+            Assert.That(tools, Is.EqualTo(60));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 
@@ -217,6 +217,20 @@ namespace RetroSchematic.Tests
             Assert.Throws<McpException>(() => t.SetPhotoCorners(2, "1 2 3"));
             t.SetPhotoCorners(2);
             Assert.That(t.GetPcbGrid(), Does.Not.Contain(": corners 10,20"));
+        }
+
+        /// <summary>
+        /// get_edge_fingers on 2A50: 50 per side, the sheet's names where it uses a pin.
+        /// </summary>
+        [Test]
+        public void EdgeFingers_NamePinsAndSignals()
+        {
+            SheetTools t = Tools();
+            t.OpenSheet(Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc"));
+            string s = t.GetEdgeFingers();
+            Assert.That(s, Does.Contain("50 fingers per side, 2.54 mm apart"));
+            Assert.That(s, Does.Contain("  16, 56.41: 32 = BA0 * | 33 = BA1 *"));
+            Assert.That(s, Does.Contain("  35, 104.67: 70 = (empty) | 71 = (empty)"));
         }
 
         /// <summary>

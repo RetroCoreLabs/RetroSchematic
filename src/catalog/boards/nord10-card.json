@@ -13,6 +13,20 @@
   "rowsNote": "Not one grid for the type: the rows differ from board to board, so each sheet gives its own rows in its pcb section. Seen on the 26 boards measured: chip tops near 28, 57, 85 and 114 mm on several boards (322003, 322010, 322011, 322020, 322024), but 37, 76 and 110 mm on 322006, 51, 71, 94 and 117 mm on 322007, and 18, 44, 70, 96 and 119 mm on 322049 (2A50). Which letter is which row is known only where a sheet's position codes have been matched to its photo.",
   "measured": "From the component-side photos of 26 NORD-10 boards of 156 x 149 mm in the ND PCB catalogue (2026-11-23). In each photo the board was found against the light background, and the dark chip bodies were found and placed in mm from the board edges, taking the board outline (gold fingers included) as 156 x 149 mm - its width to height in the photos is 1.05 (0.02 either way on the boards used), which matches. The chip centres fall on steps of 7.62 mm (0.3 inch) across the board (agreement 0.80 over 498 chips, against 0.75 or less for 7.5 and 7.7 mm); the steps sit at 9.99 mm from the left edge plus whole steps, and each board's own value lies between 0.7 and 3.3 mm modulo the step, so about 1 mm either way. Boards use either the odd steps (chips at 10, 25, 41 ... 147 mm, like 2A50) or the even ones (18, 33, 49 ... 139 mm). That ND numbers one column per step is taken from 2A50: its 74157 at 1C and 7474 at 1D are in the leftmost column (10 mm), its 74153s at 3D/3E and 5D/5E at 25 and 41 mm, and its COM 2601 (a 0.6 inch wide chip, two steps) at 7-8C-D is centred at 59 mm, between columns 7 (55.7 mm) and 8 (63.3 mm). Column 19 (147 mm) is the last that fits.",
   "boardsMeasured": [ "322000", "322001", "322002", "322003", "322004", "322006", "322007", "322010", "322011", "322012", "322017", "322018", "322019", "322020", "322021", "322022", "322023", "322024", "322025", "322032", "322035", "322036", "322037", "322038", "322039", "322041" ],
+  "edgeFingers": {
+    "connector": "nord10-io-card-backplane",
+    "perSide": 50,
+    "pitchMm": 2.54,
+    "firstCentreMm": 15.77,
+    "widthMm": 1.5,
+    "lengthMm": 8,
+    "componentFirstPin": 0,
+    "solderFirstPin": 1,
+    "pinStep": 2,
+    "confidence": "inferred",
+    "source": "Photos of board 322049 (2A50) in the ND PCB catalogue, checked against the 2A50 drawing (catalog/connectors/nord10-io-card-backplane.json, fingers).",
+    "note": "Finger k (k = 0 at the left of the component side, fingers at the top) is centred firstCentreMm + k x pitchMm from the left edge. Its pin is componentFirstPin + k x pinStep on the component side and solderFirstPin + k x pinStep on the solder side, which lies behind it: even pins on the component side, odd on the solder side. 50 per side counted on both 322049 photos (read); pitch 0.1 inch and the 50 fingers centred on the 156 mm edge inferred from the photos (measured first centres 14.5 and 15.6 mm, last 140.7 and 140.4 mm). Width and length measured on one photo, about."
+  },
   "confidence": "inferred",
   "note": "The 156 x 179 mm NORD-10 cards (53 in the catalogue) are not measured yet. Board 322037 does not follow the 7.62 mm steps (its chips are 23 mm apart); it was kept in the count above."
 }

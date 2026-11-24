@@ -87,6 +87,28 @@ namespace RetroSchematic.Desktop.Controls
         public bool ShowOutline { get; set; }
 
         /// <summary>
+        /// The gold fingers of the board edge on the photo (picture pixels), or null.
+        /// </summary>
+        public IReadOnlyList<EdgeFinger>? Fingers { get; set; }
+
+        /// <summary>
+        /// True to draw <see cref="Fingers"/>: each finger outlined and named with its pin
+        /// number and signal.
+        /// </summary>
+        public bool ShowFingers { get; set; }
+
+        /// <summary>
+        /// The pin of the finger under the mouse (drawn stronger), or -1.
+        /// </summary>
+        public int HotPin { get; set; } = -1;
+
+        /// <summary>
+        /// The owner name of the picked signal ("net:BA0_0"): its fingers are drawn in the pick
+        /// colour. Null for none.
+        /// </summary>
+        public string? PickedNet { get; set; }
+
+        /// <summary>
         /// The mouse moved over the picture (picture pixels).
         /// </summary>
         public event Action<GridPoint>? PictureMoved;
@@ -303,6 +325,8 @@ namespace RetroSchematic.Desktop.Controls
                 context.DrawText(t, new Point(tag.X + 3, tag.Y + 1));
             }
             DrawFinds(context, paper, ink, pc);
+            if (ShowFingers)
+                DrawFingers(context, ac, pc, paper, ink);
             if (ShowOutline && Outline != null && Outline.Count == 4)
             {
                 Pen line = new(pick, 2, new DashStyle(new double[] { 6, 3 }, 0));
@@ -342,6 +366,54 @@ namespace RetroSchematic.Desktop.Controls
                 context.DrawText(t, new Point(tag.X + 3, tag.Y + 1));
             }
         }
+
+        // the gold fingers: each outlined (accent when the card uses the pin, muted when not,
+        // the pick colour for the picked signal) with "pin signal" written down the board from
+        // its inner end on a paper tag, turned a quarter so 50 fingers side by side stay readable
+        private void DrawFingers(DrawingContext context, Color accent, Color pick, IBrush paper, IBrush ink)
+        {
+            if (Fingers == null)
+                return;
+            IBrush mutedInk = Brush("FluentTextSecondaryBrush", Brushes.Gray);
+            Color muted = mutedInk is ISolidColorBrush sm ? sm.Color : Colors.Gray;
+            for (int i = 0; i < Fingers.Count; i++)
+            {
+                EdgeFinger f = Fingers[i];
+                bool hot = f.Pin == HotPin, picked = f.NetOwner != null && f.NetOwner == PickedNet;
+                Color c = picked ? pick : f.NetOwner != null ? accent : muted;
+                StreamGeometry g = new();
+                using (StreamGeometryContext gc = g.Open())
+                {
+                    gc.BeginFigure(ToScreen(f.Corners[0]), true);
+                    for (int k = 1; k < f.Corners.Length; k++)
+                        gc.LineTo(ToScreen(f.Corners[k]));
+                    gc.EndFigure(true);
+                }
+                byte alpha = (byte)(hot || picked ? 0x80 : 0x30);
+                context.DrawGeometry(new SolidColorBrush(Color.FromArgb(alpha, c.R, c.G, c.B)), new Pen(new SolidColorBrush(c), hot || picked ? 2.5 : 1.2), g);
+                // the label starts at the middle of the finger's inner end (board corners 2 and 3)
+                // and runs along the finger's direction, away from the board edge
+                Point tip = ToScreen(Mid(f.Corners[0], f.Corners[1]));
+                Point inner = ToScreen(Mid(f.Corners[2], f.Corners[3]));
+                double angle = Math.Atan2(inner.Y - tip.Y, inner.X - tip.X);
+                double size = Math.Clamp(Distance(ToScreen(f.Corners[0]), ToScreen(f.Corners[1])) * 1.6, 7, 13);
+                FormattedText t = new(f.Pin.ToString(System.Globalization.CultureInfo.InvariantCulture) + " " + f.Signal,
+                    System.Globalization.CultureInfo.InvariantCulture, FlowDirection.LeftToRight, Typeface.Default, size,
+                    f.NetOwner != null || hot ? ink : mutedInk);
+                Matrix turn = Matrix.CreateTranslation(0, -t.Height / 2) * Matrix.CreateRotation(angle) * Matrix.CreateTranslation(inner.X, inner.Y);
+                using (context.PushTransform(turn))
+                {
+                    Rect tag = new(2, -1, t.Width + 4, t.Height + 2);
+                    context.FillRectangle(paper, tag, 2);
+                    context.DrawRectangle(null, new Pen(new SolidColorBrush(c), hot || picked ? 1.5 : 0.8), tag, 2);
+                    context.DrawText(t, new Point(4, 0));
+                }
+            }
+        }
+
+        private static GridPoint Mid(GridPoint a, GridPoint b) => new((a.X + b.X) / 2, (a.Y + b.Y) / 2);
+
+        private static double Distance(Point a, Point b) => Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)));
 
         // the corner nearest the top left of the screen
         private static GridPoint TopLeft(GridPoint[] c)

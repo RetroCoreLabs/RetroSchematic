@@ -367,6 +367,72 @@ namespace RetroSchematic.Mcp
             return sb.ToString();
         }
 
+        /// <summary>
+        /// The gold fingers of the board edge: which pin each is on each side, and the signal.
+        /// </summary>
+        /// <returns>
+        /// One line per finger.
+        /// </returns>
+        [McpServerTool(Name = "get_edge_fingers"), Description("The gold fingers on the board's backplane edge (board type edgeFingers, with the sheet's pcb.fingers correction): fingers per side, pitch, finger 0's centre, how sure, and for every finger (0 = leftmost on the component side, fingers at the top) its centre in mm and, per side, the pin, the signal (the sheet's name where it uses the pin, else the connector catalogue's pinMap) and whether the sheet uses it. Allowed read-only.")]
+        public string GetEdgeFingers()
+        {
+            SheetEditor e = Open();
+            Netlist n = e.Root;
+            string? id = n.Pcb?.Template ?? (n.Board?.NdSystem == "NORD-10" ? "nord10-card" : n.Board?.NdSystem == "ND-100" ? "nd100-card" : null);
+            BoardTemplate? t;
+            try
+            {
+                t = BoardTemplate.Find(e.Catalog?.Folder, id);
+            }
+            catch (NetlistException ex)
+            {
+                throw new McpException(ex.Message, ex);
+            }
+            EdgeFingerLayout? f = t?.EdgeFingers;
+            if (f == null)
+                return "The board type " + (t?.Id ?? id ?? "(none)") + " has no gold-finger layout (edgeFingers in catalog/boards).";
+            ConnectorInfo? info = f.Connector == null ? null : ConnectorCatalog.Load(e.Catalog?.Folder, n.Sheet.Bus ?? MachineBus.Unknown).Get(f.Connector);
+            // the sheet's signal on each backplane pin
+            Dictionary<int, string> used = new();
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                for (int j = 0; j < n.Nets[i].Pins.Count; j++)
+                {
+                    string at = n.Nets[i].Pins[j].At;
+                    int dot = at.LastIndexOf('.');
+                    if (dot > 0 && at[0] == 'P' && ConnectorPins.IsConnector(at.Substring(0, dot))
+                        && int.TryParse(at.Substring(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int pin))
+                        used[pin] = n.Nets[i].Name;
+                }
+            }
+            StringBuilder sb = new();
+            sb.Append(CultureInfo.InvariantCulture, $"Board type {t!.Id}: {f.PerSide} fingers per side, {f.PitchMm} mm apart, finger 0 centred {f.CentreOf(0, n.Pcb?.Fingers):0.##} mm from the left edge (component side, fingers at the top); connector {f.Connector}; confidence {f.Confidence}.\n");
+            if (n.Pcb?.Fingers != null)
+                sb.Append("The sheet corrects it: ").Append(NetlistReader.ToJson(n.Pcb.Fingers)).Append('\n');
+            sb.Append("finger, centre mm, component pin = signal, solder pin = signal (* = used on this sheet):\n");
+            for (int k = 0; k < f.PerSide; k++)
+            {
+                int c = f.PinOf(BoardSide.Component, k), s = f.PinOf(BoardSide.Solder, k);
+                sb.Append(CultureInfo.InvariantCulture, $"  {k}, {f.CentreOf(k, n.Pcb?.Fingers):0.##}: ");
+                AppendFingerPin(sb, c, used, info);
+                sb.Append(" | ");
+                AppendFingerPin(sb, s, used, info);
+                sb.Append('\n');
+            }
+            return sb.ToString();
+        }
+
+        private static void AppendFingerPin(StringBuilder sb, int pin, Dictionary<int, string> used, ConnectorInfo? info)
+        {
+            sb.Append(pin.ToString(CultureInfo.InvariantCulture)).Append(" = ");
+            if (used.TryGetValue(pin, out string? name))
+                sb.Append(name).Append(" *");
+            else if (info != null && info.PinMap.TryGetValue(pin, out ConnectorPinInfo? p))
+                sb.Append(p.Signal);
+            else
+                sb.Append("(not in the catalogue)");
+        }
+
         private static void AppendArea(StringBuilder sb, BoardTemplate t, PcbLayout? pcb, string reference, string? type)
         {
             if (!PcbGrid.Area(t, pcb, reference, out GridPoint[] c, out bool byHand))

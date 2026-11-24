@@ -87,6 +87,7 @@
         <MenuItem Header="PCB b_ack (solder side)" Tag="back" Click="OnViewItem" HotKey="F8" InputGesture="F8"/>
         <MenuItem Header="Chip bo_xes on the photos" x:Name="ChipBoxesItem" Click="OnChipBoxesItem" ToggleType="CheckBox" HotKey="F9" InputGesture="F9"/>
         <MenuItem Header="Board _corners on the photos" x:Name="BoardCornersItem" Click="OnBoardCornersItem" ToggleType="CheckBox"/>
+                <MenuItem Header="_Edge fingers on the photos" x:Name="EdgeFingersItem" Click="OnEdgeFingersItem" ToggleType="CheckBox"/>
         <Separator/>
         <MenuItem Header="_Theme" x:Name="ThemeMenu"/>
       </MenuItem>
@@ -149,6 +150,8 @@
                       ToolTip.Tip="Draw a see-through, named box on every chip of the PCB photos (dashed: the grid cell of its position code; solid: set by hand). In edit mode drag a box to move it, a box corner to size it, Shift and a corner to turn it." ToolTip.ShowOnDisabled="True"/>
         <ToggleButton x:Name="TbBoardCorners" Classes="toolbar-button view-switch" Click="OnToggleBoardCorners" Content="Corners" IsEnabled="False"
                       ToolTip.Tip="Show the board outline the grid is placed on; in edit mode drag a corner to where the board's corner is in the photo (saved per photo)" ToolTip.ShowOnDisabled="True"/>
+        <ToggleButton x:Name="TbEdgeFingers" Classes="toolbar-button view-switch" Click="OnToggleEdgeFingers" Content="Fingers" IsEnabled="False"
+                      ToolTip.Tip="Edge fingers: label each gold finger of the backplane edge with its pin number and signal (the card's own name where it uses the pin, else the bus catalogue's). Hover for the details, click to pick and trace the signal. In edit mode drag a finger to move the whole row if it is off." ToolTip.ShowOnDisabled="True"/>
         <Border Classes="toolbar-divider"/>
         <ComboBox x:Name="ChipBox" Classes="fluent-combobox" Width="140" IsEnabled="False" SelectionChanged="OnChipPicked"
                   VerticalAlignment="Center" ToolTip.Tip="The chip type the Place chip tool puts down"/>

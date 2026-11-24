@@ -32,6 +32,12 @@ namespace RetroSchematic.Model
         /// The name the catalogue gives a pin, by pin number (only pins listed one by one).
         /// </summary>
         public Dictionary<int, string> PinNames { get; } = new();
+
+        /// <summary>
+        /// What every pin carries, by pin number, from the file's "pinMap" (empty when the file
+        /// has none).
+        /// </summary>
+        public Dictionary<int, ConnectorPinInfo> PinMap { get; } = new();
     }
 
     /// <summary>
@@ -111,6 +117,31 @@ namespace RetroSchematic.Model
                     info.PinNames[n.GetInt32()] = name;
                 }
             }
+            // every pin once, with what it carries (pinMap.pins)
+            if (root.TryGetProperty("pinMap", out JsonElement map) && map.ValueKind == JsonValueKind.Object
+                && map.TryGetProperty("pins", out JsonElement all) && all.ValueKind == JsonValueKind.Array)
+            {
+                for (int i = 0; i < all.GetArrayLength(); i++)
+                {
+                    JsonElement p = all[i];
+                    if (!p.TryGetProperty("pin", out JsonElement n) || n.ValueKind != JsonValueKind.Number)
+                        continue;
+                    ConnectorPinInfo pi = new()
+                    {
+                        Pin = n.GetInt32(),
+                        Side = Text(p, "side"),
+                        Signal = Text(p, "signal") ?? "",
+                        Group = Text(p, "group"),
+                        Direction = Text(p, "direction"),
+                        Active = Text(p, "active"),
+                        Description = Text(p, "description"),
+                        Source = Text(p, "source"),
+                        Confidence = Text(p, "confidence"),
+                        Note = Text(p, "note"),
+                    };
+                    info.PinMap[pi.Pin] = pi;
+                }
+            }
             if (info.Id.Length > 0)
                 _byId[info.Id] = info;
         }
@@ -125,5 +156,9 @@ namespace RetroSchematic.Model
         /// The connector, or null.
         /// </returns>
         public ConnectorInfo? Get(string id) => _byId.TryGetValue(id, out ConnectorInfo? c) ? c : null;
+
+        // a text property, or null when missing or not text
+        private static string? Text(JsonElement e, string name)
+            => e.TryGetProperty(name, out JsonElement v) && v.ValueKind == JsonValueKind.String ? v.GetString() : null;
     }
 }

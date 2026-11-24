@@ -455,6 +455,22 @@
             }
           }
         },
+        "fingers": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "This sheet's correction of where the gold fingers are on its photos, when the board type's edgeFingers numbers are off (set by dragging the fingers in edit mode).",
+          "properties": {
+            "firstCentreMm": {
+              "type": "number",
+              "description": "Centre of finger 0 (leftmost on the component side), mm from the left edge."
+            },
+            "pitchMm": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "Finger centre to centre, mm."
+            }
+          }
+        },
         "note": {
           "type": "string"
         }

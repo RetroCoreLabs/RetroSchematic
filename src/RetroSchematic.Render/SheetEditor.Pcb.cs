@@ -110,6 +110,32 @@ namespace RetroSchematic.Render
             Done();
         }
 
+        /// <summary>
+        /// Sets this sheet's correction of where the gold fingers are (finger 0's centre and the
+        /// spacing, mm), or null to use the board type's numbers again.
+        /// </summary>
+        /// <param name="adjust">
+        /// The correction, or null.
+        /// </param>
+        public void SetFingerAdjust(FingerAdjust? adjust)
+        {
+            CheckWritable();
+            if (adjust?.PitchMm is double p && p <= 0)
+                throw new SheetEditException("The finger spacing must be more than 0 mm.");
+            Snapshot();
+            if (adjust == null || (adjust.FirstCentreMm == null && adjust.PitchMm == null))
+            {
+                if (Root.Pcb != null)
+                    Root.Pcb.Fingers = null;
+            }
+            else
+            {
+                Root.Pcb ??= new PcbLayout();
+                Root.Pcb.Fingers = adjust;
+            }
+            Done();
+        }
+
         private int IndexOfBox(string reference)
         {
             for (int i = 0; Root.Pcb?.Boxes != null && i < Root.Pcb.Boxes.Count; i++)

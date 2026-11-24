@@ -78,6 +78,12 @@ namespace RetroSchematic.Model
         public Confidence Confidence { get; set; }
 
         /// <summary>
+        /// The gold fingers on the backplane edge and which pin each one is, or null when not
+        /// known for the type.
+        /// </summary>
+        public EdgeFingerLayout? EdgeFingers { get; set; }
+
+        /// <summary>
         /// Free text.
         /// </summary>
         public string? Note { get; set; }
@@ -101,6 +107,8 @@ namespace RetroSchematic.Model
                 throw new NetlistException(path + ": the board size is missing.");
             if (t.Columns != null && t.Columns.PitchMm <= 0)
                 throw new NetlistException(path + ": the column pitch must be more than 0.");
+            if (t.EdgeFingers != null && (t.EdgeFingers.PerSide <= 0 || t.EdgeFingers.PitchMm <= 0))
+                throw new NetlistException(path + ": edgeFingers needs perSide and pitchMm above 0.");
             return t;
         }
 
@@ -199,6 +207,12 @@ namespace RetroSchematic.Model
         /// Chip boxes set by hand; a box wins over the grid cell of its position code.
         /// </summary>
         public List<ChipBox>? Boxes { get; set; }
+
+        /// <summary>
+        /// This sheet's correction of where the gold fingers are on its photos, or null to use
+        /// the board type's.
+        /// </summary>
+        public FingerAdjust? Fingers { get; set; }
 
         /// <summary>
         /// Free text.

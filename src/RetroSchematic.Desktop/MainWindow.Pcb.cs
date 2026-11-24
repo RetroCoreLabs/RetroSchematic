@@ -33,6 +33,10 @@ namespace RetroSchematic.Desktop
 
         // per side: the boxes, the corners used and where they came from
         private List<PcbBox> _frontBoxes = new(), _backBoxes = new();
+
+        // per side: the gold fingers of the backplane edge, and the connector's pin facts
+        private List<EdgeFinger> _frontFingers = new(), _backFingers = new();
+        private ConnectorInfo? _fingerPins;
         private GridPoint[]? _frontCorners, _backCorners;
         private string _frontCornersFrom = "", _backCornersFrom = "";
 
@@ -46,6 +50,7 @@ namespace RetroSchematic.Desktop
         private Model.ChipBox? _dragOriginal, _dragBox;
         private int _dragCorner = -1;
         private GridPoint[]? _dragCorners;
+        private double _fingerShift;
 
         /// <summary>
         /// True when the chip boxes are drawn on the PCB photos.
@@ -92,6 +97,40 @@ namespace RetroSchematic.Desktop
         public string CornersFrom(BoardSide side) => side == BoardSide.Component ? _frontCornersFrom : _backCornersFrom;
 
         /// <summary>
+        /// True when the gold fingers are labelled on the PCB photos.
+        /// </summary>
+        public bool ShowEdgeFingers => TbEdgeFingers.IsChecked == true;
+
+        /// <summary>
+        /// The gold fingers of the photo shown on a side, in its pixels.
+        /// </summary>
+        /// <param name="side">
+        /// The side.
+        /// </param>
+        /// <returns>
+        /// The fingers, finger 0 (leftmost on the component side) first.
+        /// </returns>
+        public IReadOnlyList<EdgeFinger> EdgeFingers(BoardSide side) => side == BoardSide.Component ? _frontFingers : _backFingers;
+
+        /// <summary>
+        /// Turns the gold-finger labels on or off.
+        /// </summary>
+        /// <param name="on">
+        /// True to draw them.
+        /// </param>
+        public void SetEdgeFingers(bool on)
+        {
+            TbEdgeFingers.IsChecked = on;
+            EdgeFingersItem.IsChecked = on;
+            FrontView.ShowFingers = on;
+            BackView.ShowFingers = on;
+            FrontView.InvalidateVisual();
+            BackView.InvalidateVisual();
+            if (on && _pcbTemplate?.EdgeFingers == null)
+                StatusText.Text = "The board type has no gold-finger layout (edgeFingers in catalog/boards).";
+        }
+
+        /// <summary>
         /// Turns the chip boxes on or off.
         /// </summary>
         /// <param name="on">
@@ -123,6 +162,22 @@ namespace RetroSchematic.Desktop
         public string? HoverPcb(BoardSide side, GridPoint p)
         {
             ImageView view = side == BoardSide.Component ? FrontView : BackView;
+            // a finger wins over a chip box when the fingers are shown
+            EdgeFinger? f = ShowEdgeFingers ? EdgeFingerMap.At(side == BoardSide.Component ? _frontFingers : _backFingers, p) : null;
+            int hotPin = f?.Pin ?? -1;
+            if (view.HotPin != hotPin)
+            {
+                view.HotPin = hotPin;
+                if (f != null)
+                {
+                    view.HotRef = null;
+                    ToolTip.SetTip(view, f.Label);
+                    StatusText.Text = f.Label;
+                }
+                view.InvalidateVisual();
+            }
+            if (f != null)
+                return f.Label;
             PcbBox? b = PcbOverlay.At(side == BoardSide.Component ? _frontBoxes : _backBoxes, p);
             if (view.HotRef != b?.Ref)
             {
@@ -150,6 +205,9 @@ namespace RetroSchematic.Desktop
         /// </returns>
         public string? ClickPcb(BoardSide side, GridPoint p)
         {
+            EdgeFinger? f = ShowEdgeFingers && _session != null ? EdgeFingerMap.At(side == BoardSide.Component ? _frontFingers : _backFingers, p) : null;
+            if (f != null)
+                return ClickFinger(f);
             PcbBox? b = PcbOverlay.At(side == BoardSide.Component ? _frontBoxes : _backBoxes, p);
             if (b == null || _session == null)
                 return null;
@@ -167,6 +225,32 @@ namespace RetroSchematic.Desktop
             FrontView.InvalidateVisual();
             BackView.InvalidateVisual();
             return b.Ref;
+        }
+
+        // a click on a finger picks the card's signal on that pin, as a pick in the signal list
+        // does (trace, Details, Back and Forward); a pin the card does not use only says so
+        private string? ClickFinger(EdgeFinger f)
+        {
+            if (f.NetOwner == null)
+            {
+                StatusText.Text = f.Label;
+                return null;
+            }
+            _pickedSwitch = "";
+            PickFromList(f.NetOwner);
+            FrontView.PickedNet = f.NetOwner;
+            BackView.PickedNet = f.NetOwner;
+            FrontView.InvalidateVisual();
+            BackView.InvalidateVisual();
+            return f.NetOwner;
+        }
+
+        private void OnToggleEdgeFingers(object? sender, RoutedEventArgs e) => SetEdgeFingers(TbEdgeFingers.IsChecked == true);
+
+        private void OnEdgeFingersItem(object? sender, RoutedEventArgs e)
+        {
+            if (_session != null)
+                SetEdgeFingers(TbEdgeFingers.IsChecked != true);
         }
 
         private void OnToggleChipBoxes(object? sender, RoutedEventArgs e) => SetChipBoxes(TbChipBoxes.IsChecked == true);
@@ -205,6 +289,9 @@ namespace RetroSchematic.Desktop
             bool open = _session != null;
             TbChipBoxes.IsEnabled = open;
             TbBoardCorners.IsEnabled = open;
+            TbEdgeFingers.IsEnabled = open;
+            _frontFingers = new List<EdgeFinger>();
+            _backFingers = new List<EdgeFinger>();
             _frontBoxes = new List<PcbBox>();
             _backBoxes = new List<PcbBox>();
             _frontCorners = _backCorners = null;
@@ -218,6 +305,8 @@ namespace RetroSchematic.Desktop
             {
                 string? catalog = ChipCatalog.Find(_session.SheetPath ?? AppContext.BaseDirectory) ?? ChipCatalog.Find(AppContext.BaseDirectory);
                 _pcbTemplate = BoardTemplate.Find(catalog, id);
+                string? conn = _pcbTemplate?.EdgeFingers?.Connector;
+                _fingerPins = conn == null ? null : ConnectorCatalog.Load(catalog, n.Sheet.Bus ?? MachineBus.Unknown).Get(conn);
             }
             catch (Exception ex) when (ex is NetlistException || ex is System.IO.IOException)
             {
@@ -232,6 +321,9 @@ namespace RetroSchematic.Desktop
             string picked = _session.Selected.StartsWith("part:", StringComparison.Ordinal) ? _session.Selected.Substring(5) : _pickedSwitch.Length > 0 ? _pickedSwitch : "";
             FrontView.PickedRef = picked;
             BackView.PickedRef = picked;
+            string pickedNet = _session.Selected.StartsWith("net:", StringComparison.Ordinal) ? _session.Selected : "";
+            FrontView.PickedNet = pickedNet;
+            BackView.PickedNet = pickedNet;
             FrontView.InvalidateVisual();
             BackView.InvalidateVisual();
         }
@@ -269,6 +361,14 @@ namespace RetroSchematic.Desktop
             List<PcbBox> boxes = corners != null && _pcbTemplate?.Columns != null
                 ? PcbOverlay.Build(n, _pcbTemplate, corners, side == BoardSide.Solder)
                 : new List<PcbBox>();
+            List<EdgeFinger> fingers = corners != null && _pcbTemplate?.EdgeFingers != null
+                ? EdgeFingerMap.Build(_pcbTemplate.EdgeFingers, n.Pcb?.Fingers, _pcbTemplate.Size, corners, side, PinNames(n), _fingerPins?.PinMap)
+                : new List<EdgeFinger>();
+            view.Fingers = fingers;
+            if (side == BoardSide.Component)
+                _frontFingers = fingers;
+            else
+                _backFingers = fingers;
             view.Boxes = boxes;
             view.Outline = corners;
             if (side == BoardSide.Component)
@@ -283,6 +383,26 @@ namespace RetroSchematic.Desktop
                 _backCorners = corners;
                 _backCornersFrom = from;
             }
+        }
+
+        // the card's signal on each backplane pin (P.n or P.x.n): pin to its name and owner
+        private Dictionary<int, (string Name, string Owner)> PinNames(Netlist n)
+        {
+            Dictionary<int, (string, string)> names = new();
+            for (int i = 0; i < n.Nets.Count; i++)
+            {
+                List<PinReference> pins = n.Nets[i].Pins;
+                for (int j = 0; j < pins.Count; j++)
+                {
+                    string at = pins[j].At;
+                    int dot = at.LastIndexOf('.');
+                    if (dot <= 0 || at[0] != 'P' || !ConnectorPins.IsConnector(at.Substring(0, dot)))
+                        continue;
+                    if (int.TryParse(at.AsSpan(dot + 1), System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out int pin))
+                        names[pin] = (_session!.NameOf(n.Nets[i]), "net:" + SheetLayout.NetKey(n.Nets[i]));
+                }
+            }
+            return names;
         }
 
         // the board found in a photo (on a small copy of it), or null; kept per file
@@ -377,6 +497,13 @@ namespace RetroSchematic.Desktop
                     }
                 }
             }
+            if (ShowEdgeFingers && _pcbTemplate.EdgeFingers != null && EdgeFingerMap.At(side == BoardSide.Component ? _frontFingers : _backFingers, p) != null)
+            {
+                // a drag on a finger moves the whole row sideways (this sheet's correction)
+                _dragMode = "fingers";
+                _fingerShift = 0;
+                return true;
+            }
             if (!ShowChipBoxes)
                 return false;
             PcbBox? b = PcbOverlay.At(side == BoardSide.Component ? _frontBoxes : _backBoxes, p);
@@ -421,6 +548,13 @@ namespace RetroSchematic.Desktop
             if (_dragMode.Length == 0 || _pcbTemplate == null)
                 return;
             ImageView view = _dragSide == BoardSide.Component ? FrontView : BackView;
+            if (_dragMode == "fingers")
+            {
+                _fingerShift = ToBoard(p).X - ToBoard(_dragFrom).X;
+                view.Fingers = EdgeFingerMap.Build(_pcbTemplate.EdgeFingers!, DraggedFingers(), _pcbTemplate.Size, BoardCorners(_dragSide)!, _dragSide, PinNames(_session!.Editor.Root), _fingerPins?.PinMap);
+                view.InvalidateVisual();
+                return;
+            }
             if (_dragMode == "corner")
             {
                 _dragCorners![_dragCorner] = p;
@@ -483,7 +617,14 @@ namespace RetroSchematic.Desktop
                 return;
             try
             {
-                if (mode == "corner")
+                if (mode == "fingers")
+                {
+                    FingerAdjust a = DraggedFingers();
+                    a.FirstCentreMm = Math.Round(a.FirstCentreMm ?? 0, 2);
+                    _session.Editor.SetFingerAdjust(a);
+                    StatusText.Text = "Saved the finger position: finger 0 centred " + a.FirstCentreMm.Value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " mm from the left edge (this sheet only).";
+                }
+                else if (mode == "corner")
                 {
                     Netlist n = _session.Editor.Root;
                     List<int> mine = PhotosOf(n, _dragSide);
@@ -507,6 +648,15 @@ namespace RetroSchematic.Desktop
             }
             RefreshPcb();
             ShowEditState();
+        }
+
+        // the sheet's finger correction with the drag added (ToBoard already turns a drag on
+        // the solder photo round)
+        private FingerAdjust DraggedFingers()
+        {
+            FingerAdjust? old = _session!.Editor.Root.Pcb?.Fingers;
+            double first = old?.FirstCentreMm ?? _pcbTemplate!.EdgeFingers!.FirstCentreMm;
+            return new FingerAdjust { FirstCentreMm = first + _fingerShift, PitchMm = old?.PitchMm };
         }
 
         // a box as a hand-set box: the saved one, else the grid cell as an upright box

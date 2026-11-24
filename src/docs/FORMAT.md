@@ -364,7 +364,15 @@ when the shape it finds is not the board's, uses the whole picture.
 | `rows` | this board's rows: `[{ name, fromMm, toMm }]`, mm from the finger edge. The rows differ between boards of one type, so each sheet has its own. |
 | `rowsSource` | where the rows came from, as any source |
 | `boxes` | chip boxes set by hand: `[{ ref, xMm, yMm, widthMm, heightMm, rotationDeg }]`, the centre in mm on the component side. A box wins over the grid cell. |
+| `fingers` | this sheet's correction of where the gold fingers are on its photos: `{ firstCentreMm, pitchMm }` (either may be left out). Set by dragging a finger with the Fingers overlay on in edit mode. Without it the board type's `edgeFingers` numbers are used. |
 | `note` | how it was worked out |
+
+The board type file can also give **`edgeFingers`**: how many gold fingers each side has, their
+pitch, finger 0's centre, and which pin each finger is per side (`componentFirstPin`,
+`solderFirstPin`, `pinStep`), with the connector file whose `pinMap` says what each pin carries.
+For `nord10-card`: 50 per side, 2.54 mm apart, finger k from the left of the component side is
+pin 2k and the one behind it on the solder side pin 2k+1 (see
+[NORD10-EDGE-FINGERS.md](NORD10-EDGE-FINGERS.md)).
 
 A chip's area is the whole cell or cells its position code names: `13D` is column 13, row D;
 `7-8C-D` spans columns 7 to 8 and rows C to D. The solder side is the same grid mirrored left to
