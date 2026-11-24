@@ -1,7 +1,13 @@
+<p align="center">
+  <img src="src/assets/RetroSchematic.png" width="160" alt="RetroSchematic logo.">
+</p>
+
 # RetroSchematic
 
 [![build](https://github.com/RetroCoreLabs/RetroSchematic/actions/workflows/build.yml/badge.svg)](https://github.com/RetroCoreLabs/RetroSchematic/actions/workflows/build.yml)
+[![release](https://img.shields.io/github/v/release/RetroCoreLabs/RetroSchematic)](https://github.com/RetroCoreLabs/RetroSchematic/releases)
 [![licence](https://img.shields.io/github/license/RetroCoreLabs/RetroSchematic)](LICENSE)
+[![downloads](https://img.shields.io/github/downloads/RetroCoreLabs/RetroSchematic/total)](https://github.com/RetroCoreLabs/RetroSchematic/releases)
 
 **RetroSchematic turns hand-drawn Norsk Data circuit drawings from the 1970s into a machine-readable list of chips and wires, and draws them again in either ND's own gate symbols or modern ones.**
 
