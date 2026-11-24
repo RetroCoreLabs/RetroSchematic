@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>RetroSchematic.Recognition</RootNamespace>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- CPU only; the three networks are small (src/models/README.md) -->
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.22.0" />
+    <!-- PNG/JPEG decoding; the same version Avalonia brings to the Desktop app -->
+    <PackageReference Include="SkiaSharp" Version="2.88.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- the models travel with every program that uses this library, in models/ beside it -->
+    <None Include="..\models\*.onnx" Link="models\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="RetroSchematic.Tests" />
+  </ItemGroup>
+</Project>

@@ -12,6 +12,7 @@
     <ProjectReference Include="..\..\RetroSchematic.Model\RetroSchematic.Model.csproj" />
     <ProjectReference Include="..\..\RetroSchematic.Render\RetroSchematic.Render.csproj" />
     <ProjectReference Include="..\..\RetroSchematic.Mcp\RetroSchematic.Mcp.csproj" />
+    <ProjectReference Include="..\..\RetroSchematic.Recognition\RetroSchematic.Recognition.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\sheets\**\*.rsc;..\..\sheets\**\*.rsx;..\..\sheets\**\*.png;..\..\sheets\**\*.jpg" Link="sheets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

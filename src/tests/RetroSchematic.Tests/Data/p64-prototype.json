@@ -1,0 +1,1242 @@
+{
+ "otsu": 0.0,
+ "letter_size": 20.0,
+ "pieces_of": 2597,
+ "spread": 0.11824484181758141,
+ "thick": 2.190152385817052,
+ "crop_hm_shape": [
+  1,
+  14,
+  128,
+  128
+ ],
+ "crop_dets": [
+  {
+   "cls": "offpage",
+   "score": 0.934,
+   "box": [
+    72,
+    65,
+    32,
+    21
+   ]
+  },
+  {
+   "cls": "poscode",
+   "score": 0.915,
+   "box": [
+    241,
+    255,
+    44,
+    23
+   ]
+  },
+  {
+   "cls": "chip",
+   "score": 0.893,
+   "box": [
+    220,
+    99,
+    91,
+    383
+   ]
+  },
+  {
+   "cls": "label",
+   "score": 0.859,
+   "box": [
+    117,
+    468,
+    64,
+    21
+   ]
+  },
+  {
+   "cls": "label",
+   "score": 0.851,
+   "box": [
+    387,
+    399,
+    69,
+    21
+   ]
+  }
+ ],
+ "crop_dets_n": 69,
+ "crop_dets_A": [
+  {
+   "cls": "offpage",
+   "score": 0.951,
+   "box": [
+    73,
+    64,
+    31,
+    21
+   ]
+  },
+  {
+   "cls": "label",
+   "score": 0.845,
+   "box": [
+    385,
+    400,
+    73,
+    19
+   ]
+  },
+  {
+   "cls": "label",
+   "score": 0.833,
+   "box": [
+    118,
+    469,
+    62,
+    20
+   ]
+  },
+  {
+   "cls": "pinnum",
+   "score": 0.832,
+   "box": [
+    191,
+    399,
+    24,
+    22
+   ]
+  },
+  {
+   "cls": "label",
+   "score": 0.831,
+   "box": [
+    227,
+    426,
+    78,
+    23
+   ]
+  }
+ ],
+ "crop_letters": [
+  {
+   "piece": [
+    21,
+    0,
+    13,
+    22
+   ],
+   "cls": "I",
+   "p": 1.0
+  },
+  {
+   "piece": [
+    36,
+    1,
+    13,
+    22
+   ],
+   "cls": "C",
+   "p": 1.0
+  },
+  {
+   "piece": [
+    53,
+    0,
+    18,
+    21
+   ],
+   "cls": "W",
+   "p": 1.0
+  },
+  {
+   "piece": [
+    169,
+    6,
+    7,
+    19
+   ],
+   "cls": "1",
+   "p": 1.0
+  },
+  {
+   "piece": [
+    272,
+    20,
+    15,
+    22
+   ],
+   "cls": "3",
+   "p": 0.9998
+  },
+  {
+   "piece": [
+    4,
+    31,
+    14,
+    20
+   ],
+   "cls": "B",
+   "p": 1.0
+  },
+  {
+   "piece": [
+    21,
+    31,
+    15,
+    20
+   ],
+   "cls": "D",
+   "p": 1.0
+  },
+  {
+   "piece": [
+    39,
+    30,
+    9,
+    20
+   ],
+   "cls": "1",
+   "p": 1.0
+  }
+ ],
+ "page_dets_by_class": {
+  "chip": 37,
+  "gate": 98,
+  "resistor": 5,
+  "capacitor": 9,
+  "strap": 2,
+  "ground": 14,
+  "supply": 6,
+  "circle": 60,
+  "offpage": 137,
+  "dot": 106,
+  "poscode": 97,
+  "pinnum": 567,
+  "label": 590
+ },
+ "chips": [
+  {
+   "box": [
+    2219,
+    1081,
+    92,
+    418
+   ],
+   "ref": "15B",
+   "type": "74157",
+   "type_read": "157"
+  },
+  {
+   "box": [
+    1331,
+    1681,
+    95,
+    386
+   ],
+   "ref": "1A",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    2163,
+    1550,
+    86,
+    417
+   ],
+   "ref": "11B",
+   "type": "7474",
+   "type_read": "741"
+  },
+  {
+   "box": [
+    584,
+    203,
+    84,
+    414
+   ],
+   "ref": "13E",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    2635,
+    1449,
+    94,
+    364
+   ],
+   "ref": "5D",
+   "type": "74153",
+   "type_read": "4153"
+  },
+  {
+   "box": [
+    888,
+    218,
+    84,
+    393
+   ],
+   "ref": "13D",
+   "type": "7442",
+   "type_read": "42"
+  },
+  {
+   "box": [
+    2254,
+    256,
+    88,
+    356
+   ],
+   "ref": "19C",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    1345,
+    704,
+    73,
+    419
+   ],
+   "ref": "3C",
+   "type": "7474",
+   "type_read": "7474"
+  },
+  {
+   "box": [
+    2635,
+    650,
+    93,
+    321
+   ],
+   "ref": "3E",
+   "type": "74153",
+   "type_read": "153"
+  },
+  {
+   "box": [
+    1333,
+    1238,
+    89,
+    321
+   ],
+   "ref": "1C",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    2635,
+    253,
+    93,
+    298
+   ],
+   "ref": "3D",
+   "type": "74153",
+   "type_read": "74153"
+  },
+  {
+   "box": [
+    945,
+    704,
+    81,
+    332
+   ],
+   "ref": "13C",
+   "type": "74153",
+   "type_read": "153"
+  },
+  {
+   "box": [
+    3025,
+    1303,
+    65,
+    374
+   ],
+   "ref": "7A",
+   "type": "74151",
+   "type_read": "151"
+  },
+  {
+   "box": [
+    574,
+    1868,
+    65,
+    358
+   ],
+   "ref": "7E",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    3029,
+    351,
+    66,
+    326
+   ],
+   "ref": "5C",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    2638,
+    1102,
+    87,
+    240
+   ],
+   "ref": "5E",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    3028,
+    711,
+    66,
+    246
+   ],
+   "ref": "5B",
+   "type": null,
+   "type_read": ""
+  },
+  {
+   "box": [
+    1338,
+    164,
+    81,
+    187
+   ],
+   "ref": "3C",
+   "type": "7474",
+   "type_read": "7474"
+  },
+  {
+   "box": [
+    3028,
+    1093,
+    57,
+    80
+   ],
+   "ref": "5B",
+   "type": null,
+   "type_read": ""
+  }
+ ],
+ "gates": [
+  {
+   "box": [
+    3024,
+    1530,
+    67,
+    73
+   ],
+   "ref": "7A",
+   "kind": "buffer",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1572,
+    302,
+    43,
+    102
+   ],
+   "ref": null,
+   "kind": "and-or-invert",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2968,
+    1710,
+    59,
+    71
+   ],
+   "ref": null,
+   "kind": "and",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    785,
+    1718,
+    66,
+    63
+   ],
+   "ref": null,
+   "kind": "and",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    782,
+    1808,
+    65,
+    60
+   ],
+   "ref": null,
+   "kind": "and",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1570,
+    839,
+    41,
+    94
+   ],
+   "ref": "3A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    3044,
+    201,
+    50,
+    75
+   ],
+   "ref": "5C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    3040,
+    1122,
+    51,
+    72
+   ],
+   "ref": "5B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1718,
+    1809,
+    63,
+    58
+   ],
+   "ref": "5A",
+   "kind": "and",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    3025,
+    1363,
+    64,
+    55
+   ],
+   "ref": "7A",
+   "kind": "buffer",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    3029,
+    1072,
+    58,
+    60
+   ],
+   "ref": "5B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    3032,
+    150,
+    52,
+    65
+   ],
+   "ref": "5C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    168,
+    2271,
+    52,
+    62
+   ],
+   "ref": "11D",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1211,
+    1296,
+    37,
+    83
+   ],
+   "ref": "11B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1599,
+    842,
+    38,
+    80
+   ],
+   "ref": "3A",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    922,
+    1727,
+    49,
+    62
+   ],
+   "ref": "9E",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1567,
+    2220,
+    55,
+    54
+   ],
+   "ref": "5B",
+   "kind": "buffer",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1210,
+    1475,
+    38,
+    78
+   ],
+   "ref": null,
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1679,
+    1129,
+    40,
+    73
+   ],
+   "ref": "17A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1712,
+    1890,
+    44,
+    66
+   ],
+   "ref": "5A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1972,
+    1063,
+    46,
+    61
+   ],
+   "ref": null,
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1213,
+    1209,
+    34,
+    81
+   ],
+   "ref": "11B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1019,
+    1752,
+    40,
+    68
+   ],
+   "ref": "11E",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1803,
+    1169,
+    46,
+    58
+   ],
+   "ref": "7C",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1837,
+    330,
+    41,
+    65
+   ],
+   "ref": "5A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1599,
+    311,
+    38,
+    70
+   ],
+   "ref": null,
+   "kind": "and-or-invert",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    340,
+    535,
+    44,
+    60
+   ],
+   "ref": "11B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1835,
+    863,
+    39,
+    64
+   ],
+   "ref": "5A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1779,
+    176,
+    36,
+    69
+   ],
+   "ref": null,
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1212,
+    1396,
+    36,
+    68
+   ],
+   "ref": "11B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1981,
+    204,
+    35,
+    69
+   ],
+   "ref": null,
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    187,
+    2101,
+    37,
+    65
+   ],
+   "ref": "11D",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    191,
+    2193,
+    37,
+    65
+   ],
+   "ref": "1D",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    193,
+    1225,
+    40,
+    58
+   ],
+   "ref": "9B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    341,
+    1485,
+    35,
+    66
+   ],
+   "ref": "11C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2071,
+    2190,
+    53,
+    43
+   ],
+   "ref": "3B",
+   "kind": "buffer",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2066,
+    2100,
+    48,
+    47
+   ],
+   "ref": "3D",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1154,
+    1125,
+    39,
+    57
+   ],
+   "ref": "3A",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1512,
+    2029,
+    34,
+    65
+   ],
+   "ref": "3A",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2067,
+    2280,
+    48,
+    46
+   ],
+   "ref": "3B",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    193,
+    958,
+    34,
+    63
+   ],
+   "ref": "7B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2044,
+    743,
+    30,
+    71
+   ],
+   "ref": "13B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1722,
+    852,
+    31,
+    68
+   ],
+   "ref": "3A",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    939,
+    1820,
+    35,
+    60
+   ],
+   "ref": "9E",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2521,
+    183,
+    33,
+    62
+   ],
+   "ref": "1D",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    194,
+    1135,
+    33,
+    62
+   ],
+   "ref": "9B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    342,
+    1575,
+    33,
+    62
+   ],
+   "ref": "9B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    195,
+    1051,
+    37,
+    55
+   ],
+   "ref": "7B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2521,
+    95,
+    33,
+    61
+   ],
+   "ref": "11B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1066,
+    127,
+    33,
+    61
+   ],
+   "ref": "11C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    194,
+    871,
+    33,
+    61
+   ],
+   "ref": "7B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    194,
+    1311,
+    33,
+    61
+   ],
+   "ref": "9B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2390,
+    2014,
+    47,
+    41
+   ],
+   "ref": null,
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1989,
+    111,
+    35,
+    55
+   ],
+   "ref": "11C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1723,
+    321,
+    32,
+    59
+   ],
+   "ref": "7B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    823,
+    132,
+    37,
+    51
+   ],
+   "ref": "11C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    763,
+    521,
+    37,
+    51
+   ],
+   "ref": "11C",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2075,
+    2017,
+    51,
+    37
+   ],
+   "ref": "13D",
+   "kind": "buffer",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    194,
+    787,
+    39,
+    48
+   ],
+   "ref": "7B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    431,
+    515,
+    30,
+    62
+   ],
+   "ref": "9E",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    314,
+    576,
+    31,
+    60
+   ],
+   "ref": "11B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1900,
+    165,
+    28,
+    66
+   ],
+   "ref": "17B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2134,
+    999,
+    30,
+    61
+   ],
+   "ref": "9E",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    194,
+    699,
+    38,
+    48
+   ],
+   "ref": "7B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2105,
+    1099,
+    26,
+    70
+   ],
+   "ref": "13A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    432,
+    1106,
+    29,
+    62
+   ],
+   "ref": null,
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2194,
+    185,
+    30,
+    58
+   ],
+   "ref": "17A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2969,
+    649,
+    34,
+    51
+   ],
+   "ref": "9B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2390,
+    2188,
+    40,
+    43
+   ],
+   "ref": null,
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    194,
+    1401,
+    33,
+    52
+   ],
+   "ref": "9B",
+   "kind": "not",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1632,
+    2031,
+    28,
+    60
+   ],
+   "ref": "3A",
+   "kind": "nor",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2104,
+    1188,
+    28,
+    58
+   ],
+   "ref": "13A",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    2164,
+    695,
+    26,
+    47
+   ],
+   "ref": "1B",
+   "kind": "nand",
+   "ref_inferred": null
+  },
+  {
+   "box": [
+    1096,
+    2238,
+    37,
+    26
+   ],
+   "ref": "5A",
+   "kind": "buffer",
+   "ref_inferred": null
+  }
+ ]
+}
