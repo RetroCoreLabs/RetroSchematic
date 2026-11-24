@@ -1,0 +1,104 @@
+# Base configuration of the documentation site, https://retrocorelabs.github.io/RetroSchematic/
+#
+# Tool: MkDocs + Material. The documentation of this repository is guides, file formats, card
+# readings and the catalogues; there is no published library whose C# API reference readers
+# need, so DocFX's API pages would add nothing (repo-standards DOCS-SITE.md, section 1, rule 4).
+#
+# Shape A: the repository IS the docs folder (docs_dir is the repository root), so every guide
+# is published where it lives and its relative links work the same on github.com and on the
+# site. Nothing is copied. The generated pages (docs/reference/) are committed so they read on
+# github.com too; docs-site/gen_site.py writes them and the page tree, and CI runs it with
+# --check. The page tree is in mkdocs.yml (generated, INHERITs this file); build that one.
+#
+# MkDocs refuses a site folder inside docs_dir, so always build with -d to a folder outside
+# the checkout. The regenerate and build commands are in .github/CONTRIBUTING.md.
+site_name: RetroSchematic
+site_description: Norsk Data circuit drawings turned into machine-readable netlists, with the chip, symbol and bus signal catalogues
+site_url: https://retrocorelabs.github.io/RetroSchematic/
+repo_url: https://github.com/RetroCoreLabs/RetroSchematic
+repo_name: RetroCoreLabs/RetroSchematic
+edit_uri: blob/master/
+docs_dir: ../..
+copyright: RetroCore Labs - <a href="https://github.com/RetroCoreLabs/RetroSchematic">source on GitHub</a>
+
+# Only the pages and the pictures they show are published. Everything else in the tree (code,
+# tests, models, the scanned PDFs, sheets, catalogue JSON) stays out; links to such files are
+# pointed at the file on GitHub by hooks.py. Big scans are linked, never shipped.
+exclude_docs: |
+  /LICENSE
+  /src/*
+  !/src/docs/
+  /src/docs/sources/
+  /src/docs/PLAN.md
+  /src/docs/BUGS.md
+  /src/docs/pin-rename-2026-11-23.md
+  !/src/assets/
+  !/src/catalog/
+  /src/catalog/**/*.json
+  /src/catalog/**/*.svg
+  !/src/catalog/chips/FORMAT.md
+  !/src/RetroSchematic.Desktop/README.md
+  !/src/tools/recognition/README.md
+  !/src/tools/block-drawings/FORMAT.md
+  !/src/models/README.md
+
+hooks:
+  - hooks.py
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: src/assets/RetroSchematic.svg
+  favicon: src/assets/RetroSchematic.ico
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle: {icon: material/brightness-auto, name: Switch to light mode}
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle: {icon: material/brightness-7, name: Switch to dark mode}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle: {icon: material/brightness-4, name: Switch to system preference}
+  features:
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.prune
+    - search.suggest
+    - search.highlight
+    - toc.follow
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+  - tables
+  - attr_list
+  - md_in_html
+  - admonition
+  - footnotes
+  - def_list
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - mdx_truly_sane_lists:
+      nested_indent: 2
+
+validation:
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn

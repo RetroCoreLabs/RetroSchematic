@@ -1,0 +1,47 @@
+{#-
+  Site styles on top of Material for MkDocs:
+  - the RetroCore Labs logo in the header row (the link itself is in partials/header.html);
+  - below 60em Material drops the GitHub link from the header; keep it as the logo alone;
+  - colours that Material draws under the WCAG AA contrast of 4.5:1, measured with
+    repo-standards tools/check-contrast.js (light and dark scheme).
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <style>
+    .rcl-org {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      height: 2.4rem;
+      padding: 0 0.4rem;
+      margin-left: 0.4rem;
+    }
+    .rcl-org img {
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 4px;
+    }
+    @media screen and (max-width: 59.9375em) {
+      .md-header__source { display: block; width: 2.4rem; max-width: 2.4rem; margin-left: 0; }
+      .md-source { width: 2.4rem; }
+      .md-source__repository { display: none; }
+    }
+
+    /* Contrast. Light: grey helper text, code punctuation, the footer's "Made with". */
+    [data-md-color-scheme="default"] {
+      --md-default-fg-color--light: rgba(0, 0, 0, 0.64);
+      --md-code-hl-punctuation-color: rgba(0, 0, 0, 0.64);
+    }
+    .md-footer-meta { --md-footer-fg-color--lighter: rgba(255, 255, 255, 0.62); }
+    /* Dark: grey helper text, numbers and names in code, link-coloured code. */
+    [data-md-color-scheme="slate"] {
+      --md-default-fg-color--light: rgba(226, 228, 233, 0.72);
+      --md-code-hl-number-color: #f0897c;
+      --md-code-hl-constant-color: #a99cf0;
+      --md-typeset-a-color: #8ab0f5;
+    }
+    [data-md-color-scheme="slate"] .md-typeset a code { color: #8ab0f5; }
+  </style>
+{% endblock %}
