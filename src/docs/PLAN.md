@@ -4,6 +4,16 @@ Outstanding work only. Finished items are deleted.
 
 **Next:** pin function text (chip catalogue step 4).
 
+## Release downloads: open items
+
+- **Make the downloads smaller.** Each archive is about 160 MB (three self-contained
+  single-file programs plus models). Measure what takes the space, then try: .NET single-file
+  compression (slower start - measure it), trimming, one shared runtime folder for the three
+  programs instead of three copies. Keep only what is proven to start and pass the release
+  smoke test.
+- **macOS `.app` bundle** with the icon, like RetroTerm, so users do not start a bare program
+  from a folder.
+
 ## Cards with pages: open items
 
 The format (version 3), the window, the command line and the MCP tools are built. Left:
