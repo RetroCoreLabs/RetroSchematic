@@ -44,6 +44,11 @@ was read from, and the tools that check and draw it.
   placed by the board's position grid (13D, 7-8C-D); hover names the chip, a click picks it.
   Boxes and the board corners can be adjusted by hand. Board types are in
   `src/catalog/boards/` (NORD-10 card columns measured from photos of 26 boards).
+- **Edge fingers on the PCB photos** - every gold finger of the card edge is labelled with its
+  pin and signal, on both sides; hover for details, click to trace the signal. NORD-10 rule
+  (proven on 2A50): finger k from the left is pin 2k on the component side and 2k+1 behind it
+  (`src/docs/NORD10-EDGE-FINGERS.md`). The NORD-10 backplane - slots, bus wiring, IDENT/GRANT
+  chains - is in `src/docs/NORD10-BACKPLANE.md`.
 - **Whole cards with many pages** - one file holds a whole card (format version 3): every
   schematic page, with signals shared across the card. Page tabs (Page Up / Page Down), a card
   overview (F4), and off-page markers that jump to the page a signal continues on. The Original
@@ -96,7 +101,7 @@ Version 0.1.0, no tagged release yet. Nothing is pushed to GitHub yet.
 - **Bus catalogues:** NORD-10 (55 signals) and ND-100 (68 signals, with the ND-120 names),
   plus connector files for the NORD-10 backplane and modem front, the ND-100 C plug and the
   ND-120 CPU's A and B plugs.
-- **Tests:** 637, all passing (run 2026-11-24): 582 for the libraries, 55 for the window. Run
+- **Tests:** 642, all passing (run 2026-11-24): 586 for the libraries, 56 for the window. Run
   them with the command in Quick start. Known test problems are in `src/docs/BUGS.md`.
 - **Outstanding work** (simulator, KiCad/Logisim converters, Verilog export, more cards) is in
   `src/docs/PLAN.md`.
