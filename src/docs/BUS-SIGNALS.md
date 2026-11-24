@@ -6,7 +6,7 @@ signal on a netlist sheet can be looked up and given a plain-words meaning.
 
 | File | What it holds |
 |---|---|
-| `catalog/signals/nd-bus-nord10.json` | NORD-10 I/O bus, as seen at an I/O device card position (55 entries) |
+| `catalog/signals/nd-bus-nord10.json` | NORD-10 I/O bus, as seen at an I/O device card position (56 entries) |
 | `catalog/signals/nd-bus-nd100.json` | NORD-100 / ND-100 bus on plug C (68 entries, every pin of the table) |
 | `catalog/connectors/nord10-io-card-backplane.json` | NORD-10 I/O card connector to the backplane: bus side 6-55, cable side 56-99 (the 2A50 modem lines, +-12V out, grounds) |
 | `catalog/connectors/nd100-c-connector.json` | NORD-100 module plugs C (bus, 96 pins) and A, B (64 lines each) |
@@ -47,11 +47,13 @@ card, from a secondary source).
 | S2A50 | NORD-10 drawings, sheet 2A50 SYNCHRONOUS MODEM BUFFER 1050, as read in this repository | card-side names, power pins, how a card drives each line, the modem pins |
 | N10S | ND-06.008.01 NORD-10/S Reference Manual, Revision A | IOX address width, IDENT, interrupt levels for devices, the I/O system |
 | N100 | ND-06.016.01 NORD-100 Input/Output System (1980) | Appendix F: backplane table (PDF page 214, printed F-2, read from the page image) and the definition of every signal; section I.2.3: plugs A, B, C |
+| F612 | ND-06.012.01: figure 3.1 "I/O slot/plug layout" (page 3-3) and figure 7.4 "Signal distribution I/O bus B and C rack" (section 7.4), read from the owner's screenshots of the two figures | NORD-10 I/O slot supply pins, the cable plug, the bus pin names of the B and C rack, tri-state or open collector per line, the logic levels. Only those two figures have been read. |
 | NDI | NDInsight repository, SINTRAN/Devices/BusSignals/ND-100-BUS-C-CONNECTOR.md | secondary: DIN 41612 connector type, driver chips and pull-ups on the ND-120 3202D CPU card |
 
 The NORD-10/S manual says signal levels, definitions and timing are in the "NORD-10 Input/Output
-manual (ND-06.004)". That manual was not found on this machine. It is the document that would
-close most of the open NORD-10 items below.
+manual (ND-06.004)". That manual was not found on this machine. Figures 3.1 and 7.4 of
+ND-06.012.01 (source F612) now give the supply pins, the electrical kind of each line and the
+logic levels; ND-06.004 would still close most of the other open NORD-10 items below.
 
 ## NORD-10 I/O bus (I/O device positions)
 
@@ -60,74 +62,113 @@ they agree for every 2A50 bus pin. All bus names carry suffix 0. Directions are 
 the backwiring (a `G` before a signal marks the pin that drives it, worked out from the IDENT
 chain) and from how 2A50 drives each line.
 
-| Name | Name on 2A50 | Group | Active | Direction (from the card) | Pin(s) | What it does | Meaning confidence |
-|---|---|---|---|---|---|---|---|
-| BA0 | BA0 | address | low | in | 32 | Bus address bit 0. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA1 | BA1 | address | low | in | 33 | Bus address bit 1. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA2 | BA2 | address | low | in | 34 | Bus address bit 2. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA3 | BA3 | address | low | in | 36 | Bus address bit 3. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA4 | BA4 | address | low | in | 37 | Bus address bit 4. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA5 | BA5 | address | low | in | 38 | Bus address bit 5. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA6 | BA6 | address | low | in | 40 | Bus address bit 6. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA7 | BA7 | address | low | in | 41 | Bus address bit 7. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA8 | BA8 | address | low | in | 42 | Bus address bit 8. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA9 | BA9 | address | low | in | 44 | Bus address bit 9. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA10 |  | address | low | in | 45 | Bus address bit 10. With IOX the device register address is 11 bits (bits 0-10). | inferred |
-| BA11 |  | address | low | in | 46 | Bus address bit 11. Use on I/O cards not documented in the sources found. | inferred |
-| BA12 |  | address | low | in | 48 | Bus address bit 12. Use on I/O cards not documented in the sources found. | inferred |
-| BA13 |  | address | low | in | 49 | Bus address bit 13. Use on I/O cards not documented in the sources found. | inferred |
-| BA14 |  | address | low | in | 50 | Bus address bit 14. Use on I/O cards not documented in the sources found. | inferred |
-| BA15 |  | address | low | in | 52 | Bus address bit 15. Use on I/O cards not documented in the sources found. | inferred |
-| BA16 |  | address | low | in | 53 | Bus address bit 16. Use on I/O cards not documented in the sources found. | inferred |
-| BA17 |  | address | low | in | 54 | Bus address bit 17. Use on I/O cards not documented in the sources found. | inferred |
-| BD0 | BD0 | data | low | bidir | 10 | Bus data bit 0 (16-bit data word between the CPU A register and the card). | inferred |
-| BD1 | BD1 | data | low | bidir | 12 | Bus data bit 1 (16-bit data word between the CPU A register and the card). | inferred |
-| BD2 | BD2 | data | low | bidir | 13 | Bus data bit 2 (16-bit data word between the CPU A register and the card). | inferred |
-| BD3 | BD3 | data | low | bidir | 14 | Bus data bit 3 (16-bit data word between the CPU A register and the card). | inferred |
-| BD4 | BD4 | data | low | bidir | 16 | Bus data bit 4 (16-bit data word between the CPU A register and the card). | inferred |
-| BD5 | BD5 | data | low | bidir | 17 | Bus data bit 5 (16-bit data word between the CPU A register and the card). | inferred |
-| BD6 | BD6 | data | low | bidir | 18 | Bus data bit 6 (16-bit data word between the CPU A register and the card). | inferred |
-| BD7 | BD7 | data | low | bidir | 20 | Bus data bit 7 (16-bit data word between the CPU A register and the card). | inferred |
-| BD8 | BD8 | data | low | bidir | 21 | Bus data bit 8 (16-bit data word between the CPU A register and the card). | inferred |
-| BD9 | BD9 | data | low | bidir | 22 | Bus data bit 9 (16-bit data word between the CPU A register and the card). | inferred |
-| BD10 | BD10 | data | low | bidir | 24 | Bus data bit 10 (16-bit data word between the CPU A register and the card). | inferred |
-| BD11 | BD11 | data | low | bidir | 25 | Bus data bit 11 (16-bit data word between the CPU A register and the card). | inferred |
-| BD12 | BD12 | data | low | bidir | 26 | Bus data bit 12 (16-bit data word between the CPU A register and the card). | inferred |
-| BD13 | BD13 | data | low | bidir | 28 | Bus data bit 13 (16-bit data word between the CPU A register and the card). | inferred |
-| BD14 | BD14 | data | low | bidir | 29 | Bus data bit 14 (16-bit data word between the CPU A register and the card). | inferred |
-| BD15 | BD15 | data | low | bidir | 30 | Bus data bit 15 (16-bit data word between the CPU A register and the card). | inferred |
-| BIOXE | IOXE | control | low | in | 11 | IOX enable: the strobe that tells every card that an IOX transfer is under way, so the card compares BA against its own address. | inferred |
-| BINPUT | INPUT | control | low | out, open collector (shared) | 15 | The addressed card says the transfer is an input (card to CPU). | inferred |
-| BCON | CONNECT | control | low | out, open collector (shared) | 23 | The card answers that it recognised its address (connected). | inferred |
-| BINT10 | LEV10 | interrupt | low | out, open collector (shared) | 27 | Interrupt request on program level 10. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
-| BINT11 |  | interrupt | low | out, open collector (shared) | 31 | Interrupt request on program level 11. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
-| BINT12 | LEV12 | interrupt | low | out, open collector (shared) | 35 | Interrupt request on program level 12. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
-| BINT13 |  | interrupt | low | out, open collector (shared) | 39 | Interrupt request on program level 13. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
-| BINT15 |  | interrupt | low | out, open collector (shared) | 43 | Interrupt request on program level 15. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
-| BIDENT / IDENTn (chain in) | INIDENT | ident | low | in | 7 | IDENT search signal coming in from the card nearer the CPU. When several cards interrupt on the same level, the slot position decides priority; a card that answers IDENT turns off its interrupt. | inferred |
-| IDENTn (chain out) | OUTIDENT | ident | low | out | 6 | IDENT search passed on to the next card further from the CPU (when this card does not answer). | inferred |
-| BGRANT / GRANTn (chain in) | INGRANT | control | low | in | 9 | open | open |
-| GRANTn (chain out) | OUTGRANT | control | low | out | 8 | open | open |
-| BMCL | MC | control | low | in | 55 | Master clear: resets the card. | inferred |
-| RESTART |  | control | low | open | 19 | open | open |
-| IOTE |  | control | low | in | 47 | open | open |
-| BSKIP |  | control | low | out | 51 | open | open |
-| BFQ1 | BFQ1 | control | high | in | 4 | A clock the card uses in test mode in place of the modem clocks. | inferred |
-| -12V |  | power | none | in | 62, 63 | -12 V supply. | read |
-| +12V |  | power | none | in | 66, 67 | +12 V supply. | read |
-| GND |  | power | none | in | 80, 82, 84, 86, 94 | Ground. | read |
-| +5V |  | power | none | in | open | +5 V logic supply. | read |
+ND-06.012.01 figure 7.4 (read): the lines are **tri-state TTL, except the interrupt lines and DMA
+request, which are open collector**; logical 1 = 0-0.4 V, logical 0 = 2.4-5 V, so the bus is
+**active low** (this was inferred from the suffix 0 before; now read).
+
+**Where figure 7.4 and the backwiring list disagree** (both kept, the backwiring name is the one
+in the table; figure 7.4 is drawn for the "I/O bus B and C rack", and whether that rack is wired
+like A25-A32 of the CPU crate is open):
+
+| Pin | Backwiring til NORD-10 | Figure 7.4 |
+|---|---|---|
+| 6 | IDENT out (A25:G06 drives A26:07) | INIDENT |
+| 7 | IDENT in (BIDENT from A22 into A25:07) | OUTIDENT |
+| 8 | GRANT out (A25:G08 drives A26:09) | INGRANT (2A50 also calls its joined 8/9 INGRANT) |
+| 9 | GRANT in | OUTGRANT |
+| 19 | RESTART | MPX ADDRESS |
+| 47 | IOTE (driven from A22) | DMA REQUEST (open collector) |
+| 51 | BSKIP | DMA DATA READY |
+| 15, 23 | BINPUT, BCON: 2A50 drives them with 7438 open-collector gates | tri-state lines |
+| 4 | BFQ1: 2A50 draws it with suffix 1 (true when high) | the bus is active low in general |
+
+Where they agree: BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30;
+BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 (same pins, same
+order); IOXE 11, BINPUT 15, BCONNECT 23, INT10/11/12/13/15 on 27/31/35/39/43, MASTER CLEAR 55;
+that 6, 7 and 8, 9 do not run one-to-one to the next I/O position. Pin 5 is BFQ2 (figure 7.4 only).
+
+**DMA cable-side signals, not bus pins.** Figure 7.4 also lists signals between card 1022 and the
+cards 1014/1092: DMA data ready, DINPUT, device request, WRITE, CF (clear flag), DR0-2 (bus
+address), DEQL, BERROR, BCOMPLETE, BRBUSY, BSTART, RRQ and the data lines MDB0-15. They belong to
+those cards' cables only and are not in the bus catalogue; their pins are open.
+
+| Name | Name on 2A50 | Name in ND-06.012.01 fig. 7.4 | Group | Active | Level (fig. 7.4) | Direction (from the card) | Pin(s) | What it does | Meaning confidence |
+|---|---|---|---|---|---|---|---|---|---|
+| BA0 | BA0 | BA0 | address | low | tri-state TTL | in | 32 | Bus address bit 0. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA1 | BA1 | BA1 | address | low | tri-state TTL | in | 33 | Bus address bit 1. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA2 | BA2 | BA2 | address | low | tri-state TTL | in | 34 | Bus address bit 2. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA3 | BA3 | BA3 | address | low | tri-state TTL | in | 36 | Bus address bit 3. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA4 | BA4 | BA4 | address | low | tri-state TTL | in | 37 | Bus address bit 4. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA5 | BA5 | BA5 | address | low | tri-state TTL | in | 38 | Bus address bit 5. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA6 | BA6 | BA6 | address | low | tri-state TTL | in | 40 | Bus address bit 6. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA7 | BA7 | BA7 | address | low | tri-state TTL | in | 41 | Bus address bit 7. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA8 | BA8 | BA8 | address | low | tri-state TTL | in | 42 | Bus address bit 8. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA9 | BA9 | BA9 | address | low | tri-state TTL | in | 44 | Bus address bit 9. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA10 |  | BA10 | address | low | tri-state TTL | in | 45 | Bus address bit 10. With IOX the device register address is 11 bits (bits 0-10). | inferred |
+| BA11 |  | BA11 | address | low | tri-state TTL | in | 46 | Bus address bit 11. Use on I/O cards not documented in the sources found. | inferred |
+| BA12 |  | BA12 | address | low | tri-state TTL | in | 48 | Bus address bit 12. Use on I/O cards not documented in the sources found. | inferred |
+| BA13 |  | BA13 | address | low | tri-state TTL | in | 49 | Bus address bit 13. Use on I/O cards not documented in the sources found. | inferred |
+| BA14 |  | BA14 | address | low | tri-state TTL | in | 50 | Bus address bit 14. Use on I/O cards not documented in the sources found. | inferred |
+| BA15 |  | BA15 | address | low | tri-state TTL | in | 52 | Bus address bit 15. Use on I/O cards not documented in the sources found. | inferred |
+| BA16 |  | BA16 | address | low | tri-state TTL | in | 53 | Bus address bit 16. Use on I/O cards not documented in the sources found. | inferred |
+| BA17 |  | BA17 | address | low | tri-state TTL | in | 54 | Bus address bit 17. Use on I/O cards not documented in the sources found. | inferred |
+| BD0 | BD0 | BD0 | data | low | tri-state TTL | bidir | 10 | Bus data bit 0 (16-bit data word between the CPU A register and the card). | inferred |
+| BD1 | BD1 | BD1 | data | low | tri-state TTL | bidir | 12 | Bus data bit 1 (16-bit data word between the CPU A register and the card). | inferred |
+| BD2 | BD2 | BD2 | data | low | tri-state TTL | bidir | 13 | Bus data bit 2 (16-bit data word between the CPU A register and the card). | inferred |
+| BD3 | BD3 | BD3 | data | low | tri-state TTL | bidir | 14 | Bus data bit 3 (16-bit data word between the CPU A register and the card). | inferred |
+| BD4 | BD4 | BD4 | data | low | tri-state TTL | bidir | 16 | Bus data bit 4 (16-bit data word between the CPU A register and the card). | inferred |
+| BD5 | BD5 | BD5 | data | low | tri-state TTL | bidir | 17 | Bus data bit 5 (16-bit data word between the CPU A register and the card). | inferred |
+| BD6 | BD6 | BD6 | data | low | tri-state TTL | bidir | 18 | Bus data bit 6 (16-bit data word between the CPU A register and the card). | inferred |
+| BD7 | BD7 | BD7 | data | low | tri-state TTL | bidir | 20 | Bus data bit 7 (16-bit data word between the CPU A register and the card). | inferred |
+| BD8 | BD8 | BD8 | data | low | tri-state TTL | bidir | 21 | Bus data bit 8 (16-bit data word between the CPU A register and the card). | inferred |
+| BD9 | BD9 | BD9 | data | low | tri-state TTL | bidir | 22 | Bus data bit 9 (16-bit data word between the CPU A register and the card). | inferred |
+| BD10 | BD10 | BD10 | data | low | tri-state TTL | bidir | 24 | Bus data bit 10 (16-bit data word between the CPU A register and the card). | inferred |
+| BD11 | BD11 | BD11 | data | low | tri-state TTL | bidir | 25 | Bus data bit 11 (16-bit data word between the CPU A register and the card). | inferred |
+| BD12 | BD12 | BD12 | data | low | tri-state TTL | bidir | 26 | Bus data bit 12 (16-bit data word between the CPU A register and the card). | inferred |
+| BD13 | BD13 | BD13 | data | low | tri-state TTL | bidir | 28 | Bus data bit 13 (16-bit data word between the CPU A register and the card). | inferred |
+| BD14 | BD14 | BD14 | data | low | tri-state TTL | bidir | 29 | Bus data bit 14 (16-bit data word between the CPU A register and the card). | inferred |
+| BD15 | BD15 | BD15 | data | low | tri-state TTL | bidir | 30 | Bus data bit 15 (16-bit data word between the CPU A register and the card). | inferred |
+| BIOXE | IOXE | IOXE | control | low | tri-state TTL | in | 11 | IOX enable: the strobe that tells every card that an IOX transfer is under way, so the card compares BA against its own address. | inferred |
+| BINPUT | INPUT | BINPUT | control | low | tri-state TTL | out, open collector (shared) | 15 | The addressed card says the transfer is an input (card to CPU). | inferred |
+| BCON | CONNECT | BCONNECT | control | low | tri-state TTL | out, open collector (shared) | 23 | The card answers that it recognised its address (connected). | inferred |
+| BINT10 | LEV10 | INT10 | interrupt | low | open collector | out, open collector (shared) | 27 | Interrupt request on program level 10. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
+| BINT11 |  | INT11 | interrupt | low | open collector | out, open collector (shared) | 31 | Interrupt request on program level 11. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
+| BINT12 | LEV12 | INT12 | interrupt | low | open collector | out, open collector (shared) | 35 | Interrupt request on program level 12. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
+| BINT13 |  | INT13 | interrupt | low | open collector | out, open collector (shared) | 39 | Interrupt request on program level 13. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
+| BINT15 |  | INT15 | interrupt | low | open collector | out, open collector (shared) | 43 | Interrupt request on program level 15. Levels 15, 13, 12, 11 and 10 are the ones available to external devices. | inferred |
+| BIDENT / IDENTn (chain in) | INIDENT | OUTIDENT | ident | low | tri-state TTL | in | 7 | IDENT search signal coming in from the card nearer the CPU. When several cards interrupt on the same level, the slot position decides priority; a card that answers IDENT turns off its interrupt. | inferred |
+| IDENTn (chain out) | OUTIDENT | INIDENT | ident | low | tri-state TTL | out | 6 | IDENT search passed on to the next card further from the CPU (when this card does not answer). | inferred |
+| BGRANT / GRANTn (chain in) | INGRANT | OUTGRANT | control | low | tri-state TTL | in | 9 | open | open |
+| GRANTn (chain out) | OUTGRANT | INGRANT | control | low | tri-state TTL | out | 8 | open | open |
+| BMCL | MC | MASTER CLEAR | control | low | tri-state TTL | in | 55 | Master clear: resets the card. | inferred |
+| RESTART |  | MPX ADDRESS | control | low | tri-state TTL | open | 19 | open | open |
+| IOTE |  | DMA REQUEST | control | low | open collector | in | 47 | open | open |
+| BSKIP |  | DMA DATA READY | control | low | tri-state TTL | out | 51 | open | open |
+| BFQ1 | BFQ1 | BFQ1 | control | high | tri-state TTL | in | 4 | A clock the card uses in test mode in place of the modem clocks. | inferred |
+| BFQ2 |  | BFQ2 | control | low | tri-state TTL | open | 5 | open | open |
+| -12V |  |  | power | none |  | out | 62, 63 | -12 V made on the 2A50 card by its own VP12/12 converter and put out on the cable side. | inferred |
+| +12V |  |  | power | none |  | out | 66, 67 | +12 V made on the 2A50 card by its own VP12/12 converter and put out on the cable side. | inferred |
+| GND |  |  | power | none |  | in | 2, 3, 96, 97, 80, 82, 84, 86, 94 | Ground: 2, 3, 96, 97 from the backplane; 80, 82, 84, 86, 94 are 2A50's cable-side grounds. | read |
+| +5V |  |  | power | none |  | in | 0, 1, 98, 99 | +5 V logic supply. | read |
 
 ### Connectors of a NORD-10 I/O card
 
 - The backwiring list has **one connector per card position, pins numbered 0-99** (column "Pin
   Range 0-99"; read). It gives no rows or sides and no connector letter. The column "Pin Sequen."
   reads 6 on every position; its meaning is open.
-- **No NORD-10 document found names the card connectors A/B/C.** Those letters are documented
-  for NORD-100 modules only. The connector of each NORD-10 pin therefore stays `open`.
-- In the backwiring list, I/O position pins 6-55 are bussed; pins 0-5 and 56-99 are empty.
-- **Power is not in the backwiring list.** Known only from 2A50: -12 V on 62, 63; +12 V on 66, 67;
-  ground on 80, 82, 84, 86, 94. The +5 V pin is open.
+- **Connector type** (ND-06.012.01 figure 3.1, read): one 100-terminal connector per I/O slot.
+  Its maker and part number are open. No NORD-10 document found names it A/B/C; those letters are
+  documented for NORD-100 modules only, so the connector of each NORD-10 pin stays `open`.
+- In the backwiring list, I/O position pins 6-55 are bussed; pins 0-5 and 56-99 are empty (the
+  list names signal wires only).
+- **Supply** (figure 3.1, read): **+5 V on 0, 1, 98, 99; ground on 2, 3, 96, 97** ("4 terminals
+  for power, 4 for ground"). On the 2A50 photos the fingers of 0, 1, 98, 99 run into wide copper,
+  which matches.
+- **Cable side** (figure 3.1, read): pins 56-95 go to the external device through a Berg plug,
+  cabled to a Burndy MS42RM plug in the plug panel (Berg 56 -> v, 57 -> t, ... 94/95 at A-D; the
+  full letter table is open, the figure was shown only in part). 2A50's -12 V out on 62, 63, +12 V
+  out on 66, 67 (its own VP12/12 converter) and grounds on 80, 82, 84, 86, 94 are that card's
+  choice of free cable pins, not a conflict with the figure.
 - **Modem lines on 2A50**: circled pins 81-95 carry the V.24 lines, with the modem plug pin in
   brackets on the drawing (81 = V.24 17 receiver timing, 83 = 15 transmitter timing, 85 = 22
   calling indicator, 87 = 3 received data, 88 = 8 signal detector, 89 = 5 ready for sending, 90 =
@@ -138,12 +179,16 @@ chain) and from how 2A50 drives each line.
 
 ### Still open for NORD-10
 
-1. The name of the card connector(s), how many a card has, and their rows or sides.
-2. The meaning of RESTART (pin 19), IOTE (pin 47), BSKIP (pin 51), BA11-BA17 on I/O cards, and of
-   the GRANT chain (pins 8, 9). Where BGRANT comes from (no source in the list).
-3. Where BFQ1 (2A50 pin 4) comes from: the backwiring list has pin 4 empty on every I/O position,
-   and FQ1 only at A22 pin 6 with one connection. Its frequency.
-4. The +5 V pin(s) and any other power pins.
+1. The maker and part number of the 100-terminal card connector; whether the Berg cable plug
+   sits on the backplane posts or on the card; the full Berg-to-Burndy letter table.
+2. The meaning of RESTART / MPX ADDRESS (pin 19), IOTE / DMA REQUEST (pin 47), BSKIP / DMA DATA
+   READY (pin 51) - which name is right for which rack - and of BA11-BA17 on I/O cards and the
+   GRANT chain (pins 8, 9). Which pin of 6/7 and 8/9 is the input (backwiring list and figure 7.4
+   disagree). Where BGRANT comes from (no source in the list).
+3. Where BFQ1 (2A50 pin 4) and BFQ2 (pin 5) come from: the backwiring list has pins 4 and 5
+   empty on every I/O position, and FQ1 only at A22 pin 6 with one connection. Their frequency.
+4. Whether BINPUT and BCON are tri-state (figure 7.4) or open collector (the 7438 on 2A50), and
+   where the open-collector lines are pulled up.
 5. The exact bus handshake (timing, what BINPUT and BCON mean in the protocol).
 6. What the prefix letters W, B and E in the backwiring list mean.
 

@@ -43,7 +43,11 @@ namespace RetroSchematic.Tests
         {
             BusCatalog n10 = BusCatalog.Load(Catalog, MachineBus.Nord10);
             BusCatalog n100 = BusCatalog.Load(Catalog, MachineBus.Nd100);
-            Assert.That(n10.Signals.Count, Is.EqualTo(55));
+            // 56: BFQ2 on pin 5 added from ND-06.012.01 figure 7.4
+            Assert.That(n10.Signals.Count, Is.EqualTo(56));
+            Assert.That(n10.ByPin(null, 5)!.Name, Is.EqualTo("BFQ2"));
+            Assert.That(n10.ByPin(null, 0)!.Name, Is.EqualTo("+5V"));
+            Assert.That(n10.ByPin(null, 97)!.Name, Is.EqualTo("GND"));
             Assert.That(n100.Signals.Count, Is.EqualTo(68));
             // BA3 is a NORD-10 name only; BDAP an ND-100 name only
             Assert.That(n10.ByName("BA3"), Is.Not.Null);

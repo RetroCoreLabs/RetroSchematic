@@ -42,7 +42,7 @@ long (measured on one photo).
    them the copper goes on. Compared with the pins 2A50 uses, "solder finger k is pin 2k+1"
    agrees on 46 of 50 fingers; "pin 2k" on 39; every split into 0-49 on one side and 50-99 on
    the other on 27 or fewer. The four that disagree: pins 1 and 99 (wide copper at the board's
-   ends, a supply, not on the drawing), 9 (INGRANT, joined straight to pin 8 on the other side)
+   ends: +5V by ND-06.012.01 figure 3.1, not on the drawing), 9 (INGRANT, joined straight to pin 8 on the other side)
    and 11 (IOXE, trace not followed to its end).
 5. **Pins joined on the drawing sit behind each other**: 8/9 (INGRANT), 62/63 (-12V) and
    66/67 (+12V) are each one finger position, both sides.
@@ -51,10 +51,18 @@ The traces were followed by marking the green copper in the photos and taking ea
 piece of copper from the finger to the pad it ends on; the pad positions were turned into mm on
 the board and matched against the chip grid (`nord10-card` columns, the 2A50 rows).
 
+## Supply pins (READ, ND-06.012.01 figure 3.1 "I/O slot/plug layout", page 3-3)
+
++5V on pins 0, 1, 98, 99 and ground on 2, 3, 96, 97. On 2A50 that is component fingers 0 and 49
+and the solder fingers behind them (+5V), and component fingers 1 and 48 and the solder fingers
+behind them (ground). The wide copper and tantalum capacitors at 0, 1, 98, 99 on the photos
+match +5V, which also explains two of the four solder fingers that broke the use pattern above.
+The Fingers overlay on the photos labels these eight fingers +5V and GND.
+
 ## Still OPEN
 
-- Which pins bring +5V and ground in from the backplane. Candidates by their wide copper and
-  the tantalum capacitors beside them: 0, 1, 98, 99; and 60 and 64, joined by a wide trace on the
-  component side. The drawing shows no circle for +5V.
+- What the wide trace joining 60 and 64 on the 2A50 component side is (cable side, not on the
+  drawing).
 - Whether every NORD-10 card follows the same rule (only 2A50 checked).
-- The connector type and maker on the backplane side.
+- The maker and part number of the 100-terminal backplane connector (figure 3.1 gives the type
+  only).

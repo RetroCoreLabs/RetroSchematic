@@ -74,6 +74,42 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void FingersOverlay_LabelsTheSupplyPins_FromFigure31()
+        {
+            // ND-06.012.01 figure 3.1 "I/O slot/plug layout", page 3-3: +5V on 0, 1, 98, 99 and
+            // ground on 2, 3, 96, 97. 2A50 names none of these pins, so the overlay shows the
+            // catalogue's signal for them - build both sides as the PCB view does and read the labels.
+            ConnectorInfo info = ConnectorCatalog.Load(Catalog, MachineBus.Nord10).Get("nord10-io-card-backplane")!;
+            EdgeFingerLayout f = Layout();
+            BoardSize size = BoardTemplate.Find(Catalog, "nord10-card")!.Size;
+            GridPoint[] corners = { new(0, 0), new(1560, 0), new(1560, 1490), new(0, 1490) };
+            Dictionary<int, EdgeFinger> byPin = new();
+            BoardSide[] sides = { BoardSide.Component, BoardSide.Solder };
+            for (int s = 0; s < sides.Length; s++)
+            {
+                List<EdgeFinger> row = EdgeFingerMap.Build(f, null, size, corners, sides[s], null, info.PinMap);
+                for (int k = 0; k < row.Count; k++)
+                    byPin[row[k].Pin] = row[k];
+            }
+            int[] plus5 = { 0, 1, 98, 99 }, ground = { 2, 3, 96, 97 };
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.That(byPin[plus5[i]].Signal, Is.EqualTo("+5V"), "pin " + plus5[i]);
+                Assert.That(byPin[plus5[i]].Label, Does.Contain("+5V"), "pin " + plus5[i]);
+                Assert.That(byPin[ground[i]].Signal, Is.EqualTo("GND"), "pin " + ground[i]);
+                Assert.That(byPin[ground[i]].Info!.Confidence, Is.EqualTo("read"));
+            }
+            // where the eight sit: the two ends of the edge, both sides
+            Assert.That(byPin[0].Side == BoardSide.Component && byPin[0].Index == 0, Is.True);
+            Assert.That(byPin[99].Side == BoardSide.Solder && byPin[99].Index == 49, Is.True);
+            Assert.That(byPin[96].Side == BoardSide.Component && byPin[96].Index == 48, Is.True);
+            Assert.That(byPin[5].Signal, Is.EqualTo("BFQ2"));
+            // 2A50's own cable-side pins are untouched
+            Assert.That(byPin[62].Signal, Is.EqualTo("-12V"));
+            Assert.That(byPin[80].Signal, Is.EqualTo("GND"));
+        }
+
+        [Test]
         public void SolderSide_IsTheMirror_AndAPointFindsItsFinger()
         {
             EdgeFingerLayout f = Layout();

@@ -20,6 +20,10 @@
     {
       "id": "S2A50",
       "document": "Sheet 2A50 (card 1050) as read in this repository, and its board photos (docs/NORD10-EDGE-FINGERS.md)."
+    },
+    {
+      "id": "F612",
+      "document": "ND manual ND-06.012.01: figure 3.1 'I/O slot/plug layout' (page 3-3) and figure 7.4 'Signal distribution I/O bus B and C rack' (section 7.4), read from the owner's screenshots of the two figures (2026-11-24). Figure 7.4 is drawn for the 'I/O bus B and C rack'; whether that rack is wired exactly like A25-A32 of the CPU crate is OPEN."
     }
   ],
   "positions": {
@@ -67,33 +71,42 @@
     "source": "BW",
     "page": "connector lists A22-A32 (PDF pages 25-35) and the signal code list",
     "confidence": "read",
-    "note": "Example rows of the signal code list: BIOXE 0 = A22:G10, A25:11 ... A32:11; BMCL 0 = A22:G52, A25:55 ... A32:55; BD0 0 = A24:W40, A25:W10 ... A32:W10. BCON 0 is listed at A25-A31 only in the OCR text (A32 missing): whether A32 really lacks it is OPEN until the page image is read."
+    "note": "Example rows of the signal code list: BIOXE 0 = A22:G10, A25:11 ... A32:11; BMCL 0 = A22:G52, A25:55 ... A32:55; BD0 0 = A24:W40, A25:W10 ... A32:W10. BCON 0 is listed at A25-A31 only in the OCR text (A32 missing): whether A32 really lacks it is OPEN until the page image is read. ND-06.012.01 figure 7.4 (I/O bus B and C rack) agrees on BD0-15 (10-30), BA0-17 (32-54, the same 18 pins in the same order), IOXE 11, BINPUT 15, BCONNECT 23, INT10/11/12/13/15 on 27/31/35/39/43 and MASTER CLEAR 55, but names pin 19 MPX ADDRESS (here RESTART), 47 DMA REQUEST (here IOTE) and 51 DMA DATA READY (here BSKIP): DISAGREE, both names kept per signal."
   },
   "chains": {
     "value": "IDENT and GRANT are chains, not busses: pin 7 (IDENT in) and pin 9 (GRANT in) of each I/O position come from pins 6 (IDENT out) and 8 (GRANT out) of the position before. The chain starts at A22 (BIDENT from A22 pin 10, marked G, to A25 pin 7) and ends at A32 (IDENT15 = A32:G06 and GRANT15 = A32:G08 have no further connection, marked X). So an empty I/O position breaks the chain unless something joins its pins 6-7 and 8-9.",
     "source": "BW",
     "page": "signal code list: IDENT1 0 = A25:G06 A26:07, IDENT3 0 = A26:G06 A27:07 ... IDENT13 0 = A31:G06 A32:07, X IDENT15 0 = A32:G06; GRANT1 0 = A25:G08 ... X GRANT15 0 = A32:G08",
     "confidence": "read",
-    "note": "That an empty position breaks the chain is INFERRED from the wiring. On 2A50 the card joins pin 8 to pin 9 straight (INGRANT = P.8 = P.9, READ on the drawing), so it passes GRANT on without using it. The OCR has a few odd chain names (GRANT11 = A30:G08 A26:09, GRANT13 = A31:G08 A31:09, GRANT3J): those rows need the page image."
+    "note": "ND-06.012.01 figure 7.4 confirms that pins 6, 7 and 8, 9 have no one-to-one connection to the next I/O position (read), but it names 6 INIDENT, 7 OUTIDENT, 8 INGRANT, 9 OUTGRANT - the other way round from this list (G06/G08 drive, 07/09 receive). The two sources DISAGREE on which pin of each pair is the input; this file keeps the backwiring reading. That an empty position breaks the chain is INFERRED from the wiring. On 2A50 the card joins pin 8 to pin 9 straight (INGRANT = P.8 = P.9, READ on the drawing), so it passes GRANT on without using it. The OCR has a few odd chain names (GRANT11 = A30:G08 A26:09, GRANT13 = A31:G08 A31:09, GRANT3J): those rows need the page image."
   },
   "perSlotPins": {
-    "value": "Pins 0-5 and 56-99 are empty in the connector list of every I/O position: the backwiring list bus-wires nothing there.",
+    "value": "Pins 0-5 and 56-99 are empty in the connector list of every I/O position: the backwiring list bus-wires nothing there. It lists signal wires only: 0, 1, 98, 99 (+5V) and 2, 3, 96, 97 (ground) are supply pins by ND-06.012.01 figure 3.1, and 4, 5 are BFQ1, BFQ2 by figure 7.4.",
     "source": "BW",
     "page": "connector lists A25-A32",
     "confidence": "read",
-    "note": "Pin 4 (BFQ1 on the 2A50 drawing, a test clock into the card) is also empty in the list, so where BFQ1 comes from is OPEN."
+    "note": "Pin 4 (BFQ1 on the 2A50 drawing and in figure 7.4, a test clock into the card) and pin 5 (BFQ2, figure 7.4) are empty in the list, so where BFQ1 and BFQ2 come from in this crate is OPEN."
   },
   "cableSide": {
-    "value": "Pins 56-99 of an I/O position are the card's own cable pins: a device cable plugs onto the backplane's pins at the back of that position.",
-    "source": "N10S",
-    "page": "section 4.1.1: 'Cable connectors are plugged directly into the backplane' and 'Device plugs are also to a common standard'",
-    "confidence": "inferred",
-    "note": "Inferred from that sentence plus 56-99 being empty in the backwiring list (READ) and 2A50 putting its modem lines on 81-95 (READ). The photos of 501062 and the EMI rack show long wire-wrap posts at the back of every position (READ on the photos), which a cable plug can go onto. The cable plug type and how many pins it covers are OPEN."
+    "value": "Pins 56-95 of an I/O position are the card's own cable pins: they go to the external device through a Berg plug, cabled to a Burndy MS42RM plug in the plug panel. 96-99 are supply, not cable pins.",
+    "source": "F612",
+    "page": "figure 3.1 'I/O slot/plug layout', page 3-3",
+    "confidence": "read",
+    "note": "Figure 3.1 maps Berg 56 -> Burndy v, 57 -> t, ... with 94/95 at the Burndy letters A-D; the figure is shown only in part, so the full letter table is OPEN. The owner's reading says the Berg plug is 'on the card edge'; the NORD-10/S manual section 4.1.1 says 'Cable connectors are plugged directly into the backplane'. Whether the Berg plug goes onto the backplane posts behind the slot or onto the card itself is not settled by the text read so far. 2A50 puts its modem lines on 81-95 (READ), +-12V out on 62/63 and 66/67 and cable grounds on 80, 82, 84, 86, 94: the card's own choice of free cable pins, not a conflict with the figure. The photos of 501062 and the EMI rack show long wire-wrap posts at the back of every position (READ on the photos), which a cable plug can go onto. The cable plug type and how many pins it covers are OPEN."
   },
   "supply": {
-    "value": "open",
-    "confidence": "open",
-    "note": "The backwiring list names no supply pin at any position. The I/O bus backplane 501062 has heavy screw lugs along one side and on the far end (READ on the photos), which look like supply feeds; which connector pins carry +5V and ground is not shown. On the 2A50 card the fingers of pins 0, 1, 98 and 99 (the ends of the edge) and 60 and 64 run into wide copper (READ on the photos, see docs/NORD10-EDGE-FINGERS.md): candidates, not proven. 2A50 makes its own +-12V from +5V (VP12/12) and puts it out on 62/63 and 66/67, so -12V and +12V are not taken from the backplane by that card."
+    "value": "+5V on pins 0, 1, 98, 99 and ground on pins 2, 3, 96, 97 of every I/O slot ('4 terminals for power, 4 for ground').",
+    "source": "F612",
+    "page": "figure 3.1 'I/O slot/plug layout', page 3-3",
+    "confidence": "read",
+    "note": "The backwiring list names no supply pin at any position (it lists signal wires only), so it does not disagree. On the 2A50 card the fingers of pins 0, 1, 98 and 99 run into wide copper beside tantalum capacitors (READ on the photos, see docs/NORD10-EDGE-FINGERS.md), which matches +5V. The heavy screw lugs on the I/O bus backplane 501062 look like the supply feeds (READ on the photos); which lug feeds which pin is OPEN. Whether the CPU positions A01-A24 use the same supply pins is OPEN (figure 3.1 is for I/O slots). 2A50 makes its own +-12V from +5V (VP12/12) and puts it out on the cable pins 62/63 and 66/67, so -12V and +12V are not taken from the backplane by that card. What the wide trace joining 60 and 64 on 2A50 is stays OPEN."
+  },
+  "signalLevels": {
+    "value": "Tri-state TTL, except the interrupt lines and DMA request, which are open collector. Logical 1 = 0-0.4 V, logical 0 = 2.4-5 V (active low).",
+    "source": "F612",
+    "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+    "confidence": "read",
+    "note": "2A50 drives BINPUT (pin 15) and BCON (pin 23) with 7438 open-collector gates (READ on the drawing), which the figure counts as tri-state lines: DISAGREE, recorded per signal in catalog/signals/nd-bus-nord10.json."
   },
   "pullUps": {
     "value": "open",
@@ -111,5 +124,5 @@
     { "board": "xx6022", "what": "NORD-10 I/O bus backplane, shorter (156 x 119 mm), component and solder side", "source": "PCB" },
     { "board": "501048", "what": "NORD-10 Bus Receiver backplane (card 6009), 16 positions, component and solder side", "source": "PCB" }
   ],
-  "note": "The pin-by-pin signals of an I/O device position are in catalog/connectors/nord10-io-card-backplane.json (pinMap) and catalog/signals/nd-bus-nord10.json. The NORD-10 Input/Output manual ND-06.004, which the NORD-10/S manual names for signal levels and timing, was not found; it is the document most likely to settle the supply pins and the terminations."
+  "note": "The pin-by-pin signals of an I/O device position are in catalog/connectors/nord10-io-card-backplane.json (pinMap) and catalog/signals/nd-bus-nord10.json. The supply pins and signal levels come from ND-06.012.01 (figures 3.1 and 7.4). The NORD-10 Input/Output manual ND-06.004, which the NORD-10/S manual names for signal levels and timing, was not found; it may settle the terminations (pull-ups)."
 }

@@ -9,7 +9,8 @@
     "direction": "seen from an I/O card: in, out, bidir, 'out, open collector (shared)'",
     "confidence": "read = stated in the source; inferred = worked out, the note says from what; open = not known",
     "pins": "connector 'open' = no NORD-10 document found names the connector; pin = the number in the wiring list and on the card drawings",
-    "letters": "In Backwiring til NORD-10 a letter before a signal code (W, G, B, E, X) is printed. G marks the driving pin (inferred from the IDENT/GRANT chains); X marks a signal with only one connection (inferred from the chain ends); W, B and E are open."
+    "letters": "In Backwiring til NORD-10 a letter before a signal code (W, G, B, E, X) is printed. G marks the driving pin (inferred from the IDENT/GRANT chains); X marks a signal with only one connection (inferred from the chain ends); W, B and E are open.",
+    "level": "electrical kind from ND-06.012.01 figure 7.4: 'tri-state TTL' or 'open collector'"
   },
   "sources": [
     {
@@ -26,6 +27,11 @@
       "id": "N10S",
       "document": "ND-06.008.01 NORD-10/S Reference Manual, Revision A",
       "note": "Sections 3.3 (IOX), IDENT instruction, 4.1 (Input/Output hardware) and 4.1.3 (vectored interrupt identification). It refers to the NORD-10 Input/Output manual ND-06.004 for signal levels, definitions and timing; that manual was NOT found on this machine."
+    },
+    {
+      "id": "F612",
+      "document": "ND manual ND-06.012.01: figure 3.1 'I/O slot/plug layout' (page 3-3) and figure 7.4 'Signal distribution I/O bus B and C rack' (section 7.4)",
+      "note": "Read from the owner's screenshots of the two figures (2026-11-24); the rest of the manual has not been read here. Figure 7.4 is drawn for the 'I/O bus B and C rack'; whether that rack is wired exactly like the I/O positions A25-A32 of the CPU crate in Backwiring til NORD-10 is OPEN - where the two disagree (pins 6-9, 19, 47, 51) both readings are kept and named."
     }
   ],
   "signals": [
@@ -37,10 +43,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -59,7 +65,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 0. With IOX the device register address is 11 bits (bits 0-10).",
@@ -67,6 +73,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA0",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -77,10 +90,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -99,7 +112,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 1. With IOX the device register address is 11 bits (bits 0-10).",
@@ -107,6 +120,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA1",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -117,10 +137,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -139,7 +159,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 2. With IOX the device register address is 11 bits (bits 0-10).",
@@ -147,6 +167,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA2",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -157,10 +184,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -179,7 +206,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 3. With IOX the device register address is 11 bits (bits 0-10).",
@@ -187,6 +214,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA3",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -197,10 +231,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -219,7 +253,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 4. With IOX the device register address is 11 bits (bits 0-10).",
@@ -227,6 +261,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA4",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -237,10 +278,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -259,7 +300,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 5. With IOX the device register address is 11 bits (bits 0-10).",
@@ -267,6 +308,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA5",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -277,10 +325,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -299,7 +347,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 6. With IOX the device register address is 11 bits (bits 0-10).",
@@ -307,6 +355,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA6",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -317,10 +372,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -339,7 +394,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 7. With IOX the device register address is 11 bits (bits 0-10).",
@@ -347,6 +402,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA7",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -357,10 +419,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -379,7 +441,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 8. With IOX the device register address is 11 bits (bits 0-10).",
@@ -387,6 +449,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA8",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -397,10 +466,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -419,7 +488,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 9. With IOX the device register address is 11 bits (bits 0-10).",
@@ -427,6 +496,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA9",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -434,10 +510,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -456,7 +532,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 10. With IOX the device register address is 11 bits (bits 0-10).",
@@ -464,6 +540,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "The IOX address width is read; that BA0-BA10 carry it is inferred from the names."
+      },
+      "nameInF612": "BA10",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -471,10 +554,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -493,7 +576,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 11. Use on I/O cards not documented in the sources found.",
@@ -501,6 +584,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA11",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -508,10 +598,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -530,7 +620,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 12. Use on I/O cards not documented in the sources found.",
@@ -538,6 +628,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA12",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -545,10 +642,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -567,7 +664,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 13. Use on I/O cards not documented in the sources found.",
@@ -575,6 +672,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA13",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -582,10 +686,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -604,7 +708,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 14. Use on I/O cards not documented in the sources found.",
@@ -612,6 +716,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA14",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -619,10 +730,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -641,7 +752,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 15. Use on I/O cards not documented in the sources found.",
@@ -649,6 +760,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA15",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -656,10 +774,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -678,7 +796,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 16. Use on I/O cards not documented in the sources found.",
@@ -686,6 +804,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA16",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -693,10 +818,10 @@
       "group": "address",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -715,7 +840,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BA0-17 on 32, 33, 34, 36, 37, 38, 40, 41, 42, 44, 45, 46, 48, 49, 50, 52, 53, 54 in order: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus address bit 17. Use on I/O cards not documented in the sources found.",
@@ -723,6 +848,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "BA11-BA17 are wired to every I/O position but their I/O meaning is open."
+      },
+      "nameInF612": "BA17",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -733,10 +865,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -755,7 +887,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 0 (16-bit data word between the CPU A register and the card).",
@@ -763,6 +895,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD0",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -773,10 +912,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -795,7 +934,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 1 (16-bit data word between the CPU A register and the card).",
@@ -803,6 +942,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD1",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -813,10 +959,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -835,7 +981,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 2 (16-bit data word between the CPU A register and the card).",
@@ -843,6 +989,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD2",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -853,10 +1006,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -875,7 +1028,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 3 (16-bit data word between the CPU A register and the card).",
@@ -883,6 +1036,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD3",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -893,10 +1053,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -915,7 +1075,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 4 (16-bit data word between the CPU A register and the card).",
@@ -923,6 +1083,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD4",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -933,10 +1100,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -955,7 +1122,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 5 (16-bit data word between the CPU A register and the card).",
@@ -963,6 +1130,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD5",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -973,10 +1147,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -995,7 +1169,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 6 (16-bit data word between the CPU A register and the card).",
@@ -1003,6 +1177,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD6",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1013,10 +1194,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1035,7 +1216,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 7 (16-bit data word between the CPU A register and the card).",
@@ -1043,6 +1224,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD7",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1053,10 +1241,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1075,7 +1263,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 8 (16-bit data word between the CPU A register and the card).",
@@ -1083,6 +1271,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD8",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1093,10 +1288,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1115,7 +1310,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 9 (16-bit data word between the CPU A register and the card).",
@@ -1123,6 +1318,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD9",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1133,10 +1335,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1155,7 +1357,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 10 (16-bit data word between the CPU A register and the card).",
@@ -1163,6 +1365,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD10",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1173,10 +1382,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1195,7 +1404,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 11 (16-bit data word between the CPU A register and the card).",
@@ -1203,6 +1412,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD11",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1213,10 +1429,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1235,7 +1451,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 12 (16-bit data word between the CPU A register and the card).",
@@ -1243,6 +1459,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD12",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1253,10 +1476,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1275,7 +1498,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 13 (16-bit data word between the CPU A register and the card).",
@@ -1283,6 +1506,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD13",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1293,10 +1523,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1315,7 +1545,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 14 (16-bit data word between the CPU A register and the card).",
@@ -1323,6 +1553,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD14",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1333,10 +1570,10 @@
       "group": "data",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "bidir",
@@ -1355,7 +1592,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 of ND-06.012.01 puts BD0-15 on 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 24, 25, 26, 28, 29, 30: agrees with the backwiring list. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "Bus data bit 15 (16-bit data word between the CPU A register and the card).",
@@ -1363,6 +1600,13 @@
         "page": "section 3.3 IOX",
         "confidence": "inferred",
         "note": "From the IOX description (A register to/from device) and the name."
+      },
+      "nameInF612": "BD15",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1373,10 +1617,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -1403,6 +1647,13 @@
         "page": "IOXE enables comparator 13E",
         "confidence": "inferred",
         "note": "On 2A50 IOXE is the enable of the address comparator 13E (read). The NORD-100 bus has a signal of the same name with this meaning (ND-06.016.01 Appendix F.2); not verified for NORD-10."
+      },
+      "nameInF612": "IOXE",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1413,16 +1664,17 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
         "source": "S2A50",
         "page": "7438 at 5A drives INPUT onto pin 15",
-        "confidence": "read"
+        "confidence": "read",
+        "note": "Figure 7.4 counts this line as tri-state TTL, not open collector. DISAGREE with the 7438 on 2A50."
       },
       "pins": {
         "value": [
@@ -1442,6 +1694,14 @@
         "page": "13C DINPUT from DEQL, 1A, 5A",
         "confidence": "inferred",
         "note": "On 2A50 INPUT is driven when the card is addressed and the register is a read register. The exact meaning in the NORD-10 bus protocol is not in any document found."
+      },
+      "nameInF612": "BINPUT",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4 counts this line as tri-state, but 2A50 drives it with a 7438 open-collector gate (read on the drawing). The sources DISAGREE."
       }
     },
     {
@@ -1452,16 +1712,17 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
         "source": "S2A50",
         "page": "7438 at 5A drives CONNECT onto pin 23",
-        "confidence": "read"
+        "confidence": "read",
+        "note": "Figure 7.4 counts this line as tri-state TTL, not open collector. DISAGREE with the 7438 on 2A50."
       },
       "pins": {
         "value": [
@@ -1481,6 +1742,14 @@
         "page": "1A TCONNECT, 5A",
         "confidence": "inferred",
         "note": "From the 2A50 wiring (TCONNECT from the ident/address answer multiplexer). Exact protocol meaning open. Note: BCON in the backwiring list goes to positions A25-A31 only; its CPU-side end (A22 pin 28, unmarked) is read from the A22 page image."
+      },
+      "nameInF612": "BCONNECT",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4 counts this line as tri-state, but 2A50 drives it with a 7438 open-collector gate (read on the drawing). The sources DISAGREE."
       }
     },
     {
@@ -1491,10 +1760,10 @@
       "group": "interrupt",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
@@ -1520,6 +1789,13 @@
         "page": "section 4.1.3 Vectored interrupt identification",
         "confidence": "inferred",
         "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      },
+      "nameInF612": "INT10",
+      "level": {
+        "value": "open collector",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1527,10 +1803,10 @@
       "group": "interrupt",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
@@ -1557,6 +1833,13 @@
         "page": "section 4.1.3 Vectored interrupt identification",
         "confidence": "inferred",
         "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      },
+      "nameInF612": "INT11",
+      "level": {
+        "value": "open collector",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1567,10 +1850,10 @@
       "group": "interrupt",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
@@ -1596,6 +1879,13 @@
         "page": "section 4.1.3 Vectored interrupt identification",
         "confidence": "inferred",
         "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      },
+      "nameInF612": "INT12",
+      "level": {
+        "value": "open collector",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1603,10 +1893,10 @@
       "group": "interrupt",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
@@ -1633,6 +1923,13 @@
         "page": "section 4.1.3 Vectored interrupt identification",
         "confidence": "inferred",
         "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      },
+      "nameInF612": "INT13",
+      "level": {
+        "value": "open collector",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1640,10 +1937,10 @@
       "group": "interrupt",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out, open collector (shared)",
@@ -1670,6 +1967,13 @@
         "page": "section 4.1.3 Vectored interrupt identification",
         "confidence": "inferred",
         "note": "The list of external levels is read; that this line is the request for that level is inferred from the name (and from 2A50, which drives LEV10/LEV12 on pins 27/35)."
+      },
+      "nameInF612": "INT15",
+      "level": {
+        "value": "open collector",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1680,10 +1984,10 @@
       "group": "ident",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -1702,7 +2006,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 7 OUTIDENT, not IDENT in. Backwiring til NORD-10 feeds BIDENT from A22 into A25 pin 7, so pin 7 is the input there. The two sources DISAGREE; kept as the backwiring list has it. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "IDENT search signal coming in from the card nearer the CPU. When several cards interrupt on the same level, the slot position decides priority; a card that answers IDENT turns off its interrupt.",
@@ -1710,6 +2014,13 @@
         "page": "IDENT instruction, section 4.1.3",
         "confidence": "inferred",
         "note": "Priority by slot and 'turns off its interrupt' are read; that this daisy chain carries the search is inferred from the chain wiring."
+      },
+      "nameInF612": "OUTIDENT",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1720,10 +2031,10 @@
       "group": "ident",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out",
@@ -1742,7 +2053,7 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 6 INIDENT, not IDENT out. Backwiring til NORD-10 has the chain the other way: IDENT1 0 = A25:G06 to A26:07 (G = the driving pin) and BIDENT from A22 into A25 pin 7, so pin 6 is the output there. The two sources DISAGREE; kept as the backwiring list has it until the page image or a card drawing settles it. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "IDENT search passed on to the next card further from the CPU (when this card does not answer).",
@@ -1750,6 +2061,13 @@
         "page": "section 4.1.3",
         "confidence": "inferred",
         "note": "From the chain wiring and slot priority."
+      },
+      "nameInF612": "INIDENT",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1760,10 +2078,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -1782,12 +2100,19 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 9 OUTGRANT. Backwiring til NORD-10 has pin 9 as the input from the position before (BGRANT at A25:09, GRANT1 into A26:09). The sources DISAGREE; kept as the backwiring list has it. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "open",
         "confidence": "open",
         "note": "Meaning not stated in any NORD-10 document found. The NORD-100 bus has INGRANT for DMA cycles (ND-06.016.01 Appendix F.2) and A22 carries a DMAGRANT line, but neither proves the NORD-10 meaning. 2A50 just wires pin 9 to pin 8."
+      },
+      "nameInF612": "OUTGRANT",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1798,10 +2123,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out",
@@ -1820,12 +2145,19 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 8 INGRANT (2A50 also calls its joined pins 8/9 INGRANT). Backwiring til NORD-10 has GRANT1 0 = A25:G08 to A26:09, so pin 8 drives the next position there. The sources DISAGREE on the direction; kept as the backwiring list has it. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "open",
         "confidence": "open",
         "note": "See the chain-in entry."
+      },
+      "nameInF612": "INGRANT",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1836,10 +2168,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -1866,6 +2198,13 @@
         "page": "17B gate: clear from MC",
         "confidence": "inferred",
         "note": "2A50 uses MC (pin 55) to clear the card, the same line as the ICW clear bit (read). NORD-10/S manual section 7.6.1 covers Master Clear at the panel; the bus line itself is not described there."
+      },
+      "nameInF612": "MASTER CLEAR",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1873,10 +2212,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "open",
@@ -1893,12 +2232,19 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 19 MPX ADDRESS; Backwiring til NORD-10 has RESTART on pin 19 at A25-A32. The sources DISAGREE (possibly a different rack, see source F612); both names kept, the backwiring name shown. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "open",
         "confidence": "open",
-        "note": "Not described in any NORD-10 document found."
+        "note": "Figure 7.4 has MPX ADDRESS on this pin; the backwiring list has RESTART. Which is right for which rack is OPEN."
+      },
+      "nameInF612": "MPX ADDRESS",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1906,10 +2252,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "in",
@@ -1928,12 +2274,19 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 47 DMA REQUEST (open collector); Backwiring til NORD-10 has IOTE on pin 47, driven from A22. The sources DISAGREE; both names kept, the backwiring name shown. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "open",
         "confidence": "open",
-        "note": "Not described in any NORD-10 document found."
+        "note": "Figure 7.4 has DMA REQUEST (open collector) on this pin; the backwiring list has IOTE. Which is right for which rack is OPEN."
+      },
+      "nameInF612": "DMA REQUEST",
+      "level": {
+        "value": "open collector",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1941,10 +2294,10 @@
       "group": "control",
       "active": {
         "value": "low",
-        "source": "BW",
-        "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
-        "confidence": "inferred",
-        "note": "Every bus name in the list carries the suffix 0. That suffix 0 means 'true when low' is stated for the NORD-100 bus (ND-06.016.01 Appendix F.1); no NORD-10 document found states it, but the 2A50 drawing uses the same suffix and drives these lines with open-collector gates."
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Figure 7.4: logical 1 = 0-0.4 V, logical 0 = 2.4-5 V. Before this the rule was inferred from the suffix 0 in the backwiring list."
       },
       "direction": {
         "value": "out",
@@ -1963,12 +2316,19 @@
         "source": "BW",
         "page": "connector lists of the I/O device positions A25-A32: PDF pages 28-35, printed pages 26-33",
         "confidence": "read",
-        "note": "The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
+        "note": "Figure 7.4 names pin 51 DMA DATA READY; Backwiring til NORD-10 has BSKIP on pin 51. The sources DISAGREE; both names kept, the backwiring name shown. The list gives one connector per card position, pins 0-99; it does not name the connector (no A/B/C letters found in any NORD-10 document)."
       },
       "description": {
         "value": "open",
         "confidence": "open",
-        "note": "Not described in any NORD-10 document found."
+        "note": "Figure 7.4 has DMA DATA READY on this pin; the backwiring list has BSKIP. Which is right for which rack is OPEN."
+      },
+      "nameInF612": "DMA DATA READY",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
       }
     },
     {
@@ -1982,7 +2342,7 @@
         "source": "S2A50",
         "page": "net BFQ1",
         "confidence": "read",
-        "note": "Drawn with suffix 1 on 2A50."
+        "note": "Drawn with suffix 1 on 2A50. Figure 7.4 says the bus is active low in general; 2A50 draws BFQ1 with suffix 1 (true when high). DISAGREE, kept as drawn on 2A50."
       },
       "direction": {
         "value": "in",
@@ -2008,6 +2368,53 @@
         "page": "15B test-mode multiplexer",
         "confidence": "inferred",
         "note": "Frequency open."
+      },
+      "nameInF612": "BFQ1",
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
+      }
+    },
+    {
+      "name": "BFQ2",
+      "nameInF612": "BFQ2",
+      "group": "control",
+      "active": {
+        "value": "low",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "inferred",
+        "note": "From the figure's general rule (active low); the name carries no suffix in the figure."
+      },
+      "direction": {
+        "value": "open",
+        "confidence": "open",
+        "note": "Not on 2A50; the figure does not say who drives it."
+      },
+      "level": {
+        "value": "tri-state TTL",
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read"
+      },
+      "pins": {
+        "value": [
+          {
+            "connector": "open",
+            "pin": 5
+          }
+        ],
+        "source": "F612",
+        "page": "figure 7.4 'Signal distribution I/O bus B and C rack', section 7.4",
+        "confidence": "read",
+        "note": "Empty in the backwiring list at A25-A32 (read, BW), like BFQ1 on pin 4."
+      },
+      "description": {
+        "value": "open",
+        "confidence": "open",
+        "note": "What BFQ2 carries is not described in what was read. BFQ1 on pin 4 is a test clock on 2A50."
       }
     },
     {
@@ -2040,7 +2447,7 @@
         "source": "S2A50",
         "page": "edge pins",
         "confidence": "read",
-        "note": "Not in Backwiring til NORD-10. Cable side (56-99) of the card's 0-99 connector, not a bus pin (inferred)."
+        "note": "Not in Backwiring til NORD-10. Cable side (56-95, ND-06.012.01 figure 3.1 'I/O slot/plug layout', page 3-3): 2A50's own choice of free cable pins for the +-12V it makes, not a bus or supply pin and not a conflict with the figure."
       },
       "description": {
         "value": "-12 V made on the 2A50 card by its own VP12/12 converter and put out on the cable side.",
@@ -2079,7 +2486,7 @@
         "source": "S2A50",
         "page": "edge pins",
         "confidence": "read",
-        "note": "Not in Backwiring til NORD-10. Cable side (56-99) of the card's 0-99 connector, not a bus pin (inferred)."
+        "note": "Not in Backwiring til NORD-10. Cable side (56-95, ND-06.012.01 figure 3.1 'I/O slot/plug layout', page 3-3): 2A50's own choice of free cable pins for the +-12V it makes, not a bus or supply pin and not a conflict with the figure."
       },
       "description": {
         "value": "+12 V made on the 2A50 card by its own VP12/12 converter and put out on the cable side.",
@@ -2107,6 +2514,22 @@
         "value": [
           {
             "connector": "open",
+            "pin": 2
+          },
+          {
+            "connector": "open",
+            "pin": 3
+          },
+          {
+            "connector": "open",
+            "pin": 96
+          },
+          {
+            "connector": "open",
+            "pin": 97
+          },
+          {
+            "connector": "open",
             "pin": 80
           },
           {
@@ -2126,16 +2549,16 @@
             "pin": 94
           }
         ],
-        "source": "S2A50",
+        "source": "F612, S2A50",
         "page": "edge pins",
         "confidence": "read",
-        "note": "Not in Backwiring til NORD-10. These five are on the cable side (56-99) between the modem pins 81-95: cable-side grounds (the cable's signal returns), not bus pins (inferred). Other ground pins may exist."
+        "note": "Pins 2, 3, 96, 97: ground in from the backplane (read, ND-06.012.01 figure 3.1 'I/O slot/plug layout', page 3-3). Pins 80, 82, 84, 86, 94: tied to ground on the 2A50 drawing (read), on the cable side - the card's own cable returns, its choice of free cable pins, not a conflict with the figure. Not in Backwiring til NORD-10."
       },
       "description": {
-        "value": "Ground; the five pins 2A50 shows are cable-side grounds.",
-        "source": "S2A50",
-        "page": "-",
-        "confidence": "inferred"
+        "value": "Ground: 2, 3, 96, 97 from the backplane; 80, 82, 84, 86, 94 are 2A50's cable-side grounds.",
+        "source": "F612",
+        "page": "figure 3.1 'I/O slot/plug layout', page 3-3",
+        "confidence": "read"
       }
     },
     {
@@ -2154,9 +2577,28 @@
         "confidence": "read"
       },
       "pins": {
-        "value": "open",
-        "confidence": "open",
-        "note": "No +5 V edge pin is drawn on 2A50 and none is in the backwiring list."
+        "value": [
+          {
+            "connector": "open",
+            "pin": 0
+          },
+          {
+            "connector": "open",
+            "pin": 1
+          },
+          {
+            "connector": "open",
+            "pin": 98
+          },
+          {
+            "connector": "open",
+            "pin": 99
+          }
+        ],
+        "source": "F612",
+        "page": "figure 3.1 'I/O slot/plug layout', page 3-3",
+        "confidence": "read",
+        "note": "Figure 3.1: 4 terminals for power. Not on the 2A50 drawing (no circle for +5V) and not in the backwiring list; on the 2A50 photos the fingers of these pins run into wide copper, which matches."
       },
       "description": {
         "value": "+5 V logic supply.",
