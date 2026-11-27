@@ -569,8 +569,8 @@ blocks) are made over the whole card, not per page.
 | `pages[].source` | the original page it was read from: its place in `sources`, 1 = first |
 | `pages[].sheetNumber` | the sheet number in the page's title block, as written |
 | `pages[].note` | free text |
-| `parts[].page` | the page the part is on; required on every top-level part, never on a part inside a block |
-| `blocks[].pages[]` | optional (2026-11-27): the original pages that draw a block's inside, with the same fields as `pages[]`; ids are unique within the block. A computer-drawn ND card draws each box in full on its own sheets (card 3207: FLOPPY on sheet 5, its F_ND_INT on sheets 6-9). Which of those pages each part inside the block is on is not recorded yet |
+| `parts[].page` | the page the part is on; required on every top-level part. A part inside a block may name one of that block's own `pages` (the sheet it is drawn on, 2026-11-28), never a card page |
+| `blocks[].pages[]` | optional (2026-11-27): the original pages that draw a block's inside, with the same fields as `pages[]`; ids are unique within the block. A computer-drawn ND card draws each box in full on its own sheets (card 3207: FLOPPY on sheet 5, its F_ND_INT on sheets 6-9). Each part inside the block may name the one it is on in its `page` |
 | `pageLayout` | how the redrawn drawing is cut into pages: `as-original` (the default, also when absent) or `split`; drawing only |
 
 ```json
@@ -587,7 +587,8 @@ Everything versions 1 and 2 check, plus:
 - every top-level part names a page, and that page is in the list;
 - a connector, instance, wire path or bus that names a page names one in the list;
 - a page's `source` is a place in the `sources` list;
-- no part inside a block names a page (the block's instance has the page);
+- a part inside a block names no page, or one of that block's own `pages` (never a card page:
+  the block's instance has that);
 - a block's own `pages` have unique ids within the block, and each `source` is a place in the
   `sources` list; a version 1 or 2 file has no block pages;
 - a version 1 or 2 file has no `pages`, no `pageLayout` and no `page` on a part or connector;

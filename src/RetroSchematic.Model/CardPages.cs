@@ -189,8 +189,8 @@ namespace RetroSchematic.Model
         /// The reader's page checks (docs/FORMAT.md, "Checks a version 3 reader makes"): a
         /// version 3 file has at least one page, page ids are unique, every top-level part names
         /// a page that exists, a connector, instance, wire path or bus names one that exists or
-        /// none, a page's source is a place in the sources list, and no part inside a block names
-        /// a page. A version 1 or 2 file has no page anywhere.
+        /// none, a page's source is a place in the sources list, and a part inside a block names
+        /// no page or one of that block's own pages. A version 1 or 2 file has no page anywhere.
         /// </summary>
         /// <param name="netlist">
         /// The file as read.
@@ -254,12 +254,6 @@ namespace RetroSchematic.Model
                 CheckNamed(ids, "Bus " + netlist.Layout.Buses[i].Name, netlist.Layout.Buses[i].Page);
             for (int b = 0; netlist.Blocks != null && b < netlist.Blocks.Count; b++)
             {
-                List<Part> parts = netlist.Blocks[b].Parts;
-                for (int i = 0; i < parts.Count; i++)
-                {
-                    if (parts[i].Page != null)
-                        throw new NetlistException($"Block {netlist.Blocks[b].Name}: part {parts[i].Ref} names a page; a block's inside has no pages (its instance has).");
-                }
                 // the original pages that draw the block's inside: ids unique in the block, each
                 // source a place in the card's sources list
                 List<CardPage>? blockPages = netlist.Blocks[b].Pages;
@@ -273,6 +267,20 @@ namespace RetroSchematic.Model
                         throw new NetlistException($"Block {netlist.Blocks[b].Name}: page {page.Id} is listed twice.");
                     if (page.Source != null && (page.Source < 1 || page.Source > sources))
                         throw new NetlistException($"Block {netlist.Blocks[b].Name}: page {page.Id} is read from source {page.Source}, but the card has {sources} source page(s).");
+                }
+                // a part inside a block may name one of the BLOCK's own pages (the sheet it is drawn
+                // on, such as 3207's F_ND_INT on sheets 6-9), never a card page; optional, since a
+                // block drawn on one page needs no page per part
+                List<Part> parts = netlist.Blocks[b].Parts;
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    string? on = parts[i].Page;
+                    if (on == null)
+                        continue;
+                    if (blockIds.Count == 0)
+                        throw new NetlistException($"Block {netlist.Blocks[b].Name}: part {parts[i].Ref} names page {on}, but the block lists no pages of its own.");
+                    if (!blockIds.Contains(on))
+                        throw new NetlistException($"Block {netlist.Blocks[b].Name}: part {parts[i].Ref} is on page {on}, which is not one of the block's pages.");
                 }
             }
         }
@@ -315,7 +323,8 @@ namespace RetroSchematic.Model
 
         /// <summary>
         /// Puts every top-level part that names no page on a page (the given one, or the first),
-        /// and takes the page off every part inside a block (a block's inside has no pages).
+        /// and takes the page off every part inside a block unless it is one of that block's own
+        /// pages (blocks[].pages).
         /// Called after every edit, so a part placed, a block dissolved or a part moved into a
         /// block always ends up as the format wants it. Does nothing for a card without pages.
         /// </summary>
@@ -334,9 +343,21 @@ namespace RetroSchematic.Model
                 netlist.Parts[i].Page ??= target;
             for (int b = 0; netlist.Blocks != null && b < netlist.Blocks.Count; b++)
             {
+                // keep a page that is one of the block's own (the sheet the part is drawn on);
+                // a card page left on a part moved into the block is taken off
+                List<CardPage>? own = netlist.Blocks[b].Pages;
                 List<Part> parts = netlist.Blocks[b].Parts;
                 for (int i = 0; i < parts.Count; i++)
-                    parts[i].Page = null;
+                {
+                    string? on = parts[i].Page;
+                    if (on == null)
+                        continue;
+                    bool keep = false;
+                    for (int k = 0; own != null && k < own.Count && !keep; k++)
+                        keep = string.Equals(own[k].Id, on, StringComparison.Ordinal);
+                    if (!keep)
+                        parts[i].Page = null;
+                }
             }
         }
 

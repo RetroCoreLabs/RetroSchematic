@@ -215,7 +215,7 @@ namespace RetroSchematic.Tests
             SheetEditor e = TwoPages();
             e.MakeBlock("decoder", null, new List<string>(Decoder), null);
             Assert.That(() => NetlistReader.Parse(NetlistReader.Write(e.Root)), Throws.Nothing);
-            Assert.That(e.Root.Blocks![0].Parts[0].Page, Is.Null, "a block's inside has no pages");
+            Assert.That(e.Root.Blocks![0].Parts[0].Page, Is.Null, "a card page is taken off a part moved into a block");
             e.DissolveInstance("U1");
             Assert.That(e.FindPart("13E")!.Page, Is.Not.Null, "back on a page");
         }

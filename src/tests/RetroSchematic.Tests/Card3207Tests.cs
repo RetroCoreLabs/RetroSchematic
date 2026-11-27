@@ -106,6 +106,34 @@ namespace RetroSchematic.Tests
             Assert.That(() => NetlistReader.Parse(NetlistReader.Write(n)), Throws.TypeOf<NetlistException>().With.Message.Contains("Block FLOPPY"));
         }
 
+        // a part inside FLOPPY drawn on one of FLOPPY's own sheets
+        private static Netlist WithFloppyPart(string page)
+        {
+            Netlist n = NetlistReader.ReadFile(Sheet3207);
+            BlockDefinition fl = Block(n, "FLOPPY");
+            fl.Pages!.Add(new CardPage { Id = "6", Source = 6 });
+            fl.Parts.Add(new Part { Ref = "T1", Type = "7400", Page = page });
+            return n;
+        }
+
+        [Test]
+        public void APartInsideABlock_NamesTheBlocksOwnSheet()
+        {
+            Netlist back = NetlistReader.Parse(NetlistReader.Write(WithFloppyPart("6")));
+            Assert.That(Block(back, "FLOPPY").Parts[0].Page, Is.EqualTo("6"));
+            // the editor's tidy-up after each edit keeps it
+            CardPages.Normalize(back, null);
+            Assert.That(Block(back, "FLOPPY").Parts[0].Page, Is.EqualTo("6"));
+        }
+
+        [Test]
+        public void APartInsideABlock_OnACardPage_IsRefused()
+        {
+            // page 1 is a card page, not one of FLOPPY's
+            Assert.That(() => NetlistReader.Parse(NetlistReader.Write(WithFloppyPart("1"))),
+                Throws.TypeOf<NetlistException>().With.Message.Contains("not one of the block's pages"));
+        }
+
         [Test]
         public void ABlockPageListedTwice_IsRefused()
         {

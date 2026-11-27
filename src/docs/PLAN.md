@@ -269,9 +269,6 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
   the floppy signals mean, and which SCSI pins carry what in single-ended vs differential mode
   (sheet 18, part 18A), is read with the logic sheets. Other cards with the same plug A or B
   wiring are added to the file's `usedBy` list when their drawings prove it.
-- A part inside a block cannot say which of the block's own pages it is on (`blocks[].pages`
-  lists them, but a part inside a block has no `page`). Needed before the 3207 logic sheets are
-  read: F_ND_INT spans sheets 6-9, S_ND_INT sheets 20-24.
 - ND-100 plugs A and B: ND-06.016.01 I.2.3 says 64 lines each, but card 3207 uses all three
   rows of both (plug B: 75 positions). The drawing wins for the card; the general rule stays
   open until a copy of ND-06.017.01 "ND-100 Backplane/Bus Description" (1979) is found. It is
