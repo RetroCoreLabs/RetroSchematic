@@ -14,14 +14,103 @@ namespace RetroSchematic.Model
     /// <list type="bullet">
     ///   <item><description><c>P.32</c> - backplane pin 32, which connector it is on is not known yet;</description></item>
     ///   <item><description><c>P.A.32</c> - backplane connector A, pin 32;</description></item>
-    ///   <item><description><c>F.81</c> and <c>F.A.81</c> - the same for a front connector.</description></item>
+    ///   <item><description><c>F.81</c> and <c>F.A.81</c> - the same for a front connector;</description></item>
+    ///   <item><description><c>P.C.a17</c> - plug C, row a, pin 17, for a plug with rows (the ND-100 DIN 41612
+    ///   plugs A, B and C have rows a, b, c of 32 pins). ND's computer-drawn sheets print this pin as
+    ///   <c>C A17</c> (card 3207, sheet 2).</description></item>
     /// </list>
+    /// <para>
+    /// The row letter is written in front of the pin number, not as its own dot-separated part, so
+    /// the rule "connector before the last dot, pin after it" still holds for every reference.
+    /// </para>
+    /// <para>
+    /// Inside the program a pin is one whole number, its <em>key</em>: a pin with no row is its
+    /// number; a row pin is (row index x <see cref="RowBase"/>) + number, with row a = 1, so
+    /// a17 = 1017 and c3 = 3003. Pins of different rows therefore never share a key, and code
+    /// that sorts or indexes connector pins by number keeps working. The key is never written to a
+    /// file: files always hold the text form (<c>a17</c>), and <see cref="Show"/> prints it.
+    /// </para>
     /// The part of the reference before the last dot (<c>P</c>, <c>P.A</c>) is the connector, so
     /// every place that splits a pin at its last dot keeps working; old files with only
     /// <c>P.n</c> and <c>F.n</c> read unchanged and mean "connector not known yet".
     /// </summary>
     public static class ConnectorPins
     {
+        /// <summary>
+        /// The step between rows in a pin key (see the class notes). Larger than any pin count
+        /// in one row, so a row pin never takes the key of a plain pin number below 1000.
+        /// </summary>
+        public const int RowBase = 1000;
+
+        /// <summary>
+        /// Reads the pin part of a reference (after the last dot): a plain number ("32") or a row
+        /// letter a-z followed by a number of 1-999 ("a17").
+        /// </summary>
+        /// <param name="text">
+        /// The text after the last dot.
+        /// </param>
+        /// <param name="key">
+        /// The pin key: the number, or row index x <see cref="RowBase"/> + number.
+        /// </param>
+        /// <returns>
+        /// False when the text is neither form.
+        /// </returns>
+        public static bool TryParsePin(ReadOnlySpan<char> text, out int key)
+        {
+            key = 0;
+            if (text.Length == 0)
+                return false;
+            int row = 0;
+            if (text[0] >= 'a' && text[0] <= 'z')
+            {
+                row = text[0] - 'a' + 1;
+                text = text.Slice(1);
+            }
+            if (!int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out int n))
+                return false;
+            if (row > 0)
+            {
+                if (n < 1 || n >= RowBase)
+                    return false;
+                key = row * RowBase + n;
+                return true;
+            }
+            key = n;
+            return true;
+        }
+
+        /// <summary>
+        /// The row letter of a pin key, or null for a pin with no row.
+        /// </summary>
+        /// <param name="key">
+        /// The pin key.
+        /// </param>
+        /// <returns>
+        /// a, b, c ... or null.
+        /// </returns>
+        public static string? RowOf(int key) => key >= RowBase ? ((char)('a' + key / RowBase - 1)).ToString() : null;
+
+        /// <summary>
+        /// The pin number within its row (the whole key for a pin with no row).
+        /// </summary>
+        /// <param name="key">
+        /// The pin key.
+        /// </param>
+        /// <returns>
+        /// The number.
+        /// </returns>
+        public static int NumberOf(int key) => key >= RowBase ? key % RowBase : key;
+
+        /// <summary>
+        /// The pin key as it is written in a pin reference: "32" or "a17".
+        /// </summary>
+        /// <param name="key">
+        /// The pin key.
+        /// </param>
+        /// <returns>
+        /// The text.
+        /// </returns>
+        public static string PinText(int key) => (RowOf(key) ?? "") + NumberOf(key).ToString(System.Globalization.CultureInfo.InvariantCulture);
         /// <summary>
         /// True when the part of a pin reference before its last dot is a connector: P, F, or
         /// P.x / F.x with a connector letter.
@@ -82,7 +171,8 @@ namespace RetroSchematic.Model
         /// </param>
         public static string Show(string partRef, int pin, MachineBus? bus = null)
         {
-            string n = pin.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            // pin is a key: a row pin prints as "a17" (see the class notes)
+            string n = PinText(pin);
             string? letter = Letter(partRef);
             if (letter == null && bus == MachineBus.Nord10)
                 return n;

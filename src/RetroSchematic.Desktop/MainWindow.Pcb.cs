@@ -398,6 +398,8 @@ namespace RetroSchematic.Desktop
                     int dot = at.LastIndexOf('.');
                     if (dot <= 0 || at[0] != 'P' || !ConnectorPins.IsConnector(at.Substring(0, dot)))
                         continue;
+                    // plain numbers only: the finger model is a one-row card edge (NORD-10, 0-99),
+                    // so a row pin of an ND-100 plug (P.C.a17) is not a finger and is skipped
                     if (int.TryParse(at.AsSpan(dot + 1), System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out int pin))
                         names[pin] = (_session!.NameOf(n.Nets[i]), "net:" + SheetLayout.NetKey(n.Nets[i]));
                 }

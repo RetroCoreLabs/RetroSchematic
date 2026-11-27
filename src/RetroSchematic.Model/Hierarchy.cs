@@ -246,7 +246,7 @@ namespace RetroSchematic.Model
                     ids.Add(new Net
                     {
                         Name = prefix + n.Name, Active = n.Active, Drive = n.Drive, DriveConfidence = n.DriveConfidence,
-                        PullUp = n.PullUp, Note = n.Note,
+                        PullUp = n.PullUp, Note = n.Note, Printed = n.Printed,
                     });
                 }
                 id[n] = k;

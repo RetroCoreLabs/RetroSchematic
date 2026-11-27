@@ -63,6 +63,79 @@ namespace RetroSchematic.Tests
             Assert.That(ConnectorPins.Show("F", 7, MachineBus.Nord10), Is.EqualTo("7"));
         }
 
+        [TestCase("32", 32)]
+        [TestCase("0", 0)]
+        [TestCase("a17", 1017)]
+        [TestCase("c3", 3003)]
+        [TestCase("b32", 2032)]
+        public void APinWithOrWithoutARow_HasOneKey(string text, int key)
+        {
+            Assert.That(ConnectorPins.TryParsePin(text, out int k), Is.True);
+            Assert.That(k, Is.EqualTo(key));
+            Assert.That(ConnectorPins.PinText(k), Is.EqualTo(text));
+        }
+
+        [TestCase("")]
+        [TestCase("a")]
+        [TestCase("a0")]
+        [TestCase("A17")]
+        [TestCase("ab3")]
+        [TestCase("17a")]
+        public void ABadPin_IsRefused(string text)
+        {
+            Assert.That(ConnectorPins.TryParsePin(text, out _), Is.False);
+        }
+
+        [Test]
+        public void ARowPin_ShowsItsRow()
+        {
+            Assert.That(ConnectorPins.Show("P.C", 3003, MachineBus.Nd100), Is.EqualTo("C.c3"));
+            Assert.That(ConnectorPins.Show("P", 1017, MachineBus.Nd100), Is.EqualTo("?.a17"));
+        }
+
+        /// <summary>
+        /// Card 3207 sheet 2 prints these plug C pins (C C3 BD~00, C A3 BD~01, C B21 BERROR~,
+        /// C C15 BINT11~, C A23 INGRANT~). The bus catalogue comes from ND-06.016.01 appendix F-2,
+        /// a separate source, so the two must agree.
+        /// </summary>
+        [TestCase("P.C.c3", "BD0")]
+        [TestCase("P.C.a3", "BD1")]
+        [TestCase("P.C.b21", "BERROR")]
+        [TestCase("P.C.c15", "BINT11")]
+        [TestCase("P.C.a23", "INGRANT")]
+        public void ARowPinOfPlugC_FindsItsNd100BusSignal(string at, string signal)
+        {
+            PinReference p = new() { At = at };
+            BusCatalog bus = BusCatalog.Load(Catalog, MachineBus.Nd100);
+            Assert.That(bus.ByPin(ConnectorPins.Letter(p.PartRef), p.Pin)?.Name, Is.EqualTo(signal));
+        }
+
+        [Test]
+        public void TheSameNumberInTwoRows_IsTwoPins_AndBothAreDrawn()
+        {
+            Netlist n = SheetEditor.NewSheet("X", "x", MachineBus.Nd100);
+            n.Nets.Add(new Net { Name = "BD00", Active = ActiveLevel.Low, Printed = "BD~00", Pins = { new PinReference { At = "P.C.c3" } } });
+            n.Nets.Add(new Net { Name = "BD01", Active = ActiveLevel.Low, Printed = "BD~01", Pins = { new PinReference { At = "P.C.a3" } } });
+            n = NetlistReader.Parse(NetlistReader.Write(n));
+            Assert.That(n.Nets[0].Printed, Is.EqualTo("BD~00"));
+            Assert.That(n.Nets[0].Pins[0].PartRef, Is.EqualTo("P.C"));
+            Assert.That(n.Nets[0].Pins[0].Pin, Is.Not.EqualTo(n.Nets[1].Pins[0].Pin));
+            SchematicDrawing d = SheetLayout.Build(n, SymbolStyle.NorskData, new LayoutOptions { Catalog = new ChipCatalog(Catalog) });
+            Assert.That(d.Pins.ContainsKey("P.C.c3") && d.Pins.ContainsKey("P.C.a3"), Is.True);
+            List<string> texts = Texts(d);
+            Assert.That(texts, Does.Contain("C.c3"));
+            Assert.That(texts, Does.Contain("C.a3"));
+        }
+
+        [Test]
+        public void ARowLetter_OnAChipPin_IsRefused()
+        {
+            Netlist n = SheetEditor.NewSheet("X", "x", MachineBus.Nd100);
+            n.Parts.Add(new Part { Ref = "1A", Type = "7400" });
+            n.Nets.Add(new Net { Name = "X", Active = ActiveLevel.High, Pins = { new PinReference { At = "1A.a1" }, new PinReference { At = "P.C.a1" } } });
+            Assert.That(() => NetlistReader.Parse(NetlistReader.Write(n)), Throws.TypeOf<NetlistException>().With.Message.Contains("row letter"));
+        }
+
         [Test]
         public void ALetteredPin_AndPinZero_Load_AndAreDrawnInTheirOwnBox()
         {

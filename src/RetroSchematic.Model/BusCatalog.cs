@@ -285,7 +285,8 @@ namespace RetroSchematic.Model
         /// The connector letter, or null when it is not known.
         /// </param>
         /// <param name="pin">
-        /// The pin number.
+        /// The pin key (see <see cref="ConnectorPins"/>): a plain number, or a row pin such as
+        /// a17 given as 1017. A row pin matches only a catalogue place with the same row.
         /// </param>
         /// <returns>
         /// The signal, or null.
@@ -293,6 +294,22 @@ namespace RetroSchematic.Model
         public BusSignal? ByPin(string? connector, int pin)
         {
             string want = connector ?? "open";
+            string? row = ConnectorPins.RowOf(pin);
+            if (row != null)
+            {
+                int number = ConnectorPins.NumberOf(pin);
+                for (int i = 0; i < Signals.Count; i++)
+                {
+                    List<BusPin> rowPins = Signals[i].Pins;
+                    for (int j = 0; j < rowPins.Count; j++)
+                    {
+                        if (rowPins[j].Pin == number && string.Equals(rowPins[j].Row, row, StringComparison.OrdinalIgnoreCase)
+                            && string.Equals(rowPins[j].Connector, want, StringComparison.OrdinalIgnoreCase))
+                            return Signals[i];
+                    }
+                }
+                return null;
+            }
             for (int i = 0; i < Signals.Count; i++)
             {
                 List<BusPin> pins = Signals[i].Pins;

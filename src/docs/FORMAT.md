@@ -333,10 +333,23 @@ entry (`P.A`, `P.B`, `P.C`): C is the ND-100 bus (`nd100-c-connector`), A and B 
 specific (the ND-120 CPU's are `nd120-cpu-a-plug` and `nd120-cpu-b-plug`), and either may be
 `"used": false`.
 
-A pin reference cannot name a row yet: `P.C.17` names plug C pin 17 but not whether it is row
-a, b or c. The planned form is `P.C.a.17` (row before the pin number); it changes the rule that
-a pin reference splits at its last dot into connector and pin, so it is left for its own step
-(`docs/PLAN.md`, section 8).
+A pin on a plug with rows is written with the row letter (lower case) in front of the pin
+number: `P.C.a17` = plug C, row a, pin 17. The drawing shows it as `C.a17`; ND's computer-drawn
+sheets print the same pin as `C A17` (card 3207, sheet 2). Because the row sits inside the last
+part, a pin reference still splits at its last dot into connector (`P.C`) and pin (`a17`). A row
+letter is allowed only on a connector pin; a chip pin is always a plain number. Bus signals are
+looked up by connector, row and pin in the bus catalogue (2026-11-27).
+
+Plug C is the same in every ND-100 slot and is described once (`nd100-c-connector`, bus
+signals in `nd-bus-nd100`). Plugs A and B are wired per slot and differ from card to card: each
+card layout gets its own catalogue file for each (`nd120-cpu-a-plug`, `nd120-cpu-b-plug`, and
+for card 3207 the files made when its sheet 1 is read). Cards that share a layout, such as
+editions of one controller, point to the same file.
+
+**`nets[].printed`** (optional, 2026-11-27): the label exactly as printed on the drawing when
+it is written differently from `name` plus `active`. Card 3207 prints `BD~00` (tilde = active
+low): stored as `"name": "BD00", "active": "low", "printed": "BD~00"`. How the name is shown
+on screen is still chosen by `display.nameStyle`.
 
 **`sources[]`** - the original schematic pages, one or many:
 

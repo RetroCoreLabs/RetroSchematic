@@ -213,6 +213,10 @@
               "none"
             ]
           },
+          "printed": {
+            "type": "string",
+            "description": "The label exactly as printed on the drawing, when it differs from name plus active (card 3207 prints BD~00)"
+          },
           "pins": {
             "type": "array",
             "items": {
@@ -225,7 +229,7 @@
               "properties": {
                 "at": {
                   "type": "string",
-                  "pattern": "^.+\\.[0-9]+$"
+                  "pattern": "^.+\\.[a-z]?[0-9]+$"
                 },
                 "confidence": {
                   "$ref": "#/$defs/confidence"

@@ -81,7 +81,9 @@ namespace RetroSchematic.Render
                     used[reference] = pins;
                     refs.Add(reference);
                 }
-                pins.Add(int.Parse(kv.Key.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture));
+                // the pin key: a row pin (a17) sorts by row, then number (see ConnectorPins)
+                if (ConnectorPins.TryParsePin(kv.Key.AsSpan(dot + 1), out int key))
+                    pins.Add(key);
             }
             refs.Sort(ConnectorPins.Compare);
 
@@ -96,11 +98,11 @@ namespace RetroSchematic.Render
                 double numberWidth = 0, nameWidth = 0, otherWidth = 0;
                 for (int i = 0; i < pins.Count; i++)
                 {
-                    string at = reference + "." + pins[i].ToString(CultureInfo.InvariantCulture);
+                    string at = reference + "." + ConnectorPins.PinText(pins[i]);
                     Net net = netByPin[at];
                     ConnectorRow row = new()
                     {
-                        Number = ConnectorPins.Letter(reference) == null ? pins[i].ToString(CultureInfo.InvariantCulture) : ConnectorPins.Show(reference, pins[i], netlist.Sheet.Bus),
+                        Number = ConnectorPins.Letter(reference) == null ? ConnectorPins.PinText(pins[i]) : ConnectorPins.Show(reference, pins[i], netlist.Sheet.Bus),
                         Net = net,
                         Other = CatalogueName(reference, pins[i], net, type, options),
                     };
@@ -302,7 +304,7 @@ namespace RetroSchematic.Render
         {
             for (int i = 0; i < plan.Rows.Count; i++)
             {
-                string at = plan.Ref + "." + plan.Numbers[i].ToString(CultureInfo.InvariantCulture);
+                string at = plan.Ref + "." + ConnectorPins.PinText(plan.Numbers[i]);
                 plan.Pins.Add(new PinPlan
                 {
                     At = at,

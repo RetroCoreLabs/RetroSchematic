@@ -265,11 +265,10 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
 - The NORD-10 card connector's letter is not known (no NORD-10 document names it), so 2A50's
   pins stay `P.n` and its box says "connector not known". The same holds for the modem pins
   81-95 (`F.n`).
-- ND-100 plug rows (a, b, c) have no place in a pin reference yet: `P.C.12` names plug C pin 12
-  but not the row, so ND-100 backplane names are not looked up by pin (by name they are). The
-  planned form is `P.C.a.17`. It breaks the rule "a pin reference splits at its last dot into
-  connector and pin" (`ConnectorPins`, the reader's checks, the layout), so it is its own step.
-  The sheet's `connectors` entries already record a plug's rows and pins per row.
+- Card 3207 (SCSI/floppy): catalogue files for its plugs A (floppy bus per `pcb.json`) and B
+  (SCSI bus), read from sheet 1 of ND-350007-A1, with a list of the cards that share each layout.
+- The board edge view (finger positions) knows only the one-row NORD-10 card edge; ND-100 row
+  pins (`P.C.a17`) are skipped there.
 - A connector box can be placed by hand anywhere and its pins put on its left or right side,
   but not on its top or bottom edge (a box above or below the chips still has its pins on a
   side).

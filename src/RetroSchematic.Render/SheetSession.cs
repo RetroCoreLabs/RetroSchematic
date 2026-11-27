@@ -940,7 +940,7 @@ namespace RetroSchematic.Render
                 return "";
             StringBuilder sb = new();
             sb.Append("Pin ").Append(at);
-            if (part == null && int.TryParse(at.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int cpin))
+            if (part == null && ConnectorPins.TryParsePin(at.AsSpan(dot + 1), out int cpin))
             {
                 // a connector pin: which connector, and what the bus catalogue says of the pin
                 sb.Append(": ").Append(ConnectorPins.Name(reference, Bus)).Append(", pin ").Append(ConnectorPins.Show(reference, cpin, Bus)).Append('\n');

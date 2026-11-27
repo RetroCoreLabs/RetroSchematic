@@ -841,12 +841,15 @@ namespace RetroSchematic.Render
         private void CheckPin(string pin)
         {
             int dot = pin.LastIndexOf('.');
-            if (dot <= 0 || !int.TryParse(pin.AsSpan(dot + 1), NumberStyles.None, CultureInfo.InvariantCulture, out int number))
+            if (dot <= 0 || !ConnectorPins.TryParsePin(pin.AsSpan(dot + 1), out int number))
                 throw new SheetEditException($"\"{pin}\" is not a pin: write the part, a dot and the pin number (11D.3).");
             string reference = pin.Substring(0, dot);
-            // a connector pin may be 0 (NORD-10 backplane pins run 0-99); a chip pin starts at 1
+            // a connector pin may be 0 (NORD-10 backplane pins run 0-99) or have a row (P.C.a17);
+            // a chip pin starts at 1 and has no row letter
             if (ConnectorPins.IsConnector(reference))
                 return;
+            if (number >= ConnectorPins.RowBase)
+                throw new SheetEditException($"\"{pin}\": only a connector pin has a row letter; a chip pin is a plain number (11D.3).");
             if (number < 1)
                 throw new SheetEditException($"\"{pin}\" is not a pin: write the part, a dot and the pin number (11D.3).");
             Part part = FindPart(reference) ?? throw new SheetEditException($"Pin {pin}: there is no part {reference} on the sheet.");

@@ -418,11 +418,14 @@ namespace RetroSchematic.Model
                 for (int j = 0; j < net.Pins.Count; j++)
                 {
                     PinReference pin = net.Pins[j];
-                    // P.A.32: the connector is P.A, the pin 32 (see ConnectorPins)
+                    // P.A.32: the connector is P.A, the pin 32; P.C.a17: plug C row a pin 17 (see ConnectorPins)
                     int dot = pin.At.LastIndexOf('.');
-                    if (dot <= 0 || dot == pin.At.Length - 1 || !int.TryParse(pin.At.AsSpan(dot + 1), out _))
+                    if (dot <= 0 || dot == pin.At.Length - 1 || !ConnectorPins.TryParsePin(pin.At.AsSpan(dot + 1), out int key))
                         throw new NetlistException($"Net {net.Name}: pin \"{pin.At}\" is not <part>.<pin number>.");
                     string partRef = pin.PartRef;
+                    // a row letter belongs only to a connector plug; a chip pin is a plain number
+                    if (key >= ConnectorPins.RowBase && !ConnectorPins.IsConnector(partRef))
+                        throw new NetlistException($"Net {net.Name}: pin \"{pin.At}\" has a row letter, but {partRef} is not a connector.");
                     if (!ConnectorPins.IsConnector(partRef) && !parts.Contains(partRef))
                         throw new NetlistException($"Net {net.Name}: pin {pin.At} names part {partRef}, which is not in the parts list.");
                     if (passivePins.TryGetValue(partRef, out int count) && (pin.Pin < 1 || pin.Pin > count))

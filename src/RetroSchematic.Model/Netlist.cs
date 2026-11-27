@@ -812,6 +812,16 @@ namespace RetroSchematic.Model
         public ActiveLevel Active { get; set; }
 
         /// <summary>
+        /// The label exactly as printed on the drawing, when it is written differently from
+        /// <see cref="Name"/> plus <see cref="Active"/>. ND's computer-drawn sheets mark active
+        /// low with a tilde inside the name: card 3207 prints <c>BD~00</c>, stored as name BD00,
+        /// active low, printed "BD~00". Kept so a search for the printed spelling finds the net
+        /// and a reviewer can compare the file with the page word for word (owner ruling
+        /// 2026-11-27). Null when the drawing writes the name the usual way.
+        /// </summary>
+        public string? Printed { get; set; }
+
+        /// <summary>
         /// What drives the line, or null when not read yet.
         /// </summary>
         public LineDrive? Drive { get; set; }
@@ -951,11 +961,14 @@ namespace RetroSchematic.Model
         public string PartRef => At.Substring(0, At.LastIndexOf('.'));
 
         /// <summary>
-        /// The pin number: everything after the last dot. Worked out from <see cref="At"/>, so it
-        /// is not written to the file.
+        /// The pin number: everything after the last dot. A connector pin with a row (P.C.a17)
+        /// gives its pin key, row index x 1000 + number (see <see cref="ConnectorPins"/>).
+        /// Worked out from <see cref="At"/>, so it is not written to the file.
         /// </summary>
         [System.Text.Json.Serialization.JsonIgnore]
-        public int Pin => int.Parse(At.Substring(At.LastIndexOf('.') + 1), System.Globalization.CultureInfo.InvariantCulture);
+        public int Pin => ConnectorPins.TryParsePin(System.MemoryExtensions.AsSpan(At, At.LastIndexOf('.') + 1), out int key)
+            ? key
+            : throw new System.FormatException($"\"{At}\" is not <part>.<pin number>.");
     }
 
     /// <summary>
