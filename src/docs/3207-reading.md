@@ -60,7 +60,10 @@ Choices made in it:
   seen, the circle appears exactly where the plug port is six-sided. What the circle means is
   not proved. LADR1, LADR2, SOTGRANT~ and SOTIDENT~ run between SCSI and FLOPPY with nothing to
   trace them to: direction `open`.
-- No `sources` yet: see the copyright question in `PLAN.md`.
+- All 24 sheets are stored as `sources` (300 dpi, grey,
+  `sheets/nd-100/3207-scsi-floppy-files/sources/`), each with the PDF page it came from. The
+  scan's line "Scanned by Jonny Oddene for Sintran Data © 2024" is on every page. The owner
+  agreed to storing them here (2026-11-28). Card pages and block pages point at their source.
 
 ## Plugs
 

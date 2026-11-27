@@ -9,7 +9,7 @@
     "company": "Norsk Data A.S.",
     "drawn": "1990-07-09",
     "source": {
-      "document": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf (24 sheets; kept outside this repository)"
+      "document": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf (24 sheets; the PDF is kept outside this repository, its pages are stored as sources)"
     },
     "note": "Top level and the first block level read from sheets 1-4 on 2026-11-27 (docs/3207-reading.md). No chips yet. Each net keeps its label as printed in 'printed'. A name without a tilde is taken as active high: inferred from the drawing's naming, where plug B carries pairs like ODB0 / ODB~0 and the tilde marks the complement."
   },
@@ -4296,7 +4296,8 @@
           "id": "4",
           "title": "BLOCKLEV",
           "sheetNumber": "4 of 24",
-          "note": "margin path BLOCKLEV 1.DRAW"
+          "note": "margin path BLOCKLEV 1.DRAW",
+          "source": 4
         }
       ],
       "note": "The whole card as one box (sheet 1). Its inside is sheet 4: boxes SCSI and FLOPPY."
@@ -5221,7 +5222,8 @@
         {
           "id": "15",
           "sheetNumber": "15 of 24",
-          "note": "margin path BLOCKLEV/SCSI 1.DRAW"
+          "note": "margin path BLOCKLEV/SCSI 1.DRAW",
+          "source": 15
         }
       ],
       "note": "Box SCSI on sheet 4. Its inside (sheet 15, with DIFF_SCSI, SING_DIFF_SW, S_INTERF and S_ND_INT on sheets 16-24) is not read yet."
@@ -6211,7 +6213,8 @@
           "id": "5",
           "title": "FLOPPY",
           "sheetNumber": "5 of 24",
-          "note": "margin path BLOCKLEV/FLOPPY 1.DRAW"
+          "note": "margin path BLOCKLEV/FLOPPY 1.DRAW",
+          "source": 5
         }
       ],
       "note": "Box FLOPPY on sheet 4. Its inside (sheet 5, with Z80_COMP, LO_FLOPPY and F_ND_INT on sheets 6-14) is not read yet."
@@ -6811,17 +6814,262 @@
     {
       "id": "1",
       "title": "EXTERNAL CONNECTIONS",
-      "sheetNumber": "1 of 24"
+      "sheetNumber": "1 of 24",
+      "source": 1
     },
     {
       "id": "2",
       "title": "ND100 BUS CONNECTORS, POWER & GND CONNECTORS",
-      "sheetNumber": "2 of 24"
+      "sheetNumber": "2 of 24",
+      "source": 2
     },
     {
       "id": "3",
       "sheetNumber": "3 of 24",
-      "note": "plug B; the scan cuts off this sheet's margin"
+      "note": "plug B; the scan cuts off this sheet's margin",
+      "source": 3
+    }
+  ],
+  "sources": [
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-01.png",
+      "title": "3207 sheet 1 of 24",
+      "note": "Margin path 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 1,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-02.png",
+      "title": "3207 sheet 2 of 24",
+      "note": "Margin path 2. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 2,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-03.png",
+      "title": "3207 sheet 3 of 24",
+      "note": "Margin path (margin cut off in the scan). Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 3,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-04.png",
+      "title": "3207 sheet 4 of 24",
+      "note": "Margin path BLOCKLEV 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 4,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-05.png",
+      "title": "3207 sheet 5 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 5,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-06.png",
+      "title": "3207 sheet 6 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/F_ND_INT 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 6,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-07.png",
+      "title": "3207 sheet 7 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/F_ND_INT 2. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 7,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-08.png",
+      "title": "3207 sheet 8 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/F_ND_INT 3. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 8,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-09.png",
+      "title": "3207 sheet 9 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/F_ND_INT 4. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 9,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-10.png",
+      "title": "3207 sheet 10 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/LO_FLOPPY 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 10,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-11.png",
+      "title": "3207 sheet 11 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/LO_FLOPPY 2. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 11,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-12.png",
+      "title": "3207 sheet 12 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/Z80_COMP 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 12,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-13.png",
+      "title": "3207 sheet 13 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/Z80_COMP 2. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 13,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-14.png",
+      "title": "3207 sheet 14 of 24",
+      "note": "Margin path BLOCKLEV/FLOPPY/Z80_COMP 3. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 14,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-15.png",
+      "title": "3207 sheet 15 of 24",
+      "note": "Margin path BLOCKLEV/SCSI 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 15,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-16.png",
+      "title": "3207 sheet 16 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/DIFF_SCSI 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 16,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-17.png",
+      "title": "3207 sheet 17 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/DIFF_SCSI 2. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 17,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-18.png",
+      "title": "3207 sheet 18 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/SING_DIFF_SW 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 18,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-19.png",
+      "title": "3207 sheet 19 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/S_INTERF 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 19,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-20.png",
+      "title": "3207 sheet 20 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/S_ND_INT 1. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 20,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-21.png",
+      "title": "3207 sheet 21 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/S_ND_INT 2. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 21,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-22.png",
+      "title": "3207 sheet 22 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/S_ND_INT 3. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 22,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-23.png",
+      "title": "3207 sheet 23 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/S_ND_INT 4. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 23,
+        "dpi": 300
+      }
+    },
+    {
+      "file": "3207-scsi-floppy-files/sources/3207-p-24.png",
+      "title": "3207 sheet 24 of 24",
+      "note": "Margin path BLOCKLEV/SCSI/S_ND_INT 5. Scan by Jonny Oddene for Sintran Data (2024); stored here with the owner's agreement (2026-11-28).",
+      "original": {
+        "file": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf",
+        "pdfPage": 24,
+        "dpi": 300
+      }
     }
   ]
 }

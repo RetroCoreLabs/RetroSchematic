@@ -334,6 +334,8 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md). Security problems go through
 ## Licence
 
 The code is MIT licensed - see [LICENSE](LICENSE). The scanned drawings and manuals under
-`src/docs/sources/` are Norsk Data documents, the chip datasheets under `src/datasheets/` belong
+`src/docs/sources/` and the scanned pages stored with each sheet (`src/sheets/*/*-files/sources/`)
+are Norsk Data documents (card 3207's pages were scanned by Jonny Oddene for Sintran Data, 2024),
+the chip datasheets under `src/datasheets/` belong
 to their makers (Texas Instruments, National Semiconductor, SMC and others), and the PCB photos
 under `src/sheets/` belong to their owner. None of them are covered by that licence.

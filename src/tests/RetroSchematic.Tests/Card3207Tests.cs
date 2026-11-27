@@ -99,10 +99,11 @@ namespace RetroSchematic.Tests
         [Test]
         public void ABlockPage_FromASourceTheCardDoesNotHave_IsRefused()
         {
-            string json = NetlistReader.Write(NetlistReader.ReadFile(Sheet3207));
-            // the card lists no source pages yet, so any source number is out of range
-            string bad = json.Replace("\"id\": \"5\",", "\"id\": \"5\", \"source\": 1,");
-            Assert.That(() => NetlistReader.Parse(bad), Throws.TypeOf<NetlistException>().With.Message.Contains("Block FLOPPY"));
+            Netlist n = NetlistReader.ReadFile(Sheet3207);
+            // the card has 24 source pages; page 99 is not one of them
+            Assert.That(n.Sources!.Count, Is.EqualTo(24));
+            Block(n, "FLOPPY").Pages![0].Source = 99;
+            Assert.That(() => NetlistReader.Parse(NetlistReader.Write(n)), Throws.TypeOf<NetlistException>().With.Message.Contains("Block FLOPPY"));
         }
 
         [Test]

@@ -272,9 +272,6 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
 - A part inside a block cannot say which of the block's own pages it is on (`blocks[].pages`
   lists them, but a part inside a block has no `page`). Needed before the 3207 logic sheets are
   read: F_ND_INT spans sheets 6-9, S_ND_INT sheets 20-24.
-- Card 3207's sheet file lists no `sources` yet: the scan carries a 2024 copyright line
-  ("Scanned by Jonny Oddene for Sintran Data"), and this repository is public. Whether the page
-  images may be stored here is the owner's decision.
 - ND-100 plugs A and B: ND-06.016.01 I.2.3 says 64 lines each, but card 3207 uses all three
   rows of both (plug B: 75 positions). The drawing wins for the card; the general rule stays
   open until a copy of ND-06.017.01 "ND-100 Backplane/Bus Description" (1979) is found. It is
