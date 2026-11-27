@@ -1,0 +1,640 @@
+{
+  "catalogFormat": "nd-connector",
+  "catalogFormatVersion": 1,
+  "id": "nd100-3207-a-plug",
+  "machine": "ND-100 (card 3207 SCSI/floppy controller)",
+  "title": "Card 3207 SCSI/floppy controller, plug A: floppy drive lines",
+  "usedBy": [
+    {
+      "card": "3207",
+      "partNumber": "350007",
+      "print": "A1",
+      "note": "the drawing this file was read from"
+    }
+  ],
+  "sources": [
+    {
+      "id": "SCH",
+      "document": "ND-350007-A1-EN Schematic Circuit Diagrams (card 3207 SCSI/floppy controller, print 3207 A1, 24 sheets, drawn 90.07.09); scan kept outside this repository",
+      "note": "Read from the page images at 500-600 dpi. Labels copied exactly as printed; a tilde marks active low."
+    },
+    {
+      "id": "N100",
+      "document": "ND-06.016.01 NORD-100 Input/Output System (1980)",
+      "note": "Appendix F-2 plug C table: used to prove what the drawing's supply symbols are (open triangle = GND)."
+    }
+  ],
+  "pinNumbering": {
+    "value": "rows a, b, c x pins 1-32; the drawing prints a pin as 'A A12' = plug A, row a, pin 12",
+    "source": "SCH",
+    "page": "sheets 1, 2",
+    "confidence": "read"
+  },
+  "note": "Plug A is card specific: the backplane wires it per slot, unlike plug C. Sheet 1 is titled 'EXTERNAL CONNECTIONS' and draws every plug A pin; all its signal names are floppy drive lines, which confirms pcb.json's 'A = floppy bus'. Port shapes on sheet 1: arrow into the card's block on the left (F5INDEX~, FTROO~, FWPRT~, XRD~, F5READY~, FTWOS~, FDISKCH~, CKDIS~, TFRQ), arrow out on the right (8HLD5OPT~, DS~00-02, 8DS35MOT~, DIR~, STEP~, WDAT~, WG~, F5SSEL~, CURRSW~, F8SSEL~, INUSE~), six-sided (both ways) for 8REA5DS3~ and 8IND5INU~. What each signal means is not stated on the drawing and is not recorded here. Glyphs settled by shape: zero has an inner stroke, letter O has none; 5 has a flat top, S a curved top; 8 is closed.",
+  "unusedPins": {
+    "value": [
+      "row a: 2, 3, 4, 28-32",
+      "row b: 1-8, 26-32",
+      "row c: 26-32"
+    ],
+    "source": "SCH",
+    "page": "sheets 1, 2",
+    "confidence": "read",
+    "note": "no plug A pin with these numbers is drawn on any of sheets 1-3"
+  },
+  "disagreements": {
+    "value": "Plug A on 3207 draws rows a and b with signals and all 25 row c pins as GND. ND-06.016.01 section I.2.3 (1980) says plugs A and B have 64 lines each (recorded in nd100-c-connector). The drawing is taken as the truth for this card (owner ruling 2026-11-27). Whether the 1980 figure is wrong, or later backplanes wire more of plugs A and B, is open: ND-06.017.01 'ND-100 Backplane/Bus Description' (1979) would settle it but no copy has been found.",
+    "source": "SCH",
+    "page": "sheets 1-3",
+    "confidence": "open"
+  },
+  "pins": [
+    {
+      "row": "a",
+      "pin": 1,
+      "signal": "CURRSW~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 5,
+      "signal": "FTWOS~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 6,
+      "signal": "FDISKCH~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 7,
+      "signal": "F8SSEL~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 8,
+      "signal": "INUSE~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 9,
+      "signal": "8HLD5OPT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 9 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 10,
+      "signal": "8IND5INU~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 10 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 11,
+      "signal": "8REA5DS3~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 11 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 12,
+      "signal": "F5INDEX~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 12 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 13,
+      "signal": "DS~00",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 13 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 14,
+      "signal": "DS~01",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 14 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 15,
+      "signal": "DS~02",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 15 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 16,
+      "signal": "8DS35MOT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 16 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 17,
+      "signal": "DIR~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 17 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 18,
+      "signal": "STEP~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 18 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 19,
+      "signal": "WDAT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 19 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 20,
+      "signal": "WG~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 20 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 21,
+      "signal": "FTROO~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 21 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 22,
+      "signal": "FWPRT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 22 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 23,
+      "signal": "XRD~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 23 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 24,
+      "signal": "F5SSEL~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 24 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 25,
+      "signal": "F5READY~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row b pin 25 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 26,
+      "signal": "CKDIS~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 27,
+      "signal": "TFRQ",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 9,
+      "signal": "8HLD5OPT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 9 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 10,
+      "signal": "8IND5INU~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 10 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 11,
+      "signal": "8REA5DS3~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 11 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 12,
+      "signal": "F5INDEX~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 12 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 13,
+      "signal": "DS~00",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 13 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 14,
+      "signal": "DS~01",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 14 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 15,
+      "signal": "DS~02",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 15 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 16,
+      "signal": "8DS35MOT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 16 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 17,
+      "signal": "DIR~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 17 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 18,
+      "signal": "STEP~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 18 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 19,
+      "signal": "WDAT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 19 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 20,
+      "signal": "WG~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 20 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 21,
+      "signal": "FTROO~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 21 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 22,
+      "signal": "FWPRT~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 22 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 23,
+      "signal": "XRD~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 23 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 24,
+      "signal": "F5SSEL~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 24 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 25,
+      "signal": "F5READY~",
+      "source": "SCH",
+      "page": "sheet 1",
+      "confidence": "read",
+      "note": "joined to row a pin 25 on the drawing (same net)"
+    },
+    {
+      "row": "c",
+      "pin": 1,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 2,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 3,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 4,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 5,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 6,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 7,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 8,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 9,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 10,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 11,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 12,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 13,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 14,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 15,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 16,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 17,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 18,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 19,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 20,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 21,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 22,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 23,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 24,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    },
+    {
+      "row": "c",
+      "pin": 25,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 2",
+      "confidence": "read",
+      "note": "all 25 row c pins tied to the open-triangle supply symbol; that symbol is GND (it is on plug C a1/b1/c1, a32/b32/c32, GND in ND-06.016.01 F-2)"
+    }
+  ]
+}

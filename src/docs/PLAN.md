@@ -265,8 +265,16 @@ Blocks follow FORMAT.md, "Format version 2". Buses follow FORMAT.md, `layout.bus
 - The NORD-10 card connector's letter is not known (no NORD-10 document names it), so 2A50's
   pins stay `P.n` and its box says "connector not known". The same holds for the modem pins
   81-95 (`F.n`).
-- Card 3207 (SCSI/floppy): catalogue files for its plugs A (floppy bus per `pcb.json`) and B
-  (SCSI bus), read from sheet 1 of ND-350007-A1, with a list of the cards that share each layout.
+- Card 3207 (SCSI/floppy): its plug A and B files hold the pins and printed labels only. What
+  the floppy signals mean, and which SCSI pins carry what in single-ended vs differential mode
+  (sheet 18, part 18A), is read with the logic sheets. Other cards with the same plug A or B
+  wiring are added to the file's `usedBy` list when their drawings prove it.
+- ND-100 plugs A and B: ND-06.016.01 I.2.3 says 64 lines each, but card 3207 uses all three
+  rows of both (plug B: 75 positions). The drawing wins for the card; the general rule stays
+  open until a copy of ND-06.017.01 "ND-100 Backplane/Bus Description" (1979) is found. It is
+  listed as not available in the sintran.com library mirror (checked 2026-11-27).
+- The ND-120 CPU plug files (`nd120-cpu-a-plug`, `nd120-cpu-b-plug`) say `"machine": "ND-120
+  ..."`, which the bus filter does not take as ND-100, so an ND-100 sheet never sees them.
 - The board edge view (finger positions) knows only the one-row NORD-10 card edge; ND-100 row
   pins (`P.C.a17`) are skipped there.
 - A connector box can be placed by hand anywhere and its pins put on its left or right side,

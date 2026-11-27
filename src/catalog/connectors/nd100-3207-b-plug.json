@@ -1,0 +1,706 @@
+{
+  "catalogFormat": "nd-connector",
+  "catalogFormatVersion": 1,
+  "id": "nd100-3207-b-plug",
+  "machine": "ND-100 (card 3207 SCSI/floppy controller)",
+  "title": "Card 3207 SCSI/floppy controller, plug B: SCSI bus",
+  "usedBy": [
+    {
+      "card": "3207",
+      "partNumber": "350007",
+      "print": "A1",
+      "note": "the drawing this file was read from"
+    }
+  ],
+  "sources": [
+    {
+      "id": "SCH",
+      "document": "ND-350007-A1-EN Schematic Circuit Diagrams (card 3207 SCSI/floppy controller, print 3207 A1, 24 sheets, drawn 90.07.09); scan kept outside this repository",
+      "note": "Read from the page images at 500-600 dpi. Labels copied exactly as printed; a tilde marks active low."
+    },
+    {
+      "id": "N100",
+      "document": "ND-06.016.01 NORD-100 Input/Output System (1980)",
+      "note": "Appendix F-2 plug C table: used to prove what the drawing's supply symbols are (open triangle = GND)."
+    }
+  ],
+  "pinNumbering": {
+    "value": "rows a, b, c x pins 1-32; the drawing prints a pin as 'B C14' = plug B, row c, pin 14",
+    "source": "SCH",
+    "page": "sheet 3",
+    "confidence": "read"
+  },
+  "note": "Plug B is card specific: the backplane wires it per slot, unlike plug C. Sheet 3 draws every plug B pin, all as six-sided (both ways) ports, fed from the bus named OSCSI; the signal names are SCSI lines, which confirms pcb.json's 'B = SCSI bus'. Pattern on the drawing: the plain signal is on row c, the copy with a tilde on rows a and b joined together. OSCSI comes from sheet 18 (part 18A, 'SING_DIFF_SW'), which switches the lines between single-ended and differential SCSI; which pins carry what in each mode is read from that sheet, not here. Pins 26-32 of every row are not drawn. Glyphs settled by shape: zero has an inner stroke, letter O has none; 5 has a flat top, S a curved top; 8 is closed.",
+  "unusedPins": {
+    "value": [
+      "row a: 26-32",
+      "row b: 26-32",
+      "row c: 26-32"
+    ],
+    "source": "SCH",
+    "page": "sheet 3",
+    "confidence": "read"
+  },
+  "disagreements": {
+    "value": "Plug B on 3207 draws 75 positions, rows a, b and c pins 1-25, with SCSI signals on row c. ND-06.016.01 section I.2.3 (1980) says plugs A and B have 64 lines each (recorded in nd100-c-connector). The drawing is taken as the truth for this card (owner ruling 2026-11-27). Whether the 1980 figure is wrong, or later backplanes wire more of plugs A and B, is open: ND-06.017.01 'ND-100 Backplane/Bus Description' (1979) would settle it but no copy has been found.",
+    "source": "SCH",
+    "page": "sheets 1-3",
+    "confidence": "open"
+  },
+  "pins": [
+    {
+      "row": "a",
+      "pin": 1,
+      "signal": "OGROUND2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 1 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 2,
+      "signal": "ODB~0",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 2 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 3,
+      "signal": "ODB~1",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 3 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 4,
+      "signal": "ODB~2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 4 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 5,
+      "signal": "ODB~3",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 5 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 6,
+      "signal": "ODB~4",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 6 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 7,
+      "signal": "ODB~5",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 7 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 8,
+      "signal": "ODB~6",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 8 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 9,
+      "signal": "ODB~7",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 9 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 10,
+      "signal": "ODBP~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 10 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 11,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "a",
+      "pin": 12,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "a",
+      "pin": 13,
+      "signal": "OTERMPWR2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 13 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 14,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "a",
+      "pin": 15,
+      "signal": "OATN~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 15 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 16,
+      "signal": "OGROUND32",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 16 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 17,
+      "signal": "OBSY~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 17 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 18,
+      "signal": "OACK~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 18 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 19,
+      "signal": "ORST~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 19 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 20,
+      "signal": "OMSG~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 20 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 21,
+      "signal": "OSEL~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 21 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 22,
+      "signal": "OCD~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 22 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 23,
+      "signal": "OREQ~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 23 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 24,
+      "signal": "OIO~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 24 on the drawing (same net)"
+    },
+    {
+      "row": "a",
+      "pin": 25,
+      "signal": "OGROUND50",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row b pin 25 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 1,
+      "signal": "OGROUND2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 1 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 2,
+      "signal": "ODB~0",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 2 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 3,
+      "signal": "ODB~1",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 3 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 4,
+      "signal": "ODB~2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 4 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 5,
+      "signal": "ODB~3",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 5 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 6,
+      "signal": "ODB~4",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 6 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 7,
+      "signal": "ODB~5",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 7 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 8,
+      "signal": "ODB~6",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 8 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 9,
+      "signal": "ODB~7",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 9 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 10,
+      "signal": "ODBP~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 10 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 11,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "b",
+      "pin": 12,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "b",
+      "pin": 13,
+      "signal": "OTERMPWR2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 13 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 14,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "b",
+      "pin": 15,
+      "signal": "OATN~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 15 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 16,
+      "signal": "OGROUND32",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 16 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 17,
+      "signal": "OBSY~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 17 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 18,
+      "signal": "OACK~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 18 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 19,
+      "signal": "ORST~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 19 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 20,
+      "signal": "OMSG~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 20 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 21,
+      "signal": "OSEL~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 21 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 22,
+      "signal": "OCD~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 22 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 23,
+      "signal": "OREQ~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 23 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 24,
+      "signal": "OIO~",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 24 on the drawing (same net)"
+    },
+    {
+      "row": "b",
+      "pin": 25,
+      "signal": "OGROUND50",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "joined to row a pin 25 on the drawing (same net)"
+    },
+    {
+      "row": "c",
+      "pin": 1,
+      "signal": "OSHGND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 2,
+      "signal": "ODB0",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 3,
+      "signal": "ODB1",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 4,
+      "signal": "ODB2",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 5,
+      "signal": "ODB3",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 6,
+      "signal": "ODB4",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 7,
+      "signal": "ODB5",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 8,
+      "signal": "ODB6",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 9,
+      "signal": "ODB7",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 10,
+      "signal": "ODBP",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 11,
+      "signal": "ODIFFS",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 12,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "c",
+      "pin": 13,
+      "signal": "OTERMPWR1",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 14,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "c",
+      "pin": 15,
+      "signal": "OATN",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 16,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    },
+    {
+      "row": "c",
+      "pin": 17,
+      "signal": "OBSY",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 18,
+      "signal": "OACK",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 19,
+      "signal": "ORST",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 20,
+      "signal": "OMSG",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 21,
+      "signal": "OSEL",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 22,
+      "signal": "OCD",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 23,
+      "signal": "OREQ",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 24,
+      "signal": "OIO",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 25,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 3",
+      "confidence": "read",
+      "note": "tied on the drawing to one line ending in the open-triangle supply symbol (GND, proved on sheet 2 against ND-06.016.01 F-2); no signal name"
+    }
+  ]
+}

@@ -127,6 +127,33 @@ namespace RetroSchematic.Tests
             Assert.That(texts, Does.Contain("C.a3"));
         }
 
+        /// <summary>
+        /// Card 3207's own plugs, read from sheets 1 and 3 of ND-350007-A1: the same pin number in
+        /// rows a and b must stay two catalogue pins.
+        /// </summary>
+        [TestCase("nd100-3207-a-plug", "a12", "F5INDEX~")]
+        [TestCase("nd100-3207-a-plug", "b12", "F5INDEX~")]
+        [TestCase("nd100-3207-a-plug", "a1", "CURRSW~")]
+        [TestCase("nd100-3207-a-plug", "c1", "GND")]
+        [TestCase("nd100-3207-b-plug", "c2", "ODB0")]
+        [TestCase("nd100-3207-b-plug", "a2", "ODB~0")]
+        [TestCase("nd100-3207-b-plug", "c14", "GND")]
+        [TestCase("nd100-3207-b-plug", "a25", "OGROUND50")]
+        public void Card3207_PlugPins_AreReadByRow(string id, string pin, string signal)
+        {
+            ConnectorInfo? c = ConnectorCatalog.Load(Catalog, MachineBus.Nd100).Get(id);
+            Assert.That(c, Is.Not.Null);
+            Assert.That(ConnectorPins.TryParsePin(pin, out int key), Is.True);
+            Assert.That(c!.PinNames[key], Is.EqualTo(signal));
+        }
+
+        [TestCase("nd100-3207-a-plug", 66)]
+        [TestCase("nd100-3207-b-plug", 75)]
+        public void Card3207_PlugFiles_HaveEveryDrawnPinOnce(string id, int count)
+        {
+            Assert.That(ConnectorCatalog.Load(Catalog, MachineBus.Nd100).Get(id)!.PinNames.Count, Is.EqualTo(count));
+        }
+
         [Test]
         public void ARowLetter_OnAChipPin_IsRefused()
         {

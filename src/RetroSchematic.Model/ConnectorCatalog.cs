@@ -109,12 +109,16 @@ namespace RetroSchematic.Model
                     // only pins listed one by one; "6, 7" style groups name a use, not a pin
                     if (!p.TryGetProperty("pin", out JsonElement n) || n.ValueKind != JsonValueKind.Number)
                         continue;
-                    string? name = p.TryGetProperty("signal", out JsonElement s) ? s.GetString() : null;
+                    // the signal is plain text, or a fact object whose text is in "value"
+                    // (the ND-120 plug files use the fact form)
+                    string? name = null;
+                    if (p.TryGetProperty("signal", out JsonElement s))
+                        name = s.ValueKind == JsonValueKind.String ? s.GetString() : s.ValueKind == JsonValueKind.Object ? Text(s, "value") : null;
                     if (name == null)
                         continue;
                     if (p.TryGetProperty("v24", out JsonElement v) && v.ValueKind == JsonValueKind.Number)
                         name += " (V.24 " + v.GetInt32().ToString(CultureInfo.InvariantCulture) + ")";
-                    info.PinNames[n.GetInt32()] = name;
+                    info.PinNames[PinKey(p, n.GetInt32())] = name;
                 }
             }
             // every pin once, with what it carries (pinMap.pins)
@@ -139,7 +143,7 @@ namespace RetroSchematic.Model
                         Confidence = Text(p, "confidence"),
                         Note = Text(p, "note"),
                     };
-                    info.PinMap[pi.Pin] = pi;
+                    info.PinMap[PinKey(p, pi.Pin)] = pi;
                 }
             }
             if (info.Id.Length > 0)
@@ -156,6 +160,17 @@ namespace RetroSchematic.Model
         /// The connector, or null.
         /// </returns>
         public ConnectorInfo? Get(string id) => _byId.TryGetValue(id, out ConnectorInfo? c) ? c : null;
+
+        // The pin key of a catalogue pin (see ConnectorPins): with a "row" (a, b, c; files may
+        // write it in capitals) it is row index x RowBase + pin, so a12 and b12 stay two pins;
+        // without one it is the plain number.
+        private static int PinKey(JsonElement p, int pin)
+        {
+            string? row = Text(p, "row");
+            if (row == null || row.Length != 1 || !char.IsLetter(row[0]))
+                return pin;
+            return (char.ToLowerInvariant(row[0]) - 'a' + 1) * ConnectorPins.RowBase + pin;
+        }
 
         // a text property, or null when missing or not text
         private static string? Text(JsonElement e, string name)

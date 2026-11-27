@@ -12,6 +12,8 @@ signal on a netlist sheet can be looked up and given a plain-words meaning.
 | `catalog/connectors/nd100-c-connector.json` | NORD-100 module plugs C (bus, 96 pins) and A, B (64 lines each) |
 | `catalog/connectors/nd120-cpu-a-plug.json` | ND-120 CPU card 3202D, plug A (console and panel), from the owner's spreadsheet |
 | `catalog/connectors/nd120-cpu-b-plug.json` | ND-120 CPU card 3202D, plug B (trace bus), from the owner's spreadsheet |
+| `catalog/connectors/nd100-3207-a-plug.json` | Card 3207 SCSI/floppy controller, plug A (floppy drive lines), read from its drawing ND-350007-A1 sheets 1-2 |
+| `catalog/connectors/nd100-3207-b-plug.json` | Card 3207 SCSI/floppy controller, plug B (SCSI bus), read from its drawing ND-350007-A1 sheet 3 |
 
 **The two buses are different and are kept apart.** The NORD-10 I/O positions have separate
 address lines (BA0-BA17) and data lines (BD0-BD15) on plain pin numbers 0-99. The NORD-100 bus
@@ -33,6 +35,13 @@ Every fact is an object `{ value, source, page, confidence, note }`:
 - `direction` is seen from a card: `in`, `out`, `bidir`, or `out, open collector (shared)`;
 - `pins`: a list of `{ connector, pin }` (NORD-10; connector is `open`, see below) or
   `{ connector, row, pin }` (NORD-100).
+
+A card's own plug file (`nd-connector`, such as `nd100-3207-a-plug`) has a flat `pins` list of
+`{ row, pin, signal, source, page, confidence, note }`, where `signal` is the label exactly as
+printed on the card's drawing. Rows are lower case (a, b, c), and a12 and b12 are two pins.
+`usedBy` lists the cards wired this way (card number, part number, print), so another edition
+with the same plug wiring points to the same file. `unusedPins` names the pins the drawing
+does not show, and `disagreements` records a conflict with another source, left open.
 
 A signal entry has `name` (as ND writes it on the backplane), `namesOnCards` (the name a card
 drawing uses for the same pin, e.g. LEV10 for BINT10), `group`, `active`, `direction`, `pins`,
