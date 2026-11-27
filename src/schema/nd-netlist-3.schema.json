@@ -1215,6 +1215,12 @@
           ],
           "description": "Seen from inside the block."
         },
+        "directionConfidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "note": {
+          "type": "string"
+        },
         "signals": {
           "type": "array",
           "minItems": 1,
@@ -1321,6 +1327,43 @@
           "items": {
             "$ref": "#/$defs/instance"
           }
+        },
+        "pages": {
+          "type": "array",
+          "description": "The original pages that draw this block's inside, as the card's pages",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Unique in the file; parts name their page by it."
+              },
+              "title": {
+                "type": "string",
+                "description": "The page's title."
+              },
+              "source": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "The original page it was read from: its place in sources, 1 = first."
+              },
+              "sheetNumber": {
+                "type": "string",
+                "description": "The sheet number in the page's title block."
+              },
+              "note": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "note": {
+          "type": "string"
         }
       }
     },

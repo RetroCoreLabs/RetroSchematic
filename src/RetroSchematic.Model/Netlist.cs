@@ -394,6 +394,20 @@ namespace RetroSchematic.Model
         /// Instances of other blocks inside this one, or null.
         /// </summary>
         public List<BlockInstance>? Instances { get; set; }
+
+        /// <summary>
+        /// The original pages that draw this block's inside (format version 3), in order, or
+        /// null. Same fields as the card's own pages; ids are unique within the block. On a
+        /// computer-drawn ND card one box is drawn in full on its own sheets (card 3207: block
+        /// FLOPPY on sheet 5, its part F_ND_INT on sheets 6-9), and this is where that is kept.
+        /// Which page each part inside the block is on is not recorded yet.
+        /// </summary>
+        public List<CardPage>? Pages { get; set; }
+
+        /// <summary>
+        /// Free text about the block: where its name was read, what is known of it.
+        /// </summary>
+        public string? Note { get; set; }
     }
 
     /// <summary>
@@ -411,6 +425,19 @@ namespace RetroSchematic.Model
         /// Into, out of, or both ways, seen from inside.
         /// </summary>
         public PortDirection Direction { get; set; }
+
+        /// <summary>
+        /// How sure <see cref="Direction"/> is, or null when not said (older files: a direction
+        /// chosen when the block was made). On a block read from a drawing whose boxes do not
+        /// state the direction of each pin, the direction is worked out (inferred) or not known
+        /// (open), and <see cref="Note"/> says why.
+        /// </summary>
+        public Confidence? DirectionConfidence { get; set; }
+
+        /// <summary>
+        /// Free text: where the port was read, and how its direction was worked out.
+        /// </summary>
+        public string? Note { get; set; }
 
         /// <summary>
         /// The signals inside the block this port carries.

@@ -1046,6 +1046,12 @@
           ],
           "description": "Seen from inside the block."
         },
+        "directionConfidence": {
+          "$ref": "#/$defs/confidence"
+        },
+        "note": {
+          "type": "string"
+        },
         "signals": {
           "type": "array",
           "minItems": 1,

@@ -205,6 +205,11 @@ namespace RetroSchematic.Model
             {
                 if (netlist.Pages != null || netlist.PageLayout != null)
                     throw new NetlistException("Pages need format version 3.");
+                for (int b = 0; netlist.Blocks != null && b < netlist.Blocks.Count; b++)
+                {
+                    if (netlist.Blocks[b].Pages != null)
+                        throw new NetlistException($"Block {netlist.Blocks[b].Name} lists pages; pages need format version 3.");
+                }
                 for (int i = 0; i < netlist.Parts.Count; i++)
                 {
                     if (netlist.Parts[i].Page != null)
@@ -254,6 +259,20 @@ namespace RetroSchematic.Model
                 {
                     if (parts[i].Page != null)
                         throw new NetlistException($"Block {netlist.Blocks[b].Name}: part {parts[i].Ref} names a page; a block's inside has no pages (its instance has).");
+                }
+                // the original pages that draw the block's inside: ids unique in the block, each
+                // source a place in the card's sources list
+                List<CardPage>? blockPages = netlist.Blocks[b].Pages;
+                HashSet<string> blockIds = new(StringComparer.Ordinal);
+                for (int i = 0; blockPages != null && i < blockPages.Count; i++)
+                {
+                    CardPage page = blockPages[i];
+                    if (page.Id.Length == 0)
+                        throw new NetlistException($"Block {netlist.Blocks[b].Name}: page {i + 1} has no id.");
+                    if (!blockIds.Add(page.Id))
+                        throw new NetlistException($"Block {netlist.Blocks[b].Name}: page {page.Id} is listed twice.");
+                    if (page.Source != null && (page.Source < 1 || page.Source > sources))
+                        throw new NetlistException($"Block {netlist.Blocks[b].Name}: page {page.Id} is read from source {page.Source}, but the card has {sources} source page(s).");
                 }
             }
         }

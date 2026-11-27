@@ -33,6 +33,35 @@ the common prefix `/NET/BM3/PCB/USER/ESTHER/3207A1/` is left out below).
 The margin also prints a date and time per sheet ("10 JUL 88 12:14" on sheet 1). Whether that
 is when the file was plotted or something else is open; the title block says 90.07.09.
 
+## The sheet file
+
+`sheets/nd-100/3207-scsi-floppy.rsc` (format version 3), with the board facts and both board
+photos imported from the ND PCB catalogue (part 350007). What it holds today:
+
+- the top level (sheets 1-3): plugs A, B and C with every drawn pin, the supplies, and one
+  instance of box `BLOCKLEV`;
+- box `BLOCKLEV` (sheet 4) holding boxes `SCSI` and `FLOPPY` and the signals between them;
+- `SCSI` and `FLOPPY` as boxes with their ports only; their insides are not read yet.
+
+Choices made in it:
+
+- Every net keeps its label as printed (`printed`). A name with no tilde is taken as active
+  high. That is inferred from the drawing's naming: plug B carries pairs like ODB0 / ODB~0,
+  where the tilde marks the complement.
+- `+5V` and `5VSTBY` are names given here. The drawing shows only the supply symbols, proved
+  against ND-06.016.01 F-2 (see Supply symbols below).
+- The 12V flag on sheet 2 (plug C a28/b28/c28) and the 12V flag on sheet 1 (into `BLOCKLEV`)
+  are joined by name, because both are on the top level: inferred.
+- AVC and AVC~ enter `BLOCKLEV` from flags on sheet 1, but nothing on sheets 1-3 drives them:
+  open.
+- Port directions: a box pin on sheet 4 has no direction mark, so each port's direction is taken
+  from the shape of the plug port its line runs to (arrow in, arrow out, six-sided = both ways),
+  marked `inferred`. Some pins carry a small open circle. Across all eight pins where both can be
+  seen, the circle appears exactly where the plug port is six-sided. What the circle means is
+  not proved. LADR1, LADR2, SOTGRANT~ and SOTIDENT~ run between SCSI and FLOPPY with nothing to
+  trace them to: direction `open`.
+- No `sources` yet: see the copyright question in `PLAN.md`.
+
 ## Plugs
 
 ND-100 cards have three DIN plugs, each with rows a, b, c of 32 pins. Plug C is the ND-100 bus

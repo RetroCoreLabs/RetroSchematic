@@ -484,6 +484,8 @@ exactly as in version 1. Two lists are added:
 | `blocks[].ports[].name` | the port name, unique in the block (`BA0`, `BD_0`) |
 | `blocks[].ports[].direction` | `input`, `output` or `inout`, seen from inside the block |
 | `blocks[].ports[].signals[]` | the signals inside the block this port carries, as `{net, active}`. One entry is a single port; more than one is a bus port, its width the number of entries, entry 0 the lowest bit |
+| `blocks[].ports[].directionConfidence`, `.note` | optional (2026-11-27): how sure the direction is (`read`, `inferred`, `open`) and why. A block read from a drawing whose boxes do not state each pin's direction gets `inferred` with the reason (card 3207: the shape of the plug port the line runs to) or `open` |
+| `blocks[].note` | optional (2026-11-27): free text about the block |
 | `blocks[].ports[].side`, `.order` | where the port pin is drawn on an instance box: `left`, `right`, `top` or `bottom`, and its place along that side from the top or left (0 first). Drawing only. Absent: inputs left, outputs right, bus ports top (inputs) or bottom (outputs and inout), in port order |
 | `blocks[].parts`, `.gates`, `.nets`, `.layout` | the inside of the block, exactly as at the top level |
 | `blocks[].instances[]` | instances of other blocks inside this block |
@@ -568,6 +570,7 @@ blocks) are made over the whole card, not per page.
 | `pages[].sheetNumber` | the sheet number in the page's title block, as written |
 | `pages[].note` | free text |
 | `parts[].page` | the page the part is on; required on every top-level part, never on a part inside a block |
+| `blocks[].pages[]` | optional (2026-11-27): the original pages that draw a block's inside, with the same fields as `pages[]`; ids are unique within the block. A computer-drawn ND card draws each box in full on its own sheets (card 3207: FLOPPY on sheet 5, its F_ND_INT on sheets 6-9). Which of those pages each part inside the block is on is not recorded yet |
 | `pageLayout` | how the redrawn drawing is cut into pages: `as-original` (the default, also when absent) or `split`; drawing only |
 
 ```json
@@ -585,6 +588,8 @@ Everything versions 1 and 2 check, plus:
 - a connector, instance, wire path or bus that names a page names one in the list;
 - a page's `source` is a place in the `sources` list;
 - no part inside a block names a page (the block's instance has the page);
+- a block's own `pages` have unique ids within the block, and each `source` is a place in the
+  `sources` list; a version 1 or 2 file has no block pages;
 - a version 1 or 2 file has no `pages`, no `pageLayout` and no `page` on a part or connector;
 - the symbol boxes pass their checks (see Symbol boxes below).
 
