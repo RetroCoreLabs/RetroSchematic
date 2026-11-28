@@ -85,6 +85,6 @@ net +5V: D10.1 R71.1
 net GND: RN32.1
 
 note RN30 (4610X_101_33, to DIFFPWR) pulls each DDB~ line up and RN32 (4610X_101_331, to GND) pulls each DDB line down; RN31 (4608X_102_151) and RN33 (4610X_102_151) put 150 ohm across each pair (pins 1-2, 3-4, 5-6, 7-8, 9-10).
-note D10 is printed 1N3246 (as read at 330 dpi); its pin 1 goes to a bar drawn as +5 V. S10 is a 2-pin strap (STR2) from DIFFPWR to DTERMPWR.
+note D10 is printed 1N3246 (as read at 330 dpi); its pin 1 goes to a bar drawn as +5 V. Checked full size 2026-11-28: pin 1 is the triangle (anode) on +5 V, pin 2 the bar (cathode) on DIFFPWR - numbered from the other end than D4 on sheet 19. S10 is a 2-pin strap (STR2) from DIFFPWR to DTERMPWR.
 note The DIFFSCSI bus at the top carries DDB0-7, DDB~0-7, DDBP, DDBP~, DDIFFS, DTERMPWR and PDIFF~ to the SING_DIFF_SW sheet.
 note Board positions as printed: 20CD 15C 16CD 17CD 18CD 16C 19CD 17C 15CD (two-letter positions are chips that sit across two rows).

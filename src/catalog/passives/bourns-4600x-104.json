@@ -5,7 +5,7 @@
   "title": "Resistor network, Bourns 4600X SIP, dual terminator (104 circuit)",
   "type": "46nnX-104-R1/R2",
   "readingTypes": "46nnX104_rrr/sss or 46nnX_104_rrr/sss: nn the pin count, rrr the R1 code, sss the R2 code (221/331 = 220/330 ohm)",
-  "pinRule": "pin 1 and pin nn are the two common lines (the datasheet: ground and power, respectively); each pin 2 to nn-1 is a line with R1 to one common and R2 to the other, so a 4608X has 6 lines",
+  "pinRule": "pin 1 and pin nn are the two common lines (the datasheet: ground and power, respectively); each pin 2 to nn-1 is a line with R2 to pin 1 and R1 to pin nn, so a 4608X has 6 lines",
   "pinNumberingConfidence": "read",
   "values": "R1/R2 resistance codes",
   "datasheet": "Bourns 4600X datasheet, page 2, Dual Terminator (104 Circuit)",
@@ -16,5 +16,5 @@
       "pages": "1-2"
     }
   ],
-  "note": "Datasheet text for the 4608X-104: an 8-pin part that terminates 6 lines; pins 1 and 8 are common for ground and power; twelve resistors paired in series between pins 1 and 8; 0.20 W per resistor at 70 C. Which of R1 and R2 goes to pin 1 is drawn in the datasheet figure (R1 on the pin 1 side as the figure is laid out); the card readings say which value they saw on which side."
+  "note": "Datasheet text for the 4608X-104: an 8-pin part that terminates 6 lines; pins 1 and 8 are common for ground and power; twelve resistors paired in series between pins 1 and 8; 0.20 W per resistor at 70 C. The datasheet figure (page 2) joins every R2 to pin 1 and every R1 to the last pin (pin nn), each line pin sitting between its R1 and R2. So a 221/331 pack has 330 ohm from each line to pin 1 and 220 ohm to pin nn. Checked 2026-11-28 against card 3207 sheet 19: RN1 and RN3 have pin 1 on ground and pin 8 on the TERMS rail, so 220 ohm goes to TERMS and 330 ohm to ground (the usual SCSI terminator)."
 }

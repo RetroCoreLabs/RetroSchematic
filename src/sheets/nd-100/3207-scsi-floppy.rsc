@@ -2,8 +2,8 @@
   "format": "nd-netlist",
   "formatVersion": 3,
   "file": {
-    "revision": 3,
-    "modified": "2026-11-28T17:15:59Z"
+    "revision": 4,
+    "modified": "2026-11-28T17:55:37Z"
   },
   "sheet": {
     "id": "3207",
@@ -31581,7 +31581,7 @@
           "source": 17
         }
       ],
-      "note": "sheet 16: RN30 (4610X_101_33, to DIFFPWR) pulls each DDB~ line up and RN32 (4610X_101_331, to GND) pulls each DDB line down; RN31 (4608X_102_151) and RN33 (4610X_102_151) put 150 ohm across each pair (pins 1-2, 3-4, 5-6, 7-8, 9-10).\nsheet 16: D10 is printed 1N3246 (as read at 330 dpi); its pin 1 goes to a bar drawn as +5 V. S10 is a 2-pin strap (STR2) from DIFFPWR to DTERMPWR.\nsheet 16: The DIFFSCSI bus at the top carries DDB0-7, DDB~0-7, DDBP, DDBP~, DDIFFS, DTERMPWR and PDIFF~ to the SING_DIFF_SW sheet.\nsheet 16: Board positions as printed: 20CD 15C 16CD 17CD 18CD 16C 19CD 17C 15CD (two-letter positions are chips that sit across two rows).\nsheet 17: RN34 (4610X_101_331, to DIFFPWR) pulls each D...~ line up, RN35 (4610X_101_331, to GND) pulls each D... line down; RN36 (4608X_102_151) and RN37 (4610X_102_151) put 150 ohm across each pair.\nsheet 17: BSY, RST and SEL are driven with D = SMCL~ and enabled by BSYOUT, TRST, SELOUT; their receivers are enabled by DIFF~. ATN and ACK are enabled by DIGS/DDIGS (initiator), MSG, C/D, REQ, I/O by DTGS/DDTGS (target)."
+      "note": "sheet 16: RN30 (4610X_101_33, to DIFFPWR) pulls each DDB~ line up and RN32 (4610X_101_331, to GND) pulls each DDB line down; RN31 (4608X_102_151) and RN33 (4610X_102_151) put 150 ohm across each pair (pins 1-2, 3-4, 5-6, 7-8, 9-10).\nsheet 16: D10 is printed 1N3246 (as read at 330 dpi); its pin 1 goes to a bar drawn as +5 V. Checked full size 2026-11-28: pin 1 is the triangle (anode) on +5 V, pin 2 the bar (cathode) on DIFFPWR - numbered from the other end than D4 on sheet 19. S10 is a 2-pin strap (STR2) from DIFFPWR to DTERMPWR.\nsheet 16: The DIFFSCSI bus at the top carries DDB0-7, DDB~0-7, DDBP, DDBP~, DDIFFS, DTERMPWR and PDIFF~ to the SING_DIFF_SW sheet.\nsheet 16: Board positions as printed: 20CD 15C 16CD 17CD 18CD 16C 19CD 17C 15CD (two-letter positions are chips that sit across two rows).\nsheet 17: RN34 (4610X_101_331, to DIFFPWR) pulls each D...~ line up, RN35 (4610X_101_331, to GND) pulls each D... line down; RN36 (4608X_102_151) and RN37 (4610X_102_151) put 150 ohm across each pair.\nsheet 17: BSY, RST and SEL are driven with D = SMCL~ and enabled by BSYOUT, TRST, SELOUT; their receivers are enabled by DIFF~. ATN and ACK are enabled by DIGS/DDIGS (initiator), MSG, C/D, REQ, I/O by DTGS/DDTGS (target)."
     },
     {
       "name": "SING_DIFF_SW",
@@ -37108,7 +37108,7 @@
           "source": 19
         }
       ],
-      "note": "sheet 19: 25B pin 10 is printed \"SIGS\" (checked at 800 dpi: the S is the same glyph as in SIGS at 24A pin 1).\nsheet 19: 23A pin 15 (EB, drive enable) is on the STGS line from 21A pin 18; EY~ (pin 1) is RSTGS = STGS OR DIFF from 25B.\nsheet 19: RN1, RN3 (4608X104_221/331) and RN2 (4610X104_221/331) are 220/330 ohm terminator packs: each line pin has 220 ohm to the TERMS rail (pin 8 or 10) and 330 ohm to ground (pin 1). Read from the pin numbers drawn on both resistors of each line.\nsheet 19: D4 (1N3246) feeds the TERMS rail from +5 V; strap STR2 (at 20A) puts it on the cable as STERMPWR.\nsheet 19: TH2 (2170576F) is a hex switch: D8 = ESCSI (SCSI on), D4/D2/D1 = ID~2..ID~0 (the card's SCSI ID). C to ground, C~ through R6 to +5 V.\nsheet 19: 13C prints LDWC without ~ here; sheet 15 lists it at the S_ND_INT box as LDWC~: OPEN which is right.\nsheet 19: PAL contents (24B \"78200\", 21A \"42500\", 13C \"78300\") not read (BUGS.md).\nsheet 19: LD1 \"REQ\" and LD2 \"BUSY\" are front LEDs driven by 14D from REQ and BSYIN.\nPins drawn as unconnected stubs: 21A.11 21A.9 24B.11 24B.8 24B.9 25A.12 25A.15 25A.17 25A.3 25A.5 25A.8\nOPEN, pins not settled from the drawing (left out of every net): RN1.7 RN3.7"
+      "note": "sheet 19: 25B pin 10 is printed \"SIGS\" (checked at 800 dpi: the S is the same glyph as in SIGS at 24A pin 1).\nsheet 19: 23A pin 15 (EB, drive enable) is on the STGS line from 21A pin 18; EY~ (pin 1) is RSTGS = STGS OR DIFF from 25B.\nsheet 19: RN1, RN3 (4608X104_221/331) and RN2 (4610X104_221/331) are 220/330 ohm terminator packs: each line pin has 220 ohm to the TERMS rail (pin 8 or 10) and 330 ohm to ground (pin 1). Read from the pin numbers drawn on both resistors of each line.\nsheet 19: D4 (1N3246) feeds the TERMS rail from +5 V (checked full size 2026-11-28: pin 2 the triangle (anode) on +5 V, pin 1 the bar (cathode) on TERMS - numbered from the other end than D10 on sheet 16); strap STR2 (at 20A) puts it on the cable as STERMPWR.\nsheet 19: TH2 (2170576F) is a hex switch: D8 = ESCSI (SCSI on), D4/D2/D1 = ID~2..ID~0 (the card's SCSI ID). C to ground, C~ through R6 to +5 V.\nsheet 19: 13C prints LDWC without ~ here; sheet 15 lists it at the S_ND_INT box as LDWC~: OPEN which is right.\nsheet 19: PAL contents (24B \"78200\", 21A \"42500\", 13C \"78300\") not read (BUGS.md).\nsheet 19: LD1 \"REQ\" and LD2 \"BUSY\" are front LEDs driven by 14D from REQ and BSYIN.\nPins drawn as unconnected stubs: 21A.11 21A.9 24B.11 24B.8 24B.9 25A.12 25A.15 25A.17 25A.3 25A.5 25A.8\nOPEN, pins not settled from the drawing (left out of every net): RN1.7 RN3.7"
     },
     {
       "name": "S_ND_INT",

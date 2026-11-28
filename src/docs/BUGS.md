@@ -152,10 +152,12 @@ never used):
 - **1N3246** (diode): no datasheet; the reading says "as read at 330 dpi", so the number may be misread.
 - **2170576F** (hex switch, from the drawing notes): no datasheet, pin numbering unknown.
 
-Points where the new catalogue files and the reading disagree (the reading is unchanged):
-- **Zener D1 (5.6V_ZENER, sheet 10):** pin 1 on AVC, pin 2 on GND. With pin 1 as the anode it
-  would sit the wrong way round to hold AVC at 5.6 V.
-- **Diode D4 (1N3246, sheet 19):** pin 1 on TERMS, pin 2 on +5V - the reverse of D10 (sheet 16),
-  which feeds the same kind of termination supply.
-- **RN1 / RN3 (4608X104_221/331):** the reading puts 220 ohm to TERMS (pin 8) and 330 ohm to
-  ground (pin 1); the Bourns figure seems to put R1 (220 ohm) on the pin 1 side. Not confirmed.
+Checked on the drawings at full size, 2026-11-28; the readings were right in all of these:
+- **Zener D1 (sheet 10):** the bar (cathode) is pin 1 on AVC, the triangle (anode) pin 2 on
+  ground, so it holds AVC at 5.6 V.
+- **Diodes D4 (sheet 19) and D10 (sheet 16):** both pass +5 V into their terminator rails (TERMS,
+  DIFFPWR). The drawing numbers them from opposite ends: D4 pin 1 is the bar (cathode), D10 pin 1
+  is the triangle (anode). Still open: a 1N3246 catalogue file cannot give one fixed pin rule
+  for both, so its pins must be read per diode from the drawing.
+- **RN1 / RN3 (4608X104_221/331, sheet 19):** the Bourns figure joins R2 to pin 1 and R1 to
+  pin 8, so 330 ohm goes to ground (pin 1) and 220 ohm to TERMS (pin 8), as read.

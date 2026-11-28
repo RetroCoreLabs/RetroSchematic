@@ -192,7 +192,7 @@ open RN1.7 RN3.7
 note 25B pin 10 is printed "SIGS" (checked at 800 dpi: the S is the same glyph as in SIGS at 24A pin 1).
 note 23A pin 15 (EB, drive enable) is on the STGS line from 21A pin 18; EY~ (pin 1) is RSTGS = STGS OR DIFF from 25B.
 note RN1, RN3 (4608X104_221/331) and RN2 (4610X104_221/331) are 220/330 ohm terminator packs: each line pin has 220 ohm to the TERMS rail (pin 8 or 10) and 330 ohm to ground (pin 1). Read from the pin numbers drawn on both resistors of each line.
-note D4 (1N3246) feeds the TERMS rail from +5 V; strap STR2 (at 20A) puts it on the cable as STERMPWR.
+note D4 (1N3246) feeds the TERMS rail from +5 V (checked full size 2026-11-28: pin 2 the triangle (anode) on +5 V, pin 1 the bar (cathode) on TERMS - numbered from the other end than D10 on sheet 16); strap STR2 (at 20A) puts it on the cable as STERMPWR.
 note TH2 (2170576F) is a hex switch: D8 = ESCSI (SCSI on), D4/D2/D1 = ID~2..ID~0 (the card's SCSI ID). C to ground, C~ through R6 to +5 V.
 note 13C prints LDWC without ~ here; sheet 15 lists it at the S_ND_INT box as LDWC~: OPEN which is right.
 note PAL contents (24B "78200", 21A "42500", 13C "78300") not read (BUGS.md).
