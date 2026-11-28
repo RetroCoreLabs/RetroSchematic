@@ -333,6 +333,11 @@ entry (`P.A`, `P.B`, `P.C`): C is the ND-100 bus (`nd100-c-connector`), A and B 
 specific (the ND-120 CPU's are `nd120-cpu-a-plug` and `nd120-cpu-b-plug`), and either may be
 `"used": false`.
 
+`J.x` (2026-11-28) is a socket or header on the board itself, named by its board position `x`:
+card 3207's `J.18A` is the pin field a small plug-in board sits in, pushed towards the print
+"SING" for single-ended SCSI or towards "DIFF" for differential. Its pins are written with a row
+letter as the drawing names them (`J.18A.e1`). A bare `J` is not a connector.
+
 A pin on a plug with rows is written with the row letter (lower case) in front of the pin
 number: `P.C.a17` = plug C, row a, pin 17. The drawing shows it as `C.a17`; ND's computer-drawn
 sheets print the same pin as `C A17` (card 3207, sheet 2). Because the row sits inside the last

@@ -65,7 +65,8 @@ Every read card makes the offline networks better. How:
    network said and what the right answer was.
 2. **What may be used:** only items checked in at least review round 1 with zero rule
    failures. Human-checked items count more than AI-checked ones. Test cards are never used
-   for training (today: 2A50 page 64 and the SCSI card 3207); they are only measured.
+   for training (today: 2A50 page 64 and SCSI card 3207 sheets 6, 13 and 21); they are only
+   measured. The other 3207 sheets may be trained on (owner's ruling, 2026-11-28).
 3. **How a retrain runs:** collect the saved boxes and corrections from all finished cards,
    add the generated training pages, retrain, and pick the new model on held-out cards.
 4. **When a new model is accepted:** only if, on the test cards, it is not worse at anything,

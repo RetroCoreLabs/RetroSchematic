@@ -1,0 +1,201 @@
+# Card 3207, sheet 13 of 24: FLOPPY / Z80_COMP 2 ("Z80_COMPUTER": CPU, clocks, bus buffers)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles. Part boxes from the scsi13 test key (375 dpi / 1.25).
+block Z80_COMP
+page 13
+
+part RN19 4610X_101_472 618 418 313 122
+part 20F Z80A_CPU 983 548 126 739
+part 21F 74LS244 1458 548 122 296
+part 22F 74LS244 1458 948 122 290
+part R45 1KOHM 1792 348 38 108
+part OSC2 32MHZ 1872 390 77 66
+part 27H 74F161 2653 409 117 278
+part R46 1KOHM 2206 530 42 113
+part R47 220OHM 2210 814 38 94
+part LD3 YELLOW 2126 926 62 46
+part C26 33PF 2327 705 70 61
+part R48 220OHM 2505 710 73 34
+part R50 220OHM 2693 717 77 42
+part R49 .2KOHM 2439 795 70 33
+part T1 2N3906 2606 766 70 117
+part 22H 74LS393 2910 675 120 129
+part 10J MC14536BCP 3054 1145 101 398
+part RN22 4610X_101_332 2039 1114 550 108
+part RN20 4610X_101_472 2074 1453 539 117
+part 21G 74LS245 1890 1214 115 302
+part RN21 4606X_101_272 484 1754 174 94
+part 24F 74LS244 788 1849 129 311
+part 24H 74LS95B 1788 1945 120 250
+part 29A 74S00
+part 16H 74S04
+part 15H 74LS04
+part 18H 74LS00
+part 19H 74LS74
+part 26H 74LS20
+part 30G 74LS04
+part 13H 74LS00
+part 24G 74LS125
+part 2H 74LS02
+part 29G 74LS32
+part 21H 74LS74
+
+gate 29A/3 nand 1,2>3
+gate 29A/6 nand 4,5>6
+gate 16H/10 not 11>10
+gate 16H/12 not 13>12
+gate 16H/8 not 9>8
+gate 16H/6 not 5>6
+gate 15H/10 not 11>10
+gate 15H/6 not 5>6
+gate 18H/3 nand 1,2>3
+gate 26H/6 nand 1,2,4,5>6
+gate 30G/6 not 5>6
+gate 13H/11 nand 12,13>11
+gate 24G/6 buffer 5,4>6
+gate 24G/3 buffer 2,1>3
+gate 24G/11 buffer 12,13>11
+gate 24G/8 buffer 9,10>8
+gate 2H/10 nor 9,8>10
+gate 29G/6 or 5,4>6
+gate 19H/9 other 12,11,10,13>9
+gate 21H/9 other 12,11,10,13>9
+gate 21H/5 other 2,3,4,1>5
+
+# Z80 CPU control lines, each pulled up by RN19
+net ZM1~: 20F.27 RN19.2 24F.15
+net ZMREQ~: 20F.19 RN19.8 24F.4
+net ZIORQ~: 20F.20 RN19.7 24F.2 21H.2 2H.9
+net ZRD~: 20F.21 RN19.6 24F.6
+net ZWR~: 20F.22 RN19.5 24F.8
+net ZRSFH~: 20F.28
+net ZWAIT~: 20F.24 RN19.4
+net ZINT~: 20F.16 RN19.10
+net ZNMI~: 20F.17 RN19.9 15H.6
+net MC~: 20F.26
+net ZBUSRQ~: 20F.25 RN19.3 18H.3
+net 20F_23: 20F.23 15H.11
+net HACK: 15H.10 16H.11 16H.13
+net ZCLK: 20F.6 16H.8 T1.1
+net A00: 20F.30 21F.6
+net A01: 20F.31 21F.8
+net A02: 20F.32 21F.11
+net A03: 20F.33 21F.13
+net A04: 20F.34 21F.4
+net A05: 20F.35 21F.15
+net A06: 20F.36 21F.2
+net A07: 20F.37 21F.17
+net A08: 20F.38 22F.11
+net A09: 20F.39 22F.8
+net A10: 20F.40 22F.13
+net A11: 20F.1 22F.2
+net A12: 20F.2 22F.4
+net A13: 20F.3 22F.17
+net A14: 20F.4 22F.6
+net A15: 20F.5 22F.15
+net D00: 20F.14 21G.7
+net D01: 20F.15 21G.9
+net D02: 20F.12 21G.8
+net D03: 20F.8 21G.6
+net D04: 20F.7 21G.4
+net D05: 20F.9 21G.3
+net D06: 20F.10 21G.2
+net D07: 20F.13 21G.5
+
+# bus request from the DMA side
+net HREQ: 18H.1
+net 19H_9: 19H.9 18H.2
+net ZDMAEN~: 19H.10 26H.2
+net ENCDMA: 19H.12
+net DMAINT~: 19H.11
+
+# Z80 address onto BA
+net BA00: 21F.14
+net BA01: 21F.12
+net BA02: 21F.9
+net BA03: 21F.7
+net BA04: 21F.16
+net BA05: 21F.5
+net BA06: 21F.18
+net BA07: 21F.3
+net BA11: 22F.18
+net BA12: 22F.16
+net BA13: 22F.3
+net BA14: 22F.14
+net BA15: 22F.5
+
+# clocks: 32 MHz oscillator, gated, divided by 27H and 22H
+net CKDIS~: 29A.2 R45.2
+net OSC2_3: OSC2.3 29A.1
+net 29A_3: 29A.3 29A.4
+net TFRQ: R46.2 29A.5
+net 32MHZ~: 29A.6 27H.2
+net H4: 27H.10 27H.7 27H.9 27H.1
+net 16MHZ~: 27H.14
+net 8MHZ~: 27H.13 24H.9 24H.8
+net 4MHZ~: 27H.12 21H.3 16H.9 16H.5 C26.1 R49.1
+net 2MHZ~: 27H.11 22H.1
+net 1MHZ~: 22H.3
+net 125KHZ~: 22H.6 10J.3
+net C26_2: C26.2 R48.1
+net T1_2: T1.2 R49.2
+net R48_2: R48.2 T1.3 R50.1
+net ACLK: 16H.6 21H.11
+net 16H_12: 16H.12 LD3.1
+net LD3_2: LD3.2 R47.2
+
+# watchdog: MC14536 timer gives ZNMI~
+net 10J_13: 10J.13 15H.5
+net 13H_11: 13H.11 10J.2
+net RFT~: 13H.13
+net DISTO: 10J.7
+
+# data bus buffer Z80 D <-> MBD
+net 26H_6: 26H.6 21G.1
+net IREN~: 26H.1
+net FLOCE~: 26H.4
+net 30G_6: 30G.6 26H.5
+net IORD~: 30G.5 24F.9
+net MBD06: 21G.18 RN22.2 RN20.2
+net MBD05: 21G.17 RN22.3 RN20.3
+net MBD04: 21G.16 RN22.4 RN20.4
+net MBD07: 21G.15 RN22.5 RN20.5
+net MBD03: 21G.14 RN22.6 RN20.6
+net MBD00: 21G.13 RN22.7 RN20.7
+net MBD02: 21G.12 RN22.8 RN20.8
+net MBD01: 21G.11 RN22.9 RN20.9
+
+# memory and I/O strobes: 24F passes the Z80 strobes, 24H/24G make I/O strobes while the bus is held
+net 21H_6: 21H.6 2H.8
+net 2H_10: 2H.10 24H.6
+net ENIOR~: 29G.6 24H.1 24G.10
+net ARCK~: 24H.12
+net 24H_11: 24H.11 24G.12
+net 24H_10: 24H.10 24G.9 21H.1
+net RD~: 24F.14 29G.5 24G.5
+net IORQ~: 24F.18 29G.4
+net WR~: 24F.12 24G.2 24G.13
+net MREQ~: 24F.16 24G.4 24G.1
+net MIOWR~: 24G.11 24F.13 RN21.3
+net MIORD~: 24G.8 24F.11 RN21.4
+net MOE~: 24G.6 21H.10
+net MWE~: 24G.3 24F.17 RN21.2
+net OE~: 21H.8
+net IOWR~: 24F.7
+net M1~: 24F.5
+net WE~: 24F.3
+
+net +5V: RN19.1 R45.1 R46.1 R47.1 R50.2 19H.13 21H.4 21H.13 RN22.1 RN21.1 10J.11 10J.12
+net GND: 21F.1 21F.19 22F.1 22F.19 27H.3 27H.4 27H.5 27H.6 22H.2 21G.19 RN20.1 24F.1 24F.19 24H.2 24H.3 24H.4 24H.5 21H.12 10J.15 10J.10 10J.1 10J.6 10J.14
+
+open 20F.18 16H.10 13H.12 10J.9
+
+note 21G is printed "216" (74LS245, "DIR=H A-B"); the test key reads it as 21G, the G in this font looks like 6.
+note RN19 is drawn twice (two groups of the same 4610X_101_472 pack), so it has two boxes on the page; the box above is the first group.
+note 22F inputs 8, 11, 13 (A09, A08, A10) have their outputs 12, 9, 7 drawn as stubs: BA08-BA10 are not driven from the Z80 here.
+note 21F and 22F enables (pins 1, 19) are tied to GND: always on.
+note RN22 (to +5 V) and RN20 (to GND) both sit on every MBD line: a pull-up and a pull-down per line.
+note OPEN 20F pin 18 (HALT~) has a short wire with no end; 16H pin 10 (HACK inverted) leaves the tiles read; 13H pin 12 wire runs up into the MBD bus area; 10J pin 9 drawn in a box beside the GND column.
+note 10J MC14536 pins as printed on the drawing: 3 D, 9-12 A0-A3, 15 MONO, 2 RESET, 1 SET, 6 8BY, 14 OSC, 7 CLK, 13 Q, 4 Y, 5 Y~.
+note "ZRSFH~" is printed in quotes and ends at a dot: the Z80 refresh output is not used.
+nc 21H.9 21H.5
+note R47 is printed "R4" on this sheet (grid F2, checked at 1000 dpi). R4 is the 1 kohm H6 pull-up on sheet 22, confirmed by Ronny 2026-11-28; this 220 ohm LED resistor is renamed R47 (the one free number among this sheet's R45-R50), confidence inferred, by his ruling. Its top end is the flat bar = +5V, the same symbol that ties 5B pin 15 and 14C pins 4 and 10 high on sheet 23.

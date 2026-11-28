@@ -29,9 +29,22 @@ namespace RetroSchematic.Tests
         [TestCase("13C", false)]
         [TestCase("PA", false)]
         [TestCase("P.A.B", false)]
+        // J.x: a socket on the board, named by its board position; a bare J says nothing
+        [TestCase("J.18A", true)]
+        [TestCase("J", false)]
+        [TestCase("18A", false)]
         public void WhatIsAConnector(string reference, bool connector)
         {
             Assert.That(ConnectorPins.IsConnector(reference), Is.EqualTo(connector));
+        }
+
+        [Test]
+        public void ABoardSocket_IsCalledABoardConnector_AndListedAfterThePlugs()
+        {
+            Assert.That(ConnectorPins.Name("J.18A"), Is.EqualTo("Board connector 18A"));
+            Assert.That(ConnectorPins.KindWord("J.18A"), Is.EqualTo("board"));
+            Assert.That(ConnectorPins.Compare("P.C", "J.18A"), Is.LessThan(0));
+            Assert.That(ConnectorPins.Compare("F", "J.18A"), Is.LessThan(0));
         }
 
         [Test]

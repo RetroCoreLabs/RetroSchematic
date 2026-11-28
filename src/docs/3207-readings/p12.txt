@@ -1,0 +1,156 @@
+# Card 3207, sheet 12 of 24: FLOPPY / Z80_COMP 1 ("Z80_COMPUTER": memory and I/O decode)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles, top strip at 300 dpi.
+block Z80_COMP
+page 12
+
+part 20H 74LS74 775 215 83 120
+part 9G 74LS273 648 509 96 309
+part 9F 25LS2521 1371 509 111 521
+part 23E 2764_2 2251 381 96 536
+part 24E TMM2063P_10 2240 1152 107 554
+part 11G 74LS138 2821 832 112 255
+part 10G 74LS138 2821 1155 112 253
+part 20E 74LS138 2821 1478 112 255
+part 17G 74273 648 1189 96 332
+part 15G 74273 648 1689 96 310
+part 12G 74LS139 1662 1436 112 252
+part 21E PAL16L8 1676 1801 98 312
+part 19J HP5082_7433 1240 1330 109 269
+part 15H 74LS04
+part 13H 74LS00
+part RN17 4610X_101_103
+part RN18 4116R_001_102
+part R43 1KOHM
+part R44 1KOHM
+
+gate 15H/2 not 1>2
+gate 13H/8 nand 9,10>8
+
+# CPU write-protect compare: 9G holds a byte written with WRCPR~, 9F compares it with MBD
+net WRCPR~: 21E.14 9G.11 20H.4 20H.10
+net MBD00: 9G.7 9F.5 17G.3 15G.8
+net MBD01: 9G.8 9F.3 17G.4 15G.3
+net MBD02: 9G.13 9F.18 17G.7 15G.4
+net MBD03: 9G.14 9F.16 17G.8 15G.7
+net MBD04: 9G.17 9F.14 17G.13 15G.13
+net MBD05: 9G.3 9F.9 17G.14 15G.17
+net MBD06: 9G.18 9F.12 17G.17 15G.18
+net MBD07: 9G.4 9F.7 17G.18 15G.14
+net CD0: 9G.6 9F.4
+net CD1: 9G.9 9F.2
+net CD2: 9G.12 9F.17
+net CD3: 9G.15 9F.15
+net CD4: 9G.16 9F.13
+net CD5: 9G.2 9F.8
+net CD6: 9G.19 9F.11
+net CD7: 9G.5 9F.6
+net CEQ~: 9F.19 13H.10
+net CPACK~: 15H.1
+net CPACK: 15H.2 20H.3 13H.9
+net COEN: 20H.1
+net CPRQ: 20H.5
+net 13H_8: 13H.8 20H.12
+net IOWR~: 20H.11 11G.5
+net CPERR~: 20H.9
+
+# memory: 2764 EPROM (program) and TMM2063 static RAM, chosen by the PAL
+net A00: 23E.10 24E.10
+net A01: 23E.9 24E.9
+net A02: 23E.8 24E.8
+net A03: 23E.7 24E.7
+net A04: 23E.6 24E.6
+net A05: 23E.5 24E.5
+net A06: 23E.4 24E.4
+net A07: 23E.3 24E.3
+net A08: 23E.25 24E.25
+net A09: 23E.24 24E.24
+net A10: 23E.21 24E.21
+net A12: 23E.2 24E.2
+net 21E_13: 21E.13 23E.23 24E.23
+net WE~: 23E.27 24E.27 21E.11
+net OE~: 23E.22 24E.22
+net MCE~0: 21E.19 23E.20
+net MCE~1: 21E.12 24E.20
+net D00: 23E.11 24E.11 RN17.2
+net D01: 23E.12 24E.12 RN17.3
+net D02: 23E.13 24E.13 RN17.4
+net D03: 23E.15 24E.15 RN17.5
+net D04: 23E.16 24E.16 RN17.6
+net D05: 23E.17 24E.17 RN17.7
+net D06: 23E.18 24E.18 RN17.8
+net D07: 23E.19 24E.19 RN17.9
+net BA11: 21E.1
+net BA12: 21E.2
+net BA13: 21E.3
+net BA14: 21E.4
+net BA15: 21E.5
+net ZM1~: 21E.6
+net ZMREQ~: 21E.7
+net AEN: 21E.8
+net MDIS: 21E.9
+
+# I/O port decode: 20E splits the Z80 port space in blocks of 16, 11G/10G pick the port 50-57
+net BA00: 11G.1 10G.1 12G.2
+net BA01: 11G.2 10G.2 12G.3
+net BA02: 11G.3 10G.3
+net BA04: 20E.1
+net BA05: 20E.2
+net BA06: 20E.3
+net BA07: 20E.4
+net IORQ~: 20E.5
+net M1~: 20E.6
+net IREN~: 20E.14
+net ZDMAEN~: 20E.13
+net DISP~: 20E.11 12G.1
+net N100EN~: 20E.10 11G.4 10G.4
+net FLOEN~: 20E.7
+net H2: 11G.6 10G.6
+net IORD~: 10G.5
+net LADL~: 11G.15
+net LADM~: 11G.14
+net LADH~: 11G.13
+net LDD_T~: 11G.12
+net SETLO~: 11G.11
+net SETHI~: 11G.10
+net LSTAT~: 11G.9
+net FINISH~: 11G.7
+net RCW1~: 10G.15
+net RPOL~: 10G.14
+net RPOM~: 10G.13
+net RPOH~: 10G.12
+net RCW2~: 10G.11
+net RDMAL~: 10G.10
+net RDMAM~: 10G.9
+net RDMAH~: 10G.7
+
+# display (ports 40, 41)
+net SETDISP~: 12G.4 17G.11
+net ENDISP~: 12G.5 15G.11
+net MC~: 17G.1 15G.1
+net 17G_2: 17G.2 RN18.1
+net 17G_5: 17G.5 RN18.3
+net 17G_6: 17G.6 RN18.2
+net 17G_9: 17G.9 RN18.5
+net 17G_12: 17G.12 RN18.6
+net 17G_15: 17G.15 RN18.7
+net 17G_16: 17G.16 RN18.4
+net ENCDMA: 15G.2
+net DISTO: 15G.9
+net SIFF2~: 15G.15 19J.1
+net SIFF0~: 15G.16 19J.7
+net SIFF1~: 15G.19 19J.4
+
+net H4: R43.2
+net H3: R44.1
+net +5V: 9G.1 20H.13 23E.26 24E.26 RN17.1 R43.1 R44.2
+net GND: 9F.1 20H.2
+
+open 23E.1 RN18.16 RN18.14 RN18.15 RN18.12 RN18.11 RN18.10 RN18.13 19J.10 19J.8 19J.5 19J.3 19J.2 19J.11 19J.9 19J.6
+
+note The port numbers printed on other sheets ("(OUT50)" ... "(IN57)", "(OUT74)", "(IN77)", "(OUT40)", "(OUT41)") are Z80 I/O port numbers in hexadecimal: 20E decodes BA7-BA4 with IORQ~ (Y5 = 50-5F gives N100EN~, Y7 = 70-7F FLOEN~, Y4 = 40-4F DISP~, Y2 = 20-2F ZDMAEN~, Y1 = 10-1F IREN~), and 11G (write) / 10G (read) decode BA2-BA0 inside 50-57. CHECKED: OUT50 = LADL~ (11G Y0), IN50 = RCW1~ (10G Y0), IN57 = RDMAH~ (10G Y7), all as printed on sheets 7 and 9.
+note 23E is printed "459_00 2764_2" (Z80 program EPROM), 21E "458_00 PAL16L8" (memory map): contents not read (BUGS.md).
+note 23E pin 23 (A11) and 24E pin 23 are not on the A bus: they come from PAL 21E pin 13, so the PAL banks the upper 2K.
+note 12G pins 13, 14, 15 (2B, 2A, 2G~) are drawn as short stubs: the second half of the 74LS139 has its inputs unconnected on the drawing. Outputs 6, 7, 9-12 unused.
+note OPEN RN18 right-hand pins to the 19J segment pins: seven wires cross between the pack and the display; 23E pin 1 (VPP) has a short wire with no end.
+note 19J HP5082-7433 is a three-digit LED display; SIFF0~-SIFF2~ drive its digit commons C3, C2, C1.
+note 20E outputs 15, 12, 9 and 15G outputs 5, 6, 12 and 17G pin 19 are unused stubs.

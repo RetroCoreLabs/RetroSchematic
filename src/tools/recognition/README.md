@@ -40,8 +40,8 @@ an "Improve the models" button, `src/docs/IMPORT-WORKFLOW.md`).
 2. **Add new training material.** New answer keys go in `data/keys/` (one JSON per page, same
    form as the others). A key must pass the rule checks first: `python -I scripts/keyrules.py
    <key>` reports zero failures. Cards read in the app give keys from their accepted symbol
-   boxes and connected pins. Never add 2A50 page 64 or any SCSI card (3207) page: those are the
-   test cards.
+   boxes and connected pins. Never add 2A50 page 64 or SCSI card 3207 sheets 6, 13 or 21: those are
+   the test pages. The other 3207 sheets may be trained on (owner's ruling, 2026-11-28).
 3. **Make the drafts** with the latest kept settings - the `run` line of the last entry in
    `loop/rounds.json`, for example
    `GRIDFIX=1 FIX4=1 ... DETH=model/det-L3.onnx sh loop/draftall.sh r6`.

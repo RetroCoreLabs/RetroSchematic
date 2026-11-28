@@ -1,0 +1,61 @@
+# Card 3207, sheet 17 of 24: SCSI / DIFF_SCSI 2 (differential control lines)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles.
+block DIFF_SCSI
+page 17
+
+part 18C 75176 806 655 111 141
+part 15D 75176 806 895 111 141
+part 20C 75176 806 1134 111 141
+part 16D 75176 806 1374 111 141
+part 19C 75176 2201 654 111 141
+part 20D 75176 2201 893 111 141
+part 19D 75176 2201 1130 111 141
+part 18D 75176 2201 1369 111 141
+part 17D 75176 2201 1607 111 141
+part RN34 4610X_101_331
+part RN35 4610X_101_331
+part RN36 4608X_102_151
+part RN37 4610X_102_151
+
+# each 75176: EB = drive enable, D = level driven, EY~ = receive enable, Y = received level; B/B~ to the cable pair
+net DIGS: 18C.3 20C.3
+net ATN: 18C.4 18C.1
+net DDIGS: 18C.2 20C.2
+net DATN: 18C.6 RN36.1 RN35.2
+net DATN~: 18C.7 RN36.2 RN34.2
+net BSYOUT: 15D.3
+net SMCL~: 15D.4 16D.4 20D.4
+net DIFF~: 15D.2 16D.2 20D.2
+net BSYIN: 15D.1
+net DBSY: 15D.6 RN36.3 RN35.3
+net DBSY~: 15D.7 RN36.4 RN34.3
+net ACK: 20C.4 20C.1
+net DACK: 20C.6 RN36.5 RN35.4
+net DACK~: 20C.7 RN36.6 RN34.4
+net TRST: 16D.3
+net RRST: 16D.1
+net DRST: 16D.6 RN36.7 RN35.5
+net DRST~: 16D.7 RN36.8 RN34.5
+net DTGS: 19C.3 19D.3 18D.3 17D.3
+net MSG: 19C.4 19C.1
+net DDTGS: 19C.2 19D.2 18D.2 17D.2
+net DMSG: 19C.6 RN37.1 RN35.6
+net DMSG~: 19C.7 RN37.2 RN34.6
+net SELOUT: 20D.3
+net SELIN: 20D.1
+net DSEL: 20D.6 RN37.3 RN35.7
+net DSEL~: 20D.7 RN37.4 RN34.7
+net C_D: 19D.4 19D.1
+net DCD: 19D.6 RN37.5 RN35.8
+net DCD~: 19D.7 RN37.6 RN34.8
+net REQ: 18D.4 18D.1
+net DREQ: 18D.6 RN37.7 RN35.9
+net DREQ~: 18D.7 RN37.8 RN34.9
+net I_O: 17D.4 17D.1
+net DIO: 17D.6 RN37.9 RN35.10
+net DIO~: 17D.7 RN37.10 RN34.10
+net DIFFPWR: RN34.1
+net GND: RN35.1
+
+note RN34 (4610X_101_331, to DIFFPWR) pulls each D...~ line up, RN35 (4610X_101_331, to GND) pulls each D... line down; RN36 (4608X_102_151) and RN37 (4610X_102_151) put 150 ohm across each pair.
+note BSY, RST and SEL are driven with D = SMCL~ and enabled by BSYOUT, TRST, SELOUT; their receivers are enabled by DIFF~. ATN and ACK are enabled by DIGS/DDIGS (initiator), MSG, C/D, REQ, I/O by DTGS/DDTGS (target).

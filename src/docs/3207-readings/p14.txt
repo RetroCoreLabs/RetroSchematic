@@ -1,0 +1,111 @@
+# Card 3207, sheet 14 of 24: FLOPPY / Z80_COMP 3 ("Z80_COMPUTER": DMA controller and timers)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles.
+block Z80_COMP
+page 14
+
+part 26F AM9517_4PC 726 629 150 650
+part 28E Z80A_CTC 2412 522 125 671
+part 26E Z80A_CTC 2412 1333 125 679
+part 23F 74LS373 751 1517 97 311
+part 16F 74LS04
+part 21D 74LS02
+part 13G 74LS32
+part 29G 74LS32
+part 31F 74LS32
+part 30G 74LS04
+part R52 1KOHM
+part R53 1KOHM
+part R55 2.7KOHM
+part R56 2.7KOHM
+
+gate 16F/8 not 9>8
+gate 16F/6 not 5>6
+gate 21D/10 nor 9,8>10
+gate 13G/8 or 9,10>8
+gate 29G/3 or 1,2>3
+gate 31F/8 or 9,10>8
+gate 30G/8 not 9>8
+
+# AM9517 four-channel DMA controller (channel 0 floppy, 2 ND interface, 3 compare)
+net ZDMAEN~: 26F.11
+net MIORD~: 26F.1
+net MIOWR~: 26F.2
+net ACLK: 26F.12
+net MC: 26F.13
+net AEN: 26F.9 16F.5
+net ADSTB: 26F.8 23F.11
+net MOE~: 26F.3
+net MWE~: 26F.4
+net ZWAIT~: 26F.6
+net HREQ: 26F.10 R55.1
+net HACK: 26F.7
+net DMAINT~: 26F.36 R56.2 28E.20
+net FLORQ: 26F.19
+net NRQ: 26F.17
+net CPRQ: 26F.16
+net FLOACK~: 26F.25
+net NACK~: 26F.14
+net CPACK~: 26F.15
+net A00: 26F.32 28E.18 26E.18
+net A01: 26F.33 28E.19 26E.19
+net A02: 26F.34
+net A03: 26F.35
+net A04: 26F.37
+net A05: 26F.38
+net A06: 26F.39
+net A07: 26F.40
+net D00: 26F.30 23F.18 28E.25 26E.25
+net D01: 26F.29 23F.8 28E.26 26E.26
+net D02: 26F.28 23F.13 28E.27 26E.27
+net D03: 26F.27 23F.4 28E.28 26E.28
+net D04: 26F.26 23F.7 28E.1 26E.1
+net D05: 26F.23 23F.3 28E.2 26E.2
+net D06: 26F.22 23F.17 28E.3 26E.3
+net D07: 26F.21 23F.14 28E.4 26E.4
+
+# upper address byte latched from the data bus at ADSTB
+net AEN~: 16F.6 23F.1
+net A08: 23F.19
+net A09: 23F.9
+net A10: 23F.12
+net A11: 23F.5
+net A12: 23F.6
+net A13: 23F.2
+net A14: 23F.16
+net A15: 23F.15
+
+# two Z80 CTC counter/timers, ports 10-13 and 14-17 (IREN~ with BA02)
+net IREN~: 29G.1 31F.9
+net BA02: 29G.2 30G.9
+net CTCEN~: 29G.3 28E.16 21D.9
+net IORD~: 21D.8
+net 21D_10: 21D.10 13G.9
+net RFT: 13G.10
+net 13G_8: 13G.8 28E.23
+net 30G_8: 30G.8 31F.10
+net 31F_8: 31F.8 26E.16
+net ZM1~: 28E.14 26E.14
+net ZIORQ~: 28E.10 26E.10
+net ZRD~: 28E.6 26E.6
+net MC~: 28E.17 26E.17
+net ZINT~: 28E.12 26E.12
+net H2: 28E.13 R53.2
+net CTC1E: 28E.11 26E.13
+net ZCLK: 28E.15 26E.15
+net H7: 28E.22 26E.22 R52.2
+net FLOINT: 16F.9
+net 16F_8: 16F.8 28E.21
+net CPERR~: 26E.23
+net PF1MHZ: 26E.21
+net 26E_9: 26E.9 26E.20
+
+net +5V: R52.1 R53.1 R55.2 R56.1
+net GND: 26F.18
+
+nc 26F.24 28E.7 28E.8 28E.9 26E.7 26E.8 26E.11
+
+note 26F is printed "AM9517_4PC" (AMD 9517A-4 DMA controller). DRQ1 (pin 18) is tied to GND; DACK1 (pin 24) unused.
+note 28E is addressed when IREN~ (ports 10-1F) and BA02 = 0 (CTCEN~, ports 10-13); 26E when BA02 = 1 (ports 14-17). 28E's interrupt chain output IEO feeds 26E's IEI (CTC1E).
+note 26E pin 9 (ZC/TO2) is drawn tied to pin 20 (CLK/TRG3): channel 3 counts channel 2's zero-count pulses (PF1MHZ divided twice).
+note R56's pin 1 goes to a bar drawn as +5 V; R56 pin 2 is on DMAINT~ (EOP~), R55 pin 1 on HREQ.
+note The first CTC is printed 28E (checked at 800 dpi: an 8 with a cross-bar), not 20E, which is the 74LS138 on sheet 12 (a slashed zero).

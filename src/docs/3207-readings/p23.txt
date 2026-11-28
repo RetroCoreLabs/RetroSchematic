@@ -1,0 +1,222 @@
+# Card 3207, sheet 23 of 24: SCSI / S_ND_INT 4 ("SCSI_ND_INTERFACE": DMA control, bus grant and IDENT, delay lines)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles, eight areas again at 420-600 dpi.
+block S_ND_INT
+page 23
+
+part 17F HY5010_100
+part 30C HY5010_100
+part 14B PAL20L10
+part 15F PAL20L8B
+part 15A 74LS273
+part 28A 74LS123
+part 27A 74F74
+part 30B 74F74
+part 5B 74F112
+part 14C 74LS74
+part 2B 74LS74
+part 27C 74S64
+part 25C 74F260
+part C4 100PF
+part C6 220PF
+part R9 10KOHM
+part 8C 74LS14
+part 16B 74LS04
+part 15H 74LS04
+part 24D 74LS04
+part 28C 74F04
+part 26A 74LS00
+part 26C 74LS00
+part 4A 74F32
+part 29B 74F08
+part 28B 74F10
+part 27B 74F00
+part 31B 74F02
+part 11C 74F08
+part 2A 74LS02
+part 25B 74LS32
+part U74S08 74S08
+
+gate 8C/12 not 13>12
+gate 16B/6 not 5>6
+gate 15H/12 not 13>12
+gate 24D/12 not 13>12
+gate 28C/8 not 9>8
+gate 28C/4 not 3>4
+gate 28C/6 not 5>6
+gate 28C/2 not 1>2
+gate 26A/11 nand 13,12>11
+gate 26A/3 nand 2,1>3
+gate 26C/8 nand 10,9>8
+gate 4A/11 or 13,12>11
+gate 4A/6 or 4,5>6
+gate 4A/3 or 1,2>3
+gate 4A/8 or 9,10>8
+gate 29B/3 and 1,2>3
+gate 29B/6 and 4,5>6
+gate 29B/11 and 12,13>11
+gate 29B/8 and 9,10>8
+gate 28B/8 nand 11,9,10>8
+gate 28B/12 nand 1,2,13>12
+gate 28B/6 nand 3,4,5>6
+gate 27B/3 nand 2,1>3
+gate 27B/6 nand 4,5>6
+gate 27B/11 nand 12,13>11
+gate 27B/8 nand 10,9>8
+gate 31B/4 nor 6,5>4
+gate 31B/1 nor 2,3>1
+gate 31B/10 nor 9,8>10
+gate 11C/8 and 9,10>8
+gate 11C/6 and 4,5>6
+gate 11C/3 and 1,2>3
+gate 2A/10 nor 9,8>10
+gate 2A/4 nor 5,6>4
+gate 25B/11 or 12,13>11
+gate U74S08/6 and 4,5>6
+gate 27C/8 and-or-invert 9,10,11,12,13,1,2,3,4,5,6>8
+gate 25C/6 nor 8,9,10,11,4>6
+gate 27A/5 other 2,3,4,1>5
+gate 27A/6 other 2,3,4,1>6
+gate 30B/5 other 2,3,4,1>5
+gate 30B/8 other 12,11,10,13>8
+gate 5B/6 other 3,1,2,4,15>6
+gate 14C/5 other 2,3,4,1>5
+gate 14C/6 other 2,3,4,1>6
+gate 14C/9 other 12,11,10,13>9
+gate 14C/8 other 12,11,10,13>8
+gate 2B/5 other 2,3,4,1>5
+gate 28A/13 other 1,2,3>13
+gate 28A/4 other 1,2,3>4
+
+net SNDMAEN: 14B.1 C4.1 4A.12 15A.5 15F.14 15A.5
+net DRQ: 14B.2
+net TOMEM: 14B.3 15A.6 27C.9 27B.13 15F.13 15A.6
+net LDAT~: 14B.4 15F.10
+net SRDAT~: 14B.5 29B.4
+net SDRY: 14B.6 8C.13 27B.9
+net OSNREQ: 14B.7 15F.16
+net LADR0: 14B.8
+net NCR~: 14B.9 26A.2
+net 17F_9: 17F.9 14B.10
+net TEST: 14B.11 26A.13 15A.2 31B.8 15F.8 15A.2
+net RMARL~: 14B.13 27B.1
+net OSDMAST~: 14B.23 15F.1
+net SLODHI~: 14B.14
+net SRD~: 14B.22
+net SENDHI~: 14B.21
+net SWR~: 14B.18
+net SDACK~: 14B.17
+net SLODLO~: 14B.16
+net SENDLO~: 14B.15
+net GND: C4.2 2B.2 2B.3 5B.3 28A.1
+net SDRY~: 8C.12 16B.5 17F.1 11C.10
+net SDACK: 16B.6
+net DEL50: 17F.11 15F.9
+net RMARL: 26A.12 4A.4
+net 26A_11: 26A.11 4A.13
+net 4A_11: 4A.11 29B.2
+net SAPR~: 29B.1 28B.5 28C.2
+net 29B_3: 29B.3 28B.11
+net LMARL~: 28B.9
+net LMARU~: 28B.10
+net 28B_8: 28B.8 28C.9
+net SADCK: 28C.8
+net SDMARES: 31B.6 28C.4 15F.7 26C.10
+net SMC: 31B.5 28A.13 2A.8 25C.10 15F.6
+net 31B_4: 31B.4 30B.4
+net WCZ~: 15H.13
+net 15H_12: 15H.12 30B.2
+net SDMAST~: 30B.3 15F.19
+net H6: 30B.1 30B.10 27A.4 27A.1
+net SNREQ~: 30B.5 27B.2
+net SNREQ: 30B.6 27A.2 31B.9 15F.2
+net SLGRANT: 30B.12 30B.13 5B.6 28B.3 27B.12 27B.10 27C.10 27C.4 29B.13
+net SDLDAPR: 30B.11
+net SADDRESS: 30B.8 28B.13 31B.2
+net 27B_3: 27B.3 28B.1
+net SMEM: 4A.5 27A.3 27B.4 11C.9
+net 4A_6: 4A.6 28B.2
+net SADEN~: 28B.12 28B.4
+net SEDAP~: 31B.3 30C.10
+net SDAP: 31B.1
+net 28B_6: 28B.6 29B.5
+net SDOEN~: 29B.6 27C.6
+net SDMAINP~: 27B.11
+net SDMARES~: 27B.8 28C.3
+net SACARY~: 31B.10
+net ADDRESS: 29B.12
+net 29B_11: 29B.11 30C.1
+net 30C_12: 30C.12 29B.9 29B.10
+net SAPR: 29B.8
+net 30C_4: 30C.4 28C.1
+net DDAP: 30C.8
+net 27A_5: 27A.5 5B.2
+net 27A_6: 27A.6 27B.5
+net 27B_6: 27B.6 4A.1
+net INGRANT~: 4A.2 5B.1
+net SOTGRANT~: 4A.3
+net 11C_8: 11C.8 5B.4
+net +5V: 5B.15 14C.4 14C.10 28A.3 R9.2
+net SDIN04: 11C.4
+net SLOCW: 11C.5 15A.11 14C.3 14C.11 15F.3
+net 11C_6: 11C.6 4A.10
+net SMCL: 4A.9
+net 4A_8: 4A.8 28A.2
+net R9_1: R9.1 28A.15 C6.1
+net C6_2: C6.2 28A.14
+net SMC~: 28A.4 15A.1 11C.1
+net FDIFF: 15A.12
+net FSING: 15A.15
+net TRST: 15A.16
+net SDIN03: 15A.3
+net SDIN05: 15A.4 15F.4
+net SDIN06: 15A.7 15F.5
+net SDIN07: 15A.8
+net SDIN08: 15A.13
+net SDIN09: 15A.14
+net SDIN10: 15A.17
+net SDIN11: 15A.18
+net RMARU~: 26A.1
+net 26A_3: 26A.3 25B.12
+net STRANS~: 27C.8 25B.13
+net UTRANS~: 25B.11
+net SINACK: 27C.11 27C.12
+net SINPUT: 27C.13
+net SRIOXE: 27C.1
+net SLIDENT: 27C.2 27C.3 2A.9
+net 28C_5: 28C.5
+net 28C_6: 28C.6 27C.5
+net SERROR: 26C.9
+net 26C_8: 26C.8 24D.13 2B.4
+net DMAERR: 24D.12 25C.9
+net SLOCW~: 11C.2
+net 11C_3: 11C.3 2B.1
+net STRERR: 2B.5
+net SDIN00: 14C.2
+net 2A_10: 2A.10 14C.1
+net SENI: 14C.5
+net SENI~: 14C.6 2A.5
+net SDIN02: 14C.12
+net 25C_6: 25C.6 14C.13
+net SRFT~: 14C.9 2A.6
+net SRFT: 14C.8
+net SINT11: 2A.4
+net RRST: 25C.8
+net S08_6: U74S08.6 25C.11 25C.4
+net SINT: U74S08.4
+net CKWL: 15F.11
+net DLMARL~: 15F.23
+net 15F_15: 15F.15 U74S08.5
+net ENOLA~: 15F.22
+net ENILA1~: 15F.18
+net ENILA2~: 15F.17
+
+nc 17F.13 17F.3 17F.12 17F.4 17F.5 17F.10 17F.6 17F.8 30C.13 30C.3 30C.11 30C.5 30C.6 30C.9 14B.20 14B.19 15A.9 15A.19 15F.21 15F.20 2B.6 5B.5 30B.9
+
+note 14B ("78100" PAL20L10, "BYTE/WORD") and 15F ("78400" PAL20L8B): contents not read (BUGS.md).
+note 17F and 30C are HY5010-100 delay lines (10 taps, 10-100 ns). 17F is started by SDRY~ and gives DEL50 (50 ns) and tap 90 ns to 14B; 30C is started by 29B (ADDRESS AND SLGRANT) and gives SAPR (30 ns), SAPR~ (40 ns, inverted), SEDAP~ (70 ns) and DDAP (100 ns).
+note The 74S08 gate (SINT AND 15F pin 15 -> 25C) has no position code printed next to it: it is kept as U74S08 here. OPEN: which chip it is. The diamond at 29B pin 12 is printed "ADDRESS" (not SADDRESS).
+note 27A (74F74) samples SNREQ on SMEM; with 5B (74F112, J to ground, K = 27A Q, clocked by INGRANT~, preset by SMEM AND SDRY~) it makes SLGRANT, the card's own bus grant; SOTGRANT~ = 27A-Q~-term OR INGRANT~ passes the grant on. INFERRED from the wiring.
+note 30B pin 13 (clear) is wired to SLGRANT: the wire from pin 13 runs down, left and up to the SLGRANT dot at pin 12, crossing SDLDAPR with no dot (checked at 600 dpi).
+note 28A (74LS123) pins as drawn: the trigger from 4A pin 8 enters on pin 2 (B) and pin 1 (A~) goes to ground; the drawing prints the row names A~ and B the other way round but the pin numbers match the datasheet. Timing R9 10k, C6 220 pF. Q = SMC (SCSI master clear pulse).
+note 15A (74LS273, clocked by SLOCW, cleared by SMC~) is the control register: SDIN03 TEST, SDIN05 SNDMAEN, SDIN06 TOMEM, SDIN08 FDIFF, SDIN09 FSING, SDIN10 TRST; SDIN07 and SDIN11 are latched to unused outputs.
+note 28C here uses 3->4 (SDMARES), 5->6, 1->2 and 9->8; so on sheet 21 only 13->12 is left, which proves its printed input "3" is pin 13.

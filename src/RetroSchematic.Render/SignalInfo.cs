@@ -309,7 +309,7 @@ namespace RetroSchematic.Render
                 {
                     string part = Net.Pins[i].PartRef;
                     if (ConnectorPins.IsConnector(part))
-                        list.Add((ConnectorPins.Kind(part) == 'P' ? "backplane " : "front ") + ConnectorPins.Show(part, Net.Pins[i].Pin, _machineBus)
+                        list.Add(ConnectorPins.KindWord(part) + " " + ConnectorPins.Show(part, Net.Pins[i].Pin, _machineBus)
                             + (CatalogueSignal != null && ConnectorPins.Kind(part) == 'P' ? " " + CatalogueSignal.Name : ""));
                 }
                 for (int i = 0; i < Levels.Count; i++)
@@ -676,7 +676,7 @@ namespace RetroSchematic.Render
                 return new SignalPin
                 {
                     At = at,
-                    ChipType = ConnectorPins.Kind(conn) == 'P' ? "backplane" : "front",
+                    ChipType = ConnectorPins.KindWord(conn),
                     PinName = ConnectorPins.Show(conn, r.Pin, editor.Root.Sheet.Bus),
                     Confidence = r.Confidence,
                     IsConnector = true,

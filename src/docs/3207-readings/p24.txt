@@ -1,0 +1,113 @@
+# Card 3207, sheet 24 of 24: SCSI / S_ND_INT 5 ("SCSI_ND_INTERFACE": 16-bit word <-> 8-bit SCSI byte latches)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles.
+block S_ND_INT
+page 24
+
+part 15B 74LS373
+part 14E 74LS373
+part 13E 74LS373
+part 11D 74LS373
+part 15E 74LS373
+part 13F 74LS373
+part 16E 74LS373
+part 17E 74LS373
+part 16G2 74F04
+
+gate 16G2/2 not 1>2
+gate 16G2/4 not 3>4
+gate 16G2/6 not 5>6
+gate 16G2/8 not 9>8
+gate 16G2/10 not 11>10
+
+net SDIN07: 15B.3
+net SDIN15: 13E.3
+net 15B_2: 15B.2 14E.3
+net 13E_2: 13E.2 11D.3
+net SMBD07: 14E.2 11D.2 15E.3 16E.3
+net 15E_2: 15E.2 13F.3
+net 16E_2: 16E.2 17E.3
+net SDOUT07: 13F.2
+net SDOUT15: 17E.2
+net SDIN06: 15B.4
+net SDIN14: 13E.4
+net 15B_5: 15B.5 14E.4
+net 13E_5: 13E.5 11D.4
+net SMBD06: 14E.5 11D.5 15E.4 16E.4
+net 15E_5: 15E.5 13F.4
+net 16E_5: 16E.5 17E.4
+net SDOUT06: 13F.5
+net SDOUT14: 17E.5
+net SDIN05: 15B.7
+net SDIN13: 13E.7
+net 15B_6: 15B.6 14E.7
+net 13E_6: 13E.6 11D.7
+net SMBD05: 14E.6 11D.6 15E.7 16E.7
+net 15E_6: 15E.6 13F.7
+net 16E_6: 16E.6 17E.7
+net SDOUT05: 13F.6
+net SDOUT13: 17E.6
+net SDIN04: 15B.8
+net SDIN12: 13E.8
+net 15B_9: 15B.9 14E.8
+net 13E_9: 13E.9 11D.8
+net SMBD04: 14E.9 11D.9 15E.8 16E.8
+net 15E_9: 15E.9 13F.8
+net 16E_9: 16E.9 17E.8
+net SDOUT04: 13F.9
+net SDOUT12: 17E.9
+net SDIN03: 15B.13
+net SDIN11: 13E.13
+net 15B_12: 15B.12 14E.13
+net 13E_12: 13E.12 11D.13
+net SMBD03: 14E.12 11D.12 15E.13 16E.13
+net 15E_12: 15E.12 13F.13
+net 16E_12: 16E.12 17E.13
+net SDOUT03: 13F.12
+net SDOUT11: 17E.12
+net SDIN02: 15B.14
+net SDIN10: 13E.14
+net 15B_15: 15B.15 14E.14
+net 13E_15: 13E.15 11D.14
+net SMBD02: 14E.15 11D.15 15E.14 16E.14
+net 15E_15: 15E.15 13F.14
+net 16E_15: 16E.15 17E.14
+net SDOUT02: 13F.15
+net SDOUT10: 17E.15
+net SDIN01: 15B.17
+net SDIN09: 13E.17
+net 15B_16: 15B.16 14E.17
+net 13E_16: 13E.16 11D.17
+net SMBD01: 14E.16 11D.16 15E.17 16E.17
+net 15E_16: 15E.16 13F.17
+net 16E_16: 16E.16 17E.17
+net SDOUT01: 13F.16
+net SDOUT09: 17E.16
+net SDIN00: 15B.18
+net SDIN08: 13E.18
+net 15B_19: 15B.19 14E.18
+net 13E_19: 13E.19 11D.18
+net SMBD00: 14E.19 11D.19 15E.18 16E.18
+net 15E_19: 15E.19 13F.18
+net 16E_19: 16E.19 17E.18
+net SDOUT00: 13F.19
+net SDOUT08: 17E.19
+net ENILA1~: 16G2.1
+net 16G2_2: 16G2.2 15B.11 13E.11
+net ENILA2~: 16G2.3
+net 16G2_4: 16G2.4 14E.11 11D.11
+net SLODLO~: 16G2.5
+net 16G2_6: 16G2.6 15E.11
+net SLODHI~: 16G2.11
+net 16G2_10: 16G2.10 16E.11
+net ENOLA~: 16G2.9
+net 16G2_8: 16G2.8 13F.11 17E.11
+net SENDLO~: 14E.1
+net SENDHI~: 11D.1
+net SDOEN~: 13F.1 17E.1
+net GND: 15B.1 13E.1 15E.1 16E.1
+
+note Write path (ND to SCSI): ENILA1~ latches the ND word SDIN00-15 in 15B (low byte) and 13E (high byte); ENILA2~ moves both into 14E and 11D, which put the low byte (SENDLO~) or the high byte (SENDHI~) on SMBD00-07.
+note Read path (SCSI to ND): SLODLO~ / SLODHI~ latch an SMBD byte in 15E / 16E; ENOLA~ moves them into 13F / 17E, which drive SDOUT00-07 / SDOUT08-15 when SDOEN~ is low.
+note The latch inputs are wired in reverse bit order on the drawing (SDIN07 on 1D ... SDIN00 on 8D, and 1Q -> SMBD07 ... 8Q -> SMBD00), so the bit numbers match end to end.
+note OPEN: the 74F04 position is printed "1662" (checked at 1200 dpi). Read as 16G2 because G and 6 look the same in this font and a position code needs a letter; 16G itself is the 74S08 on sheet 9.
+note Drawn by ASU (the other SCSI sheets: HS).

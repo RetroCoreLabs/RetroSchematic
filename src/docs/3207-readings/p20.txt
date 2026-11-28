@@ -1,0 +1,89 @@
+# Card 3207, sheet 20 of 24: SCSI / S_ND_INT 1 ("SCSI_ND_INTERFACE": ND bus data drivers and receivers)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles.
+block S_ND_INT
+page 20
+
+part 5A 74S240
+part 6A 74S240
+part 7A 74S240
+part 8A 74S240
+part 9A 74S240
+part RN4 4610X_101_332
+part RN5 4610X_101_332
+part RN6 4610X_101_332
+part RN7 4610X_101_472
+part RN8 4610X_101_472
+part RN9 4610X_101_472
+
+net STRANS~: 5A.1 5A.19 7A.1 7A.19
+net SDOUT01: 5A.2 RN4.3 RN7.3
+net BD~01: 5A.18 8A.2
+net SDOUT07: 5A.4 RN4.5 RN7.5
+net BD~07: 5A.16 8A.4
+net SDOUT03: 5A.6 RN4.7 RN7.7
+net BD~03: 5A.14 8A.6
+net SDOUT05: 5A.8 RN4.9 RN7.9
+net BD~05: 5A.12 8A.8
+net SDOUT00: 5A.11 RN4.10 RN7.10
+net BD~00: 5A.9 8A.11
+net SDOUT02: 5A.13 RN4.8 RN7.8
+net BD~02: 5A.7 8A.13
+net SDOUT04: 5A.15 RN4.6 RN7.6
+net BD~04: 5A.5 8A.15
+net SDOUT06: 5A.17 RN4.4 RN7.4
+net BD~06: 5A.3 8A.17
+net UTRANS~: 6A.1 6A.19
+net SDOUT09: 6A.2 RN5.3 RN8.3
+net BD~09: 6A.18 9A.2
+net SDOUT08: 6A.4 RN5.5 RN8.5
+net BD~08: 6A.16 9A.4
+net SDOUT15: 6A.6 RN5.7 RN8.7
+net BD~15: 6A.14 9A.6
+net SDOUT13: 6A.8 RN5.9 RN8.9
+net BD~13: 6A.12 9A.8
+net SDOUT14: 6A.11 RN5.10 RN8.10
+net BD~14: 6A.9 9A.11
+net SDOUT12: 6A.13 RN5.8 RN8.8
+net BD~12: 6A.7 9A.13
+net SDOUT11: 6A.15 RN5.6 RN8.6
+net BD~11: 6A.5 9A.15
+net SDOUT10: 6A.17 RN5.4 RN8.4
+net BD~10: 6A.3 9A.17
+net SDOUT23: 7A.2 RN6.3 RN9.3
+net BD~23: 7A.18
+net SDOUT22: 7A.4 RN6.5 RN9.5
+net BD~22: 7A.16
+net SDOUT21: 7A.6 RN6.7 RN9.7
+net BD~21: 7A.14
+net SDOUT20: 7A.8 RN6.9 RN9.9
+net BD~20: 7A.12
+net SDOUT19: 7A.11 RN6.10 RN9.10
+net BD~19: 7A.9
+net SDOUT18: 7A.13 RN6.8 RN9.8
+net BD~18: 7A.7
+net SDOUT17: 7A.15 RN6.6 RN9.6
+net BD~17: 7A.5
+net SDOUT16: 7A.17 RN6.4 RN9.4
+net BD~16: 7A.3
+net GND: 8A.1 8A.19 9A.1 9A.19 RN7.1 RN8.1 RN9.1
+net SDIN01: 8A.18
+net SDIN07: 8A.16
+net SDIN03: 8A.14
+net SDIN05: 8A.12
+net SDIN00: 8A.9
+net SDIN02: 8A.7
+net SDIN04: 8A.5
+net SDIN06: 8A.3
+net SDIN09: 9A.18
+net SDIN08: 9A.16
+net SDIN15: 9A.14
+net SDIN13: 9A.12
+net SDIN14: 9A.9
+net SDIN12: 9A.7
+net SDIN11: 9A.5
+net SDIN10: 9A.3
+net +5V: RN4.1 RN5.1 RN6.1
+
+note 5A (bits 00-07) and 7A (16-23) are enabled by STRANS~, 6A (08-15) by UTRANS~; each SDOUT line has a 3.3k pull-up (RN4-RN6, pin 1 to a supply bar read as +5 V) and a 4.7k pull-down (RN7-RN9, pin 1 to ground).
+note 5A pin 1 is printed "6TRANS~": it sits on the same wire as pin 19 STRANS~ (S and 6 look alike in this font), so it is STRANS~.
+note 8A and 9A (receivers BD~ -> SDIN00-15) have both enables on one wire that ends at the ground symbol below 9A: always on. BD~16-23 are driven but not received.

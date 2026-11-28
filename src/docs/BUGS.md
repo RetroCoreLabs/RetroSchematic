@@ -104,3 +104,27 @@ A runnable UART model needs a format addition and that clock edge; it is a plan 
 2107B, TMS4030 (address and CS latched at the rise of CE) and MK4096P (row at RAS, column and
 CS at CAS, output latch), using two format additions: a memory address may name stored bits,
 and an output enable may be an expression (`outputEnable.when`).
+
+## B4 - card 3207: open points in the reading (opened 2026-11-28)
+
+All 24 sheets of card 3207 (SCSI/floppy, ID 350007) are read into `docs/3207-readings/` and
+written into `sheets/nd-100/3207-scsi-floppy.rsc` by `tools/card-readings.py sheet`. These
+points are not settled; each one also has a note in its reading file.
+
+- **R4 printed twice (settled 2026-11-28).** Ronny confirmed sheet 22's R4 (1 kohm, H6 pull-up)
+  is right. The 220 ohm LED resistor printed "R4" on sheet 13 (grid F2) is stored as R47, the one
+  free number among that sheet's R45-R50, with confidence inferred and the printed label in the note.
+- **Socket 18A (settled 2026-11-28).** The photo shows the 350217 SCSI single/differential adapter
+  (PCB 1887, print A2) plugged into it, moved towards SING or DIFF. It is stored as board
+  connector `J.18A` (new connector kind J, FORMAT.md) with catalogue
+  `nd100-3207-sing-diff-socket`. Still open: which pins the adapter joins in each position.
+- **28C on sheet 21** is printed with input pin 3; read as 13 because sheet 23 uses every other
+  gate of the 74F04 (proved by elimination, not by the drawing).
+- **The 74F04 on sheet 24** is labelled "1662"; read as 16G2 (G and 6 look alike in the font).
+- **The 74S08 on sheet 23** has no position code printed; stored as U74S08.
+- **PROM and PAL contents are not read** (the drawings give only the part number): 009_00,
+  058_00, 345_00, 357_00, 458_00, 459_00, 78200, 42500, 78300, 42801, 42200, 78100, 78400.
+  A behaviour for these needs a dump of the real chips.
+- **Port directions** of the sub-blocks are inferred from the catalogue roles of the chip pins
+  inside each block; drivers outside a block are not counted, so a bus such as BD~00-23 shows
+  as `output`. `directionConfidence` is `inferred` or `open` on every one.

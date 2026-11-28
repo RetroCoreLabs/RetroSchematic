@@ -1,0 +1,112 @@
+# Card 3207, sheet 7 of 24: FLOPPY / F_ND_INT 2 ("FLOPPY_ND100_INTERFACE")
+# Read 2026-11-28 from the PDF at 330 dpi, in 6 tiles. Format: docs/3207-readings/README.md
+block F_ND_INT
+page 7
+
+# box = x y w h in 300-dpi page pixels (top-left corner), measured from the tiles
+part 5E 74LS461 650 470 90 220
+part 6E 74LS461 650 1015 90 220
+part 7E 74LS461 650 1600 90 220
+part 5F 74LS373 1145 730 100 300
+part 6F 74LS373 1145 1305 100 300
+part 7F 74LS373 1145 1870 100 300
+part 3F 74S374 1800 850 100 310
+part 3E 74S374 1800 1300 100 310
+part 4E 74S374 1800 1750 100 310
+part 4D 74LS244 2340 410 125 310
+part 5G 74LS374 2370 870 100 310
+part 6G 74S374 2370 1320 100 310
+part 7G 74S374 2370 1770 100 310
+
+# 24-bit DMA address counter: three 8-bit counters loaded from MBD, carry chained
+net MBD00: 5E.3 6E.3 7E.3 5F.12 6F.2 7F.19 3F.15 3E.15 4E.6 5G.3 6G.13 7G.7
+net MBD01: 5E.4 6E.4 7E.4 5F.19 6F.16 7F.5 3F.12 3E.12 4E.9 5G.17 6G.18 7G.8
+net MBD02: 5E.5 6E.5 7E.5 5F.2 6F.5 7F.16 3F.9 3E.9 4E.12 5G.4 6G.8 7G.13
+net MBD03: 5E.6 6E.6 7E.6 5F.16 6F.15 7F.6 3F.6 3E.6 4E.15 5G.14 6G.14 7G.14
+net MBD04: 5E.7 6E.7 7E.7 5F.5 6F.6 7F.15 3F.5 3E.5 4E.16 5G.7 6G.4 7G.17
+net MBD05: 5E.8 6E.8 7E.8 5F.6 6F.12 7F.9 3F.19 3E.19 4E.2 5G.8 6G.7 7G.3
+net MBD06: 5E.9 6E.9 7E.9 5F.15 6F.9 7F.12 3F.2 3E.2 4E.19 5G.13 6G.17 7G.18
+net MBD07: 5E.10 6E.10 7E.10 5F.9 6F.19 7F.2 3F.16 3E.16 4E.5 5G.18 6G.3 7G.4
+net ADCK: 5E.1 6E.1 7E.1
+net ACARY~: 5E.23
+net 5E_14: 5E.14 6E.23
+net 6E_14: 6E.14 7E.23
+net LADL~: 5E.2      # printed "(OUT50)"
+net LADM~: 6E.2      # printed "(OUT51)"
+net LADH~: 7E.2      # printed "(OUT52)"
+net ADEN~: 5E.13 6E.13 7E.13
+net +5V: 5E.11 6E.11 7E.11 4D.13 4D.15
+net GND: 4D.11
+
+# what drives DOUT: counter (ADEN~), status (RSTAT~), outgoing data latches (DOEN~)
+net DOUT00: 5E.22 5F.13 4D.9 6G.12
+net DOUT01: 5E.21 5F.18 4D.18 6G.19
+net DOUT02: 5E.20 5F.3 4D.12 6G.9
+net DOUT03: 5E.19 5F.17 4D.14 6G.15
+net DOUT04: 5E.18 5F.4 4D.16 6G.5
+net DOUT05: 5E.17 5F.7 5G.12 6G.6
+net DOUT06: 5E.16 5F.14 5G.19 6G.16
+net DOUT07: 5E.15 5F.8 4D.3 6G.2
+net DOUT08: 6E.22 6F.3 5G.2 7G.6
+net DOUT09: 6E.21 6F.17 5G.16 7G.9
+net DOUT10: 6E.20 6F.4 5G.5 7G.12
+net DOUT11: 6E.19 6F.14 5G.15 7G.15
+net DOUT12: 6E.18 6F.7 5G.6 7G.16
+net DOUT13: 6E.17 6F.13 5G.9 7G.2
+net DOUT14: 6E.16 6F.8 4D.7 7G.19
+net DOUT15: 6E.15 6F.18 4D.5 7G.5
+net DOUT16: 7E.22 7F.18
+net DOUT17: 7E.21 7F.4
+net DOUT18: 7E.20 7F.17
+net DOUT19: 7E.19 7F.7
+net DOUT20: 7E.18 7F.14
+net DOUT21: 7E.17 7F.8
+net DOUT22: 7E.16 7F.13
+net DOUT23: 7E.15 7F.3
+
+# the Z80 reads the counter back through three latches
+net LDOB~: 5F.11 6F.11 7F.11
+net RDMAL~: 5F.1     # printed "(IN55)"
+net RDMAM~: 6F.1     # printed "(IN56)"
+net RDMAH~: 7F.1     # printed "(IN57)"
+
+# status word
+net ENI: 4D.2
+net TRERR: 4D.4
+net RFT: 4D.6
+net RFT~: 4D.8
+net HARDERR: 4D.17
+net RSTAT~: 4D.1 4D.19 5G.1   # printed "(OUT56)"
+net LSTAT~: 5G.11
+
+# data from the bus to the Z80
+net DIN00: 3F.14 3E.14
+net DIN01: 3F.13 3E.13
+net DIN02: 3F.8 3E.8
+net DIN03: 3F.7 3E.7
+net DIN04: 3F.4 3E.4
+net DIN05: 3F.18 3E.18
+net DIN06: 3F.3 3E.3
+net DIN07: 3F.17 3E.17
+net DIN08: 4E.7
+net DIN09: 4E.8
+net DIN10: 4E.13
+net DIN11: 4E.14
+net DIN12: 4E.17
+net DIN13: 4E.3
+net DIN14: 4E.18
+net DIN15: 4E.4
+net LOPHI~: 3F.11
+net RPOH~: 3F.1      # printed "(IN53)"
+net LODI: 3E.11 4E.11
+net ENDLO~: 3E.1     # printed "(IN51)"
+net ENDHI~: 4E.1     # printed "(IN52)"
+
+# data from the Z80 to the bus
+net LODLO~: 6G.11    # printed "(OUT54)"
+net LODHI~: 7G.11    # printed "(OUT55)"
+net DOEN~: 6G.1 7G.1
+
+note 4D: inputs 2A1 (pin 11) tied to GND, 2A2 and 2A3 (pins 13, 15) tied to +5 V, so the status word read with RSTAT~ has bit 0 = 0 and bits 14, 15 = 1.
+note 3F and 3E both latch DIN00-07 onto MBD, with different clocks (LOPHI~, LODI) and enables (RPOH~, ENDLO~).
+note The bracketed numbers "(OUT50)" ... "(IN57)" printed next to strobes look like Z80 I/O port numbers; checked on the Z80_COMP sheets.

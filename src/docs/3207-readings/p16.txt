@@ -1,0 +1,90 @@
+# Card 3207, sheet 16 of 24: SCSI / DIFF_SCSI (differential SCSI drivers and terminators)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles.
+block DIFF_SCSI
+page 16
+
+part 20CD 75176 609 657 112 141
+part 15C 75176 609 896 112 141
+part 16CD 75176 609 1135 112 141
+part 17CD 75176 609 1374 112 141
+part 18CD 75176 2214 654 112 141
+part 16C 75176 2214 893 112 141
+part 19CD 75176 2214 1129 112 141
+part 17C 75176 2214 1369 112 141
+part 15CD 75176 2214 1607 112 141
+part RN30 4610X_101_33
+part RN31 4608X_102_151
+part RN32 4610X_101_331
+part RN33 4610X_102_151
+part D10 1N3246
+part R70 1KOHM
+part R71 1KOHM
+part S10 STR2
+part 7J 74LS14
+part 20B 74LS32
+
+gate 7J/12 not 13>12
+gate 20B/3 or 1,2>3
+gate 20B/6 or 4,5>6
+gate 20B/8 or 9,10>8
+
+# one 75176 per data bit: EB and EY~ both on DEn (drive enable), D and Y both on SBn; B/B~ to the cable pair
+net DE0: 20CD.3 20CD.2
+net SB0: 20CD.4 20CD.1
+net DDB0: 20CD.6 RN31.1 RN32.2
+net DDB~0: 20CD.7 RN31.2 RN30.2
+net DE1: 15C.3 15C.2
+net SB1: 15C.4 15C.1
+net DDB1: 15C.6 RN31.3 RN32.3
+net DDB~1: 15C.7 RN31.4 RN30.3
+net DE2: 16CD.3 16CD.2
+net SB2: 16CD.4 16CD.1
+net DDB2: 16CD.6 RN31.5 RN32.4
+net DDB~2: 16CD.7 RN31.6 RN30.4
+net DE3: 17CD.3 17CD.2
+net SB3: 17CD.4 17CD.1
+net DDB3: 17CD.6 RN31.7 RN32.5
+net DDB~3: 17CD.7 RN31.8 RN30.5
+net DE4: 18CD.3 18CD.2
+net SB4: 18CD.4 18CD.1
+net DDB4: 18CD.6 RN33.1 RN32.6
+net DDB~4: 18CD.7 RN33.2 RN30.6
+net DE5: 16C.3 16C.2
+net SB5: 16C.4 16C.1
+net DDB5: 16C.6 RN33.3 RN32.7
+net DDB~5: 16C.7 RN33.4 RN30.7
+net DE6: 19CD.3 19CD.2
+net SB6: 19CD.4 19CD.1
+net DDB6: 19CD.6 RN33.5 RN32.8
+net DDB~6: 19CD.7 RN33.6 RN30.8
+net DE7: 17C.3 17C.2
+net SB7: 17C.4 17C.1
+net DDB7: 17C.6 RN33.7 RN32.9
+net DDB~7: 17C.7 RN33.8 RN30.9
+net DSBEN: 15CD.3 20B.9
+net SBP: 15CD.4 15CD.1
+net 20B_8: 20B.8 15CD.2
+net DDBP: 15CD.6 RN33.9 RN32.10
+net DDBP~: 15CD.7 RN33.10 RN30.10
+
+# terminator power and the differential-mode sense line
+net DIFFPWR: D10.2 RN30.1 R70.1 S10.1
+net DDIFFS: R70.2
+net DTERMPWR: S10.2
+net PDIFF~: R71.2 7J.13
+net PDIFF: 7J.12
+
+# the differential drivers are only enabled with DIFF~ low
+net DTGS: 20B.1
+net DIFF~: 20B.2 20B.5 20B.10
+net DDTGS: 20B.3
+net DIGS: 20B.4
+net DDIGS: 20B.6
+
+net +5V: D10.1 R71.1
+net GND: RN32.1
+
+note RN30 (4610X_101_33, to DIFFPWR) pulls each DDB~ line up and RN32 (4610X_101_331, to GND) pulls each DDB line down; RN31 (4608X_102_151) and RN33 (4610X_102_151) put 150 ohm across each pair (pins 1-2, 3-4, 5-6, 7-8, 9-10).
+note D10 is printed 1N3246 (as read at 330 dpi); its pin 1 goes to a bar drawn as +5 V. S10 is a 2-pin strap (STR2) from DIFFPWR to DTERMPWR.
+note The DIFFSCSI bus at the top carries DDB0-7, DDB~0-7, DDBP, DDBP~, DDIFFS, DTERMPWR and PDIFF~ to the SING_DIFF_SW sheet.
+note Board positions as printed: 20CD 15C 16CD 17CD 18CD 16C 19CD 17C 15CD (two-letter positions are chips that sit across two rows).

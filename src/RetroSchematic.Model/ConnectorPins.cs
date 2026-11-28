@@ -113,7 +113,9 @@ namespace RetroSchematic.Model
         public static string PinText(int key) => (RowOf(key) ?? "") + NumberOf(key).ToString(System.Globalization.CultureInfo.InvariantCulture);
         /// <summary>
         /// True when the part of a pin reference before its last dot is a connector: P, F, or
-        /// P.x / F.x with a connector letter.
+        /// P.x / F.x with a connector letter, or J.x: a socket or header on the board itself, x its
+        /// board position (card 3207: J.18A, the socket a small plug-in board sits in to choose
+        /// single-ended or differential SCSI). J always names its position, so a bare J is not one.
         /// </summary>
         /// <param name="partRef">
         /// The part reference, such as P, P.A or 13C.
@@ -123,23 +125,40 @@ namespace RetroSchematic.Model
         /// </returns>
         public static bool IsConnector(string partRef)
         {
-            if (partRef.Length == 0 || (partRef[0] != 'P' && partRef[0] != 'F'))
+            if (partRef.Length == 0 || (partRef[0] != 'P' && partRef[0] != 'F' && partRef[0] != 'J'))
                 return false;
             if (partRef.Length == 1)
-                return true;
+                return partRef[0] != 'J';
             return partRef[1] == '.' && partRef.Length > 2 && partRef.IndexOf('.', 2) < 0;
         }
 
         /// <summary>
-        /// The kind of a connector: 'P' for the backplane, 'F' for a front connector.
+        /// The kind of a connector: 'P' for the backplane, 'F' for a front connector, 'J' for a
+        /// socket or header on the board.
         /// </summary>
         /// <param name="partRef">
         /// The connector reference.
         /// </param>
         /// <returns>
-        /// P or F.
+        /// P, F or J.
         /// </returns>
         public static char Kind(string partRef) => partRef[0];
+
+        /// <summary>
+        /// The kind of a connector in words, lower case: backplane, front or board.
+        /// </summary>
+        /// <param name="partRef">
+        /// The connector reference.
+        /// </param>
+        /// <returns>
+        /// The word.
+        /// </returns>
+        public static string KindWord(string partRef) => partRef[0] switch
+        {
+            'P' => "backplane",
+            'F' => "front",
+            _ => "board",
+        };
 
         /// <summary>
         /// The connector letter (A, B, C ...), or null when the reference does not say (P, F).
@@ -198,14 +217,19 @@ namespace RetroSchematic.Model
         public static string Name(string partRef, MachineBus? bus = null)
         {
             string? letter = Letter(partRef);
-            string kind = Kind(partRef) == 'P' ? "Backplane" : "Front connector";
+            string kind = Kind(partRef) switch
+            {
+                'P' => "Backplane",
+                'F' => "Front connector",
+                _ => "Board connector",
+            };
             if (letter == null && bus == MachineBus.Nord10)
                 return kind == "Backplane" ? "Backplane (pins 0-99)" : kind;
             return letter == null ? kind + " (connector not known)" : kind + " " + letter;
         }
 
         /// <summary>
-        /// Compares connector references so P comes before P.A, P.B, then F, F.A.
+        /// Compares connector references so P comes before P.A, P.B, then F, F.A, then J.x.
         /// </summary>
         /// <param name="a">
         /// One reference.
@@ -219,9 +243,12 @@ namespace RetroSchematic.Model
         public static int Compare(string a, string b)
         {
             if (Kind(a) != Kind(b))
-                return Kind(a) == 'P' ? -1 : 1;
+                return KindRank(Kind(a)) - KindRank(Kind(b));
             return string.CompareOrdinal(a, b);
         }
+
+        // order of the kinds in lists: backplane, front, board
+        private static int KindRank(char kind) => kind == 'P' ? 0 : kind == 'F' ? 1 : 2;
     }
 
     /// <summary>

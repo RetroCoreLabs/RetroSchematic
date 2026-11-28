@@ -11,7 +11,7 @@
     "source": {
       "document": "ND-350007-A1-EN Schematic Circuit Diagrams.pdf (24 sheets; the PDF is kept outside this repository, its pages are stored as sources)"
     },
-    "note": "Top level and the first block level read from sheets 1-4 on 2026-11-27 (docs/3207-reading.md). No chips yet. Each net keeps its label as printed in 'printed'. A name without a tilde is taken as active high: inferred from the drawing's naming, where plug B carries pairs like ODB0 / ODB~0 and the tilde marks the complement."
+    "note": "All 24 sheets read (sheets 1-4 on 2026-11-27, docs/3207-reading.md; sheets 5-24 on 2026-11-28, docs/3207-readings/, written in by tools/card-readings.py sheet). Each net keeps its label as printed in 'printed'. A name without a tilde is taken as active high: inferred from the drawing's naming, where plug B carries pairs like ODB0 / ODB~0 and the tilde marks the complement. Open points: docs/BUGS.md B4."
   },
   "parts": [],
   "gates": [],
@@ -1826,6 +1826,26 @@
       ],
       "pinsPerRow": 32,
       "page": "2"
+    },
+    {
+      "ref": "J.18A",
+      "catalog": "nd100-3207-sing-diff-socket",
+      "use": "socket for the 350217 SCSI single/differential adapter (PCB 1887)",
+      "rows": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        "m"
+      ],
+      "pinsPerRow": 12
     }
   ],
   "board": {
@@ -5216,6 +5236,646 @@
           "name": "SOTIDENT",
           "active": "low",
           "pins": []
+        },
+        {
+          "name": "BSYOUT",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SBP",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DIFF",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DIGS",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DTGS",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DSBEN",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE0",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE1",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE2",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE3",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE4",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE5",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE6",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DE7",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB0",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB1",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB2",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB3",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB4",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB5",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB6",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SB7",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "ATN",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MSG",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "C_D",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "I_O",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SELIN",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SELOUT",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "ACK",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "BSYIN",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "REQ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "PDIFF",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB0",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB0",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB1",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB1",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB2",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB2",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB3",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB3",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB4",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB4",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB5",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB5",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB6",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB6",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDB7",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDB7",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDBP",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDBP",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DDIFFS",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DTERMPWR",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DATN",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DATN",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DBSY",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DBSY",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DACK",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DACK",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DRST",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DRST",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DMSG",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DMSG",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DSEL",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DSEL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DCD",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DCD",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DREQ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DREQ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DIO",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DIO",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "PDIFF",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB0",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB1",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB2",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB3",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB4",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB5",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB6",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDB7",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDBP",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "STERMPWR",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SATN",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SBSY",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SACK",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SRST",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SMSG",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SSEL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SC_D",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SREQ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SI_O",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "PSING",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "TRST",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "H6",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "NCR",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SMCL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SDACK",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SMC",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SRD",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SWR",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RWCH",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RWCL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "CKWL",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "CKWM",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "CKWH",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SRIOXE",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SIOEQ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "PSING",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "FDIFF",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "FSING",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DDAP",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "WCZ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SLGRANT",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SNREQ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "RRST",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "ESCSI",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SINT",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD00",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD01",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD02",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD03",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD04",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD05",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD06",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "SMBD07",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "DRQ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "LADR3",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "LADR4",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "LDWC",
+          "active": "low",
+          "pins": []
         }
       ],
       "pages": [
@@ -5226,7 +5886,2978 @@
           "source": 15
         }
       ],
-      "note": "Box SCSI on sheet 4. Its inside (sheet 15, with DIFF_SCSI, SING_DIFF_SW, S_INTERF and S_ND_INT on sheets 16-24) is not read yet."
+      "note": "Box SCSI on sheet 4. Its inside is drawn on sheet 15 (the boxes S_ND_INT, S_INTERF, DIFF_SCSI and SING_DIFF_SW and the signals between them) and read from docs/3207-readings (sheets 15-24).",
+      "instances": [
+        {
+          "name": "DIFF_SCSI",
+          "block": "DIFF_SCSI",
+          "connections": [
+            {
+              "port": "BSYOUT",
+              "nets": [
+                {
+                  "net": "BSYOUT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SBP",
+              "nets": [
+                {
+                  "net": "SBP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DIFF_0",
+              "nets": [
+                {
+                  "net": "DIFF",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DIGS",
+              "nets": [
+                {
+                  "net": "DIGS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DTGS",
+              "nets": [
+                {
+                  "net": "DTGS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DSBEN",
+              "nets": [
+                {
+                  "net": "DSBEN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE0",
+              "nets": [
+                {
+                  "net": "DE0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE1",
+              "nets": [
+                {
+                  "net": "DE1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE2",
+              "nets": [
+                {
+                  "net": "DE2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE3",
+              "nets": [
+                {
+                  "net": "DE3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE4",
+              "nets": [
+                {
+                  "net": "DE4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE5",
+              "nets": [
+                {
+                  "net": "DE5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE6",
+              "nets": [
+                {
+                  "net": "DE6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE7",
+              "nets": [
+                {
+                  "net": "DE7",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB0",
+              "nets": [
+                {
+                  "net": "SB0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB1",
+              "nets": [
+                {
+                  "net": "SB1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB2",
+              "nets": [
+                {
+                  "net": "SB2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB3",
+              "nets": [
+                {
+                  "net": "SB3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB4",
+              "nets": [
+                {
+                  "net": "SB4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB5",
+              "nets": [
+                {
+                  "net": "SB5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB6",
+              "nets": [
+                {
+                  "net": "SB6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB7",
+              "nets": [
+                {
+                  "net": "SB7",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ATN",
+              "nets": [
+                {
+                  "net": "ATN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MSG",
+              "nets": [
+                {
+                  "net": "MSG",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "C_D",
+              "nets": [
+                {
+                  "net": "C_D",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "I_O",
+              "nets": [
+                {
+                  "net": "I_O",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SELIN",
+              "nets": [
+                {
+                  "net": "SELIN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SELOUT",
+              "nets": [
+                {
+                  "net": "SELOUT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ACK",
+              "nets": [
+                {
+                  "net": "ACK",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BSYIN",
+              "nets": [
+                {
+                  "net": "BSYIN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "REQ",
+              "nets": [
+                {
+                  "net": "REQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "PDIFF",
+              "nets": [
+                {
+                  "net": "PDIFF",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB0",
+              "nets": [
+                {
+                  "net": "DDB0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_00",
+              "nets": [
+                {
+                  "net": "DDB0",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB1",
+              "nets": [
+                {
+                  "net": "DDB1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_01",
+              "nets": [
+                {
+                  "net": "DDB1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB2",
+              "nets": [
+                {
+                  "net": "DDB2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_02",
+              "nets": [
+                {
+                  "net": "DDB2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB3",
+              "nets": [
+                {
+                  "net": "DDB3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_03",
+              "nets": [
+                {
+                  "net": "DDB3",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB4",
+              "nets": [
+                {
+                  "net": "DDB4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_04",
+              "nets": [
+                {
+                  "net": "DDB4",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB5",
+              "nets": [
+                {
+                  "net": "DDB5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_05",
+              "nets": [
+                {
+                  "net": "DDB5",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB6",
+              "nets": [
+                {
+                  "net": "DDB6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_06",
+              "nets": [
+                {
+                  "net": "DDB6",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB7",
+              "nets": [
+                {
+                  "net": "DDB7",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_07",
+              "nets": [
+                {
+                  "net": "DDB7",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDBP",
+              "nets": [
+                {
+                  "net": "DDBP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDBP_0",
+              "nets": [
+                {
+                  "net": "DDBP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDIFFS",
+              "nets": [
+                {
+                  "net": "DDIFFS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DTERMPWR",
+              "nets": [
+                {
+                  "net": "DTERMPWR",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DATN",
+              "nets": [
+                {
+                  "net": "DATN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DATN_0",
+              "nets": [
+                {
+                  "net": "DATN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DBSY",
+              "nets": [
+                {
+                  "net": "DBSY",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DBSY_0",
+              "nets": [
+                {
+                  "net": "DBSY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DACK",
+              "nets": [
+                {
+                  "net": "DACK",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DACK_0",
+              "nets": [
+                {
+                  "net": "DACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DRST",
+              "nets": [
+                {
+                  "net": "DRST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DRST_0",
+              "nets": [
+                {
+                  "net": "DRST",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DMSG",
+              "nets": [
+                {
+                  "net": "DMSG",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DMSG_0",
+              "nets": [
+                {
+                  "net": "DMSG",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DSEL",
+              "nets": [
+                {
+                  "net": "DSEL",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DSEL_0",
+              "nets": [
+                {
+                  "net": "DSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DCD",
+              "nets": [
+                {
+                  "net": "DCD",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DCD_0",
+              "nets": [
+                {
+                  "net": "DCD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DREQ",
+              "nets": [
+                {
+                  "net": "DREQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DREQ_0",
+              "nets": [
+                {
+                  "net": "DREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DIO",
+              "nets": [
+                {
+                  "net": "DIO",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DIO_0",
+              "nets": [
+                {
+                  "net": "DIO",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PDIFF_0",
+              "nets": [
+                {
+                  "net": "PDIFF",
+                  "active": "low"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SING_DIFF_SW",
+          "block": "SING_DIFF_SW",
+          "connections": [
+            {
+              "port": "DDB0",
+              "nets": [
+                {
+                  "net": "DDB0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_00",
+              "nets": [
+                {
+                  "net": "DDB0",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB1",
+              "nets": [
+                {
+                  "net": "DDB1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_01",
+              "nets": [
+                {
+                  "net": "DDB1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB2",
+              "nets": [
+                {
+                  "net": "DDB2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_02",
+              "nets": [
+                {
+                  "net": "DDB2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB3",
+              "nets": [
+                {
+                  "net": "DDB3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_03",
+              "nets": [
+                {
+                  "net": "DDB3",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB4",
+              "nets": [
+                {
+                  "net": "DDB4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_04",
+              "nets": [
+                {
+                  "net": "DDB4",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB5",
+              "nets": [
+                {
+                  "net": "DDB5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_05",
+              "nets": [
+                {
+                  "net": "DDB5",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB6",
+              "nets": [
+                {
+                  "net": "DDB6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_06",
+              "nets": [
+                {
+                  "net": "DDB6",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDB7",
+              "nets": [
+                {
+                  "net": "DDB7",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDB_07",
+              "nets": [
+                {
+                  "net": "DDB7",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDBP",
+              "nets": [
+                {
+                  "net": "DDBP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDBP_0",
+              "nets": [
+                {
+                  "net": "DDBP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DDIFFS",
+              "nets": [
+                {
+                  "net": "DDIFFS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DTERMPWR",
+              "nets": [
+                {
+                  "net": "DTERMPWR",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DATN",
+              "nets": [
+                {
+                  "net": "DATN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DATN_0",
+              "nets": [
+                {
+                  "net": "DATN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DBSY",
+              "nets": [
+                {
+                  "net": "DBSY",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DBSY_0",
+              "nets": [
+                {
+                  "net": "DBSY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DACK",
+              "nets": [
+                {
+                  "net": "DACK",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DACK_0",
+              "nets": [
+                {
+                  "net": "DACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DRST",
+              "nets": [
+                {
+                  "net": "DRST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DRST_0",
+              "nets": [
+                {
+                  "net": "DRST",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DMSG",
+              "nets": [
+                {
+                  "net": "DMSG",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DMSG_0",
+              "nets": [
+                {
+                  "net": "DMSG",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DSEL",
+              "nets": [
+                {
+                  "net": "DSEL",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DSEL_0",
+              "nets": [
+                {
+                  "net": "DSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DCD",
+              "nets": [
+                {
+                  "net": "DCD",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DCD_0",
+              "nets": [
+                {
+                  "net": "DCD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DREQ",
+              "nets": [
+                {
+                  "net": "DREQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DREQ_0",
+              "nets": [
+                {
+                  "net": "DREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DIO",
+              "nets": [
+                {
+                  "net": "DIO",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DIO_0",
+              "nets": [
+                {
+                  "net": "DIO",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PDIFF_0",
+              "nets": [
+                {
+                  "net": "PDIFF",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_00",
+              "nets": [
+                {
+                  "net": "SDB0",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_01",
+              "nets": [
+                {
+                  "net": "SDB1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_02",
+              "nets": [
+                {
+                  "net": "SDB2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_03",
+              "nets": [
+                {
+                  "net": "SDB3",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_04",
+              "nets": [
+                {
+                  "net": "SDB4",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_05",
+              "nets": [
+                {
+                  "net": "SDB5",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_06",
+              "nets": [
+                {
+                  "net": "SDB6",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_07",
+              "nets": [
+                {
+                  "net": "SDB7",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDBP_0",
+              "nets": [
+                {
+                  "net": "SDBP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "STERMPWR",
+              "nets": [
+                {
+                  "net": "STERMPWR",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SATN_0",
+              "nets": [
+                {
+                  "net": "SATN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SBSY_0",
+              "nets": [
+                {
+                  "net": "SBSY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SACK_0",
+              "nets": [
+                {
+                  "net": "SACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SRST_0",
+              "nets": [
+                {
+                  "net": "SRST",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SMSG_0",
+              "nets": [
+                {
+                  "net": "SMSG",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SSEL_0",
+              "nets": [
+                {
+                  "net": "SSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SC_D_0",
+              "nets": [
+                {
+                  "net": "SC_D",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SREQ_0",
+              "nets": [
+                {
+                  "net": "SREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SI_O_0",
+              "nets": [
+                {
+                  "net": "SI_O",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PSING_0",
+              "nets": [
+                {
+                  "net": "PSING",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OSHGND",
+              "nets": [
+                {
+                  "net": "OSHGND",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OGROUND2",
+              "nets": [
+                {
+                  "net": "OGROUND2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB0",
+              "nets": [
+                {
+                  "net": "ODB0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_00",
+              "nets": [
+                {
+                  "net": "ODB0",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB1",
+              "nets": [
+                {
+                  "net": "ODB1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_01",
+              "nets": [
+                {
+                  "net": "ODB1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB2",
+              "nets": [
+                {
+                  "net": "ODB2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_02",
+              "nets": [
+                {
+                  "net": "ODB2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB3",
+              "nets": [
+                {
+                  "net": "ODB3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_03",
+              "nets": [
+                {
+                  "net": "ODB3",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB4",
+              "nets": [
+                {
+                  "net": "ODB4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_04",
+              "nets": [
+                {
+                  "net": "ODB4",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB5",
+              "nets": [
+                {
+                  "net": "ODB5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_05",
+              "nets": [
+                {
+                  "net": "ODB5",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB6",
+              "nets": [
+                {
+                  "net": "ODB6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_06",
+              "nets": [
+                {
+                  "net": "ODB6",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODB7",
+              "nets": [
+                {
+                  "net": "ODB7",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODB_07",
+              "nets": [
+                {
+                  "net": "ODB7",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODBP",
+              "nets": [
+                {
+                  "net": "ODBP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ODBP_0",
+              "nets": [
+                {
+                  "net": "ODBP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ODIFFS",
+              "nets": [
+                {
+                  "net": "ODIFFS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OTERMPWR1",
+              "nets": [
+                {
+                  "net": "OTERMPWR1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OTERMPWR2",
+              "nets": [
+                {
+                  "net": "OTERMPWR2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OATN",
+              "nets": [
+                {
+                  "net": "OATN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OATN_0",
+              "nets": [
+                {
+                  "net": "OATN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OGROUND32",
+              "nets": [
+                {
+                  "net": "OGROUND32",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OBSY",
+              "nets": [
+                {
+                  "net": "OBSY",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OBSY_0",
+              "nets": [
+                {
+                  "net": "OBSY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OACK",
+              "nets": [
+                {
+                  "net": "OACK",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OACK_0",
+              "nets": [
+                {
+                  "net": "OACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "ORST",
+              "nets": [
+                {
+                  "net": "ORST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ORST_0",
+              "nets": [
+                {
+                  "net": "ORST",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OMSG",
+              "nets": [
+                {
+                  "net": "OMSG",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OMSG_0",
+              "nets": [
+                {
+                  "net": "OMSG",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OSEL",
+              "nets": [
+                {
+                  "net": "OSEL",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OSEL_0",
+              "nets": [
+                {
+                  "net": "OSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OCD",
+              "nets": [
+                {
+                  "net": "OCD",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OCD_0",
+              "nets": [
+                {
+                  "net": "OCD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OREQ",
+              "nets": [
+                {
+                  "net": "OREQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OREQ_0",
+              "nets": [
+                {
+                  "net": "OREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OIO",
+              "nets": [
+                {
+                  "net": "OIO",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "OIO_0",
+              "nets": [
+                {
+                  "net": "OIO",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OGROUND50",
+              "nets": [
+                {
+                  "net": "OGROUND50",
+                  "active": "high"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S_INTERF",
+          "block": "S_INTERF",
+          "connections": [
+            {
+              "port": "TRST",
+              "nets": [
+                {
+                  "net": "TRST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "H6",
+              "nets": [
+                {
+                  "net": "H6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "NCR_0",
+              "nets": [
+                {
+                  "net": "NCR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SMCL_0",
+              "nets": [
+                {
+                  "net": "SMCL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDACK_0",
+              "nets": [
+                {
+                  "net": "SDACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SMC",
+              "nets": [
+                {
+                  "net": "SMC",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SRD_0",
+              "nets": [
+                {
+                  "net": "SRD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SWR_0",
+              "nets": [
+                {
+                  "net": "SWR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RWCH_0",
+              "nets": [
+                {
+                  "net": "RWCH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RWCL_0",
+              "nets": [
+                {
+                  "net": "RWCL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "CKWL",
+              "nets": [
+                {
+                  "net": "CKWL",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "CKWM",
+              "nets": [
+                {
+                  "net": "CKWM",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "CKWH",
+              "nets": [
+                {
+                  "net": "CKWH",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SRIOXE",
+              "nets": [
+                {
+                  "net": "SRIOXE",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SIOEQ_0",
+              "nets": [
+                {
+                  "net": "SIOEQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PDIFF",
+              "nets": [
+                {
+                  "net": "PDIFF",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "PSING",
+              "nets": [
+                {
+                  "net": "PSING",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FDIFF",
+              "nets": [
+                {
+                  "net": "FDIFF",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FSING",
+              "nets": [
+                {
+                  "net": "FSING",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDAP",
+              "nets": [
+                {
+                  "net": "DDAP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "WCZ_0",
+              "nets": [
+                {
+                  "net": "WCZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SLGRANT",
+              "nets": [
+                {
+                  "net": "SLGRANT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SNREQ",
+              "nets": [
+                {
+                  "net": "SNREQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "RRST",
+              "nets": [
+                {
+                  "net": "RRST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ACK",
+              "nets": [
+                {
+                  "net": "ACK",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BSYIN",
+              "nets": [
+                {
+                  "net": "BSYIN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ESCSI_0",
+              "nets": [
+                {
+                  "net": "ESCSI",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SINT",
+              "nets": [
+                {
+                  "net": "SINT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD00",
+              "nets": [
+                {
+                  "net": "SMBD00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD01",
+              "nets": [
+                {
+                  "net": "SMBD01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD02",
+              "nets": [
+                {
+                  "net": "SMBD02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD03",
+              "nets": [
+                {
+                  "net": "SMBD03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD04",
+              "nets": [
+                {
+                  "net": "SMBD04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD05",
+              "nets": [
+                {
+                  "net": "SMBD05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD06",
+              "nets": [
+                {
+                  "net": "SMBD06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD07",
+              "nets": [
+                {
+                  "net": "SMBD07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DRQ",
+              "nets": [
+                {
+                  "net": "DRQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "REQ",
+              "nets": [
+                {
+                  "net": "REQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ATN",
+              "nets": [
+                {
+                  "net": "ATN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MSG",
+              "nets": [
+                {
+                  "net": "MSG",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "C_D",
+              "nets": [
+                {
+                  "net": "C_D",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "I_O",
+              "nets": [
+                {
+                  "net": "I_O",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SELIN",
+              "nets": [
+                {
+                  "net": "SELIN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SELOUT",
+              "nets": [
+                {
+                  "net": "SELOUT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SDB_00",
+              "nets": [
+                {
+                  "net": "SDB0",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_01",
+              "nets": [
+                {
+                  "net": "SDB1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_02",
+              "nets": [
+                {
+                  "net": "SDB2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_03",
+              "nets": [
+                {
+                  "net": "SDB3",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_04",
+              "nets": [
+                {
+                  "net": "SDB4",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_05",
+              "nets": [
+                {
+                  "net": "SDB5",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_06",
+              "nets": [
+                {
+                  "net": "SDB6",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDB_07",
+              "nets": [
+                {
+                  "net": "SDB7",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDBP_0",
+              "nets": [
+                {
+                  "net": "SDBP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "STERMPWR",
+              "nets": [
+                {
+                  "net": "STERMPWR",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SATN_0",
+              "nets": [
+                {
+                  "net": "SATN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SBSY_0",
+              "nets": [
+                {
+                  "net": "SBSY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SACK_0",
+              "nets": [
+                {
+                  "net": "SACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SRST_0",
+              "nets": [
+                {
+                  "net": "SRST",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SMSG_0",
+              "nets": [
+                {
+                  "net": "SMSG",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SSEL_0",
+              "nets": [
+                {
+                  "net": "SSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SC_D_0",
+              "nets": [
+                {
+                  "net": "SC_D",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SREQ_0",
+              "nets": [
+                {
+                  "net": "SREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SI_O_0",
+              "nets": [
+                {
+                  "net": "SI_O",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PSING_0",
+              "nets": [
+                {
+                  "net": "PSING",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BSYOUT",
+              "nets": [
+                {
+                  "net": "BSYOUT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SBP",
+              "nets": [
+                {
+                  "net": "SBP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DIFF_0",
+              "nets": [
+                {
+                  "net": "DIFF",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DIGS",
+              "nets": [
+                {
+                  "net": "DIGS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DTGS",
+              "nets": [
+                {
+                  "net": "DTGS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DSBEN",
+              "nets": [
+                {
+                  "net": "DSBEN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE0",
+              "nets": [
+                {
+                  "net": "DE0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE1",
+              "nets": [
+                {
+                  "net": "DE1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE2",
+              "nets": [
+                {
+                  "net": "DE2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE3",
+              "nets": [
+                {
+                  "net": "DE3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE4",
+              "nets": [
+                {
+                  "net": "DE4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE5",
+              "nets": [
+                {
+                  "net": "DE5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE6",
+              "nets": [
+                {
+                  "net": "DE6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DE7",
+              "nets": [
+                {
+                  "net": "DE7",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB0",
+              "nets": [
+                {
+                  "net": "SB0",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB1",
+              "nets": [
+                {
+                  "net": "SB1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB2",
+              "nets": [
+                {
+                  "net": "SB2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB3",
+              "nets": [
+                {
+                  "net": "SB3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB4",
+              "nets": [
+                {
+                  "net": "SB4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB5",
+              "nets": [
+                {
+                  "net": "SB5",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB6",
+              "nets": [
+                {
+                  "net": "SB6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SB7",
+              "nets": [
+                {
+                  "net": "SB7",
+                  "active": "high"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S_ND_INT",
+          "block": "S_ND_INT",
+          "connections": [
+            {
+              "port": "BDAP_0",
+              "nets": [
+                {
+                  "net": "BDAP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BDRY_0",
+              "nets": [
+                {
+                  "net": "BDRY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BINACK_0",
+              "nets": [
+                {
+                  "net": "BINACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BMEM_0",
+              "nets": [
+                {
+                  "net": "BMEM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BMCL_0",
+              "nets": [
+                {
+                  "net": "BMCL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BERROR_0",
+              "nets": [
+                {
+                  "net": "BERROR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BIOXE_0",
+              "nets": [
+                {
+                  "net": "BIOXE",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "INIDENT_0",
+              "nets": [
+                {
+                  "net": "INIDENT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BINT11_0",
+              "nets": [
+                {
+                  "net": "BINT11",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BINPUT_0",
+              "nets": [
+                {
+                  "net": "BINPUT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BREQ_0",
+              "nets": [
+                {
+                  "net": "BREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BAPR_0",
+              "nets": [
+                {
+                  "net": "BAPR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DRQ",
+              "nets": [
+                {
+                  "net": "DRQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD00",
+              "nets": [
+                {
+                  "net": "SMBD00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD01",
+              "nets": [
+                {
+                  "net": "SMBD01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD02",
+              "nets": [
+                {
+                  "net": "SMBD02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD03",
+              "nets": [
+                {
+                  "net": "SMBD03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD04",
+              "nets": [
+                {
+                  "net": "SMBD04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD05",
+              "nets": [
+                {
+                  "net": "SMBD05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD06",
+              "nets": [
+                {
+                  "net": "SMBD06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SMBD07",
+              "nets": [
+                {
+                  "net": "SMBD07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SINT",
+              "nets": [
+                {
+                  "net": "SINT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ESCSI_0",
+              "nets": [
+                {
+                  "net": "ESCSI",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BSYIN",
+              "nets": [
+                {
+                  "net": "BSYIN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ACK",
+              "nets": [
+                {
+                  "net": "ACK",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "RRST",
+              "nets": [
+                {
+                  "net": "RRST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "TRST",
+              "nets": [
+                {
+                  "net": "TRST",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BD_0",
+              "nets": [
+                {
+                  "net": "BD00",
+                  "active": "low"
+                },
+                {
+                  "net": "BD01",
+                  "active": "low"
+                },
+                {
+                  "net": "BD02",
+                  "active": "low"
+                },
+                {
+                  "net": "BD03",
+                  "active": "low"
+                },
+                {
+                  "net": "BD04",
+                  "active": "low"
+                },
+                {
+                  "net": "BD05",
+                  "active": "low"
+                },
+                {
+                  "net": "BD06",
+                  "active": "low"
+                },
+                {
+                  "net": "BD07",
+                  "active": "low"
+                },
+                {
+                  "net": "BD08",
+                  "active": "low"
+                },
+                {
+                  "net": "BD09",
+                  "active": "low"
+                },
+                {
+                  "net": "BD10",
+                  "active": "low"
+                },
+                {
+                  "net": "BD11",
+                  "active": "low"
+                },
+                {
+                  "net": "BD12",
+                  "active": "low"
+                },
+                {
+                  "net": "BD13",
+                  "active": "low"
+                },
+                {
+                  "net": "BD14",
+                  "active": "low"
+                },
+                {
+                  "net": "BD15",
+                  "active": "low"
+                },
+                {
+                  "net": "BD16",
+                  "active": "low"
+                },
+                {
+                  "net": "BD17",
+                  "active": "low"
+                },
+                {
+                  "net": "BD18",
+                  "active": "low"
+                },
+                {
+                  "net": "BD19",
+                  "active": "low"
+                },
+                {
+                  "net": "BD20",
+                  "active": "low"
+                },
+                {
+                  "net": "BD21",
+                  "active": "low"
+                },
+                {
+                  "net": "BD22",
+                  "active": "low"
+                },
+                {
+                  "net": "BD23",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADR1",
+              "nets": [
+                {
+                  "net": "LADR1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "LADR2",
+              "nets": [
+                {
+                  "net": "LADR2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "LADR3",
+              "nets": [
+                {
+                  "net": "LADR3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "LADR4",
+              "nets": [
+                {
+                  "net": "LADR4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "H6",
+              "nets": [
+                {
+                  "net": "H6",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "NCR_0",
+              "nets": [
+                {
+                  "net": "NCR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SMCL_0",
+              "nets": [
+                {
+                  "net": "SMCL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SDACK_0",
+              "nets": [
+                {
+                  "net": "SDACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SMC",
+              "nets": [
+                {
+                  "net": "SMC",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SRD_0",
+              "nets": [
+                {
+                  "net": "SRD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SWR_0",
+              "nets": [
+                {
+                  "net": "SWR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RWCH_0",
+              "nets": [
+                {
+                  "net": "RWCH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RWCL_0",
+              "nets": [
+                {
+                  "net": "RWCL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LDWC_0",
+              "nets": [
+                {
+                  "net": "LDWC",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "CKWL",
+              "nets": [
+                {
+                  "net": "CKWL",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "CKWM",
+              "nets": [
+                {
+                  "net": "CKWM",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "CKWH",
+              "nets": [
+                {
+                  "net": "CKWH",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SRIOXE",
+              "nets": [
+                {
+                  "net": "SRIOXE",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SIOEQ_0",
+              "nets": [
+                {
+                  "net": "SIOEQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PDIFF",
+              "nets": [
+                {
+                  "net": "PDIFF",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "PSING",
+              "nets": [
+                {
+                  "net": "PSING",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FDIFF",
+              "nets": [
+                {
+                  "net": "FDIFF",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FSING",
+              "nets": [
+                {
+                  "net": "FSING",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "DDAP",
+              "nets": [
+                {
+                  "net": "DDAP",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "WCZ_0",
+              "nets": [
+                {
+                  "net": "WCZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SLGRANT",
+              "nets": [
+                {
+                  "net": "SLGRANT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SNREQ",
+              "nets": [
+                {
+                  "net": "SNREQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "SOTGRANT_0",
+              "nets": [
+                {
+                  "net": "SOTGRANT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SOTIDENT_0",
+              "nets": [
+                {
+                  "net": "SOTIDENT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "INGRANT_0",
+              "nets": [
+                {
+                  "net": "INGRANT",
+                  "active": "low"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "FLOPPY",
@@ -6206,6 +9837,316 @@
           "name": "12V",
           "active": "none",
           "pins": []
+        },
+        {
+          "name": "ARCK",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "DMAINT",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "FINISH",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "LDD_T",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "LADL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "LADM",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "LADH",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SETLO",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "SETHI",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RPOL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RPOM",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RPOH",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RCW1",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RCW2",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RDMAL",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RDMAM",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RDMAH",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "IORD",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "IOWR",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "MBD00",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD01",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD02",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD03",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD04",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD05",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD06",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MBD07",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "LSTAT",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "NACK",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "RFT",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "RFT",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "NRQ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MC",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MC",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "FWINH",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "FLORQ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "FLOINT",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "MDIS",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "PF1MHZ",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "FLOCE",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "COEN",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "16MHZ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "2MHZ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "8MHZ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "FLOEN",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "H3",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "H4",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "FLOACK",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "1MHZ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "32MHZ",
+          "active": "low",
+          "pins": []
+        },
+        {
+          "name": "BA00",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "BA01",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "BA02",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "BA03",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D00",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D01",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D02",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D03",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D04",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D05",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D06",
+          "active": "high",
+          "pins": []
+        },
+        {
+          "name": "D07",
+          "active": "high",
+          "pins": []
         }
       ],
       "pages": [
@@ -6217,7 +10158,35500 @@
           "source": 5
         }
       ],
-      "note": "Box FLOPPY on sheet 4. Its inside (sheet 5, with Z80_COMP, LO_FLOPPY and F_ND_INT on sheets 6-14) is not read yet."
+      "note": "Box FLOPPY on sheet 4. Its inside is drawn on sheet 5 (the boxes Z80_COMP, LO_FLOPPY and F_ND_INT and the signals between them) and read from docs/3207-readings (sheets 5-14).",
+      "instances": [
+        {
+          "name": "F_ND_INT",
+          "block": "F_ND_INT",
+          "connections": [
+            {
+              "port": "ARCK_0",
+              "nets": [
+                {
+                  "net": "ARCK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DMAINT_0",
+              "nets": [
+                {
+                  "net": "DMAINT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FINISH_0",
+              "nets": [
+                {
+                  "net": "FINISH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LDD_T_0",
+              "nets": [
+                {
+                  "net": "LDD_T",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADL_0",
+              "nets": [
+                {
+                  "net": "LADL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADM_0",
+              "nets": [
+                {
+                  "net": "LADM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADH_0",
+              "nets": [
+                {
+                  "net": "LADH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SETLO_0",
+              "nets": [
+                {
+                  "net": "SETLO",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SETHI_0",
+              "nets": [
+                {
+                  "net": "SETHI",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RPOL_0",
+              "nets": [
+                {
+                  "net": "RPOL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RPOM_0",
+              "nets": [
+                {
+                  "net": "RPOM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RPOH_0",
+              "nets": [
+                {
+                  "net": "RPOH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RCW1_0",
+              "nets": [
+                {
+                  "net": "RCW1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RCW2_0",
+              "nets": [
+                {
+                  "net": "RCW2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RDMAL_0",
+              "nets": [
+                {
+                  "net": "RDMAL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RDMAM_0",
+              "nets": [
+                {
+                  "net": "RDMAM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RDMAH_0",
+              "nets": [
+                {
+                  "net": "RDMAH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "IORD_0",
+              "nets": [
+                {
+                  "net": "IORD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "IOWR_0",
+              "nets": [
+                {
+                  "net": "IOWR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BDRY_0",
+              "nets": [
+                {
+                  "net": "BDRY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BINACK_0",
+              "nets": [
+                {
+                  "net": "BINACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BMEM_0",
+              "nets": [
+                {
+                  "net": "BMEM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BMCL_0",
+              "nets": [
+                {
+                  "net": "BMCL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BERROR_0",
+              "nets": [
+                {
+                  "net": "BERROR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BIOXE_0",
+              "nets": [
+                {
+                  "net": "BIOXE",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BAPR_0",
+              "nets": [
+                {
+                  "net": "BAPR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "MBD00",
+              "nets": [
+                {
+                  "net": "MBD00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD01",
+              "nets": [
+                {
+                  "net": "MBD01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD02",
+              "nets": [
+                {
+                  "net": "MBD02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD03",
+              "nets": [
+                {
+                  "net": "MBD03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD04",
+              "nets": [
+                {
+                  "net": "MBD04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD05",
+              "nets": [
+                {
+                  "net": "MBD05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD06",
+              "nets": [
+                {
+                  "net": "MBD06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD07",
+              "nets": [
+                {
+                  "net": "MBD07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "LSTAT_0",
+              "nets": [
+                {
+                  "net": "LSTAT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "NACK_0",
+              "nets": [
+                {
+                  "net": "NACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SOTGRANT_0",
+              "nets": [
+                {
+                  "net": "SOTGRANT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SOTIDENT_0",
+              "nets": [
+                {
+                  "net": "SOTIDENT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADR1",
+              "nets": [
+                {
+                  "net": "LADR1",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "LADR2",
+              "nets": [
+                {
+                  "net": "LADR2",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "RFT",
+              "nets": [
+                {
+                  "net": "RFT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "RFT_0",
+              "nets": [
+                {
+                  "net": "RFT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "NRQ",
+              "nets": [
+                {
+                  "net": "NRQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MC",
+              "nets": [
+                {
+                  "net": "MC",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MC_0",
+              "nets": [
+                {
+                  "net": "MC",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FWINH_0",
+              "nets": [
+                {
+                  "net": "FWINH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BINT11_0",
+              "nets": [
+                {
+                  "net": "BINT11",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BINPUT_0",
+              "nets": [
+                {
+                  "net": "BINPUT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BREQ_0",
+              "nets": [
+                {
+                  "net": "BREQ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BDAP_0",
+              "nets": [
+                {
+                  "net": "BDAP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OUTIDENT_0",
+              "nets": [
+                {
+                  "net": "OUTIDENT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "OUTGRANT_0",
+              "nets": [
+                {
+                  "net": "OUTGRANT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BD_0",
+              "nets": [
+                {
+                  "net": "BD00",
+                  "active": "low"
+                },
+                {
+                  "net": "BD01",
+                  "active": "low"
+                },
+                {
+                  "net": "BD02",
+                  "active": "low"
+                },
+                {
+                  "net": "BD03",
+                  "active": "low"
+                },
+                {
+                  "net": "BD04",
+                  "active": "low"
+                },
+                {
+                  "net": "BD05",
+                  "active": "low"
+                },
+                {
+                  "net": "BD06",
+                  "active": "low"
+                },
+                {
+                  "net": "BD07",
+                  "active": "low"
+                },
+                {
+                  "net": "BD08",
+                  "active": "low"
+                },
+                {
+                  "net": "BD09",
+                  "active": "low"
+                },
+                {
+                  "net": "BD10",
+                  "active": "low"
+                },
+                {
+                  "net": "BD11",
+                  "active": "low"
+                },
+                {
+                  "net": "BD12",
+                  "active": "low"
+                },
+                {
+                  "net": "BD13",
+                  "active": "low"
+                },
+                {
+                  "net": "BD14",
+                  "active": "low"
+                },
+                {
+                  "net": "BD15",
+                  "active": "low"
+                },
+                {
+                  "net": "BD16",
+                  "active": "low"
+                },
+                {
+                  "net": "BD17",
+                  "active": "low"
+                },
+                {
+                  "net": "BD18",
+                  "active": "low"
+                },
+                {
+                  "net": "BD19",
+                  "active": "low"
+                },
+                {
+                  "net": "BD20",
+                  "active": "low"
+                },
+                {
+                  "net": "BD21",
+                  "active": "low"
+                },
+                {
+                  "net": "BD22",
+                  "active": "low"
+                },
+                {
+                  "net": "BD23",
+                  "active": "low"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LO_FLOPPY",
+          "block": "LO_FLOPPY",
+          "connections": [
+            {
+              "port": "MC",
+              "nets": [
+                {
+                  "net": "MC",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MC_0",
+              "nets": [
+                {
+                  "net": "MC",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FWINH_0",
+              "nets": [
+                {
+                  "net": "FWINH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "F5READY_0",
+              "nets": [
+                {
+                  "net": "F5READY",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "F5INDEX_0",
+              "nets": [
+                {
+                  "net": "F5INDEX",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FTROO_0",
+              "nets": [
+                {
+                  "net": "FTROO",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FDISKCH_0",
+              "nets": [
+                {
+                  "net": "FDISKCH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FTWOS_0",
+              "nets": [
+                {
+                  "net": "FTWOS",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FWPRT_0",
+              "nets": [
+                {
+                  "net": "FWPRT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "AVC",
+              "nets": [
+                {
+                  "net": "AVC",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "AVC_0",
+              "nets": [
+                {
+                  "net": "AVC",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "12V",
+              "nets": [
+                {
+                  "net": "12V",
+                  "active": "none"
+                }
+              ]
+            },
+            {
+              "port": "XRD_0",
+              "nets": [
+                {
+                  "net": "XRD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FLORQ",
+              "nets": [
+                {
+                  "net": "FLORQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLOINT",
+              "nets": [
+                {
+                  "net": "FLOINT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MDIS",
+              "nets": [
+                {
+                  "net": "MDIS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "PF1MHZ",
+              "nets": [
+                {
+                  "net": "PF1MHZ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLOCE_0",
+              "nets": [
+                {
+                  "net": "FLOCE",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "COEN",
+              "nets": [
+                {
+                  "net": "COEN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "16MHZ_0",
+              "nets": [
+                {
+                  "net": "16MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "2MHZ_0",
+              "nets": [
+                {
+                  "net": "2MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "8MHZ_0",
+              "nets": [
+                {
+                  "net": "8MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FLOEN_0",
+              "nets": [
+                {
+                  "net": "FLOEN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "H3",
+              "nets": [
+                {
+                  "net": "H3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "H4",
+              "nets": [
+                {
+                  "net": "H4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLOACK_0",
+              "nets": [
+                {
+                  "net": "FLOACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "1MHZ_0",
+              "nets": [
+                {
+                  "net": "1MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "32MHZ_0",
+              "nets": [
+                {
+                  "net": "32MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BA00",
+              "nets": [
+                {
+                  "net": "BA00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BA01",
+              "nets": [
+                {
+                  "net": "BA01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BA02",
+              "nets": [
+                {
+                  "net": "BA02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BA03",
+              "nets": [
+                {
+                  "net": "BA03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D00",
+              "nets": [
+                {
+                  "net": "D00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D01",
+              "nets": [
+                {
+                  "net": "D01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D02",
+              "nets": [
+                {
+                  "net": "D02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D03",
+              "nets": [
+                {
+                  "net": "D03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D04",
+              "nets": [
+                {
+                  "net": "D04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D05",
+              "nets": [
+                {
+                  "net": "D05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D06",
+              "nets": [
+                {
+                  "net": "D06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D07",
+              "nets": [
+                {
+                  "net": "D07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "IORD_0",
+              "nets": [
+                {
+                  "net": "IORD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "IOWR_0",
+              "nets": [
+                {
+                  "net": "IOWR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "MBD00",
+              "nets": [
+                {
+                  "net": "MBD00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD01",
+              "nets": [
+                {
+                  "net": "MBD01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD02",
+              "nets": [
+                {
+                  "net": "MBD02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD03",
+              "nets": [
+                {
+                  "net": "MBD03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD04",
+              "nets": [
+                {
+                  "net": "MBD04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD05",
+              "nets": [
+                {
+                  "net": "MBD05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD06",
+              "nets": [
+                {
+                  "net": "MBD06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD07",
+              "nets": [
+                {
+                  "net": "MBD07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "8IND5INU_0",
+              "nets": [
+                {
+                  "net": "8IND5INU",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "8REA5DS3_0",
+              "nets": [
+                {
+                  "net": "8REA5DS3",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "8DS35MOT_0",
+              "nets": [
+                {
+                  "net": "8DS35MOT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "8HLD5OPT_0",
+              "nets": [
+                {
+                  "net": "8HLD5OPT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "F5SSEL_0",
+              "nets": [
+                {
+                  "net": "F5SSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "F8SSEL_0",
+              "nets": [
+                {
+                  "net": "F8SSEL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DS_000",
+              "nets": [
+                {
+                  "net": "DS00",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DS_001",
+              "nets": [
+                {
+                  "net": "DS01",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DS_002",
+              "nets": [
+                {
+                  "net": "DS02",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "CURRSW_0",
+              "nets": [
+                {
+                  "net": "CURRSW",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DIR_0",
+              "nets": [
+                {
+                  "net": "DIR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "INUSE_0",
+              "nets": [
+                {
+                  "net": "INUSE",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "STEP_0",
+              "nets": [
+                {
+                  "net": "STEP",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "WDAT_0",
+              "nets": [
+                {
+                  "net": "WDAT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "WG_0",
+              "nets": [
+                {
+                  "net": "WG",
+                  "active": "low"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Z80_COMP",
+          "block": "Z80_COMP",
+          "connections": [
+            {
+              "port": "CKDIS_0",
+              "nets": [
+                {
+                  "net": "CKDIS",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "TFRQ",
+              "nets": [
+                {
+                  "net": "TFRQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "COEN",
+              "nets": [
+                {
+                  "net": "COEN",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLOCE_0",
+              "nets": [
+                {
+                  "net": "FLOCE",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "PF1MHZ",
+              "nets": [
+                {
+                  "net": "PF1MHZ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MDIS",
+              "nets": [
+                {
+                  "net": "MDIS",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLOINT",
+              "nets": [
+                {
+                  "net": "FLOINT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLORQ",
+              "nets": [
+                {
+                  "net": "FLORQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "16MHZ_0",
+              "nets": [
+                {
+                  "net": "16MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "2MHZ_0",
+              "nets": [
+                {
+                  "net": "2MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "8MHZ_0",
+              "nets": [
+                {
+                  "net": "8MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FLOEN_0",
+              "nets": [
+                {
+                  "net": "FLOEN",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "H3",
+              "nets": [
+                {
+                  "net": "H3",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "H4",
+              "nets": [
+                {
+                  "net": "H4",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "FLOACK_0",
+              "nets": [
+                {
+                  "net": "FLOACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "1MHZ_0",
+              "nets": [
+                {
+                  "net": "1MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "32MHZ_0",
+              "nets": [
+                {
+                  "net": "32MHZ",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "BA00",
+              "nets": [
+                {
+                  "net": "BA00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BA01",
+              "nets": [
+                {
+                  "net": "BA01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BA02",
+              "nets": [
+                {
+                  "net": "BA02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "BA03",
+              "nets": [
+                {
+                  "net": "BA03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D00",
+              "nets": [
+                {
+                  "net": "D00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D01",
+              "nets": [
+                {
+                  "net": "D01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D02",
+              "nets": [
+                {
+                  "net": "D02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D03",
+              "nets": [
+                {
+                  "net": "D03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D04",
+              "nets": [
+                {
+                  "net": "D04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D05",
+              "nets": [
+                {
+                  "net": "D05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D06",
+              "nets": [
+                {
+                  "net": "D06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "D07",
+              "nets": [
+                {
+                  "net": "D07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "NACK_0",
+              "nets": [
+                {
+                  "net": "NACK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LSTAT_0",
+              "nets": [
+                {
+                  "net": "LSTAT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "IOWR_0",
+              "nets": [
+                {
+                  "net": "IOWR",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "IORD_0",
+              "nets": [
+                {
+                  "net": "IORD",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "MBD00",
+              "nets": [
+                {
+                  "net": "MBD00",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD01",
+              "nets": [
+                {
+                  "net": "MBD01",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD02",
+              "nets": [
+                {
+                  "net": "MBD02",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD03",
+              "nets": [
+                {
+                  "net": "MBD03",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD04",
+              "nets": [
+                {
+                  "net": "MBD04",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD05",
+              "nets": [
+                {
+                  "net": "MBD05",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD06",
+              "nets": [
+                {
+                  "net": "MBD06",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MBD07",
+              "nets": [
+                {
+                  "net": "MBD07",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "MC_0",
+              "nets": [
+                {
+                  "net": "MC",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "MC",
+              "nets": [
+                {
+                  "net": "MC",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "NRQ",
+              "nets": [
+                {
+                  "net": "NRQ",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "RFT_0",
+              "nets": [
+                {
+                  "net": "RFT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RFT",
+              "nets": [
+                {
+                  "net": "RFT",
+                  "active": "high"
+                }
+              ]
+            },
+            {
+              "port": "ARCK_0",
+              "nets": [
+                {
+                  "net": "ARCK",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "DMAINT_0",
+              "nets": [
+                {
+                  "net": "DMAINT",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "FINISH_0",
+              "nets": [
+                {
+                  "net": "FINISH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LDD_T_0",
+              "nets": [
+                {
+                  "net": "LDD_T",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADL_0",
+              "nets": [
+                {
+                  "net": "LADL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADM_0",
+              "nets": [
+                {
+                  "net": "LADM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "LADH_0",
+              "nets": [
+                {
+                  "net": "LADH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SETLO_0",
+              "nets": [
+                {
+                  "net": "SETLO",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "SETHI_0",
+              "nets": [
+                {
+                  "net": "SETHI",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RPOL_0",
+              "nets": [
+                {
+                  "net": "RPOL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RPOM_0",
+              "nets": [
+                {
+                  "net": "RPOM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RPOH_0",
+              "nets": [
+                {
+                  "net": "RPOH",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RCW1_0",
+              "nets": [
+                {
+                  "net": "RCW1",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RCW2_0",
+              "nets": [
+                {
+                  "net": "RCW2",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RDMAL_0",
+              "nets": [
+                {
+                  "net": "RDMAL",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RDMAM_0",
+              "nets": [
+                {
+                  "net": "RDMAM",
+                  "active": "low"
+                }
+              ]
+            },
+            {
+              "port": "RDMAH_0",
+              "nets": [
+                {
+                  "net": "RDMAH",
+                  "active": "low"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "F_ND_INT",
+      "ports": [
+        {
+          "name": "ARCK_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "ARCK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DMAINT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DMAINT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FINISH_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "FINISH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LDD_T_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "LDD_T",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADL_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "LADL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SETLO_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SETLO",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SETHI_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SETHI",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RPOL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RPOL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RPOM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RPOM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RPOH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RPOH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RCW1_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RCW1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RCW2_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RCW2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RDMAL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RDMAL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RDMAM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RDMAM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RDMAH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RDMAH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "IORD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "IORD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "IOWR_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "IOWR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BDRY_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BDRY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BINACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BINACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BMEM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BMEM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BMCL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BMCL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BERROR_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BERROR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BIOXE_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BIOXE",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BAPR_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BAPR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "MBD00",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "MBD00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD01",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "MBD01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "LSTAT_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LSTAT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "NACK_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "NACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SOTGRANT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "SOTGRANT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SOTIDENT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "SOTIDENT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADR1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADR1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "LADR2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADR2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "RFT",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "RFT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "RFT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "RFT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "NRQ",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "NRQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "MC",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MC_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "MC",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FWINH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FWINH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BINT11_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BINT11",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BINPUT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BINPUT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BREQ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BDAP_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BDAP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OUTIDENT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "OUTIDENT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OUTGRANT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "OUTGRANT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BD00",
+              "active": "low"
+            },
+            {
+              "net": "BD01",
+              "active": "low"
+            },
+            {
+              "net": "BD02",
+              "active": "low"
+            },
+            {
+              "net": "BD03",
+              "active": "low"
+            },
+            {
+              "net": "BD04",
+              "active": "low"
+            },
+            {
+              "net": "BD05",
+              "active": "low"
+            },
+            {
+              "net": "BD06",
+              "active": "low"
+            },
+            {
+              "net": "BD07",
+              "active": "low"
+            },
+            {
+              "net": "BD08",
+              "active": "low"
+            },
+            {
+              "net": "BD09",
+              "active": "low"
+            },
+            {
+              "net": "BD10",
+              "active": "low"
+            },
+            {
+              "net": "BD11",
+              "active": "low"
+            },
+            {
+              "net": "BD12",
+              "active": "low"
+            },
+            {
+              "net": "BD13",
+              "active": "low"
+            },
+            {
+              "net": "BD14",
+              "active": "low"
+            },
+            {
+              "net": "BD15",
+              "active": "low"
+            },
+            {
+              "net": "BD16",
+              "active": "low"
+            },
+            {
+              "net": "BD17",
+              "active": "low"
+            },
+            {
+              "net": "BD18",
+              "active": "low"
+            },
+            {
+              "net": "BD19",
+              "active": "low"
+            },
+            {
+              "net": "BD20",
+              "active": "low"
+            },
+            {
+              "net": "BD21",
+              "active": "low"
+            },
+            {
+              "net": "BD22",
+              "active": "low"
+            },
+            {
+              "net": "BD23",
+              "active": "low"
+            }
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "ref": "10D",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "10H",
+          "type": "74LS10",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "11C",
+          "type": "74F08",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "11H",
+          "type": "74S64",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "12H",
+          "type": "74S00",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "13G",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "13H",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "14G",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "14H",
+          "type": "74S74",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "15H",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "16F",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "16G",
+          "type": "74S08",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "17H",
+          "type": "74S04",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "18H",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "1B",
+          "type": "7438",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "1C",
+          "type": "74LS08",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "1D",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "1E",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "21D",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "25H",
+          "type": "74LS139",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "26H",
+          "type": "74LS20",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "27G",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "28H",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "29F",
+          "type": "74S32",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "29G",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "2C",
+          "type": "74S00",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "2D",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "2E",
+          "type": "74LS374",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "2F",
+          "type": "25LS2521",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "2G",
+          "type": "74LS123",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "2H",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "31C",
+          "type": "74LS14",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "3A",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "3C",
+          "type": "74S32",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "3D",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "3E",
+          "type": "74S374",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "3F",
+          "type": "74S374",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "3G",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "3H",
+          "type": "TBP18S030",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "4B",
+          "type": "74LS240",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "4C",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "4D",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "4E",
+          "type": "74S374",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "4F",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "4G",
+          "type": "25LS2521",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "4H",
+          "type": "TBP18S030",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "5B",
+          "type": "74F112",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "5C",
+          "type": "7438",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "5E",
+          "type": "74LS461",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "5F",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "5G",
+          "type": "74LS374",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "5H",
+          "type": "74LS138",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "5J",
+          "type": "74LS11",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "6C",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "6E",
+          "type": "74LS461",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "6F",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "6G",
+          "type": "74S374",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "6H",
+          "type": "74LS175",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "7C",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "7E",
+          "type": "74LS461",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "7F",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "7G",
+          "type": "74S374",
+          "confidence": "read",
+          "page": "7"
+        },
+        {
+          "ref": "7H",
+          "type": "74S08",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "7J",
+          "type": "74LS14",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "8D",
+          "type": "74S02",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "8E",
+          "type": "74S10",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "8F",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "8G",
+          "type": "74LS08",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "8H",
+          "type": "HY5010_100",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "8J",
+          "type": "74S00",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "9D",
+          "type": "74S74",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "9E",
+          "type": "PAL16L8",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "C28",
+          "type": "C",
+          "value": "1000PF",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "C29",
+          "type": "C",
+          "value": "100PF",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "C7",
+          "type": "C",
+          "value": "470PF",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "C8",
+          "type": "C",
+          "value": "220PF",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "C9",
+          "type": "C",
+          "value": "100PF",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "R11",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "R12",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "R13",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "8"
+        },
+        {
+          "ref": "R14",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "9"
+        },
+        {
+          "ref": "RN10",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "RN11",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "RN12",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "RN13",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "RN14",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "RN15",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "6"
+        },
+        {
+          "ref": "TH3",
+          "type": "2170576F",
+          "confidence": "read",
+          "page": "8"
+        }
+      ],
+      "gates": [
+        {
+          "id": "16F/2",
+          "part": "16F",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "8G/3",
+          "part": "8G",
+          "kind": "and",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "8G/11",
+          "part": "8G",
+          "kind": "and",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "5J/12",
+          "part": "5J",
+          "kind": "and",
+          "inputs": [
+            1,
+            2,
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "16F/10",
+          "part": "16F",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "7H/3",
+          "part": "7H",
+          "kind": "and",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "13H/3",
+          "part": "13H",
+          "kind": "nand",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "3C/6",
+          "part": "3C",
+          "kind": "or",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "14G/1",
+          "part": "14G",
+          "kind": "nor",
+          "inputs": [
+            3,
+            2
+          ],
+          "output": 1,
+          "confidence": "read"
+        },
+        {
+          "id": "10H/6",
+          "part": "10H",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5,
+            3
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "10H/8",
+          "part": "10H",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10,
+            11
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "10H/12",
+          "part": "10H",
+          "kind": "nand",
+          "inputs": [
+            13,
+            1,
+            2
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "7J/6",
+          "part": "7J",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "7J/8",
+          "part": "7J",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "12H/11",
+          "part": "12H",
+          "kind": "nand",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "10D/3",
+          "part": "10D",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "10D/11",
+          "part": "10D",
+          "kind": "nand",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "1B/6",
+          "part": "1B",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "1B/11",
+          "part": "1B",
+          "kind": "nand",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "13G/6",
+          "part": "13G",
+          "kind": "or",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "7J/2",
+          "part": "7J",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "7J/4",
+          "part": "7J",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "2C/6",
+          "part": "2C",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "5C/6",
+          "part": "5C",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "5C/8",
+          "part": "5C",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "5C/3",
+          "part": "5C",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "5C/11",
+          "part": "5C",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "15H/8",
+          "part": "15H",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "21D/1",
+          "part": "21D",
+          "kind": "nor",
+          "inputs": [
+            3,
+            2
+          ],
+          "output": 1,
+          "confidence": "read"
+        },
+        {
+          "id": "16F/12",
+          "part": "16F",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "28H/12",
+          "part": "28H",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "9D/5",
+          "part": "9D",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "14G/4",
+          "part": "14G",
+          "kind": "nor",
+          "inputs": [
+            6,
+            5
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "14H/9",
+          "part": "14H",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 9,
+          "confidence": "read"
+        },
+        {
+          "id": "21D/4",
+          "part": "21D",
+          "kind": "nor",
+          "inputs": [
+            6,
+            5
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "29G/11",
+          "part": "29G",
+          "kind": "or",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "16G/3",
+          "part": "16G",
+          "kind": "and",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "8E/6",
+          "part": "8E",
+          "kind": "nand",
+          "inputs": [
+            3,
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "7H/6",
+          "part": "7H",
+          "kind": "and",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "2C/3",
+          "part": "2C",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "8E/12",
+          "part": "8E",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2,
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "13G/11",
+          "part": "13G",
+          "kind": "or",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "9D/8",
+          "part": "9D",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "8D/1",
+          "part": "8D",
+          "kind": "nor",
+          "inputs": [
+            2,
+            3
+          ],
+          "output": 1,
+          "confidence": "read"
+        },
+        {
+          "id": "8D/10",
+          "part": "8D",
+          "kind": "nor",
+          "inputs": [
+            9,
+            8
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "17H/2",
+          "part": "17H",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "8J/3",
+          "part": "8J",
+          "kind": "nand",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "12H/8",
+          "part": "12H",
+          "kind": "nand",
+          "inputs": [
+            10,
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "17H/4",
+          "part": "17H",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "7H/8",
+          "part": "7H",
+          "kind": "and",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "7J/10",
+          "part": "7J",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "15H/4",
+          "part": "15H",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "14H/5",
+          "part": "14H",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "11C/11",
+          "part": "11C",
+          "kind": "and",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "7H/11",
+          "part": "7H",
+          "kind": "and",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "12H/6",
+          "part": "12H",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "3C/3",
+          "part": "3C",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "11H/8",
+          "part": "11H",
+          "kind": "other",
+          "inputs": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "output": 8,
+          "confidence": "read",
+          "note": "read as aoi"
+        }
+      ],
+      "nets": [
+        {
+          "name": "NTB0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25H.14",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NTB1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NTEST",
+          "active": "low",
+          "printed": "NTEST~",
+          "pins": [
+            {
+              "at": "29F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "28H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RIOXE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "29F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "2H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.5",
+              "confidence": "read"
+            },
+            {
+              "at": "31C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29F_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "25H.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TNADR",
+          "active": "low",
+          "printed": "TNADR~",
+          "pins": [
+            {
+              "at": "25H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "16F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TNDAT",
+          "active": "low",
+          "printed": "TNDAT~",
+          "pins": [
+            {
+              "at": "25H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "8G.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TNSTA",
+          "active": "low",
+          "printed": "TNSTA~",
+          "pins": [
+            {
+              "at": "25H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TNADR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "13G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26H_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "31C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "C7.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31C_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31C_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "31C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "C28.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31C_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IOXE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5J.6",
+              "confidence": "read"
+            },
+            {
+              "at": "5H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "13G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2H_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "18H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NTEST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "28H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "18H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "18H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "13H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NREQ",
+          "active": "low",
+          "printed": "NREQ~",
+          "pins": [
+            {
+              "at": "13G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "2C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LGRANT2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13G.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13G_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "13H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "C29.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LDOB",
+          "active": "low",
+          "printed": "LDOB~",
+          "pins": [
+            {
+              "at": "13H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "2D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.18",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LOCW",
+          "active": "high",
+          "pins": [
+            {
+              "at": "2D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "1C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "16F.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENI",
+          "active": "high",
+          "pins": [
+            {
+              "at": "2D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENI",
+          "active": "low",
+          "printed": "ENI~",
+          "pins": [
+            {
+              "at": "2D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "2H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RFT",
+          "active": "low",
+          "printed": "RFT~",
+          "pins": [
+            {
+              "at": "2H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INT11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "2H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "8G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "5C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LIDENT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "3H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "16F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "14G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "13G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "14G_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14G.10",
+              "confidence": "read"
+            },
+            {
+              "at": "2D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R12_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R12.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2D.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RFT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "2D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8G_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "2D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FINISH",
+          "active": "low",
+          "printed": "FINISH~",
+          "pins": [
+            {
+              "at": "8G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "8F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "8F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MCL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "2C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "2C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "1C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "3C.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "3C_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "3C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "2G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2G_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "C8.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2G_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "C8.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R11.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "active": "low",
+          "printed": "MC~",
+          "pins": [
+            {
+              "at": "2G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "8G.10",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "2G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "14G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "14G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "21D.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMARES",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "14G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "17H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ERROR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10D_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "8F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TRERR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "HARDERR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADL",
+          "active": "low",
+          "printed": "LADL~",
+          "pins": [
+            {
+              "at": "8G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LOCW",
+          "active": "low",
+          "printed": "LOCW~",
+          "pins": [
+            {
+              "at": "8G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "5H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "16F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "5C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CLERR",
+          "active": "low",
+          "printed": "CLERR~",
+          "pins": [
+            {
+              "at": "8G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "8F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "8F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "+5V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "2D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "8F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "2G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "R11.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R12.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.1",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.15",
+              "confidence": "read"
+            },
+            {
+              "at": "R13.1",
+              "confidence": "read"
+            },
+            {
+              "at": "6H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R14.1",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "C7.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C28.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C29.2",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.19",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.19",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "TH3.4",
+              "confidence": "read"
+            },
+            {
+              "at": "4H.15",
+              "confidence": "read"
+            },
+            {
+              "at": "3H.15",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "5H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "C9.1",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TRANS",
+          "active": "low",
+          "printed": "TRANS~",
+          "pins": [
+            {
+              "at": "3A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "3A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "6C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "6C.19",
+              "confidence": "read"
+            },
+            {
+              "at": "7C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "7C.19",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.10",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.3",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.21",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.18",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.8",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.20",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.7",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.14",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.6",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.16",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.9",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.4",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN10.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN13.5",
+              "confidence": "read"
+            },
+            {
+              "at": "5E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.5",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.3",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.21",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.4",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.20",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.6",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.8",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.9",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.10",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN11.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN14.7",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT16",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.4",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT17",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.6",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.21",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT18",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.8",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.20",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT19",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.10",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT20",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.9",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT21",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.7",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT22",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.5",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOUT23",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN12.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN15.3",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD00",
+          "active": "low",
+          "printed": "BD~00",
+          "pins": [
+            {
+              "at": "3A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD01",
+          "active": "low",
+          "printed": "BD~01",
+          "pins": [
+            {
+              "at": "3A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD02",
+          "active": "low",
+          "printed": "BD~02",
+          "pins": [
+            {
+              "at": "3A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD03",
+          "active": "low",
+          "printed": "BD~03",
+          "pins": [
+            {
+              "at": "3A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD04",
+          "active": "low",
+          "printed": "BD~04",
+          "pins": [
+            {
+              "at": "3A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD05",
+          "active": "low",
+          "printed": "BD~05",
+          "pins": [
+            {
+              "at": "3A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD06",
+          "active": "low",
+          "printed": "BD~06",
+          "pins": [
+            {
+              "at": "3A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD07",
+          "active": "low",
+          "printed": "BD~07",
+          "pins": [
+            {
+              "at": "3A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "3D.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD08",
+          "active": "low",
+          "printed": "BD~08",
+          "pins": [
+            {
+              "at": "6C.16",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD09",
+          "active": "low",
+          "printed": "BD~09",
+          "pins": [
+            {
+              "at": "6C.18",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD10",
+          "active": "low",
+          "printed": "BD~10",
+          "pins": [
+            {
+              "at": "6C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD11",
+          "active": "low",
+          "printed": "BD~11",
+          "pins": [
+            {
+              "at": "6C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD12",
+          "active": "low",
+          "printed": "BD~12",
+          "pins": [
+            {
+              "at": "6C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD13",
+          "active": "low",
+          "printed": "BD~13",
+          "pins": [
+            {
+              "at": "6C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD14",
+          "active": "low",
+          "printed": "BD~14",
+          "pins": [
+            {
+              "at": "6C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD15",
+          "active": "low",
+          "printed": "BD~15",
+          "pins": [
+            {
+              "at": "6C.14",
+              "confidence": "read"
+            },
+            {
+              "at": "4C.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD16",
+          "active": "low",
+          "printed": "BD~16",
+          "pins": [
+            {
+              "at": "7C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD17",
+          "active": "low",
+          "printed": "BD~17",
+          "pins": [
+            {
+              "at": "7C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD18",
+          "active": "low",
+          "printed": "BD~18",
+          "pins": [
+            {
+              "at": "7C.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD19",
+          "active": "low",
+          "printed": "BD~19",
+          "pins": [
+            {
+              "at": "7C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD20",
+          "active": "low",
+          "printed": "BD~20",
+          "pins": [
+            {
+              "at": "7C.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD21",
+          "active": "low",
+          "printed": "BD~21",
+          "pins": [
+            {
+              "at": "7C.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD22",
+          "active": "low",
+          "printed": "BD~22",
+          "pins": [
+            {
+              "at": "7C.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD23",
+          "active": "low",
+          "printed": "BD~23",
+          "pins": [
+            {
+              "at": "7C.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "6H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3D.14",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "8G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3D.16",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.16",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.18",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIN15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4C.14",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "5F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "6F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "7F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "3F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "3E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "6G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "2E.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ADCK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "16G.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ACARY",
+          "active": "low",
+          "printed": "ACARY~",
+          "pins": [
+            {
+              "at": "5E.23",
+              "confidence": "read"
+            },
+            {
+              "at": "8D.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "5E_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "5E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "6E_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "6E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADM",
+          "active": "low",
+          "printed": "LADM~",
+          "pins": [
+            {
+              "at": "6E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADH",
+          "active": "low",
+          "printed": "LADH~",
+          "pins": [
+            {
+              "at": "7E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ADEN",
+          "active": "low",
+          "printed": "ADEN~",
+          "pins": [
+            {
+              "at": "5E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "6E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "7E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "8E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDMAL",
+          "active": "low",
+          "printed": "RDMAL~",
+          "pins": [
+            {
+              "at": "5F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDMAM",
+          "active": "low",
+          "printed": "RDMAM~",
+          "pins": [
+            {
+              "at": "6F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDMAH",
+          "active": "low",
+          "printed": "RDMAH~",
+          "pins": [
+            {
+              "at": "7F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RSTAT",
+          "active": "low",
+          "printed": "RSTAT~",
+          "pins": [
+            {
+              "at": "4D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4D.19",
+              "confidence": "read"
+            },
+            {
+              "at": "5G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LSTAT",
+          "active": "low",
+          "printed": "LSTAT~",
+          "pins": [
+            {
+              "at": "5G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LOPHI",
+          "active": "low",
+          "printed": "LOPHI~",
+          "pins": [
+            {
+              "at": "3F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "5H.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RPOH",
+          "active": "low",
+          "printed": "RPOH~",
+          "pins": [
+            {
+              "at": "3F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LODI",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "4E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENDLO",
+          "active": "low",
+          "printed": "ENDLO~",
+          "pins": [
+            {
+              "at": "3E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENDHI",
+          "active": "low",
+          "printed": "ENDHI~",
+          "pins": [
+            {
+              "at": "4E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LODLO",
+          "active": "low",
+          "printed": "LODLO~",
+          "pins": [
+            {
+              "at": "6G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LODHI",
+          "active": "low",
+          "printed": "LODHI~",
+          "pins": [
+            {
+              "at": "7G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DOEN",
+          "active": "low",
+          "printed": "DOEN~",
+          "pins": [
+            {
+              "at": "6G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "7G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R13_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R13.2",
+              "confidence": "read"
+            },
+            {
+              "at": "TH3.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH3_D1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH3.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "3H.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH3_D2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH3.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "3H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH3_D4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH3.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "3H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH3_D8",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH3.3",
+              "confidence": "read"
+            },
+            {
+              "at": "4H.14",
+              "confidence": "read"
+            },
+            {
+              "at": "3H.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.7",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "2F.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.7",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEV15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LIDENT",
+          "active": "low",
+          "printed": "LIDENT~",
+          "pins": [
+            {
+              "at": "16F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "3G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2F_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "4G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CMPEQ",
+          "active": "low",
+          "printed": "CMPEQ~",
+          "pins": [
+            {
+              "at": "4G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "6H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8G_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "6H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DLDAPR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7J.4",
+              "confidence": "read"
+            },
+            {
+              "at": "6H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IOXOUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "13H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "5H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IOXIN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "6H_7",
+          "active": "none",
+          "pins": [
+            {
+              "at": "6H.7",
+              "confidence": "read"
+            },
+            {
+              "at": "3C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "6H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "6H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14G.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "EQUAL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6H.14",
+              "confidence": "read"
+            },
+            {
+              "at": "10D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SOTIDENT",
+          "active": "low",
+          "printed": "SOTIDENT~",
+          "pins": [
+            {
+              "at": "3C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "14G.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OUTIDENT",
+          "active": "low",
+          "printed": "OUTIDENT~",
+          "pins": [
+            {
+              "at": "3C.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "12H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "7J.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13H_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10D.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10D_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "5H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "REDAT_IN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5H.15",
+              "confidence": "read"
+            },
+            {
+              "at": "8G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "REDAT",
+          "active": "low",
+          "printed": "REDAT~",
+          "pins": [
+            {
+              "at": "8G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "5H_13",
+          "active": "none",
+          "pins": [
+            {
+              "at": "5H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "5H_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "5H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "5J.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LOPLO",
+          "active": "low",
+          "printed": "LOPLO~",
+          "pins": [
+            {
+              "at": "5H.7",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMARES",
+          "active": "low",
+          "printed": "DMARES~",
+          "pins": [
+            {
+              "at": "7H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "5C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "12H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "17H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10H_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "12H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMAINP",
+          "active": "low",
+          "printed": "DMAINP~",
+          "pins": [
+            {
+              "at": "12H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8J.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INPUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "10D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "5C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "5C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10D_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10H_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "7J.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "7J_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "7J.6",
+              "confidence": "read"
+            },
+            {
+              "at": "7J.9",
+              "confidence": "read"
+            },
+            {
+              "at": "C9.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PIODRY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7J.8",
+              "confidence": "read"
+            },
+            {
+              "at": "1B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13G_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "1B.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ADDRESS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "5C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "8E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "8D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "APR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "4B_18",
+          "active": "none",
+          "pins": [
+            {
+              "at": "4B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "7J.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "7J_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "7J.2",
+              "confidence": "read"
+            },
+            {
+              "at": "7J.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "8D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DAP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BAPR",
+          "active": "low",
+          "printed": "BAPR~",
+          "pins": [
+            {
+              "at": "1B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BDRY",
+          "active": "low",
+          "printed": "BDRY~",
+          "pins": [
+            {
+              "at": "1B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "4B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BINACK",
+          "active": "low",
+          "printed": "BINACK~",
+          "pins": [
+            {
+              "at": "4B.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BMEM",
+          "active": "low",
+          "printed": "BMEM~",
+          "pins": [
+            {
+              "at": "4B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BMCL",
+          "active": "low",
+          "printed": "BMCL~",
+          "pins": [
+            {
+              "at": "4B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BERROR",
+          "active": "low",
+          "printed": "BERROR~",
+          "pins": [
+            {
+              "at": "4B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BIOXE",
+          "active": "low",
+          "printed": "BIOXE~",
+          "pins": [
+            {
+              "at": "4B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BINT11",
+          "active": "low",
+          "printed": "BINT11~",
+          "pins": [
+            {
+              "at": "5C.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BINPUT",
+          "active": "low",
+          "printed": "BINPUT~",
+          "pins": [
+            {
+              "at": "5C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BREQ",
+          "active": "low",
+          "printed": "BREQ~",
+          "pins": [
+            {
+              "at": "5C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BDAP",
+          "active": "low",
+          "printed": "BDAP~",
+          "pins": [
+            {
+              "at": "5C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MEM",
+          "active": "high",
+          "pins": [
+            {
+              "at": "4B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "13G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "12H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FWINH",
+          "active": "low",
+          "printed": "FWINH~",
+          "pins": [
+            {
+              "at": "4B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MCL",
+          "active": "low",
+          "printed": "MCL~",
+          "pins": [
+            {
+              "at": "2C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "1D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TESTMODE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "AUTOLOAD",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ACTIVATE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1D_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "1D.15",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1D_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "1D.16",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RCW1",
+          "active": "low",
+          "printed": "RCW1~",
+          "pins": [
+            {
+              "at": "1E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "1E.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NDMAEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RCW2",
+          "active": "low",
+          "printed": "RCW2~",
+          "pins": [
+            {
+              "at": "2E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LDD_T",
+          "active": "low",
+          "printed": "LDD_T~",
+          "pins": [
+            {
+              "at": "15H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15H_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "27G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WRITEFL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "16F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "READFL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8J.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TCARY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "8D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NDMACT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "29G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMAST",
+          "active": "low",
+          "printed": "DMAST~",
+          "pins": [
+            {
+              "at": "9D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R14.2",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "14G_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMAINT",
+          "active": "low",
+          "printed": "DMAINT~",
+          "pins": [
+            {
+              "at": "21D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NACK",
+          "active": "low",
+          "printed": "NACK~",
+          "pins": [
+            {
+              "at": "21D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMAINT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "21D.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "21D_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "21D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NDMAEN",
+          "active": "low",
+          "printed": "NDMAEN~",
+          "pins": [
+            {
+              "at": "14H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "9E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2C_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "8E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13G_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "8E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "APR",
+          "active": "low",
+          "printed": "APR~",
+          "pins": [
+            {
+              "at": "17H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "16G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "8E.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ARCK",
+          "active": "low",
+          "printed": "ARCK~",
+          "pins": [
+            {
+              "at": "29G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29G_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "16G.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LGRANT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "9D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "12H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "8J.2",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11H.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8E_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "EDAP",
+          "active": "low",
+          "printed": "EDAP~",
+          "pins": [
+            {
+              "at": "8H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "8D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "7H_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "7H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "8H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8H_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "17H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8H_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "7H.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRY",
+          "active": "low",
+          "printed": "DRY~",
+          "pins": [
+            {
+              "at": "7J.10",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "14H_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "14H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "12H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "12H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "12H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "3C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SOTGRANT",
+          "active": "low",
+          "printed": "SOTGRANT~",
+          "pins": [
+            {
+              "at": "3C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OUTGRANT",
+          "active": "low",
+          "printed": "OUTGRANT~",
+          "pins": [
+            {
+              "at": "3C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "11C_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "11C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IOWR",
+          "active": "low",
+          "printed": "IOWR~",
+          "pins": [
+            {
+              "at": "9E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IORD",
+          "active": "low",
+          "printed": "IORD~",
+          "pins": [
+            {
+              "at": "9E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SETLO",
+          "active": "low",
+          "printed": "SETLO~",
+          "pins": [
+            {
+              "at": "9E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SETHI",
+          "active": "low",
+          "printed": "SETHI~",
+          "pins": [
+            {
+              "at": "9E.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RPOL",
+          "active": "low",
+          "printed": "RPOL~",
+          "pins": [
+            {
+              "at": "9E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RPOM",
+          "active": "low",
+          "printed": "RPOM~",
+          "pins": [
+            {
+              "at": "9E.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NRQ",
+          "active": "low",
+          "printed": "NRQ~",
+          "pins": [
+            {
+              "at": "9E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "15H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15H.4",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "6",
+          "sheetNumber": "6 of 24",
+          "source": 6
+        },
+        {
+          "id": "7",
+          "sheetNumber": "7 of 24",
+          "source": 7
+        },
+        {
+          "id": "8",
+          "sheetNumber": "8 of 24",
+          "source": 8
+        },
+        {
+          "id": "9",
+          "sheetNumber": "9 of 24",
+          "source": 9
+        }
+      ],
+      "note": "sheet 6: RN10-RN15: pin 2 of each 10-pin pack is not drawn. RN10-12 (3.3 kohm) common pin 1 to +5 V, RN13-15 (4.7 kohm) common pin 1 to GND: every DOUT line has both, a divider.\nsheet 6: 25H half 1 (pins 1-7) is drawn with stub lines only: unused.\nsheet 6: 2D.9 is printed \"9RFT~\" at Q and 2D.8 \"8 RFT\" at Q-bar: the flip-flop's Q is RFT~.\nsheet 7: 4D: inputs 2A1 (pin 11) tied to GND, 2A2 and 2A3 (pins 13, 15) tied to +5 V, so the status word read with RSTAT~ has bit 0 = 0 and bits 14, 15 = 1.\nsheet 7: 3F and 3E both latch DIN00-07 onto MBD, with different clocks (LOPHI~, LODI) and enables (RPOH~, ENDLO~).\nsheet 7: The bracketed numbers \"(OUT50)\" ... \"(IN57)\" printed next to strobes look like Z80 I/O port numbers; checked on the Z80_COMP sheets.\nsheet 8: 4G pins 13-18 (A5-B7) all go to GND (checked at 600 dpi), so only DIN11-15 are compared there.\nsheet 8: TH3 is a 16-position switch (C common, outputs D1 D2 D4 D8); the board list calls TH3 the floppy device number.\nsheet 8: 4H is printed \"FLOPPY DEV LOW 009_00\", 3H \"FLOPPY DEV HIGH 058_00\": programmed PROMs, contents not read (see BUGS.md).\nsheet 8: 1B and 5C are 7438 open-collector NAND gates driving the ND-100 bus lines.\nsheet 9: 9E is printed \"345_00 PAL16L8, CONVERSION BYTE - WORD\"; pins 14 \"LATCH~\" and 15 \"LAST~\" end in a dot (used inside the PAL only). Contents not read (BUGS.md).\nsheet 9: 8H HY5010_100: 100 ns delay line, taps 10 ns ... 100 ns on pins 13 3 12 4 11 5 10 6 9 8 (each number printed above its tap). Used: 20 ns (pin 3), 30 ns (pin 12), 60 ns (pin 5).\nsheet 9: 11H 74S64 pins 12 and 3 are drawn tied to pins 11 and 2.\nsheet 9: 1D pins 6, 12, 19 (3Q, 5Q, 8Q) and inputs 13, 18 are drawn as stubs: unused."
+    },
+    {
+      "name": "LO_FLOPPY",
+      "ports": [
+        {
+          "name": "MC",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "MC",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MC_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MC",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FWINH_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "FWINH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "F5READY_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "F5READY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "F5INDEX_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "F5INDEX",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FTROO_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FTROO",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FDISKCH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FDISKCH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FTWOS_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FTWOS",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FWPRT_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FWPRT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "AVC",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "AVC",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "AVC_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "AVC",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "12V",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "12V",
+              "active": "none"
+            }
+          ]
+        },
+        {
+          "name": "XRD_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "XRD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FLORQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FLORQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLOINT",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FLOINT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MDIS",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "MDIS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "PF1MHZ",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "PF1MHZ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLOCE_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "FLOCE",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "COEN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "COEN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "16MHZ_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "16MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "2MHZ_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "2MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "8MHZ_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "8MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FLOEN_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FLOEN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "H3",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "H3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "H4",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "H4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLOACK_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "FLOACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "1MHZ_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "1MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "32MHZ_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "32MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BA00",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "BA00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BA01",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "BA01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BA02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BA02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BA03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BA03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "IORD_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "IORD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "IOWR_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "IOWR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "MBD00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "8IND5INU_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "8IND5INU",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "8REA5DS3_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "8REA5DS3",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "8DS35MOT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "8DS35MOT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "8HLD5OPT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "8HLD5OPT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "F5SSEL_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "F5SSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "F8SSEL_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "F8SSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DS_000",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "DS00",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DS_001",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "DS01",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DS_002",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "DS02",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "CURRSW_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "CURRSW",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DIR_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "DIR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "INUSE_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "INUSE",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "STEP_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "STEP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "WDAT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "WDAT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "WG_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "WG",
+              "active": "low"
+            }
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "ref": "16H",
+          "type": "74S04",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "17H",
+          "type": "74S04",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "21D",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "23H",
+          "type": "74LS51",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "27D",
+          "type": "74LS157",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "27F",
+          "type": "74LS139",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "28F",
+          "type": "74LS221",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "29A",
+          "type": "74S00",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "29F",
+          "type": "74S32",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "29G",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "30A",
+          "type": "7438",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "30F",
+          "type": "74S175",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "31A",
+          "type": "7438",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "31C",
+          "type": "74LS14",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "31D",
+          "type": "74LS153",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "31E",
+          "type": "74LS629",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "31F",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "31G",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "32A",
+          "type": "7438",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "32C",
+          "type": "74S112",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "32D",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "32E",
+          "type": "ICL7660",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "32F",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "32G",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "33A",
+          "type": "7438",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "33C",
+          "type": "74S112",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "33D",
+          "type": "74S74",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "33F",
+          "type": "74F74",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "33G",
+          "type": "AD558",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "34A",
+          "type": "7438",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "34B",
+          "type": "74LS112",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "34C",
+          "type": "74F191",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "34D",
+          "type": "74LS393",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "34E",
+          "type": "TL061",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "34F",
+          "type": "74F161",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "35B",
+          "type": "74S04",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "35C",
+          "type": "74S51",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "35D",
+          "type": "74S132",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "35F",
+          "type": "TBP24S41",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "38G",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "3C",
+          "type": "74S32",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C10",
+          "type": "C",
+          "value": "2.2UF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C11",
+          "type": "C",
+          "value": "10UF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C12",
+          "type": "C",
+          "value": "10NF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C13",
+          "type": "C",
+          "value": "10NF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C14",
+          "type": "C",
+          "value": "10UF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C15",
+          "type": "C",
+          "value": "10UF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C16",
+          "type": "C",
+          "value": "2.2UF",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "C17",
+          "type": "C",
+          "value": "1500PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C18",
+          "type": "C",
+          "value": "1000PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C19",
+          "type": "C",
+          "value": "4700PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C20",
+          "type": "C",
+          "value": "68PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C21",
+          "type": "C",
+          "value": "2.2UF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C22",
+          "type": "C",
+          "value": "4700PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C24",
+          "type": "C",
+          "value": "1500PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "C25",
+          "type": "C",
+          "value": "470PF",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "D1",
+          "type": "5.6V_ZENER",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "D2",
+          "type": "1N4148",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "D3",
+          "type": "1N4148",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "FD1797",
+          "type": "FD1797_02",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R15",
+          "type": "R",
+          "value": "27KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R16",
+          "type": "R",
+          "value": "270OHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R17",
+          "type": "R",
+          "value": "8.2KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R18",
+          "type": "R",
+          "value": "150OHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R19",
+          "type": "R",
+          "value": "150OHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R20",
+          "type": "R",
+          "value": "1.5KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R21",
+          "type": "R",
+          "value": "1.5KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R22",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R23",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R24",
+          "type": "R",
+          "value": "150OHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R25",
+          "type": "R",
+          "value": "470OHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R26",
+          "type": "R",
+          "value": "470OHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "R27",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R28",
+          "type": "R",
+          "value": "56OHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R29",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R30",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R31",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R32",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R33",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R34",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R35",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R36",
+          "type": "R",
+          "value": "15KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R37",
+          "type": "R",
+          "value": "47KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R38",
+          "type": "R",
+          "value": "680OHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R39",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R40",
+          "type": "R",
+          "value": "47KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R41",
+          "type": "R",
+          "value": "15KOHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R42",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "R80",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "RN16",
+          "type": "4606X_101_151",
+          "confidence": "read",
+          "page": "10"
+        },
+        {
+          "ref": "TP1",
+          "type": "TESTPOINT",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "TP2",
+          "type": "TESTPOINT",
+          "confidence": "read",
+          "page": "11"
+        },
+        {
+          "ref": "TP3",
+          "type": "TESTPOINT",
+          "confidence": "read",
+          "page": "11"
+        }
+      ],
+      "gates": [
+        {
+          "id": "29G/8",
+          "part": "29G",
+          "kind": "or",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "34A/6",
+          "part": "34A",
+          "kind": "nand",
+          "inputs": [
+            5,
+            4
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "34A/3",
+          "part": "34A",
+          "kind": "nand",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "32A/11",
+          "part": "32A",
+          "kind": "nand",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "34A/11",
+          "part": "34A",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "32A/3",
+          "part": "32A",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "32A/6",
+          "part": "32A",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "32A/8",
+          "part": "32A",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "38G/10",
+          "part": "38G",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "31C/4",
+          "part": "31C",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "31C/2",
+          "part": "31C",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "33A/11",
+          "part": "33A",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "33A/6",
+          "part": "33A",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "33A/8",
+          "part": "33A",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "30A/6",
+          "part": "30A",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "30A/3",
+          "part": "30A",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "33A/3",
+          "part": "33A",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "31A/8",
+          "part": "31A",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "31A/3",
+          "part": "31A",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "31A/6",
+          "part": "31A",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "31A/11",
+          "part": "31A",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "16H/2",
+          "part": "16H",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "31F/3",
+          "part": "31F",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "31F/11",
+          "part": "31F",
+          "kind": "or",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "21D/13",
+          "part": "21D",
+          "kind": "nor",
+          "inputs": [
+            12,
+            11
+          ],
+          "output": 13,
+          "confidence": "read"
+        },
+        {
+          "id": "35D/11",
+          "part": "35D",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "29F/3",
+          "part": "29F",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "3C/11",
+          "part": "3C",
+          "kind": "or",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "35B/8",
+          "part": "35B",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "35B/6",
+          "part": "35B",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "35B/4",
+          "part": "35B",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "35C/6",
+          "part": "35C",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read",
+          "note": "read as aoi"
+        },
+        {
+          "id": "17H/12",
+          "part": "17H",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "17H/10",
+          "part": "17H",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "35B/2",
+          "part": "35B",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "29A/8",
+          "part": "29A",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "16H/4",
+          "part": "16H",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "31F/6",
+          "part": "31F",
+          "kind": "or",
+          "inputs": [
+            5,
+            4
+          ],
+          "output": 6,
+          "confidence": "read"
+        }
+      ],
+      "nets": [
+        {
+          "name": "ENDSR",
+          "active": "low",
+          "printed": "ENDSR~",
+          "pins": [
+            {
+              "at": "29G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "27F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IOWR",
+          "active": "low",
+          "printed": "IOWR~",
+          "pins": [
+            {
+              "at": "29G.10",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.10",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29G_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "31G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "active": "low",
+          "printed": "MC~",
+          "pins": [
+            {
+              "at": "31G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "32G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "COEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INUSE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDEN",
+          "active": "low",
+          "printed": "DDEN~",
+          "pins": [
+            {
+              "at": "31G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.37",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SVCOU",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "34D.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FMOD2",
+          "active": "low",
+          "printed": "FMOD2~",
+          "pins": [
+            {
+              "at": "32G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "EN5CLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "23H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MOTORON",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "T6X",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PAM0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PAM1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENPRE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "F5OPT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "30A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "EN5IF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "32G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "38G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "30A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "30A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "EN5IF",
+          "active": "low",
+          "printed": "EN5IF~",
+          "pins": [
+            {
+              "at": "38G.10",
+              "confidence": "read"
+            },
+            {
+              "at": "32A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.19",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLSTS",
+          "active": "low",
+          "printed": "FLSTS~",
+          "pins": [
+            {
+              "at": "31F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R80_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R80.2",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8REA5DS3",
+          "active": "low",
+          "printed": "8REA5DS3~",
+          "pins": [
+            {
+              "at": "34A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "32F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "R26.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FTWOS",
+          "active": "low",
+          "printed": "FTWOS~",
+          "pins": [
+            {
+              "at": "32F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "R19.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FDISKCH",
+          "active": "low",
+          "printed": "FDISKCH~",
+          "pins": [
+            {
+              "at": "32F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "R18.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TROO",
+          "active": "low",
+          "printed": "TROO~",
+          "pins": [
+            {
+              "at": "32F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.14",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.34",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "F5READY",
+          "active": "low",
+          "printed": "F5READY~",
+          "pins": [
+            {
+              "at": "32F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN16.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENADC",
+          "active": "low",
+          "printed": "ENADC~",
+          "pins": [
+            {
+              "at": "27F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "12V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "33G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "C16.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R16.2",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.40",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "33G_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "33G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "R20.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RNG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R20.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R21.2",
+              "confidence": "read"
+            },
+            {
+              "at": "31E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "VCO",
+          "active": "high",
+          "pins": [
+            {
+              "at": "34D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "31E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "TP1.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PF1MHZ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "34D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PF0.5MHZ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "34D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PF250KHZ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "34D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8IND5INU",
+          "active": "low",
+          "printed": "8IND5INU~",
+          "pins": [
+            {
+              "at": "34A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "R25.2",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8DS35MOT",
+          "active": "low",
+          "printed": "8DS35MOT~",
+          "pins": [
+            {
+              "at": "32A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "34A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS00",
+          "active": "low",
+          "printed": "DS~00",
+          "pins": [
+            {
+              "at": "32A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS01",
+          "active": "low",
+          "printed": "DS~01",
+          "pins": [
+            {
+              "at": "32A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DS02",
+          "active": "low",
+          "printed": "DS~02",
+          "pins": [
+            {
+              "at": "32A.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CURRSW",
+          "active": "low",
+          "printed": "CURRSW~",
+          "pins": [
+            {
+              "at": "33A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PRENOW",
+          "active": "high",
+          "pins": [
+            {
+              "at": "33A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INUSE",
+          "active": "low",
+          "printed": "INUSE~",
+          "pins": [
+            {
+              "at": "33A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8HLD5OPT",
+          "active": "low",
+          "printed": "8HLD5OPT~",
+          "pins": [
+            {
+              "at": "33A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "30A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "F5SSEL",
+          "active": "low",
+          "printed": "F5SSEL~",
+          "pins": [
+            {
+              "at": "30A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "F8SSEL",
+          "active": "low",
+          "printed": "F8SSEL~",
+          "pins": [
+            {
+              "at": "33A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WDAT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "31A.10",
+              "confidence": "read"
+            },
+            {
+              "at": "33F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WDAT",
+          "active": "low",
+          "printed": "WDAT~",
+          "pins": [
+            {
+              "at": "31A.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "31A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIR",
+          "active": "low",
+          "printed": "DIR~",
+          "pins": [
+            {
+              "at": "31A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "STEP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "31A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "STEP",
+          "active": "low",
+          "printed": "STEP~",
+          "pins": [
+            {
+              "at": "31A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.30",
+              "confidence": "read"
+            },
+            {
+              "at": "21D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FWINH",
+          "active": "low",
+          "printed": "FWINH~",
+          "pins": [
+            {
+              "at": "31A.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WG",
+          "active": "low",
+          "printed": "WG~",
+          "pins": [
+            {
+              "at": "31A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FTROO",
+          "active": "low",
+          "printed": "FTROO~",
+          "pins": [
+            {
+              "at": "32D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN16.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FWPRT",
+          "active": "low",
+          "printed": "FWPRT~",
+          "pins": [
+            {
+              "at": "32D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN16.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "F5INDEX",
+          "active": "low",
+          "printed": "F5INDEX~",
+          "pins": [
+            {
+              "at": "32D.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN16.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IP",
+          "active": "low",
+          "printed": "IP~",
+          "pins": [
+            {
+              "at": "32D.18",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.35",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WPRT",
+          "active": "low",
+          "printed": "WPRT~",
+          "pins": [
+            {
+              "at": "32D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.36",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32D_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "32D.16",
+              "confidence": "read"
+            },
+            {
+              "at": "32D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "31C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "READY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.32",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "XRD",
+          "active": "low",
+          "printed": "XRD~",
+          "pins": [
+            {
+              "at": "R24.1",
+              "confidence": "read"
+            },
+            {
+              "at": "31C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FID",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDAT",
+          "active": "low",
+          "printed": "RDAT~",
+          "pins": [
+            {
+              "at": "FD1797.27",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "TP3.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RCLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.26",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "35B.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RA0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RA1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOCE",
+          "active": "low",
+          "printed": "FLOCE~",
+          "pins": [
+            {
+              "at": "27D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IORD",
+          "active": "low",
+          "printed": "IORD~",
+          "pins": [
+            {
+              "at": "31F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLRESET",
+          "active": "low",
+          "printed": "FLRESET~",
+          "pins": [
+            {
+              "at": "28F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FCLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "FD1797.24",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLORQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.38",
+              "confidence": "read"
+            },
+            {
+              "at": "R22.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOINT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.39",
+              "confidence": "read"
+            },
+            {
+              "at": "R23.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "VFOE",
+          "active": "low",
+          "printed": "VFOE~",
+          "pins": [
+            {
+              "at": "FD1797.33",
+              "confidence": "read"
+            },
+            {
+              "at": "21D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "R27.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TG43",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.29",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SSEL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.25",
+              "confidence": "read"
+            },
+            {
+              "at": "30A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LATE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.18",
+              "confidence": "read"
+            },
+            {
+              "at": "30F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "EARLY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.17",
+              "confidence": "read"
+            },
+            {
+              "at": "30F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WD",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.31",
+              "confidence": "read"
+            },
+            {
+              "at": "30F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "HLD",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.28",
+              "confidence": "read"
+            },
+            {
+              "at": "33A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "28F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "HLT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "FD1797.23",
+              "confidence": "read"
+            },
+            {
+              "at": "28F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2MHZ",
+          "active": "low",
+          "printed": "2MHZ~",
+          "pins": [
+            {
+              "at": "23H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16H_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "23H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1MHZ",
+          "active": "low",
+          "printed": "1MHZ~",
+          "pins": [
+            {
+              "at": "23H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOEN",
+          "active": "low",
+          "printed": "FLOEN~",
+          "pins": [
+            {
+              "at": "27F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FRG0",
+          "active": "low",
+          "printed": "FRG0~",
+          "pins": [
+            {
+              "at": "27F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FRG1",
+          "active": "low",
+          "printed": "FRG1~",
+          "pins": [
+            {
+              "at": "27F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLCLR",
+          "active": "low",
+          "printed": "FLCLR~",
+          "pins": [
+            {
+              "at": "27F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "28F.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "27F_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "27F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "30F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MDIS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "27D.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOACK",
+          "active": "low",
+          "printed": "FLOACK~",
+          "pins": [
+            {
+              "at": "27D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28F_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "C10.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R15.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28F_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "C10.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "AVC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R16.1",
+              "confidence": "read"
+            },
+            {
+              "at": "D1.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C11.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C12.1",
+              "confidence": "read"
+            },
+            {
+              "at": "32E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "R39.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32E_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "32E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C14.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32E_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "32E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "C14.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "AVC",
+          "active": "low",
+          "printed": "AVC~",
+          "pins": [
+            {
+              "at": "32E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "C15.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28F_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "C13.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28F_7",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "C13.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R17.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "28F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLRESET",
+          "active": "high",
+          "pins": [
+            {
+              "at": "28F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "+5V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R18.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R19.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R80.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R24.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R22.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R23.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R25.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R26.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN16.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R15.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R17.1",
+              "confidence": "read"
+            },
+            {
+              "at": "28F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "R27.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R29.2",
+              "confidence": "read"
+            },
+            {
+              "at": "31E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "C21.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "33G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "33G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "R21.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C16.1",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.14",
+              "confidence": "read"
+            },
+            {
+              "at": "27D.15",
+              "confidence": "read"
+            },
+            {
+              "at": "28F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "D1.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C11.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C12.2",
+              "confidence": "read"
+            },
+            {
+              "at": "32E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "C15.2",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.15",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "R32.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R35.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C22.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R38.2",
+              "confidence": "read"
+            },
+            {
+              "at": "31E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "31E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "C21.2",
+              "confidence": "read"
+            },
+            {
+              "at": "34F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "34F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "34F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "34F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C17.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C25.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C24.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32MHZ",
+          "active": "low",
+          "printed": "32MHZ~",
+          "pins": [
+            {
+              "at": "31D.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16MHZ",
+          "active": "low",
+          "printed": "16MHZ~",
+          "pins": [
+            {
+              "at": "31D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "31D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "29A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8MHZ",
+          "active": "low",
+          "printed": "8MHZ~",
+          "pins": [
+            {
+              "at": "31D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31D_7",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CFRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CDAT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "33D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "34C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "32C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34C_13",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PLLEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "35D.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "35D_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "35D.11",
+              "confidence": "read"
+            },
+            {
+              "at": "33D.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DW",
+          "active": "high",
+          "pins": [
+            {
+              "at": "33D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "35D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "29F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DW",
+          "active": "low",
+          "printed": "DW~",
+          "pins": [
+            {
+              "at": "33D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "3C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "32C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "D3.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D3_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "D3.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R30.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R30_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R30.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R31.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R32.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32C_7",
+          "active": "none",
+          "pins": [
+            {
+              "at": "32C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "D2.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D2_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "D2.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R33.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R33_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R33.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R34.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R35.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R36_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R36.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C22.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R37_1",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R37.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R38.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R39.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34E_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "R40.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C18.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C19.1",
+              "confidence": "read"
+            },
+            {
+              "at": "TP2.1",
+              "confidence": "read"
+            },
+            {
+              "at": "31E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R41_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R41.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C19.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31E_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "C20.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31E_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "C20.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LLATE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "30F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LEARLY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "35F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34F_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34F_13",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34F_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34F_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "35F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "34F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "34F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "34F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "33F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "33F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R29.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29A_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "30F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "35F_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "35F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "33F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R28_1",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R28.1",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DAT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "33C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "29F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "35C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "33C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "35C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29F_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "3C_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "3C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "35B_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "35B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "35B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "C17.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDW",
+          "active": "high",
+          "pins": [
+            {
+              "at": "35B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "35B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "35C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDW",
+          "active": "low",
+          "printed": "DDW~",
+          "pins": [
+            {
+              "at": "35B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "35C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "35C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "35C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "17H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "33C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "34B.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FCLR",
+          "active": "low",
+          "printed": "FCLR~",
+          "pins": [
+            {
+              "at": "35B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "33C.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34B_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "C25.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R42.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "34B_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "34B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "17H.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17H_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "R42.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17H_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "C24.1",
+              "confidence": "read"
+            },
+            {
+              "at": "35B.1",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "10",
+          "sheetNumber": "10 of 24",
+          "source": 10
+        },
+        {
+          "id": "11",
+          "sheetNumber": "11 of 24",
+          "source": 11
+        }
+      ],
+      "note": "sheet 10: 32F pins 2 and 8 (1A1, 1A4) are drawn as short stubs: no wire seen, so they are not in a net.\nsheet 10: 27F pin 12 (2Y0) is drawn in a closed box under pin 7's wire (ENDSR~); 27D pin 11 (3A) the same under pin 6's wire (BA01). Read literally both would be tied to the wire above, which joins two totem-pole outputs at 27F. OPEN: left out of the nets.\nsheet 10: 33A pins 1 and 2 are both on the SSEL wire (checked at 700 dpi), so F8SSEL~ = NOT SSEL with no EN5IF term; 30A gives F5SSEL~ = NAND(SSEL, EN5IF).\nsheet 10: 28F pin 13 (Q of the first one-shot) runs into the AVC flag symbol; whether it joins the AVC supply node is OPEN, left out.\nsheet 10: FD1797 pins 1, 20, 21 (NC, VSS, VCC) and 22 (TEST~, drawn as a stub) are not drawn connected; 28F half 2 Q (pin 5) is printed \"FLRESET\" in quotes and ends at a dot with no other pin.\nsheet 10: RN16 is a 4606X_101_151 pack (150 ohm); pins 2-5 are pull-ups on FWPRT~, F5INDEX~, FTROO~, F5READY~; pin 1 common to +5 V (drawn as a bar).\nsheet 10: The board positions of the 4606X pack printed beside pins 1-3 (top of the sheet, \"4606X_101_151\") have no reference; the RN16 label is the nearer one. OPEN which label belongs to which pack.\nsheet 10: 32E ICL7660 makes AVC~ (negative) from AVC, which is 12 V through R16 held at 5.6 V by D1.\nsheet 10: F5SSEL~ (5.25 inch side select) is printed so on sheet 5; on this sheet the S looks like a 6.\nsheet 11: OPEN 30F pins 7, 11, 14, 15 and 34F pins 2 (CK), 9 (LD~), 15 (RCO), and 29A pin 10: the wires cross the H5 line with dots at 30F 11/15 and run in parallel; not settled at 300 or 600 dpi. Left out of the nets.\nsheet 11: OPEN TL061 34E pins 1, 2, 3, 4, 5, 7; R31 pin 1, R34 pin 1, R36 pin 1, R37 pin 2, R40 pin 1, R41 pin 1, C18 pin 1, C23 (1000 pF, both pins): the loop filter round the op-amp has many crossing wires; to be read at 1200 dpi.\nsheet 11: OPEN 33F pin 3 (CK) and R28 pin 2: their wires leave the tiles read so far.\nsheet 11: OPEN the DAT line has a dot where the DDW wire comes down (35C pin 2/3 area); read here as 35C.2 = DAT and 35C.3 = DDW from the printed labels.\nsheet 11: 35F is printed \"357_00 TBP24S41\": a programmed PROM (write precompensation table), contents not read (BUGS.md).\nsheet 11: C24 is printed \"DELAY 40ns\" (the 17H/35B/C24 chain makes FCLR~).\nsheet 11: 31D and 34C, 33D: the 74LS153 select inputs are printed \"(14)\" and \"(2)\" on both halves (shared pins).\nsheet 11: 30F pins 3, 6, 10 and 3D (pin 12) are drawn as stubs; 32C pins 5 and 9, 33C 6 and 7, 33F 6, 34B 9, 34C 2, 3, 6, 7, 12, 35F 11-13 the same.\nOPEN, pins not settled from the drawing (left out of every net): 27D.11 27F.12 28F.13 29A.10 30F.11 30F.14 30F.15 30F.7 33F.3 34E.1 34E.2 34E.3 34E.4 34E.5 34E.7 34F.15 34F.2 34F.9 C18.1 R28.2 R31.1 R34.1 R36.1 R37.2 R40.1 R41.1"
+    },
+    {
+      "name": "Z80_COMP",
+      "ports": [
+        {
+          "name": "CKDIS_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "CKDIS",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "TFRQ",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "TFRQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "COEN",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "COEN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLOCE_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "FLOCE",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PF1MHZ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "PF1MHZ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MDIS",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MDIS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLOINT",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "FLOINT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLORQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FLORQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "16MHZ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "16MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "2MHZ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "2MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "8MHZ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "8MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FLOEN_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FLOEN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "H3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "H3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "H4",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "H4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FLOACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FLOACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "1MHZ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "1MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "32MHZ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "32MHZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BA00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BA00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BA01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BA01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BA02",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "BA02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BA03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BA03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "D07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "D07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "NACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "NACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LSTAT_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LSTAT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "IOWR_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "IOWR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "IORD_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "IORD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "MBD00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MBD07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MBD07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MC_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MC",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MC",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "NRQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "NRQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "RFT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "RFT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RFT",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "RFT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ARCK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ARCK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DMAINT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DMAINT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "FINISH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FINISH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LDD_T_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LDD_T",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SETLO_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SETLO",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SETHI_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SETHI",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RPOL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RPOL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RPOM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RPOM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RPOH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RPOH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RCW1_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RCW1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RCW2_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RCW2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RDMAL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RDMAL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RDMAM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RDMAM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RDMAH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RDMAH",
+              "active": "low"
+            }
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "ref": "10G",
+          "type": "74LS138",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "10J",
+          "type": "MC14536BCP",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "11G",
+          "type": "74LS138",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "12G",
+          "type": "74LS139",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "13G",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "13H",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "15G",
+          "type": "74273",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "15H",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "16F",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "16H",
+          "type": "74S04",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "17G",
+          "type": "74273",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "18H",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "19H",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "19J",
+          "type": "HP5082_7433",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "20E",
+          "type": "74LS138",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "20F",
+          "type": "Z80A_CPU",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "20H",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "21D",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "21E",
+          "type": "PAL16L8",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "21F",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "21G",
+          "type": "74LS245",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "21H",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "22F",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "22H",
+          "type": "74LS393",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "23E",
+          "type": "2764_2",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "23F",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "24E",
+          "type": "TMM2063P_10",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "24F",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "24G",
+          "type": "74LS125",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "24H",
+          "type": "74LS95B",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "26E",
+          "type": "Z80A_CTC",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "26F",
+          "type": "AM9517_4PC",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "26H",
+          "type": "74LS20",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "27H",
+          "type": "74F161",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "28E",
+          "type": "Z80A_CTC",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "29A",
+          "type": "74S00",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "29G",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "2H",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "30G",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "31F",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "9F",
+          "type": "25LS2521",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "9G",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "C26",
+          "type": "C",
+          "value": "33PF",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "LD3",
+          "type": "YELLOW",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "OSC2",
+          "type": "32MHZ",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R43",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "R44",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "R45",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R46",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R47",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R48",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R49",
+          "type": "R",
+          "value": ".2KOHM",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R50",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "R52",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "R53",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "R55",
+          "type": "R",
+          "value": "2.7KOHM",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "R56",
+          "type": "R",
+          "value": "2.7KOHM",
+          "confidence": "read",
+          "page": "14"
+        },
+        {
+          "ref": "RN17",
+          "type": "4610X_101_103",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "RN18",
+          "type": "4116R_001_102",
+          "confidence": "read",
+          "page": "12"
+        },
+        {
+          "ref": "RN19",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "RN20",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "RN21",
+          "type": "4606X_101_272",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "RN22",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "13"
+        },
+        {
+          "ref": "T1",
+          "type": "2N3906",
+          "confidence": "read",
+          "page": "13"
+        }
+      ],
+      "gates": [
+        {
+          "id": "15H/2",
+          "part": "15H",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "13H/8",
+          "part": "13H",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "29A/3",
+          "part": "29A",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "29A/6",
+          "part": "29A",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "16H/10",
+          "part": "16H",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "16H/12",
+          "part": "16H",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "16H/8",
+          "part": "16H",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "16H/6",
+          "part": "16H",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "15H/10",
+          "part": "15H",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "15H/6",
+          "part": "15H",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "18H/3",
+          "part": "18H",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "26H/6",
+          "part": "26H",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "30G/6",
+          "part": "30G",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "13H/11",
+          "part": "13H",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "24G/6",
+          "part": "24G",
+          "kind": "buffer",
+          "inputs": [
+            5,
+            4
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "24G/3",
+          "part": "24G",
+          "kind": "buffer",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "24G/11",
+          "part": "24G",
+          "kind": "buffer",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "24G/8",
+          "part": "24G",
+          "kind": "buffer",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "2H/10",
+          "part": "2H",
+          "kind": "nor",
+          "inputs": [
+            9,
+            8
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "29G/6",
+          "part": "29G",
+          "kind": "or",
+          "inputs": [
+            5,
+            4
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "19H/9",
+          "part": "19H",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 9,
+          "confidence": "read"
+        },
+        {
+          "id": "21H/9",
+          "part": "21H",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 9,
+          "confidence": "read"
+        },
+        {
+          "id": "21H/5",
+          "part": "21H",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "16F/8",
+          "part": "16F",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "16F/6",
+          "part": "16F",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "21D/10",
+          "part": "21D",
+          "kind": "nor",
+          "inputs": [
+            9,
+            8
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "13G/8",
+          "part": "13G",
+          "kind": "or",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "29G/3",
+          "part": "29G",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "31F/8",
+          "part": "31F",
+          "kind": "or",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "30G/8",
+          "part": "30G",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        }
+      ],
+      "nets": [
+        {
+          "name": "WRCPR",
+          "active": "low",
+          "printed": "WRCPR~",
+          "pins": [
+            {
+              "at": "21E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "9G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "20H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "20H.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.13",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.17",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MBD07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.18",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.14",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CD7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "9F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CEQ",
+          "active": "low",
+          "printed": "CEQ~",
+          "pins": [
+            {
+              "at": "9F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "13H.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CPACK",
+          "active": "low",
+          "printed": "CPACK~",
+          "pins": [
+            {
+              "at": "15H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CPACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "20H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "13H.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "COEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CPRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13H_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "20H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IOWR",
+          "active": "low",
+          "printed": "IOWR~",
+          "pins": [
+            {
+              "at": "20H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "11G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CPERR",
+          "active": "low",
+          "printed": "CPERR~",
+          "pins": [
+            {
+              "at": "20H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.30",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.32",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.31",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.33",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.32",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.34",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.33",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.35",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.34",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.37",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.35",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.38",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.36",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.39",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.37",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.40",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.25",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.25",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.38",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.24",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.24",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.39",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.21",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.21",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.40",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "21E_13",
+          "active": "none",
+          "pins": [
+            {
+              "at": "21E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "23E.23",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WE",
+          "active": "low",
+          "printed": "WE~",
+          "pins": [
+            {
+              "at": "23E.27",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.27",
+              "confidence": "read"
+            },
+            {
+              "at": "21E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OE",
+          "active": "low",
+          "printed": "OE~",
+          "pins": [
+            {
+              "at": "23E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MCE0",
+          "active": "low",
+          "printed": "MCE~0",
+          "pins": [
+            {
+              "at": "21E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "23E.20",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MCE1",
+          "active": "low",
+          "printed": "MCE~1",
+          "pins": [
+            {
+              "at": "21E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.20",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.2",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.7",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.30",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.25",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.25",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.3",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.29",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.26",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.26",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.4",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.28",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.27",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.27",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.5",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.27",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.28",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.28",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.6",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.26",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.7",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.23",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.8",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.22",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "D07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.9",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.21",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZM1",
+          "active": "low",
+          "printed": "ZM1~",
+          "pins": [
+            {
+              "at": "21E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.27",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.2",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZMREQ",
+          "active": "low",
+          "printed": "ZMREQ~",
+          "pins": [
+            {
+              "at": "21E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.8",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "AEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "16F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MDIS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21E.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "12G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "10G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "12G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "29G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "30G.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IORQ",
+          "active": "low",
+          "printed": "IORQ~",
+          "pins": [
+            {
+              "at": "20E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "29G.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "M1",
+          "active": "low",
+          "printed": "M1~",
+          "pins": [
+            {
+              "at": "20E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IREN",
+          "active": "low",
+          "printed": "IREN~",
+          "pins": [
+            {
+              "at": "20E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "29G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZDMAEN",
+          "active": "low",
+          "printed": "ZDMAEN~",
+          "pins": [
+            {
+              "at": "20E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DISP",
+          "active": "low",
+          "printed": "DISP~",
+          "pins": [
+            {
+              "at": "20E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "12G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "N100EN",
+          "active": "low",
+          "printed": "N100EN~",
+          "pins": [
+            {
+              "at": "20E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "11G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "10G.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOEN",
+          "active": "low",
+          "printed": "FLOEN~",
+          "pins": [
+            {
+              "at": "20E.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "R53.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IORD",
+          "active": "low",
+          "printed": "IORD~",
+          "pins": [
+            {
+              "at": "10G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "30G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "21D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADL",
+          "active": "low",
+          "printed": "LADL~",
+          "pins": [
+            {
+              "at": "11G.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADM",
+          "active": "low",
+          "printed": "LADM~",
+          "pins": [
+            {
+              "at": "11G.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADH",
+          "active": "low",
+          "printed": "LADH~",
+          "pins": [
+            {
+              "at": "11G.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LDD_T",
+          "active": "low",
+          "printed": "LDD_T~",
+          "pins": [
+            {
+              "at": "11G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SETLO",
+          "active": "low",
+          "printed": "SETLO~",
+          "pins": [
+            {
+              "at": "11G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SETHI",
+          "active": "low",
+          "printed": "SETHI~",
+          "pins": [
+            {
+              "at": "11G.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LSTAT",
+          "active": "low",
+          "printed": "LSTAT~",
+          "pins": [
+            {
+              "at": "11G.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FINISH",
+          "active": "low",
+          "printed": "FINISH~",
+          "pins": [
+            {
+              "at": "11G.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RCW1",
+          "active": "low",
+          "printed": "RCW1~",
+          "pins": [
+            {
+              "at": "10G.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RPOL",
+          "active": "low",
+          "printed": "RPOL~",
+          "pins": [
+            {
+              "at": "10G.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RPOM",
+          "active": "low",
+          "printed": "RPOM~",
+          "pins": [
+            {
+              "at": "10G.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RPOH",
+          "active": "low",
+          "printed": "RPOH~",
+          "pins": [
+            {
+              "at": "10G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RCW2",
+          "active": "low",
+          "printed": "RCW2~",
+          "pins": [
+            {
+              "at": "10G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDMAL",
+          "active": "low",
+          "printed": "RDMAL~",
+          "pins": [
+            {
+              "at": "10G.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDMAM",
+          "active": "low",
+          "printed": "RDMAM~",
+          "pins": [
+            {
+              "at": "10G.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RDMAH",
+          "active": "low",
+          "printed": "RDMAH~",
+          "pins": [
+            {
+              "at": "10G.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SETDISP",
+          "active": "low",
+          "printed": "SETDISP~",
+          "pins": [
+            {
+              "at": "12G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "17G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENDISP",
+          "active": "low",
+          "printed": "ENDISP~",
+          "pins": [
+            {
+              "at": "12G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "active": "low",
+          "printed": "MC~",
+          "pins": [
+            {
+              "at": "17G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "15G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "20F.26",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.12",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17G_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "RN18.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENCDMA",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DISTO",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SIFF2",
+          "active": "low",
+          "printed": "SIFF2~",
+          "pins": [
+            {
+              "at": "15G.15",
+              "confidence": "read"
+            },
+            {
+              "at": "19J.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SIFF0",
+          "active": "low",
+          "printed": "SIFF0~",
+          "pins": [
+            {
+              "at": "15G.16",
+              "confidence": "read"
+            },
+            {
+              "at": "19J.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SIFF1",
+          "active": "low",
+          "printed": "SIFF1~",
+          "pins": [
+            {
+              "at": "15G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "19J.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R43.2",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.7",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R44.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "+5V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "9G.1",
+              "confidence": "read"
+            },
+            {
+              "at": "20H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "23E.26",
+              "confidence": "read"
+            },
+            {
+              "at": "24E.26",
+              "confidence": "read"
+            },
+            {
+              "at": "RN17.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R43.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R44.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R45.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R46.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R47.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R50.2",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN22.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN21.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.11",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.12",
+              "confidence": "read"
+            },
+            {
+              "at": "R52.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R53.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R55.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R56.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "9F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "20H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "21F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "22H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.19",
+              "confidence": "read"
+            },
+            {
+              "at": "RN20.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.4",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.15",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.10",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.14",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZIORQ",
+          "active": "low",
+          "printed": "ZIORQ~",
+          "pins": [
+            {
+              "at": "20F.20",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.7",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZRD",
+          "active": "low",
+          "printed": "ZRD~",
+          "pins": [
+            {
+              "at": "20F.21",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.6",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZWR",
+          "active": "low",
+          "printed": "ZWR~",
+          "pins": [
+            {
+              "at": "20F.22",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZRSFH",
+          "active": "low",
+          "printed": "ZRSFH~",
+          "pins": [
+            {
+              "at": "20F.28",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZWAIT",
+          "active": "low",
+          "printed": "ZWAIT~",
+          "pins": [
+            {
+              "at": "20F.24",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZINT",
+          "active": "low",
+          "printed": "ZINT~",
+          "pins": [
+            {
+              "at": "20F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.10",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZNMI",
+          "active": "low",
+          "printed": "ZNMI~",
+          "pins": [
+            {
+              "at": "20F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.9",
+              "confidence": "read"
+            },
+            {
+              "at": "15H.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZBUSRQ",
+          "active": "low",
+          "printed": "ZBUSRQ~",
+          "pins": [
+            {
+              "at": "20F.25",
+              "confidence": "read"
+            },
+            {
+              "at": "RN19.3",
+              "confidence": "read"
+            },
+            {
+              "at": "18H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "20F_23",
+          "active": "none",
+          "pins": [
+            {
+              "at": "20F.23",
+              "confidence": "read"
+            },
+            {
+              "at": "15H.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "HACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ZCLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "T1.1",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "A15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "22F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "HREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "R55.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "19H_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "19H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "18H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMAINT",
+          "active": "low",
+          "printed": "DMAINT~",
+          "pins": [
+            {
+              "at": "19H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.36",
+              "confidence": "read"
+            },
+            {
+              "at": "R56.2",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.20",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BA03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKDIS",
+          "active": "low",
+          "printed": "CKDIS~",
+          "pins": [
+            {
+              "at": "29A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R45.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OSC2_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "OSC2.3",
+              "confidence": "read"
+            },
+            {
+              "at": "29A.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29A_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "29A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TFRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R46.2",
+              "confidence": "read"
+            },
+            {
+              "at": "29A.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "32MHZ",
+          "active": "low",
+          "printed": "32MHZ~",
+          "pins": [
+            {
+              "at": "29A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "27H.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16MHZ",
+          "active": "low",
+          "printed": "16MHZ~",
+          "pins": [
+            {
+              "at": "27H.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8MHZ",
+          "active": "low",
+          "printed": "8MHZ~",
+          "pins": [
+            {
+              "at": "27H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "4MHZ",
+          "active": "low",
+          "printed": "4MHZ~",
+          "pins": [
+            {
+              "at": "27H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "16H.5",
+              "confidence": "read"
+            },
+            {
+              "at": "C26.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R49.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2MHZ",
+          "active": "low",
+          "printed": "2MHZ~",
+          "pins": [
+            {
+              "at": "27H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "22H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1MHZ",
+          "active": "low",
+          "printed": "1MHZ~",
+          "pins": [
+            {
+              "at": "22H.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "125KHZ",
+          "active": "low",
+          "printed": "125KHZ~",
+          "pins": [
+            {
+              "at": "22H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "C26_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "C26.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R48.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "T1_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "T1.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R49.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R48_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R48.2",
+              "confidence": "read"
+            },
+            {
+              "at": "T1.3",
+              "confidence": "read"
+            },
+            {
+              "at": "R50.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ACLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16H_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "LD3.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LD3_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "LD3.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R47.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10J_13",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10J.13",
+              "confidence": "read"
+            },
+            {
+              "at": "15H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13H_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "10J.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RFT",
+          "active": "low",
+          "printed": "RFT~",
+          "pins": [
+            {
+              "at": "13H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "21G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOCE",
+          "active": "low",
+          "printed": "FLOCE~",
+          "pins": [
+            {
+              "at": "26H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "30G_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "30G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "26H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "21H_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "21H.6",
+              "confidence": "read"
+            },
+            {
+              "at": "2H.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2H_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENIOR",
+          "active": "low",
+          "printed": "ENIOR~",
+          "pins": [
+            {
+              "at": "29G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "24H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ARCK",
+          "active": "low",
+          "printed": "ARCK~",
+          "pins": [
+            {
+              "at": "24H.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "24H_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "24H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "24H_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "24H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.9",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RD",
+          "active": "low",
+          "printed": "RD~",
+          "pins": [
+            {
+              "at": "24F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "29G.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WR",
+          "active": "low",
+          "printed": "WR~",
+          "pins": [
+            {
+              "at": "24F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.2",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MREQ",
+          "active": "low",
+          "printed": "MREQ~",
+          "pins": [
+            {
+              "at": "24F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.4",
+              "confidence": "read"
+            },
+            {
+              "at": "24G.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MIOWR",
+          "active": "low",
+          "printed": "MIOWR~",
+          "pins": [
+            {
+              "at": "24G.11",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN21.3",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MIORD",
+          "active": "low",
+          "printed": "MIORD~",
+          "pins": [
+            {
+              "at": "24G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN21.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MOE",
+          "active": "low",
+          "printed": "MOE~",
+          "pins": [
+            {
+              "at": "24G.6",
+              "confidence": "read"
+            },
+            {
+              "at": "21H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MWE",
+          "active": "low",
+          "printed": "MWE~",
+          "pins": [
+            {
+              "at": "24G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "24F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN21.2",
+              "confidence": "read"
+            },
+            {
+              "at": "26F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "26F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ADSTB",
+          "active": "high",
+          "pins": [
+            {
+              "at": "26F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLORQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "26F.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "26F.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOACK",
+          "active": "low",
+          "printed": "FLOACK~",
+          "pins": [
+            {
+              "at": "26F.25",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NACK",
+          "active": "low",
+          "printed": "NACK~",
+          "pins": [
+            {
+              "at": "26F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "AEN",
+          "active": "low",
+          "printed": "AEN~",
+          "pins": [
+            {
+              "at": "16F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "23F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CTCEN",
+          "active": "low",
+          "printed": "CTCEN~",
+          "pins": [
+            {
+              "at": "29G.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "21D.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "21D_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "21D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "13G.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RFT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13G.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13G_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "30G_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "30G.8",
+              "confidence": "read"
+            },
+            {
+              "at": "31F.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31F_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CTC1E",
+          "active": "high",
+          "pins": [
+            {
+              "at": "28E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "28E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "R52.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FLOINT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16F_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28E.21",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PF1MHZ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "26E.21",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26E_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26E.20",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "12",
+          "sheetNumber": "12 of 24",
+          "source": 12
+        },
+        {
+          "id": "13",
+          "sheetNumber": "13 of 24",
+          "source": 13
+        },
+        {
+          "id": "14",
+          "sheetNumber": "14 of 24",
+          "source": 14
+        }
+      ],
+      "note": "sheet 12: The port numbers printed on other sheets (\"(OUT50)\" ... \"(IN57)\", \"(OUT74)\", \"(IN77)\", \"(OUT40)\", \"(OUT41)\") are Z80 I/O port numbers in hexadecimal: 20E decodes BA7-BA4 with IORQ~ (Y5 = 50-5F gives N100EN~, Y7 = 70-7F FLOEN~, Y4 = 40-4F DISP~, Y2 = 20-2F ZDMAEN~, Y1 = 10-1F IREN~), and 11G (write) / 10G (read) decode BA2-BA0 inside 50-57. CHECKED: OUT50 = LADL~ (11G Y0), IN50 = RCW1~ (10G Y0), IN57 = RDMAH~ (10G Y7), all as printed on sheets 7 and 9.\nsheet 12: 23E is printed \"459_00 2764_2\" (Z80 program EPROM), 21E \"458_00 PAL16L8\" (memory map): contents not read (BUGS.md).\nsheet 12: 23E pin 23 (A11) and 24E pin 23 are not on the A bus: they come from PAL 21E pin 13, so the PAL banks the upper 2K.\nsheet 12: 12G pins 13, 14, 15 (2B, 2A, 2G~) are drawn as short stubs: the second half of the 74LS139 has its inputs unconnected on the drawing. Outputs 6, 7, 9-12 unused.\nsheet 12: OPEN RN18 right-hand pins to the 19J segment pins: seven wires cross between the pack and the display; 23E pin 1 (VPP) has a short wire with no end.\nsheet 12: 19J HP5082-7433 is a three-digit LED display; SIFF0~-SIFF2~ drive its digit commons C3, C2, C1.\nsheet 12: 20E outputs 15, 12, 9 and 15G outputs 5, 6, 12 and 17G pin 19 are unused stubs.\nsheet 13: 21G is printed \"216\" (74LS245, \"DIR=H A-B\"); the test key reads it as 21G, the G in this font looks like 6.\nsheet 13: RN19 is drawn twice (two groups of the same 4610X_101_472 pack), so it has two boxes on the page; the box above is the first group.\nsheet 13: 22F inputs 8, 11, 13 (A09, A08, A10) have their outputs 12, 9, 7 drawn as stubs: BA08-BA10 are not driven from the Z80 here.\nsheet 13: 21F and 22F enables (pins 1, 19) are tied to GND: always on.\nsheet 13: RN22 (to +5 V) and RN20 (to GND) both sit on every MBD line: a pull-up and a pull-down per line.\nsheet 13: OPEN 20F pin 18 (HALT~) has a short wire with no end; 16H pin 10 (HACK inverted) leaves the tiles read; 13H pin 12 wire runs up into the MBD bus area; 10J pin 9 drawn in a box beside the GND column.\nsheet 13: 10J MC14536 pins as printed on the drawing: 3 D, 9-12 A0-A3, 15 MONO, 2 RESET, 1 SET, 6 8BY, 14 OSC, 7 CLK, 13 Q, 4 Y, 5 Y~.\nsheet 13: \"ZRSFH~\" is printed in quotes and ends at a dot: the Z80 refresh output is not used.\nsheet 13: R47 is printed \"R4\" on this sheet (grid F2, checked at 1000 dpi). R4 is the 1 kohm H6 pull-up on sheet 22, confirmed by Ronny 2026-11-28; this 220 ohm LED resistor is renamed R47 (the one free number among this sheet's R45-R50), confidence inferred, by his ruling. Its top end is the flat bar = +5V, the same symbol that ties 5B pin 15 and 14C pins 4 and 10 high on sheet 23.\nsheet 14: 26F is printed \"AM9517_4PC\" (AMD 9517A-4 DMA controller). DRQ1 (pin 18) is tied to GND; DACK1 (pin 24) unused.\nsheet 14: 28E is addressed when IREN~ (ports 10-1F) and BA02 = 0 (CTCEN~, ports 10-13); 26E when BA02 = 1 (ports 14-17). 28E's interrupt chain output IEO feeds 26E's IEI (CTC1E).\nsheet 14: 26E pin 9 (ZC/TO2) is drawn tied to pin 20 (CLK/TRG3): channel 3 counts channel 2's zero-count pulses (PF1MHZ divided twice).\nsheet 14: R56's pin 1 goes to a bar drawn as +5 V; R56 pin 2 is on DMAINT~ (EOP~), R55 pin 1 on HREQ.\nsheet 14: The first CTC is printed 28E (checked at 800 dpi: an 8 with a cross-bar), not 20E, which is the 74LS138 on sheet 12 (a slashed zero).\nPins drawn as unconnected stubs: 21H.5 21H.9 26E.11 26E.7 26E.8 26F.24 28E.7 28E.8 28E.9\nOPEN, pins not settled from the drawing (left out of every net): 10J.9 13H.12 16H.10 19J.10 19J.11 19J.2 19J.3 19J.5 19J.6 19J.8 19J.9 20F.18 23E.1 RN18.10 RN18.11 RN18.12 RN18.13 RN18.14 RN18.15 RN18.16"
+    },
+    {
+      "name": "DIFF_SCSI",
+      "ports": [
+        {
+          "name": "BSYOUT",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BSYOUT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SBP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SBP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DIFF_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DIFF",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DIGS",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DIGS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DTGS",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DTGS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DSBEN",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DSBEN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE7",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB7",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ATN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ATN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MSG",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MSG",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "C_D",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "C_D",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "I_O",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "I_O",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SELIN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SELIN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SELOUT",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SELOUT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ACK",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ACK",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BSYIN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BSYIN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "REQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "REQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "PDIFF",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB0",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB3",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB4",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB5",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB6",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB7",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB7",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDBP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDBP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDBP_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDBP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDIFFS",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDIFFS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DTERMPWR",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DTERMPWR",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DATN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DATN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DATN_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DATN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DBSY",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DBSY",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DBSY_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DBSY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DACK",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DACK",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DRST",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DRST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DRST_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DRST",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DMSG",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DMSG",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DMSG_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DMSG",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DSEL",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DSEL",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DSEL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DCD",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DCD",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DCD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DCD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DREQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DREQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DREQ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DIO",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DIO",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DIO_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DIO",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "PDIFF",
+              "active": "low"
+            }
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "ref": "15C",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "15CD",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "15D",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "16C",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "16CD",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "16D",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "17C",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "17CD",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "17D",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "18C",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "18CD",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "18D",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "19C",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "19CD",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "19D",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "20B",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "20C",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "20CD",
+          "type": "75176",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "20D",
+          "type": "75176",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "7J",
+          "type": "74LS14",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "D10",
+          "type": "1N3246",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "R70",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "R71",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "RN30",
+          "type": "4610X_101_33",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "RN31",
+          "type": "4608X_102_151",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "RN32",
+          "type": "4610X_101_331",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "RN33",
+          "type": "4610X_102_151",
+          "confidence": "read",
+          "page": "16"
+        },
+        {
+          "ref": "RN34",
+          "type": "4610X_101_331",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "RN35",
+          "type": "4610X_101_331",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "RN36",
+          "type": "4608X_102_151",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "RN37",
+          "type": "4610X_102_151",
+          "confidence": "read",
+          "page": "17"
+        },
+        {
+          "ref": "S10",
+          "type": "STR2",
+          "confidence": "read",
+          "page": "16"
+        }
+      ],
+      "gates": [
+        {
+          "id": "7J/12",
+          "part": "7J",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "20B/3",
+          "part": "20B",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "20B/6",
+          "part": "20B",
+          "kind": "or",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "20B/8",
+          "part": "20B",
+          "kind": "or",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        }
+      ],
+      "nets": [
+        {
+          "name": "DE0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20CD.3",
+              "confidence": "read"
+            },
+            {
+              "at": "20CD.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20CD.4",
+              "confidence": "read"
+            },
+            {
+              "at": "20CD.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20CD.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB0",
+          "active": "low",
+          "printed": "DDB~0",
+          "pins": [
+            {
+              "at": "20CD.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "15C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB1",
+          "active": "low",
+          "printed": "DDB~1",
+          "pins": [
+            {
+              "at": "15C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16CD.3",
+              "confidence": "read"
+            },
+            {
+              "at": "16CD.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16CD.4",
+              "confidence": "read"
+            },
+            {
+              "at": "16CD.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16CD.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB2",
+          "active": "low",
+          "printed": "DDB~2",
+          "pins": [
+            {
+              "at": "16CD.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17CD.3",
+              "confidence": "read"
+            },
+            {
+              "at": "17CD.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17CD.4",
+              "confidence": "read"
+            },
+            {
+              "at": "17CD.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17CD.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB3",
+          "active": "low",
+          "printed": "DDB~3",
+          "pins": [
+            {
+              "at": "17CD.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN31.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18CD.3",
+              "confidence": "read"
+            },
+            {
+              "at": "18CD.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18CD.4",
+              "confidence": "read"
+            },
+            {
+              "at": "18CD.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18CD.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB4",
+          "active": "low",
+          "printed": "DDB~4",
+          "pins": [
+            {
+              "at": "18CD.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "16C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "16C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB5",
+          "active": "low",
+          "printed": "DDB~5",
+          "pins": [
+            {
+              "at": "16C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19CD.3",
+              "confidence": "read"
+            },
+            {
+              "at": "19CD.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19CD.4",
+              "confidence": "read"
+            },
+            {
+              "at": "19CD.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19CD.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB6",
+          "active": "low",
+          "printed": "DDB~6",
+          "pins": [
+            {
+              "at": "19CD.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "17C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "17C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB7",
+          "active": "low",
+          "printed": "DDB~7",
+          "pins": [
+            {
+              "at": "17C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DSBEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15CD.3",
+              "confidence": "read"
+            },
+            {
+              "at": "20B.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SBP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15CD.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15CD.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "20B_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "20B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "15CD.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDBP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15CD.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN32.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDBP",
+          "active": "low",
+          "printed": "DDBP~",
+          "pins": [
+            {
+              "at": "15CD.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN33.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIFFPWR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "D10.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN30.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R70.1",
+              "confidence": "read"
+            },
+            {
+              "at": "S10.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDIFFS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "R70.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DTERMPWR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "S10.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "active": "low",
+          "printed": "PDIFF~",
+          "pins": [
+            {
+              "at": "R71.2",
+              "confidence": "read"
+            },
+            {
+              "at": "7J.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7J.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DTGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "19C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "19D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "18D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "17D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIFF",
+          "active": "low",
+          "printed": "DIFF~",
+          "pins": [
+            {
+              "at": "20B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "20B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "20B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "15D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "16D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "20D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDTGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "19C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "19D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "18D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "17D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "18C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "20C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDIGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "18C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "20C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "+5V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "D10.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R71.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "RN32.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ATN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "18C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DATN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DATN",
+          "active": "low",
+          "printed": "DATN~",
+          "pins": [
+            {
+              "at": "18C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BSYOUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMCL",
+          "active": "low",
+          "printed": "SMCL~",
+          "pins": [
+            {
+              "at": "15D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "16D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "20D.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BSYIN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DBSY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DBSY",
+          "active": "low",
+          "printed": "DBSY~",
+          "pins": [
+            {
+              "at": "15D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "20C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DACK",
+          "active": "low",
+          "printed": "DACK~",
+          "pins": [
+            {
+              "at": "20C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRST",
+          "active": "low",
+          "printed": "DRST~",
+          "pins": [
+            {
+              "at": "16D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN36.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MSG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "19C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMSG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMSG",
+          "active": "low",
+          "printed": "DMSG~",
+          "pins": [
+            {
+              "at": "19C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SELOUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SELIN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DSEL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DSEL",
+          "active": "low",
+          "printed": "DSEL~",
+          "pins": [
+            {
+              "at": "20D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "C_D",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "19D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DCD",
+          "active": "high",
+          "pins": [
+            {
+              "at": "19D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DCD",
+          "active": "low",
+          "printed": "DCD~",
+          "pins": [
+            {
+              "at": "19D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "REQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "18D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DREQ",
+          "active": "low",
+          "printed": "DREQ~",
+          "pins": [
+            {
+              "at": "18D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "I_O",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "17D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIO",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN35.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIO",
+          "active": "low",
+          "printed": "DIO~",
+          "pins": [
+            {
+              "at": "17D.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN37.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN34.10",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "16",
+          "sheetNumber": "16 of 24",
+          "source": 16
+        },
+        {
+          "id": "17",
+          "sheetNumber": "17 of 24",
+          "source": 17
+        }
+      ],
+      "note": "sheet 16: RN30 (4610X_101_33, to DIFFPWR) pulls each DDB~ line up and RN32 (4610X_101_331, to GND) pulls each DDB line down; RN31 (4608X_102_151) and RN33 (4610X_102_151) put 150 ohm across each pair (pins 1-2, 3-4, 5-6, 7-8, 9-10).\nsheet 16: D10 is printed 1N3246 (as read at 330 dpi); its pin 1 goes to a bar drawn as +5 V. S10 is a 2-pin strap (STR2) from DIFFPWR to DTERMPWR.\nsheet 16: The DIFFSCSI bus at the top carries DDB0-7, DDB~0-7, DDBP, DDBP~, DDIFFS, DTERMPWR and PDIFF~ to the SING_DIFF_SW sheet.\nsheet 16: Board positions as printed: 20CD 15C 16CD 17CD 18CD 16C 19CD 17C 15CD (two-letter positions are chips that sit across two rows).\nsheet 17: RN34 (4610X_101_331, to DIFFPWR) pulls each D...~ line up, RN35 (4610X_101_331, to GND) pulls each D... line down; RN36 (4608X_102_151) and RN37 (4610X_102_151) put 150 ohm across each pair.\nsheet 17: BSY, RST and SEL are driven with D = SMCL~ and enabled by BSYOUT, TRST, SELOUT; their receivers are enabled by DIFF~. ATN and ACK are enabled by DIGS/DDIGS (initiator), MSG, C/D, REQ, I/O by DTGS/DDTGS (target)."
+    },
+    {
+      "name": "SING_DIFF_SW",
+      "ports": [
+        {
+          "name": "DDB0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB0",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB3",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB4",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB5",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB6",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDB7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB7",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDB_07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDB7",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDBP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDBP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDBP_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDBP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DDIFFS",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDIFFS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DTERMPWR",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DTERMPWR",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DATN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DATN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DATN_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DATN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DBSY",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DBSY",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DBSY_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DBSY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DACK",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DACK",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DRST",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DRST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DRST_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DRST",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DMSG",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DMSG",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DMSG_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DMSG",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DSEL",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DSEL",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DSEL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DCD",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DCD",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DCD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DCD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DREQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DREQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DREQ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DIO",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DIO",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DIO_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DIO",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "PDIFF",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB0",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB3",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB4",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB5",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB6",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB7",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDBP_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDBP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "STERMPWR",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "STERMPWR",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SATN_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SATN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SBSY_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SBSY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SRST_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SRST",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SMSG_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMSG",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SSEL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SC_D_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SC_D",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SREQ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SI_O_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SI_O",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PSING_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "PSING",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OSHGND",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OSHGND",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OGROUND2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OGROUND2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB0",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB3",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB4",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB5",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB6",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODB7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB7",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODB_07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODB7",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODBP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODBP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ODBP_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODBP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ODIFFS",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ODIFFS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OTERMPWR1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OTERMPWR1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OTERMPWR2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OTERMPWR2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OATN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OATN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OATN_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OATN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OGROUND32",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OGROUND32",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OBSY",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OBSY",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OBSY_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OBSY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OACK",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OACK",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "ORST",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ORST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ORST_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ORST",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OMSG",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OMSG",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OMSG_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OMSG",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OSEL",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OSEL",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OSEL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OCD",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OCD",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OCD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OCD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OREQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OREQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OREQ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OIO",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OIO",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "OIO_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OIO",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "OGROUND50",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "OGROUND50",
+              "active": "high"
+            }
+          ]
+        }
+      ],
+      "parts": [],
+      "gates": [],
+      "nets": [
+        {
+          "name": "OSHGND",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "J.18A.a1",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.j1",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.j2",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.a3",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.a5",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.a7",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.a9",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.a11",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b1",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b3",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b5",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b7",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b8",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b9",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.b12",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c1",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.l2",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c3",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c4",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c5",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c7",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c9",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.c11",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.d1",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.d3",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.d5",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.m7",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.h8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OGROUND2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB0",
+          "active": "low",
+          "printed": "SDB~0",
+          "pins": [
+            {
+              "at": "J.18A.a2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.j3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB0",
+          "active": "low",
+          "printed": "ODB~0",
+          "pins": [
+            {
+              "at": "J.18A.e4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB1",
+          "active": "low",
+          "printed": "SDB~1",
+          "pins": [
+            {
+              "at": "J.18A.a4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB0",
+          "active": "low",
+          "printed": "DDB~0",
+          "pins": [
+            {
+              "at": "J.18A.j4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.j5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB1",
+          "active": "low",
+          "printed": "ODB~1",
+          "pins": [
+            {
+              "at": "J.18A.e6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB2",
+          "active": "low",
+          "printed": "SDB~2",
+          "pins": [
+            {
+              "at": "J.18A.a6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB1",
+          "active": "low",
+          "printed": "DDB~1",
+          "pins": [
+            {
+              "at": "J.18A.j6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.j7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB2",
+          "active": "low",
+          "printed": "ODB~2",
+          "pins": [
+            {
+              "at": "J.18A.e8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB3",
+          "active": "low",
+          "printed": "SDB~3",
+          "pins": [
+            {
+              "at": "J.18A.a8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB2",
+          "active": "low",
+          "printed": "DDB~2",
+          "pins": [
+            {
+              "at": "J.18A.j8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.j9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB3",
+          "active": "low",
+          "printed": "ODB~3",
+          "pins": [
+            {
+              "at": "J.18A.e10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB4",
+          "active": "low",
+          "printed": "SDB~4",
+          "pins": [
+            {
+              "at": "J.18A.a10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB3",
+          "active": "low",
+          "printed": "DDB~3",
+          "pins": [
+            {
+              "at": "J.18A.j10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.e11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.j11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB4",
+          "active": "low",
+          "printed": "ODB~4",
+          "pins": [
+            {
+              "at": "J.18A.e12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB5",
+          "active": "low",
+          "printed": "SDB~5",
+          "pins": [
+            {
+              "at": "J.18A.a12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB4",
+          "active": "low",
+          "printed": "DDB~4",
+          "pins": [
+            {
+              "at": "J.18A.j12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB5",
+          "active": "low",
+          "printed": "ODB~5",
+          "pins": [
+            {
+              "at": "J.18A.f2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB6",
+          "active": "low",
+          "printed": "SDB~6",
+          "pins": [
+            {
+              "at": "J.18A.b2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB5",
+          "active": "low",
+          "printed": "DDB~5",
+          "pins": [
+            {
+              "at": "J.18A.k2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB6",
+          "active": "low",
+          "printed": "ODB~6",
+          "pins": [
+            {
+              "at": "J.18A.f4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB7",
+          "active": "low",
+          "printed": "SDB~7",
+          "pins": [
+            {
+              "at": "J.18A.b4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB6",
+          "active": "low",
+          "printed": "DDB~6",
+          "pins": [
+            {
+              "at": "J.18A.k4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODB7",
+          "active": "low",
+          "printed": "ODB~7",
+          "pins": [
+            {
+              "at": "J.18A.f6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDBP",
+          "active": "low",
+          "printed": "SDBP~",
+          "pins": [
+            {
+              "at": "J.18A.b6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDB7",
+          "active": "low",
+          "printed": "DDB~7",
+          "pins": [
+            {
+              "at": "J.18A.k6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODBP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDBP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODBP",
+          "active": "low",
+          "printed": "ODBP~",
+          "pins": [
+            {
+              "at": "J.18A.f8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDBP",
+          "active": "low",
+          "printed": "DDBP~",
+          "pins": [
+            {
+              "at": "J.18A.k8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ODIFFS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDIFFS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OTERMPWR1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DTERMPWR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k10",
+              "confidence": "read"
+            },
+            {
+              "at": "J.18A.k11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OTERMPWR2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "STERMPWR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.b11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OATN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.f12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DATN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.k12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OATN",
+          "active": "low",
+          "printed": "OATN~",
+          "pins": [
+            {
+              "at": "J.18A.g1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DATN",
+          "active": "low",
+          "printed": "DATN~",
+          "pins": [
+            {
+              "at": "J.18A.l1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OGROUND32",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.g2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SATN",
+          "active": "low",
+          "printed": "SATN~",
+          "pins": [
+            {
+              "at": "J.18A.c2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OBSY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.g3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DBSY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.l3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OBSY",
+          "active": "low",
+          "printed": "OBSY~",
+          "pins": [
+            {
+              "at": "J.18A.g4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DBSY",
+          "active": "low",
+          "printed": "DBSY~",
+          "pins": [
+            {
+              "at": "J.18A.l4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.g5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.l5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OACK",
+          "active": "low",
+          "printed": "OACK~",
+          "pins": [
+            {
+              "at": "J.18A.g6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SBSY",
+          "active": "low",
+          "printed": "SBSY~",
+          "pins": [
+            {
+              "at": "J.18A.c6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DACK",
+          "active": "low",
+          "printed": "DACK~",
+          "pins": [
+            {
+              "at": "J.18A.l6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ORST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.g7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.l7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ORST",
+          "active": "low",
+          "printed": "ORST~",
+          "pins": [
+            {
+              "at": "J.18A.g8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SACK",
+          "active": "low",
+          "printed": "SACK~",
+          "pins": [
+            {
+              "at": "J.18A.c8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRST",
+          "active": "low",
+          "printed": "DRST~",
+          "pins": [
+            {
+              "at": "J.18A.l8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OMSG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.g9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMSG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.l9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OMSG",
+          "active": "low",
+          "printed": "OMSG~",
+          "pins": [
+            {
+              "at": "J.18A.g10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRST",
+          "active": "low",
+          "printed": "SRST~",
+          "pins": [
+            {
+              "at": "J.18A.c10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMSG",
+          "active": "low",
+          "printed": "DMSG~",
+          "pins": [
+            {
+              "at": "J.18A.l10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OSEL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.g11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DSEL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.l11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OSEL",
+          "active": "low",
+          "printed": "OSEL~",
+          "pins": [
+            {
+              "at": "J.18A.g12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMSG",
+          "active": "low",
+          "printed": "SMSG~",
+          "pins": [
+            {
+              "at": "J.18A.c12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DSEL",
+          "active": "low",
+          "printed": "DSEL~",
+          "pins": [
+            {
+              "at": "J.18A.l12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OCD",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.h1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DCD",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.m1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OCD",
+          "active": "low",
+          "printed": "OCD~",
+          "pins": [
+            {
+              "at": "J.18A.h2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SSEL",
+          "active": "low",
+          "printed": "SSEL~",
+          "pins": [
+            {
+              "at": "J.18A.d2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DCD",
+          "active": "low",
+          "printed": "DCD~",
+          "pins": [
+            {
+              "at": "J.18A.m2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.h3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.m3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OREQ",
+          "active": "low",
+          "printed": "OREQ~",
+          "pins": [
+            {
+              "at": "J.18A.h4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SC_D",
+          "active": "low",
+          "printed": "SC_D~",
+          "pins": [
+            {
+              "at": "J.18A.d4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DREQ",
+          "active": "low",
+          "printed": "DREQ~",
+          "pins": [
+            {
+              "at": "J.18A.m4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OIO",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.h5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIO",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.m5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OIO",
+          "active": "low",
+          "printed": "OIO~",
+          "pins": [
+            {
+              "at": "J.18A.h6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SREQ",
+          "active": "low",
+          "printed": "SREQ~",
+          "pins": [
+            {
+              "at": "J.18A.d6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIO",
+          "active": "low",
+          "printed": "DIO~",
+          "pins": [
+            {
+              "at": "J.18A.m6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OGROUND50",
+          "active": "high",
+          "pins": [
+            {
+              "at": "J.18A.h7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SI_O",
+          "active": "low",
+          "printed": "SI_O~",
+          "pins": [
+            {
+              "at": "J.18A.d7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PSING",
+          "active": "low",
+          "printed": "PSING~",
+          "pins": [
+            {
+              "at": "J.18A.d8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "active": "low",
+          "printed": "PDIFF~",
+          "pins": [
+            {
+              "at": "J.18A.m8",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "18",
+          "sheetNumber": "18 of 24",
+          "source": 18
+        }
+      ],
+      "note": "sheet 18: 18A is printed SING_DIFF_SW_P: a socket where the cable pins Y1-Y50 (E1-H7, the OSCSI bus to the SCSI connector) face both A1-A50 (A1-D7, single-ended side SINGSCSI) and B1-B50 (J1-M7, differential side DIFFSCSI). INFERRED: a plug in one of two positions joins Y to A or to B.\nsheet 18: The A side matches the standard single-ended SCSI pinout exactly (DB0 on pin 2 ... I/O on 50, TERMPWR on 26, odd pins and 20, 30, 34 to ground) and the B side the standard differential pinout (+DB0/-DB0 on 3/4, DIFFSENS 21, TERMPWR 25 and 26, ATN 29/30): CHECKED by comparing every column.\nsheet 18: The unnamed lines on the A and B sides go to one top line that ends at the ground symbol; K11 (B26) is joined to K10 DTERMPWR by a short wire. B10 (cable pin A25) has no dot on either line: OPEN (pin 25 is unused in single-ended SCSI).\nsheet 18: PSING (D8 = PSING~, H8 to ground) and PDIFF (M8 = PDIFF~) are the plug-position sense pins: the plug grounds PSING~ or PDIFF~. INFERRED from the drawing, the PDIFF lower pin is not drawn.\nsheet 18: 18A is a pin-field socket on the board (component-side photo: a small green board marked \"1887A2\" sits in it, the print beside it says \"SING ->\" above and \"<- DIFF\" below). The plug-in board is 350217, PCB 1887 print A2, \"SCSI Single/Differential adapter\" (norsk-data.com, nd-350217: used on 350004-350007, no chips). It is pushed towards SING or DIFF to choose the SCSI mode. Stored as board connector J.18A (owner's ruling 2026-11-28).\nPins drawn as unconnected stubs: 18A.D10 18A.D11 18A.D12 18A.D9 18A.H10 18A.H11 18A.H12 18A.H9 18A.M10 18A.M11 18A.M12 18A.M9\nOPEN, pins not settled from the drawing (left out of every net): 18A.B10"
+    },
+    {
+      "name": "S_INTERF",
+      "ports": [
+        {
+          "name": "TRST",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "TRST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "H6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "H6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "NCR_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "NCR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SMCL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMCL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SMC",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "SMC",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SRD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SRD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SWR_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SWR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RWCH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RWCH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RWCL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RWCL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "CKWL",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "CKWL",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "CKWM",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "CKWM",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "CKWH",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "CKWH",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SRIOXE",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SRIOXE",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SIOEQ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SIOEQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "PDIFF",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "PSING",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "PSING",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FDIFF",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FDIFF",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FSING",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FSING",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDAP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDAP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "WCZ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "WCZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SLGRANT",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SLGRANT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SNREQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SNREQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "RRST",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "RRST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ACK",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "ACK",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BSYIN",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "BSYIN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ESCSI_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "ESCSI",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SINT",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SINT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DRQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DRQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "REQ",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "REQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ATN",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "ATN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "MSG",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "MSG",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "C_D",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "C_D",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "I_O",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "I_O",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SELIN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SELIN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SELOUT",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "SELOUT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SDB_00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB0",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB1",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB2",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB3",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB4",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB5",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB6",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDB_07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDB7",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDBP_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDBP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "STERMPWR",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "STERMPWR",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SATN_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SATN",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SBSY_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SBSY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SACK_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SRST_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SRST",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SMSG_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMSG",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SSEL_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SSEL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SC_D_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SC_D",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SREQ_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SI_O_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SI_O",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PSING_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "PSING",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BSYOUT",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "BSYOUT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SBP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SBP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DIFF_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "DIFF",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DIGS",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DIGS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DTGS",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DTGS",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DSBEN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DSBEN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DE7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DE7",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB0",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB5",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB5",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB6",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SB7",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SB7",
+              "active": "high"
+            }
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "ref": "13C",
+          "type": "PAL16L8",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "14D",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "16B",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "21A",
+          "type": "PAL16L8",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "21B",
+          "type": "74LS642_1",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "21C",
+          "type": "7438",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "23A",
+          "type": "MC8T26A",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "23C",
+          "type": "NCR5386",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "24A",
+          "type": "7438",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "24B",
+          "type": "PAL16L8",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "24C",
+          "type": "AM29864",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "25A",
+          "type": "74LS240",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "25B",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "C1",
+          "type": "C",
+          "value": "270PF",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "D4",
+          "type": "1N3246",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "LD1",
+          "type": "YELLOW",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "LD2",
+          "type": "YELLOW",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "OSC1",
+          "type": "10MHZ",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "R1",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "R2",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "R6",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "R75",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "RN1",
+          "type": "4608X104_221/331",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "RN2",
+          "type": "4610X104_221/331",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "RN3",
+          "type": "4608X104_221/331",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "STR2",
+          "type": "STRAP",
+          "confidence": "read",
+          "page": "19"
+        },
+        {
+          "ref": "TH2",
+          "type": "2170576F",
+          "confidence": "read",
+          "page": "19"
+        }
+      ],
+      "gates": [
+        {
+          "id": "21C/3",
+          "part": "21C",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "21C/6",
+          "part": "21C",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "21C/8",
+          "part": "21C",
+          "kind": "nand",
+          "inputs": [
+            10,
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "24A/3",
+          "part": "24A",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "24A/6",
+          "part": "24A",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "25B/8",
+          "part": "25B",
+          "kind": "or",
+          "inputs": [
+            10,
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "25B/3",
+          "part": "25B",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "25B/6",
+          "part": "25B",
+          "kind": "or",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "14D/10",
+          "part": "14D",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "14D/4",
+          "part": "14D",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "14D/12",
+          "part": "14D",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "14D/8",
+          "part": "14D",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "16B/2",
+          "part": "16B",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "16B/4",
+          "part": "16B",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        }
+      ],
+      "nets": [
+        {
+          "name": "DIFF",
+          "active": "low",
+          "printed": "DIFF~",
+          "pins": [
+            {
+              "at": "21C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "21C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "21C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24B.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BSYOUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.42",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SELOUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.32",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SIGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ATN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SBSY",
+          "active": "low",
+          "printed": "SBSY~",
+          "pins": [
+            {
+              "at": "21C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN1.2",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRST",
+          "active": "low",
+          "printed": "SRST~",
+          "pins": [
+            {
+              "at": "21C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN1.3",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SSEL",
+          "active": "low",
+          "printed": "SSEL~",
+          "pins": [
+            {
+              "at": "21C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN1.4",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SACK",
+          "active": "low",
+          "printed": "SACK~",
+          "pins": [
+            {
+              "at": "24A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN1.5",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SATN",
+          "active": "low",
+          "printed": "SATN~",
+          "pins": [
+            {
+              "at": "24A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN1.6",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIFF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "25B_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "25B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "25A.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BSYIN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.17",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SELIN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TERMS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "D4.1",
+              "confidence": "read"
+            },
+            {
+              "at": "STR2.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN1.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "STERMPWR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "STR2.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "+5V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "D4.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R75.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R6.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R1.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R2.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "RN1.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.1",
+              "confidence": "read"
+            },
+            {
+              "at": "TH2.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C1.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PSING",
+          "active": "low",
+          "printed": "PSING~",
+          "pins": [
+            {
+              "at": "R75.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PSING",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14D.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ESCSI",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH2.3",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ESCSI",
+          "active": "low",
+          "printed": "ESCSI~",
+          "pins": [
+            {
+              "at": "14D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ID2",
+          "active": "low",
+          "printed": "ID~2",
+          "pins": [
+            {
+              "at": "TH2.5",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "24B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ID1",
+          "active": "low",
+          "printed": "ID~1",
+          "pins": [
+            {
+              "at": "TH2.2",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "24B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ID0",
+          "active": "low",
+          "printed": "ID~0",
+          "pins": [
+            {
+              "at": "TH2.6",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.14",
+              "confidence": "read"
+            },
+            {
+              "at": "24B.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R6_1",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R6.1",
+              "confidence": "read"
+            },
+            {
+              "at": "TH2.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "MSG",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "C_D",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "I_O",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "REQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.22",
+              "confidence": "read"
+            },
+            {
+              "at": "13C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.23",
+              "confidence": "read"
+            },
+            {
+              "at": "13C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.25",
+              "confidence": "read"
+            },
+            {
+              "at": "13C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.26",
+              "confidence": "read"
+            },
+            {
+              "at": "13C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NCR",
+          "active": "low",
+          "printed": "NCR~",
+          "pins": [
+            {
+              "at": "23C.21",
+              "confidence": "read"
+            },
+            {
+              "at": "13C.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRD",
+          "active": "low",
+          "printed": "SRD~",
+          "pins": [
+            {
+              "at": "23C.31",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SWR",
+          "active": "low",
+          "printed": "SWR~",
+          "pins": [
+            {
+              "at": "23C.30",
+              "confidence": "read"
+            },
+            {
+              "at": "13C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SCLK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "OSC1.3",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "25B_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "25B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "23C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDACK",
+          "active": "low",
+          "printed": "SDACK~",
+          "pins": [
+            {
+              "at": "23C.27",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.34",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.35",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.36",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.37",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.38",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.39",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.40",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SB7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.41",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SBP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.33",
+              "confidence": "read"
+            },
+            {
+              "at": "24C.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "IGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.28",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SBEN",
+          "active": "low",
+          "printed": "SBEN~",
+          "pins": [
+            {
+              "at": "23C.20",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "24B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ARB",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "24B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.47",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.46",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.45",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.44",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.43",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SINT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "23C.29",
+              "confidence": "read"
+            },
+            {
+              "at": "C1.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SSBEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SSBEN",
+          "active": "low",
+          "printed": "SSBEN~",
+          "pins": [
+            {
+              "at": "24C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB0",
+          "active": "low",
+          "printed": "SDB~0",
+          "pins": [
+            {
+              "at": "24C.23",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.2",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB1",
+          "active": "low",
+          "printed": "SDB~1",
+          "pins": [
+            {
+              "at": "24C.22",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.3",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB2",
+          "active": "low",
+          "printed": "SDB~2",
+          "pins": [
+            {
+              "at": "24C.21",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.4",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB3",
+          "active": "low",
+          "printed": "SDB~3",
+          "pins": [
+            {
+              "at": "24C.20",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.5",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB4",
+          "active": "low",
+          "printed": "SDB~4",
+          "pins": [
+            {
+              "at": "24C.19",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.6",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB5",
+          "active": "low",
+          "printed": "SDB~5",
+          "pins": [
+            {
+              "at": "24C.18",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.7",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB6",
+          "active": "low",
+          "printed": "SDB~6",
+          "pins": [
+            {
+              "at": "24C.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.8",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDB7",
+          "active": "low",
+          "printed": "SDB~7",
+          "pins": [
+            {
+              "at": "24C.16",
+              "confidence": "read"
+            },
+            {
+              "at": "RN2.9",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDBP",
+          "active": "low",
+          "printed": "SDBP~",
+          "pins": [
+            {
+              "at": "24C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMSG",
+          "active": "low",
+          "printed": "SMSG~",
+          "pins": [
+            {
+              "at": "23A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SREQ",
+          "active": "low",
+          "printed": "SREQ~",
+          "pins": [
+            {
+              "at": "23A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SI_O",
+          "active": "low",
+          "printed": "SI_O~",
+          "pins": [
+            {
+              "at": "23A.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SC_D",
+          "active": "low",
+          "printed": "SC_D~",
+          "pins": [
+            {
+              "at": "23A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN3.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "STGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RSTGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "25B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "23A.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LD2_1",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "LD2.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LD2_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "LD2.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R2.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LD1_1",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "LD1.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LD1_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "LD1.2",
+              "confidence": "read"
+            },
+            {
+              "at": "R1.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMCL",
+          "active": "low",
+          "printed": "SMCL~",
+          "pins": [
+            {
+              "at": "24B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "21A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE7",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.17",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DE0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SARB",
+          "active": "low",
+          "printed": "SARB~",
+          "pins": [
+            {
+              "at": "21A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "21B.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FDIFF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FSING",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DIGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DTGS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DSBEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "21A.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRIOXE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SIOEQ",
+          "active": "low",
+          "printed": "SIOEQ~",
+          "pins": [
+            {
+              "at": "13C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WCZ",
+          "active": "low",
+          "printed": "WCZ~",
+          "pins": [
+            {
+              "at": "13C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDAP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKWH",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKWM",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKWL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LDWC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RWCH",
+          "active": "low",
+          "printed": "RWCH~",
+          "pins": [
+            {
+              "at": "13C.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RWCL",
+          "active": "low",
+          "printed": "RWCL~",
+          "pins": [
+            {
+              "at": "13C.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLGRANT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SNREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13C.13",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "19",
+          "sheetNumber": "19 of 24",
+          "source": 19
+        }
+      ],
+      "note": "sheet 19: 25B pin 10 is printed \"SIGS\" (checked at 800 dpi: the S is the same glyph as in SIGS at 24A pin 1).\nsheet 19: 23A pin 15 (EB, drive enable) is on the STGS line from 21A pin 18; EY~ (pin 1) is RSTGS = STGS OR DIFF from 25B.\nsheet 19: RN1, RN3 (4608X104_221/331) and RN2 (4610X104_221/331) are 220/330 ohm terminator packs: each line pin has 220 ohm to the TERMS rail (pin 8 or 10) and 330 ohm to ground (pin 1). Read from the pin numbers drawn on both resistors of each line.\nsheet 19: D4 (1N3246) feeds the TERMS rail from +5 V; strap STR2 (at 20A) puts it on the cable as STERMPWR.\nsheet 19: TH2 (2170576F) is a hex switch: D8 = ESCSI (SCSI on), D4/D2/D1 = ID~2..ID~0 (the card's SCSI ID). C to ground, C~ through R6 to +5 V.\nsheet 19: 13C prints LDWC without ~ here; sheet 15 lists it at the S_ND_INT box as LDWC~: OPEN which is right.\nsheet 19: PAL contents (24B \"78200\", 21A \"42500\", 13C \"78300\") not read (BUGS.md).\nsheet 19: LD1 \"REQ\" and LD2 \"BUSY\" are front LEDs driven by 14D from REQ and BSYIN.\nPins drawn as unconnected stubs: 21A.11 21A.9 24B.11 24B.8 24B.9 25A.12 25A.15 25A.17 25A.3 25A.5 25A.8\nOPEN, pins not settled from the drawing (left out of every net): RN1.7 RN3.7"
+    },
+    {
+      "name": "S_ND_INT",
+      "ports": [
+        {
+          "name": "BDAP_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BDAP",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BDRY_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BDRY",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BINACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BINACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BMEM_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BMEM",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BMCL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BMCL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BERROR_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BERROR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BIOXE_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BIOXE",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "INIDENT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "INIDENT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BINT11_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BINT11",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BINPUT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BINPUT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BREQ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BREQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BAPR_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "BAPR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "DRQ",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DRQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD00",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD00",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD01",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD01",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD02",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD02",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD03",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD03",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD04",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD04",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD05",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD05",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD06",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD06",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SMBD07",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMBD07",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SINT",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "SINT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ESCSI_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ESCSI",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "BSYIN",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BSYIN",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "ACK",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "ACK",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "RRST",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "RRST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "TRST",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "TRST",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "BD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "BD00",
+              "active": "low"
+            },
+            {
+              "net": "BD01",
+              "active": "low"
+            },
+            {
+              "net": "BD02",
+              "active": "low"
+            },
+            {
+              "net": "BD03",
+              "active": "low"
+            },
+            {
+              "net": "BD04",
+              "active": "low"
+            },
+            {
+              "net": "BD05",
+              "active": "low"
+            },
+            {
+              "net": "BD06",
+              "active": "low"
+            },
+            {
+              "net": "BD07",
+              "active": "low"
+            },
+            {
+              "net": "BD08",
+              "active": "low"
+            },
+            {
+              "net": "BD09",
+              "active": "low"
+            },
+            {
+              "net": "BD10",
+              "active": "low"
+            },
+            {
+              "net": "BD11",
+              "active": "low"
+            },
+            {
+              "net": "BD12",
+              "active": "low"
+            },
+            {
+              "net": "BD13",
+              "active": "low"
+            },
+            {
+              "net": "BD14",
+              "active": "low"
+            },
+            {
+              "net": "BD15",
+              "active": "low"
+            },
+            {
+              "net": "BD16",
+              "active": "low"
+            },
+            {
+              "net": "BD17",
+              "active": "low"
+            },
+            {
+              "net": "BD18",
+              "active": "low"
+            },
+            {
+              "net": "BD19",
+              "active": "low"
+            },
+            {
+              "net": "BD20",
+              "active": "low"
+            },
+            {
+              "net": "BD21",
+              "active": "low"
+            },
+            {
+              "net": "BD22",
+              "active": "low"
+            },
+            {
+              "net": "BD23",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LADR1",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADR1",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "LADR2",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADR2",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "LADR3",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADR3",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "LADR4",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LADR4",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "H6",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "H6",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "NCR_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "NCR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SMCL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SMCL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SDACK_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SDACK",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SMC",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SMC",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SRD_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SRD",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SWR_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "SWR",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RWCH_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RWCH",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "RWCL_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "RWCL",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "LDWC_0",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "LDWC",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "CKWL",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "CKWL",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "CKWM",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "CKWM",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "CKWH",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "CKWH",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SRIOXE",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "SRIOXE",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SIOEQ_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SIOEQ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "PDIFF",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "PSING",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "PSING",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FDIFF",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FDIFF",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "FSING",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "FSING",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "DDAP",
+          "direction": "inout",
+          "directionConfidence": "open",
+          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "signals": [
+            {
+              "net": "DDAP",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "WCZ_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "WCZ",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SLGRANT",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SLGRANT",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SNREQ",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SNREQ",
+              "active": "high"
+            }
+          ]
+        },
+        {
+          "name": "SOTGRANT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SOTGRANT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "SOTIDENT_0",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
+          "signals": [
+            {
+              "net": "SOTIDENT",
+              "active": "low"
+            }
+          ]
+        },
+        {
+          "name": "INGRANT_0",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "signals": [
+            {
+              "net": "INGRANT",
+              "active": "low"
+            }
+          ]
+        }
+      ],
+      "parts": [
+        {
+          "ref": "10A",
+          "type": "74LS08",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "10B",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "10C",
+          "type": "25LS2521",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "10E",
+          "type": "25LS2521",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "10F",
+          "type": "TBP18S030",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "11A",
+          "type": "74LS461",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "11B",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "11C",
+          "type": "74F08",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "11D",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "11E",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "11F",
+          "type": "TBP18S030",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "12A",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "12B",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "12C",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "12E",
+          "type": "74LS469",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "12F",
+          "type": "74LS469",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "13A",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "13B",
+          "type": "74LS244",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "13E",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "13F",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "14A",
+          "type": "74LS138",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "14B",
+          "type": "PAL20L10",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "14C",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "14D",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "14E",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "14F",
+          "type": "74LS469",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "15A",
+          "type": "74LS273",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "15B",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "15E",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "15F",
+          "type": "PAL20L8B",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "15H",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "16B",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "16E",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "16G2",
+          "type": "74F04",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "17E",
+          "type": "74LS373",
+          "confidence": "read",
+          "page": "24"
+        },
+        {
+          "ref": "17F",
+          "type": "HY5010_100",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "18H",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "19H",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "1A",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "1B",
+          "type": "7438",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "20B",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "24D",
+          "type": "74LS04",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "25B",
+          "type": "74LS32",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "25C",
+          "type": "74F260",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "26A",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "26C",
+          "type": "74LS00",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "26D",
+          "type": "74LS13",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "27A",
+          "type": "74F74",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "27B",
+          "type": "74F00",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "27C",
+          "type": "74S64",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "28A",
+          "type": "74LS123",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "28B",
+          "type": "74F10",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "28C",
+          "type": "74F04",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "28D",
+          "type": "74LS10",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "29B",
+          "type": "74F08",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "2A",
+          "type": "74LS02",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "2B",
+          "type": "74LS74",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "30B",
+          "type": "74F74",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "30C",
+          "type": "HY5010_100",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "31B",
+          "type": "74F02",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "3B",
+          "type": "74LS240",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "4A",
+          "type": "74F32",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "5A",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "5B",
+          "type": "74F112",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "6A",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "7A",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "8A",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "8B",
+          "type": "74LS461",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "8C",
+          "type": "74LS14",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "9A",
+          "type": "74S240",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "9B",
+          "type": "74LS461",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "9C",
+          "type": "7438",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "C2",
+          "type": "C",
+          "value": "220PF",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "C27",
+          "type": "C",
+          "value": "100PF",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "C3",
+          "type": "C",
+          "value": "560PF",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "C30",
+          "type": "C",
+          "value": "100NF",
+          "confidence": "read",
+          "page": "21"
+        },
+        {
+          "ref": "C4",
+          "type": "C",
+          "value": "100PF",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "C6",
+          "type": "C",
+          "value": "220PF",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "R4",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "R5",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "R60",
+          "type": "R",
+          "value": "220OHM",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "R7",
+          "type": "R",
+          "value": "1KOHM",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "R9",
+          "type": "R",
+          "value": "10KOHM",
+          "confidence": "read",
+          "page": "23"
+        },
+        {
+          "ref": "RN4",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "RN5",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "RN6",
+          "type": "4610X_101_332",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "RN7",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "RN8",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "RN9",
+          "type": "4610X_101_472",
+          "confidence": "read",
+          "page": "20"
+        },
+        {
+          "ref": "TH1",
+          "type": "2170576F",
+          "confidence": "read",
+          "page": "22"
+        },
+        {
+          "ref": "U74S08",
+          "type": "74S08",
+          "confidence": "read",
+          "page": "23"
+        }
+      ],
+      "gates": [
+        {
+          "id": "1A/11",
+          "part": "1A",
+          "kind": "or",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "18H/8",
+          "part": "18H",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "18H/11",
+          "part": "18H",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "19H/5",
+          "part": "19H",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "28C/12",
+          "part": "28C",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "20B/11",
+          "part": "20B",
+          "kind": "or",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "24D/6",
+          "part": "24D",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "24D/8",
+          "part": "24D",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "24D/4",
+          "part": "24D",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "24D/10",
+          "part": "24D",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "24D/2",
+          "part": "24D",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "16B/12",
+          "part": "16B",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "16B/10",
+          "part": "16B",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "16B/8",
+          "part": "16B",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "14D/2",
+          "part": "14D",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "14D/6",
+          "part": "14D",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "26C/6",
+          "part": "26C",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "26C/11",
+          "part": "26C",
+          "kind": "nand",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "26C/3",
+          "part": "26C",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "26D/6",
+          "part": "26D",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2,
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "26D/8",
+          "part": "26D",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10,
+            13,
+            12
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "8C/10",
+          "part": "8C",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "8C/2",
+          "part": "8C",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "8C/4",
+          "part": "8C",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "8C/6",
+          "part": "8C",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "8C/8",
+          "part": "8C",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "1A/6",
+          "part": "1A",
+          "kind": "or",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "1A/3",
+          "part": "1A",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "2A/1",
+          "part": "2A",
+          "kind": "nor",
+          "inputs": [
+            2,
+            3
+          ],
+          "output": 1,
+          "confidence": "read"
+        },
+        {
+          "id": "9C/6",
+          "part": "9C",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "9C/8",
+          "part": "9C",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "9C/3",
+          "part": "9C",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "9C/11",
+          "part": "9C",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "1B/3",
+          "part": "1B",
+          "kind": "nand",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "1B/8",
+          "part": "1B",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "10A/6",
+          "part": "10A",
+          "kind": "and",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "28D/12",
+          "part": "28D",
+          "kind": "nand",
+          "inputs": [
+            13,
+            1,
+            2
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "28D/6",
+          "part": "28D",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5,
+            3
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "28D/8",
+          "part": "28D",
+          "kind": "nand",
+          "inputs": [
+            9,
+            10,
+            11
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "8C/12",
+          "part": "8C",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "16B/6",
+          "part": "16B",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "15H/12",
+          "part": "15H",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "24D/12",
+          "part": "24D",
+          "kind": "not",
+          "inputs": [
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "28C/8",
+          "part": "28C",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "28C/4",
+          "part": "28C",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "28C/6",
+          "part": "28C",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "28C/2",
+          "part": "28C",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "26A/11",
+          "part": "26A",
+          "kind": "nand",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "26A/3",
+          "part": "26A",
+          "kind": "nand",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "26C/8",
+          "part": "26C",
+          "kind": "nand",
+          "inputs": [
+            10,
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "4A/11",
+          "part": "4A",
+          "kind": "or",
+          "inputs": [
+            13,
+            12
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "4A/6",
+          "part": "4A",
+          "kind": "or",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "4A/3",
+          "part": "4A",
+          "kind": "or",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "4A/8",
+          "part": "4A",
+          "kind": "or",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "29B/3",
+          "part": "29B",
+          "kind": "and",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "29B/6",
+          "part": "29B",
+          "kind": "and",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "29B/11",
+          "part": "29B",
+          "kind": "and",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "29B/8",
+          "part": "29B",
+          "kind": "and",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "28B/8",
+          "part": "28B",
+          "kind": "nand",
+          "inputs": [
+            11,
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "28B/12",
+          "part": "28B",
+          "kind": "nand",
+          "inputs": [
+            1,
+            2,
+            13
+          ],
+          "output": 12,
+          "confidence": "read"
+        },
+        {
+          "id": "28B/6",
+          "part": "28B",
+          "kind": "nand",
+          "inputs": [
+            3,
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "27B/3",
+          "part": "27B",
+          "kind": "nand",
+          "inputs": [
+            2,
+            1
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "27B/6",
+          "part": "27B",
+          "kind": "nand",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "27B/11",
+          "part": "27B",
+          "kind": "nand",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "27B/8",
+          "part": "27B",
+          "kind": "nand",
+          "inputs": [
+            10,
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "31B/4",
+          "part": "31B",
+          "kind": "nor",
+          "inputs": [
+            6,
+            5
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "31B/1",
+          "part": "31B",
+          "kind": "nor",
+          "inputs": [
+            2,
+            3
+          ],
+          "output": 1,
+          "confidence": "read"
+        },
+        {
+          "id": "31B/10",
+          "part": "31B",
+          "kind": "nor",
+          "inputs": [
+            9,
+            8
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "11C/8",
+          "part": "11C",
+          "kind": "and",
+          "inputs": [
+            9,
+            10
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "11C/6",
+          "part": "11C",
+          "kind": "and",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "11C/3",
+          "part": "11C",
+          "kind": "and",
+          "inputs": [
+            1,
+            2
+          ],
+          "output": 3,
+          "confidence": "read"
+        },
+        {
+          "id": "2A/10",
+          "part": "2A",
+          "kind": "nor",
+          "inputs": [
+            9,
+            8
+          ],
+          "output": 10,
+          "confidence": "read"
+        },
+        {
+          "id": "2A/4",
+          "part": "2A",
+          "kind": "nor",
+          "inputs": [
+            5,
+            6
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "25B/11",
+          "part": "25B",
+          "kind": "or",
+          "inputs": [
+            12,
+            13
+          ],
+          "output": 11,
+          "confidence": "read"
+        },
+        {
+          "id": "U74S08/6",
+          "part": "U74S08",
+          "kind": "and",
+          "inputs": [
+            4,
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "27C/8",
+          "part": "27C",
+          "kind": "and-or-invert",
+          "inputs": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "25C/6",
+          "part": "25C",
+          "kind": "nor",
+          "inputs": [
+            8,
+            9,
+            10,
+            11,
+            4
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "27A/5",
+          "part": "27A",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "27A/6",
+          "part": "27A",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "30B/5",
+          "part": "30B",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "30B/8",
+          "part": "30B",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "5B/6",
+          "part": "5B",
+          "kind": "other",
+          "inputs": [
+            3,
+            1,
+            2,
+            4,
+            15
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "14C/5",
+          "part": "14C",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "14C/6",
+          "part": "14C",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "14C/9",
+          "part": "14C",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 9,
+          "confidence": "read"
+        },
+        {
+          "id": "14C/8",
+          "part": "14C",
+          "kind": "other",
+          "inputs": [
+            12,
+            11,
+            10,
+            13
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "2B/5",
+          "part": "2B",
+          "kind": "other",
+          "inputs": [
+            2,
+            3,
+            4,
+            1
+          ],
+          "output": 5,
+          "confidence": "read"
+        },
+        {
+          "id": "28A/13",
+          "part": "28A",
+          "kind": "other",
+          "inputs": [
+            1,
+            2,
+            3
+          ],
+          "output": 13,
+          "confidence": "read"
+        },
+        {
+          "id": "28A/4",
+          "part": "28A",
+          "kind": "other",
+          "inputs": [
+            1,
+            2,
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "16G2/2",
+          "part": "16G2",
+          "kind": "not",
+          "inputs": [
+            1
+          ],
+          "output": 2,
+          "confidence": "read"
+        },
+        {
+          "id": "16G2/4",
+          "part": "16G2",
+          "kind": "not",
+          "inputs": [
+            3
+          ],
+          "output": 4,
+          "confidence": "read"
+        },
+        {
+          "id": "16G2/6",
+          "part": "16G2",
+          "kind": "not",
+          "inputs": [
+            5
+          ],
+          "output": 6,
+          "confidence": "read"
+        },
+        {
+          "id": "16G2/8",
+          "part": "16G2",
+          "kind": "not",
+          "inputs": [
+            9
+          ],
+          "output": 8,
+          "confidence": "read"
+        },
+        {
+          "id": "16G2/10",
+          "part": "16G2",
+          "kind": "not",
+          "inputs": [
+            11
+          ],
+          "output": 10,
+          "confidence": "read"
+        }
+      ],
+      "nets": [
+        {
+          "name": "STRANS",
+          "active": "low",
+          "printed": "STRANS~",
+          "pins": [
+            {
+              "at": "5A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "5A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "7A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "7A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.3",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.21",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.21",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.21",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.16",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD01",
+          "active": "low",
+          "printed": "BD~01",
+          "pins": [
+            {
+              "at": "5A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.5",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD07",
+          "active": "low",
+          "printed": "BD~07",
+          "pins": [
+            {
+              "at": "5A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.7",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD03",
+          "active": "low",
+          "printed": "BD~03",
+          "pins": [
+            {
+              "at": "5A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.9",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.17",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD05",
+          "active": "low",
+          "printed": "BD~05",
+          "pins": [
+            {
+              "at": "5A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.10",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.22",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.22",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.22",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.18",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD00",
+          "active": "low",
+          "printed": "BD~00",
+          "pins": [
+            {
+              "at": "5A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.8",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.20",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.20",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.20",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.14",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD02",
+          "active": "low",
+          "printed": "BD~02",
+          "pins": [
+            {
+              "at": "5A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.6",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD04",
+          "active": "low",
+          "printed": "BD~04",
+          "pins": [
+            {
+              "at": "5A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "5A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN4.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.4",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD06",
+          "active": "low",
+          "printed": "BD~06",
+          "pins": [
+            {
+              "at": "5A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "UTRANS",
+          "active": "low",
+          "printed": "UTRANS~",
+          "pins": [
+            {
+              "at": "6A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "6A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.3",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.21",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.21",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD09",
+          "active": "low",
+          "printed": "BD~09",
+          "pins": [
+            {
+              "at": "6A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.5",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.22",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.22",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD08",
+          "active": "low",
+          "printed": "BD~08",
+          "pins": [
+            {
+              "at": "6A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.7",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD15",
+          "active": "low",
+          "printed": "BD~15",
+          "pins": [
+            {
+              "at": "6A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.17",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD13",
+          "active": "low",
+          "printed": "BD~13",
+          "pins": [
+            {
+              "at": "6A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.10",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.16",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD14",
+          "active": "low",
+          "printed": "BD~14",
+          "pins": [
+            {
+              "at": "6A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.8",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD12",
+          "active": "low",
+          "printed": "BD~12",
+          "pins": [
+            {
+              "at": "6A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.6",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.19",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD11",
+          "active": "low",
+          "printed": "BD~11",
+          "pins": [
+            {
+              "at": "6A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "6A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.4",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.20",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.20",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD10",
+          "active": "low",
+          "printed": "BD~10",
+          "pins": [
+            {
+              "at": "6A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT23",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.3",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD23",
+          "active": "low",
+          "printed": "BD~23",
+          "pins": [
+            {
+              "at": "7A.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT22",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.5",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD22",
+          "active": "low",
+          "printed": "BD~22",
+          "pins": [
+            {
+              "at": "7A.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT21",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.7",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.7",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD21",
+          "active": "low",
+          "printed": "BD~21",
+          "pins": [
+            {
+              "at": "7A.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT20",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.9",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD20",
+          "active": "low",
+          "printed": "BD~20",
+          "pins": [
+            {
+              "at": "7A.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT19",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.10",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.10",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD19",
+          "active": "low",
+          "printed": "BD~19",
+          "pins": [
+            {
+              "at": "7A.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT18",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.8",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.8",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.20",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD18",
+          "active": "low",
+          "printed": "BD~18",
+          "pins": [
+            {
+              "at": "7A.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT17",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.6",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.21",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD17",
+          "active": "low",
+          "printed": "BD~17",
+          "pins": [
+            {
+              "at": "7A.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOUT16",
+          "active": "high",
+          "pins": [
+            {
+              "at": "7A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.4",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.22",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BD16",
+          "active": "low",
+          "printed": "BD~16",
+          "pins": [
+            {
+              "at": "7A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "GND",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "8A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "RN7.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN8.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN9.1",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C30.2",
+              "confidence": "read"
+            },
+            {
+              "at": "TH1.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "10F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "C2.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C27.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C3.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.7",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.14",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.16",
+              "confidence": "read"
+            },
+            {
+              "at": "C4.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.10",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.10",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.18",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "10A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.8",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "8B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDIN10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.17",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "+5V",
+          "active": "none",
+          "pins": [
+            {
+              "at": "RN4.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN5.1",
+              "confidence": "read"
+            },
+            {
+              "at": "RN6.1",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.24",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.24",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.24",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "R7.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R4.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R5.1",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "28A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "R9.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SADCK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LDWC",
+          "active": "low",
+          "printed": "LDWC~",
+          "pins": [
+            {
+              "at": "12F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.18",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.19",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.18",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.16",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.15",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.13",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.8",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.7",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.15",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.4",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMBD07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.17",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.3",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "STRERR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "2B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRFT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRFT",
+          "active": "low",
+          "printed": "SRFT~",
+          "pins": [
+            {
+              "at": "12B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SENI",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "19H_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "12B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ESCSI",
+          "active": "low",
+          "printed": "ESCSI~",
+          "pins": [
+            {
+              "at": "12B.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PSING",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRSTAT",
+          "active": "low",
+          "printed": "SRSTAT~",
+          "pins": [
+            {
+              "at": "12B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "12B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "13B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.3",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DRQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SINT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "U74S08.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BSYIN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "REQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "PDIFF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SACARY",
+          "active": "low",
+          "printed": "SACARY~",
+          "pins": [
+            {
+              "at": "8B.23",
+              "confidence": "read"
+            },
+            {
+              "at": "31B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DLMARL",
+          "active": "low",
+          "printed": "DLMARL~",
+          "pins": [
+            {
+              "at": "8B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DLMARU",
+          "active": "low",
+          "printed": "DLMARU~",
+          "pins": [
+            {
+              "at": "8B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SADEN",
+          "active": "low",
+          "printed": "SADEN~",
+          "pins": [
+            {
+              "at": "8B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8B_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "9B.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "9B_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "9B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "11A.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "11A_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "11A.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1A_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "1A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "12A.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR0",
+          "active": "low",
+          "printed": "LADR0~",
+          "pins": [
+            {
+              "at": "1A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "NCR",
+          "active": "low",
+          "printed": "NCR~",
+          "pins": [
+            {
+              "at": "1A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "12C.19",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RMARU",
+          "active": "low",
+          "printed": "RMARU~",
+          "pins": [
+            {
+              "at": "11B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "11B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26A.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28C_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "20B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TEST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "20B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "31B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "20B_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "20B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "12F.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "12F_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "12F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "14F_14",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "12E.23",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "WCZ",
+          "active": "low",
+          "printed": "WCZ~",
+          "pins": [
+            {
+              "at": "12E.14",
+              "confidence": "read"
+            },
+            {
+              "at": "15H.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKWL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKWM",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "CKWH",
+          "active": "high",
+          "pins": [
+            {
+              "at": "12E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RWCL",
+          "active": "low",
+          "printed": "RWCL~",
+          "pins": [
+            {
+              "at": "12F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "14F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RWCH",
+          "active": "low",
+          "printed": "RWCH~",
+          "pins": [
+            {
+              "at": "12E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18H.9",
+              "confidence": "read"
+            },
+            {
+              "at": "18H.10",
+              "confidence": "read"
+            },
+            {
+              "at": "25C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "18H_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "18H.8",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TRST",
+          "active": "high",
+          "pins": [
+            {
+              "at": "18H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "18H.13",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "18H_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "18H.11",
+              "confidence": "read"
+            },
+            {
+              "at": "19H.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C30.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLIDENT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "10F.10",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "1A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH1_D1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH1.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "10F.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH1_D2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH1.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11F.12",
+              "confidence": "read"
+            },
+            {
+              "at": "10F.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH1_D4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH1.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11F.13",
+              "confidence": "read"
+            },
+            {
+              "at": "10F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TH1_D8",
+          "active": "high",
+          "pins": [
+            {
+              "at": "TH1.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11F.14",
+              "confidence": "read"
+            },
+            {
+              "at": "10F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R7_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "TH1.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R7.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV00",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV08",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV01",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV09",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.2",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV02",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV10",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.3",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV03",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.4",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV04",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV12",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.5",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV05",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV13",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.6",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV06",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV14",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV07",
+          "active": "high",
+          "pins": [
+            {
+              "at": "11F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.17",
+              "confidence": "read"
+            },
+            {
+              "at": "10C.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDEV15",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.17",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLIDENT",
+          "active": "low",
+          "printed": "SLIDENT~",
+          "pins": [
+            {
+              "at": "24D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.1",
+              "confidence": "read"
+            },
+            {
+              "at": "11E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "10B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMEM",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10C_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10C.19",
+              "confidence": "read"
+            },
+            {
+              "at": "10E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10E_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR0",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR1",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR2",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR3",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.9",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR4",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LADR5",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SINT11",
+          "active": "high",
+          "pins": [
+            {
+              "at": "10A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "9C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "10A_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "10A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "13A.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDLDAPR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "H6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "13A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "R4.2",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "27A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "27A.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13A_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13A.16",
+              "confidence": "read"
+            },
+            {
+              "at": "C2.1",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SEQUAL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "8C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.5",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13A_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13A.19",
+              "confidence": "read"
+            },
+            {
+              "at": "1A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "24D_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "24D.10",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INIDENT",
+          "active": "low",
+          "printed": "INIDENT~",
+          "pins": [
+            {
+              "at": "R5.2",
+              "confidence": "read"
+            },
+            {
+              "at": "C27.1",
+              "confidence": "read"
+            },
+            {
+              "at": "1A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SOTIDENT",
+          "active": "low",
+          "printed": "SOTIDENT~",
+          "pins": [
+            {
+              "at": "1A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDRY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "26C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "24D_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "24D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SIOEQ",
+          "active": "low",
+          "printed": "SIOEQ~",
+          "pins": [
+            {
+              "at": "26D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14A.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRIOXE",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "26D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "1A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RMARL",
+          "active": "low",
+          "printed": "RMARL~",
+          "pins": [
+            {
+              "at": "14A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.3",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "RMARL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24D.4",
+              "confidence": "read"
+            },
+            {
+              "at": "26A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LMARL",
+          "active": "low",
+          "printed": "LMARL~",
+          "pins": [
+            {
+              "at": "14A.14",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16B_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRDAT",
+          "active": "low",
+          "printed": "SRDAT~",
+          "pins": [
+            {
+              "at": "14A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LDAT",
+          "active": "low",
+          "printed": "LDAT~",
+          "pins": [
+            {
+              "at": "14A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLOCW",
+          "active": "low",
+          "printed": "SLOCW~",
+          "pins": [
+            {
+              "at": "14A.10",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLOCW",
+          "active": "high",
+          "pins": [
+            {
+              "at": "16B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.5",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "LMARU",
+          "active": "low",
+          "printed": "LMARU~",
+          "pins": [
+            {
+              "at": "14A.7",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.1",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "14D_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "14D.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14D.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BINT11",
+          "active": "low",
+          "printed": "BINT11~",
+          "pins": [
+            {
+              "at": "9C.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SINPUT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "9C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BINPUT",
+          "active": "low",
+          "printed": "BINPUT~",
+          "pins": [
+            {
+              "at": "9C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SNREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "27A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "31B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SADDRESS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "1B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "31B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BREQ",
+          "active": "low",
+          "printed": "BREQ~",
+          "pins": [
+            {
+              "at": "9C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDAP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "9C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "31B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDMARES",
+          "active": "low",
+          "printed": "SDMARES~",
+          "pins": [
+            {
+              "at": "9C.13",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BDAP",
+          "active": "low",
+          "printed": "BDAP~",
+          "pins": [
+            {
+              "at": "9C.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SAPR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BAPR",
+          "active": "low",
+          "printed": "BAPR~",
+          "pins": [
+            {
+              "at": "1B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SPIODRY",
+          "active": "high",
+          "pins": [
+            {
+              "at": "1B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "1A_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "1A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "1B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BDRY",
+          "active": "low",
+          "printed": "BDRY~",
+          "pins": [
+            {
+              "at": "1B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "3B_18",
+          "active": "none",
+          "pins": [
+            {
+              "at": "3B.18",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8C_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8C.2",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BINACK",
+          "active": "low",
+          "printed": "BINACK~",
+          "pins": [
+            {
+              "at": "3B.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SINACK",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.1",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BMEM",
+          "active": "low",
+          "printed": "BMEM~",
+          "pins": [
+            {
+              "at": "3B.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BMCL",
+          "active": "low",
+          "printed": "BMCL~",
+          "pins": [
+            {
+              "at": "3B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMCL",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "3B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BERROR",
+          "active": "low",
+          "printed": "BERROR~",
+          "pins": [
+            {
+              "at": "3B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SERROR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "3B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMCL",
+          "active": "low",
+          "printed": "SMCL~",
+          "pins": [
+            {
+              "at": "3B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "BIOXE",
+          "active": "low",
+          "printed": "BIOXE~",
+          "pins": [
+            {
+              "at": "3B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28D_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28D.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26C_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28D.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDMAINP",
+          "active": "low",
+          "printed": "SDMAINP~",
+          "pins": [
+            {
+              "at": "28D.8",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26C_13",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28D_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "8C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "8C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "R60.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R60_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R60.2",
+              "confidence": "read"
+            },
+            {
+              "at": "8C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "C3.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SNDMAEN",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "C4.1",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.12",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "TOMEM",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.9",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OSNREQ",
+          "active": "high",
+          "pins": [
+            {
+              "at": "14B.7",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.16",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "17F_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "17F.9",
+              "confidence": "read"
+            },
+            {
+              "at": "14B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "OSDMAST",
+          "active": "low",
+          "printed": "OSDMAST~",
+          "pins": [
+            {
+              "at": "14B.23",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLODHI",
+          "active": "low",
+          "printed": "SLODHI~",
+          "pins": [
+            {
+              "at": "14B.14",
+              "confidence": "read"
+            },
+            {
+              "at": "16G2.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SRD",
+          "active": "low",
+          "printed": "SRD~",
+          "pins": [
+            {
+              "at": "14B.22",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SENDHI",
+          "active": "low",
+          "printed": "SENDHI~",
+          "pins": [
+            {
+              "at": "14B.21",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SWR",
+          "active": "low",
+          "printed": "SWR~",
+          "pins": [
+            {
+              "at": "14B.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDACK",
+          "active": "low",
+          "printed": "SDACK~",
+          "pins": [
+            {
+              "at": "14B.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLODLO",
+          "active": "low",
+          "printed": "SLODLO~",
+          "pins": [
+            {
+              "at": "14B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "16G2.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SENDLO",
+          "active": "low",
+          "printed": "SENDLO~",
+          "pins": [
+            {
+              "at": "14B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDRY",
+          "active": "low",
+          "printed": "SDRY~",
+          "pins": [
+            {
+              "at": "8C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "16B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "17F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DEL50",
+          "active": "high",
+          "pins": [
+            {
+              "at": "17F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26A_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "4A_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "4A.11",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SAPR",
+          "active": "low",
+          "printed": "SAPR~",
+          "pins": [
+            {
+              "at": "29B.1",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29B_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28B_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28B.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDMARES",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.7",
+              "confidence": "read"
+            },
+            {
+              "at": "26C.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMC",
+          "active": "high",
+          "pins": [
+            {
+              "at": "31B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "28A.13",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "25C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.6",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "31B_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "31B.4",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15H_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15H.12",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDMAST",
+          "active": "low",
+          "printed": "SDMAST~",
+          "pins": [
+            {
+              "at": "30B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "15F.19",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SNREQ",
+          "active": "low",
+          "printed": "SNREQ~",
+          "pins": [
+            {
+              "at": "30B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SLGRANT",
+          "active": "high",
+          "pins": [
+            {
+              "at": "30B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "30B.13",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.10",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.10",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "27B_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "27B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "4A_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "4A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "28B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SEDAP",
+          "active": "low",
+          "printed": "SEDAP~",
+          "pins": [
+            {
+              "at": "31B.3",
+              "confidence": "read"
+            },
+            {
+              "at": "30C.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28B_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SDOEN",
+          "active": "low",
+          "printed": "SDOEN~",
+          "pins": [
+            {
+              "at": "29B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.1",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ADDRESS",
+          "active": "high",
+          "pins": [
+            {
+              "at": "29B.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "29B_11",
+          "active": "none",
+          "pins": [
+            {
+              "at": "29B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "30C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "30C_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "30C.12",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "29B.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "30C_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "30C.4",
+              "confidence": "read"
+            },
+            {
+              "at": "28C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DDAP",
+          "active": "high",
+          "pins": [
+            {
+              "at": "30C.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "27A_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "27A.5",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "27A_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "27A.6",
+              "confidence": "read"
+            },
+            {
+              "at": "27B.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "27B_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "27B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "INGRANT",
+          "active": "low",
+          "printed": "INGRANT~",
+          "pins": [
+            {
+              "at": "4A.2",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SOTGRANT",
+          "active": "low",
+          "printed": "SOTGRANT~",
+          "pins": [
+            {
+              "at": "4A.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "11C_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "11C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "5B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "11C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "11C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "4A.10",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "4A_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "4A.8",
+              "confidence": "read"
+            },
+            {
+              "at": "28A.2",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "R9_1",
+          "active": "none",
+          "pins": [
+            {
+              "at": "R9.1",
+              "confidence": "read"
+            },
+            {
+              "at": "28A.15",
+              "confidence": "read"
+            },
+            {
+              "at": "C6.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "C6_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "C6.2",
+              "confidence": "read"
+            },
+            {
+              "at": "28A.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SMC",
+          "active": "low",
+          "printed": "SMC~",
+          "pins": [
+            {
+              "at": "28A.4",
+              "confidence": "read"
+            },
+            {
+              "at": "15A.1",
+              "confidence": "read"
+            },
+            {
+              "at": "11C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FDIFF",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15A.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "FSING",
+          "active": "high",
+          "pins": [
+            {
+              "at": "15A.15",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26A_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26A.3",
+              "confidence": "read"
+            },
+            {
+              "at": "25B.12",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28C_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "28C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "28C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "27C.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "26C_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "26C.8",
+              "confidence": "read"
+            },
+            {
+              "at": "24D.13",
+              "confidence": "read"
+            },
+            {
+              "at": "2B.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "DMAERR",
+          "active": "high",
+          "pins": [
+            {
+              "at": "24D.12",
+              "confidence": "read"
+            },
+            {
+              "at": "25C.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "11C_3",
+          "active": "none",
+          "pins": [
+            {
+              "at": "11C.3",
+              "confidence": "read"
+            },
+            {
+              "at": "2B.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "2A_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "2A.10",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "SENI",
+          "active": "low",
+          "printed": "SENI~",
+          "pins": [
+            {
+              "at": "14C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "2A.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "25C_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "25C.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14C.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "S08_6",
+          "active": "high",
+          "pins": [
+            {
+              "at": "U74S08.6",
+              "confidence": "read"
+            },
+            {
+              "at": "25C.11",
+              "confidence": "read"
+            },
+            {
+              "at": "25C.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15F_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15F.15",
+              "confidence": "read"
+            },
+            {
+              "at": "U74S08.5",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENOLA",
+          "active": "low",
+          "printed": "ENOLA~",
+          "pins": [
+            {
+              "at": "15F.22",
+              "confidence": "read"
+            },
+            {
+              "at": "16G2.9",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENILA1",
+          "active": "low",
+          "printed": "ENILA1~",
+          "pins": [
+            {
+              "at": "15F.18",
+              "confidence": "read"
+            },
+            {
+              "at": "16G2.1",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "ENILA2",
+          "active": "low",
+          "printed": "ENILA2~",
+          "pins": [
+            {
+              "at": "15F.17",
+              "confidence": "read"
+            },
+            {
+              "at": "16G2.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.2",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.2",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.3",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.5",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_5",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.5",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.4",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.6",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.6",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.7",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.9",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_9",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.9",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.8",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.12",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_12",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.12",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.13",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.15",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_15",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.15",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.14",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.16",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_16",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.16",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.17",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15B_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15B.19",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "13E_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "13E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "15E_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "15E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16E_19",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16E.19",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.18",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16G2_2",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16G2.2",
+              "confidence": "read"
+            },
+            {
+              "at": "15B.11",
+              "confidence": "read"
+            },
+            {
+              "at": "13E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16G2_4",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16G2.4",
+              "confidence": "read"
+            },
+            {
+              "at": "14E.11",
+              "confidence": "read"
+            },
+            {
+              "at": "11D.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16G2_6",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16G2.6",
+              "confidence": "read"
+            },
+            {
+              "at": "15E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16G2_10",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16G2.10",
+              "confidence": "read"
+            },
+            {
+              "at": "16E.11",
+              "confidence": "read"
+            }
+          ]
+        },
+        {
+          "name": "16G2_8",
+          "active": "none",
+          "pins": [
+            {
+              "at": "16G2.8",
+              "confidence": "read"
+            },
+            {
+              "at": "13F.11",
+              "confidence": "read"
+            },
+            {
+              "at": "17E.11",
+              "confidence": "read"
+            }
+          ]
+        }
+      ],
+      "pages": [
+        {
+          "id": "20",
+          "sheetNumber": "20 of 24",
+          "source": 20
+        },
+        {
+          "id": "21",
+          "sheetNumber": "21 of 24",
+          "source": 21
+        },
+        {
+          "id": "22",
+          "sheetNumber": "22 of 24",
+          "source": 22
+        },
+        {
+          "id": "23",
+          "sheetNumber": "23 of 24",
+          "source": 23
+        },
+        {
+          "id": "24",
+          "sheetNumber": "24 of 24",
+          "source": 24
+        }
+      ],
+      "note": "sheet 20: 5A (bits 00-07) and 7A (16-23) are enabled by STRANS~, 6A (08-15) by UTRANS~; each SDOUT line has a 3.3k pull-up (RN4-RN6, pin 1 to a supply bar read as +5 V) and a 4.7k pull-down (RN7-RN9, pin 1 to ground).\nsheet 20: 5A pin 1 is printed \"6TRANS~\": it sits on the same wire as pin 19 STRANS~ (S and 6 look alike in this font), so it is STRANS~.\nsheet 20: 8A and 9A (receivers BD~ -> SDIN00-15) have both enables on one wire that ends at the ground symbol below 9A: always on. BD~16-23 are driven but not received.\nsheet 21: 8B, 9B, 11A (74LS461 8-bit counters) hold the 24-bit DMA memory address: loaded from SDIN with DLMARL~ (8B, 9B: bits 0-15) and DLMARU~ (11A: bits 16-23, D from SDIN00-07), counted by SADCK, carry chained 8B -> 9B -> 11A. 11B (enable RMARU~) reads bits 16-23 back onto SDOUT00-07.\nsheet 21: 12F, 14F, 12E (74LS469 8-bit up/down counters, U/D tied high) are the 24-bit word count: loaded with LDWC~, clocked by CKWL/CKWM/CKWH, read with RWCL~ (12F and 14F, onto SDOUT00-15) and RWCH~ (12E, onto SDOUT00-07); the last borrow out 12E pin 14 is WCZ~ (word count zero). The first borrow in 12F pin 23 is 20B pin 11 = NOT NCR~ OR TEST.\nsheet 21: 12B (enable SRSTAT~) reads the status word as printed: SDOUT01 = GND (1A1 pin 2 drawn to ground), SDOUT04 = STRERR, SDOUT03 = SRFT, SDOUT02 = SRFT~, SDOUT00 = SENI, SDOUT05 = 19H Q, SDOUT06 = ESCSI~, SDOUT07 = PSING. 13B gives SDOUT08-15 = DRQ SINT SDACK STRERR BSYIN REQ ACK PDIFF.\nsheet 21: 28C is printed with input pin 3 and output pin 12 (checked at 800 dpi; the test key reads the same). Read as 13->12: sheet 23 uses 28C 3->4, 5->6, 1->2 and 9->8, so 13->12 is the only gate left on the 74F04 and the printed \"3\" is a drawing error for 13. CHECKED by elimination.\nsheet 21: 19H (74LS74): D tied to ground, clocked by SRSTAT~, set by RRST (through 18H), cleared at power-up through C30 and by TRST (through 18H): Q is a flag that reads 1 after a SCSI reset until the status word is read. INFERRED from the wiring.\nsheet 21: LDWC~ is printed with ~ here (and on sheet 15); sheet 19 prints it without at 13C pin 17.\nsheet 22: 11F (\"42801\") and 10F (\"42200\") are TBP18S030 PROMs addressed by the thumbwheel TH1 (D1-D8 on A1-A4) and SLIDENT (A0): they give the ND device number SDEV00-15, read onto SDOUT by 11E/10B when SLIDENT~ is low. Contents not read (BUGS.md).\nsheet 22: 10C and 10E (25LS2521 8-bit comparators, cascaded through 10C pin 19 -> 10E pin 1, 10C enabled by SMEM) compare SDEV06-15 with SDIN06-15; 10C bits 0-3, 5 and 6 are tied to ground on both sides. The result is latched in 13A 7D when SDLDAPR clocks the address: 13A pin 16 -> 8C -> SEQUAL (device address equal).\nsheet 22: 13A latches SDIN00-05 as LADR0-5 and the term SDIN03 AND SINT11 (10A) in 8D; 13A 8Q decides whether this card passes IDENT on (1A: SOTIDENT~) or answers it (2A: SLIDENT). INFERRED from the gates.\nsheet 22: 14A (74LS138, enabled by SRIOXE, SIOEQ~ and LADR3 low) decodes LADR0-2 into the eight IOX register strobes: 0 RMARL~, 1 LMARL~, 2 SRDAT~, 3 LDAT~, 4 SRSTAT~, 5 SLOCW~, 6 RMARU~, 7 LMARU~. SIOEQ~ = NOT(26C AND LADR5 low AND SEQUAL), NCR~ = NOT(LADR5 AND SEQUAL AND 26C AND SRIOXE): LADR5 = 1 selects the NCR5386 registers.\nsheet 22: 26C pin 13 comes from an unnamed off-page arrow; 26D is a 74LS13 (Schmitt NAND, 4 inputs).\nsheet 22: The bus lines in (BAPR~ BDRY~ BINACK~ BMEM~ BMCL~ BERROR~ BIOXE~) pass the 74LS240 3B with both enables to ground; 3B input 15 is SMCL from its own output pin 9, so pin 5 gives SMCL~.\nsheet 22: R4 (1 kohm, H6 pull-up, grid D3) is the right R4: confirmed by Ronny 2026-11-28. The 220 ohm resistor printed \"R4\" on sheet 13 is stored as R47.\nsheet 23: 14B (\"78100\" PAL20L10, \"BYTE/WORD\") and 15F (\"78400\" PAL20L8B): contents not read (BUGS.md).\nsheet 23: 17F and 30C are HY5010-100 delay lines (10 taps, 10-100 ns). 17F is started by SDRY~ and gives DEL50 (50 ns) and tap 90 ns to 14B; 30C is started by 29B (ADDRESS AND SLGRANT) and gives SAPR (30 ns), SAPR~ (40 ns, inverted), SEDAP~ (70 ns) and DDAP (100 ns).\nsheet 23: The 74S08 gate (SINT AND 15F pin 15 -> 25C) has no position code printed next to it: it is kept as U74S08 here. OPEN: which chip it is. The diamond at 29B pin 12 is printed \"ADDRESS\" (not SADDRESS).\nsheet 23: 27A (74F74) samples SNREQ on SMEM; with 5B (74F112, J to ground, K = 27A Q, clocked by INGRANT~, preset by SMEM AND SDRY~) it makes SLGRANT, the card's own bus grant; SOTGRANT~ = 27A-Q~-term OR INGRANT~ passes the grant on. INFERRED from the wiring.\nsheet 23: 30B pin 13 (clear) is wired to SLGRANT: the wire from pin 13 runs down, left and up to the SLGRANT dot at pin 12, crossing SDLDAPR with no dot (checked at 600 dpi).\nsheet 23: 28A (74LS123) pins as drawn: the trigger from 4A pin 8 enters on pin 2 (B) and pin 1 (A~) goes to ground; the drawing prints the row names A~ and B the other way round but the pin numbers match the datasheet. Timing R9 10k, C6 220 pF. Q = SMC (SCSI master clear pulse).\nsheet 23: 15A (74LS273, clocked by SLOCW, cleared by SMC~) is the control register: SDIN03 TEST, SDIN05 SNDMAEN, SDIN06 TOMEM, SDIN08 FDIFF, SDIN09 FSING, SDIN10 TRST; SDIN07 and SDIN11 are latched to unused outputs.\nsheet 23: 28C here uses 3->4 (SDMARES), 5->6, 1->2 and 9->8; so on sheet 21 only 13->12 is left, which proves its printed input \"3\" is pin 13.\nsheet 24: Write path (ND to SCSI): ENILA1~ latches the ND word SDIN00-15 in 15B (low byte) and 13E (high byte); ENILA2~ moves both into 14E and 11D, which put the low byte (SENDLO~) or the high byte (SENDHI~) on SMBD00-07.\nsheet 24: Read path (SCSI to ND): SLODLO~ / SLODHI~ latch an SMBD byte in 15E / 16E; ENOLA~ moves them into 13F / 17E, which drive SDOUT00-07 / SDOUT08-15 when SDOEN~ is low.\nsheet 24: The latch inputs are wired in reverse bit order on the drawing (SDIN07 on 1D ... SDIN00 on 8D, and 1Q -> SMBD07 ... 8Q -> SMBD00), so the bit numbers match end to end.\nsheet 24: OPEN: the 74F04 position is printed \"1662\" (checked at 1200 dpi). Read as 16G2 because G and 6 look the same in this font and a position code needs a letter; 16G itself is the 74S08 on sheet 9.\nsheet 24: Drawn by ASU (the other SCSI sheets: HS).\nPins drawn as unconnected stubs: 14B.19 14B.20 15A.19 15A.9 15F.20 15F.21 17F.10 17F.12 17F.13 17F.3 17F.4 17F.5 17F.6 17F.8 19H.6 2B.6 30B.9 30C.11 30C.13 30C.3 30C.5 30C.6 30C.9 5B.5"
     }
   ],
   "instances": [

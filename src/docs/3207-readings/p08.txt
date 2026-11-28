@@ -1,0 +1,196 @@
+# Card 3207, sheet 8 of 24: FLOPPY / F_ND_INT 3 ("FLOPPY_ND100_INTERFACE")
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles, the crossing area at 450 dpi.
+block F_ND_INT
+page 8
+
+part TH3 2170576F 335 466 109 118
+part R13 1KOHM 258 370 18 77
+part 4H TBP18S030 607 425 114 255
+part 3H TBP18S030 607 766 114 250
+part 4F 74LS244 1097 437 126 309
+part 3G 74LS244 1097 831 126 307
+part 2F 25LS2521 1782 493 112 520
+part 4G 25LS2521 1782 1125 112 535
+part 6H 74LS175 2325 1084 98 291
+part 5H 74LS138 2407 439 114 250
+part 8G 74LS08
+part 5J 74LS11
+part 16F 74LS04
+part 7H 74S08
+part 13H 74LS00
+part 3C 74S32
+part 14G 74LS02
+part 10H 74LS10
+part 7J 74LS14
+part 12H 74S00
+part 10D 74LS00
+part 1B 7438
+part 13G 74LS32
+part 4B 74LS240 776 1947 127 309
+part 2C 74S00
+part 5C 7438
+part C9 100PF 1285 1515 36 64
+
+gate 16F/2 not 1>2 817 1320 68 55
+gate 8G/3 and 1,2>3 2158 1138 73 55
+gate 8G/11 and 13,12>11 2880 379 73 55
+gate 5J/12 and 1,2,13>12 2880 493 73 55
+gate 16F/10 not 11>10 2893 607 64 50
+gate 7H/3 and 1,2>3 2893 743 73 59
+gate 13H/3 nand 2,1>3 2743 1039 73 55
+gate 3C/6 or 4,5>6 2739 1148 73 64
+gate 14G/1 nor 3,2>1 2739 1261 77 59
+gate 10H/6 nand 4,5,3>6 526 1410 73 55
+gate 10H/8 nand 9,10,11>8 526 1522 73 56
+gate 10H/12 nand 13,1,2>12 1039 1410 73 55
+gate 7J/6 not 5>6 1194 1410 64 55
+gate 7J/8 not 9>8 1362 1410 59 55
+gate 12H/11 nand 13,12>11 721 1538 73 55
+gate 10D/3 nand 1,2>3 888 1524 75 55
+gate 10D/11 nand 13,12>11 2757 1406 77 55
+gate 1B/6 nand 4,5>6 526 1733 73 59
+gate 1B/11 nand 13,12>11 526 1847 73 59
+gate 13G/6 or 4,5>6 367 1860 77 59
+gate 7J/2 not 1>2 1098 1887 64 55
+gate 7J/4 not 3>4 1294 1887 59 55
+gate 2C/6 nand 4,5>6 1112 2251 73 59
+gate 5C/6 nand 4,5>6 2285 1837 73 64
+gate 5C/8 nand 9,10>8 2285 1965 73 64
+gate 5C/3 nand 1,2>3 2285 2092 73 64
+gate 5C/11 nand 12,13>11 2285 2219 73 64
+
+# device number: thumbwheel TH3 and two PROMs give the 16-bit device word DEV(15:00)
+net R13_2: R13.2 TH3.1
+net TH3_D1: TH3.6 4H.11 3H.11
+net TH3_D2: TH3.2 4H.12 3H.12
+net TH3_D4: TH3.5 4H.13 3H.13
+net TH3_D8: TH3.3 4H.14 3H.14
+net LIDENT: 4H.10 3H.10 16F.1 14G.1 13G.5
+net DEV00: 4H.1 4F.2 2F.2
+net DEV01: 4H.2 4F.4 2F.4
+net DEV02: 4H.3 4F.6 2F.8
+net DEV03: 4H.4 4F.8 2F.6
+net DEV04: 4H.5 4F.11 2F.15
+net DEV05: 4H.6 4F.13 2F.13
+net DEV06: 4H.7 4F.15 2F.11
+net DEV07: 4H.9 4F.17 2F.17
+net DEV08: 3H.1 3G.2 4G.2
+net DEV09: 3H.2 3G.4 4G.11
+net DEV10: 3H.3 3G.6 4G.4
+net DEV11: 3H.4 3G.8 4G.8
+net DEV12: 3H.5 3G.15 4G.6
+net DEV13: 3H.6 3G.11
+net DEV14: 3H.7 3G.13
+net DEV15: 3H.9 3G.17
+net LIDENT~: 16F.2 4F.1 4F.19 3G.1 3G.19 10H.13
+# the device word goes onto DOUT during an ident
+net DOUT00: 4F.18
+net DOUT01: 4F.16
+net DOUT02: 4F.14
+net DOUT03: 4F.12
+net DOUT04: 4F.9
+net DOUT05: 4F.7
+net DOUT06: 4F.5
+net DOUT07: 4F.3
+net DOUT08: 3G.18
+net DOUT09: 3G.16
+net DOUT10: 3G.14
+net DOUT11: 3G.12
+net DOUT12: 3G.5
+net DOUT13: 3G.9
+net DOUT14: 3G.7
+net DOUT15: 3G.3
+
+# address compare: DEVn against DIN(n+3), two 8-bit comparators in a chain
+net DIN03: 2F.3 8G.2
+net DIN04: 2F.5
+net DIN05: 2F.9
+net DIN06: 2F.7
+net DIN07: 2F.16
+net DIN08: 2F.14
+net DIN09: 2F.12
+net DIN10: 2F.18
+net DIN11: 4G.3
+net DIN12: 4G.12
+net DIN13: 4G.5
+net DIN14: 4G.9
+net DIN15: 4G.7
+net DIN00: 6H.4
+net 2F_19: 2F.19 4G.1
+net CMPEQ~: 4G.19 6H.13
+net INT11: 8G.1 5C.4
+net 8G_3: 8G.3 6H.5
+net DLDAPR: 7J.4 6H.9
+net IOXOUT: 6H.2 13H.1 10H.4 5H.1
+net IOXIN: 6H.3 10H.11
+net 6H_7: 6H.7 3C.4
+net 6H_6: 6H.6 14G.3
+net EQUAL: 6H.14 10D.13 10H.5 10H.10
+net SOTIDENT~: 3C.5 14G.2
+net OUTIDENT~: 3C.6
+net DRY: 13H.2 4B.16
+net 13H_3: 13H.3 10D.12
+net 10D_11: 10D.11 5H.4
+
+# register strobes from the IOX address bits
+net LADR1: 5H.2
+net LADR2: 5H.3
+net IOXE: 5H.6 10H.3 10H.9 13G.4
+net REDAT_IN: 5H.15 8G.12
+net TNDAT~: 8G.13
+net REDAT~: 8G.11
+net TNSTA~: 5J.1
+net 5H_13: 5H.13 5J.2
+net 5H_11: 5H.11 5J.13
+net RSTAT~: 5J.12
+net LOCW~: 5H.12 16F.11 5C.5
+net LOCW: 16F.10
+net LOPHI~: 5H.10
+net LOPLO~: 5H.7 7H.1
+net DMARES~: 7H.2 5C.13
+net LODI: 7H.3
+
+# IOX handshake and ident
+net 10H_6: 10H.6 10H.1
+net 10H_8: 10H.8 12H.13
+net DMAINP~: 12H.12
+net INPUT: 12H.11 10D.2 5C.9 5C.10
+net INACK: 10D.1 4B.14
+net 10D_3: 10D.3 10H.2
+net 10H_12: 10H.12 7J.5
+net 7J_6: 7J.6 7J.9 C9.2
+net PIODRY: 7J.8 1B.13
+net 13G_6: 13G.6 1B.12
+net ADDRESS: 1B.4 5C.2
+net APR: 1B.5
+net 4B_18: 4B.18 7J.1
+net 7J_2: 7J.2 7J.3
+net NREQ: 5C.1
+net DAP: 5C.12
+
+# bus lines (open collector out, 74LS240 in)
+net BAPR~: 1B.6 4B.2
+net BDRY~: 1B.11 4B.4
+net BINACK~: 4B.6
+net BMEM~: 4B.8
+net BMCL~: 4B.11
+net BERROR~: 4B.13
+net BIOXE~: 4B.17
+net BINT11~: 5C.6
+net BINPUT~: 5C.8
+net BREQ~: 5C.3
+net BDAP~: 5C.11
+net MEM: 4B.12
+net MCL: 4B.9 4B.15 2C.4 2C.5
+net ERROR: 4B.7
+net FWINH~: 4B.5
+net RIOXE: 4B.3
+net MCL~: 2C.6
+
+net +5V: R13.1 6H.1
+net GND: TH3.4 4H.15 3H.15 2F.1 4G.13 4G.14 4G.15 4G.16 4G.17 4G.18 5H.5 4B.1 4B.19 C9.1
+
+note 4G pins 13-18 (A5-B7) all go to GND (checked at 600 dpi), so only DIN11-15 are compared there.
+note TH3 is a 16-position switch (C common, outputs D1 D2 D4 D8); the board list calls TH3 the floppy device number.
+note 4H is printed "FLOPPY DEV LOW 009_00", 3H "FLOPPY DEV HIGH 058_00": programmed PROMs, contents not read (see BUGS.md).
+note 1B and 5C are 7438 open-collector NAND gates driving the ND-100 bus lines.

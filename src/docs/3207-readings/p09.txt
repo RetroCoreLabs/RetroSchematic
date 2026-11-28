@@ -1,0 +1,190 @@
+# Card 3207, sheet 9 of 24: FLOPPY / F_ND_INT 4 ("FLOPPY_ND100_INTERFACE")
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles, three crossing areas at 400-500 dpi.
+block F_ND_INT
+page 9
+
+part 1D 74LS273 576 489 98 306
+part 1E 74LS244 1076 489 127 306
+part 2E 74LS374 576 1038 98 307
+part 27G 74LS273 1553 498 95 314
+part 9E PAL16L8 576 1571 98 312
+part 8H HY5010_100 2024 1344 113 309
+part 5B 74F112 1410 2133 87 144
+part 9D 74S74
+part 14H 74S74
+part 15H 74LS04
+part 16F 74LS04
+part 28H 74LS04
+part 21D 74LS02
+part 14G 74LS02
+part 29G 74LS32
+part 16G 74S08
+part 8E 74S10
+part 7H 74S08
+part 2C 74S00
+part 13G 74LS32
+part 8D 74S02
+part 17H 74S04
+part 8J 74S00
+part 12H 74S00
+part 7J 74LS14
+part 11C 74F08
+part 3C 74S32
+part 11H 74S64 2249 1865 145 300
+part R14 1KOHM 2199 498 14 95
+
+gate 15H/8 not 9>8 1212 857 64 55
+gate 21D/1 nor 3,2>1 1262 1161 91 59
+gate 16F/12 not 13>12 1912 357 68 59
+gate 28H/12 not 13>12 1858 725 68 55
+gate 9D/5 other 2,3,4,1>5 2165 709 84 131
+gate 14G/4 nor 6,5>4 2021 866 82 59
+gate 14H/9 other 12,11,10,13>9 1830 1034 82 127
+gate 21D/4 nor 6,5>4 1630 1175 77 59
+gate 29G/11 or 13,12>11 2398 416 73 59
+gate 16G/3 and 1,2>3 2639 407 73 55
+gate 8E/6 nand 3,4,5>6 2834 657 73 59
+gate 7H/6 and 4,5>6 3027 643 71 59
+gate 2C/3 nand 1,2>3 2443 757 73 55
+gate 8E/12 nand 1,2,13>12 2639 779 73 59
+gate 13G/11 or 12,13>11 2439 907 73 59
+gate 9D/8 other 12,11,10,13>8 2333 1075 84 127
+gate 8D/1 nor 2,3>1 2996 1129 75 59
+gate 8D/10 nor 9,8>10 2996 1275 75 55
+gate 17H/2 not 1>2 2316 1369 64 55
+gate 8J/3 nand 2,1>3 2998 1401 73 55
+gate 12H/8 nand 10,9>8 2819 1537 73 59
+gate 17H/4 not 3>4 2998 1542 64 55
+gate 7H/8 and 9,10>8 2430 1665 73 59
+gate 7J/10 not 11>10 2875 1810 59 55
+gate 15H/4 not 3>4 1017 1683 68 55
+gate 14H/5 other 2,3,4,1>5 1130 1906 85 132
+gate 11C/11 and 12,13>11 1144 2119 73 59
+gate 7H/11 and 12,13>11 1773 1456 73 59
+gate 12H/6 nand 4,5>6 1410 1919 80 59
+gate 3C/3 or 1,2>3 1642 1906 75 59
+gate 11H/8 aoi 9,10,11,12,13,1,2,3,4,5,6>8 2249 1865 145 300
+
+# control register written by the CPU (LOCW~), read back with RCW1~
+net DIN02: 1D.4
+net DIN03: 1D.3
+net DIN05: 1D.7
+net DIN07: 1D.17
+net DIN08: 1D.8
+net ENI: 1D.14
+net LOCW~: 1D.11 2E.11
+net MCL~: 1D.1
+net TESTMODE: 1D.2 1E.2
+net AUTOLOAD: 1D.5 1E.17
+net ACTIVATE: 1D.9 1E.13
+net 1D_15: 1D.15 1E.4
+net 1D_16: 1D.16 1E.6
+net TRERR: 1E.8
+net RCW1~: 1E.1 1E.19       # printed "(IN50)"
+net NDMAEN: 1E.11 14H.9
+net MBD00: 1E.3 27G.3 2E.6
+net MBD01: 1E.18 27G.18 2E.9
+net MBD02: 1E.5 27G.4 2E.12
+net MBD03: 1E.16 27G.17 2E.15
+net MBD04: 1E.7 27G.7 2E.16
+net MBD05: 1E.14 27G.14 2E.2
+net MBD06: 1E.9 27G.8 2E.19
+net MBD07: 1E.12 27G.13 2E.5
+# second read-back latch (RCW2~)
+net DIN09: 2E.8
+net DIN10: 2E.13
+net DIN11: 2E.14
+net DIN12: 2E.17
+net DIN13: 2E.3
+net DIN14: 2E.18
+net DIN15: 2E.4
+net RCW2~: 2E.1             # printed "(IN54)"
+
+# DMA control register written by the Z80 (LDD_T~)
+net LDD_T~: 15H.9 14H.11    # printed "(OUT53)"
+net 15H_8: 15H.8 27G.11
+net MC~: 27G.1
+net WRITEFL: 27G.2 16F.13 11H.5
+net READFL: 16F.12 8J.1 9E.5 11H.9
+net NTB0: 27G.6
+net TCARY: 27G.9 8D.8
+net NTEST: 27G.12 28H.13
+net NTB1: 27G.15
+net NDMACT: 27G.19 29G.13 14H.12
+net NTEST~: 28H.12 9D.2
+net DMAST~: 9D.3 9E.16
+net H1: R14.2 9D.4 9D.10 14H.4 14H.1
+net 14G_4: 14G.4 9D.1
+net DMARES: 14G.6 17H.4
+net MC: 14G.5 21D.5
+net DMAINT~: 21D.3
+net NACK~: 21D.2 9E.2
+net DMAINT: 21D.1 21D.6
+net 21D_4: 21D.4 14H.13
+net NDMAEN~: 14H.8 9E.1
+
+# bus request and grant
+net NREQ: 9D.5 8D.9 14H.2
+net NREQ~: 9D.6 2C.2 9E.11
+net TNADR~: 2C.1
+net 2C_3: 2C.3 8E.1
+net TNADR: 13G.12
+net MEM: 13G.13 14H.3 11C.12 12H.4
+net 13G_11: 13G.11 8E.2
+net ADDRESS: 8E.13 9D.8 8D.2 7H.12
+net ADEN~: 8E.12 8E.4
+net APR~: 17H.2 16G.1 8E.5
+net ARCK~: 29G.12
+net 29G_11: 29G.11 16G.2
+net ADCK: 16G.3
+net LGRANT: 8E.3 9D.12 9D.13 12H.10 8J.2 7H.13 5B.7 11H.4 11H.10
+net 8E_6: 8E.6 7H.5
+net REDAT~: 7H.4
+net DOEN~: 7H.6 11H.6
+net DLDAPR: 9D.11
+net EDAP~: 8H.5 8D.3
+net DAP: 8D.1
+net ACARY~: 8D.10
+net 7H_11: 7H.11 8H.1
+net 8H_3: 8H.3 17H.1
+net 8H_12: 8H.12 7H.9 7H.10
+net APR: 7H.8
+net DMAINP~: 8J.3
+net DRY: 12H.9 7J.11
+net DMARES~: 12H.8 17H.3
+net DRY~: 7J.10 11C.13
+net 14H_5: 14H.5 5B.12
+net 14H_6: 14H.6 12H.5
+net 12H_6: 12H.6 3C.2
+net SOTGRANT~: 3C.1 5B.13
+net OUTGRANT~: 3C.3
+net 11C_11: 11C.11 5B.10
+
+# byte/word conversion PAL
+net IOWR~: 9E.3
+net IORD~: 9E.4
+net SETLO~: 9E.6
+net SETHI~: 9E.7
+net RPOL~: 9E.8
+net RPOM~: 9E.9
+net LODLO~: 9E.19
+net ENDLO~: 9E.12
+net LODHI~: 9E.18
+net NRQ~: 9E.17 15H.3
+net NRQ: 15H.4
+net ENDHI~: 9E.13
+
+# bus driver enable
+net INACK: 11H.11 11H.12
+net INPUT: 11H.13
+net IOXE: 11H.1
+net LIDENT: 11H.2 11H.3
+net TRANS~: 11H.8
+
+net +5V: R14.1 14H.10 5B.14
+net GND: 1E.15 2E.7 5B.11
+
+note 9E is printed "345_00 PAL16L8, CONVERSION BYTE - WORD"; pins 14 "LATCH~" and 15 "LAST~" end in a dot (used inside the PAL only). Contents not read (BUGS.md).
+note 8H HY5010_100: 100 ns delay line, taps 10 ns ... 100 ns on pins 13 3 12 4 11 5 10 6 9 8 (each number printed above its tap). Used: 20 ns (pin 3), 30 ns (pin 12), 60 ns (pin 5).
+note 11H 74S64 pins 12 and 3 are drawn tied to pins 11 and 2.
+note 1D pins 6, 12, 19 (3Q, 5Q, 8Q) and inputs 13, 18 are drawn as stubs: unused.

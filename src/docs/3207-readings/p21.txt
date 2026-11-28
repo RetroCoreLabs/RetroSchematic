@@ -1,0 +1,131 @@
+# Card 3207, sheet 21 of 24: SCSI / S_ND_INT 2 ("SCSI_ND_INTERFACE": DMA address and word counters, status read)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles, 12B and 28C at 500-800 dpi. Part boxes from the scsi21 test key (375 dpi / 1.25).
+block S_ND_INT
+page 21
+
+part 8B 74LS461 527 501 86 425
+part 9B 74LS461 527 1105 86 430
+part 11A 74LS461 527 1736 86 433
+part 12A 74LS244 2127 501 132 311
+part 12B 74LS244 2893 501 129 311
+part 12C 74LS244 2127 1101 132 311
+part 13B 74LS244 2893 1101 129 311
+part 11B 74LS244 994 1718 132 320
+part 12F 74LS469 1524 1718 115 450
+part 14F 74LS469 1997 1718 115 450
+part 12E 74LS469 2446 1718 115 450
+part C30 100NF 3131 1797 56 111
+part 1A 74LS32
+part 18H 74LS00
+part 19H 74LS74
+part 28C 74F04
+part 20B 74LS32
+
+gate 1A/11 or 13,12>11
+gate 18H/8 nand 9,10>8
+gate 18H/11 nand 12,13>11
+gate 19H/5 other 2,3,4,1>5
+gate 28C/12 not 13>12
+gate 20B/11 or 13,12>11
+
+net SDIN00: 8B.3 11A.3 12F.3 14F.3 12E.3 12A.2
+net SDOUT00: 8B.22 12F.22 12E.22 12C.18 11B.18 12B.9
+net SDIN01: 8B.4 11A.4 12F.4 14F.4 12E.4 12A.4
+net SDOUT01: 8B.21 12F.21 12E.21 12C.16 11B.16 12B.18
+net SDIN02: 8B.5 11A.5 12F.5 14F.5 12E.5 12A.6
+net SDOUT02: 8B.20 12F.20 12E.20 12C.14 11B.14 12B.12
+net SDIN03: 8B.6 11A.6 12F.6 14F.6 12E.6 12A.8
+net SDOUT03: 8B.19 12F.19 12E.19 12C.12 11B.12 12B.14
+net SDIN04: 8B.7 11A.7 12F.7 14F.7 12E.7 12A.11
+net SDOUT04: 8B.18 12F.18 12E.18 12C.9 11B.9 12B.16
+net SDIN05: 8B.8 11A.8 12F.8 14F.8 12E.8 12A.13
+net SDOUT05: 8B.17 12F.17 12E.17 12C.7 11B.7 12B.7
+net SDIN06: 8B.9 11A.9 12F.9 14F.9 12E.9 12A.15
+net SDOUT06: 8B.16 12F.16 12E.16 12C.5 11B.5 12B.5
+net SDIN07: 8B.10 11A.10 12F.10 14F.10 12E.10 12A.17
+net SDOUT07: 8B.15 12F.15 12E.15 12C.3 11B.3 12B.3
+net SADCK: 8B.1 9B.1 11A.1
+net SDIN08: 9B.3
+net SDOUT08: 9B.22 14F.22 13B.18
+net SDIN09: 9B.4
+net SDOUT09: 9B.21 14F.21 13B.16
+net SDIN10: 9B.5
+net SDOUT10: 9B.20 14F.20 13B.14
+net SDIN11: 9B.6
+net SDOUT11: 9B.19 14F.19 13B.12
+net SDIN12: 9B.7
+net SDOUT12: 9B.18 14F.18 13B.9
+net SDIN13: 9B.8
+net SDOUT13: 9B.17 14F.17 13B.7
+net SDIN14: 9B.9
+net SDOUT14: 9B.16 14F.16 13B.5
+net SDIN15: 9B.10
+net SDOUT15: 9B.15 14F.15 13B.3
+net SDOUT16: 11A.22 11B.2
+net SDOUT17: 11A.21 11B.4
+net SDOUT18: 11A.20 11B.6
+net SDOUT19: 11A.19 11B.8
+net SDOUT20: 11A.18 11B.11
+net SDOUT21: 11A.17 11B.13
+net SDOUT22: 11A.16 11B.15
+net SDOUT23: 11A.15 11B.17
+net +5V: 12F.11 12F.24 14F.11 14F.24 12E.11 12E.24 11A.11
+net GND: 12F.12 14F.12 12E.12 12B.2 11A.13 19H.2 C30.2
+net LDWC~: 12F.2 14F.2 12E.2
+net SMBD00: 12A.18 12C.2
+net SMBD01: 12A.16 12C.4
+net SMBD02: 12A.14 12C.6
+net SMBD03: 12A.12 12C.8
+net SMBD04: 12A.9 12C.11
+net SMBD05: 12A.7 12C.13
+net SMBD06: 12A.5 12C.15
+net SMBD07: 12A.3 12C.17
+net STRERR: 12B.4 13B.8
+net SRFT: 12B.6
+net SRFT~: 12B.8
+net SENI: 12B.11
+net 19H_5: 12B.13 19H.5
+net ESCSI~: 12B.15
+net PSING: 12B.17
+net SRSTAT~: 12B.1 12B.19 13B.1 13B.19 19H.3
+net DRQ: 13B.2
+net SINT: 13B.4
+net SDACK: 13B.6
+net BSYIN: 13B.11
+net REQ: 13B.13
+net ACK: 13B.15
+net PDIFF: 13B.17
+net SACARY~: 8B.23
+net DLMARL~: 8B.2 9B.2
+net DLMARU~: 8B.11 9B.11 11A.2
+net SADEN~: 8B.13 9B.13
+net 8B_14: 8B.14 9B.23
+net 9B_14: 9B.14 11A.23
+net 11A_14: 11A.14
+net 1A_11: 1A.11 12A.1 12A.19
+net LADR0~: 1A.13
+net NCR~: 1A.12 12C.1 12C.19 28C.13
+net RMARU~: 11B.1 11B.19
+net 28C_12: 28C.12 20B.13
+net TEST: 20B.12
+net 20B_11: 20B.11 12F.23
+net 12F_14: 12F.14 14F.23
+net 14F_14: 14F.14 12E.23
+net WCZ~: 12E.14
+net CKWL: 12F.1
+net CKWM: 14F.1
+net CKWH: 12E.1
+net RWCL~: 12F.13 14F.13
+net RWCH~: 12E.13
+net RRST: 18H.9 18H.10
+net 18H_8: 18H.8 19H.4
+net TRST: 18H.12 18H.13
+net 18H_11: 18H.11 19H.1 C30.1
+nc 19H.6
+
+note 8B, 9B, 11A (74LS461 8-bit counters) hold the 24-bit DMA memory address: loaded from SDIN with DLMARL~ (8B, 9B: bits 0-15) and DLMARU~ (11A: bits 16-23, D from SDIN00-07), counted by SADCK, carry chained 8B -> 9B -> 11A. 11B (enable RMARU~) reads bits 16-23 back onto SDOUT00-07.
+note 12F, 14F, 12E (74LS469 8-bit up/down counters, U/D tied high) are the 24-bit word count: loaded with LDWC~, clocked by CKWL/CKWM/CKWH, read with RWCL~ (12F and 14F, onto SDOUT00-15) and RWCH~ (12E, onto SDOUT00-07); the last borrow out 12E pin 14 is WCZ~ (word count zero). The first borrow in 12F pin 23 is 20B pin 11 = NOT NCR~ OR TEST.
+note 12B (enable SRSTAT~) reads the status word as printed: SDOUT01 = GND (1A1 pin 2 drawn to ground), SDOUT04 = STRERR, SDOUT03 = SRFT, SDOUT02 = SRFT~, SDOUT00 = SENI, SDOUT05 = 19H Q, SDOUT06 = ESCSI~, SDOUT07 = PSING. 13B gives SDOUT08-15 = DRQ SINT SDACK STRERR BSYIN REQ ACK PDIFF.
+note 28C is printed with input pin 3 and output pin 12 (checked at 800 dpi; the test key reads the same). Read as 13->12: sheet 23 uses 28C 3->4, 5->6, 1->2 and 9->8, so 13->12 is the only gate left on the 74F04 and the printed "3" is a drawing error for 13. CHECKED by elimination.
+note 19H (74LS74): D tied to ground, clocked by SRSTAT~, set by RRST (through 18H), cleared at power-up through C30 and by TRST (through 18H): Q is a flag that reads 1 after a SCSI reset until the status word is read. INFERRED from the wiring.
+note LDWC~ is printed with ~ here (and on sheet 15); sheet 19 prints it without at 13C pin 17.

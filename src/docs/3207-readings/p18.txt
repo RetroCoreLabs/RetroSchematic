@@ -1,0 +1,120 @@
+# Card 3207, sheet 18 of 24: SCSI / SING_DIFF_SW (single-ended or differential cable choice)
+# Read 2026-11-28 from the PDF at 330 dpi in 6 tiles, the label rows again at 420 dpi.
+block SING_DIFF_SW
+page 18
+
+part 18A SING_DIFF_SW_P 469 1084 2520 160
+connector 18A nd100-3207-sing-diff-socket socket for the 350217 SCSI single/differential adapter (PCB 1887)
+
+# Pin names are the boxed codes printed at each line (A1-D12, E1-H12, J1-M12); beside each the drawing also prints a cable pin name (A1-A50, Y1-Y50, B1-B50).
+net OSHGND: 18A.E1
+net GND: 18A.A1 18A.J1 18A.J2 18A.A3 18A.A5 18A.A7 18A.A9 18A.A11 18A.B1 18A.B3 18A.B5 18A.B7 18A.B8 18A.B9 18A.B12 18A.C1 18A.L2 18A.C3 18A.C4 18A.C5 18A.C7 18A.C9 18A.C11 18A.D1 18A.D3 18A.D5 18A.M7 18A.H8
+net OGROUND2: 18A.E2
+net SDB~0: 18A.A2
+net ODB0: 18A.E3
+net DDB0: 18A.J3
+net ODB~0: 18A.E4
+net SDB~1: 18A.A4
+net DDB~0: 18A.J4
+net ODB1: 18A.E5
+net DDB1: 18A.J5
+net ODB~1: 18A.E6
+net SDB~2: 18A.A6
+net DDB~1: 18A.J6
+net ODB2: 18A.E7
+net DDB2: 18A.J7
+net ODB~2: 18A.E8
+net SDB~3: 18A.A8
+net DDB~2: 18A.J8
+net ODB3: 18A.E9
+net DDB3: 18A.J9
+net ODB~3: 18A.E10
+net SDB~4: 18A.A10
+net DDB~3: 18A.J10
+net ODB4: 18A.E11
+net DDB4: 18A.J11
+net ODB~4: 18A.E12
+net SDB~5: 18A.A12
+net DDB~4: 18A.J12
+net ODB5: 18A.F1
+net DDB5: 18A.K1
+net ODB~5: 18A.F2
+net SDB~6: 18A.B2
+net DDB~5: 18A.K2
+net ODB6: 18A.F3
+net DDB6: 18A.K3
+net ODB~6: 18A.F4
+net SDB~7: 18A.B4
+net DDB~6: 18A.K4
+net ODB7: 18A.F5
+net DDB7: 18A.K5
+net ODB~7: 18A.F6
+net SDBP~: 18A.B6
+net DDB~7: 18A.K6
+net ODBP: 18A.F7
+net DDBP: 18A.K7
+net ODBP~: 18A.F8
+net DDBP~: 18A.K8
+net ODIFFS: 18A.F9
+net DDIFFS: 18A.K9
+net OTERMPWR1: 18A.F10
+net DTERMPWR: 18A.K10 18A.K11
+net OTERMPWR2: 18A.F11
+net STERMPWR: 18A.B11
+net OATN: 18A.F12
+net DATN: 18A.K12
+net OATN~: 18A.G1
+net DATN~: 18A.L1
+net OGROUND32: 18A.G2
+net SATN~: 18A.C2
+net OBSY: 18A.G3
+net DBSY: 18A.L3
+net OBSY~: 18A.G4
+net DBSY~: 18A.L4
+net OACK: 18A.G5
+net DACK: 18A.L5
+net OACK~: 18A.G6
+net SBSY~: 18A.C6
+net DACK~: 18A.L6
+net ORST: 18A.G7
+net DRST: 18A.L7
+net ORST~: 18A.G8
+net SACK~: 18A.C8
+net DRST~: 18A.L8
+net OMSG: 18A.G9
+net DMSG: 18A.L9
+net OMSG~: 18A.G10
+net SRST~: 18A.C10
+net DMSG~: 18A.L10
+net OSEL: 18A.G11
+net DSEL: 18A.L11
+net OSEL~: 18A.G12
+net SMSG~: 18A.C12
+net DSEL~: 18A.L12
+net OCD: 18A.H1
+net DCD: 18A.M1
+net OCD~: 18A.H2
+net SSEL~: 18A.D2
+net DCD~: 18A.M2
+net OREQ: 18A.H3
+net DREQ: 18A.M3
+net OREQ~: 18A.H4
+net SC_D~: 18A.D4
+net DREQ~: 18A.M4
+net OIO: 18A.H5
+net DIO: 18A.M5
+net OIO~: 18A.H6
+net SREQ~: 18A.D6
+net DIO~: 18A.M6
+net OGROUND50: 18A.H7
+net SI_O~: 18A.D7
+net PSING~: 18A.D8
+net PDIFF~: 18A.M8
+open 18A.B10
+nc 18A.D9 18A.D10 18A.D11 18A.D12 18A.H9 18A.H10 18A.H11 18A.H12 18A.M9 18A.M10 18A.M11 18A.M12
+
+note 18A is printed SING_DIFF_SW_P: a socket where the cable pins Y1-Y50 (E1-H7, the OSCSI bus to the SCSI connector) face both A1-A50 (A1-D7, single-ended side SINGSCSI) and B1-B50 (J1-M7, differential side DIFFSCSI). INFERRED: a plug in one of two positions joins Y to A or to B.
+note The A side matches the standard single-ended SCSI pinout exactly (DB0 on pin 2 ... I/O on 50, TERMPWR on 26, odd pins and 20, 30, 34 to ground) and the B side the standard differential pinout (+DB0/-DB0 on 3/4, DIFFSENS 21, TERMPWR 25 and 26, ATN 29/30): CHECKED by comparing every column.
+note The unnamed lines on the A and B sides go to one top line that ends at the ground symbol; K11 (B26) is joined to K10 DTERMPWR by a short wire. B10 (cable pin A25) has no dot on either line: OPEN (pin 25 is unused in single-ended SCSI).
+note PSING (D8 = PSING~, H8 to ground) and PDIFF (M8 = PDIFF~) are the plug-position sense pins: the plug grounds PSING~ or PDIFF~. INFERRED from the drawing, the PDIFF lower pin is not drawn.
+note 18A is a pin-field socket on the board (component-side photo: a small green board marked "1887A2" sits in it, the print beside it says "SING ->" above and "<- DIFF" below). The plug-in board is 350217, PCB 1887 print A2, "SCSI Single/Differential adapter" (norsk-data.com, nd-350217: used on 350004-350007, no chips). It is pushed towards SING or DIFF to choose the SCSI mode. Stored as board connector J.18A (owner's ruling 2026-11-28).

@@ -1,0 +1,174 @@
+# Card 3207, sheet 6 of 24: FLOPPY / F_ND_INT 1 ("FLOPPY_ND100_INTERFACE")
+# Read 2026-11-28 from the PDF at 450 dpi, in 12 tiles. Format: docs/3207-readings/README.md
+# Part boxes: tools/recognition/data/testkeys/scsi6.json (already measured).
+block F_ND_INT
+page 6
+
+part 29F 74S32
+part 25H 74LS139
+part 26H 74LS20
+part 16F 74LS04
+part 31C 74LS14
+part 2H 74LS02
+part 18H 74LS00
+part 5J 74LS11
+part 13G 74LS32
+part 13H 74LS00
+part 14G 74LS02
+part 2G 74LS123
+part 3C 74S32
+part 10D 74LS00
+part 1C 74LS08
+part 2D 74LS74
+part 8G 74LS08
+part 8F 74LS74
+part 3A 74S240
+part 6C 74S240
+part 7C 74S240
+part 3D 74S240
+part 4C 74S240
+part RN10 4610X_101_332
+part RN11 4610X_101_332
+part RN12 4610X_101_332
+part RN13 4610X_101_472
+part RN14 4610X_101_472
+part RN15 4610X_101_472
+part C7 470PF
+part C8 220PF
+part C28 1000PF
+part C29 100PF
+part R11 10KOHM
+part R12 1KOHM
+
+# bus cycle phase decode
+net NTB0: 25H.14
+net NTB1: 25H.13
+net NTEST~: 29F.10
+net RIOXE: 29F.9 2H.6 5J.5 31C.13
+net 29F_8: 29F.8 25H.15
+net TNADR~: 25H.11 26H.9 16F.3
+net TNDAT~: 25H.10 26H.10
+net TNSTA~: 25H.9 26H.12 26H.13
+net TNADR: 16F.4
+net 26H_8: 26H.8 31C.11 C7.1
+net 31C_10: 31C.10 5J.3 2H.5
+net 31C_12: 31C.12 31C.9 C28.1
+net 31C_8: 31C.8 5J.4
+net IOXE: 5J.6
+net 2H_4: 2H.4 18H.4
+net NTEST: 18H.5
+net 18H_6: 18H.6 13H.4
+net NREQ~: 13G.1
+net LGRANT2: 13G.2   # pin number not legible; the 7432 gate 1-2-3
+net 13G_3: 13G.3 13H.5 C29.1
+net LDOB~: 13H.6
+
+# interrupt enable and ready-for-transfer
+net DIN01: 2D.2 3D.18
+net LOCW: 2D.3 2D.11 1C.5
+net ENI: 2D.5
+net ENI~: 2D.6 2H.2
+net RFT~: 2H.3 2D.9
+net INT11: 2H.1
+net LIDENT: 14G.9
+net 14G_10: 14G.10 2D.1
+net R12_2: R12.2 2D.12
+net RFT: 2D.8
+net 8G_8: 8G.8 2D.13
+net FINISH~: 8G.9 8F.3 8F.11   # printed "(OUT57) FINISH~"
+
+# master clear one-shot
+net MCL: 3C.9
+net DIN04: 1C.4 3D.5
+net 1C_6: 1C.6 3C.10
+net 3C_8: 3C.8 2G.1
+net 2G_14: 2G.14 C8.1
+net 2G_15: 2G.15 C8.2 R11.2
+net MC~: 2G.4 8G.10
+net MC: 2G.13 14G.8
+
+# error flags
+net DMARES: 10D.10
+net ERROR: 10D.9
+net 10D_8: 10D.8 8F.4
+net MBD00: 8F.2
+net MBD01: 8F.12
+net TRERR: 8F.5
+net HARDERR: 8F.9
+net LADL~: 8G.4
+net LOCW~: 8G.5
+net CLERR~: 8G.6 8F.1 8F.13
+
+# supplies
+net +5V: 2D.4 2D.10 8F.10 2G.2 2G.3 R11.1 R12.1 RN10.1 RN11.1 RN12.1
+net GND: C7.2 C28.2 C29.2 3D.1 3D.19 4C.1 4C.19 RN13.1 RN14.1 RN15.1
+
+# drivers onto the bus, enabled by TRANS~
+net TRANS~: 3A.1 3A.19 6C.1 6C.19 7C.1 7C.19
+net DOUT00: 3A.11 RN10.10 RN13.10
+net DOUT01: 3A.2 RN10.3 RN13.3
+net DOUT02: 3A.13 RN10.8 RN13.8
+net DOUT03: 3A.6 RN10.7 RN13.7
+net DOUT04: 3A.15 RN10.6 RN13.6
+net DOUT05: 3A.8 RN10.9 RN13.9
+net DOUT06: 3A.17 RN10.4 RN13.4
+net DOUT07: 3A.4 RN10.5 RN13.5
+net DOUT08: 6C.4 RN11.5 RN14.5
+net DOUT09: 6C.2 RN11.3 RN14.3
+net DOUT10: 6C.17 RN11.4 RN14.4
+net DOUT11: 6C.15 RN11.6 RN14.6
+net DOUT12: 6C.13 RN11.8 RN14.8
+net DOUT13: 6C.8 RN11.9 RN14.9
+net DOUT14: 6C.11 RN11.10 RN14.10
+net DOUT15: 6C.6 RN11.7 RN14.7
+net DOUT16: 7C.17 RN12.4 RN15.4
+net DOUT17: 7C.15 RN12.6 RN15.6
+net DOUT18: 7C.13 RN12.8 RN15.8
+net DOUT19: 7C.11 RN12.10 RN15.10
+net DOUT20: 7C.8 RN12.9 RN15.9
+net DOUT21: 7C.6 RN12.7 RN15.7
+net DOUT22: 7C.4 RN12.5 RN15.5
+net DOUT23: 7C.2 RN12.3 RN15.3
+net BD~00: 3A.9 3D.11
+net BD~01: 3A.18 3D.2
+net BD~02: 3A.7 3D.13
+net BD~03: 3A.14 3D.6
+net BD~04: 3A.5 3D.15
+net BD~05: 3A.12 3D.8
+net BD~06: 3A.3 3D.17
+net BD~07: 3A.16 3D.4
+net BD~08: 6C.16 4C.4
+net BD~09: 6C.18 4C.2
+net BD~10: 6C.3 4C.17
+net BD~11: 6C.5 4C.15
+net BD~12: 6C.7 4C.13
+net BD~13: 6C.12 4C.8
+net BD~14: 6C.9 4C.11
+net BD~15: 6C.14 4C.6
+net BD~16: 7C.3
+net BD~17: 7C.5
+net BD~18: 7C.7
+net BD~19: 7C.9
+net BD~20: 7C.12
+net BD~21: 7C.14
+net BD~22: 7C.16
+net BD~23: 7C.18
+# receivers from the bus, always on
+net DIN00: 3D.9
+net DIN02: 3D.7
+net DIN03: 3D.14
+net DIN05: 3D.12
+net DIN06: 3D.3
+net DIN07: 3D.16
+net DIN08: 4C.16
+net DIN09: 4C.18
+net DIN10: 4C.3
+net DIN11: 4C.5
+net DIN12: 4C.7
+net DIN13: 4C.12
+net DIN14: 4C.9
+net DIN15: 4C.14
+
+note RN10-RN15: pin 2 of each 10-pin pack is not drawn. RN10-12 (3.3 kohm) common pin 1 to +5 V, RN13-15 (4.7 kohm) common pin 1 to GND: every DOUT line has both, a divider.
+note 25H half 1 (pins 1-7) is drawn with stub lines only: unused.
+note 2D.9 is printed "9RFT~" at Q and 2D.8 "8 RFT" at Q-bar: the flip-flop's Q is RFT~.

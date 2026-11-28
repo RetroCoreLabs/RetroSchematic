@@ -1,0 +1,1089 @@
+{
+  "catalogFormat": "nd-connector",
+  "catalogFormatVersion": 1,
+  "id": "nd100-3207-sing-diff-socket",
+  "machine": "ND-100 (card 3207 SCSI/floppy controller)",
+  "title": "Card 3207 SCSI/floppy controller, socket 18A: SCSI single/differential adapter",
+  "usedBy": [
+    {
+      "card": "3207",
+      "partNumber": "350007",
+      "print": "A1",
+      "note": "the drawing this file was read from"
+    }
+  ],
+  "sources": [
+    {
+      "id": "SCH",
+      "document": "ND-350007-A1-EN Schematic Circuit Diagrams (card 3207, print 3207 A1, 24 sheets, drawn 90.07.09); scan kept outside this repository",
+      "note": "Sheet 18 (SING_DIFF_SW) draws the socket as one box SING_DIFF_SW_P with boxed pin codes A1-M12."
+    },
+    {
+      "id": "WEB",
+      "document": "norsk-data.com/hardware/nd-other/nd-350217.html",
+      "note": "350217 - PCB 1887 - SCSI Single/Differential adapter, print A2, 25 x 33 mm, no chips; used on 350004, 350005, 350006, 350007."
+    },
+    {
+      "id": "PHOTO",
+      "document": "sheets/nd-100/3207-scsi-floppy-files/photos/350007-component-side-A.jpg",
+      "note": "The adapter board, marked 1887A2, sits in the socket; the board print says SING above and DIFF below."
+    }
+  ],
+  "pinNumbering": {
+    "value": "rows a-h and j-m (no i), pins 1-12, as the boxed codes on sheet 18 (A1 = row a pin 1). Rows a-d carry the single-ended side, e-h the cable side (OSCSI, to plug B), j-m the differential side.",
+    "source": "SCH",
+    "page": "sheet 18",
+    "confidence": "read"
+  },
+  "note": "Which socket pins the adapter joins in each position (SING or DIFF) is not known: it needs the adapter's own wiring (PCB 1887) or a measurement.",
+  "pins": [
+    {
+      "row": "a",
+      "pin": 1,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 2,
+      "signal": "SDB~0",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 3,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 4,
+      "signal": "SDB~1",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 5,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 6,
+      "signal": "SDB~2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 7,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 8,
+      "signal": "SDB~3",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 9,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 10,
+      "signal": "SDB~4",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 11,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "a",
+      "pin": 12,
+      "signal": "SDB~5",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 1,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 2,
+      "signal": "SDB~6",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 3,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 4,
+      "signal": "SDB~7",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 5,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 6,
+      "signal": "SDBP~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 7,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 8,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 9,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 11,
+      "signal": "STERMPWR",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "b",
+      "pin": 12,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 1,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 2,
+      "signal": "SATN~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 3,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 4,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 5,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 6,
+      "signal": "SBSY~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 7,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 8,
+      "signal": "SACK~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 9,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 10,
+      "signal": "SRST~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 11,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "c",
+      "pin": 12,
+      "signal": "SMSG~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 1,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 2,
+      "signal": "SSEL~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 3,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 4,
+      "signal": "SC_D~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 5,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 6,
+      "signal": "SREQ~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 7,
+      "signal": "SI_O~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "d",
+      "pin": 8,
+      "signal": "PSING~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 1,
+      "signal": "OSHGND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 2,
+      "signal": "OGROUND2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 3,
+      "signal": "ODB0",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 4,
+      "signal": "ODB~0",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 5,
+      "signal": "ODB1",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 6,
+      "signal": "ODB~1",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 7,
+      "signal": "ODB2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 8,
+      "signal": "ODB~2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 9,
+      "signal": "ODB3",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 10,
+      "signal": "ODB~3",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 11,
+      "signal": "ODB4",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "e",
+      "pin": 12,
+      "signal": "ODB~4",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 1,
+      "signal": "ODB5",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 2,
+      "signal": "ODB~5",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 3,
+      "signal": "ODB6",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 4,
+      "signal": "ODB~6",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 5,
+      "signal": "ODB7",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 6,
+      "signal": "ODB~7",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 7,
+      "signal": "ODBP",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 8,
+      "signal": "ODBP~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 9,
+      "signal": "ODIFFS",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 10,
+      "signal": "OTERMPWR1",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 11,
+      "signal": "OTERMPWR2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "f",
+      "pin": 12,
+      "signal": "OATN",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 1,
+      "signal": "OATN~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 2,
+      "signal": "OGROUND32",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 3,
+      "signal": "OBSY",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 4,
+      "signal": "OBSY~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 5,
+      "signal": "OACK",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 6,
+      "signal": "OACK~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 7,
+      "signal": "ORST",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 8,
+      "signal": "ORST~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 9,
+      "signal": "OMSG",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 10,
+      "signal": "OMSG~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 11,
+      "signal": "OSEL",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "g",
+      "pin": 12,
+      "signal": "OSEL~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 1,
+      "signal": "OCD",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 2,
+      "signal": "OCD~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 3,
+      "signal": "OREQ",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 4,
+      "signal": "OREQ~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 5,
+      "signal": "OIO",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 6,
+      "signal": "OIO~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 7,
+      "signal": "OGROUND50",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "h",
+      "pin": 8,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 1,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 2,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 3,
+      "signal": "DDB0",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 4,
+      "signal": "DDB~0",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 5,
+      "signal": "DDB1",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 6,
+      "signal": "DDB~1",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 7,
+      "signal": "DDB2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 8,
+      "signal": "DDB~2",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 9,
+      "signal": "DDB3",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 10,
+      "signal": "DDB~3",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 11,
+      "signal": "DDB4",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "j",
+      "pin": 12,
+      "signal": "DDB~4",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 1,
+      "signal": "DDB5",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 2,
+      "signal": "DDB~5",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 3,
+      "signal": "DDB6",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 4,
+      "signal": "DDB~6",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 5,
+      "signal": "DDB7",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 6,
+      "signal": "DDB~7",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 7,
+      "signal": "DDBP",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 8,
+      "signal": "DDBP~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 9,
+      "signal": "DDIFFS",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 10,
+      "signal": "DTERMPWR",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 11,
+      "signal": "DTERMPWR",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "k",
+      "pin": 12,
+      "signal": "DATN",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 1,
+      "signal": "DATN~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 2,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 3,
+      "signal": "DBSY",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 4,
+      "signal": "DBSY~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 5,
+      "signal": "DACK",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 6,
+      "signal": "DACK~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 7,
+      "signal": "DRST",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 8,
+      "signal": "DRST~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 9,
+      "signal": "DMSG",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 10,
+      "signal": "DMSG~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 11,
+      "signal": "DSEL",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "l",
+      "pin": 12,
+      "signal": "DSEL~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 1,
+      "signal": "DCD",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 2,
+      "signal": "DCD~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 3,
+      "signal": "DREQ",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 4,
+      "signal": "DREQ~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 5,
+      "signal": "DIO",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 6,
+      "signal": "DIO~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 7,
+      "signal": "GND",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    },
+    {
+      "row": "m",
+      "pin": 8,
+      "signal": "PDIFF~",
+      "source": "SCH",
+      "page": "sheet 18",
+      "confidence": "read"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+# Card 3207, sheet 10 of 24: FLOPPY / LO_FLOPPY 1 ("LOGIC FLOPPY")
+# Read 2026-11-28 from the PDF at 330 and 450 dpi in tiles, four crossing areas at 600-800 dpi.
+block LO_FLOPPY
+page 10
+
+part 31G 74LS273 557 543 100 311
+part 32G 74LS273 557 950 100 310
+part 32F 74LS244 1159 542 125 310
+part 33G AD558 1577 444 125 393
+part 34D 74LS393 1158 1020 99 142
+part 27F 74LS139 1018 1710 113 257
+part 27D 74LS157 1506 1626 98 295
+part FD1797 FD1797_02 1968 1442 180 846
+part 28F 74LS221 267 1629 83 126
+part 32E ICL7660 711 2023 128 197
+part 32D 74LS244
+part 29G 74LS32
+part 31F 74LS32
+part 34A 7438
+part 32A 7438
+part 33A 7438
+part 30A 7438
+part 31A 7438
+part 38G 74LS04
+part 31C 74LS14
+part 16H 74S04
+part 23H 74LS51
+part R18 150OHM
+part R19 150OHM
+part R80 1KOHM
+part R20 1.5KOHM
+part R21 1.5KOHM
+part R24 150OHM
+part R25 470OHM
+part R26 470OHM
+part R22 10KOHM
+part R23 10KOHM
+part R15 27KOHM
+part R16 270OHM
+part R17 8.2KOHM
+part RN16 4606X_101_151
+part C10 2.2UF
+part C11 10UF
+part C12 10NF
+part C13 10NF
+part C14 10UF
+part C15 10UF
+part C16 2.2UF
+part D1 5.6V_ZENER
+
+gate 29G/8 or 9,10>8
+gate 34A/6 nand 5,4>6
+gate 34A/3 nand 2,1>3
+gate 32A/11 nand 13,12>11
+gate 34A/11 nand 12,13>11
+gate 32A/3 nand 1,2>3
+gate 32A/6 nand 4,5>6
+gate 32A/8 nand 9,10>8
+gate 38G/10 not 11>10
+gate 31C/4 not 3>4
+gate 31C/2 not 1>2
+gate 33A/11 nand 12,13>11
+gate 33A/6 nand 4,5>6
+gate 33A/8 nand 9,10>8
+gate 30A/6 nand 4,5>6
+gate 30A/3 nand 1,2>3
+gate 33A/3 nand 1,2>3
+gate 31A/8 nand 9,10>8
+gate 31A/3 nand 1,2>3
+gate 31A/6 nand 4,5>6
+gate 31A/11 nand 12,13>11
+gate 16H/2 not 1>2
+gate 31F/3 or 1,2>3
+gate 31F/11 or 13,12>11
+
+# drive select / control register written by the Z80 (OUT74 = ENDSR~)
+net ENDSR~: 29G.9 27F.7
+net IOWR~: 29G.10 33G.10 31F.12 FD1797.2
+net 29G_8: 29G.8 31G.11
+net MC~: 31G.1 32G.1
+net MBD00: 31G.7 32G.3 32F.14 33G.1
+net MBD01: 31G.8 32G.18 32F.9 33G.2
+net MBD02: 31G.13 32G.4 32F.7 33G.3
+net MBD03: 31G.14 32G.17 32F.5 33G.4
+net MBD04: 31G.17 32G.8 32F.3 33G.5
+net MBD05: 31G.3 32G.13 32F.18 33G.6
+net MBD06: 31G.18 32G.14 32F.12 33G.7
+net MBD07: 31G.4 32G.7 32F.16 33G.8
+net COEN: 31G.2
+net INUSE: 31G.5 34A.5 33A.4 33A.5
+net DS00: 31G.6 32A.1 32A.2
+net DS01: 31G.9 32A.4 32A.5
+net DS02: 31G.12 32A.9 32A.10
+net DS03: 31G.15 34A.1 32A.12
+net DDEN~: 31G.16 FD1797.37
+net SVCOU: 31G.19 34D.12
+# second register (FMOD2~)
+net FMOD2~: 32G.11 31F.11
+net EN5CLK: 32G.2 16H.1 23H.4
+net MOTORON: 32G.5 34A.13
+net T6X: 32G.6
+net PAM0: 32G.9
+net PAM1: 32G.12
+net ENPRE: 32G.15 33A.13
+net F5OPT: 32G.16 30A.4
+net EN5IF: 32G.19 34A.4 34A.2 34A.12 38G.11 32D.1 30A.5 30A.2
+net EN5IF~: 38G.10 32A.13 32D.19 33A.10
+
+# floppy status read by the Z80 (FLSTS~, printed "(IN77)")
+net FLSTS~: 31F.3 32F.1 32F.19
+net R80_2: R80.2 32F.4
+net 8REA5DS3~: 34A.3 32F.6 32D.4 R26.1
+net FTWOS~: 32F.11 R19.2
+net FDISKCH~: 32F.13 R18.2
+net TROO~: 32F.15 32D.14 32D.7 FD1797.34
+net F5READY~: 32F.17 32D.17 RN16.5
+
+# disc speed DAC (ENADC~, printed "(OUT76)")
+net ENADC~: 27F.10 33G.9
+net 12V: 33G.11 C16.2 R16.2 FD1797.40
+net 33G_16: 33G.16 33G.15 R20.1
+net RNG: R20.2 R21.2
+
+# clock divider
+net VCO: 34D.13
+net PF1MHZ: 34D.10
+net PF0.5MHZ: 34D.9
+net PF250KHZ: 34D.8
+
+# drive signals out (7438 open collector)
+net 8IND5INU~: 34A.6 R25.2 32D.2
+net 8DS35MOT~: 32A.11 34A.11
+net DS~00: 32A.3
+net DS~01: 32A.6
+net DS~02: 32A.8
+net CURRSW~: 33A.11
+net PRENOW: 33A.12
+net INUSE~: 33A.6
+net 8HLD5OPT~: 33A.8 30A.6
+net F5SSEL~: 30A.3
+net F8SSEL~: 33A.3
+net WDAT: 31A.9 31A.10
+net WDAT~: 31A.8
+net DIR: 31A.1 31A.2 FD1797.16
+net DIR~: 31A.3
+net STEP: 31A.4 31A.5 FD1797.15
+net STEP~: 31A.6
+net WG: 31A.12 FD1797.30
+net FWINH~: 31A.13
+net WG~: 31A.11
+
+# drive signals in: 8 inch (1A) or 5.25 inch (2A) chosen by EN5IF
+net FTROO~: 32D.6 32D.13 RN16.4
+net FWPRT~: 32D.8 32D.11 RN16.2
+net F5INDEX~: 32D.15 RN16.3
+net IP~: 32D.18 32D.5 FD1797.35
+net WPRT~: 32D.12 32D.9 FD1797.36
+net 32D_3: 32D.16 32D.3 31C.3
+net READY: 31C.4 FD1797.32
+net XRD~: R24.1 31C.1
+net FID: 31C.2
+
+# FD1797 floppy controller chip
+net D00: FD1797.7
+net D01: FD1797.8
+net D02: FD1797.9
+net D03: FD1797.10
+net D04: FD1797.11
+net D05: FD1797.12
+net D06: FD1797.13
+net D07: FD1797.14
+net RDAT~: FD1797.27
+net RCLK: FD1797.26
+net RA0: 27D.4 FD1797.5
+net RA1: 27D.7 FD1797.6
+net FLOCE~: 27D.12 FD1797.3
+net IORD~: 31F.2 FD1797.4
+net FLRESET~: 28F.12 FD1797.19
+net FCLK: 23H.6 FD1797.24
+net FLORQ: FD1797.38 R22.1
+net FLOINT: FD1797.39 R23.1
+net VFOE~: FD1797.33
+net TG43: FD1797.29
+net SSEL: FD1797.25 30A.1 33A.1 33A.2
+net LATE: FD1797.18
+net EARLY: FD1797.17
+net WD: FD1797.31
+net HLD: FD1797.28 33A.9 28F.2
+net HLT: FD1797.23 28F.4
+
+# floppy clock: 2 MHz or 1 MHz picked by EN5CLK
+net 2MHZ~: 23H.2
+net 16H_2: 16H.2 23H.3
+net 1MHZ~: 23H.5
+
+# register address decode (FLOEN~)
+net BA02: 27F.2
+net BA03: 27F.3
+net FLOEN~: 27F.1
+net FRG0~: 27F.4 27D.13
+net FRG1~: 27F.5 27F.15
+net BA00: 27F.14 27D.3
+net BA01: 27F.13 27D.6
+net FLCLR~: 27F.11 28F.10
+net 27F_9: 27F.9 31F.1 31F.13
+net H4: 27D.2 27D.5
+net MDIS: 27D.9
+net FLOACK~: 27D.1
+
+# head load timer and reset one-shot (74LS221), supply for the FD1797
+net 28F_15: 28F.15 C10.2 R15.2
+net 28F_14: 28F.14 C10.1
+net AVC: R16.1 D1.1 C11.1 C12.1 32E.8
+net 32E_2: 32E.2 C14.1
+net 32E_4: 32E.4 C14.2
+net AVC~: 32E.5 C15.1
+net 28F_6: 28F.6 C13.1
+net 28F_7: 28F.7 C13.2 R17.2
+net MC: 28F.9
+net FLRESET: 28F.5
+
+net +5V: R18.1 R19.1 R80.1 R24.2 R22.2 R23.2 R25.1 R26.2 RN16.1 R15.1 R17.1 28F.3 28F.11
+net GND: 33G.14 33G.13 33G.12 R21.1 C16.1 27D.10 27D.14 27D.15 28F.1 D1.2 C11.2 C12.2 32E.3 C15.2
+
+note 32F pins 2 and 8 (1A1, 1A4) are drawn as short stubs: no wire seen, so they are not in a net.
+note 27F pin 12 (2Y0) is drawn in a closed box under pin 7's wire (ENDSR~); 27D pin 11 (3A) the same under pin 6's wire (BA01). Read literally both would be tied to the wire above, which joins two totem-pole outputs at 27F. OPEN: left out of the nets.
+note 33A pins 1 and 2 are both on the SSEL wire (checked at 700 dpi), so F8SSEL~ = NOT SSEL with no EN5IF term; 30A gives F5SSEL~ = NAND(SSEL, EN5IF).
+note 28F pin 13 (Q of the first one-shot) runs into the AVC flag symbol; whether it joins the AVC supply node is OPEN, left out.
+note FD1797 pins 1, 20, 21 (NC, VSS, VCC) and 22 (TEST~, drawn as a stub) are not drawn connected; 28F half 2 Q (pin 5) is printed "FLRESET" in quotes and ends at a dot with no other pin.
+note RN16 is a 4606X_101_151 pack (150 ohm); pins 2-5 are pull-ups on FWPRT~, F5INDEX~, FTROO~, F5READY~; pin 1 common to +5 V (drawn as a bar).
+note The board positions of the 4606X pack printed beside pins 1-3 (top of the sheet, "4606X_101_151") have no reference; the RN16 label is the nearer one. OPEN which label belongs to which pack.
+note 32E ICL7660 makes AVC~ (negative) from AVC, which is 12 V through R16 held at 5.6 V by D1.
+open 27F.12 27D.11 28F.13
+note F5SSEL~ (5.25 inch side select) is printed so on sheet 5; on this sheet the S looks like a 6.
