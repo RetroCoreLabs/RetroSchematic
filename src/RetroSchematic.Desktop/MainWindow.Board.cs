@@ -14,6 +14,7 @@ using Avalonia.Layout;
 using Avalonia.Platform.Storage;
 using RetroSchematic.Model;
 using RetroSchematic.Render;
+using RetroSchematic.Desktop.Themes;
 
 namespace RetroSchematic.Desktop
 {
@@ -191,6 +192,49 @@ namespace RetroSchematic.Desktop
         }
 
         private void OnBusUse(object? sender, RoutedEventArgs e) => OpenBusUseWindow();
+
+        /// <summary>
+        /// Opens the Card library window: every card file under the library folder, by family.
+        /// </summary>
+        /// <returns>
+        /// The window.
+        /// </returns>
+        public CardLibraryWindow OpenCardLibrary()
+        {
+            CardLibraryWindow w = new(this);
+            w.Show(this);
+            return w;
+        }
+
+        private void OnCardLibrary(object? sender, RoutedEventArgs e) => OpenCardLibrary();
+
+        /// <summary>
+        /// Fills File, Recent sheets from the settings: one item per file, newest first. A file
+        /// that is no longer on the disk is shown greyed out with "(missing)".
+        /// </summary>
+        public void FillRecent()
+        {
+            MenuItem? recent = this.FindControl<MenuItem>("RecentItem");
+            if (recent == null)
+                return;
+            recent.Items.Clear();
+            System.Collections.Generic.List<string> list = UiSettings.Instance.RecentSheets;
+            for (int i = 0; i < list.Count; i++)
+            {
+                string path = list[i];
+                bool there = File.Exists(path);
+                // the underscore would be read as an access key: double it
+                MenuItem item = new() { Header = (i + 1) + "  " + path.Replace("_", "__") + (there ? "" : "  (missing)"), IsEnabled = there };
+                item.Click += (s, a) => OpenSheet(path);
+                recent.Items.Add(item);
+            }
+            recent.IsEnabled = list.Count > 0;
+        }
+
+        /// <summary>
+        /// The recent-sheets menu, for tests.
+        /// </summary>
+        public MenuItem RecentMenu => this.FindControl<MenuItem>("RecentItem")!;
 
         /// <summary>
         /// Shows one chip of a bus signal: opens its card when another one is open, goes from the

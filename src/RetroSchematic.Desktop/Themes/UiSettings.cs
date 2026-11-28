@@ -125,6 +125,36 @@ namespace RetroSchematic.Desktop.Themes
         public string? LastSheet { get; set; }
 
         /// <summary>
+        /// The sheets opened most recently, newest first, at most <see cref="RecentMax"/>.
+        /// </summary>
+        public System.Collections.Generic.List<string> RecentSheets { get; set; } = new();
+
+        /// <summary>
+        /// How many sheets the recent list keeps.
+        /// </summary>
+        public const int RecentMax = 10;
+
+        /// <summary>
+        /// Puts a sheet first in the recent list (moved up when it is already there; the oldest
+        /// falls off past <see cref="RecentMax"/>). Paths are compared without case, as Windows does.
+        /// </summary>
+        /// <param name="path">
+        /// The sheet file.
+        /// </param>
+        public void AddRecent(string path)
+        {
+            string full = Path.GetFullPath(path);
+            for (int i = RecentSheets.Count - 1; i >= 0; i--)
+            {
+                if (string.Equals(RecentSheets[i], full, StringComparison.OrdinalIgnoreCase))
+                    RecentSheets.RemoveAt(i);
+            }
+            RecentSheets.Insert(0, full);
+            if (RecentSheets.Count > RecentMax)
+                RecentSheets.RemoveRange(RecentMax, RecentSheets.Count - RecentMax);
+        }
+
+        /// <summary>
         /// Why the settings file could not be read, or null. The program still starts with the
         /// defaults, and the main window shows this text in its status bar, so a broken settings
         /// file is seen instead of silently ignored.

@@ -45,6 +45,7 @@ namespace RetroSchematic.Desktop
         public MainWindow()
         {
             InitializeComponent();
+            FillRecent();
             BuildThemeMenu();
             ShowStyleTicks(UiSettings.Instance.NdSymbols ? SymbolStyle.NorskData : SymbolStyle.Modern);
             Canvas.ToolMessage += OnToolMessage;
@@ -80,6 +81,8 @@ namespace RetroSchematic.Desktop
             StatusText.Text = path + "  -  " + _session!.Netlist.Parts.Count + " parts, " + _session.Netlist.Gates.Count + " gates, "
                 + _session.Netlist.Nets.Count + " signals" + (_session.BusWarning == null ? "" : ".  " + _session.BusWarning);
             UiSettings.Instance.LastSheet = path;
+            UiSettings.Instance.AddRecent(path);
+            FillRecent();
             string? problem = UiSettings.Instance.Save();
             if (problem != null)
                 StatusText.Text = problem;

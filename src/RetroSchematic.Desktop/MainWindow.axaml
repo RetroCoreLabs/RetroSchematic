@@ -17,6 +17,9 @@
           <MenuItem Header="Bus not known yet" Click="OnNew" HotKey="Ctrl+N" InputGesture="Ctrl+N"/>
         </MenuItem>
         <MenuItem Header="_Open sheet..." Click="OnOpen" HotKey="Ctrl+O" InputGesture="Ctrl+O"/>
+        <MenuItem Header="_Recent sheets" x:Name="RecentItem"/>
+        <MenuItem Header="Card _library..." Click="OnCardLibrary" x:Name="CardLibraryItem"
+                  ToolTip.Tip="Every card in the library, by machine family (NORD-10, ND-100, ...), read from the sheet files"/>
         <MenuItem Header="Open the _demo sheet" Click="OnOpenDemo" x:Name="OpenDemoItem"/>
         <Separator/>
         <MenuItem Header="_Save sheet" Click="OnSave" x:Name="SaveItem" IsEnabled="False" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
