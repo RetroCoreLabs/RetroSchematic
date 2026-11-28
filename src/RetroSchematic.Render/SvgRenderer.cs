@@ -230,16 +230,39 @@ namespace RetroSchematic.Render
         /// </returns>
         public static BoardPosition Parse(string text)
         {
+            if (!TryParse(text, out BoardPosition p))
+                throw new FormatException($"\"{text}\" is not a board position (column number then row letter).");
+            return p;
+        }
+
+        /// <summary>
+        /// Reads a board position like <see cref="Parse"/>, but answers false for a reference that
+        /// is not one: ND also names parts that have no grid position in their name (LD3, OSC1,
+        /// TH1 on card 3207).
+        /// </summary>
+        /// <param name="text">
+        /// The reference.
+        /// </param>
+        /// <param name="position">
+        /// The position, when it is one.
+        /// </param>
+        /// <returns>
+        /// True when the reference is a board position.
+        /// </returns>
+        public static bool TryParse(string text, out BoardPosition position)
+        {
+            position = default;
             int i = 0;
-            int c1 = ReadNumber(text, ref i);
+            if (!ReadNumber(text, ref i, out int c1))
+                return false;
             int c2 = c1;
             if (i < text.Length && text[i] == '-' && i + 1 < text.Length && char.IsDigit(text[i + 1]))
             {
                 i++;
-                c2 = ReadNumber(text, ref i);
+                ReadNumber(text, ref i, out c2);
             }
             if (i >= text.Length || !char.IsAsciiLetterUpper(text[i]))
-                throw new FormatException($"\"{text}\" is not a board position (column number then row letter).");
+                return false;
             int r1 = text[i++] - 'A';
             int r2 = r1;
             if (i + 1 < text.Length && text[i] == '-' && char.IsAsciiLetterUpper(text[i + 1]))
@@ -248,18 +271,21 @@ namespace RetroSchematic.Render
                 i += 2;
             }
             if (i != text.Length || c1 < 1 || c2 < c1 || r2 < r1)
-                throw new FormatException($"\"{text}\" is not a board position (column number then row letter).");
-            return new BoardPosition(c1, c2, r1, r2);
+                return false;
+            position = new BoardPosition(c1, c2, r1, r2);
+            return true;
         }
 
-        private static int ReadNumber(string text, ref int i)
+        private static bool ReadNumber(string text, ref int i, out int value)
         {
             int start = i;
             while (i < text.Length && char.IsDigit(text[i]))
                 i++;
+            value = 0;
             if (i == start)
-                throw new FormatException($"\"{text}\" is not a board position (column number then row letter).");
-            return int.Parse(text.AsSpan(start, i - start), CultureInfo.InvariantCulture);
+                return false;
+            value = int.Parse(text.AsSpan(start, i - start), CultureInfo.InvariantCulture);
+            return true;
         }
     }
 }

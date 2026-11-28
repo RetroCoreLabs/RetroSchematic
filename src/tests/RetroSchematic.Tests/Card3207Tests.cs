@@ -7,6 +7,7 @@
 using System.IO;
 using NUnit.Framework;
 using RetroSchematic.Model;
+using RetroSchematic.Render;
 
 namespace RetroSchematic.Tests
 {
@@ -25,6 +26,36 @@ namespace RetroSchematic.Tests
             BlockDefinition? b = Hierarchy.FindBlock(n, name);
             Assert.That(b, Is.Not.Null, name);
             return b!;
+        }
+
+        // every block of the card, reached the way the window reaches it: open the instance boxes
+        // level by level from the top (BLOCKLEV -> SCSI/FLOPPY -> the blocks read from sheets 5-24)
+        [TestCase("SCSI", "S_ND_INT", "13A", 91)]
+        [TestCase("SCSI", "S_INTERF", "23C", 27)]
+        [TestCase("SCSI", "DIFF_SCSI", "18C", 32)]
+        [TestCase("FLOPPY", "F_ND_INT", null, 88)]
+        [TestCase("FLOPPY", "LO_FLOPPY", null, 93)]
+        [TestCase("FLOPPY", "Z80_COMP", null, 64)]
+        public void EveryBlock_OpensInTheWindow_AndDrawsItsParts(string half, string block, string? chip, int parts)
+        {
+            SheetSession s = new(Sheet3207, SymbolStyle.NorskData, ChipCatalog.Find(Sheet3207));
+            s.OpenInstance("BLOCKLEV");
+            s.OpenInstance(half);
+            s.OpenInstance(block);
+            Assert.That(s.LevelNames().Count, Is.EqualTo(4));
+            Assert.That(s.Drawing.Frames.Count, Is.GreaterThanOrEqualTo(parts), "every part of the block gets a frame");
+            if (chip != null)
+                Assert.That(s.Drawing.Frames.ContainsKey(chip), Is.True, chip);
+        }
+
+        [Test]
+        public void TheAdapterSocket_IsABoardConnector()
+        {
+            SheetSession s = new(Sheet3207, SymbolStyle.NorskData, ChipCatalog.Find(Sheet3207));
+            s.OpenInstance("BLOCKLEV");
+            s.OpenInstance("SCSI");
+            s.OpenInstance("SING_DIFF_SW");
+            Assert.That(s.LevelNames().Count, Is.EqualTo(4));
         }
 
         [Test]

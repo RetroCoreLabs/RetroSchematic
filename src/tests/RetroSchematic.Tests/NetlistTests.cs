@@ -124,6 +124,18 @@ namespace RetroSchematic.Tests
         public void BoardPosition_RejectsOtherText(string text)
         {
             Assert.Throws<FormatException>(() => BoardPosition.Parse(text));
+            Assert.That(BoardPosition.TryParse(text, out _), Is.False);
+        }
+
+        // card 3207 names some parts with no grid position in the name: they are not positions
+        [TestCase("LD3", false)]
+        [TestCase("OSC1", false)]
+        [TestCase("16G2", false)]
+        [TestCase("13A", true)]
+        [TestCase("7-8C-D", true)]
+        public void BoardPosition_TryParse_TellsANameFromAPosition(string text, bool position)
+        {
+            Assert.That(BoardPosition.TryParse(text, out _), Is.EqualTo(position));
         }
 
         [Test]

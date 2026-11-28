@@ -616,12 +616,13 @@ namespace RetroSchematic.Render
                 byHand[i] = HandPosition(netlist, plans[i], out _, out _);
                 if (byHand[i])
                     continue;
-                if (PassiveParts.IsPassive(plans[i].Part.Type))
+                // a passive part, or any part whose name is not a board position (an LED LD3, an
+                // oscillator OSC1), goes beside the chip it is wired to
+                if (PassiveParts.IsPassive(plans[i].Part.Type) || !BoardPosition.TryParse(plans[i].Part.Ref, out pos[i]))
                 {
                     nearChip[i] = true;
                     continue;
                 }
-                pos[i] = BoardPosition.Parse(plans[i].Part.Ref);
                 columns = Math.Max(columns, pos[i].LastColumn);
                 rows = Math.Max(rows, pos[i].LastRow + 1);
             }
