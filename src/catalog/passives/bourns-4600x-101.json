@@ -1,0 +1,20 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "bourns-4600x-101",
+  "title": "Resistor network, Bourns 4600X SIP, bussed (101 circuit)",
+  "type": "46nnX-101-vvv",
+  "readingTypes": "46nnX_101_vvv: nn the pin count, vvv the resistance code (151 = 150 ohm, 272 = 2.7 kohm)",
+  "pinRule": "pin 1 is the common bus; resistor k runs from pin 1 to pin k+1, so a 4606X has 6 pins and 5 resistors",
+  "pinNumberingConfidence": "read",
+  "values": "resistance code: first two digits significant, third the number of zeros (151 = 150 ohm)",
+  "datasheet": "Bourns 4600X datasheet, page 2, Bussed Resistors (101 Circuit)",
+  "sources": [
+    {
+      "document": "Bourns 4600X Series Thick Film Conformal SIPs, REV. 10/1/20",
+      "url": "https://www.bourns.com/docs/Product-Datasheets/4600x.pdf",
+      "pages": "1-2"
+    }
+  ],
+  "note": "Datasheet: 3 to 13 resistors of equal value, each between the common bus (pin 1) and a separate pin; 4 to 14 pins; 0.20 W per resistor at 70 C."
+}

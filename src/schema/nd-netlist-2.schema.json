@@ -878,6 +878,10 @@
             "type": "string",
             "description": "For an open-collector line: the pull-up resistor as written on the drawing (e.g. '1k to +5V'), or 'open' if not read."
           },
+          "supply": {
+            "description": "True when the signal is a supply on this card that is not a fixed supply name (AVC on card 3207). Optional; added 2026-11-28.",
+            "type": "boolean"
+          },
           "driveConfidence": {
             "$ref": "#/$defs/confidence"
           },

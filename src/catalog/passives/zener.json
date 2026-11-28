@@ -1,0 +1,24 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "zener",
+  "title": "Zener diode",
+  "type": "ZENER",
+  "readingTypes": "the voltage as printed: 5.6V_ZENER",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "text": "anode"
+    },
+    {
+      "pin": 2,
+      "name": "K",
+      "text": "cathode"
+    }
+  ],
+  "pinNumberingConfidence": "inferred",
+  "values": "zener voltage",
+  "datasheet": "none found: the drawing gives only the voltage, no type number",
+  "note": "Pin 1 anode, pin 2 cathode, the same convention as diode.json. A zener that holds a supply has its cathode on the supply."
+}

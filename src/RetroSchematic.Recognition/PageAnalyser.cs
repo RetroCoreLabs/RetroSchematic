@@ -1309,27 +1309,41 @@ public sealed class PageAnalyser : IDisposable
                 return c != 0 ? c : a.CompareTo(b);
             });
             HashSet<string> ids = chipIds as HashSet<string> ?? new HashSet<string>(chipIds, StringComparer.Ordinal);
-            for (int n = 0; n < idx.Length; n++)
+            // two passes: first only words of 3 or more characters, then the shorter ones. A pin
+            // number is never more than 2 digits, and ND writes pin numbers in cells inside the
+            // chip box, so a short word low in the box can be a pin number: on the 2A50 page, pin
+            // "11" of 15B lies below the printed "74157" (read "157") and was taken as a 7411 once
+            // a 7411 chip file existed (BUGS.md B6). A 2-digit type (read "00" for 7400) is still
+            // found in the second pass when no longer word names a chip.
+            for (int pass = 0; pass < 2; pass++)
             {
-                string t = arr[idx[n]].Text;
-                string?[] cands =
+                for (int n = 0; n < idx.Length; n++)
                 {
-                    t,
-                    t.Length >= 2 && (t.StartsWith("DM", StringComparison.Ordinal) || t.StartsWith("DH", StringComparison.Ordinal) || t.StartsWith("SN", StringComparison.Ordinal) || t.StartsWith("0M", StringComparison.Ordinal)) ? t.Substring(2) : null,
-                    t.Length >= 2 && t.Length <= 3 && IsDigits(t) ? "74" + t : null,
-                };
-                for (int c = 0; c < cands.Length; c++)
-                {
-                    string? cand = cands[c];
-                    if (string.IsNullOrEmpty(cand))
+                    string t = arr[idx[n]].Text;
+                    if ((pass == 0) != (t.Length >= 3))
                     {
                         continue;
                     }
 
-                    string s = Snap(cand, ids);
-                    if (ids.Contains(s))
+                    string?[] cands =
                     {
-                        return (t, s);
+                    t,
+                    t.Length >= 2 && (t.StartsWith("DM", StringComparison.Ordinal) || t.StartsWith("DH", StringComparison.Ordinal) || t.StartsWith("SN", StringComparison.Ordinal) || t.StartsWith("0M", StringComparison.Ordinal)) ? t.Substring(2) : null,
+                    t.Length >= 2 && t.Length <= 3 && IsDigits(t) ? "74" + t : null,
+                };
+                    for (int c = 0; c < cands.Length; c++)
+                    {
+                        string? cand = cands[c];
+                        if (string.IsNullOrEmpty(cand))
+                        {
+                            continue;
+                        }
+
+                        string s = Snap(cand, ids);
+                        if (ids.Contains(s))
+                        {
+                            return (t, s);
+                        }
                     }
                 }
             }

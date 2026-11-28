@@ -46,6 +46,65 @@ namespace RetroSchematic.Tests
         }
 
         [Test]
+        public void ReadingTypes_MapToTheirPassiveFile_AndPinCount()
+        {
+            // (reading type, catalogue file, pin count) as docs/FORMAT.md lists them
+            (string Type, string Id, int Pins)[] cases =
+            {
+                ("4.7KOHM", "resistor", 2),
+                (".2KOHM", "resistor", 2),
+                ("100PF", "capacitor", 2),
+                ("4606X_101_151", "bourns-4600x-101", 6),
+                ("4610X_101_33", "bourns-4600x-101", 10),
+                ("4608X_102_151", "bourns-4600x-102", 8),
+                ("4608X104_221/331", "bourns-4600x-104", 8),
+                ("4116R_001_102", "bourns-4100r-1", 16),
+                ("1N4148", "diode-1n4148", 2),
+                ("2N3906", "transistor-2n3906", 3),
+                ("STRAP", "strap", 2),
+                ("STR2", "strap", 2),
+                ("TESTPOINT", "test-point", 1),
+                ("YELLOW", "led", 2),
+                ("5.6V_ZENER", "zener", 2),
+                ("32MHZ", "oscillator", 0),
+            };
+            for (int i = 0; i < cases.Length; i++)
+            {
+                Assert.That(PassiveParts.ReadingPart(cases[i].Type, out string id, out int pins), Is.True, cases[i].Type);
+                Assert.That(id, Is.EqualTo(cases[i].Id), cases[i].Type);
+                Assert.That(pins, Is.EqualTo(cases[i].Pins), cases[i].Type);
+                Assert.That(File.Exists(Path.Combine(Catalog, "passives", id + ".json")), Is.True, id);
+                Assert.That(CardReadings.IsPassive(cases[i].Type), Is.True, cases[i].Type);
+            }
+        }
+
+        [Test]
+        public void ChipsAndUnknownTypes_AreNotReadingPassives()
+        {
+            string[] chips = { "74LS00", "Z80A_CPU", "2170576F", "1N3246", "4116R_002_102", "4608X_103_151", "KOHM", "" };
+            for (int i = 0; i < chips.Length; i++)
+            {
+                Assert.That(PassiveParts.ReadingPart(chips[i], out string id, out int pins), Is.False, chips[i]);
+                Assert.That(id, Is.Empty, chips[i]);
+                Assert.That(pins, Is.EqualTo(0), chips[i]);
+            }
+        }
+
+        [Test]
+        public void ReadingPassiveFiles_ForARealPart_NameTheirDatasheet()
+        {
+            string[] ids = { "bourns-4600x-101", "bourns-4600x-102", "bourns-4600x-104", "bourns-4100r-1", "diode-1n4148", "transistor-2n3906" };
+            for (int i = 0; i < ids.Length; i++)
+            {
+                string path = Path.Combine(Catalog, "passives", ids[i] + ".json");
+                using JsonDocument doc = JsonDocument.Parse(File.ReadAllText(path));
+                JsonElement sources = doc.RootElement.GetProperty("sources");
+                Assert.That(sources.GetArrayLength(), Is.GreaterThan(0), path);
+                Assert.That(sources[0].GetProperty("url").GetString(), Does.StartWith("https://"), path);
+            }
+        }
+
+        [Test]
         public void EveryKind_HasACatalogueFile_ThatAgreesWithThePins()
         {
             PassiveKind[] kinds =

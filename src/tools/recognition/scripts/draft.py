@@ -558,7 +558,8 @@ if os.environ.get("DET"):
         """Chip type: words inside the box (written low) or the word just above (CAD)."""
         x, y, w, h = sb
         ws_ = [wd for wd in words if inbox(cen(wd["box"]), sb, -2) or (x - 10 <= wd["box"][0] <= x + w and y - 45 <= cen(wd["box"])[1] < y)]
-        for wd in sorted(ws_, key=lambda wd: -wd["box"][1]):
+        # words of 3+ characters first: a pin number is never more than 2 digits (BUGS.md B6)
+        for wd in sorted(ws_, key=lambda wd: (len(wd["text"]) < 3, -wd["box"][1])):
             t = wd["text"]
             for cand in (t, t[2:] if t[:2] in ("DM", "DH", "SN", "0M") else None, "74" + t if 2 <= len(t) <= 3 and t.isdigit() else None):
                 if cand and snap(cand, chip_ids) in chip_ids:

@@ -120,6 +120,12 @@ namespace RetroSchematic.Model
 
         /// <summary>The connector lines: part to connector catalogue and use.</summary>
         public OrderedDictionary<string, ReadingConnector> Connectors { get; } = new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// The supply lines: signals that are a supply on this card (AVC on 3207, a local 5.6 V
+        /// made on the card), card wide, in addition to <see cref="CardReadings.Supply"/>.
+        /// </summary>
+        public HashSet<string> Supplies { get; } = new(StringComparer.Ordinal);
     }
 
     /// <summary>
@@ -200,6 +206,12 @@ namespace RetroSchematic.Model
 
         /// <summary>Chip types with no catalogue file (their pins were not checked), sorted.</summary>
         public List<string> Missing { get; } = new();
+
+        /// <summary>
+        /// Every supply name on this card: <see cref="CardReadings.Supply"/> and the supply lines
+        /// of every file (a supply is card wide, so a line on one sheet counts for all blocks).
+        /// </summary>
+        public HashSet<string> Supplies { get; } = new(CardReadings.Supply, StringComparer.Ordinal);
     }
 
     /// <summary>
@@ -215,7 +227,6 @@ namespace RetroSchematic.Model
         // the reading names that are a supply and so have no active level (5V as well)
         private static readonly HashSet<string> s_supplyNames = new(StringComparer.Ordinal) { "+5V", "GND", "12V", "+12V", "-12V", "5VSTBY", "5V" };
         private static readonly Regex s_fileName = new(@"^p\d+\.txt$", RegexOptions.CultureInvariant);
-        private static readonly Regex s_passive = new(@"^\d+(\.\d+)?(PF|NF|UF|KOHM|OHM|MOHM)$", RegexOptions.CultureInvariant);
         private static readonly Regex s_passiveR = new(@"^\d*\.?\d+[KM]?OHM$", RegexOptions.CultureInvariant);
         private static readonly Regex s_passiveC = new(@"^\d*\.?\d+(PF|NF|UF)$", RegexOptions.CultureInvariant);
         private static readonly Regex s_busPort = new(@"^BD~\d\d$", RegexOptions.CultureInvariant);
@@ -367,6 +378,11 @@ namespace RetroSchematic.Model
                         for (int i = 0; i < f.Length; i++)
                             r.Nc.Add(f[i]);
                         break;
+                    case "supply":
+                        // supply NAME [what it is]: the signal is a supply on this card
+                        Need(f, 1, where, word);
+                        r.Supplies.Add(f[0]);
+                        break;
                     case "note":
                         r.Notes.Add(rest);
                         break;
@@ -406,6 +422,8 @@ namespace RetroSchematic.Model
         {
             ReadingSet set = new();
             set.Files.AddRange(files);
+            for (int fi = 0; fi < files.Count; fi++)
+                set.Supplies.UnionWith(files[fi].Supplies);
             List<string> problems = set.Problems;
             for (int fi = 0; fi < files.Count; fi++)
             {
@@ -480,8 +498,18 @@ namespace RetroSchematic.Model
                             problems.Add(where + ": " + p + " is in net " + net.Key + " and in net " + other + " (" + ownerWhere[p] + ")");
                         if (b.Owner.TryAdd(p, net.Key))
                             ownerWhere[p] = where;
-                        if (IsPassive(ctype) || b.Connectors.ContainsKey(reference))
+                        if (b.Connectors.ContainsKey(reference))
                             continue;
+                        if (PassiveParts.ReadingPart(ctype, out string passiveId, out int passivePins))
+                        {
+                            // a passive part: its file in catalog/passives/ must exist, and when
+                            // the file knows the pin count the pin must be one of them
+                            if (catalog != null && !PassiveParts.HasPassiveFile(ctype, catalog.Folder))
+                                missing.Add(ctype);
+                            else if (passivePins > 0 && (!int.TryParse(num, NumberStyles.None, CultureInfo.InvariantCulture, out int pk) || pk < 1 || pk > passivePins))
+                                problems.Add(where + ": " + p + ": " + ctype + " (" + passiveId + ") has no pin " + num);
+                            continue;
+                        }
                         ChipInfo? chip = catalog?.Get(ctype);
                         if (chip == null)
                         {
@@ -496,7 +524,7 @@ namespace RetroSchematic.Model
                         string? role = RoleOf(chip, k);
                         if (role == null)
                             problems.Add(where + ": " + p + ": " + ctype + " (" + (chip.ReadFrom ?? ctype) + ") has no pin " + k.ToString(CultureInfo.InvariantCulture));
-                        else if ((role == "power" || role == "ground") && !Supply.Contains(net.Key))
+                        else if ((role == "power" || role == "ground") && !set.Supplies.Contains(net.Key))
                             problems.Add(where + ": " + p + " is a " + role + " pin of " + ctype + " but is in net " + net.Key);
                     }
                 }
@@ -546,7 +574,7 @@ namespace RetroSchematic.Model
                 for (int i = 0; i < pins.Count; i++)
                 {
                     string net = b.Owner[pins[i]];
-                    if (Supply.Contains(net))
+                    if (set.Supplies.Contains(net))
                         continue;
                     if (pinsUsed.TryGetValue(pins[i], out (string Block, string Net) used) && used.Block != b.Name)
                         problems.Add(ownerWhere[pins[i]] + ": pin " + pins[i] + " is used in block " + b.Name + " (net " + net + ") and in block " + used.Block + " (net " + used.Net + ")");
@@ -717,8 +745,12 @@ namespace RetroSchematic.Model
                     string name = b.Nets.GetAt(i).Key;
                     List<string> unique = b.PinsOf(name);
                     netPins[name] = unique;
-                    (string stored, ActiveLevel active, string? printed) = Signal(name, b.Parts);
+                    (string stored, ActiveLevel active, string? printed) = Signal(name, b.Parts, set.Supplies);
                     Net net = new() { Name = stored, Active = active, Printed = printed };
+                    // a supply named by a supply line (not a fixed one) is marked in the file, so
+                    // the sheet check knows it too
+                    if (set.Supplies.Contains(name) && !Supply.Contains(name))
+                        net.Supply = true;
                     // a pin named by a letter and a number (socket 18A: E1) is stored with the
                     // letter in lowercase, the form the file format allows (e1)
                     for (int k = 0; k < unique.Count; k++)
@@ -762,7 +794,7 @@ namespace RetroSchematic.Model
                     BlockPort port = new() { Name = inBus ? "BD_0" : PortName(nm), Direction = dir, DirectionConfidence = conf, Note = why };
                     for (int g = 0; g < group.Count; g++)
                     {
-                        (string stored, ActiveLevel active, string? _) = Signal(group[g], b.Parts);
+                        (string stored, ActiveLevel active, string? _) = Signal(group[g], b.Parts, set.Supplies);
                         port.Signals.Add(new SignalRef { Net = stored, Active = active });
                     }
                     blk.Ports.Add(port);
@@ -824,8 +856,10 @@ namespace RetroSchematic.Model
         }
 
         /// <summary>
-        /// True for a printed value used as a part type (100PF, 4.7KOHM) or a 4610X resistor
-        /// network: such a part's pins are not checked against a chip file.
+        /// True for a passive part type as a reading writes it: a printed value (100PF, 4.7KOHM),
+        /// a Bourns resistor network, a diode, LED, strap and the rest of
+        /// <see cref="PassiveParts.ReadingPart"/>. Such a part's pins are not checked against a chip
+        /// file; the check uses the passive pin count instead.
         /// </summary>
         /// <param name="type">
         /// The type as written in the reading.
@@ -833,7 +867,7 @@ namespace RetroSchematic.Model
         /// <returns>
         /// True for a passive part.
         /// </returns>
-        public static bool IsPassive(string type) => s_passive.IsMatch(type) || type.StartsWith("4610X", StringComparison.Ordinal);
+        public static bool IsPassive(string type) => PassiveParts.ReadingPart(type, out _, out _);
 
         /// <summary>
         /// A reading name as the sheet stores it: a tilde marks active low (BD~00 is BD00, low,
@@ -846,12 +880,16 @@ namespace RetroSchematic.Model
         /// <param name="parts">
         /// The block's parts, to tell an unnamed net (13D_7) from a name.
         /// </param>
+        /// <param name="cardSupplies">
+        /// The card's supply names (<see cref="ReadingSet.Supplies"/>), or null for the fixed ones only.
+        /// </param>
         /// <returns>
         /// The stored name, its level, and the printed name (null when the same).
         /// </returns>
-        public static (string Name, ActiveLevel Active, string? Printed) Signal(string name, OrderedDictionary<string, string> parts)
+        public static (string Name, ActiveLevel Active, string? Printed) Signal(string name, OrderedDictionary<string, string> parts, IReadOnlySet<string>? cardSupplies = null)
         {
-            if (s_supplyNames.Contains(name))
+            // a supply (a fixed one, or one named by a supply line of this card) has no level
+            if (s_supplyNames.Contains(name) || (cardSupplies != null && cardSupplies.Contains(name)))
                 return (name, ActiveLevel.None, null);
             int us = name.LastIndexOf('_');
             if (us >= 0 && parts.ContainsKey(name.Substring(0, us)) && IsDigits(name.AsSpan(us + 1)))

@@ -1,0 +1,31 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "diode-1n4148",
+  "title": "Diode 1N4148, small signal fast switching",
+  "type": "1N4148",
+  "readingTypes": "1N4148",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "text": "anode"
+    },
+    {
+      "pin": 2,
+      "name": "K",
+      "text": "cathode"
+    }
+  ],
+  "pinNumberingConfidence": "inferred",
+  "values": "",
+  "datasheet": "Vishay 1N4148, document 81857",
+  "sources": [
+    {
+      "document": "Vishay 1N4148 Small Signal Fast Switching Diodes, document 81857, Rev. 1.6, 07-Nov-2024",
+      "url": "https://www.vishay.com/docs/81857/1n4148.pdf",
+      "pages": "1"
+    }
+  ],
+  "note": "Datasheet: DO-35 glass case, black cathode band; reverse voltage 75 V (100 V repetitive peak); forward current 300 mA continuous. The datasheet numbers no pins: pin 1 anode and pin 2 cathode is the diode convention of this catalogue (diode.json), not the datasheet's."
+}

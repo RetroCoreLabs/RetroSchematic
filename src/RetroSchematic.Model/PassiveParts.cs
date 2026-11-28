@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace RetroSchematic.Model
 {
@@ -303,6 +304,147 @@ namespace RetroSchematic.Model
             PassiveKind.SwitchBlock => "switch block",
             _ => "chip",
         };
+
+        // a printed value used as a part type in a reading: 100PF, 4.7KOHM, .2KOHM (a leading dot
+        // is how ND writes 0.2 kohm)
+        private static readonly Regex s_readingValue = new(@"^\d*\.?\d+(PF|NF|UF|KOHM|OHM|MOHM)$", RegexOptions.CultureInvariant);
+
+        // a Bourns 4600X conformal SIP network: 46, the pin count, X, the circuit (101 bussed,
+        // 102 isolated, 104 dual terminator), then the value code; the dash may be read as _ or
+        // left out (4608X104_221/331)
+        private static readonly Regex s_bourns4600 = new(@"^46(\d\d)X_?(101|102|104)_", RegexOptions.CultureInvariant);
+
+        // a Bourns 4100R molded DIP network: 41, the pin count, R, the circuit (written 001 on the
+        // ND drawing for circuit 1, isolated), then the value code
+        private static readonly Regex s_bourns4100 = new(@"^41(\d\d)R_?0*(1)_", RegexOptions.CultureInvariant);
+
+        // a clock oscillator printed by its frequency: 10MHZ, 32MHZ
+        private static readonly Regex s_oscillator = new(@"^\d+(\.\d+)?MHZ$", RegexOptions.CultureInvariant);
+
+        // a zener diode printed by its voltage: 5.6V_ZENER
+        private static readonly Regex s_zener = new(@"^\d+(\.\d+)?V_ZENER$", RegexOptions.CultureInvariant);
+
+        /// <summary>
+        /// The passive catalogue file that describes a part type as a card reading writes it
+        /// (<c>docs/&lt;card&gt;-readings/</c>, the type printed on the drawing), and how many pins it
+        /// has. This is the ONE rule in C# for reading types; <c>tools/card-readings.py</c>
+        /// (<c>passive_part</c>) has the same rule and the two must be changed together.
+        /// </summary>
+        /// <remarks>
+        /// <list type="bullet">
+        /// <item><description>A printed resistor or capacitor value (<c>4.7KOHM</c>, <c>.2KOHM</c>,
+        /// <c>100PF</c>): <c>resistor</c> or <c>capacitor</c>, 2 pins.</description></item>
+        /// <item><description>A Bourns 4600X SIP (<c>4606X_101_151</c>): <c>bourns-4600x-101</c>,
+        /// <c>-102</c> or <c>-104</c> by circuit, the pin count from the name.</description></item>
+        /// <item><description>A Bourns 4100R DIP of circuit 1 (<c>4116R_001_102</c>):
+        /// <c>bourns-4100r-1</c>, the pin count from the name.</description></item>
+        /// <item><description><c>1N4148</c> and <c>2N3906</c>: their own files, 2 and 3 pins.</description></item>
+        /// <item><description><c>STRAP</c> or <c>STR2</c>: <c>strap</c>, 2 pins.</description></item>
+        /// <item><description><c>TESTPOINT</c>: <c>test-point</c>, 1 pin.</description></item>
+        /// <item><description>An LED printed by its colour (<c>YELLOW</c>, <c>RED</c>,
+        /// <c>GREEN</c>): <c>led</c>, 2 pins.</description></item>
+        /// <item><description>A zener printed by its voltage (<c>5.6V_ZENER</c>): <c>zener</c>, 2 pins.</description></item>
+        /// <item><description>An oscillator printed by its frequency (<c>32MHZ</c>):
+        /// <c>oscillator</c>, pin count 0 because the module's pin numbering is not known (the
+        /// file says so), so its pin numbers are not checked.</description></item>
+        /// </list>
+        /// </remarks>
+        /// <param name="type">
+        /// The part type as the reading writes it.
+        /// </param>
+        /// <param name="catalogueId">
+        /// The file name in <c>catalog/passives/</c> without <c>.json</c>; empty when the type is
+        /// not a passive part.
+        /// </param>
+        /// <param name="pinCount">
+        /// The number of pins (numbered 1 to this); 0 when not known.
+        /// </param>
+        /// <returns>
+        /// True when the type is a passive part.
+        /// </returns>
+        public static bool ReadingPart(string type, out string catalogueId, out int pinCount)
+            => ReadingPartCore(type, out catalogueId, out pinCount);
+
+        /// <summary>
+        /// Whether a reading's part type is a passive part whose file exists in the catalogue's
+        /// <c>passives</c> folder. The reading check and the sheet check both ask this, so a
+        /// type counts as catalogued in the same way everywhere.
+        /// </summary>
+        /// <param name="type">
+        /// The part type as the reading or the sheet writes it.
+        /// </param>
+        /// <param name="catalogFolder">
+        /// The catalogue folder (the one holding <c>chips</c> and <c>passives</c>).
+        /// </param>
+        /// <returns>
+        /// True when the type is a passive part and its file is there.
+        /// </returns>
+        public static bool HasPassiveFile(string type, string catalogFolder)
+            => ReadingPart(type, out string id, out _) && System.IO.File.Exists(System.IO.Path.Combine(catalogFolder, "passives", id + ".json"));
+
+        private static bool ReadingPartCore(string type, out string catalogueId, out int pinCount)
+        {
+            catalogueId = "";
+            pinCount = 0;
+            if (s_readingValue.IsMatch(type))
+            {
+                catalogueId = type.EndsWith("OHM", StringComparison.Ordinal) ? "resistor" : "capacitor";
+                pinCount = 2;
+                return true;
+            }
+            Match m = s_bourns4600.Match(type);
+            if (m.Success)
+            {
+                catalogueId = "bourns-4600x-" + m.Groups[2].Value;
+                pinCount = int.Parse(m.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture);
+                return true;
+            }
+            m = s_bourns4100.Match(type);
+            if (m.Success)
+            {
+                catalogueId = "bourns-4100r-" + m.Groups[2].Value;
+                pinCount = int.Parse(m.Groups[1].Value, NumberStyles.None, CultureInfo.InvariantCulture);
+                return true;
+            }
+            switch (type)
+            {
+                case "1N4148":
+                    catalogueId = "diode-1n4148";
+                    pinCount = 2;
+                    return true;
+                case "2N3906":
+                    catalogueId = "transistor-2n3906";
+                    pinCount = 3;
+                    return true;
+                case "STRAP":
+                case "STR2":
+                    catalogueId = "strap";
+                    pinCount = 2;
+                    return true;
+                case "TESTPOINT":
+                    catalogueId = "test-point";
+                    pinCount = 1;
+                    return true;
+                case "YELLOW":
+                case "RED":
+                case "GREEN":
+                    catalogueId = "led";
+                    pinCount = 2;
+                    return true;
+            }
+            if (s_zener.IsMatch(type))
+            {
+                catalogueId = "zener";
+                pinCount = 2;
+                return true;
+            }
+            if (s_oscillator.IsMatch(type))
+            {
+                catalogueId = "oscillator";
+                return true;
+            }
+            return false;
+        }
 
         private static ChipPin Pin(int number, string name) => new() { Number = number, Name = name, Role = "passive" };
 

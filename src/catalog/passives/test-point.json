@@ -1,0 +1,18 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "test-point",
+  "title": "Test point",
+  "type": "TESTPOINT",
+  "readingTypes": "TESTPOINT",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1"
+    }
+  ],
+  "pinNumberingConfidence": "read",
+  "values": "",
+  "datasheet": "none needed: a pin for a probe, no behaviour",
+  "note": "One pin; it joins only the signal it is on."
+}

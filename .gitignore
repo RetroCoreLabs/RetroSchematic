@@ -8,3 +8,4 @@ TestResults/
 ## renderer output
 src/out/
 README.template.md
+__pycache__/

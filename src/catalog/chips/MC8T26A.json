@@ -1,0 +1,410 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "MC8T26A",
+  "family": "8T",
+  "title": "Quad three-state bus transceiver, inverting",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "Motorola MC6880A/MC8T26A Quad Three-State Bus Transceiver, in Motorola 1979 Interface Integrated Circuits data book",
+      "url": "http://www.bitsavers.org/components/motorola/_dataBooks/1979_Motorola_Interface_Integrated_Circuits.pdf",
+      "pages": "4-99 to 4-103 (PDF pages 160-164)",
+      "familyUsed": "MC8T26A"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "RE",
+      "inverted": true,
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "2",
+        "5",
+        "11",
+        "14"
+      ],
+      "whenInactive": "float",
+      "text": "receiver enable input, active low"
+    },
+    {
+      "pin": 2,
+      "name": "RO1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RE",
+      "text": "receiver output 1"
+    },
+    {
+      "pin": 3,
+      "name": "BUS1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DE",
+      "text": "bus pin: driver output and receiver input"
+    },
+    {
+      "pin": 4,
+      "name": "DI1",
+      "role": "input",
+      "text": "driver input 1"
+    },
+    {
+      "pin": 5,
+      "name": "RO2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RE",
+      "text": "receiver output 2"
+    },
+    {
+      "pin": 6,
+      "name": "BUS2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DE",
+      "text": "bus pin: driver output and receiver input"
+    },
+    {
+      "pin": 7,
+      "name": "DI2",
+      "role": "input",
+      "text": "driver input 2"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "DI3",
+      "role": "input",
+      "text": "driver input 3"
+    },
+    {
+      "pin": 10,
+      "name": "BUS3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DE",
+      "text": "bus pin: driver output and receiver input"
+    },
+    {
+      "pin": 11,
+      "name": "RO3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RE",
+      "text": "receiver output 3"
+    },
+    {
+      "pin": 12,
+      "name": "DI4",
+      "role": "input",
+      "text": "driver input 4"
+    },
+    {
+      "pin": 13,
+      "name": "BUS4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "DE",
+      "text": "bus pin: driver output and receiver input"
+    },
+    {
+      "pin": 14,
+      "name": "RO4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "RE",
+      "text": "receiver output 4"
+    },
+    {
+      "pin": 15,
+      "name": "DE",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "3",
+        "6",
+        "10",
+        "13"
+      ],
+      "whenInactive": "float",
+      "text": "driver enable input, active high"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "3",
+      "formula": "BUS1 = NOT DI1",
+      "text": "while DE is high BUS1 is the inverse of DI1; otherwise it floats."
+    },
+    {
+      "output": "2",
+      "formula": "RO1 = NOT BUS1",
+      "text": "while /RE is low RO1 is the inverse of BUS1; otherwise it floats."
+    },
+    {
+      "output": "6",
+      "formula": "BUS2 = NOT DI2",
+      "text": "while DE is high BUS2 is the inverse of DI2; otherwise it floats."
+    },
+    {
+      "output": "5",
+      "formula": "RO2 = NOT BUS2",
+      "text": "while /RE is low RO2 is the inverse of BUS2; otherwise it floats."
+    },
+    {
+      "output": "10",
+      "formula": "BUS3 = NOT DI3",
+      "text": "while DE is high BUS3 is the inverse of DI3; otherwise it floats."
+    },
+    {
+      "output": "11",
+      "formula": "RO3 = NOT BUS3",
+      "text": "while /RE is low RO3 is the inverse of BUS3; otherwise it floats."
+    },
+    {
+      "output": "13",
+      "formula": "BUS4 = NOT DI4",
+      "text": "while DE is high BUS4 is the inverse of DI4; otherwise it floats."
+    },
+    {
+      "output": "14",
+      "formula": "RO4 = NOT BUS4",
+      "text": "while /RE is low RO4 is the inverse of BUS4; otherwise it floats."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 48,
+    "outputHighMaxCurrentMa": -10,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Bus (driver) output: VOL 0.5 V at 48 mA, VOH 2.4 V at -10 mA. Receiver output: VOL 0.5 V at 20 mA, VOH 2.4 V at -2 mA. PNP inputs, -200 uA max low-level input current. ICC 87 mA max (page 4-100)."
+  },
+  "timing": [
+    {
+      "from": "BUS",
+      "to": "RO",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, 30 pF load (Figure 1)",
+      "symbol": "tPLH(R)"
+    },
+    {
+      "from": "BUS",
+      "to": "RO",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, 30 pF load (Figure 1)",
+      "symbol": "tPHL(R)"
+    },
+    {
+      "from": "DI",
+      "to": "BUS",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, 300 pF load (Figure 2)",
+      "symbol": "tPLH(D)"
+    },
+    {
+      "from": "DI",
+      "to": "BUS",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 14,
+      "conditions": "VCC 5 V, TA 25 C, 300 pF load (Figure 2)",
+      "symbol": "tPHL(D)"
+    },
+    {
+      "from": "/RE",
+      "to": "RO",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C (Figure 3)",
+      "symbol": "tPLZ(RE)"
+    },
+    {
+      "from": "/RE",
+      "to": "RO",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C (Figure 3)",
+      "symbol": "tPZL(RE)"
+    },
+    {
+      "from": "DE",
+      "to": "BUS",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C (Figure 4)",
+      "symbol": "tPLZ(DE)"
+    },
+    {
+      "from": "DE",
+      "to": "BUS",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": null,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C (Figure 4)",
+      "symbol": "tPZL(DE)"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The data sheet has no function table; the inversion of driver and receiver is read from the bubbles in the pin-connection drawing (page 4-99) and the test waveforms (Figures 1 and 2: the output falls when the input rises).",
+    "No high-level enable/disable times (PZH, PHZ) are given."
+  ],
+  "notes": "Identical to the NE8T26A and orderable as MC6880A (page 4-99). The data sheet gives only maximum delays.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits",
+    "outputs": [
+      {
+        "pin": "BUS1",
+        "formula": "BUS1 = NOT DI1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DE",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits"
+      },
+      {
+        "pin": "RO1",
+        "formula": "RO1 = NOT BUS1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/RE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      },
+      {
+        "pin": "BUS2",
+        "formula": "BUS2 = NOT DI2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DE",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits"
+      },
+      {
+        "pin": "RO2",
+        "formula": "RO2 = NOT BUS2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/RE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      },
+      {
+        "pin": "BUS3",
+        "formula": "BUS3 = NOT DI3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DE",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits"
+      },
+      {
+        "pin": "RO3",
+        "formula": "RO3 = NOT BUS3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/RE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      },
+      {
+        "pin": "BUS4",
+        "formula": "BUS4 = NOT DI4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "DE",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits"
+      },
+      {
+        "pin": "RO4",
+        "formula": "RO4 = NOT BUS4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/RE",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "4-99, 4-101 (PDF pages 160, 162) - Motorola MC6880A/MC8T26A data sheet, 1979 Interface Integrated Circuits (receiver; the bus pin is also its input)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "HP5082_7433",
+  "family": "HP5082",
+  "title": "Three-digit seven-segment red LED display, one common cathode per digit",
+  "package": "DIP-12",
+  "sources": [
+    {
+      "document": "HP 5082-7430 series Solid State Numeric Indicator (7 segment monolithic), technical data April 1977, in HP 1977 Optoelectronics Designers Catalog",
+      "url": "http://www.bitsavers.org/components/hp/1977_Optoelectronics_Designers_Catalog.pdf",
+      "pages": "78-81 (PDF pages 85-88)",
+      "familyUsed": "5082-7433"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "CATHODE1",
+      "role": "analog",
+      "text": "cathode of digit 1 (common to its segments)"
+    },
+    {
+      "pin": 2,
+      "name": "ANODEE",
+      "role": "analog",
+      "text": "anode of segment e, shared by all three digits"
+    },
+    {
+      "pin": 3,
+      "name": "ANODED",
+      "role": "analog",
+      "text": "anode of segment d, shared by all three digits"
+    },
+    {
+      "pin": 4,
+      "name": "CATHODE2",
+      "role": "analog",
+      "text": "cathode of digit 2"
+    },
+    {
+      "pin": 5,
+      "name": "ANODEC",
+      "role": "analog",
+      "text": "anode of segment c, shared by all three digits"
+    },
+    {
+      "pin": 6,
+      "name": "ANODEDP",
+      "role": "analog",
+      "text": "anode of segment dp, shared by all three digits"
+    },
+    {
+      "pin": 7,
+      "name": "CATHODE3",
+      "role": "analog",
+      "text": "cathode of digit 3"
+    },
+    {
+      "pin": 8,
+      "name": "ANODEB",
+      "role": "analog",
+      "text": "anode of segment b, shared by all three digits"
+    },
+    {
+      "pin": 9,
+      "name": "ANODEG",
+      "role": "analog",
+      "text": "anode of segment g, shared by all three digits"
+    },
+    {
+      "pin": 10,
+      "name": "ANODEA",
+      "role": "analog",
+      "text": "anode of segment a, shared by all three digits"
+    },
+    {
+      "pin": 11,
+      "name": "ANODEF",
+      "role": "analog",
+      "text": "anode of segment f, shared by all three digits"
+    },
+    {
+      "pin": 12,
+      "name": "NC",
+      "role": "nc",
+      "text": "leave unconnected (note 1)"
+    }
+  ],
+  "functions": [
+    {
+      "output": "none",
+      "formula": null,
+      "text": "A segment lights when current flows from its anode pin into the cathode pin of a digit. The segment anodes of all digits are joined inside (an 8 by 3 array), so the digits are lit one at a time (strobed) (page 81)."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Per segment: peak forward current 50 mA (pulse under 500 us), average 5 mA max; forward voltage 1.55 typ / 2.0 max V at 5 mA; reverse voltage 5 V max; 80 mW per digit. Peak currents under 3.5 mA are not recommended. Luminous intensity 10 min / 40 typ ucd at 500 uA average, 5 mA peak, 10% duty. Peak wavelength 655 nm (page 79)."
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "Light rise and fall time 10 ns typ (10%-90% of light for a step in current, page 79). On the card SIFF2~, SIFF1~, SIFF0~ drive cathodes 1, 2, 3 (pins 1, 4, 7).",
+  "behaviour": {
+    "kind": "none",
+    "reason": "LED display: it has no logic outputs, it only lights segments (see functions)."
+  }
+}

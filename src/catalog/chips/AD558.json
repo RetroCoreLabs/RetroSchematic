@@ -1,0 +1,168 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "AD558",
+  "family": "AD",
+  "title": "Complete 8-bit digital-to-analog converter with input latch, reference and output amplifier",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "Analog Devices AD558 DACPORT Low Cost Complete uP-Compatible 8-Bit DAC, in Analog Devices 1984 Data-Acquisition Databook Volume I (pages 9-35 to 9-42)",
+      "url": "http://www.bitsavers.org/components/analogDevices/_dataBooks/1984_Analog_Devices_Data-Acquisition_Handbook_Volume_1_Integrated_Circuits.pdf",
+      "pages": "9-35 to 9-42 (PDF pages 451-458)",
+      "familyUsed": "AD558J/K"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "DB0",
+      "role": "input",
+      "text": "data bit 0, least significant"
+    },
+    {
+      "pin": 2,
+      "name": "DB1",
+      "role": "input",
+      "text": "data bit 1"
+    },
+    {
+      "pin": 3,
+      "name": "DB2",
+      "role": "input",
+      "text": "data bit 2"
+    },
+    {
+      "pin": 4,
+      "name": "DB3",
+      "role": "input",
+      "text": "data bit 3"
+    },
+    {
+      "pin": 5,
+      "name": "DB4",
+      "role": "input",
+      "text": "data bit 4"
+    },
+    {
+      "pin": 6,
+      "name": "DB5",
+      "role": "input",
+      "text": "data bit 5"
+    },
+    {
+      "pin": 7,
+      "name": "DB6",
+      "role": "input",
+      "text": "data bit 6"
+    },
+    {
+      "pin": 8,
+      "name": "DB7",
+      "role": "input",
+      "text": "data bit 7, most significant"
+    },
+    {
+      "pin": 9,
+      "name": "CE",
+      "inverted": true,
+      "role": "input",
+      "text": "chip enable, active low; latch is open while /CE and /CS are both low"
+    },
+    {
+      "pin": 10,
+      "name": "CS",
+      "inverted": true,
+      "role": "input",
+      "text": "chip select, active low; same timing and function as /CE"
+    },
+    {
+      "pin": 11,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+4.5 V to +16.5 V (+11.4 V min for the 10 V range)"
+    },
+    {
+      "pin": 12,
+      "name": "GND",
+      "role": "ground",
+      "text": "digital ground"
+    },
+    {
+      "pin": 13,
+      "name": "AGND",
+      "role": "ground",
+      "text": "analog ground"
+    },
+    {
+      "pin": 14,
+      "name": "VOUTSELECT",
+      "role": "analog",
+      "text": "output range select: to VOUT for 0-2.56 V, to GND for 0-10 V (Figure 3)"
+    },
+    {
+      "pin": 15,
+      "name": "VOUTSENSE",
+      "role": "analog",
+      "text": "feedback (sense) of the output amplifier"
+    },
+    {
+      "pin": 16,
+      "name": "VOUT",
+      "role": "analog",
+      "text": "analog output voltage"
+    }
+  ],
+  "functions": [
+    {
+      "output": "16",
+      "formula": null,
+      "text": "VOUT = code / 256 x full scale: 0-2.55 V on the 2.56 V range, 0-9.961 V on the 10 V range (code table page 9-38). The latch passes the data while /CE and /CS are both low and holds it from the rising edge of either (Table I, page 9-40)."
+    }
+  ],
+  "state": {
+    "bits": 8,
+    "changesOn": "level: transparent while /CE and /CS are both low",
+    "rules": [
+      "/CE low and /CS low: the latch follows DB0-DB7 (transparent)",
+      "/CE or /CS goes high: the data present at the rising edge is held",
+      "/CE or /CS high: previous data stays latched"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Digital inputs: logic 1 2.0 V min, logic 0 0.8 V max, 100 uA max input current. Output: source 5 mA; sink is a passive pull-down to ground (2 kohm on the 2.56 V range, 10 kohm on the 10 V range). Supply current 15 typ / 25 max mA. Settling to 1/2 LSB: 0.8 typ / 1.5 max us (2.56 V range), 2.0 / 3.0 us (10 V range) (page 9-36)."
+  },
+  "timing": [],
+  "timingLimits": [
+    {
+      "what": "pulse width",
+      "pin": "/CE",
+      "minNs": 150,
+      "text": "strobe pulse width tW (/CE or /CS)"
+    },
+    {
+      "what": "setup",
+      "pin": "DB0",
+      "ref": "/CE",
+      "minNs": 200,
+      "text": "data set-up time tDS before the rising edge of /CE or /CS"
+    },
+    {
+      "what": "hold",
+      "pin": "DB0",
+      "ref": "/CE",
+      "minNs": 10,
+      "text": "data hold time tDH after the rising edge of /CE or /CS"
+    }
+  ],
+  "unknown": [],
+  "notes": "Pin names are the ones in Figure 1 (page 9-37); both pin 12 and pin 13 are labelled GND there, pin 13 is the analog ground (block diagram page 9-35).",
+  "behaviour": {
+    "kind": "none",
+    "reason": "the output is an analog voltage, which a logic formula cannot express; the input latch is described in state (AD558 data sheet, Analog Devices 1984 Data-Acquisition Databook Vol. I, page 9-40)."
+  }
+}

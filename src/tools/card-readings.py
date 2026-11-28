@@ -34,12 +34,14 @@ import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 CHIPS = os.path.join(HERE, '..', 'catalog', 'chips')
 SUPPLY = {'+5V', 'GND', '12V', '+12V', '-12V', '5VSTBY'}
+# the supplies of the card being read: SUPPLY plus its supply lines (filled by merge)
+CARD_SUPPLY = set(SUPPLY)
 FAMILY = re.compile(r'^74(ALS|AS|LS|HCT|HC|F|S|L|H|PCT)?(\d+)$')
 
 
 def parse_file(path):
     """One reading file -> dict with block, page, parts, gates, nets, notes."""
-    r = {'file': os.path.basename(path), 'block': None, 'page': None, 'parts': {}, 'boxes': {}, 'gates': [], 'nets': {}, 'notes': [], 'open': set(), 'nc': set(), 'ports': {}, 'connectors': {}}
+    r = {'file': os.path.basename(path), 'block': None, 'page': None, 'parts': {}, 'boxes': {}, 'gates': [], 'nets': {}, 'notes': [], 'open': set(), 'nc': set(), 'ports': {}, 'connectors': {}, 'supplies': set()}
     for n, raw in enumerate(open(path, encoding='utf-8'), 1):
         line = raw.split('#', 1)[0].strip() if not raw.lstrip().startswith('note ') else raw.strip()
         if not line:
@@ -75,6 +77,9 @@ def parse_file(path):
             r['connectors'][f[0]] = (f[1], f[2] if len(f) > 2 else '')
         elif word in ('open', 'nc'):
             r[word].update(rest.split())
+        elif word == 'supply':
+            # supply NAME [what it is]: the signal is a supply on this card (card wide)
+            r['supplies'].add(rest.split()[0])
         elif word == 'note':
             r['notes'].append(rest)
         else:
@@ -107,12 +112,47 @@ def chip_pins(ctype):
     return found
 
 
+PASSIVES = os.path.join(HERE, '..', 'catalog', 'passives')
+_BOURNS_4600 = re.compile(r'^46(\d\d)X_?(101|102|104)_')
+_BOURNS_4100 = re.compile(r'^41(\d\d)R_?0*(1)_')
+_PASSIVE_NAMED = {'1N4148': ('diode-1n4148', 2), '2N3906': ('transistor-2n3906', 3), 'STRAP': ('strap', 2),
+                  'STR2': ('strap', 2), 'TESTPOINT': ('test-point', 1), 'YELLOW': ('led', 2), 'RED': ('led', 2),
+                  'GREEN': ('led', 2)}
+
+
+def passive_part(ctype):
+    """(catalog/passives file id, pin count) of a reading part type, or None for a chip. The pin
+    count is 0 when the file does not know the pin numbering (an oscillator module). The SAME rule as
+    PassiveParts.ReadingPart in RetroSchematic.Model/PassiveParts.cs: change the two together."""
+    if re.match(r'^\d*\.?\d+(PF|NF|UF|KOHM|OHM|MOHM)$', ctype):
+        return ('resistor' if ctype.endswith('OHM') else 'capacitor', 2)
+    m = _BOURNS_4600.match(ctype)
+    if m:
+        return ('bourns-4600x-' + m.group(2), int(m.group(1)))
+    m = _BOURNS_4100.match(ctype)
+    if m:
+        return ('bourns-4100r-' + m.group(2), int(m.group(1)))
+    if ctype in _PASSIVE_NAMED:
+        return _PASSIVE_NAMED[ctype]
+    if re.match(r'^\d+(\.\d+)?V_ZENER$', ctype):
+        return ('zener', 2)
+    if re.match(r'^\d+(\.\d+)?MHZ$', ctype):
+        return ('oscillator', 0)
+    return None
+
+
 def is_passive(ctype):
-    return bool(re.match(r'^\d+(\.\d+)?(PF|NF|UF|KOHM|OHM|MOHM)$', ctype)) or ctype.startswith('4610X')
+    return passive_part(ctype) is not None
 
 
 def merge(files):
     """Merge the sheets per block; returns {block: {...}} and a list of problems."""
+    # the card's supplies: the fixed ones and every supply line (a supply is card wide); sig()
+    # reads the same set when the sheet is written
+    CARD_SUPPLY.clear()
+    CARD_SUPPLY.update(SUPPLY)
+    for r in files:
+        CARD_SUPPLY.update(r['supplies'])
     blocks, problems = {}, []
     for r in files:
         b = blocks.setdefault(r['block'], {'parts': {}, 'partpage': {}, 'boxes': {}, 'nets': {}, 'gates': [], 'pages': [], 'notes': [], 'open': set(), 'nc': set(), 'connectors': {}})
@@ -151,7 +191,16 @@ def merge(files):
                     problems.append('%s: %s is in net %s and in net %s (%s)' % (where, p, name, owner[p][0], owner[p][1]))
                 owner.setdefault(p, (name, where))
                 ctype = b['parts'][ref]
-                if is_passive(ctype) or ref in b['connectors']:
+                if ref in b['connectors']:
+                    continue
+                pp = passive_part(ctype)
+                if pp:
+                    # a passive part: its file in catalog/passives/ must exist, and when the file
+                    # knows the pin count the pin must be one of them
+                    if not os.path.exists(os.path.join(PASSIVES, pp[0] + '.json')):
+                        missing.add(ctype)
+                    elif pp[1] and not (num.isdigit() and 1 <= int(num) <= pp[1]):
+                        problems.append('%s: %s: %s (%s) has no pin %s' % (where, p, ctype, pp[0], num))
                     continue
                 pins_of, used = chip_pins(ctype)
                 if pins_of is None:
@@ -160,7 +209,7 @@ def merge(files):
                 k = int(num)
                 if k not in pins_of:
                     problems.append('%s: %s: %s (%s) has no pin %d' % (where, p, ctype, used, k))
-                elif pins_of[k] in ('power', 'ground') and name not in SUPPLY:
+                elif pins_of[k] in ('power', 'ground') and name not in CARD_SUPPLY:
                     problems.append('%s: %s is a %s pin of %s but is in net %s' % (where, p, pins_of[k], ctype, name))
         for g in b['gates']:
             ref = g['id'].split('/')[0]
@@ -182,7 +231,7 @@ def merge(files):
                 problems.append('part %s is %s in block %s but %s in block %s' % (ref, t, bn, gtype[ref][0], gtype[ref][1]))
             gtype.setdefault(ref, (t, bn))
         for p, (name, where) in b['owner'].items():
-            if name in SUPPLY:
+            if name in CARD_SUPPLY:
                 continue
             if p in gpin and gpin[p][0] != bn:
                 problems.append('%s: pin %s is used in block %s (net %s) and in block %s (net %s)' % (where, p, bn, name, gpin[p][0], gpin[p][1]))
@@ -218,7 +267,7 @@ SUPPLY_NAMES = SUPPLY | {'5V'}
 def sig(name, parts):
     """A reading name -> (stored name, active, printed). A tilde marks active low (BD~00 -> BD00,
     low, printed BD~00); an unnamed net REF_pin and a supply have no level; any other name is high."""
-    if name in SUPPLY_NAMES:
+    if name in SUPPLY_NAMES or name in CARD_SUPPLY:
         return name, 'none', None
     ref, _, num = name.rpartition('_')
     if ref in parts and num.isdigit():
@@ -337,6 +386,10 @@ def write_sheet(files, blocks, path):
                 ne = {'name': n, 'active': act}
                 if printed:
                     ne['printed'] = printed
+                # a supply named by a supply line (not a fixed one) is marked in the file, so the
+                # sheet check knows it too
+                if name in CARD_SUPPLY and name not in SUPPLY:
+                    ne['supply'] = True
                 # a pin named by a letter and a number (socket 18A: E1) is stored with the letter in
                 # lowercase, the form the file format allows (e1)
                 ne['pins'] = [{'at': pin_at(p, conns), 'confidence': 'read'} for p in uniq]

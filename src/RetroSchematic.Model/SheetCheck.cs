@@ -74,7 +74,8 @@ namespace RetroSchematic.Model
         /// - the reader accepts it (written out and read back, as a save does);
         /// - every chip pin on a signal exists on the chip, when the catalogue has its file (with
         ///   the 74 family rule of <see cref="ChipCatalog.Get"/>);
-        /// - a power or ground pin is only on a supply signal (<see cref="SupplyNets"/>);
+        /// - a power or ground pin is only on a supply signal (<see cref="SupplyNets"/>, or a
+        ///   signal marked <c>supply</c> in the file);
         /// - the types with no chip file, and the gate pins on no signal, are listed.
         /// </para>
         /// </summary>
@@ -144,7 +145,8 @@ namespace RetroSchematic.Model
             for (int i = 0; i < parts.Count; i++)
             {
                 byRef[parts[i].Ref] = parts[i];
-                if (catalog == null || catalog.Get(parts[i].Type) != null)
+                // a chip file, or a passive part with its file (the same rule as the reading check)
+                if (catalog == null || catalog.Get(parts[i].Type) != null || PassiveParts.HasPassiveFile(parts[i].Type, catalog.Folder))
                     continue;
                 if (!r.MissingParts.TryGetValue(parts[i].Type, out List<string>? users))
                 {
@@ -181,7 +183,7 @@ namespace RetroSchematic.Model
                     }
                     if (role == null)
                         r.Problems.Add(level + ": " + at + " on " + n.Name + ": a " + part.Type + (chip.ReadFrom != null ? " (pins from " + chip.ReadFrom + ")" : "") + " has no pin " + number.ToString(CultureInfo.InvariantCulture));
-                    else if ((role == "power" || role == "ground") && !SupplyNets.Contains(n.Name))
+                    else if ((role == "power" || role == "ground") && !SupplyNets.Contains(n.Name) && n.Supply != true)
                         r.Problems.Add(level + ": " + at + " is a " + role + " pin of " + part.Type + " but is on signal " + n.Name);
                 }
             }

@@ -1,0 +1,13 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "oscillator",
+  "title": "Clock oscillator module",
+  "type": "OSC",
+  "readingTypes": "the frequency as printed: 10MHZ, 32MHZ",
+  "pinRule": "NOT KNOWN: the module's type and package are not printed on the drawing, so its pin count and numbering are open; the pin numbers in a reading are the ones drawn (on card 3207 pin 3 is the clock output)",
+  "pinNumberingConfidence": "open",
+  "values": "frequency",
+  "datasheet": "none found: the drawing gives only the frequency, no type number",
+  "note": "Because the pin numbering is open, the reading check does not check this part's pin numbers (pin count 0)."
+}

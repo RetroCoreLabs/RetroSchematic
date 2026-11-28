@@ -25,6 +25,7 @@ A `#` starts a comment, except on a `note` line.
 | `connector REF CATALOG USE` | the part REF is a socket or header on the board, not a chip: its pins may be named by a letter and a number (`A1`); the sheet file stores it as connector `J.REF` with the catalogue file CATALOG |
 | `open REF.PIN ...` | pins that could not be settled from the drawing: left out of every net on purpose, never guessed |
 | `nc REF.PIN ...` | pins drawn as unconnected stubs |
+| `supply NAME TEXT` | the signal NAME is a supply on this card (a voltage the card makes itself, such as AVC), card wide: power and ground pins may be on it, and the sheet file marks it `"supply": true` |
 | `note TEXT` | anything else: how a point was settled, what is OPEN, what is inferred |
 
 ## What the check tests

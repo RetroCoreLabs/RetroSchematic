@@ -1,0 +1,335 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "TBP18S030",
+  "family": "bipolar-PROM",
+  "title": "256-bit (32 x 8) Schottky TTL programmable read-only memory, three-state outputs",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI The Bipolar Microcomputer Components Data Book, 3rd edition 1981: Series 14 and 18 Programmable Read-Only Memories (June 1981)",
+      "url": "https://bitsavers.mirrorservice.org/components/ti/_dataBooks/1981_TI_The_Bipolar_Microcomputer_Components_Data_Book_for_Design_Engineers_3ed.pdf",
+      "pages": "pdf 31-36 (printed 2-7..2-11)",
+      "familyUsed": "TBP18S030 (J, N), old type number SN74S288"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "Q0",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 0; three-state"
+    },
+    {
+      "pin": 2,
+      "name": "Q1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 1; three-state"
+    },
+    {
+      "pin": 3,
+      "name": "Q2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 2; three-state"
+    },
+    {
+      "pin": 4,
+      "name": "Q3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 3; three-state"
+    },
+    {
+      "pin": 5,
+      "name": "Q4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 4; three-state"
+    },
+    {
+      "pin": 6,
+      "name": "Q5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 5; three-state"
+    },
+    {
+      "pin": 7,
+      "name": "Q6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 6; three-state"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Q7",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": "G",
+      "text": "output bit 7; three-state"
+    },
+    {
+      "pin": 10,
+      "name": "A0",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "A1",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "A2",
+      "role": "input"
+    },
+    {
+      "pin": 13,
+      "name": "A3",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "A4",
+      "role": "input"
+    },
+    {
+      "pin": 15,
+      "name": "G",
+      "role": "enable",
+      "inverted": true,
+      "active": "low",
+      "controls": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9"
+      ],
+      "whenInactive": "float",
+      "text": "chip select (drawn G with a bar; logic symbol EN): low enables the outputs, high turns them off"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V",
+      "text": "+5 V +-5%"
+    }
+  ],
+  "functions": [
+    {
+      "output": "1-7,9",
+      "formula": null,
+      "text": "Q0-Q7 give the 8-bit word addressed by A4..A0 while G is low; high impedance while G is high."
+    }
+  ],
+  "state": {
+    "bits": 256,
+    "organisation": "32 x 8",
+    "type": "fuse PROM (titanium-tungsten fuse links)",
+    "write": "Not in circuit: programming opens fuse links (VCC raised to 9.25 V, one bit at a time); irreversible. Supplied with all bits at a low output level; programming a bit makes its output high (note 2, page 2-9).",
+    "contents": "The contents are programmed for card 3207 and were not read; this file describes the blank part."
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 20,
+    "outputHighMaxCurrentMa": -6.5,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Commercial (J, N): VCC 4.75..5.25 V, IOH -6.5 mA, IOL 20 mA; VIH 2 V, VIL 0.8 V; VOH 2.4 V min (3.2 typ), VOL 0.5 V max; IOZH 50 uA, IOZL -50 uA; IIH 25 uA, IIL -250 uA (p-n-p inputs); IOS -30..-100 mA; ICC 80 typ, 110 max mA."
+  },
+  "timing": [
+    {
+      "from": "A0",
+      "to": "Q0",
+      "edge": "access",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "CL 30 pF",
+      "symbol": "ta(A)"
+    },
+    {
+      "from": "G",
+      "to": "Q0",
+      "edge": "access",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 25,
+      "conditions": "access time from chip select (enable time), CL 30 pF",
+      "symbol": "ta(S)"
+    },
+    {
+      "from": "G",
+      "to": "Q0",
+      "edge": "PXZ",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 20,
+      "conditions": "disable time from high or low level, CL 5 pF",
+      "symbol": "tPXZ"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The bit pattern stored in this card's PROMs: card specific and not read."
+  ],
+  "notes": "Card 3207 positions 3H, 4H, 10F, 11F (G tied to GND on the card). The memory of the behaviour has no defined contents.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs",
+    "memory": {
+      "name": "M",
+      "words": 32,
+      "width": 8,
+      "address": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4"
+      ],
+      "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: read-only in circuit; contents card specific and not read"
+    },
+    "outputs": [
+      {
+        "pin": "Q0",
+        "formula": "Q0 = M1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q1",
+        "formula": "Q1 = M2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q2",
+        "formula": "Q2 = M3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q3",
+        "formula": "Q3 = M4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q4",
+        "formula": "Q4 = M5",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q5",
+        "formula": "Q5 = M6",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q6",
+        "formula": "Q6 = M7",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      },
+      {
+        "pin": "Q7",
+        "formula": "Q7 = M8",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "/G",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pdf 31-36 (printed 2-7..2-11) - TI Bipolar Microcomputer Components Data Book 1981, Series 14 and 18 PROMs: description: a low level at the chip-select input enables the PROM, a high level turns the outputs off"
+      }
+    ]
+  }
+}

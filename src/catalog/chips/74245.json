@@ -1,0 +1,703 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74245",
+  "family": "74",
+  "title": "Octal bus transceiver with 3-state outputs",
+  "package": "DIP-20",
+  "sources": [
+    {
+      "document": "TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls245.pdf",
+      "pages": "1, 3, 4, 5",
+      "familyUsed": "SN74LS245"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "DIR",
+      "role": "input",
+      "text": "direction: low = B to A, high = A to B"
+    },
+    {
+      "pin": 2,
+      "name": "A1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B1) when DIR is low and OE is low"
+    },
+    {
+      "pin": 3,
+      "name": "A2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B2) when DIR is low and OE is low"
+    },
+    {
+      "pin": 4,
+      "name": "A3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B3) when DIR is low and OE is low"
+    },
+    {
+      "pin": 5,
+      "name": "A4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B4) when DIR is low and OE is low"
+    },
+    {
+      "pin": 6,
+      "name": "A5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B5) when DIR is low and OE is low"
+    },
+    {
+      "pin": 7,
+      "name": "A6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B6) when DIR is low and OE is low"
+    },
+    {
+      "pin": 8,
+      "name": "A7",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B7) when DIR is low and OE is low"
+    },
+    {
+      "pin": 9,
+      "name": "A8",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is high, output (B8) when DIR is low and OE is low"
+    },
+    {
+      "pin": 10,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 11,
+      "name": "B8",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A8) when DIR is high and OE is low"
+    },
+    {
+      "pin": 12,
+      "name": "B7",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A7) when DIR is high and OE is low"
+    },
+    {
+      "pin": 13,
+      "name": "B6",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A6) when DIR is high and OE is low"
+    },
+    {
+      "pin": 14,
+      "name": "B5",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A5) when DIR is high and OE is low"
+    },
+    {
+      "pin": 15,
+      "name": "B4",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A4) when DIR is high and OE is low"
+    },
+    {
+      "pin": 16,
+      "name": "B3",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A3) when DIR is high and OE is low"
+    },
+    {
+      "pin": 17,
+      "name": "B2",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A2) when DIR is high and OE is low"
+    },
+    {
+      "pin": 18,
+      "name": "B1",
+      "role": "output",
+      "outputType": "three-state",
+      "enabledBy": [
+        "19",
+        "1"
+      ],
+      "text": "bidirectional: input when DIR is low, output (A1) when DIR is high and OE is low"
+    },
+    {
+      "pin": 19,
+      "name": "OE",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "18",
+        "17",
+        "16",
+        "15",
+        "14",
+        "13",
+        "12",
+        "11"
+      ],
+      "whenInactive": "float",
+      "text": "output enable; high = all channels disabled (high impedance), the buses are isolated"
+    },
+    {
+      "pin": 20,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "2",
+      "formula": "A1 = (OE' AND DIR') ? B1 : Z",
+      "text": "A1 drives B1 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "18",
+      "formula": "B1 = (OE' AND DIR) ? A1 : Z",
+      "text": "B1 drives A1 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "3",
+      "formula": "A2 = (OE' AND DIR') ? B2 : Z",
+      "text": "A2 drives B2 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "17",
+      "formula": "B2 = (OE' AND DIR) ? A2 : Z",
+      "text": "B2 drives A2 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "4",
+      "formula": "A3 = (OE' AND DIR') ? B3 : Z",
+      "text": "A3 drives B3 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "16",
+      "formula": "B3 = (OE' AND DIR) ? A3 : Z",
+      "text": "B3 drives A3 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "5",
+      "formula": "A4 = (OE' AND DIR') ? B4 : Z",
+      "text": "A4 drives B4 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "15",
+      "formula": "B4 = (OE' AND DIR) ? A4 : Z",
+      "text": "B4 drives A4 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "6",
+      "formula": "A5 = (OE' AND DIR') ? B5 : Z",
+      "text": "A5 drives B5 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "14",
+      "formula": "B5 = (OE' AND DIR) ? A5 : Z",
+      "text": "B5 drives A5 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "7",
+      "formula": "A6 = (OE' AND DIR') ? B6 : Z",
+      "text": "A6 drives B6 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "13",
+      "formula": "B6 = (OE' AND DIR) ? A6 : Z",
+      "text": "B6 drives A6 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "8",
+      "formula": "A7 = (OE' AND DIR') ? B7 : Z",
+      "text": "A7 drives B7 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "12",
+      "formula": "B7 = (OE' AND DIR) ? A7 : Z",
+      "text": "B7 drives A7 while OE is low and DIR is high; otherwise high impedance."
+    },
+    {
+      "output": "9",
+      "formula": "A8 = (OE' AND DIR') ? B8 : Z",
+      "text": "A8 drives B8 while OE and DIR are low; otherwise high impedance."
+    },
+    {
+      "output": "11",
+      "formula": "B8 = (OE' AND DIR) ? A8 : Z",
+      "text": "B8 drives A8 while OE is low and DIR is high; otherwise high impedance."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 24,
+    "outputHighMaxCurrentMa": -15,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": true,
+    "vtPlusV": null,
+    "vtMinusV": null,
+    "hysteresisV": 0.4,
+    "notes": "SN74LS245 figures (pages 3-5). A and B inputs have hysteresis 0.2 V min, 0.4 V typ (page 5); thresholds not given. Off-state current 20 uA high, -200 uA low."
+  },
+  "timing": [
+    {
+      "from": "A or B",
+      "to": "B or A",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C, RL 667 ohm, CL 45 pF"
+    },
+    {
+      "from": "A or B",
+      "to": "B or A",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 12,
+      "conditions": "VCC 5 V, TA 25 C, RL 667 ohm, CL 45 pF"
+    },
+    {
+      "from": "OE",
+      "to": "any A or B",
+      "edge": "PZL",
+      "minNs": null,
+      "typNs": 27,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, RL 667 ohm, CL 45 pF"
+    },
+    {
+      "from": "OE",
+      "to": "any A or B",
+      "edge": "PZH",
+      "minNs": null,
+      "typNs": 25,
+      "maxNs": 40,
+      "conditions": "VCC 5 V, TA 25 C, RL 667 ohm, CL 45 pF"
+    },
+    {
+      "from": "OE",
+      "to": "any A or B",
+      "edge": "PLZ",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 25,
+      "conditions": "VCC 5 V, TA 25 C, RL 667 ohm, CL 5 pF"
+    },
+    {
+      "from": "OE",
+      "to": "any A or B",
+      "edge": "PHZ",
+      "minNs": null,
+      "typNs": 15,
+      "maxNs": 28,
+      "conditions": "VCC 5 V, TA 25 C, RL 667 ohm, CL 5 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The switching table (page 5) does not name the from/to pins; port to port for tPLH/tPHL and OE for the enable/disable times are taken from what those times mean.",
+    "The datasheet gives no delay for a change of DIR alone.",
+    "vtPlusV and vtMinusV: only the hysteresis is given."
+  ],
+  "notes": "A and B pins are both inputs and outputs; they are listed with role output (three-state) as the 8553 file does. Plain file: the lookup uses it for 74LS245.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016)",
+    "outputs": [
+      {
+        "pin": "A1",
+        "formula": "A1 = B1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B1",
+        "formula": "B1 = A1",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A2",
+        "formula": "A2 = B2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B2",
+        "formula": "B2 = A2",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A3",
+        "formula": "A3 = B3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B3",
+        "formula": "B3 = A3",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A4",
+        "formula": "A4 = B4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B4",
+        "formula": "B4 = A4",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A5",
+        "formula": "A5 = B5",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B5",
+        "formula": "B5 = A5",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A6",
+        "formula": "A6 = B6",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B6",
+        "formula": "B6 = A6",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A7",
+        "formula": "A7 = B7",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B7",
+        "formula": "B7 = A7",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "A8",
+        "formula": "A8 = B8",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "low"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      },
+      {
+        "pin": "B8",
+        "formula": "B8 = A8",
+        "type": "three-state",
+        "outputEnable": {
+          "pins": [
+            {
+              "pin": "OE",
+              "active": "low"
+            },
+            {
+              "pin": "DIR",
+              "active": "high"
+            }
+          ],
+          "disabled": "Z"
+        },
+        "source": "pages 1, 3 - TI SN54LS245/SN74LS245 datasheet SDLS146B (October 1976, revised September 2016) (pin functions and logic diagram)"
+      }
+    ]
+  }
+}

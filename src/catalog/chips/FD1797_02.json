@@ -1,0 +1,153 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "FD1797_02",
+  "family": "MOS LSI",
+  "title": "Floppy disk formatter/controller, single and double density, true data bus, side select output (FD1797-02)",
+  "package": "DIP-40",
+  "sources": [
+    {
+      "document": "Western Digital FD 179X-02 Floppy Disk Formatter/Controller Family data sheet, May 1980 (preliminary specification)",
+      "url": "https://bitsavers.mirrorservice.org/components/westernDigital/FD179X-02_Data_Sheet_May1980.pdf",
+      "pages": "1-24 (pin connections and family table p1, pin outs p2-4, organisation p4-5, processor and disk interface p6-8, command description p8-16, formats p17-18, DC characteristics p18, timing p19-22, status register p23)",
+      "familyUsed": "FD1797-02"
+    }
+  ],
+  "pins": [
+    {"pin": 1, "name": "NC", "role": "nc", "text": "internally connected to a back bias generator; must be left open"},
+    {"pin": 2, "name": "WE", "inverted": true, "role": "input", "active": "low", "text": "write enable: low gates the data on DAL into the register picked by A1,A0 while CS is low"},
+    {"pin": 3, "name": "CS", "inverted": true, "role": "input", "active": "low", "text": "chip select: low selects the chip and enables computer communication; may be tied low permanently"},
+    {"pin": 4, "name": "RE", "inverted": true, "role": "enable", "active": "low", "controls": ["7", "8", "9", "10", "11", "12", "13", "14"], "whenInactive": "float", "text": "read enable: low puts the register picked by A1,A0 on DAL while CS is low (DAL drives only while CS and RE are both low)"},
+    {"pin": 5, "name": "A0", "role": "input", "text": "register select, low bit: A1 A0 = 00 status (read) / command (write), 01 track, 10 sector, 11 data"},
+    {"pin": 6, "name": "A1", "role": "input", "text": "register select, high bit"},
+    {"pin": 7, "name": "DAL0", "role": "output", "outputType": "three-state", "enabledBy": "RE", "text": "data access line 0; bidirectional, three-state; TRUE (not inverted) on the 1793/1797"},
+    {"pin": 8, "name": "DAL1", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 9, "name": "DAL2", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 10, "name": "DAL3", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 11, "name": "DAL4", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 12, "name": "DAL5", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 13, "name": "DAL6", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 14, "name": "DAL7", "role": "output", "outputType": "three-state", "enabledBy": "RE"},
+    {"pin": 15, "name": "STEP", "role": "output", "outputType": "totem-pole", "text": "one pulse for each step: 2 us (MFM) or 4 us (FM), doubled at 1 MHz clock"},
+    {"pin": 16, "name": "DIRC", "role": "output", "outputType": "totem-pole", "text": "direction: high when stepping in (towards track 76), low when stepping out; valid 12 us before the first step pulse"},
+    {"pin": 17, "name": "EARLY", "role": "output", "outputType": "totem-pole", "text": "write precompensation: high means the WD pulse now should be written early"},
+    {"pin": 18, "name": "LATE", "role": "output", "outputType": "totem-pole", "text": "write precompensation: high means the WD pulse now should be written late; EARLY and LATE both low = nominal"},
+    {"pin": 19, "name": "MR", "inverted": true, "role": "input", "active": "low", "async": true, "text": "master reset: low resets the device and loads 03 hex into the command register; Not Ready (status bit 7) is reset while MR is low; when MR goes high a RESTORE command is executed whatever the Ready input; 01 hex is loaded into the sector register; min 50 us low"},
+    {"pin": 20, "name": "VSS", "role": "ground", "text": "ground"},
+    {"pin": 21, "name": "VCC", "role": "power", "voltage": "+5 V", "text": "+5 V +-5%"},
+    {"pin": 22, "name": "TEST", "inverted": true, "role": "input", "active": "low", "text": "testing only: tie to +5 V or leave open, unless used with voice coil actuated motors; TEST = 0 gives zero head settling time and the short step rates of table 1"},
+    {"pin": 23, "name": "HLT", "role": "input", "text": "head load timing: high means the head is assumed to be engaged (typically from a one-shot fired by HLD)"},
+    {"pin": 24, "name": "CLK", "role": "clock", "text": "free-running square wave: 2 MHz for 8 inch drives, 1 MHz for mini-drives"},
+    {"pin": 25, "name": "SSO", "role": "output", "outputType": "totem-pole", "text": "side select output (1795/1797): set by the S flag of a Type II or III command (S = 1 gives 1), updated only at the beginning of a Type II or III command, forced to 0 by master reset"},
+    {"pin": 26, "name": "RCLK", "role": "input", "text": "read clock: a nominal square wave derived from the data stream; phasing relative to RAW READ matters, polarity does not"},
+    {"pin": 27, "name": "RAWREAD", "inverted": true, "role": "input", "active": "low", "text": "raw read data from the drive (drawn RAW READ with a bar): a negative pulse for each recorded flux transition"},
+    {"pin": 28, "name": "HLD", "role": "output", "outputType": "totem-pole", "text": "head load: controls loading the read/write head against the media"},
+    {"pin": 29, "name": "TG43", "role": "output", "outputType": "totem-pole", "text": "track greater than 43: head positioned between tracks 44-76; valid only during read and write commands"},
+    {"pin": 30, "name": "WG", "role": "output", "outputType": "totem-pole", "text": "write gate: made valid before writing on the diskette"},
+    {"pin": 31, "name": "WD", "role": "output", "outputType": "totem-pole", "text": "write data: a 250 ns (MFM) or 500 ns (FM) pulse per flux transition; carries address marks, data and clock"},
+    {"pin": 32, "name": "READY", "role": "input", "text": "drive ready, sampled high before a read or write command; if low the command is not performed and an interrupt is generated; Type I commands run whatever READY; appears inverted as status bit 7"},
+    {"pin": 33, "name": "WFVFOE", "inverted": true, "role": "output", "outputType": "totem-pole", "text": "write fault / VFO enable (drawn WF/VFOE, both with a bar), bidirectional: with WG = 1 it is the write fault input (low terminates any write); with WG = 0 it is the VFOE output, low during a read after the head has loaded and settled, to enable an external PLO data separator; on the 1795/7 low until the last bit of the second ID CRC byte, then high until 8 bytes (MFM) or 4 bytes (FM) before the address mark, then low until the last bit of the second data field CRC byte. Not used: leave open or tie to a 10K resistor to +5 V"},
+    {"pin": 34, "name": "TR00", "inverted": true, "role": "input", "active": "low", "text": "track 00: the read/write head is over track 0"},
+    {"pin": 35, "name": "IP", "inverted": true, "role": "input", "active": "low", "text": "index pulse: the index hole is under the sensor; min 10 us"},
+    {"pin": 36, "name": "WPRT", "inverted": true, "role": "input", "active": "low", "text": "write protect: sampled when a write command is received; low terminates the command and sets the write protect status bit"},
+    {"pin": 37, "name": "DDEN", "inverted": true, "role": "input", "active": "low", "text": "double density: 0 selects double density (MFM), 1 single density (FM)"},
+    {"pin": 38, "name": "DRQ", "role": "output", "outputType": "open-collector", "text": "data request, open drain: the data register holds assembled data (read) or is empty (write); reset when the computer reads or loads the data register; use a 10K pull-up to +5 V"},
+    {"pin": 39, "name": "INTRQ", "role": "output", "outputType": "open-collector", "text": "interrupt request, open drain: set at the completion of any command, reset when the status register is read or the command register written; use a 10K pull-up to +5 V"},
+    {"pin": 40, "name": "VDD", "role": "power", "voltage": "+12 V", "text": "+12 V +-5%"}
+  ],
+  "functions": [
+    {
+      "output": "7-14",
+      "formula": null,
+      "text": "Data access lines: three-state buffers, drivers when CS and RE are low, receivers when CS and WE are low. A1 A0 with RE: 00 status, 01 track, 10 sector, 11 data register; with WE: 00 command, 01 track, 10 sector, 11 data register."
+    },
+    {
+      "output": "38,39",
+      "formula": null,
+      "text": "DRQ: set when a byte is assembled into the data register (read) or the data register has moved to the shift register (write); cleared when the computer reads or loads the data register; also status bit 1. INTRQ: set at the end of every command and by a met Force Interrupt condition; cleared by reading status or writing a new command."
+    },
+    {
+      "output": "15-18,25,28-31,33",
+      "formula": null,
+      "text": "Disk interface outputs: STEP/DIRC for head positioning at the rate in r1 r0, HLD head load, TG43, WG and WD for writing with EARLY/LATE precompensation, SSO side select, VFOE for the external data separator. Their sequence is given by the command flow charts on pages 9-16."
+    }
+  ],
+  "state": {
+    "type": "floppy disk controller",
+    "organisation": "8-bit data shift register, data register (DR), track register (TR), sector register (SR), command register (CR, write only), status register (STR, read only), CRC logic (G(x) = x^16 + x^12 + x^5 + 1, preset to ones), serial ALU, address mark detector, PLA control 230 x 16",
+    "changesOn": "CLK; register writes (WE) and reads (RE); disk inputs",
+    "rules": [
+      "Command summary (bits 7..0): Type I Restore 0000hVr1r0, Seek 0001hVr1r0, Step 001uhVr1r0, Step In 010uhVr1r0, Step Out 011uhVr1r0; Type II Read Sector 100mF2EF10 (F1 = S side select, F2 = b sector length flag on 1795/7), Write Sector 101mF2EF1a0; Type III Read Address 11000E00, Read Track 11100E00, Write Track 11110E00; Type IV Force Interrupt 1101 I3 I2 I1 I0.",
+      "Type I flags: h = 1 load head at beginning; V = 1 verify on destination track; r1 r0 stepping rate; u = 1 update track register.",
+      "Stepping rates r1 r0 = 00/01/10/11: 3/6/10/15 ms at CLK 2 MHz, 6/12/20/30 ms at 1 MHz (TEST = 1); with TEST = 0: 184/190/198/208 us at 2 MHz, 368/380/396/416 us at 1 MHz.",
+      "Verify: after a 15 ms settling time (30 ms at 1 MHz, none with TEST = 0) HLT is sampled; the first ID field track number is compared with TR; match with valid CRC ends without error; no match sets Seek Error (status 4); CRC error sets status 3 and the next ID is read; no valid ID within the stated revolutions ends with Seek Error.",
+      "Restore: if TR00 is low, TR = 0 and interrupt; else steps out until TR00 goes low, then TR = 0; after 255 steps without TR00 it ends with Seek Error. Restore is also executed when MR goes from low to high.",
+      "Seek: TR holds the current track, DR the desired track; steps until TR = DR.",
+      "Type II/III flags: m = 1 multiple records; a0 = 1 write deleted data mark F8, 0 data mark FB; E = 1 15 ms delay before HLT is sampled; S (1795/7) sets SSO; b (1795/7) sector length table: b = 0 gives 256/512/1024/128 bytes for length field 00/01/10/11, b = 1 gives 128/256/512/1024.",
+      "Read/Write Sector: READY must be high; finds the ID with matching track, sector, side and CRC within 5 index pulses or sets Record Not Found; the data address mark must come within 30 bytes (FM) or 43 bytes (MFM) of the last ID CRC byte; a byte not taken in time sets Lost Data; Write Sector writes zeros (6 FM, 12 MFM), the data mark, the data, 2 CRC bytes and one byte of ones, then WG off; m = 1 increments SR and continues until SR exceeds the sectors on the track or a Force Interrupt.",
+      "Read Address: reads the next ID field (track, side, sector, length, CRC1, CRC2) through DR with a DRQ per byte; the track address is written into SR.",
+      "Read Track: from the leading edge of an index pulse to the next, every byte to DR with a DRQ, gaps included, no CRC check, byte sync on each address mark.",
+      "Write Track (formatting): DRQ at once; writing starts at the next index pulse and ends at the following one; DR bytes F5-FE are written as address marks with missing clocks, F7 writes two CRC bytes (control byte table page 14).",
+      "Force Interrupt: I0 not-ready-to-ready, I1 ready-to-not-ready, I2 every index pulse, I3 immediate interrupt; all zero terminates the command without an interrupt. It is the only command that clears the immediate interrupt on a later command load or status read.",
+      "Status after Type I: S7 not ready (inverted READY ORed with MR), S6 write protect, S5 head loaded (HLD AND HLT), S4 seek error, S3 CRC error, S2 track 0 (inverted TR00), S1 index (inverted IP), S0 busy.",
+      "Status after Type II/III: S7 not ready, S6 write protect (writes), S5 record type on read (1 deleted data mark) or write fault on write, S4 record not found, S3 CRC error, S2 lost data, S1 data request (copy of DRQ), S0 busy.",
+      "HLD: set at the start of a Type I command with h = 1 or near the end with V = 1, and on any Type II or III command; it stays active until a Type I command with h = 0 and V = 0, or after 15 index pulses while idle."
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 1.6,
+    "outputHighMaxCurrentMa": -0.1,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DC characteristics (page 18), TA 0..70 C, VDD +12 V +-0.6 V, VCC +5 V +-0.25 V: VIH 2.6 V min, VIL 0.8 V max, VOH 2.8 V min at -100 uA, VOL 0.45 V max at 1.6 mA; input leakage 10 uA, output leakage 10 uA; power 0.5 W max. VDD 10 mA nominal, VCC 35 mA nominal. Absolute maximum VDD and any input -0.3..15 V. DRQ and INTRQ are open drain and need 10K pull-ups."
+  },
+  "timing": [
+    {"from": "RE", "to": "DAL0", "edge": "access", "minNs": null, "typNs": null, "maxNs": 350, "conditions": "CL 50 pF", "symbol": "TDACC"},
+    {"from": "RE", "to": "DAL0", "edge": "PXZ", "minNs": 50, "typNs": null, "maxNs": 150, "conditions": "data hold from RE, CL 50 pF", "symbol": "TDOH"},
+    {"from": "RE", "to": "DRQ", "edge": "PLH", "minNs": null, "typNs": 400, "maxNs": 500, "conditions": "DRQ reset from RE (DRQ is open drain: reset means released)", "symbol": "TDRR"},
+    {"from": "RE", "to": "INTRQ", "edge": "PLH", "minNs": null, "typNs": 500, "maxNs": 3000, "conditions": "INTRQ reset from RE; times double when clock = 1 MHz", "symbol": "TIRR"},
+    {"from": "WE", "to": "DRQ", "edge": "PLH", "minNs": null, "typNs": 400, "maxNs": 500, "conditions": "DRQ reset from WE", "symbol": "TDRR"},
+    {"from": "WE", "to": "INTRQ", "edge": "PLH", "minNs": null, "typNs": 500, "maxNs": 3000, "conditions": "INTRQ reset from WE; times double when clock = 1 MHz", "symbol": "TIRR"}
+  ],
+  "timingLimits": [
+    {"what": "setup", "pin": "A0,A1,CS", "ref": "RE", "minNs": 50, "symbol": "TSET"},
+    {"what": "hold", "pin": "A0,A1,CS", "ref": "RE", "minNs": 10, "symbol": "THLD"},
+    {"what": "pulseWidth", "pin": "RE low", "ref": null, "minNs": 400, "symbol": "TRE"},
+    {"what": "setup", "pin": "A0,A1,CS", "ref": "WE", "minNs": 50, "symbol": "TSET"},
+    {"what": "hold", "pin": "A0,A1,CS", "ref": "WE", "minNs": 10, "symbol": "THLD"},
+    {"what": "pulseWidth", "pin": "WE low", "ref": null, "minNs": 350, "symbol": "TWE"},
+    {"what": "setup", "pin": "DAL", "ref": "WE", "minNs": 250, "symbol": "TDS"},
+    {"what": "hold", "pin": "DAL", "ref": "WE", "minNs": 70, "symbol": "TDH"},
+    {"what": "pulseWidth", "pin": "RAW READ low", "ref": null, "minNs": 100, "text": "typ 200 ns; normally 100-300 ns (note 1)", "symbol": "Tpw"},
+    {"what": "cycleTime", "pin": "RAW READ", "ref": null, "minNs": null, "text": "typ 1500 ns, 1800 ns at 70 C", "symbol": "tbc"},
+    {"what": "cycleTime", "pin": "RCLK", "ref": null, "minNs": null, "text": "typ 1500 ns, 1800 ns at 70 C", "symbol": "Tc"},
+    {"what": "hold", "pin": "RCLK", "ref": "RAW READ", "minNs": 40, "symbol": "Tx1"},
+    {"what": "hold", "pin": "RAW READ", "ref": "RCLK", "minNs": 40, "symbol": "Tx2"},
+    {"what": "pulse width", "pin": "WD", "ref": null, "minNs": 450, "maxNs": 550, "text": "FM, typ 500 ns; MFM 150..250 ns typ 200 ns; doubled at 1 MHz", "symbol": "Twp"},
+    {"what": "delay", "pin": "WD", "ref": "WG", "minNs": null, "text": "write gate to write data typ 2 us FM, 1 us MFM", "symbol": "Twg"},
+    {"what": "setup", "pin": "EARLY,LATE", "ref": "WD", "minNs": 125, "text": "MFM", "symbol": "Ts"},
+    {"what": "hold", "pin": "EARLY,LATE", "ref": "WD", "minNs": 125, "text": "MFM", "symbol": "Th"},
+    {"what": "delay", "pin": "WG off", "ref": "WD", "minNs": null, "text": "typ 2 us FM, 1 us MFM", "symbol": "Twf"},
+    {"what": "setup", "pin": "WD", "ref": "CLK", "minNs": 50, "text": "100 ns at CLK 1 MHz, 50 ns at 2 MHz", "symbol": "Twd1"},
+    {"what": "hold", "pin": "WD", "ref": "CLK", "minNs": 30, "text": "100 ns at CLK 1 MHz, 30 ns at 2 MHz", "symbol": "Twd2"},
+    {"what": "pulse width low", "pin": "CLK", "ref": null, "minNs": 230, "maxNs": 20000, "text": "typ 250 ns", "symbol": "TCD1"},
+    {"what": "pulse width high", "pin": "CLK", "ref": null, "minNs": 200, "maxNs": 20000, "text": "typ 250 ns", "symbol": "TCD2"},
+    {"what": "output pulse width", "pin": "STEP", "ref": null, "minNs": 2000, "text": "2 or 4 us; doubles at 1 MHz", "symbol": "TSTP"},
+    {"what": "setup", "pin": "DIRC", "ref": "STEP", "minNs": null, "text": "typ 12 us", "symbol": "TDIR"},
+    {"what": "pulseWidth", "pin": "MR low", "ref": null, "minNs": 50000, "symbol": "TMR"},
+    {"what": "pulseWidth", "pin": "IP low", "ref": null, "minNs": 10000, "symbol": "TIP"},
+    {"what": "pulseWidth", "pin": "WF low", "ref": null, "minNs": 10000, "symbol": "TWF"}
+  ],
+  "unknown": [
+    "The data sheet is a preliminary specification with tentative parameters (page 24).",
+    "Output high current: only VOH 2.8 V at -100 uA is given, used as outputHighMaxCurrentMa; no separate drive rating.",
+    "Whether STEP, DIRC and the other disk outputs are push-pull is not stated; stored as totem-pole because only DRQ and INTRQ are called open drain.",
+    "The number of revolutions allowed for a Type I verify: the text on page 9 says four revolutions, page 6 says 5 revolutions; both are in the source.",
+    "Register contents after power-on other than those loaded by MR (command 03, sector 01) are not stated."
+  ],
+  "notes": "Card 3207 part FD1797. The family sheet covers 1791-1797; 1797 = double density, true data bus, write precompensation, side select output (family table page 1). Only 1797 facts are used.",
+  "behaviour": {
+    "kind": "none",
+    "reason": "A command-driven controller (eleven commands, flow charts pages 9-16) that runs from a 1-2 MHz clock, decodes FM/MFM flux pulses, computes CRC and waits on drive signals for milliseconds. A runnable pin model would be a full controller emulation; the sheet also leaves some points open (two different revolution counts, power-on register contents). The words are in pins[].text, functions and state."
+  }
+}

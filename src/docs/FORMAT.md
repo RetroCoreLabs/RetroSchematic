@@ -81,6 +81,18 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
 - No pin is in two nets.
 - Part refs and gate ids are unique.
 
+## Supply signals of a card
+
+```json
+{ "name": "AVC", "active": "none", "supply": true, "pins": [ ... ] }
+```
+
+`nets[].supply` (optional, added 2026-11-28) marks a signal that is a supply on this card but is
+not one of the fixed supply names (+5V, 5V, GND, 12V, +12V, -12V, 5VSTBY): AVC on card 3207, a
+5.6 V the card makes itself. Power and ground pins may sit on such a signal. In a card's reading
+files the line `supply NAME [what it is]` says the same, card wide (docs/3207-readings/README.md),
+and writing the sheet from the readings sets the field.
+
 ## File stamp
 
 ```json
@@ -237,6 +249,34 @@ catalogue to check the pins:
 The pin rules for `RN-SIP-n` and `SW-DIP-n` are the usual layouts, not read from a datasheet
 (`catalog/passives/` says so in `pinNumberingConfidence`); a part laid out differently needs
 its own kind.
+
+### Passive part types in card readings
+
+A card reading (`docs/<card>-readings/p*.txt`) writes a passive part with the type printed on
+the drawing, not with the sheet types above. One rule maps such a type to its file in
+`catalog/passives/` and its pin count: `PassiveParts.ReadingPart` in C#, and `passive_part` in
+`tools/card-readings.py` (the same rule; change the two together). The reading check then
+requires that file to exist and, when the pin count is known, every pin of the part to be in 1 to
+that count (else "has no pin").
+
+| Reading type | File | Pins |
+|---|---|---|
+| a value: `4.7KOHM`, `.2KOHM` (0.2 kohm), `100PF` | `resistor`, `capacitor` | 2 |
+| `46nnX_101_vvv` (Bourns 4600X SIP) | `bourns-4600x-101`: pin 1 common, resistor k to pin k+1 | nn |
+| `46nnX_102_vvv` | `bourns-4600x-102`: resistor k from pin 2k-1 to 2k | nn |
+| `46nnX104_rrr/sss` or `46nnX_104_...` | `bourns-4600x-104`: pins 1 and nn common, each other pin a line | nn |
+| `41nnR_001_vvv` (Bourns 4100R DIP, circuit 1) | `bourns-4100r-1`: resistor k from pin k to nn+1-k | nn |
+| `1N4148` | `diode-1n4148`: 1 = anode, 2 = cathode | 2 |
+| `2N3906` | `transistor-2n3906`: 1 = emitter, 2 = base, 3 = collector | 3 |
+| `STRAP`, `STR2` | `strap` | 2 |
+| `TESTPOINT` | `test-point` | 1 |
+| `YELLOW`, `RED`, `GREEN` | `led`: 1 = anode, 2 = cathode | 2 |
+| `5.6V_ZENER` (any voltage) | `zener`: 1 = anode, 2 = cathode | 2 |
+| `10MHZ`, `32MHZ` (any frequency) | `oscillator`: pin numbering not known | not checked |
+
+A file for a real part names its datasheet in `sources[]` (`document`, `url`, `pages`), and
+`readingTypes` says how the reading writes the type. Any other type is a chip and is looked up in
+`catalog/chips/`.
 
 Extra part fields, for passive parts only (a reader refuses them on a chip):
 

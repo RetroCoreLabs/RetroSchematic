@@ -1,0 +1,20 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "bourns-4600x-102",
+  "title": "Resistor network, Bourns 4600X SIP, isolated (102 circuit)",
+  "type": "46nnX-102-vvv",
+  "readingTypes": "46nnX_102_vvv: nn the pin count (even), vvv the resistance code",
+  "pinRule": "resistor k runs from pin 2k-1 to pin 2k (1-2, 3-4, ...), so a 4608X has 8 pins and 4 resistors",
+  "pinNumberingConfidence": "read",
+  "values": "resistance code as for the 101 circuit",
+  "datasheet": "Bourns 4600X datasheet, page 2, Isolated Resistors (102 Circuit)",
+  "sources": [
+    {
+      "document": "Bourns 4600X Series Thick Film Conformal SIPs, REV. 10/1/20",
+      "url": "https://www.bourns.com/docs/Product-Datasheets/4600x.pdf",
+      "pages": "1-2"
+    }
+  ],
+  "note": "Datasheet: 2 to 7 isolated resistors of equal value, each between two pins; 4, 6, 8, 10, 12 or 14 pins; 0.30 W per resistor at 70 C."
+}

@@ -1,0 +1,164 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "7411",
+  "family": "74",
+  "title": "Triple 3-input positive-AND gates",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI SN54LS11/SN54S11/SN74LS11/SN74S11 datasheet SDLS131 (April 1985, revised March 1988)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls11.pdf",
+      "pages": "1, 3, 4",
+      "familyUsed": "SN74LS11"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "1A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "1B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "2A",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "2B",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "2C",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "3Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 9,
+      "name": "3A",
+      "role": "input"
+    },
+    {
+      "pin": 10,
+      "name": "3B",
+      "role": "input"
+    },
+    {
+      "pin": 11,
+      "name": "3C",
+      "role": "input"
+    },
+    {
+      "pin": 12,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "1C",
+      "role": "input"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "12",
+      "formula": "1Y = 1A AND 1B AND 1C",
+      "text": "1Y is high only when 1A, 1B and 1C are all high."
+    },
+    {
+      "output": "6",
+      "formula": "2Y = 2A AND 2B AND 2C",
+      "text": "2Y is high only when 2A, 2B and 2C are all high."
+    },
+    {
+      "output": "8",
+      "formula": "3Y = 3A AND 3B AND 3C",
+      "text": "3Y is high only when 3A, 3B and 3C are all high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 8,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74LS11 figures (page 3). SN74S11: IOL 20 mA, IOH -1 mA (page 4)."
+  },
+  "timing": [
+    {
+      "from": "any input",
+      "to": "Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 8,
+      "maxNs": 15,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF"
+    },
+    {
+      "from": "any input",
+      "to": "Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 10,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "Timing is the SN74LS11 table (page 3). SN74S11 (page 4, RL 280 ohm, CL 15 pF): tPLH 4.5/7 ns, tPHL 5/7.5 ns typ/max. Plain file: the lookup uses it for 74LS11 and 74S11 too.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pages 1, 3 - TI SN54LS11/SN54S11/SN74LS11/SN74S11 datasheet SDLS131 (April 1985, revised March 1988)",
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1A AND 1B AND 1C",
+        "type": "totem-pole",
+        "source": "pages 1, 3 - TI SN54LS11/SN54S11/SN74LS11/SN74S11 datasheet SDLS131 (April 1985, revised March 1988) (function table)"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2A AND 2B AND 2C",
+        "type": "totem-pole",
+        "source": "pages 1, 3 - TI SN54LS11/SN54S11/SN74LS11/SN74S11 datasheet SDLS131 (April 1985, revised March 1988) (function table)"
+      },
+      {
+        "pin": "3Y",
+        "formula": "3Y = 3A AND 3B AND 3C",
+        "type": "totem-pole",
+        "source": "pages 1, 3 - TI SN54LS11/SN54S11/SN74LS11/SN74S11 datasheet SDLS131 (April 1985, revised March 1988) (function table)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "bourns-4100r-1",
+  "title": "Resistor network, Bourns 4100R DIP, isolated (circuit 1)",
+  "type": "41nnR-1-vvv",
+  "readingTypes": "41nnR_001_vvv: nn the pin count, 001 as the ND drawing prints circuit 1, vvv the resistance code (102 = 1 kohm)",
+  "pinRule": "resistor k runs from pin k to pin nn+1-k, so a 4116R has 8 resistors, pin 1 to 16 through pin 8 to 9",
+  "pinNumberingConfidence": "read",
+  "values": "resistance code as for the 4600X",
+  "datasheet": "Bourns 4100R datasheet, page 2, Isolated Resistors (1 Circuit)",
+  "sources": [
+    {
+      "document": "Bourns 4100R Series Thick Film Molded DIPs, REV. 09/19",
+      "url": "https://www.bourns.com/docs/Product-Datasheets/4100r.pdf",
+      "pages": "1-2"
+    }
+  ],
+  "note": "Datasheet: 4116R-1 has 8 isolated resistors; 0.25 W per resistor at 70 C. ASSUMPTION, not verified: the drawing's 001 is the older way of writing circuit code 1; the current datasheet writes 1 (1 isolated, 2 bussed, 3 dual terminator)."
+}

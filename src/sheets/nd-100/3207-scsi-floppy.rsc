@@ -1,7 +1,10 @@
 {
   "format": "nd-netlist",
   "formatVersion": 3,
-  "file": {"revision": 2, "modified": "2026-11-28T12:38:49Z"},
+  "file": {
+    "revision": 3,
+    "modified": "2026-11-28T17:15:59Z"
+  },
   "sheet": {
     "id": "3207",
     "title": "SCSI/FLOPPY",
@@ -10148,6 +10151,11 @@
           "name": "D07",
           "active": "high",
           "pins": []
+        },
+        {
+          "name": "AVC",
+          "active": "none",
+          "pins": []
         }
       ],
       "pages": [
@@ -10826,7 +10834,7 @@
               "nets": [
                 {
                   "net": "AVC",
-                  "active": "high"
+                  "active": "none"
                 }
               ]
             },
@@ -11967,9 +11975,9 @@
         },
         {
           "name": "LADM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "LADM",
@@ -11979,9 +11987,9 @@
         },
         {
           "name": "LADH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "LADH",
@@ -11991,9 +11999,9 @@
         },
         {
           "name": "SETLO_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SETLO",
@@ -12003,9 +12011,9 @@
         },
         {
           "name": "SETHI_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SETHI",
@@ -12015,9 +12023,9 @@
         },
         {
           "name": "RPOL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RPOL",
@@ -12027,9 +12035,9 @@
         },
         {
           "name": "RPOM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RPOM",
@@ -12039,9 +12047,9 @@
         },
         {
           "name": "RPOH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RPOH",
@@ -12051,9 +12059,9 @@
         },
         {
           "name": "RCW1_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RCW1",
@@ -12063,9 +12071,9 @@
         },
         {
           "name": "RCW2_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RCW2",
@@ -12075,9 +12083,9 @@
         },
         {
           "name": "RDMAL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RDMAL",
@@ -12087,9 +12095,9 @@
         },
         {
           "name": "RDMAM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RDMAM",
@@ -12099,9 +12107,9 @@
         },
         {
           "name": "RDMAH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RDMAH",
@@ -12111,9 +12119,9 @@
         },
         {
           "name": "IORD_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "IORD",
@@ -12123,9 +12131,9 @@
         },
         {
           "name": "IOWR_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "IOWR",
@@ -12147,9 +12155,9 @@
         },
         {
           "name": "BINACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BINACK",
@@ -12159,9 +12167,9 @@
         },
         {
           "name": "BMEM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BMEM",
@@ -12171,9 +12179,9 @@
         },
         {
           "name": "BMCL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BMCL",
@@ -12183,9 +12191,9 @@
         },
         {
           "name": "BERROR_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BERROR",
@@ -12195,9 +12203,9 @@
         },
         {
           "name": "BIOXE_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BIOXE",
@@ -12219,9 +12227,9 @@
         },
         {
           "name": "MBD00",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD00",
@@ -12231,9 +12239,9 @@
         },
         {
           "name": "MBD01",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD01",
@@ -12243,9 +12251,9 @@
         },
         {
           "name": "MBD02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD02",
@@ -12255,9 +12263,9 @@
         },
         {
           "name": "MBD03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD03",
@@ -12267,9 +12275,9 @@
         },
         {
           "name": "MBD04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD04",
@@ -12279,9 +12287,9 @@
         },
         {
           "name": "MBD05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD05",
@@ -12291,9 +12299,9 @@
         },
         {
           "name": "MBD06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD06",
@@ -12303,9 +12311,9 @@
         },
         {
           "name": "MBD07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD07",
@@ -12315,9 +12323,9 @@
         },
         {
           "name": "LSTAT_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "LSTAT",
@@ -12363,9 +12371,9 @@
         },
         {
           "name": "LADR1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "LADR1",
@@ -12375,9 +12383,9 @@
         },
         {
           "name": "LADR2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "LADR2",
@@ -12447,9 +12455,9 @@
         },
         {
           "name": "FWINH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FWINH",
@@ -12531,9 +12539,9 @@
         },
         {
           "name": "BD_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BD00",
@@ -19222,9 +19230,9 @@
         },
         {
           "name": "MC_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "MC",
@@ -19246,9 +19254,9 @@
         },
         {
           "name": "F5READY_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "F5READY",
@@ -19258,9 +19266,9 @@
         },
         {
           "name": "F5INDEX_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "F5INDEX",
@@ -19270,9 +19278,9 @@
         },
         {
           "name": "FTROO_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FTROO",
@@ -19282,9 +19290,9 @@
         },
         {
           "name": "FDISKCH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FDISKCH",
@@ -19294,9 +19302,9 @@
         },
         {
           "name": "FTWOS_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FTWOS",
@@ -19306,9 +19314,9 @@
         },
         {
           "name": "FWPRT_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FWPRT",
@@ -19324,7 +19332,7 @@
           "signals": [
             {
               "net": "AVC",
-              "active": "high"
+              "active": "none"
             }
           ]
         },
@@ -19366,9 +19374,9 @@
         },
         {
           "name": "FLORQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FLORQ",
@@ -19378,9 +19386,9 @@
         },
         {
           "name": "FLOINT",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FLOINT",
@@ -19426,9 +19434,9 @@
         },
         {
           "name": "COEN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "COEN",
@@ -19474,9 +19482,9 @@
         },
         {
           "name": "FLOEN_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FLOEN",
@@ -19570,9 +19578,9 @@
         },
         {
           "name": "BA02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BA02",
@@ -19582,9 +19590,9 @@
         },
         {
           "name": "BA03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BA03",
@@ -19594,9 +19602,9 @@
         },
         {
           "name": "D00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D00",
@@ -19606,9 +19614,9 @@
         },
         {
           "name": "D01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D01",
@@ -19618,9 +19626,9 @@
         },
         {
           "name": "D02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D02",
@@ -19630,9 +19638,9 @@
         },
         {
           "name": "D03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D03",
@@ -19642,9 +19650,9 @@
         },
         {
           "name": "D04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D04",
@@ -19654,9 +19662,9 @@
         },
         {
           "name": "D05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D05",
@@ -19666,9 +19674,9 @@
         },
         {
           "name": "D06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D06",
@@ -19678,9 +19686,9 @@
         },
         {
           "name": "D07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D07",
@@ -19714,9 +19722,9 @@
         },
         {
           "name": "MBD00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD00",
@@ -19726,9 +19734,9 @@
         },
         {
           "name": "MBD01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD01",
@@ -19738,9 +19746,9 @@
         },
         {
           "name": "MBD02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD02",
@@ -19750,9 +19758,9 @@
         },
         {
           "name": "MBD03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD03",
@@ -19762,9 +19770,9 @@
         },
         {
           "name": "MBD04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD04",
@@ -19774,9 +19782,9 @@
         },
         {
           "name": "MBD05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD05",
@@ -19786,9 +19794,9 @@
         },
         {
           "name": "MBD06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD06",
@@ -19798,9 +19806,9 @@
         },
         {
           "name": "MBD07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD07",
@@ -22872,7 +22880,8 @@
         },
         {
           "name": "AVC",
-          "active": "high",
+          "active": "none",
+          "supply": true,
           "pins": [
             {
               "at": "R16.1",
@@ -24119,9 +24128,9 @@
         },
         {
           "name": "PF1MHZ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "PF1MHZ",
@@ -24131,9 +24140,9 @@
         },
         {
           "name": "MDIS",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "MDIS",
@@ -24155,9 +24164,9 @@
         },
         {
           "name": "FLORQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FLORQ",
@@ -24203,9 +24212,9 @@
         },
         {
           "name": "FLOEN_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FLOEN",
@@ -24239,9 +24248,9 @@
         },
         {
           "name": "FLOACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FLOACK",
@@ -24275,9 +24284,9 @@
         },
         {
           "name": "BA00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BA00",
@@ -24287,9 +24296,9 @@
         },
         {
           "name": "BA01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BA01",
@@ -24299,9 +24308,9 @@
         },
         {
           "name": "BA02",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BA02",
@@ -24311,9 +24320,9 @@
         },
         {
           "name": "BA03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BA03",
@@ -24323,9 +24332,9 @@
         },
         {
           "name": "D00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D00",
@@ -24335,9 +24344,9 @@
         },
         {
           "name": "D01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D01",
@@ -24347,9 +24356,9 @@
         },
         {
           "name": "D02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D02",
@@ -24359,9 +24368,9 @@
         },
         {
           "name": "D03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D03",
@@ -24371,9 +24380,9 @@
         },
         {
           "name": "D04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D04",
@@ -24383,9 +24392,9 @@
         },
         {
           "name": "D05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D05",
@@ -24395,9 +24404,9 @@
         },
         {
           "name": "D06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D06",
@@ -24407,9 +24416,9 @@
         },
         {
           "name": "D07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "D07",
@@ -24419,9 +24428,9 @@
         },
         {
           "name": "NACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "NACK",
@@ -24431,9 +24440,9 @@
         },
         {
           "name": "LSTAT_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LSTAT",
@@ -24443,9 +24452,9 @@
         },
         {
           "name": "IOWR_0",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "IOWR",
@@ -24455,9 +24464,9 @@
         },
         {
           "name": "IORD_0",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "IORD",
@@ -24467,9 +24476,9 @@
         },
         {
           "name": "MBD00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD00",
@@ -24479,9 +24488,9 @@
         },
         {
           "name": "MBD01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD01",
@@ -24491,9 +24500,9 @@
         },
         {
           "name": "MBD02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD02",
@@ -24503,9 +24512,9 @@
         },
         {
           "name": "MBD03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD03",
@@ -24515,9 +24524,9 @@
         },
         {
           "name": "MBD04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD04",
@@ -24527,9 +24536,9 @@
         },
         {
           "name": "MBD05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD05",
@@ -24539,9 +24548,9 @@
         },
         {
           "name": "MBD06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD06",
@@ -24551,9 +24560,9 @@
         },
         {
           "name": "MBD07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MBD07",
@@ -24563,9 +24572,9 @@
         },
         {
           "name": "MC_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "MC",
@@ -24575,9 +24584,9 @@
         },
         {
           "name": "MC",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "MC",
@@ -24587,9 +24596,9 @@
         },
         {
           "name": "NRQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "NRQ",
@@ -24623,9 +24632,9 @@
         },
         {
           "name": "ARCK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "ARCK",
@@ -24635,9 +24644,9 @@
         },
         {
           "name": "DMAINT_0",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DMAINT",
@@ -24647,9 +24656,9 @@
         },
         {
           "name": "FINISH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FINISH",
@@ -24659,9 +24668,9 @@
         },
         {
           "name": "LDD_T_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LDD_T",
@@ -24671,9 +24680,9 @@
         },
         {
           "name": "LADL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADL",
@@ -24683,9 +24692,9 @@
         },
         {
           "name": "LADM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADM",
@@ -24695,9 +24704,9 @@
         },
         {
           "name": "LADH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADH",
@@ -24707,9 +24716,9 @@
         },
         {
           "name": "SETLO_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SETLO",
@@ -24719,9 +24728,9 @@
         },
         {
           "name": "SETHI_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SETHI",
@@ -24731,9 +24740,9 @@
         },
         {
           "name": "RPOL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RPOL",
@@ -24743,9 +24752,9 @@
         },
         {
           "name": "RPOM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RPOM",
@@ -24755,9 +24764,9 @@
         },
         {
           "name": "RPOH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RPOH",
@@ -24767,9 +24776,9 @@
         },
         {
           "name": "RCW1_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RCW1",
@@ -24779,9 +24788,9 @@
         },
         {
           "name": "RCW2_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RCW2",
@@ -24791,9 +24800,9 @@
         },
         {
           "name": "RDMAL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RDMAL",
@@ -24803,9 +24812,9 @@
         },
         {
           "name": "RDMAM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RDMAM",
@@ -24815,9 +24824,9 @@
         },
         {
           "name": "RDMAH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RDMAH",
@@ -29153,9 +29162,9 @@
       "ports": [
         {
           "name": "BSYOUT",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BSYOUT",
@@ -29165,9 +29174,9 @@
         },
         {
           "name": "SBP",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SBP",
@@ -29225,9 +29234,9 @@
         },
         {
           "name": "DE0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE0",
@@ -29237,9 +29246,9 @@
         },
         {
           "name": "DE1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE1",
@@ -29249,9 +29258,9 @@
         },
         {
           "name": "DE2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE2",
@@ -29261,9 +29270,9 @@
         },
         {
           "name": "DE3",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE3",
@@ -29273,9 +29282,9 @@
         },
         {
           "name": "DE4",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE4",
@@ -29285,9 +29294,9 @@
         },
         {
           "name": "DE5",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE5",
@@ -29297,9 +29306,9 @@
         },
         {
           "name": "DE6",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE6",
@@ -29309,9 +29318,9 @@
         },
         {
           "name": "DE7",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DE7",
@@ -29321,9 +29330,9 @@
         },
         {
           "name": "SB0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB0",
@@ -29333,9 +29342,9 @@
         },
         {
           "name": "SB1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB1",
@@ -29345,9 +29354,9 @@
         },
         {
           "name": "SB2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB2",
@@ -29357,9 +29366,9 @@
         },
         {
           "name": "SB3",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB3",
@@ -29369,9 +29378,9 @@
         },
         {
           "name": "SB4",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB4",
@@ -29381,9 +29390,9 @@
         },
         {
           "name": "SB5",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB5",
@@ -29393,9 +29402,9 @@
         },
         {
           "name": "SB6",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB6",
@@ -29405,9 +29414,9 @@
         },
         {
           "name": "SB7",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB7",
@@ -29417,9 +29426,9 @@
         },
         {
           "name": "ATN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "ATN",
@@ -29429,9 +29438,9 @@
         },
         {
           "name": "MSG",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MSG",
@@ -29441,9 +29450,9 @@
         },
         {
           "name": "C_D",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "C_D",
@@ -29453,9 +29462,9 @@
         },
         {
           "name": "I_O",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "I_O",
@@ -29465,9 +29474,9 @@
         },
         {
           "name": "SELIN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SELIN",
@@ -29477,9 +29486,9 @@
         },
         {
           "name": "SELOUT",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SELOUT",
@@ -29489,9 +29498,9 @@
         },
         {
           "name": "ACK",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "ACK",
@@ -29501,9 +29510,9 @@
         },
         {
           "name": "BSYIN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BSYIN",
@@ -29513,9 +29522,9 @@
         },
         {
           "name": "REQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "REQ",
@@ -29537,9 +29546,9 @@
         },
         {
           "name": "DDB0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB0",
@@ -29549,9 +29558,9 @@
         },
         {
           "name": "DDB_00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB0",
@@ -29561,9 +29570,9 @@
         },
         {
           "name": "DDB1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB1",
@@ -29573,9 +29582,9 @@
         },
         {
           "name": "DDB_01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB1",
@@ -29585,9 +29594,9 @@
         },
         {
           "name": "DDB2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB2",
@@ -29597,9 +29606,9 @@
         },
         {
           "name": "DDB_02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB2",
@@ -29609,9 +29618,9 @@
         },
         {
           "name": "DDB3",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB3",
@@ -29621,9 +29630,9 @@
         },
         {
           "name": "DDB_03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB3",
@@ -29633,9 +29642,9 @@
         },
         {
           "name": "DDB4",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB4",
@@ -29645,9 +29654,9 @@
         },
         {
           "name": "DDB_04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB4",
@@ -29657,9 +29666,9 @@
         },
         {
           "name": "DDB5",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB5",
@@ -29669,9 +29678,9 @@
         },
         {
           "name": "DDB_05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB5",
@@ -29681,9 +29690,9 @@
         },
         {
           "name": "DDB6",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB6",
@@ -29693,9 +29702,9 @@
         },
         {
           "name": "DDB_06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB6",
@@ -29705,9 +29714,9 @@
         },
         {
           "name": "DDB7",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB7",
@@ -29717,9 +29726,9 @@
         },
         {
           "name": "DDB_07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDB7",
@@ -29729,9 +29738,9 @@
         },
         {
           "name": "DDBP",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDBP",
@@ -29741,9 +29750,9 @@
         },
         {
           "name": "DDBP_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DDBP",
@@ -29777,9 +29786,9 @@
         },
         {
           "name": "DATN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DATN",
@@ -29789,9 +29798,9 @@
         },
         {
           "name": "DATN_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DATN",
@@ -29801,9 +29810,9 @@
         },
         {
           "name": "DBSY",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DBSY",
@@ -29813,9 +29822,9 @@
         },
         {
           "name": "DBSY_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DBSY",
@@ -29825,9 +29834,9 @@
         },
         {
           "name": "DACK",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DACK",
@@ -29837,9 +29846,9 @@
         },
         {
           "name": "DACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DACK",
@@ -29849,9 +29858,9 @@
         },
         {
           "name": "DRST",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DRST",
@@ -29861,9 +29870,9 @@
         },
         {
           "name": "DRST_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DRST",
@@ -29873,9 +29882,9 @@
         },
         {
           "name": "DMSG",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DMSG",
@@ -29885,9 +29894,9 @@
         },
         {
           "name": "DMSG_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DMSG",
@@ -29897,9 +29906,9 @@
         },
         {
           "name": "DSEL",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DSEL",
@@ -29909,9 +29918,9 @@
         },
         {
           "name": "DSEL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DSEL",
@@ -29921,9 +29930,9 @@
         },
         {
           "name": "DCD",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DCD",
@@ -29933,9 +29942,9 @@
         },
         {
           "name": "DCD_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DCD",
@@ -29945,9 +29954,9 @@
         },
         {
           "name": "DREQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DREQ",
@@ -29957,9 +29966,9 @@
         },
         {
           "name": "DREQ_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DREQ",
@@ -29969,9 +29978,9 @@
         },
         {
           "name": "DIO",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DIO",
@@ -29981,9 +29990,9 @@
         },
         {
           "name": "DIO_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DIO",
@@ -34030,9 +34039,9 @@
         },
         {
           "name": "H6",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "H6",
@@ -34042,9 +34051,9 @@
         },
         {
           "name": "NCR_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "NCR",
@@ -34054,9 +34063,9 @@
         },
         {
           "name": "SMCL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SMCL",
@@ -34102,9 +34111,9 @@
         },
         {
           "name": "SWR_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SWR",
@@ -34114,9 +34123,9 @@
         },
         {
           "name": "RWCH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RWCH",
@@ -34126,9 +34135,9 @@
         },
         {
           "name": "RWCL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RWCL",
@@ -34138,9 +34147,9 @@
         },
         {
           "name": "CKWL",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "CKWL",
@@ -34150,9 +34159,9 @@
         },
         {
           "name": "CKWM",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "CKWM",
@@ -34162,9 +34171,9 @@
         },
         {
           "name": "CKWH",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "CKWH",
@@ -34174,9 +34183,9 @@
         },
         {
           "name": "SRIOXE",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SRIOXE",
@@ -34186,9 +34195,9 @@
         },
         {
           "name": "SIOEQ_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SIOEQ",
@@ -34198,9 +34207,9 @@
         },
         {
           "name": "PDIFF",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "PDIFF",
@@ -34222,9 +34231,9 @@
         },
         {
           "name": "FDIFF",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FDIFF",
@@ -34234,9 +34243,9 @@
         },
         {
           "name": "FSING",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "FSING",
@@ -34246,9 +34255,9 @@
         },
         {
           "name": "DDAP",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DDAP",
@@ -34258,9 +34267,9 @@
         },
         {
           "name": "WCZ_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "WCZ",
@@ -34270,9 +34279,9 @@
         },
         {
           "name": "SLGRANT",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SLGRANT",
@@ -34282,9 +34291,9 @@
         },
         {
           "name": "SNREQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SNREQ",
@@ -34294,9 +34303,9 @@
         },
         {
           "name": "RRST",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "RRST",
@@ -34306,9 +34315,9 @@
         },
         {
           "name": "ACK",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "ACK",
@@ -34318,9 +34327,9 @@
         },
         {
           "name": "BSYIN",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BSYIN",
@@ -34462,9 +34471,9 @@
         },
         {
           "name": "REQ",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "REQ",
@@ -34474,9 +34483,9 @@
         },
         {
           "name": "ATN",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "ATN",
@@ -34486,9 +34495,9 @@
         },
         {
           "name": "MSG",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "MSG",
@@ -34498,9 +34507,9 @@
         },
         {
           "name": "C_D",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "C_D",
@@ -34510,9 +34519,9 @@
         },
         {
           "name": "I_O",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "I_O",
@@ -34522,9 +34531,9 @@
         },
         {
           "name": "SELIN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SELIN",
@@ -34546,9 +34555,9 @@
         },
         {
           "name": "SDB_00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB0",
@@ -34558,9 +34567,9 @@
         },
         {
           "name": "SDB_01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB1",
@@ -34570,9 +34579,9 @@
         },
         {
           "name": "SDB_02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB2",
@@ -34582,9 +34591,9 @@
         },
         {
           "name": "SDB_03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB3",
@@ -34594,9 +34603,9 @@
         },
         {
           "name": "SDB_04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB4",
@@ -34606,9 +34615,9 @@
         },
         {
           "name": "SDB_05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB5",
@@ -34618,9 +34627,9 @@
         },
         {
           "name": "SDB_06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB6",
@@ -34630,9 +34639,9 @@
         },
         {
           "name": "SDB_07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDB7",
@@ -34642,9 +34651,9 @@
         },
         {
           "name": "SDBP_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDBP",
@@ -34714,9 +34723,9 @@
         },
         {
           "name": "SMSG_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMSG",
@@ -34738,9 +34747,9 @@
         },
         {
           "name": "SC_D_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SC_D",
@@ -34750,9 +34759,9 @@
         },
         {
           "name": "SREQ_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SREQ",
@@ -34762,9 +34771,9 @@
         },
         {
           "name": "SI_O_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SI_O",
@@ -34798,9 +34807,9 @@
         },
         {
           "name": "SBP",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SBP",
@@ -34810,9 +34819,9 @@
         },
         {
           "name": "DIFF_0",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DIFF",
@@ -34822,9 +34831,9 @@
         },
         {
           "name": "DIGS",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DIGS",
@@ -34834,9 +34843,9 @@
         },
         {
           "name": "DTGS",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DTGS",
@@ -34846,9 +34855,9 @@
         },
         {
           "name": "DSBEN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DSBEN",
@@ -34858,9 +34867,9 @@
         },
         {
           "name": "DE0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE0",
@@ -34870,9 +34879,9 @@
         },
         {
           "name": "DE1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE1",
@@ -34882,9 +34891,9 @@
         },
         {
           "name": "DE2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE2",
@@ -34894,9 +34903,9 @@
         },
         {
           "name": "DE3",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE3",
@@ -34906,9 +34915,9 @@
         },
         {
           "name": "DE4",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE4",
@@ -34918,9 +34927,9 @@
         },
         {
           "name": "DE5",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE5",
@@ -34930,9 +34939,9 @@
         },
         {
           "name": "DE6",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE6",
@@ -34942,9 +34951,9 @@
         },
         {
           "name": "DE7",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DE7",
@@ -34954,9 +34963,9 @@
         },
         {
           "name": "SB0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB0",
@@ -34966,9 +34975,9 @@
         },
         {
           "name": "SB1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB1",
@@ -34978,9 +34987,9 @@
         },
         {
           "name": "SB2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB2",
@@ -34990,9 +34999,9 @@
         },
         {
           "name": "SB3",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB3",
@@ -35002,9 +35011,9 @@
         },
         {
           "name": "SB4",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB4",
@@ -35014,9 +35023,9 @@
         },
         {
           "name": "SB5",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB5",
@@ -35026,9 +35035,9 @@
         },
         {
           "name": "SB6",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB6",
@@ -35038,9 +35047,9 @@
         },
         {
           "name": "SB7",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SB7",
@@ -37130,9 +37139,9 @@
         },
         {
           "name": "BINACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BINACK",
@@ -37142,9 +37151,9 @@
         },
         {
           "name": "BMEM_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BMEM",
@@ -37154,9 +37163,9 @@
         },
         {
           "name": "BMCL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BMCL",
@@ -37166,9 +37175,9 @@
         },
         {
           "name": "BERROR_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BERROR",
@@ -37178,9 +37187,9 @@
         },
         {
           "name": "BIOXE_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BIOXE",
@@ -37250,9 +37259,9 @@
         },
         {
           "name": "DRQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "DRQ",
@@ -37262,9 +37271,9 @@
         },
         {
           "name": "SMBD00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD00",
@@ -37274,9 +37283,9 @@
         },
         {
           "name": "SMBD01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD01",
@@ -37286,9 +37295,9 @@
         },
         {
           "name": "SMBD02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD02",
@@ -37298,9 +37307,9 @@
         },
         {
           "name": "SMBD03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD03",
@@ -37310,9 +37319,9 @@
         },
         {
           "name": "SMBD04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD04",
@@ -37322,9 +37331,9 @@
         },
         {
           "name": "SMBD05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD05",
@@ -37334,9 +37343,9 @@
         },
         {
           "name": "SMBD06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD06",
@@ -37346,9 +37355,9 @@
         },
         {
           "name": "SMBD07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD07",
@@ -37370,9 +37379,9 @@
         },
         {
           "name": "ESCSI_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "ESCSI",
@@ -37382,9 +37391,9 @@
         },
         {
           "name": "BSYIN",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "BSYIN",
@@ -37394,9 +37403,9 @@
         },
         {
           "name": "ACK",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "ACK",
@@ -37418,9 +37427,9 @@
         },
         {
           "name": "TRST",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "TRST",
@@ -37430,9 +37439,9 @@
         },
         {
           "name": "BD_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BD00",
@@ -37534,9 +37543,9 @@
         },
         {
           "name": "LADR1",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADR1",
@@ -37546,9 +37555,9 @@
         },
         {
           "name": "LADR2",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADR2",
@@ -37558,9 +37567,9 @@
         },
         {
           "name": "LADR3",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADR3",
@@ -37570,9 +37579,9 @@
         },
         {
           "name": "LADR4",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "LADR4",
@@ -37606,9 +37615,9 @@
         },
         {
           "name": "SMCL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMCL",
@@ -37618,9 +37627,9 @@
         },
         {
           "name": "SDACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SDACK",
@@ -37642,9 +37651,9 @@
         },
         {
           "name": "SRD_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SRD",
@@ -37654,9 +37663,9 @@
         },
         {
           "name": "SWR_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SWR",
@@ -37666,9 +37675,9 @@
         },
         {
           "name": "RWCH_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RWCH",
@@ -37678,9 +37687,9 @@
         },
         {
           "name": "RWCL_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "RWCL",
@@ -37690,9 +37699,9 @@
         },
         {
           "name": "LDWC_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "LDWC",
@@ -37702,9 +37711,9 @@
         },
         {
           "name": "CKWL",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "CKWL",
@@ -37714,9 +37723,9 @@
         },
         {
           "name": "CKWM",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "CKWM",
@@ -37726,9 +37735,9 @@
         },
         {
           "name": "CKWH",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "CKWH",
@@ -37738,9 +37747,9 @@
         },
         {
           "name": "SRIOXE",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SRIOXE",
@@ -37762,9 +37771,9 @@
         },
         {
           "name": "PDIFF",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "PDIFF",
@@ -37774,9 +37783,9 @@
         },
         {
           "name": "PSING",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "PSING",
@@ -37786,9 +37795,9 @@
         },
         {
           "name": "FDIFF",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FDIFF",
@@ -37798,9 +37807,9 @@
         },
         {
           "name": "FSING",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "FSING",
@@ -37822,9 +37831,9 @@
         },
         {
           "name": "WCZ_0",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "WCZ",

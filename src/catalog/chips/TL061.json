@@ -1,0 +1,91 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "TL061",
+  "family": "TL06",
+  "title": "Low-power JFET-input operational amplifier, single",
+  "package": "DIP-8",
+  "sources": [
+    {
+      "document": "TI TL06x low-power JFET-input operational amplifiers datasheet SLOS078N (November 1978, revised August 2023)",
+      "url": "https://www.ti.com/lit/ds/symlink/tl061.pdf",
+      "pages": "1, 4, 5, 6",
+      "familyUsed": "TL061C"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "NC1",
+      "role": "nc",
+      "text": "NC in this revision of the datasheet"
+    },
+    {
+      "pin": 2,
+      "name": "INMINUS",
+      "role": "analog",
+      "text": "inverting input (IN-)"
+    },
+    {
+      "pin": 3,
+      "name": "INPLUS",
+      "role": "analog",
+      "text": "non-inverting input (IN+)"
+    },
+    {
+      "pin": 4,
+      "name": "VCCMINUS",
+      "role": "power",
+      "voltage": "negative supply (VCC-)"
+    },
+    {
+      "pin": 5,
+      "name": "NC5",
+      "role": "nc",
+      "text": "NC in this revision of the datasheet"
+    },
+    {
+      "pin": 6,
+      "name": "OUT",
+      "role": "analog",
+      "text": "output"
+    },
+    {
+      "pin": 7,
+      "name": "VCCPLUS",
+      "role": "power",
+      "voltage": "positive supply (VCC+)"
+    },
+    {
+      "pin": 8,
+      "name": "NC8",
+      "role": "nc",
+      "text": "NC"
+    }
+  ],
+  "functions": [
+    {
+      "output": "6",
+      "formula": null,
+      "text": "Operational amplifier: OUT is the amplified difference IN+ minus IN-."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "Supply: +-18 V absolute maximum, +-5 V to +-15 V recommended. TL061C input offset voltage 3 typ / 15 max mV at 25 C; supply current 200 typ / 250 max uA (pages 5-6)."
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [
+    "Pins 1 and 5 are NC in revision N of the datasheet. The card wires pins 1 and 5 (they are in its reading); an older revision of the datasheet that might give them another use (such as offset null) was not read."
+  ],
+  "notes": "",
+  "behaviour": {
+    "kind": "none",
+    "reason": "operational amplifier: an analog part with no logic function."
+  }
+}

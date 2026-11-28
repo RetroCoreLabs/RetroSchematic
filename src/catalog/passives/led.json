@@ -1,0 +1,24 @@
+{
+  "catalogFormat": "nd-passive",
+  "catalogFormatVersion": 1,
+  "id": "led",
+  "title": "LED (light emitting diode)",
+  "type": "LED",
+  "readingTypes": "the colour as printed: YELLOW, RED, GREEN",
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "text": "anode"
+    },
+    {
+      "pin": 2,
+      "name": "K",
+      "text": "cathode"
+    }
+  ],
+  "pinNumberingConfidence": "inferred",
+  "values": "colour",
+  "datasheet": "none found: the drawing gives only a colour, no type number",
+  "note": "Pin 1 anode, pin 2 cathode, the same convention as diode.json. Not read from any part's datasheet."
+}

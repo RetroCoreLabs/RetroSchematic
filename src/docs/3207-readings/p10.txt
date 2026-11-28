@@ -210,6 +210,7 @@ net FLOACK~: 27D.1
 # head load timer and reset one-shot (74LS221), supply for the FD1797
 net 28F_15: 28F.15 C10.2 R15.2
 net 28F_14: 28F.14 C10.1
+supply AVC the card's own 5.6 V supply: 12 V through R16, held at 5.6 V by zener D1 (note below); powers 32E ICL7660 pin 8
 net AVC: R16.1 D1.1 C11.1 C12.1 32E.8
 net 32E_2: 32E.2 C14.1
 net 32E_4: 32E.4 C14.2

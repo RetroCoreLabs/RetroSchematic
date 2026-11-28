@@ -1,0 +1,326 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74138",
+  "family": "74",
+  "title": "3-line to 8-line decoder/demultiplexer",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls138.pdf",
+      "pages": "1, 2, 4, 5, 6",
+      "familyUsed": "SN74LS138"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 2,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "G2A",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "15",
+        "14",
+        "13",
+        "12",
+        "11",
+        "10",
+        "9",
+        "7"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 5,
+      "name": "G2B",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "15",
+        "14",
+        "13",
+        "12",
+        "11",
+        "10",
+        "9",
+        "7"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 6,
+      "name": "G1",
+      "role": "enable",
+      "active": "high",
+      "controls": [
+        "15",
+        "14",
+        "13",
+        "12",
+        "11",
+        "10",
+        "9",
+        "7"
+      ],
+      "whenInactive": "high"
+    },
+    {
+      "pin": 7,
+      "name": "Y7",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 9,
+      "name": "Y6",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 10,
+      "name": "Y5",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "Y4",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "Y3",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "Y2",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "Y1",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 15,
+      "name": "Y0",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "15",
+      "formula": "Y0 = NOT(G1 AND G2A' AND G2B' AND C' AND B' AND A')",
+      "text": "Y0 is low when G1 is high, G2A and G2B are low and C,B,A = 0; high otherwise."
+    },
+    {
+      "output": "14",
+      "formula": "Y1 = NOT(G1 AND G2A' AND G2B' AND C' AND B' AND A)",
+      "text": "Y1 is low when G1 is high, G2A and G2B are low and C,B,A = 1; high otherwise."
+    },
+    {
+      "output": "13",
+      "formula": "Y2 = NOT(G1 AND G2A' AND G2B' AND C' AND B AND A')",
+      "text": "Y2 is low when G1 is high, G2A and G2B are low and C,B,A = 2; high otherwise."
+    },
+    {
+      "output": "12",
+      "formula": "Y3 = NOT(G1 AND G2A' AND G2B' AND C' AND B AND A)",
+      "text": "Y3 is low when G1 is high, G2A and G2B are low and C,B,A = 3; high otherwise."
+    },
+    {
+      "output": "11",
+      "formula": "Y4 = NOT(G1 AND G2A' AND G2B' AND C AND B' AND A')",
+      "text": "Y4 is low when G1 is high, G2A and G2B are low and C,B,A = 4; high otherwise."
+    },
+    {
+      "output": "10",
+      "formula": "Y5 = NOT(G1 AND G2A' AND G2B' AND C AND B' AND A)",
+      "text": "Y5 is low when G1 is high, G2A and G2B are low and C,B,A = 5; high otherwise."
+    },
+    {
+      "output": "9",
+      "formula": "Y6 = NOT(G1 AND G2A' AND G2B' AND C AND B AND A')",
+      "text": "Y6 is low when G1 is high, G2A and G2B are low and C,B,A = 6; high otherwise."
+    },
+    {
+      "output": "7",
+      "formula": "Y7 = NOT(G1 AND G2A' AND G2B' AND C AND B AND A)",
+      "text": "Y7 is low when G1 is high, G2A and G2B are low and C,B,A = 7; high otherwise."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 8,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74LS138 figures (page 4). SN74S138A: IOL 20 mA, IOH -1 mA (page 5)."
+  },
+  "timing": [
+    {
+      "from": "A, B, C",
+      "to": "any Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 11,
+      "maxNs": 20,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 2 levels of delay"
+    },
+    {
+      "from": "A, B, C",
+      "to": "any Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 41,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 2 levels of delay"
+    },
+    {
+      "from": "A, B, C",
+      "to": "any Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 3 levels of delay"
+    },
+    {
+      "from": "A, B, C",
+      "to": "any Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 39,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 3 levels of delay"
+    },
+    {
+      "from": "G1, G2A, G2B",
+      "to": "any Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 12,
+      "maxNs": 18,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 2 levels of delay"
+    },
+    {
+      "from": "G1, G2A, G2B",
+      "to": "any Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 20,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 2 levels of delay"
+    },
+    {
+      "from": "G1, G2A, G2B",
+      "to": "any Y",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 14,
+      "maxNs": 26,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 3 levels of delay"
+    },
+    {
+      "from": "G1, G2A, G2B",
+      "to": "any Y",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 13,
+      "maxNs": 38,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF; 3 levels of delay"
+    }
+  ],
+  "timingLimits": [],
+  "unknown": [
+    "The datasheet does not say which input-to-output paths have 2 and which have 3 levels of delay."
+  ],
+  "notes": "Timing is the SN74LS138 table (page 4). SN74S138A (page 6, RL 280 ohm, CL 15 pF): select 2 levels tPLH 4.5/7, tPHL 7/10.5; 3 levels tPLH 7.5/12, tPHL 8/12; enable 2 levels tPLH 5/8, tPHL 7/11; 3 levels tPLH 7/11, tPHL 7/11 ns typ/max. Plain file: the lookup uses it for 74LS138 and 74S138.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988)",
+    "outputs": [
+      {
+        "pin": "Y0",
+        "formula": "Y0 = NOT(G1 AND G2A' AND G2B' AND C' AND B' AND A')",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y1",
+        "formula": "Y1 = NOT(G1 AND G2A' AND G2B' AND C' AND B' AND A)",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y2",
+        "formula": "Y2 = NOT(G1 AND G2A' AND G2B' AND C' AND B AND A')",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y3",
+        "formula": "Y3 = NOT(G1 AND G2A' AND G2B' AND C' AND B AND A)",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y4",
+        "formula": "Y4 = NOT(G1 AND G2A' AND G2B' AND C AND B' AND A')",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y5",
+        "formula": "Y5 = NOT(G1 AND G2A' AND G2B' AND C AND B' AND A)",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y6",
+        "formula": "Y6 = NOT(G1 AND G2A' AND G2B' AND C AND B AND A')",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      },
+      {
+        "pin": "Y7",
+        "formula": "Y7 = NOT(G1 AND G2A' AND G2B' AND C AND B AND A)",
+        "type": "totem-pole",
+        "source": "pages 1, 2 - TI SN54LS138/SN54S138/SN74LS138/SN74S138A datasheet SDLS014 (December 1972, revised March 1988) (function table)"
+      }
+    ]
+  }
+}

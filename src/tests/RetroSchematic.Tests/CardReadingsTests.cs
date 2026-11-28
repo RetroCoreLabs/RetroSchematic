@@ -38,7 +38,7 @@ namespace RetroSchematic.Tests
             Assert.That(report, Does.Contain("block S_ND_INT: sheets 20,21,22,23,24, 91 parts, 308 nets, 1046 pins, 94 gates\n"));
             Assert.That(report, Does.EndWith("0 problem(s)\n"));
             // chips with no file are listed, never guessed; a 74LS112 reads the 74S112 file
-            Assert.That(set.Missing, Does.Contain("Z80A_CPU"));
+            Assert.That(set.Missing, Does.Contain("NCR5386"));
             Assert.That(set.Missing, Does.Not.Contain("74LS112"));
             Assert.That(set.Missing, Does.Not.Contain("74F112"));
         }

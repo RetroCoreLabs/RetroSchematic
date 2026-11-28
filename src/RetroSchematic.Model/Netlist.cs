@@ -902,6 +902,13 @@ namespace RetroSchematic.Model
         public string? PullUp { get; set; }
 
         /// <summary>
+        /// True when the signal is a supply on this card that is not one of the fixed supply
+        /// names (+5V, GND, ...): AVC on card 3207, a 5.6 V made on the card. Power and ground
+        /// pins may sit on it. Null (left out of the file) for every other signal.
+        /// </summary>
+        public bool? Supply { get; set; }
+
+        /// <summary>
         /// The pins it joins.
         /// </summary>
         public List<PinReference> Pins { get; set; } = new();

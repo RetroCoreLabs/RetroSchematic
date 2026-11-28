@@ -1,0 +1,136 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "Z80A_CTC",
+  "family": "MOS LSI",
+  "title": "Z80A CTC four-channel counter/timer circuit (4 MHz grade), N-channel MOS",
+  "package": "DIP-28",
+  "sources": [
+    {
+      "document": "Zilog Z-80 CTC Counter/Timer Circuit Product Specification, February 1980",
+      "url": "https://bitsavers.mirrorservice.org/components/zilog/z80/Z80_CTC_Product_Specification_Feb80.pdf",
+      "pages": "1-12 (pin assignments p1, functional description and architecture p2-3, programming p4-5, pin description p6, timing p7, interrupt operation p8, DC characteristics p9, AC characteristics p10-11)",
+      "familyUsed": "Z-80A CTC"
+    }
+  ],
+  "pins": [
+    {"pin": 1, "name": "D4", "role": "output", "outputType": "three-state", "text": "system data bus bit 4 (bidirectional, 3-state)"},
+    {"pin": 2, "name": "D5", "role": "output", "outputType": "three-state", "text": "data bus bit 5"},
+    {"pin": 3, "name": "D6", "role": "output", "outputType": "three-state", "text": "data bus bit 6"},
+    {"pin": 4, "name": "D7", "role": "output", "outputType": "three-state", "text": "data bus bit 7"},
+    {"pin": 5, "name": "GND", "role": "ground"},
+    {"pin": 6, "name": "RD", "inverted": true, "role": "input", "active": "low", "text": "read cycle status: with IORQ and CE low, the CPU reads the down-counter of the channel picked by CS1,CS0; with RD high during T1 and IORQ and CE low, the CTC makes an internal write (it has no write input)"},
+    {"pin": 7, "name": "ZCTO0", "role": "output", "outputType": "totem-pole", "text": "zero count/timeout of channel 0 (drawn ZC/TO0), active high pulse when the down-counter decrements to zero, in counter and timer mode; can drive Darlington transistors (IOHD -1.5 mA at 1.5 V)"},
+    {"pin": 8, "name": "ZCTO1", "role": "output", "outputType": "totem-pole", "text": "zero count/timeout of channel 1 (drawn ZC/TO1)"},
+    {"pin": 9, "name": "ZCTO2", "role": "output", "outputType": "totem-pole", "text": "zero count/timeout of channel 2 (drawn ZC/TO2); channel 3 has no such pin"},
+    {"pin": 10, "name": "IORQ", "inverted": true, "role": "input", "active": "low", "text": "input/output request from the CPU: with CE and RD transfers data and channel control words; with M1 low it is interrupt acknowledge, and the highest-priority interrupting channel puts its vector on the data bus"},
+    {"pin": 11, "name": "IEO", "role": "output", "outputType": "totem-pole", "text": "interrupt enable out, active high: high only if IEI is high and the CPU is not servicing an interrupt from any CTC channel; blocks lower-priority devices in the daisy chain"},
+    {"pin": 12, "name": "INT", "inverted": true, "role": "output", "outputType": "open-collector", "text": "interrupt request, open drain, active low: low when a channel with its interrupt enabled has reached zero count"},
+    {"pin": 13, "name": "IEI", "role": "input", "text": "interrupt enable in, active high: high means no device of higher priority in the daisy chain is being serviced"},
+    {"pin": 14, "name": "M1", "inverted": true, "role": "input", "active": "low", "text": "machine cycle one from the CPU: with IORQ low it is interrupt acknowledge; must be high in read and write cycles; the CTC also decodes RETI (ED 4D) in M1 cycles"},
+    {"pin": 15, "name": "CLK", "role": "clock", "edge": "rising", "text": "system clock, standard single-phase Z-80 clock; clock input levels VILC 0.45 V max, VIHC VCC-0.6 V min"},
+    {"pin": 16, "name": "CE", "inverted": true, "role": "input", "active": "low", "text": "chip enable: while low the CTC takes control words, interrupt vectors or time constants from the data bus in an I/O write, or gives the down-counter contents in an I/O read"},
+    {"pin": 17, "name": "RESET", "inverted": true, "role": "input", "active": "low", "async": true, "text": "terminates all down-counts and disables all interrupts by resetting the interrupt bits in all control registers; ZC/TO and INT go inactive, IEO follows IEI, D0-D7 go to high impedance; must be low for at least 3 clock cycles"},
+    {"pin": 18, "name": "CS0", "role": "input", "text": "channel select, low bit (active high); CS1,CS0 = 00 channel 0 ... 11 channel 3; usually A0"},
+    {"pin": 19, "name": "CS1", "role": "input", "text": "channel select, high bit; usually A1"},
+    {"pin": 20, "name": "CLKTRG3", "role": "input", "text": "external clock/timer trigger for channel 3 (drawn CLK/TRG3); active edge (rising or falling) chosen by bit D4 of the channel control word; in counter mode every active edge decrements the down-counter, in timer mode an active edge starts the timer"},
+    {"pin": 21, "name": "CLKTRG2", "role": "input", "text": "external clock/timer trigger for channel 2 (drawn CLK/TRG2)"},
+    {"pin": 22, "name": "CLKTRG1", "role": "input", "text": "external clock/timer trigger for channel 1 (drawn CLK/TRG1)"},
+    {"pin": 23, "name": "CLKTRG0", "role": "input", "text": "external clock/timer trigger for channel 0 (drawn CLK/TRG0)"},
+    {"pin": 24, "name": "VCC", "role": "power", "voltage": "+5 V", "text": "+4.75..+5.25 V"},
+    {"pin": 25, "name": "D0", "role": "output", "outputType": "three-state", "text": "data bus bit 0"},
+    {"pin": 26, "name": "D1", "role": "output", "outputType": "three-state", "text": "data bus bit 1"},
+    {"pin": 27, "name": "D2", "role": "output", "outputType": "three-state", "text": "data bus bit 2"},
+    {"pin": 28, "name": "D3", "role": "output", "outputType": "three-state", "text": "data bus bit 3"}
+  ],
+  "functions": [
+    {
+      "output": "1-4,25-28",
+      "formula": null,
+      "text": "Data bus. Driven by the CTC in an I/O read (IORQ, CE, RD low, M1 high: the down-counter of the selected channel, read without disturbing the count) and in interrupt acknowledge (M1 and IORQ low, IEI high: the interrupt vector, D7-D3 as written by the user, D2-D1 the channel number 00..11, D0 = 0). High impedance otherwise and after reset."
+    },
+    {
+      "output": "7,8,9",
+      "formula": null,
+      "text": "ZC/TOn: a positive pulse when channel n's down-counter reaches zero; follows the rising CLK edge immediately after zero count."
+    },
+    {
+      "output": "12",
+      "formula": null,
+      "text": "INT: low while a channel with interrupt enabled has reached zero count and has not been acknowledged. Channel 0 has the highest priority, channel 3 the lowest."
+    },
+    {
+      "output": "11",
+      "formula": null,
+      "text": "IEO: high only when IEI is high and no CTC channel is being serviced (or, the datasheet adds, held low while an interrupt is pending). When the CPU fetches ED (first byte of RETI) a device being serviced raises IEO for one M1 cycle; if the next op code is 4D the serviced channel is released."
+    }
+  ],
+  "state": {
+    "type": "counter/timer",
+    "organisation": "4 channels, each: 8-bit channel control register, 8-bit time constant register, 8-bit down-counter, prescaler (16 or 256); one interrupt vector register (bits D7-D3)",
+    "changesOn": "rising edge of CLK; active edge of CLK/TRGn (synchronised to CLK); I/O writes; RESET",
+    "rules": [
+      "Channel addressing CS1 CS0: 00 channel 0, 01 channel 1, 10 channel 2, 11 channel 3.",
+      "A written word with D0 = 1 is a channel control word; D0 = 0 written to channel 0 is the interrupt vector (D2-D1 are filled in by the CTC with the channel number).",
+      "Channel control word: D7 1 = interrupt enabled; D6 0 = timer mode, 1 = counter mode; D5 prescaler (timer mode only) 1 = 256, 0 = 16; D4 CLK/TRG edge 0 = falling, 1 = rising; D3 timer trigger (timer mode only) 0 = automatic when the time constant is loaded, 1 = CLK/TRG pulse starts the timer; D2 1 = a time constant word follows; D1 1 = software reset; D0 1 = control word.",
+      "Time constant word: 8 bits TC7..TC0, value 1..256, 00 means 256. A channel will not operate without one; the only way to write it is a control word with D2 set.",
+      "D1 and D2 both 1: the channel stops, waiting for a new time constant, and resumes after it is written.",
+      "Software reset (D1 = 1): the channel stops counting; the other bits still load the control register; a new time constant must then be written.",
+      "Timer mode: interval = clock period x prescaler (16 or 256) x time constant. Automatic trigger: the timer starts decrementing on the rising edge of T2 of the machine cycle after the write. External trigger: ready at T2 of the next machine cycle; the first decrement follows the active CLK/TRG edge by one clock if the 210 ns setup to the rising CLK edge is met, else one clock later.",
+      "Counter mode: each active CLK/TRG edge decrements the down-counter, synchronised to CLK; the trigger period must be at least two clock periods.",
+      "At zero count the down-counter is reloaded from the time constant register automatically and counting goes on without interruption; ZC/TO gives a pulse and, if enabled, the interrupt is requested.",
+      "Writing new control and time constant words while counting: the count continues to zero before the new time constant is loaded.",
+      "Reprogramming the CLK/TRG slope counts as an active edge (starts a pending timer, or decrements in counter mode).",
+      "Hardware reset: terminates all down-counts, disables all interrupts (resets the interrupt bits in the control registers), ZC/TO and INT inactive, IEO = IEI, data bus high impedance. All channels must be completely reprogrammed after it."
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 2,
+    "outputHighMaxCurrentMa": -0.25,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "DC characteristics (page 9), VCC 4.75..5.25 V, 0..70 C: VOL 0.4 V max at IOL 2 mA, VOH 2.4 V min at IOH 250 uA; VIL 0.8 V max, VIH 2.0 V min; clock VILC -0.3..0.45 V, VIHC VCC-0.6..VCC+0.3 V; ICC 120 mA max; Darlington drive current IOHD -1.5 mA min at VOH 1.5 V, REXT 390 ohm (ZC/TO pins). Capacitance: clock 20 pF, input 5 pF, output 10 pF. INT is open drain. All AC figures assume 50 pF load."
+  },
+  "timing": [
+    {"from": "CLK", "to": "D0", "edge": "PHL", "minNs": null, "typNs": null, "maxNs": 200, "conditions": "clock rising to data out delay; add 10 ns per 50 pF more load, 200 pF max", "symbol": "TdC(DO)"},
+    {"from": "CLK", "to": "D0", "edge": "PXZ", "minNs": null, "typNs": null, "maxNs": 110, "conditions": "clock falling to data out float", "symbol": "TdC(DOz)"},
+    {"from": "M1", "to": "IEO", "edge": "PHL", "minNs": null, "typNs": null, "maxNs": 190, "conditions": "M1 falling to IEO falling, interrupt immediately before M1; add 2 ns per 10 pF up to 100 pF", "symbol": "TdM1(IEO)"},
+    {"from": "IORQ", "to": "D0", "edge": "PHL", "minNs": null, "typNs": null, "maxNs": 160, "conditions": "IORQ falling to data out (interrupt acknowledge cycle)", "symbol": "TdIO(DOI)"},
+    {"from": "IEI", "to": "IEO", "edge": "PHL", "minNs": null, "typNs": null, "maxNs": 130, "conditions": "IEI falling to IEO falling", "symbol": "TdIEI(IEOf)"},
+    {"from": "IEI", "to": "IEO", "edge": "PLH", "minNs": null, "typNs": null, "maxNs": 160, "conditions": "IEI rising to IEO rising, after ED decode", "symbol": "TdIEI(IEOr)"},
+    {"from": "CLK", "to": "ZCTO0", "edge": "PLH", "minNs": null, "typNs": null, "maxNs": 190, "conditions": "clock rising to ZC/TO rising", "symbol": "TdC(ZC/TOr)"},
+    {"from": "CLK", "to": "ZCTO0", "edge": "PHL", "minNs": null, "typNs": null, "maxNs": 190, "conditions": "clock falling to ZC/TO falling", "symbol": "TdC(ZC/TOf)"}
+  ],
+  "timingLimits": [
+    {"what": "clock period", "pin": "CLK", "ref": null, "minNs": 250, "text": "TcC; max: TcC = TwCh + TwCl + TrC + TfC"},
+    {"what": "pulseWidth", "pin": "CLK high", "ref": null, "minNs": 105, "maxNs": 2000},
+    {"what": "pulseWidth", "pin": "CLK low", "ref": null, "minNs": 105, "maxNs": 2000},
+    {"what": "riseFallTime", "pin": "CLK", "ref": null, "maxNs": 30},
+    {"what": "hold", "pin": "all", "ref": "CLK", "minNs": 0, "symbol": "Th"},
+    {"what": "setup", "pin": "CS0,CS1", "ref": "CLK rising", "minNs": 160, "symbol": "TsCS(C)"},
+    {"what": "setup", "pin": "CE", "ref": "CLK rising", "minNs": 150, "symbol": "TsCE(C)"},
+    {"what": "setup", "pin": "IORQ falling", "ref": "CLK rising", "minNs": 115, "symbol": "TsIO(C)"},
+    {"what": "setup", "pin": "RD falling", "ref": "CLK rising", "minNs": 115, "symbol": "TsRD(C)"},
+    {"what": "setup", "pin": "D0-D7", "ref": "CLK rising", "minNs": 50, "symbol": "TsDI(C)"},
+    {"what": "setup", "pin": "M1", "ref": "CLK rising", "minNs": 90, "symbol": "TsM1(C)"},
+    {"what": "delay", "pin": "INT", "ref": "CLK rising", "minNs": null, "text": "TdC(INT) clock rising to INT falling = TcC + 140 ns max (timer mode)"},
+    {"what": "delay", "pin": "INT", "ref": "CLK/TRG rising", "minNs": null, "text": "TdCLK(INT) = TcC + 160 ns max with TsCTR(C) met, 2TcC + 370 ns max without (counter mode)"},
+    {"what": "clock period", "pin": "CLK/TRG", "ref": null, "minNs": null, "text": "TcCTR at least 2 x TcC (counter mode)"},
+    {"what": "riseFallTime", "pin": "CLK/TRG", "ref": null, "maxNs": 50},
+    {"what": "pulseWidth", "pin": "CLK/TRG low", "ref": null, "minNs": 200},
+    {"what": "pulseWidth", "pin": "CLK/TRG high", "ref": null, "minNs": 200},
+    {"what": "setup", "pin": "CLK/TRG rising", "ref": "CLK rising", "minNs": 210, "text": "TsCTR(Cs) for immediate count (counter mode)"},
+    {"what": "setup", "pin": "CLK/TRG rising", "ref": "CLK rising", "minNs": 210, "text": "TsCTR(Ct) for enabling the prescaler on the following clock (timer mode)"},
+    {"what": "pulseWidth", "pin": "RESET low", "ref": null, "minNs": null, "text": "at least 3 clock cycles"}
+  ],
+  "unknown": [
+    "Pulse width of ZC/TO: the sheet gives only the rising and falling delays from the clock (rising after CLK rising, falling after CLK falling); the waveform suggests about one clock period but no sentence states it.",
+    "Contents of the down-counter, control registers and vector register after power-on before a reset are not stated.",
+    "Whether a channel in counter mode with the interrupt disabled still reloads and gives ZC/TO: stated for both modes in general words only (page 3: 'At zero count the down-counter is automatically reset with the time constant value')."
+  ],
+  "notes": "Card 3207 positions 26E and 28E. The sheet covers Z-80 CTC (2.5 MHz) and Z-80A CTC (4 MHz); only the Z-80A figures are used.",
+  "behaviour": {
+    "kind": "none",
+    "reason": "A programmable peripheral with four counters of 8 bits, prescalers, control registers and a daisy-chain interrupt state machine that decodes the CPU's RETI op code from the data bus. The datasheet describes this in words and waveforms (pages 2-8) but leaves out the ZC/TO pulse width and the power-on register contents, so a pin-level model would need guesses. The words are in pins[].text, functions and state."
+  }
+}

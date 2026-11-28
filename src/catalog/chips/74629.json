@@ -1,0 +1,191 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74629",
+  "family": "74",
+  "title": "Dual voltage-controlled oscillator with enable and range inputs",
+  "package": "DIP-16",
+  "sources": [
+    {
+      "document": "TI SN54LS624 thru SN54LS629, SN74LS624 thru SN74LS629 voltage-controlled oscillators datasheet SDLS186 (January 1980, revised March 1988)",
+      "url": "https://www.ti.com/lit/ds/symlink/sn74ls629.pdf",
+      "pages": "1, 3, 4, 6, 7, 8",
+      "familyUsed": "SN74LS629"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "2FC",
+      "role": "analog",
+      "text": "frequency-control voltage input, 0 to 5 V"
+    },
+    {
+      "pin": 2,
+      "name": "1FC",
+      "role": "analog",
+      "text": "frequency-control voltage input, 0 to 5 V"
+    },
+    {
+      "pin": 3,
+      "name": "1RNG",
+      "role": "analog",
+      "text": "frequency-range voltage input, 0 to 5 V"
+    },
+    {
+      "pin": 4,
+      "name": "1CX1",
+      "role": "analog",
+      "text": "external timing capacitor"
+    },
+    {
+      "pin": 5,
+      "name": "1CX2",
+      "role": "analog",
+      "text": "external timing capacitor"
+    },
+    {
+      "pin": 6,
+      "name": "1EN",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "7"
+      ],
+      "whenInactive": "high",
+      "text": "enable: low = output enabled; high = oscillator stopped and 1Y high"
+    },
+    {
+      "pin": 7,
+      "name": "1Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 8,
+      "name": "OSCGND",
+      "role": "ground",
+      "text": "separate ground for the oscillators (OSC GND)"
+    },
+    {
+      "pin": 9,
+      "name": "GND",
+      "role": "ground",
+      "text": "ground for the enable, synchronization-gating and output sections"
+    },
+    {
+      "pin": 10,
+      "name": "2Y",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "2EN",
+      "role": "enable",
+      "active": "low",
+      "controls": [
+        "10"
+      ],
+      "whenInactive": "high",
+      "text": "enable: low = output enabled; high = oscillator stopped and 2Y high"
+    },
+    {
+      "pin": 12,
+      "name": "2CX2",
+      "role": "analog",
+      "text": "external timing capacitor"
+    },
+    {
+      "pin": 13,
+      "name": "2CX1",
+      "role": "analog",
+      "text": "external timing capacitor"
+    },
+    {
+      "pin": 14,
+      "name": "2RNG",
+      "role": "analog",
+      "text": "frequency-range voltage input, 0 to 5 V"
+    },
+    {
+      "pin": 15,
+      "name": "OSCVCC",
+      "role": "power",
+      "voltage": "+5 V",
+      "text": "separate supply for the oscillators and frequency-control circuits (OSC VCC)"
+    },
+    {
+      "pin": 16,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V",
+      "text": "supply for the enable, synchronization-gating and output sections"
+    }
+  ],
+  "functions": [
+    {
+      "output": "7",
+      "formula": "1Y = 1EN OR OSC1",
+      "text": "While 1EN is low, 1Y is a square wave (about 50 percent duty) at the frequency set by the capacitor and the 1FC and 1RNG voltages; while 1EN is high the oscillator is stopped and 1Y is high."
+    },
+    {
+      "output": "10",
+      "formula": "2Y = 2EN OR OSC2",
+      "text": "While 2EN is low, 2Y is a square wave (about 50 percent duty) at the frequency set by the capacitor and the 2FC and 2RNG voltages; while 2EN is high the oscillator is stopped and 2Y is high."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": 24,
+    "outputHighMaxCurrentMa": -1.2,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74LS629 figures (page 6). Output frequency 1 Hz to 20 MHz (recommended). Frequency-control and range inputs take 0-5 V and draw 50/250 uA typ/max at 5 V. Above 10 MHz two separate supplies are recommended; the two VCOs can disturb each other when both run (page 1)."
+  },
+  "timing": [],
+  "timingLimits": [
+    {
+      "what": "output frequency",
+      "pin": "Y",
+      "minMHz": 15,
+      "typMHz": 20,
+      "text": "Cext 50 pF, V(freq) 5 V, V(rng) 0 V: 15/20/25 MHz min/typ/max; V(freq) 1 V, V(rng) 5 V: 1.1/1.6/2.1 MHz (page 7, RL 667 ohm, CL 45 pF)"
+    }
+  ],
+  "unknown": [
+    "No propagation delay from EN to Y is given in the datasheet.",
+    "The exact frequency for a given capacitor and control voltages is given only as typical curves (figures 1-3, pages 7-8)."
+  ],
+  "notes": "The oscillator itself is analog; behaviour models its square wave as the condition OSC1/OSC2. Plain file: the lookup uses it for 74LS629.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "pages 1, 3, 4 - TI SN54LS624 thru SN54LS629, SN74LS624 thru SN74LS629 voltage-controlled oscillators datasheet SDLS186 (January 1980, revised March 1988)",
+    "conditions": [
+      {
+        "name": "OSC1",
+        "meaning": "the square wave of oscillator 1: frequency set by the capacitor on 1CX1-1CX2 and the voltages on 1FC and 1RNG (figures 1-3), 1 Hz to 20 MHz, duty about 50 percent; a synchronizing gate makes the first pulse after enable neither clipped nor extended",
+        "source": "pages 1, 3, 4 - TI SN54LS624 thru SN54LS629, SN74LS624 thru SN74LS629 voltage-controlled oscillators datasheet SDLS186 (January 1980, revised March 1988) (description)"
+      },
+      {
+        "name": "OSC2",
+        "meaning": "the square wave of oscillator 2: frequency set by the capacitor on 2CX1-2CX2 and the voltages on 2FC and 2RNG (figures 1-3), 1 Hz to 20 MHz, duty about 50 percent; a synchronizing gate makes the first pulse after enable neither clipped nor extended",
+        "source": "pages 1, 3, 4 - TI SN54LS624 thru SN54LS629, SN74LS624 thru SN74LS629 voltage-controlled oscillators datasheet SDLS186 (January 1980, revised March 1988) (description)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "1Y",
+        "formula": "1Y = 1EN OR OSC1",
+        "type": "totem-pole",
+        "source": "pages 1, 3, 4 - TI SN54LS624 thru SN54LS629, SN74LS624 thru SN74LS629 voltage-controlled oscillators datasheet SDLS186 (January 1980, revised March 1988) (description: enable high stops the oscillator and Y is high)"
+      },
+      {
+        "pin": "2Y",
+        "formula": "2Y = 2EN OR OSC2",
+        "type": "totem-pole",
+        "source": "pages 1, 3, 4 - TI SN54LS624 thru SN54LS629, SN74LS624 thru SN74LS629 voltage-controlled oscillators datasheet SDLS186 (January 1980, revised March 1988) (description: enable high stops the oscillator and Y is high)"
+      }
+    ]
+  }
+}

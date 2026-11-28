@@ -141,3 +141,21 @@ Until 2026-11-28 the copies were written into the test's `sheets` folder, where 
 and the Bus use window read them as extra 2A50 cards. They are now written to the test's own work
 folder (`pagetest/`), so they no longer reach the library. The left-behind files are still a
 fault, and this entry stays open until the cause is found and fixed.
+
+## B7 - card 3207: chips with no datasheet found, and reading points the catalogue raised (opened 2026-11-28)
+
+No catalogue file, because no datasheet was found for the exact part (a similar chip's facts are
+never used):
+- **NCR5386** (SCSI controller): only the NCR 5385E/5386 user's guide was found (registers, no
+  pins or timing). The card's pins look like the 5385 pinout, which is not proof.
+- **HY5010_100** (delay line, 10 taps, 100 ns): no maker or datasheet found.
+- **1N3246** (diode): no datasheet; the reading says "as read at 330 dpi", so the number may be misread.
+- **2170576F** (hex switch, from the drawing notes): no datasheet, pin numbering unknown.
+
+Points where the new catalogue files and the reading disagree (the reading is unchanged):
+- **Zener D1 (5.6V_ZENER, sheet 10):** pin 1 on AVC, pin 2 on GND. With pin 1 as the anode it
+  would sit the wrong way round to hold AVC at 5.6 V.
+- **Diode D4 (1N3246, sheet 19):** pin 1 on TERMS, pin 2 on +5V - the reverse of D10 (sheet 16),
+  which feeds the same kind of termination supply.
+- **RN1 / RN3 (4608X104_221/331):** the reading puts 220 ohm to TERMS (pin 8) and 330 ohm to
+  ground (pin 1); the Bourns figure seems to put R1 (220 ohm) on the pin 1 side. Not confirmed.

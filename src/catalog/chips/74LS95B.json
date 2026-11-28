@@ -1,0 +1,290 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "74LS95B",
+  "family": "74",
+  "title": "4-bit parallel-access shift register",
+  "package": "DIP-14",
+  "sources": [
+    {
+      "document": "TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980)",
+      "url": "http://www.bitsavers.org/components/ti/_dataBooks/1981_TI_The_TTL_Data_Book_For_Design_Engineers_2ed.pdf",
+      "pages": "book pages 7-89, 7-90, 7-93 (PDF pages 346, 347, 350)",
+      "familyUsed": "SN74LS95B"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "SER",
+      "role": "input",
+      "text": "serial input (shift right enters here into QA)"
+    },
+    {
+      "pin": 2,
+      "name": "A",
+      "role": "input"
+    },
+    {
+      "pin": 3,
+      "name": "B",
+      "role": "input"
+    },
+    {
+      "pin": 4,
+      "name": "C",
+      "role": "input"
+    },
+    {
+      "pin": 5,
+      "name": "D",
+      "role": "input"
+    },
+    {
+      "pin": 6,
+      "name": "MODE",
+      "role": "input",
+      "text": "mode control: high = parallel load (and shift left) on clock 2, low = shift right on clock 1"
+    },
+    {
+      "pin": 7,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 8,
+      "name": "CK2",
+      "role": "clock",
+      "edge": "falling",
+      "text": "clock 2, left shift / load; acts on its high-to-low edge while MODE is high"
+    },
+    {
+      "pin": 9,
+      "name": "CK1",
+      "role": "clock",
+      "edge": "falling",
+      "text": "clock 1, right shift; acts on its high-to-low edge while MODE is low"
+    },
+    {
+      "pin": 10,
+      "name": "QD",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 11,
+      "name": "QC",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 12,
+      "name": "QB",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 13,
+      "name": "QA",
+      "role": "output",
+      "outputType": "totem-pole"
+    },
+    {
+      "pin": 14,
+      "name": "VCC",
+      "role": "power",
+      "voltage": "+5 V"
+    }
+  ],
+  "functions": [
+    {
+      "output": "13",
+      "formula": "QA = FFA",
+      "text": "Shows flip-flop A."
+    },
+    {
+      "output": "12",
+      "formula": "QB = FFB",
+      "text": "Shows flip-flop B."
+    },
+    {
+      "output": "11",
+      "formula": "QC = FFC",
+      "text": "Shows flip-flop C."
+    },
+    {
+      "output": "10",
+      "formula": "QD = FFD",
+      "text": "Shows flip-flop D."
+    }
+  ],
+  "state": {
+    "bits": 4,
+    "changesOn": "falling edge of CK2 (MODE high) or of CK1 (MODE low)",
+    "rules": [
+      "MODE high, CK2 falls: QA-QD = A-D (parallel load)",
+      "MODE low, CK1 falls: shift right, QA = SER, QB = old QA, QC = old QB, QD = old QC",
+      "MODE high: CK1 has no effect; MODE low: CK2 has no effect",
+      "Shift left is a parallel load with QB wired to A, QC to B, QD to C and serial data at D",
+      "MODE should normally change only while both clocks are low; the last five lines of the function table show the other cases where the register still holds"
+    ]
+  },
+  "electrical": {
+    "outputLowMaxCurrentMa": 8,
+    "outputHighMaxCurrentMa": -0.4,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "SN74LS95B figures (book page 7-93)."
+  },
+  "timing": [
+    {
+      "from": "CK1 or CK2",
+      "to": "any Q",
+      "edge": "PLH",
+      "minNs": null,
+      "typNs": 18,
+      "maxNs": 27,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF"
+    },
+    {
+      "from": "CK1 or CK2",
+      "to": "any Q",
+      "edge": "PHL",
+      "minNs": null,
+      "typNs": 21,
+      "maxNs": 32,
+      "conditions": "VCC 5 V, TA 25 C, RL 2 kohm, CL 15 pF"
+    }
+  ],
+  "timingLimits": [
+    {
+      "what": "clock frequency",
+      "pin": "CK1 or CK2",
+      "minMHz": 25,
+      "typMHz": 36,
+      "text": "recommended fclock 0 to 25 MHz"
+    },
+    {
+      "what": "pulse width",
+      "pin": "CK1 or CK2",
+      "minNs": 20
+    },
+    {
+      "what": "setup",
+      "pin": "A-D, SER",
+      "ref": "clock",
+      "minNs": 20
+    },
+    {
+      "what": "hold",
+      "pin": "A-D, SER",
+      "ref": "clock",
+      "minNs": 10
+    },
+    {
+      "what": "setup",
+      "pin": "MODE",
+      "ref": "CK1",
+      "minNs": 20,
+      "text": "time to enable clock 1 (figure 2)"
+    },
+    {
+      "what": "setup",
+      "pin": "MODE",
+      "ref": "CK2",
+      "minNs": 20,
+      "text": "time to enable clock 2 (figure 2)"
+    },
+    {
+      "what": "inhibit",
+      "pin": "MODE",
+      "ref": "CK1",
+      "minNs": 20,
+      "text": "time to inhibit clock 1 (figure 2)"
+    },
+    {
+      "what": "inhibit",
+      "pin": "MODE",
+      "ref": "CK2",
+      "minNs": 20,
+      "text": "time to inhibit clock 2 (figure 2)"
+    }
+  ],
+  "unknown": [
+    "Figure 2 (the waveform that defines the enable/inhibit times) was not read; the reference edges of those four limits are not settled.",
+    "Pin names SER, MODE, CK1, CK2 are short forms of the datasheet's SERIAL INPUT, MODE CONTROL, CLOCK 1 R-SHIFT and CLOCK 2 L-SHIFT (LOAD)."
+  ],
+  "notes": "Exact-name file: the family rule cannot reach a type that ends in a letter. The book also shows SN7495A and SN74L95 on the same pages; those figures are not in this file.",
+  "behaviour": {
+    "kind": "logic",
+    "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980)",
+    "stored": [
+      {
+        "name": "FFA",
+        "kind": "flip-flop",
+        "next": "FFA = (MODE AND A) OR (MODE' AND SER)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (MODE' AND CK1)",
+          "edge": "falling"
+        },
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980) (function table and functional block diagram)"
+      },
+      {
+        "name": "FFB",
+        "kind": "flip-flop",
+        "next": "FFB = (MODE AND B) OR (MODE' AND FFA)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (MODE' AND CK1)",
+          "edge": "falling"
+        },
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980) (function table and functional block diagram)"
+      },
+      {
+        "name": "FFC",
+        "kind": "flip-flop",
+        "next": "FFC = (MODE AND C) OR (MODE' AND FFB)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (MODE' AND CK1)",
+          "edge": "falling"
+        },
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980) (function table and functional block diagram)"
+      },
+      {
+        "name": "FFD",
+        "kind": "flip-flop",
+        "next": "FFD = (MODE AND D) OR (MODE' AND FFC)",
+        "clock": {
+          "when": "(MODE AND CK2) OR (MODE' AND CK1)",
+          "edge": "falling"
+        },
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980) (function table and functional block diagram)"
+      }
+    ],
+    "outputs": [
+      {
+        "pin": "QA",
+        "formula": "QA = FFA",
+        "type": "totem-pole",
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980)"
+      },
+      {
+        "pin": "QB",
+        "formula": "QB = FFB",
+        "type": "totem-pole",
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980)"
+      },
+      {
+        "pin": "QC",
+        "formula": "QC = FFC",
+        "type": "totem-pole",
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980)"
+      },
+      {
+        "pin": "QD",
+        "formula": "QD = FFD",
+        "type": "totem-pole",
+        "source": "book pages 7-89, 7-90 (PDF pages 346, 347) - TI The TTL Data Book for Design Engineers, 2nd ed. (1981), TYPES SN5495A, SN54L95, SN54LS95B, SN7495A, SN74L95, SN74LS95B 4-bit parallel-access shift registers, bulletin DL-S 7611872 (March 1974, revised October 1976; LS95B page revised December 1980)"
+      }
+    ]
+  }
+}

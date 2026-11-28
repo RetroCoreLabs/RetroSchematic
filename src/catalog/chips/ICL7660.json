@@ -1,0 +1,87 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "ICL7660",
+  "family": "ICL",
+  "title": "CMOS voltage converter (charge pump: positive supply to negative)",
+  "package": "DIP-8",
+  "sources": [
+    {
+      "document": "Intersil ICL7660, ICL7660A CMOS Voltage Converters datasheet FN3072 Rev.7.00 (October 5, 2010)",
+      "url": "https://www.renesas.com/us/en/document/dst/icl7660-datasheet",
+      "pages": "1, 3",
+      "familyUsed": "ICL7660"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "NC",
+      "role": "nc"
+    },
+    {
+      "pin": 2,
+      "name": "CAPPLUS",
+      "role": "analog",
+      "text": "CAP+, plus side of the charge-pump capacitor"
+    },
+    {
+      "pin": 3,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 4,
+      "name": "CAPMINUS",
+      "role": "analog",
+      "text": "CAP-, minus side of the charge-pump capacitor"
+    },
+    {
+      "pin": 5,
+      "name": "VOUT",
+      "role": "analog",
+      "text": "negative output, about -V+ (needs a reservoir capacitor)"
+    },
+    {
+      "pin": 6,
+      "name": "LV",
+      "role": "analog",
+      "text": "low-voltage pin: to GND below 3.5 V supply; left open from 3.5 V to 10 V"
+    },
+    {
+      "pin": 7,
+      "name": "OSC",
+      "role": "analog",
+      "text": "oscillator: a capacitor here lowers the frequency, or it can be driven by an outside clock"
+    },
+    {
+      "pin": 8,
+      "name": "VPLUS",
+      "role": "power",
+      "voltage": "+1.5 V to +10 V (V+)"
+    }
+  ],
+  "functions": [
+    {
+      "output": "5",
+      "formula": null,
+      "text": "With two outside capacitors (charge pump on CAP+/CAP-, reservoir on VOUT) the output is the supply turned negative: V+ in gives about -V+ out. The internal oscillator runs at about 10 kHz at 5 V with nothing on OSC (page 1)."
+    }
+  ],
+  "state": null,
+  "electrical": {
+    "outputLowMaxCurrentMa": null,
+    "outputHighMaxCurrentMa": null,
+    "outputMaxVoltageV": null,
+    "inputSchmitt": false,
+    "notes": "V+ 5 V, 25 C: supply current 170 typ / 500 max uA; output source resistance 55 typ / 100 max ohm at 20 mA; oscillator 10 kHz typ; power efficiency 98% typ; voltage conversion efficiency 99.9% typ; supply 10.5 V absolute maximum (page 3)."
+  },
+  "timing": [],
+  "timingLimits": [],
+  "unknown": [],
+  "notes": "Figures are the ICL7660 column; the ICL7660A goes to 12 V.",
+  "behaviour": {
+    "kind": "none",
+    "reason": "voltage converter (charge pump): an analog power part with no logic function."
+  }
+}
