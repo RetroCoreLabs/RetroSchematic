@@ -1,0 +1,372 @@
+{
+  "catalogFormat": "nd-chip",
+  "catalogFormatVersion": 1,
+  "id": "NCR5386",
+  "family": "MOS LSI",
+  "title": "NCR 5386 SCSI protocol controller",
+  "package": "DIP-48",
+  "sources": [
+    {
+      "document": "NCR Microelectronics Division SCSI Engineering Notebook, Rev. 2, October 1985",
+      "url": "https://bitsavers.org/components/ncr_symbios/scsi/NCR_SCSI_Engineering_Notebook_Rev2_Oct85.pdf",
+      "pages": "41 (NCR 5386 48-pin DIP pinout); 4-5 (differences from the 5385E: pin and software compatible superset, pass-parity on pin 14)"
+    },
+    {
+      "document": "NCR 5385E SCSI Protocol Controller Data Sheet, May 1985",
+      "url": "https://bitsavers.org/components/ncr_symbios/scsi/5385/NCR_5385E_SCSI_Protocol_Controller_Data_Sheet_May85.pdf",
+      "pages": "5-7 (pin description)",
+      "familyUsed": "NCR 5385E - the notebook states the 5386 is pin compatible with it; pin names and numbers checked against the 5386 pinout"
+    }
+  ],
+  "pins": [
+    {
+      "pin": 1,
+      "name": "D2",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 2, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 2,
+      "name": "D1",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 1, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 3,
+      "name": "D0",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 0, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 4,
+      "name": "RESET",
+      "role": "input",
+      "active": "high",
+      "text": "high forces the chip into reset: current operations end, internal storage is cleared and self-diagnostics run"
+    },
+    {
+      "pin": 5,
+      "name": "ATN",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "INITIATOR ROLE: asserted when the microprocessor asks for attention or a received byte has a parity error. TARGET ROLE: input showing the SCSI ATN signal. bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 6,
+      "name": "IGS",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "initiator group select: high when the chip works as initiator; enables the external ATN and ACK drivers"
+    },
+    {
+      "pin": 7,
+      "name": "I_O",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "I/O. INITIATOR ROLE: input showing the bus phase. TARGET ROLE: driven to show the bus phase. bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 8,
+      "name": "C_D",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "C/D. INITIATOR ROLE: input showing the bus phase. TARGET ROLE: driven to show the bus phase. bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 9,
+      "name": "MSG",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "INITIATOR ROLE: input showing the bus phase. TARGET ROLE: driven to show the bus phase. bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 10,
+      "name": "ACK",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "INITIATOR ROLE: asserted in answer to REQ for a byte transfer. TARGET ROLE: input answering REQ. bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 11,
+      "name": "REQ",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "INITIATOR ROLE: input: the target asks for a byte transfer. TARGET ROLE: asserted to ask for a byte transfer. bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 12,
+      "name": "ID2",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "SCSI ID bit 2 of the chip, active low; pull-up needed only when wired to a switch or strap"
+    },
+    {
+      "pin": 13,
+      "name": "ID1",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "SCSI ID bit 1, active low"
+    },
+    {
+      "pin": 14,
+      "name": "ID0",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "SCSI ID bit 0, active low. On the 5386 in pass-parity mode this pin is the data bus parity DP and pins 12-13 are unused (NCR SCSI Engineering Notebook)"
+    },
+    {
+      "pin": 15,
+      "name": "ARB",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "arbitration phase: high lets external circuits put the ID bit on the SCSI bus"
+    },
+    {
+      "pin": 16,
+      "name": "CLK",
+      "role": "clock",
+      "text": "symmetrical square wave that makes the internal timing; at most 10 MHz"
+    },
+    {
+      "pin": 17,
+      "name": "BSYIN",
+      "role": "input",
+      "active": "high",
+      "text": "high tells the chip the SCSI BSY signal is active"
+    },
+    {
+      "pin": 18,
+      "name": "SELIN",
+      "role": "input",
+      "active": "high",
+      "text": "high tells the chip the SCSI SEL signal is active"
+    },
+    {
+      "pin": 19,
+      "name": "INT",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "interrupt to the microprocessor; set high on a request, cleared by reset or by reading the Interrupt Register"
+    },
+    {
+      "pin": 20,
+      "name": "SBEN",
+      "inverted": true,
+      "role": "output",
+      "active": "low",
+      "outputType": "totem-pole",
+      "text": "SCSI data bus enable: low enables the external SCSI data bus drivers"
+    },
+    {
+      "pin": 21,
+      "name": "CS",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "chip select: enables reading or writing the selected internal register; never active together with DACK"
+    },
+    {
+      "pin": 22,
+      "name": "A0",
+      "role": "input",
+      "text": "register address bit 0 (with CS)"
+    },
+    {
+      "pin": 23,
+      "name": "A1",
+      "role": "input",
+      "text": "register address bit 1"
+    },
+    {
+      "pin": 24,
+      "name": "GND",
+      "role": "ground"
+    },
+    {
+      "pin": 25,
+      "name": "A2",
+      "role": "input",
+      "text": "register address bit 2"
+    },
+    {
+      "pin": 26,
+      "name": "A3",
+      "role": "input",
+      "text": "register address bit 3"
+    },
+    {
+      "pin": 27,
+      "name": "DACK",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "data acknowledge: resets DREQ and selects the Data Register (the chip select for DMA transfers)"
+    },
+    {
+      "pin": 28,
+      "name": "TGS",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "target group select: high when the chip works as target; enables the external REQ, MSG, C/D and I/O drivers"
+    },
+    {
+      "pin": 29,
+      "name": "DREQ",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "data request in DMA mode: high when the Data Register has a byte for, or needs a byte from, the DMA; cleared by DACK"
+    },
+    {
+      "pin": 30,
+      "name": "WR",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "write pulse: strobes the data bus into the selected internal register"
+    },
+    {
+      "pin": 31,
+      "name": "RD",
+      "inverted": true,
+      "role": "input",
+      "active": "low",
+      "text": "read pulse: puts the selected internal register on the data bus"
+    },
+    {
+      "pin": 32,
+      "name": "SELOUT",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "high while the chip asserts SEL on the SCSI bus"
+    },
+    {
+      "pin": 33,
+      "name": "SBP",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus parity, active high, to the external transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 34,
+      "name": "SB0",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 0, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 35,
+      "name": "SB1",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 1, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 36,
+      "name": "SB2",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 2, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 37,
+      "name": "SB3",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 3, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 38,
+      "name": "SB4",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 4, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 39,
+      "name": "SB5",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 5, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 40,
+      "name": "SB6",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 6, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 41,
+      "name": "SB7",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "SCSI data bus bit 7, active high, to the external SCSI bus transceivers; bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 42,
+      "name": "BSYOUT",
+      "role": "output",
+      "active": "high",
+      "outputType": "totem-pole",
+      "text": "high while the chip asserts BSY on the SCSI bus"
+    },
+    {
+      "pin": 43,
+      "name": "D7",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 7, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 44,
+      "name": "D6",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 6, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 45,
+      "name": "D5",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 5, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 46,
+      "name": "D4",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 4, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 47,
+      "name": "D3",
+      "role": "output",
+      "outputType": "three-state",
+      "text": "microprocessor data bus bit 3, active high, bidirectional (the 5385E data sheet gives no output type; shown as three-state)"
+    },
+    {
+      "pin": 48,
+      "name": "VCC",
+      "role": "power",
+      "text": "+5 V"
+    }
+  ],
+  "behaviour": {
+    "kind": "none",
+    "reason": "A command-driven SCSI protocol controller (initiator and target roles, arbitration, selection and reselection, DMA and programmed transfers) run by internal state machines from a clock of up to 10 MHz. No 5386 data sheet was found, and the 5385E data sheet describes it in words, register tables and waveforms; a runnable pin model would be a full controller emulation. The words are in pins[].text."
+  },
+  "note": "No NCR 5386 data sheet (NCR MC-704) was found. Pin numbers and names are from NCR's own 5386 pinout drawing; what each pin does is from the 5385E data sheet. The 5386 differences (pass parity, valid phase enable, no extra DREQ) are in the notebook pages 4-5. Card 3207 sheet 19 matches the pinout on every pin used."
+}

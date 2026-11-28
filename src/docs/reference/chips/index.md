@@ -2,7 +2,7 @@
 
 # Chips
 
-Every chip in the chip catalogue (`catalog/chips`), 133 files. Each page holds the
+Every chip in the chip catalogue (`catalog/chips`), 168 files. Each page holds the
 pins, functions and timing read from the datasheet, with the page they came from, the
 symbol drawings, and the sheets that use the chip. The file format is in
 [the chip catalogue format](../../../catalog/chips/FORMAT.md).
@@ -11,6 +11,8 @@ symbol drawings, and the sheets that use the chip. The file format is in
 |---|---|---|---|
 | [2107B](2107B.md) | 4096-bit (4K x 1) dynamic RAM, N-channel | DIP-22 |  |
 | [2532](2532.md) | Quad 80-bit static shift register (P-channel MOS) | DIP-16 |  |
+| [25LS2521](25LS2521.md) | Eight-bit equal-to comparator | DIP-20 |  |
+| [2764_2](2764_2.md) | 65536-bit (8K x 8) UV erasable PROM, 200 ns (2764-2) | DIP-28 |  |
 | [3101](3101.md) | 64-bit (16 x 4) bipolar RAM, open-collector outputs | DIP-16 |  |
 | [7400](7400.md) | Quadruple 2-input NAND gate | DIP-14 | 6 |
 | [7401](7401.md) | Quadruple 2-input NAND gate with open collector output | DIP-14 |  |
@@ -25,12 +27,16 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [7410](7410.md) | Triple 3-input NAND gate | DIP-14 |  |
 | [74100](74100.md) | 8-bit bistable latches | DIP-24 |  |
 | [74107](74107.md) | Dual J-K master-slave flip-flop | DIP-14 |  |
+| [7411](7411.md) | Triple 3-input positive-AND gates | DIP-14 |  |
 | [74118](74118.md) | 6-bit set latch |  |  |
 | [74120](74120.md) | Pulse synchronizer | DIP-16 |  |
 | [74121](74121.md) | Monostable multivibrator | DIP-14 |  |
 | [74123](74123.md) | Retriggerable monostable multivibrator with clear | DIP-16 |  |
+| [74125](74125.md) | Quadruple bus buffers with 3-state outputs | DIP-14 |  |
 | [7413](7413.md) | Dual 4-input NAND Schmitt trigger | DIP-14 |  |
 | [74132](74132.md) | Quadruple 2-input positive NAND Schmitt trigger | DIP-14 |  |
+| [74138](74138.md) | 3-line to 8-line decoder/demultiplexer | DIP-16 |  |
+| [74139](74139.md) | Dual 2-line to 4-line decoders/demultiplexers | DIP-16 |  |
 | [7414](7414.md) | Hex Schmitt-trigger inverter | DIP-14 |  |
 | [74148](74148.md) | 8-line-to-3-line priority encoder (equal to 9318) | DIP-16 |  |
 | [74150](74150.md) | Data selector/multiplexer 16-1 | DIP-24 |  |
@@ -62,8 +68,11 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [74221](74221.md) | Dual monostable multivibrator (pin compatible with 74123) | DIP-16 | 1 |
 | [74240](74240.md) | Octal buffer and line driver with 3-state outputs, inverting | DIP-20 |  |
 | [74244](74244.md) | Octal buffer and line driver with 3-state outputs, non-inverting | DIP-20 |  |
+| [74245](74245.md) | Octal bus transceiver with 3-state outputs | DIP-20 |  |
 | [7425](7425.md) | Dual 4-input NOR gate with strobe | DIP-14 |  |
+| [74260](74260.md) | Dual 5-input positive-NOR gates | DIP-14 |  |
 | [7427](7427.md) | Triple 3-input NOR gate | DIP-14 |  |
+| [74273](74273.md) | Octal D-type flip-flop with clear | DIP-20 |  |
 | [74279](74279.md) | Quadruple S-R latches | DIP-16 |  |
 | [7428](7428.md) | Quadruple 2-input NOR buffer | DIP-14 |  |
 | [74298](74298.md) | Quadruple 2-input multiplexer with storage | DIP-16 |  |
@@ -71,14 +80,19 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [7432](7432.md) | Quadruple 2-input OR gate | DIP-14 |  |
 | [7433](7433.md) | Quadruple 2-input NOR buffer with open-collector | DIP-14 |  |
 | [7437](7437.md) | Quadruple 2-input NAND buffer | DIP-14 |  |
+| [74373](74373.md) | Octal D-type transparent latches with 3-state outputs | DIP-20 |  |
+| [74374](74374.md) | Octal D-type edge-triggered flip-flops with 3-state outputs | DIP-20 |  |
 | [7438](7438.md) | Quadruple 2-input NAND buffer with open-collector | DIP-14 | 1 |
 | [74393](74393.md) | Dual 4-bit binary ripple counter | DIP-14 |  |
 | [7440](7440.md) | Dual 4-input NAND buffer | DIP-14 |  |
 | [7442](7442.md) | 4-line-to-10-line decoder (1-of-10) | DIP-16 | 1 |
 | [7445](7445.md) | BCD to decimal decoder/driver with open-collector outputs | DIP-16 |  |
+| [74461](74461.md) | 8-bit counter with 3-state outputs | DIP-24 |  |
+| [74469](74469.md) | 8-bit up/down counter with 3-state outputs | DIP-24 |  |
 | [7450](7450.md) | 2x2 AND-OR-INVERT (7450 - 7451 - 7460) | DIP-14 |  |
 | [7451](7451.md) | Dual 2-wide 2-input AND-OR-INVERT gate | DIP-14 | 1 |
 | [7453](7453.md) | 4x2 AND-OR-INVERT (7453 - 7454) | DIP-14 |  |
+| [74629](74629.md) | Dual voltage-controlled oscillator with enable and range inputs | DIP-16 |  |
 | [7470](7470.md) | J-K flip-flop | DIP-14 |  |
 | [7472](7472.md) | J-K master-slave flip-flop | DIP-14 |  |
 | [7473](7473.md) | Dual J-K master-slave flip-flop | DIP-14 |  |
@@ -101,6 +115,8 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [74H54](74H54.md) | Expandable 2-2-2-3-input AND-OR-INVERT gates | DIP-14 |  |
 | [74H55](74H55.md) | 2-wide 4-input AND-OR-INVERT gates | DIP-14 |  |
 | [74L95](74L95.md) | 4-bit parallel-access shift register | DIP-14 |  |
+| [74LS642_1](74LS642_1.md) | Octal bus transceiver, inverting, open-collector outputs, 48 mA version (-1) | DIP-20 |  |
+| [74LS95B](74LS95B.md) | 4-bit parallel-access shift register | DIP-14 |  |
 | [74S112](74S112.md) | Dual J-K negative-edge-triggered flip-flop with preset and clear | DIP-16 |  |
 | [74S114](74S114.md) | Dual J-K negative-edge-triggered flip-flop with preset, common clear and common clock | DIP-14 |  |
 | [74S133](74S133.md) | 13-input positive NAND gate | DIP-16 |  |
@@ -113,6 +129,7 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [75109](75109.md) | Dual line driver (75109-75110) | DIP-14 |  |
 | [75150](75150.md) | 2-input line driver | DIP-14 | 2 |
 | [75154](75154.md) | Quadruple line receiver (EIA RS-232-C) | DIP-16 | 2 |
+| [75176](75176.md) | Differential bus transceiver (RS-422/RS-485), 3-state driver and receiver | DIP-8 |  |
 | [75322](75322.md) | TTL to MOS driver | DIP-14 |  |
 | [75361](75361.md) | MOS driver | DIP-14 |  |
 | [75450](75450.md) | Dual peripheral driver | DIP-14 |  |
@@ -132,13 +149,31 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [8831](8831.md) | TRI-STATE line driver, quad single-ended or dual differential | DIP-16 |  |
 | [8833](8833.md) | Quad TRI-STATE party-line (bus) transceiver, non-inverting | DIP-16 |  |
 | [8835](8835.md) | Quad TRI-STATE party-line (bus) transceiver, inverting | DIP-16 |  |
+| [AD558](AD558.md) | Complete 8-bit digital-to-analog converter with input latch, reference and output amplifier | DIP-16 |  |
+| [AM29864](AM29864.md) | 9-bit bus transceiver, inverting, 3-state | DIP-24 |  |
+| [AM9517_4PC](AM9517_4PC.md) | Am9517A-4 multimode DMA controller, four channels, 4 MHz grade, molded (plastic) DIP | DIP-40 |  |
 | [COM2601](COM2601.md) | Universal synchronous receiver/transmitter (USRT) | DIP-40 | 1 |
 | [DC1035T](DC1035T.md) | 100 ns delay line with 10 ns taps |  |  |
+| [FD1797_02](FD1797_02.md) | Floppy disk formatter/controller, single and double density, true data bus, side select output (FD1797-02) | DIP-40 |  |
+| [HP5082_7433](HP5082_7433.md) | Three-digit seven-segment red LED display, one common cathode per digit | DIP-12 |  |
+| [ICL7660](ICL7660.md) | CMOS voltage converter (charge pump: positive supply to negative) | DIP-8 |  |
+| [MC14536BCP](MC14536BCP.md) | Programmable timer: 24-stage ripple counter with 1-of-16 stage select, oscillator and monostable (CMOS) | DIP-16 |  |
 | [MC4007](MC4007.md) | Dual binary to one-of-four line decoder (MTTL) | DIP-16 |  |
+| [MC8T26A](MC8T26A.md) | Quad three-state bus transceiver, inverting | DIP-16 |  |
 | [MCT2](MCT2.md) | Phototransistor optocoupler (GaAs infrared LED + NPN phototransistor) | DIP-6 |  |
 | [MK4096P](MK4096P.md) | 4096-bit (4K x 1) dynamic RAM, 16-pin, multiplexed address | DIP-16 |  |
+| [NCR5386](NCR5386.md) | NCR 5386 SCSI protocol controller | DIP-48 |  |
+| [PAL16L8](PAL16L8.md) | Programmable array logic, 10 inputs, 8 active-low three-state outputs (6 with feedback) | DIP-20 |  |
+| [PAL20L10](PAL20L10.md) | Programmable array logic, 12 inputs, 10 active-low three-state outputs (8 with feedback) | DIP-24 |  |
+| [PAL20L8B](PAL20L8B.md) | Programmable array logic, 14 inputs, 8 active-low three-state outputs (6 with feedback), B speed (15 ns) | DIP-24 |  |
+| [TBP18S030](TBP18S030.md) | 256-bit (32 x 8) Schottky TTL programmable read-only memory, three-state outputs | DIP-16 |  |
+| [TBP24S41](TBP24S41.md) | 4096-bit (1024 x 4) Schottky TTL programmable read-only memory, three-state outputs | DIP-18 |  |
 | [TIL113](TIL113.md) | Photo-Darlington optocoupler (GaAs infrared LED + NPN Darlington) | DIP-6 |  |
+| [TL061](TL061.md) | Low-power JFET-input operational amplifier, single | DIP-8 |  |
+| [TMM2063P_10](TMM2063P_10.md) | 8192 x 8 bit static RAM, N-channel silicon gate MOS, 100 ns | DIP-28 (0.3 inch) |  |
 | [TMS4030](TMS4030.md) | 4096-bit (4K x 1) dynamic RAM, N-channel | DIP-22 |  |
 | [TMS6010](TMS6010.md) | Universal asynchronous receiver/transmitter (UART) | DIP-40 |  |
 | [VP12](VP12.md) | Voltage converter |  |  |
 | [VP5](VP5.md) | Voltage converter (VP 12 is equal) |  |  |
+| [Z80A_CPU](Z80A_CPU.md) | Z80A 8-bit microprocessor (4 MHz grade of the Z80 CPU), N-channel MOS | DIP-40 |  |
+| [Z80A_CTC](Z80A_CTC.md) | Z80A CTC four-channel counter/timer circuit (4 MHz grade), N-channel MOS | DIP-28 |  |

@@ -2,8 +2,8 @@
   "format": "nd-netlist",
   "formatVersion": 3,
   "file": {
-    "revision": 4,
-    "modified": "2026-11-28T17:55:37Z"
+    "revision": 5,
+    "modified": "2026-11-28T19:39:30Z"
   },
   "sheet": {
     "id": "3207",
@@ -34075,9 +34075,9 @@
         },
         {
           "name": "SDACK_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SDACK",
@@ -34099,9 +34099,9 @@
         },
         {
           "name": "SRD_0",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "input",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
           "signals": [
             {
               "net": "SRD",
@@ -34351,9 +34351,9 @@
         },
         {
           "name": "SINT",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SINT",
@@ -34363,9 +34363,9 @@
         },
         {
           "name": "SMBD00",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD00",
@@ -34375,9 +34375,9 @@
         },
         {
           "name": "SMBD01",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD01",
@@ -34387,9 +34387,9 @@
         },
         {
           "name": "SMBD02",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD02",
@@ -34399,9 +34399,9 @@
         },
         {
           "name": "SMBD03",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD03",
@@ -34411,9 +34411,9 @@
         },
         {
           "name": "SMBD04",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD04",
@@ -34423,9 +34423,9 @@
         },
         {
           "name": "SMBD05",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD05",
@@ -34435,9 +34435,9 @@
         },
         {
           "name": "SMBD06",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD06",
@@ -34447,9 +34447,9 @@
         },
         {
           "name": "SMBD07",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SMBD07",
@@ -34459,9 +34459,9 @@
         },
         {
           "name": "DRQ",
-          "direction": "inout",
-          "directionConfidence": "open",
-          "note": "direction not known: no catalogued chip pin on this signal inside the block",
+          "direction": "output",
+          "directionConfidence": "inferred",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "DRQ",
@@ -34543,9 +34543,9 @@
         },
         {
           "name": "SELOUT",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "SELOUT",
@@ -34795,9 +34795,9 @@
         },
         {
           "name": "BSYOUT",
-          "direction": "input",
+          "direction": "output",
           "directionConfidence": "inferred",
-          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (only chip inputs on it)",
+          "note": "inferred from the catalogue roles of the chip pins on this signal inside the block; drivers outside the block are not counted (a chip output drives it)",
           "signals": [
             {
               "net": "BSYOUT",

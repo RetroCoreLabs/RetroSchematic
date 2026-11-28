@@ -108,9 +108,9 @@ namespace RetroSchematic.Tests
             string chip = t.GetChip("74LS112");
             Assert.That(chip, Does.Contain("Pins and logic from 74S112.json"));
             Assert.That(t.GetChip("7400"), Does.StartWith("7400: "));
-            // NCR5386: on card 3207, no datasheet found yet (see BUGS.md B4), so no chip file
-            McpException ex = Assert.Throws<McpException>(() => t.GetChip("NCR5386"))!;
-            Assert.That(ex.Message, Does.Contain("no chip file for NCR5386"));
+            // HY5010_100: a delay line on card 3207, no datasheet found yet (see BUGS.md B7), so no chip file
+            McpException ex = Assert.Throws<McpException>(() => t.GetChip("HY5010_100"))!;
+            Assert.That(ex.Message, Does.Contain("no chip file for HY5010_100"));
             Assert.That(t.ListChips("74S1"), Does.Contain("74S112"));
         }
 

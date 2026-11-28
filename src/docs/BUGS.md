@@ -145,10 +145,9 @@ fault, and this entry stays open until the cause is found and fixed.
 ## B7 - card 3207: chips with no datasheet found, and reading points the catalogue raised (opened 2026-11-28)
 
 No catalogue file, because no datasheet was found for the exact part (a similar chip's facts are
-never used):
-- **NCR5386** (SCSI controller): only the NCR 5385E/5386 user's guide was found (registers, no
-  pins or timing). The card's pins look like the 5385 pinout, which is not proof.
-- **HY5010_100** (delay line, 10 taps, 100 ns): no maker or datasheet found.
+never used). NCR5386 now has a file (2026-11-28): pins from NCR's own 5386 pinout, pin roles from
+the pin-compatible 5385E data sheet.
+- **HY5010_100** (delay line, 10 taps, 100 ns): probably the Hytek HY5010 family (10-tap TTL delay line, 14-pin DIP); a scanned HY5010 data sheet is listed at datasheetarchive.com (search "hy50"), but no copy with the pin table was reached, and no -100 variant is listed.
 - **1N3246** (diode): no datasheet; the reading says "as read at 330 dpi", so the number may be misread.
 - **2170576F** (hex switch, from the drawing notes): no datasheet, pin numbering unknown.
 

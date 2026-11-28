@@ -36,8 +36,8 @@ namespace RetroSchematic.Tests
             SheetCheckResult b = SheetCheck.Run(NetlistReader.ReadFile(CardReadingsTests.Sheet3207), Catalog());
             Assert.That(b.Ok, Is.True, SheetCheck.Report(b));
             Assert.That(b.Levels, Is.EqualTo(11), "the top level and ten blocks");
-            Assert.That(b.Missing, Does.Contain("NCR5386"));
-            Assert.That(b.MissingParts["NCR5386"][0], Does.StartWith("S_INTERF/"));
+            Assert.That(b.Missing, Does.Contain("HY5010_100"));
+            Assert.That(b.MissingParts["HY5010_100"][0], Does.StartWith("F_ND_INT/"));
             Assert.That(SheetCheck.Report(b), Does.EndWith("0 problem(s)\n"));
         }
 

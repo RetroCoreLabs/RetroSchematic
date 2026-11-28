@@ -9,6 +9,8 @@ nav:
       - src/docs/reference/chips/index.md
       - "2107B": src/docs/reference/chips/2107B.md
       - "2532": src/docs/reference/chips/2532.md
+      - "25LS2521": src/docs/reference/chips/25LS2521.md
+      - "2764_2": src/docs/reference/chips/2764_2.md
       - "3101": src/docs/reference/chips/3101.md
       - "7400": src/docs/reference/chips/7400.md
       - "7401": src/docs/reference/chips/7401.md
@@ -23,12 +25,16 @@ nav:
       - "7410": src/docs/reference/chips/7410.md
       - "74100": src/docs/reference/chips/74100.md
       - "74107": src/docs/reference/chips/74107.md
+      - "7411": src/docs/reference/chips/7411.md
       - "74118": src/docs/reference/chips/74118.md
       - "74120": src/docs/reference/chips/74120.md
       - "74121": src/docs/reference/chips/74121.md
       - "74123": src/docs/reference/chips/74123.md
+      - "74125": src/docs/reference/chips/74125.md
       - "7413": src/docs/reference/chips/7413.md
       - "74132": src/docs/reference/chips/74132.md
+      - "74138": src/docs/reference/chips/74138.md
+      - "74139": src/docs/reference/chips/74139.md
       - "7414": src/docs/reference/chips/7414.md
       - "74148": src/docs/reference/chips/74148.md
       - "74150": src/docs/reference/chips/74150.md
@@ -60,8 +66,11 @@ nav:
       - "74221": src/docs/reference/chips/74221.md
       - "74240": src/docs/reference/chips/74240.md
       - "74244": src/docs/reference/chips/74244.md
+      - "74245": src/docs/reference/chips/74245.md
       - "7425": src/docs/reference/chips/7425.md
+      - "74260": src/docs/reference/chips/74260.md
       - "7427": src/docs/reference/chips/7427.md
+      - "74273": src/docs/reference/chips/74273.md
       - "74279": src/docs/reference/chips/74279.md
       - "7428": src/docs/reference/chips/7428.md
       - "74298": src/docs/reference/chips/74298.md
@@ -69,14 +78,19 @@ nav:
       - "7432": src/docs/reference/chips/7432.md
       - "7433": src/docs/reference/chips/7433.md
       - "7437": src/docs/reference/chips/7437.md
+      - "74373": src/docs/reference/chips/74373.md
+      - "74374": src/docs/reference/chips/74374.md
       - "7438": src/docs/reference/chips/7438.md
       - "74393": src/docs/reference/chips/74393.md
       - "7440": src/docs/reference/chips/7440.md
       - "7442": src/docs/reference/chips/7442.md
       - "7445": src/docs/reference/chips/7445.md
+      - "74461": src/docs/reference/chips/74461.md
+      - "74469": src/docs/reference/chips/74469.md
       - "7450": src/docs/reference/chips/7450.md
       - "7451": src/docs/reference/chips/7451.md
       - "7453": src/docs/reference/chips/7453.md
+      - "74629": src/docs/reference/chips/74629.md
       - "7470": src/docs/reference/chips/7470.md
       - "7472": src/docs/reference/chips/7472.md
       - "7473": src/docs/reference/chips/7473.md
@@ -99,6 +113,8 @@ nav:
       - "74H54": src/docs/reference/chips/74H54.md
       - "74H55": src/docs/reference/chips/74H55.md
       - "74L95": src/docs/reference/chips/74L95.md
+      - "74LS642_1": src/docs/reference/chips/74LS642_1.md
+      - "74LS95B": src/docs/reference/chips/74LS95B.md
       - "74S112": src/docs/reference/chips/74S112.md
       - "74S114": src/docs/reference/chips/74S114.md
       - "74S133": src/docs/reference/chips/74S133.md
@@ -111,6 +127,7 @@ nav:
       - "75109": src/docs/reference/chips/75109.md
       - "75150": src/docs/reference/chips/75150.md
       - "75154": src/docs/reference/chips/75154.md
+      - "75176": src/docs/reference/chips/75176.md
       - "75322": src/docs/reference/chips/75322.md
       - "75361": src/docs/reference/chips/75361.md
       - "75450": src/docs/reference/chips/75450.md
@@ -130,16 +147,34 @@ nav:
       - "8831": src/docs/reference/chips/8831.md
       - "8833": src/docs/reference/chips/8833.md
       - "8835": src/docs/reference/chips/8835.md
+      - "AD558": src/docs/reference/chips/AD558.md
+      - "AM29864": src/docs/reference/chips/AM29864.md
+      - "AM9517_4PC": src/docs/reference/chips/AM9517_4PC.md
       - "COM2601": src/docs/reference/chips/COM2601.md
       - "DC1035T": src/docs/reference/chips/DC1035T.md
+      - "FD1797_02": src/docs/reference/chips/FD1797_02.md
+      - "HP5082_7433": src/docs/reference/chips/HP5082_7433.md
+      - "ICL7660": src/docs/reference/chips/ICL7660.md
+      - "MC14536BCP": src/docs/reference/chips/MC14536BCP.md
       - "MC4007": src/docs/reference/chips/MC4007.md
+      - "MC8T26A": src/docs/reference/chips/MC8T26A.md
       - "MCT2": src/docs/reference/chips/MCT2.md
       - "MK4096P": src/docs/reference/chips/MK4096P.md
+      - "NCR5386": src/docs/reference/chips/NCR5386.md
+      - "PAL16L8": src/docs/reference/chips/PAL16L8.md
+      - "PAL20L10": src/docs/reference/chips/PAL20L10.md
+      - "PAL20L8B": src/docs/reference/chips/PAL20L8B.md
+      - "TBP18S030": src/docs/reference/chips/TBP18S030.md
+      - "TBP24S41": src/docs/reference/chips/TBP24S41.md
       - "TIL113": src/docs/reference/chips/TIL113.md
+      - "TL061": src/docs/reference/chips/TL061.md
+      - "TMM2063P_10": src/docs/reference/chips/TMM2063P_10.md
       - "TMS4030": src/docs/reference/chips/TMS4030.md
       - "TMS6010": src/docs/reference/chips/TMS6010.md
       - "VP12": src/docs/reference/chips/VP12.md
       - "VP5": src/docs/reference/chips/VP5.md
+      - "Z80A_CPU": src/docs/reference/chips/Z80A_CPU.md
+      - "Z80A_CTC": src/docs/reference/chips/Z80A_CTC.md
     - Bus signals:
       - "NORD-100 (ND-100)": src/docs/reference/signals/nd100-bus.md
       - "NORD-10": src/docs/reference/signals/nord10-io-bus.md
