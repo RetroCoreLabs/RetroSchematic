@@ -139,6 +139,39 @@ namespace RetroSchematic.Render
         /// </returns>
         public static string Report(Netlist netlist, ChipCatalog? catalog, PageLayoutMode mode, int chipLimit)
         {
+            return ReportOne(netlist, catalog, mode, chipLimit);
+        }
+
+        /// <summary>
+        /// Both page layouts measured (as the original, then split): the command-line
+        /// <c>pages</c> and the MCP tool <c>page_stats</c>. A card without pages is measured as if
+        /// converted to format version 3, on a copy, so nothing is changed.
+        /// </summary>
+        /// <param name="netlist">
+        /// The card.
+        /// </param>
+        /// <param name="catalog">
+        /// The chip catalogue, or null.
+        /// </param>
+        /// <param name="chipLimit">
+        /// For a split: the chip count above which a page is split.
+        /// </param>
+        /// <returns>
+        /// The two reports, one after the other.
+        /// </returns>
+        public static string ReportBoth(Netlist netlist, ChipCatalog? catalog, int chipLimit)
+        {
+            Netlist card = netlist;
+            if (!CardPages.HasPages(card))
+            {
+                card = NetlistReader.Parse(NetlistReader.Write(netlist));
+                CardPages.ToVersion3(card);
+            }
+            return ReportOne(card, catalog, PageLayoutMode.AsOriginal, chipLimit) + ReportOne(card, catalog, PageLayoutMode.Split, chipLimit);
+        }
+
+        private static string ReportOne(Netlist netlist, ChipCatalog? catalog, PageLayoutMode mode, int chipLimit)
+        {
             List<PageMeasure> pages = Measure(netlist, catalog, mode, chipLimit);
             StringBuilder sb = new();
             CultureInfo c = CultureInfo.InvariantCulture;

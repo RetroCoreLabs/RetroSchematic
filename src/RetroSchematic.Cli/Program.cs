@@ -29,7 +29,10 @@ namespace RetroSchematic.Cli
             "retroschematic to-pages <sheet> [out]                     turn a version 1 or 2 file into format version 3 with one page\n" +
             "    holding every part (written back to the same file unless out is given; .rsc or .rsx)\n" +
             "retroschematic pages <sheet> [--limit n]                  list the drawn pages and measure both page layouts: pages,\n" +
-            "    wire length, crossings, labels and off-page markers\n";
+            "    wire length, crossings, labels and off-page markers\n" +
+            "retroschematic readings check <folder>                    check a card's reading files (pNN.txt; docs/3207-readings/README.md)\n" +
+            "retroschematic readings sheet <folder> <sheet>            check them and write every read block into the sheet (saved,\n" +
+            "    file stamp raised); the same as tools/card-readings.py check / sheet\n";
 
         /// <summary>
         /// Entry point.
@@ -55,14 +58,24 @@ namespace RetroSchematic.Cli
                 return 2;
             }
 
+            // reading files are not a sheet: handled before a sheet is read
+            if (args[0] == "readings")
+                return Readings(args);
+
             try
             {
                 Netlist netlist = NetlistReader.ReadFile(args[1]);
                 switch (args[0])
                 {
                     case "check":
+                    {
                         Console.WriteLine($"{args[1]}: format version {netlist.FormatVersion}, {netlist.Parts.Count} parts, {netlist.Gates.Count} gates, {netlist.Nets.Count} nets - OK");
-                        return 0;
+                        // and the catalogue checks on every level: the same as the MCP tool check_sheet
+                        string? cat = ChipCatalog.FindForSheet(args[1]);
+                        SheetCheckResult result = SheetCheck.Run(netlist, cat == null ? null : new ChipCatalog(cat));
+                        Console.Write(SheetCheck.Report(result));
+                        return result.Ok ? 0 : 1;
+                    }
 
                     case "stats":
                     {
@@ -132,12 +145,9 @@ namespace RetroSchematic.Cli
                                 limit = int.Parse(args[++a], System.Globalization.CultureInfo.InvariantCulture);
                         }
                         // a file without pages is measured as if converted (nothing is written)
-                        if (!CardPages.HasPages(netlist))
-                            CardPages.ToVersion3(netlist);
                         string? cat = ChipCatalog.FindForSheet(args[1]);
                         ChipCatalog? chips = cat == null ? null : new ChipCatalog(cat);
-                        Console.Write(PageStats.Report(netlist, chips, PageLayoutMode.AsOriginal, limit));
-                        Console.Write(PageStats.Report(netlist, chips, PageLayoutMode.Split, limit));
+                        Console.Write(PageStats.ReportBoth(netlist, chips, limit));
                         return 0;
                     }
 
@@ -190,37 +200,32 @@ namespace RetroSchematic.Cli
                             }
                         }
                         // drawn with the chip catalogue found above the sheet, else beside this program, exactly as the
-                        // window draws it (a chip without gates then shows every pin)
+                        // window draws it (a chip without gates then shows every pin); SheetRender is shared with
+                        // the MCP tool export_svg
                         string? catalog = ChipCatalog.FindForSheet(args[1]);
-                        LayoutOptions options = new() { Catalog = catalog == null ? null : new ChipCatalog(catalog), ShowBuses = buses, NameStyle = names };
-                        if (CardPages.HasPages(netlist))
-                            options.Pages = PageSet.Of(netlist, mode ?? netlist.PageLayout ?? PageLayoutMode.AsOriginal, PageSet.DefaultChipLimit);
-                        int first = 0, last = 0;
-                        if (options.Pages != null && pageId == "all")
-                            last = options.Pages.Pages.Count - 1;
-                        else if (options.Pages != null && pageId != null)
+                        SvgRequest request = new() { Style = style, Theme = theme, ShowBuses = buses, NameStyle = names, Page = pageId, Mode = mode };
+                        System.Collections.Generic.List<SvgPage> pages;
+                        try
                         {
-                            first = last = options.Pages.IndexOf(pageId);
-                            if (first < 0)
-                            {
-                                Console.Error.WriteLine($"No drawn page \"{pageId}\".");
-                                return 2;
-                            }
+                            pages = SheetRender.Svg(netlist, catalog == null ? null : new ChipCatalog(catalog), request);
                         }
-                        for (int pg = first; pg <= last; pg++)
+                        catch (ArgumentException e)
                         {
-                            options.Page = pg;
+                            Console.Error.WriteLine(e.Message);
+                            return 2;
+                        }
+                        for (int pg = 0; pg < pages.Count; pg++)
+                        {
                             // "all": one file per drawn page, named after the page
                             string outPath = pageId == "all"
-                                ? Path.Combine(Path.GetDirectoryName(Path.GetFullPath(args[2]))!, Path.GetFileNameWithoutExtension(args[2]) + "-" + options.Pages!.Pages[pg].Id + ".svg")
+                                ? Path.Combine(Path.GetDirectoryName(Path.GetFullPath(args[2]))!, Path.GetFileNameWithoutExtension(args[2]) + "-" + pages[pg].Id + ".svg")
                                 : args[2];
-                            SchematicDrawing drawing = SheetLayout.Build(netlist, style, options);
-                            File.WriteAllText(outPath, SvgRenderer.Write(drawing, theme));
+                            File.WriteAllText(outPath, pages[pg].Svg);
                             Console.WriteLine($"Wrote {outPath}");
-                            for (int i = 0; i < drawing.RerouteReasons.Count; i++)
-                                Console.WriteLine("Wire routed afresh: " + drawing.RerouteReasons[i]);
-                            for (int i = 0; i < drawing.BusProblems.Count; i++)
-                                Console.WriteLine("Bus: " + drawing.BusProblems[i]);
+                            for (int i = 0; i < pages[pg].Rerouted.Count; i++)
+                                Console.WriteLine("Wire routed afresh: " + pages[pg].Rerouted[i]);
+                            for (int i = 0; i < pages[pg].BusProblems.Count; i++)
+                                Console.WriteLine("Bus: " + pages[pg].BusProblems[i]);
                         }
                         return 0;
 
@@ -235,6 +240,49 @@ namespace RetroSchematic.Cli
                 return 1;
             }
             catch (IOException e)
+            {
+                Console.Error.WriteLine(e.Message);
+                return 1;
+            }
+        }
+
+        /// <summary>
+        /// readings check FOLDER, or readings sheet FOLDER SHEET: the reading files checked (and
+        /// written into the sheet through the editor, so the save raises the file stamp).
+        /// </summary>
+        /// <param name="args">
+        /// The command line.
+        /// </param>
+        /// <returns>
+        /// 0 with no problems, 1 with problems or a file that cannot be read, 2 for a wrong command line.
+        /// </returns>
+        private static int Readings(string[] args)
+        {
+            bool write = args.Length >= 4 && args[1] == "sheet";
+            if (args.Length < 3 || (args[1] != "check" && !write))
+            {
+                Console.Error.Write(Help);
+                return 2;
+            }
+            try
+            {
+                // the catalogue above the sheet (or above the readings), else beside this program
+                string? cat = ChipCatalog.FindForSheet(write ? args[3] : Path.Combine(args[2], "x"));
+                ChipCatalog? chips = cat == null ? null : new ChipCatalog(cat);
+                ReadingSet set = CardReadings.Load(args[2], chips);
+                Console.Write(CardReadings.Report(set));
+                if (write)
+                {
+                    // written even with problems (as the script does): they are printed above and
+                    // stay in the exit code
+                    SheetEditor editor = new(NetlistReader.ReadFile(args[3]), chips) { Files = SheetAttachments.Load(args[3]), ReadOnly = false };
+                    System.Collections.Generic.List<string> blocks = editor.ApplyReadings(set);
+                    editor.Save(args[3]);
+                    Console.WriteLine($"wrote {blocks.Count} blocks into {args[3]}");
+                }
+                return set.Problems.Count == 0 ? 0 : 1;
+            }
+            catch (Exception e) when (e is ReadingException or IOException or NetlistException or SheetEditException)
             {
                 Console.Error.WriteLine(e.Message);
                 return 1;

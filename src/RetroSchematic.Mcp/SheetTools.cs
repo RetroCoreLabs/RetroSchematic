@@ -68,13 +68,7 @@ namespace RetroSchematic.Mcp
             [Description("Sheet title")] string title,
             [Description("Which machine bus the card is for: nord-10, nd-100 or unknown. It picks the bus-signal and connector catalogues; unknown gives a warning.")] string bus = "unknown")
         {
-            MachineBus b = bus.Trim().ToLowerInvariant() switch
-            {
-                "nord-10" => MachineBus.Nord10,
-                "nd-100" => MachineBus.Nd100,
-                "unknown" => MachineBus.Unknown,
-                _ => throw new McpException("bus must be nord-10, nd-100 or unknown, not '" + bus + "'."),
-            };
+            MachineBus b = ParseBus(bus);
             _editor = new SheetEditor(SheetEditor.NewSheet(id, title, b), Catalog(null)) { ReadOnly = false };
             _path = null;
             return "New sheet " + id + " for the " + SheetSession.BusText(b) + " in edit mode."
@@ -506,9 +500,12 @@ namespace RetroSchematic.Mcp
             return "Saved " + target + ".";
         }
 
+        // the catalogue folder above the sheet, else the one found from the program's folder
+        private string? CatalogFolder(string? sheetPath) => (sheetPath == null ? null : ChipCatalog.Find(sheetPath)) ?? _catalogFolder;
+
         private ChipCatalog? Catalog(string? sheetPath)
         {
-            string? folder = (sheetPath == null ? null : ChipCatalog.Find(sheetPath)) ?? _catalogFolder;
+            string? folder = CatalogFolder(sheetPath);
             return folder == null ? null : new ChipCatalog(folder);
         }
 
@@ -575,6 +572,19 @@ namespace RetroSchematic.Mcp
         }
 
         private SheetEditor Open() => _editor ?? throw new McpException("No sheet is open; use open_sheet or new_sheet first.");
+
+        // the window's session class over a copy of the open sheet, on the level shown: the
+        // lookups (describe, search, trace, part info) then give exactly what the side panel and
+        // the trace tool give. A copy, so the session's own page and trace state never touch the
+        // editor the tools change
+        private SheetSession LookupSession()
+        {
+            SheetEditor e = Open();
+            SheetSession s = new(NetlistReader.Parse(NetlistReader.Write(e.Root)), _path, SymbolStyle.NorskData, e.Catalog?.Folder);
+            for (int i = 0; i < e.LevelPath.Count; i++)
+                s.Editor.EnterInstance(e.LevelPath[i]);
+            return s;
+        }
 
         private string Run(Func<SheetEditor, string> change)
         {

@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
 
 namespace RetroSchematic.Model
@@ -173,6 +174,77 @@ namespace RetroSchematic.Model
     /// </summary>
     public static class BusUse
     {
+        /// <summary>
+        /// Every backplane signal of every card in the library: the sheet files (.rsc) under the
+        /// library folder, and the open sheet as it is in memory (unsaved edits included) in place
+        /// of its file. A sheet with no machine bus is left out. When one card is in several
+        /// files (2A50 with and without blocks), the file with the shortest name is used and the
+        /// note says so; a file that cannot be read is named in the note.
+        /// </summary>
+        /// <param name="libraryFolder">
+        /// The library folder (see <see cref="CardLibrary.FolderBeside"/>), or null.
+        /// </param>
+        /// <param name="catalog">
+        /// The chip catalogue, or null.
+        /// </param>
+        /// <param name="open">
+        /// The open sheet (its whole design), or null.
+        /// </param>
+        /// <param name="openPath">
+        /// The open sheet's file, or null for one never saved.
+        /// </param>
+        /// <param name="note">
+        /// Gets the files not read and the cards found twice.
+        /// </param>
+        /// <param name="cardCount">
+        /// Gets how many cards were read.
+        /// </param>
+        /// <returns>
+        /// The signals, card by card in sheet-number order.
+        /// </returns>
+        public static List<BusSignalUse> OfLibrary(string? libraryFolder, ChipCatalog? catalog, Netlist? open, string? openPath, StringBuilder note, out int cardCount)
+        {
+            Dictionary<string, (string File, Netlist Sheet)> cards = new(StringComparer.Ordinal);
+            if (libraryFolder != null && Directory.Exists(libraryFolder))
+            {
+                string[] files = Directory.GetFiles(libraryFolder, "*" + SheetFile.TextEnding, SearchOption.AllDirectories);
+                Array.Sort(files, StringComparer.Ordinal);
+                for (int i = 0; i < files.Length; i++)
+                {
+                    Netlist n;
+                    try
+                    {
+                        n = NetlistReader.ReadFile(files[i]);
+                    }
+                    catch (Exception e) when (e is NetlistException or IOException or System.Text.Json.JsonException)
+                    {
+                        note.Append(Path.GetFileName(files[i])).Append(" not read: ").Append(e.Message).Append(". ");
+                        continue;
+                    }
+                    if (n.Sheet.Bus == null || n.Sheet.Bus == MachineBus.Unknown)
+                        continue;
+                    if (cards.TryGetValue(n.Sheet.Id, out (string File, Netlist Sheet) had))
+                    {
+                        string keep = Path.GetFileName(had.File).Length <= Path.GetFileName(files[i]).Length ? had.File : files[i];
+                        note.Append("Card ").Append(n.Sheet.Id).Append(" is in two files; ").Append(Path.GetFileName(keep)).Append(" is used. ");
+                        if (keep == had.File)
+                            continue;
+                    }
+                    cards[n.Sheet.Id] = (files[i], n);
+                }
+            }
+            // the open sheet replaces its file: what is in memory is what is reported
+            if (open != null && open.Sheet.Bus != null && open.Sheet.Bus != MachineBus.Unknown)
+                cards[open.Sheet.Id] = (openPath ?? "", open);
+            List<string> ids = new(cards.Keys);
+            ids.Sort(StringComparer.Ordinal);
+            List<BusSignalUse> all = new();
+            for (int i = 0; i < ids.Count; i++)
+                all.AddRange(Of(cards[ids[i]].Sheet, catalog, cards[ids[i]].File));
+            cardCount = cards.Count;
+            return all;
+        }
+
         /// <summary>
         /// Every backplane signal of one card.
         /// </summary>

@@ -129,8 +129,16 @@ namespace RetroSchematic.Tests
             // every tool of every tools file; add_passive (passive parts, 2026-11-23) made it 49,
             // the page tools (list_pages, add_page, set_part_page, set_page, get_page,
             // set_page_layout; format version 3) 55, assisted reading (analyse_page, accept_find,
-            // set_symbol_box, connect_pin_on_page) 59, get_edge_fingers 60
-            Assert.That(tools, Is.EqualTo(60));
+            // set_symbol_box, connect_pin_on_page) 59, get_edge_fingers 60; the coverage tools of
+            // docs/MCP-COVERAGE.md (2026-11-28) 96: lookup (get_sheet_info, describe, search,
+            // trace_signal, get_part_info, export_svg, page_stats), library (list_cards,
+            // list_families, bus_use, bus_use_report, get_chip, list_chips), edit (rename_part,
+            // set_part, add_gate, remove_gate, add_net, set_net, set_sheet_info, set_bus,
+            // set_display, convert_to_pages, set_page_info), structure (create_block,
+            // set_block_port, remove_block_port, add_instance, remove_instance, connect_port,
+            // move_instance, move_into_block), validate (check_sheet, missing_chips,
+            // check_readings, import_readings)
+            Assert.That(tools, Is.EqualTo(96));
             Assert.That(typeof(SheetTools).GetCustomAttribute<McpServerToolTypeAttribute>(), Is.Not.Null);
         }
 

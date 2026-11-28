@@ -52,6 +52,17 @@ namespace RetroSchematic.Model
         public const string UnknownFamily = "Not known";
 
         /// <summary>
+        /// The library folder for a chip catalogue folder: the catalogue is <c>ROOT/catalog</c>
+        /// and the sheets are beside it in <c>ROOT/sheets</c> (the repository's <c>src/sheets</c>,
+        /// or the copy beside the program). The window, the bus use report and the MCP server all
+        /// find the library this way.
+        /// </summary>
+        /// <param name="catalogFolder">The chip catalogue folder (the one holding <c>chips</c>), or null.</param>
+        /// <returns>The library folder, or null when there is no catalogue folder.</returns>
+        public static string? FolderBeside(string? catalogFolder)
+            => catalogFolder == null ? null : Path.Combine(Path.GetDirectoryName(Path.GetFullPath(catalogFolder)) ?? catalogFolder, "sheets");
+
+        /// <summary>
         /// Reads every .rsc and .rsx file under a folder (all sub-folders). A file that cannot
         /// be read is not listed; its name and the reason go into <paramref name="problems"/>.
         /// The result is sorted by family, then sheet number, then file name.

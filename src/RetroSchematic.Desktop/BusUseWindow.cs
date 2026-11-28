@@ -120,48 +120,10 @@ namespace RetroSchematic.Desktop
             SheetSession? open = _main.Session;
             string? catalogFolder = open?.Editor.Catalog?.Folder ?? ChipCatalog.Find(AppContext.BaseDirectory);
             ChipCatalog? catalog = catalogFolder == null ? null : new ChipCatalog(catalogFolder);
-            Dictionary<string, (string File, Netlist Sheet)> cards = new(StringComparer.Ordinal);
-            if (catalogFolder != null)
-            {
-                // the catalogue folder is <root>/catalog; the sheets are beside it in <root>/sheets
-                string folder = Path.Combine(Path.GetDirectoryName(Path.GetFullPath(catalogFolder)) ?? catalogFolder, "sheets");
-                if (Directory.Exists(folder))
-                {
-                    string[] files = Directory.GetFiles(folder, "*" + SheetFile.TextEnding, SearchOption.AllDirectories);
-                    Array.Sort(files, StringComparer.Ordinal);
-                    for (int i = 0; i < files.Length; i++)
-                    {
-                        Netlist n;
-                        try
-                        {
-                            n = NetlistReader.ReadFile(files[i]);
-                        }
-                        catch (Exception e) when (e is NetlistException or IOException or System.Text.Json.JsonException)
-                        {
-                            note.Append(Path.GetFileName(files[i])).Append(" not read: ").Append(e.Message).Append(". ");
-                            continue;
-                        }
-                        if (n.Sheet.Bus == null || n.Sheet.Bus == MachineBus.Unknown)
-                            continue;
-                        if (cards.TryGetValue(n.Sheet.Id, out var had))
-                        {
-                            string keep = Path.GetFileName(had.File).Length <= Path.GetFileName(files[i]).Length ? had.File : files[i];
-                            note.Append("Card ").Append(n.Sheet.Id).Append(" is in two files; ").Append(Path.GetFileName(keep)).Append(" is used. ");
-                            if (keep == had.File)
-                                continue;
-                        }
-                        cards[n.Sheet.Id] = (files[i], n);
-                    }
-                }
-            }
-            // the open sheet replaces its file: the window shows what is on screen
-            if (open != null && open.Editor.Root.Sheet.Bus != null && open.Editor.Root.Sheet.Bus != MachineBus.Unknown)
-                cards[open.Editor.Root.Sheet.Id] = (open.SheetPath ?? "", open.Editor.Root);
-            List<string> ids = new(cards.Keys);
-            ids.Sort(StringComparer.Ordinal);
-            for (int i = 0; i < ids.Count; i++)
-                _all.AddRange(BusUse.Of(cards[ids[i]].Sheet, catalog, cards[ids[i]].File));
-            _status.Text = cards.Count + " card(s), " + _all.Count + " backplane signals. " + note;
+            // the library beside the catalogue, with the open sheet as it is on screen in place
+            // of its file (BusUse.OfLibrary, shared with the MCP server)
+            _all.AddRange(BusUse.OfLibrary(CardLibrary.FolderBeside(catalogFolder), catalog, open?.Editor.Root, open?.SheetPath, note, out int cardCount));
+            _status.Text = cardCount + " card(s), " + _all.Count + " backplane signals. " + note;
             Fill();
         }
 

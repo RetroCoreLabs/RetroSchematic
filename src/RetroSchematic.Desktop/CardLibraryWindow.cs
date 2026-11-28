@@ -113,7 +113,7 @@ namespace RetroSchematic.Desktop
             List<string> problems = new();
             string? catalog = _main.Session?.Editor.Catalog?.Folder ?? ChipCatalog.Find(AppContext.BaseDirectory);
             // the catalogue folder is <root>/catalog; the library is beside it in <root>/sheets
-            Folder = catalog == null ? null : Path.Combine(Path.GetDirectoryName(Path.GetFullPath(catalog)) ?? catalog, "sheets");
+            Folder = CardLibrary.FolderBeside(catalog);
             if (Folder != null)
                 _all.AddRange(CardLibrary.Scan(Folder, problems));
             string keep = _family.SelectedItem as string ?? "";

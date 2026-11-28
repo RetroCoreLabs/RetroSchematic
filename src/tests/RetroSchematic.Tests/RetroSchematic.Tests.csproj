@@ -17,6 +17,8 @@
   <ItemGroup>
     <None Include="..\..\sheets\**\*.rsc;..\..\sheets\**\*.rsx;..\..\sheets\**\*.png;..\..\sheets\**\*.jpg" Link="sheets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="Data\*.json" CopyToOutputDirectory="PreserveNewest" />
+    <!-- card 3207's reading files, for the reading check and import (CardReadings) -->
+    <None Include="..\..\docs\3207-readings\*.txt" Link="docs\3207-readings\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\catalog\chips\*.json" Link="catalog\chips\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\catalog\signals\*.json" Link="catalog\signals\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\catalog\connectors\*.json" Link="catalog\connectors\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

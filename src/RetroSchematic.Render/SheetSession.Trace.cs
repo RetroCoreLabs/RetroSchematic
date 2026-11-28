@@ -189,6 +189,21 @@ namespace RetroSchematic.Render
         }
 
         /// <summary>
+        /// Everything the traced signal joins, as drawing owners: "part:13D", "gate:13D/6",
+        /// "bus:DATA", "inst:U1" and "port:U1:BD0". Sorted; empty when nothing is traced. Used by
+        /// the MCP tool trace_signal to say in words what the window lights up.
+        /// </summary>
+        /// <returns>
+        /// The owners.
+        /// </returns>
+        public List<string> TracedOwners()
+        {
+            List<string> owners = new(_traceOwners);
+            owners.Sort(StringComparer.Ordinal);
+            return owners;
+        }
+
+        /// <summary>
         /// Every place on an instance box where the traced signal goes inside a block.
         /// </summary>
         /// <returns>

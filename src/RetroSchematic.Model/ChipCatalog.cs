@@ -237,6 +237,20 @@ namespace RetroSchematic.Model
                         info.ReadFrom = plain;
                 }
             }
+            // no plain file either: the Schottky file of the same number has the same pins (74LS112
+            // and 74F112 read 74S112.json). This is the rule tools/card-readings.py checked the
+            // card readings with; ReadFrom again says which file the pins come from
+            string? schottky = info == null ? SchottkyType(type) : null;
+            if (schottky != null)
+            {
+                string schottkyPath = Path.Combine(Folder, "chips", schottky + ".json");
+                if (File.Exists(schottkyPath))
+                {
+                    info = Parse(File.ReadAllText(schottkyPath));
+                    if (info != null)
+                        info.ReadFrom = schottky;
+                }
+            }
             _cache[type] = info;
             return info;
         }
@@ -261,7 +275,7 @@ namespace RetroSchematic.Model
             if (i == 2 || i == type.Length)
                 return null;
             string family = type.Substring(2, i - 2);
-            if (family != "LS" && family != "S" && family != "F" && family != "ALS" && family != "AS" && family != "L" && family != "H" && family != "HC" && family != "HCT")
+            if (!IsFamily(family))
                 return null;
             for (int k = i; k < type.Length; k++)
             {
@@ -270,6 +284,43 @@ namespace RetroSchematic.Model
             }
             return "74" + type.Substring(i);
         }
+
+        /// <summary>
+        /// The Schottky 74 type of the same number: 74LS112 -> 74S112, 74F112 -> 74S112, and the
+        /// plain 74112 -> 74S112. Null for a 74S part itself and for anything that is not a 74 part.
+        /// Same pins, other timing: used only when neither the type nor its plain type has a file.
+        /// </summary>
+        /// <param name="type">
+        /// The chip type.
+        /// </param>
+        /// <returns>
+        /// The Schottky type, or null.
+        /// </returns>
+        public static string? SchottkyType(string type)
+        {
+            if (!type.StartsWith("74", StringComparison.Ordinal))
+                return null;
+            int i = 2;
+            while (i < type.Length && char.IsAsciiLetterUpper(type[i]))
+                i++;
+            if (i == type.Length)
+                return null;
+            string family = type.Substring(2, i - 2);
+            if (family == "S" || (family.Length > 0 && !IsFamily(family)))
+                return null;
+            for (int k = i; k < type.Length; k++)
+            {
+                if (!char.IsAsciiDigit(type[k]))
+                    return null;
+            }
+            return "74S" + type.Substring(i);
+        }
+
+        // the 74 logic families whose parts share the pins of the plain type (PCT included, as in
+        // tools/card-readings.py)
+        private static bool IsFamily(string family)
+            => family == "LS" || family == "S" || family == "F" || family == "ALS" || family == "AS" || family == "L"
+                || family == "H" || family == "HC" || family == "HCT" || family == "PCT";
 
         /// <summary>
         /// The title of a passive kind from its <c>catalog/passives/</c> file, else the kind in
