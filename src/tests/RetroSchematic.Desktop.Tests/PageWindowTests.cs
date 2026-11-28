@@ -30,11 +30,15 @@ namespace RetroSchematic.Desktop.Tests
 
         // 2A50 with a second page holding the address decoder, read from a second source page
         // (the same picture again, so the Original view has two pages to choose between). Saved
-        // beside 2A50, so its linked pictures are found; deleted after the test.
+        // in the test's own work folder, never in the sheets folder: a copy left there by a
+        // stopped run is read as a second 2A50 by the card library and Bus use. The save
+        // rewrites the picture links for the new folder. Deleted after the test.
         [SetUp]
         public void SetUp()
         {
-            _card = Path.Combine(Path.GetDirectoryName(Sheet2A50)!, "pagetest-" + TestContext.CurrentContext.Test.Name + ".rsc");
+            string work = Path.Combine(TestContext.CurrentContext.WorkDirectory, "pagetest");
+            Directory.CreateDirectory(work);
+            _card = Path.Combine(work, "pagetest-" + TestContext.CurrentContext.Test.Name + ".rsc");
             SheetEditor e = new(NetlistReader.ReadFile(Sheet2A50), null) { ReadOnly = false, Files = SheetAttachments.Load(Sheet2A50) };
             e.Root.Sources!.Add(new SourcePage { File = e.Root.Sources[0].File, Title = "Second page (the same scan)" });
             e.AddPage("Address decoder", 2, "2A50/2");

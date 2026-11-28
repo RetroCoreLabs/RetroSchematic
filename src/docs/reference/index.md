@@ -4,7 +4,7 @@
 
 Pages made from the catalogue files in `catalog/`, so they always say what the files say.
 
-- [Chips](chips/index.md) - 131 chips, one page each: pins, functions, timing, symbol drawings, sources and the sheets that use them.
+- [Chips](chips/index.md) - 133 chips, one page each: pins, functions, timing, symbol drawings, sources and the sheets that use them.
 - [NORD-100 bus at a card position (plug C)](signals/nd100-bus.md) - 68 signals with their pins, levels and sources.
 - [NORD-10 Input/Output bus at an I/O device card position](signals/nord10-io-bus.md) - 56 signals with their pins, levels and sources.
 - [Symbol catalogue](../SYMBOL-CATALOG.md) - every part in ND-13.003.01 "Circuit Diagram Symbols" (1976), with the cut-out and both drawings.

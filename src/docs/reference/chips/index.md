@@ -2,7 +2,7 @@
 
 # Chips
 
-Every chip in the chip catalogue (`catalog/chips`), 131 files. Each page holds the
+Every chip in the chip catalogue (`catalog/chips`), 133 files. Each page holds the
 pins, functions and timing read from the datasheet, with the page they came from, the
 symbol drawings, and the sheets that use the chip. The file format is in
 [the chip catalogue format](../../../catalog/chips/FORMAT.md).
@@ -12,15 +12,15 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [2107B](2107B.md) | 4096-bit (4K x 1) dynamic RAM, N-channel | DIP-22 |  |
 | [2532](2532.md) | Quad 80-bit static shift register (P-channel MOS) | DIP-16 |  |
 | [3101](3101.md) | 64-bit (16 x 4) bipolar RAM, open-collector outputs | DIP-16 |  |
-| [7400](7400.md) | Quadruple 2-input NAND gate | DIP-14 | 9 |
+| [7400](7400.md) | Quadruple 2-input NAND gate | DIP-14 | 6 |
 | [7401](7401.md) | Quadruple 2-input NAND gate with open collector output | DIP-14 |  |
-| [7402](7402.md) | Quadruple 2-input NOR gate | DIP-14 | 5 |
+| [7402](7402.md) | Quadruple 2-input NOR gate | DIP-14 | 4 |
 | [7403](7403.md) | Quadruple 2-input NAND gate with open collector output | DIP-14 | 1 |
-| [7404](7404.md) | Hex inverter | DIP-14 | 6 |
+| [7404](7404.md) | Hex inverter | DIP-14 | 4 |
 | [7405](7405.md) | Hex inverter with open collector output | DIP-14 |  |
 | [7406](7406.md) | Hex inverter buffer/driver with open-collector high-voltage output | DIP-14 |  |
 | [7407](7407.md) | Hex buffer/driver with open-collector high-voltage output | DIP-14 |  |
-| [7408](7408.md) | Quadruple 2-input AND gate | DIP-14 | 2 |
+| [7408](7408.md) | Quadruple 2-input AND gate | DIP-14 | 1 |
 | [7409](7409.md) | Quadruple 2-input positive AND gate with open-collector output | DIP-14 |  |
 | [7410](7410.md) | Triple 3-input NAND gate | DIP-14 |  |
 | [74100](74100.md) | 8-bit bistable latches | DIP-24 |  |
@@ -48,7 +48,7 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [7417](7417.md) | Hex buffer/driver with open-collector high-voltage output | DIP-14 |  |
 | [74170](74170.md) | 4-by-4 register file | DIP-16 |  |
 | [74173](74173.md) | 4-bit D-type register with tri-state outputs | DIP-16 |  |
-| [74174](74174.md) | Hex D-flip-flop | DIP-16 | 2 |
+| [74174](74174.md) | Hex D-flip-flop | DIP-16 | 1 |
 | [74175](74175.md) | Quadruple D-type flip-flop with clear | DIP-16 |  |
 | [74181](74181.md) | Arithmetic logic unit/function generator | DIP-24 |  |
 | [74182](74182.md) | Look-ahead carry generator | DIP-16 |  |
@@ -59,7 +59,9 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [74199](74199.md) | 8-bit shift register | DIP-24 |  |
 | [7420](7420.md) | Dual 4-input NAND gate | DIP-14 |  |
 | [74200](74200.md) | 256 bit RAM | DIP-16 |  |
-| [74221](74221.md) | Dual monostable multivibrator (pin compatible with 74123) | DIP-16 | 2 |
+| [74221](74221.md) | Dual monostable multivibrator (pin compatible with 74123) | DIP-16 | 1 |
+| [74240](74240.md) | Octal buffer and line driver with 3-state outputs, inverting | DIP-20 |  |
+| [74244](74244.md) | Octal buffer and line driver with 3-state outputs, non-inverting | DIP-20 |  |
 | [7425](7425.md) | Dual 4-input NOR gate with strobe | DIP-14 |  |
 | [7427](7427.md) | Triple 3-input NOR gate | DIP-14 |  |
 | [74279](74279.md) | Quadruple S-R latches | DIP-16 |  |
@@ -80,7 +82,7 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [7470](7470.md) | J-K flip-flop | DIP-14 |  |
 | [7472](7472.md) | J-K master-slave flip-flop | DIP-14 |  |
 | [7473](7473.md) | Dual J-K master-slave flip-flop | DIP-14 |  |
-| [7474](7474.md) | Dual D-type edge-triggered flip-flop | DIP-14 | 5 |
+| [7474](7474.md) | Dual D-type edge-triggered flip-flop | DIP-14 | 4 |
 | [7475](7475.md) | Quadruple bistable latch | DIP-16 |  |
 | [7476](7476.md) | Dual J-K flip-flop with preset and clear | DIP-16 |  |
 | [7483](7483.md) | 4-bit binary full-adder | DIP-16 |  |
@@ -92,7 +94,7 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [7494](7494.md) | 4-bit shift register | DIP-16 |  |
 | [7495](7495.md) | 4-bit right-shift, left-shift register | DIP-14 |  |
 | [7496](7496.md) | 5-bit shift register | DIP-16 |  |
-| [7497](7497.md) | Synchronous 6-bit binary rate multiplier | DIP-16 | 2 |
+| [7497](7497.md) | Synchronous 6-bit binary rate multiplier | DIP-16 | 1 |
 | [74H11](74H11.md) | Triple 3-input AND gate | DIP-14 |  |
 | [74H21](74H21.md) | Dual 4-input AND gate | DIP-14 |  |
 | [74H52](74H52.md) | Expandable 4-wide AND-OR gates | DIP-14 |  |
@@ -130,7 +132,7 @@ symbol drawings, and the sheets that use the chip. The file format is in
 | [8831](8831.md) | TRI-STATE line driver, quad single-ended or dual differential | DIP-16 |  |
 | [8833](8833.md) | Quad TRI-STATE party-line (bus) transceiver, non-inverting | DIP-16 |  |
 | [8835](8835.md) | Quad TRI-STATE party-line (bus) transceiver, inverting | DIP-16 |  |
-| [COM2601](COM2601.md) | Universal synchronous receiver/transmitter (USRT) | DIP-40 | 2 |
+| [COM2601](COM2601.md) | Universal synchronous receiver/transmitter (USRT) | DIP-40 | 1 |
 | [DC1035T](DC1035T.md) | 100 ns delay line with 10 ns taps |  |  |
 | [MC4007](MC4007.md) | Dual binary to one-of-four line decoder (MTTL) | DIP-16 |  |
 | [MCT2](MCT2.md) | Phototransistor optocoupler (GaAs infrared LED + NPN phototransistor) | DIP-6 |  |

@@ -94,7 +94,7 @@ namespace RetroSchematic.Tests
             StringBuilder note = new();
             List<BusSignalUse> all = BusUse.OfLibrary(folder, Catalog(), null, null, note, out int cards);
             Assert.That(cards, Is.EqualTo(2), "2A50 (two files, one card) and 3207; the demo has no bus");
-            Assert.That(note.ToString(), Does.Contain("Card 2A50 is in two files; 2A50-sync-modem-buffer-1050.rsc is used."));
+            Assert.That(note.ToString(), Is.Empty, "one card, one file (owner rule 2026-11-28)");
             bool seen2A50 = false, seen3207 = false;
             for (int i = 0; i < all.Count; i++)
             {

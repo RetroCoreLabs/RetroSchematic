@@ -22,7 +22,7 @@ namespace RetroSchematic.Tests
     public class TracePulseTests
     {
         private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
-        private static readonly string Blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
+        private static string Blocks => TestCards.Blocks2A50();
 
         [Test]
         public void ThePulse_RisesAndFallsOnceASecond()

@@ -26,13 +26,13 @@ namespace RetroSchematic.Tests
         private static IEnumerable<TestCaseData> Drawings()
         {
             // the blocks demo too: instance boxes, port pins and arrows must stay clear as well
-            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
-            string[] sheets = { Real, DemoSheetLayoutTests.Demo, blocks };
+            // (made at run time from the flat card, inside the test: see Draw)
+            string[] sheets = { Real, DemoSheetLayoutTests.Demo, TestCards.Blocks2A50Case };
             SymbolStyle[] styles = { SymbolStyle.NorskData, SymbolStyle.Modern };
             for (int i = 0; i < sheets.Length; i++)
             {
                 for (int j = 0; j < styles.Length; j++)
-                    yield return new TestCaseData(sheets[i], styles[j]).SetName(Path.GetFileNameWithoutExtension(sheets[i]) + "_" + styles[j]);
+                    yield return new TestCaseData(sheets[i], styles[j]).SetName((sheets[i] == TestCards.Blocks2A50Case ? "2A50-blocks" : Path.GetFileNameWithoutExtension(sheets[i])) + "_" + styles[j]);
             }
         }
 
@@ -191,7 +191,7 @@ namespace RetroSchematic.Tests
         }
 
         private static SchematicDrawing Draw(string sheet, SymbolStyle style)
-            => SheetLayout.Build(NetlistReader.ReadFile(sheet), style, new LayoutOptions { Catalog = new ChipCatalog(DemoSheetLayoutTests.Catalog) });
+            => SheetLayout.Build(NetlistReader.ReadFile(sheet == TestCards.Blocks2A50Case ? TestCards.Blocks2A50() : sheet), style, new LayoutOptions { Catalog = new ChipCatalog(DemoSheetLayoutTests.Catalog) });
 
         private static string PartOf(string owner)
         {

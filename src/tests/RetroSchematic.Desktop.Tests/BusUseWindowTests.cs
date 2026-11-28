@@ -34,7 +34,7 @@ namespace RetroSchematic.Desktop.Tests
                 nord10 |= b.All[i].Card == "2A50";
             }
             Assert.That(nd100 && nord10, Is.True, "both cards are read: " + b.Status);
-            Assert.That(b.Status, Does.Contain("Card 2A50 is in two files"), "the 2A50 block demo is the same card");
+            Assert.That(b.Status, Does.Not.Contain("in two files"), "one card, one file (owner rule 2026-11-28)");
 
             b.PickBus(1);
             int breq = -1;

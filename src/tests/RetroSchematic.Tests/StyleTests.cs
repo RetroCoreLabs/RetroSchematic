@@ -23,7 +23,7 @@ namespace RetroSchematic.Tests
     public class StyleTests
     {
         private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
-        private static readonly string Blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
+        private static string Blocks => TestCards.Blocks2A50();
 
         /// <summary>
         /// Every tag diamond on the three sheets, in both symbol styles, is drawn whole: four
@@ -32,13 +32,13 @@ namespace RetroSchematic.Tests
         /// </summary>
         [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.NorskData)]
         [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.Modern)]
-        [TestCase("nord-10/2A50-sync-modem-buffer-1050-blocks.rsc", SymbolStyle.NorskData)]
-        [TestCase("nord-10/2A50-sync-modem-buffer-1050-blocks.rsc", SymbolStyle.Modern)]
+        [TestCase(TestCards.Blocks2A50Case, SymbolStyle.NorskData)]
+        [TestCase(TestCards.Blocks2A50Case, SymbolStyle.Modern)]
         [TestCase("demo/demo-gates.rsc", SymbolStyle.NorskData)]
         [TestCase("demo/demo-gates.rsc", SymbolStyle.Modern)]
         public void EveryTagDiamond_IsWhole_AndSolid(string sheet, SymbolStyle style)
         {
-            string file = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", sheet);
+            string file = TestCards.Sheet(sheet);
             SheetSession s = new(file, style, Path.Combine(TestContext.CurrentContext.TestDirectory, "catalog"));
             int tags = 0, inferred = 0;
             for (int i = 0; i < s.Drawing.Items.Count; i++)

@@ -101,7 +101,8 @@ All of these are parts in the sheet file now (names under "What was applied").
 ## What was applied
 
 Applied 2026-11-23 to `sheets/nord-10/2A50-sync-modem-buffer-1050.rsc` (and the same parts and
-pins to the hierarchical copy `2A50-sync-modem-buffer-1050-blocks.rsc`). Every value is as
+pins to the hierarchical copy `2A50-sync-modem-buffer-1050-blocks.rsc`, removed 2026-11-28: one
+card, one file; the tests now make the block version from the flat sheet). Every value is as
 written on the drawing; every part note cites the drawing, PDF page 64.
 
 | Part | Type | Value | Between |

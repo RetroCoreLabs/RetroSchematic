@@ -91,7 +91,7 @@ namespace RetroSchematic.Desktop.Tests
         [AvaloniaTest]
         public void Tab_CentresTheViewOnEachPlaceOfTheTracedSignal()
         {
-            string blocks = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050-blocks.rsc");
+            string blocks = RetroSchematic.Tests.TestCards.Blocks2A50();
             MainWindow w = new();
             w.Show();
             w.OpenSheet(blocks);

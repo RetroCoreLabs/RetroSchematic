@@ -262,11 +262,11 @@ namespace RetroSchematic.Tests
         [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.NorskData, true)]
         [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.Modern, true)]
         [TestCase("nord-10/2A50-sync-modem-buffer-1050.rsc", SymbolStyle.NorskData, false)]
-        [TestCase("nord-10/2A50-sync-modem-buffer-1050-blocks.rsc", SymbolStyle.NorskData, true)]
+        [TestCase(TestCards.Blocks2A50Case, SymbolStyle.NorskData, true)]
         [TestCase("demo/demo-gates.rsc", SymbolStyle.NorskData, true)]
         public void EveryConnectorPin_HasAWire_OrATag_NeverNeitherNorBoth(string sheet, SymbolStyle style, bool buses)
         {
-            string file = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", sheet);
+            string file = TestCards.Sheet(sheet);
             Netlist n = NetlistReader.ReadFile(file);
             SchematicDrawing d = SheetLayout.Build(n, style, new LayoutOptions { Catalog = new ChipCatalog(Catalog), ShowBuses = buses });
             int wiredPins = 0;

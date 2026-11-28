@@ -24,11 +24,13 @@ namespace RetroSchematic.Tests
 
         private static IEnumerable<TestCaseData> Sheets()
         {
-            string[] names = { "2A50-sync-modem-buffer-1050.rsc", "2A50-sync-modem-buffer-1050-blocks.rsc" };
+            // the stored flat card, and the same card in four blocks made at run time
+            string[] names = { "2A50-sync-modem-buffer-1050.rsc", TestCards.Blocks2A50Case };
             for (int i = 0; i < names.Length; i++)
             {
-                yield return new TestCaseData(Path.Combine(Folder, names[i]), SymbolStyle.NorskData).SetName("NoLineThroughACircle(" + names[i] + ", nd)");
-                yield return new TestCaseData(Path.Combine(Folder, names[i]), SymbolStyle.Modern).SetName("NoLineThroughACircle(" + names[i] + ", modern)");
+                string sheet = names[i] == TestCards.Blocks2A50Case ? names[i] : Path.Combine(Folder, names[i]);
+                yield return new TestCaseData(sheet, SymbolStyle.NorskData).SetName("NoLineThroughACircle(" + names[i] + ", nd)");
+                yield return new TestCaseData(sheet, SymbolStyle.Modern).SetName("NoLineThroughACircle(" + names[i] + ", modern)");
             }
             yield return new TestCaseData(DemoSheetLayoutTests.Demo, SymbolStyle.NorskData).SetName("NoLineThroughACircle(demo, nd)");
             yield return new TestCaseData(DemoSheetLayoutTests.Demo, SymbolStyle.Modern).SetName("NoLineThroughACircle(demo, modern)");
@@ -37,6 +39,8 @@ namespace RetroSchematic.Tests
         [TestCaseSource(nameof(Sheets))]
         public void NoLineThroughACircle(string sheet, SymbolStyle style)
         {
+            if (sheet == TestCards.Blocks2A50Case)
+                sheet = TestCards.Blocks2A50();
             string? catalog = ChipCatalog.Find(sheet);
             SchematicDrawing d = SheetLayout.Build(NetlistReader.ReadFile(sheet), style, new LayoutOptions { Catalog = catalog == null ? null : new ChipCatalog(catalog) });
             List<DrawItem> circles = new();
@@ -70,7 +74,7 @@ namespace RetroSchematic.Tests
         public void ThePinLine_AndTheWire_StopAtThePinEndRing()
         {
             // the case that was wrong: U1's left port pins, line from box to ring, wire to the tag
-            string sheet = Path.Combine(Folder, "2A50-sync-modem-buffer-1050-blocks.rsc");
+            string sheet = TestCards.Blocks2A50();
             SchematicDrawing d = SheetLayout.Build(NetlistReader.ReadFile(sheet), SymbolStyle.NorskData, new LayoutOptions { Catalog = new ChipCatalog(ChipCatalog.Find(sheet)!) });
             DrawPoint ring = d.Pins["U1:DEQL.0"];
             int touching = 0;
@@ -89,7 +93,7 @@ namespace RetroSchematic.Tests
         [Test]
         public void BlockPortNames_FollowTheNameStyle()
         {
-            string sheet = Path.Combine(Folder, "2A50-sync-modem-buffer-1050-blocks.rsc");
+            string sheet = TestCards.Blocks2A50();
             Netlist n = NetlistReader.ReadFile(sheet);
             ChipCatalog cat = new(ChipCatalog.Find(sheet)!);
             List<string> slash = PinNames(SheetLayout.Build(n, SymbolStyle.NorskData, new LayoutOptions { Catalog = cat, NameStyle = SignalNameStyle.Slash }));

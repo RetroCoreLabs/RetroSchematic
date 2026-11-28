@@ -58,6 +58,8 @@ nav:
       - "7420": src/docs/reference/chips/7420.md
       - "74200": src/docs/reference/chips/74200.md
       - "74221": src/docs/reference/chips/74221.md
+      - "74240": src/docs/reference/chips/74240.md
+      - "74244": src/docs/reference/chips/74244.md
       - "7425": src/docs/reference/chips/7425.md
       - "7427": src/docs/reference/chips/7427.md
       - "74279": src/docs/reference/chips/74279.md
@@ -164,3 +166,7 @@ nav:
     - src/tools/recognition/README.md
     - src/docs/RECOGNITION-LEARNINGS.md
     - src/models/README.md
+  - More:
+    - src/docs/3207-reading.md
+    - src/docs/3207-readings/README.md
+    - src/docs/MCP-COVERAGE.md

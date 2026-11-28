@@ -128,3 +128,16 @@ points are not settled; each one also has a note in its reading file.
 - **Port directions** of the sub-blocks are inferred from the catalogue roles of the chip pins
   inside each block; drivers outside a block are not counted, so a bus such as BD~00-23 shows
   as `output`. `directionConfidence` is `inferred` or `open` on every one.
+
+## B5 - PageWindowTests leaves its working copies behind (opened 2026-11-28)
+
+`tests/RetroSchematic.Desktop.Tests/PageWindowTests.cs` saves a two-page copy of 2A50 in
+`SetUp` and deletes it in `TearDown`. After a full test run both copies
+(`pagetest-PageTabs_PageKeys_AndTheOriginalViewFollowing.rsc` and
+`pagetest-TheOverview_ListsThePages_AndThePhotos_AndAPageButtonDrawsIt.rsc`) are still on disk,
+so the delete does not happen or does not work. The cause is not found yet.
+
+Until 2026-11-28 the copies were written into the test's `sheets` folder, where the card library
+and the Bus use window read them as extra 2A50 cards. They are now written to the test's own work
+folder (`pagetest/`), so they no longer reach the library. The left-behind files are still a
+fault, and this entry stays open until the cause is found and fixed.
