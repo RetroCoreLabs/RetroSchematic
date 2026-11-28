@@ -201,10 +201,10 @@ the programs find `catalog/` and `models/` beside themselves.
 ### 3. Open the 2A50 sample
 
 Start `RetroSchematic` (double-click `RetroSchematic.exe` on Windows), then File > Open sheet...
-and pick `sheets/nord-10/2A50-sync-modem-buffer-1050.rsx`. The `.rsx` holds the scanned drawing
-page and the board photos as well (F5-F8 switch between them). File > Open the demo sheet opens
+and pick `sheets/nord-10/2A50-sync-modem-buffer-1050.rsc`. The scanned drawing page and the board
+photos are in the folder `2A50-files` beside it (F5-F8 switch between them). File > Open the demo sheet opens
 the small demo. A sheet can also be given on the command line:
-`RetroSchematic.exe sheets\nord-10\2A50-sync-modem-buffer-1050.rsx`. (The window program from a
+`RetroSchematic.exe sheets\nord-10\2A50-sync-modem-buffer-1050.rsc`. (The window program from a
 download has not been started by us yet on any system; the command-line tool and the MCP
 server have, on Windows and Linux.)
 
@@ -228,8 +228,8 @@ reader always uses `models/` beside the program.
 **Newer catalogues.** The catalogue grows as cards are read. To update a download without a
 new release, copy the folders `chips`, `signals`, `connectors`, `boards` and `passives` from
 [`src/catalog/`](src/catalog/) in this repository over the ones in the download's `catalog/`.
-Newer sample sheets are in [`src/sheets/`](src/sheets/) (the `.rsx` files are stored with Git
-LFS; download them from GitHub's file page, not as raw text).
+Newer sample sheets are in [`src/sheets/`](src/sheets/) (the page scans and photos are stored with
+Git LFS; download them from GitHub's file page, not as raw text).
 
 ### 5. The command-line tool
 
@@ -237,8 +237,8 @@ From the unpacked folder (Windows shown; on Linux and macOS use `./cli/retrosche
 
 ```powershell
 .\cli\retroschematic.exe --version
-.\cli\retroschematic.exe check sheets\nord-10\2A50-sync-modem-buffer-1050.rsx
-.\cli\retroschematic.exe render sheets\nord-10\2A50-sync-modem-buffer-1050.rsx 2A50.svg nd
+.\cli\retroschematic.exe check sheets\nord-10\2A50-sync-modem-buffer-1050.rsc
+.\cli\retroschematic.exe render sheets\nord-10\2A50-sync-modem-buffer-1050.rsc 2A50.svg nd
 ```
 
 `retroschematic` with no arguments lists every command.

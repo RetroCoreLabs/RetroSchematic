@@ -1,6 +1,7 @@
 {
   "format": "nd-netlist",
   "formatVersion": 3,
+  "file": {"revision": 2, "modified": "2026-11-28T12:38:49Z"},
   "sheet": {
     "id": "3207",
     "title": "SCSI/FLOPPY",
@@ -46247,20 +46248,23 @@
   "pages": [
     {
       "id": "1",
-      "title": "EXTERNAL CONNECTIONS",
+      "title": "Backplane A",
       "sheetNumber": "1 of 24",
+      "note": "printed title: EXTERNAL CONNECTIONS; plug A rows a and b, the floppy lines",
       "source": 1
     },
     {
       "id": "2",
-      "title": "ND100 BUS CONNECTORS, POWER & GND CONNECTORS",
+      "title": "Backplane C",
       "sheetNumber": "2 of 24",
+      "note": "printed title: ND100 BUS CONNECTORS, POWER & GND CONNECTORS; plug C, the ND-100 bus, and plug A row c (ground)",
       "source": 2
     },
     {
       "id": "3",
+      "title": "Backplane B",
       "sheetNumber": "3 of 24",
-      "note": "plug B; the scan cuts off this sheet's margin",
+      "note": "printed title not readable: the scan cuts off this sheet's margin; plug B, the SCSI lines",
       "source": 3
     }
   ],

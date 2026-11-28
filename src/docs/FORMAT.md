@@ -81,6 +81,19 @@ A pin reference splits at its LAST dot, so a part ref such as `7-8C-D` is fine.
 - No pin is in two nets.
 - Part refs and gate ids are unique.
 
+## File stamp
+
+```json
+"file": { "revision": 12, "modified": "2026-11-28T05:10:00Z" }
+```
+
+Right after `formatVersion`, in every version. `revision` goes up by one on EVERY save, by every
+program that writes a sheet file (the app, the command line and the MCP server, all through
+`SheetEditor.Save`, and `tools/card-readings.py`); `modified` is the time of that save, UTC. A
+file written before 2026-11-28 has no stamp; its first save adds revision 1. The stamp counts
+saves of this file. It is not ND's drawing revision (that is `sheet.updated` and the board's
+version). A new program that writes sheet files must raise the stamp too.
+
 ## Optional fields added within version 1
 
 - `nets[].drive`, `nets[].driveConfidence`, `nets[].pullUp` (2026-11-23). Older files without them

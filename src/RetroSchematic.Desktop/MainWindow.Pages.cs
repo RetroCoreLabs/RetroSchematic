@@ -144,7 +144,9 @@ namespace RetroSchematic.Desktop
             PageTabs.Children.Clear();
             PageSet? set = _session?.Pages;
             bool paged = _session != null && CardPages.HasPages(_session.Editor.Root);
-            PageTabs.IsVisible = set != null;
+            // the page tabs pick a drawing page: they mean nothing on the PCB photos, so they are
+            // hidden there (the photo picker shows the board versions instead)
+            PageTabs.IsVisible = set != null && _view != ViewFront && _view != ViewBack;
             if (set != null)
             {
                 ToggleButton overview = Tab("Card", "The card overview: its pages and the board photos (F4)", _view == ViewOverview);

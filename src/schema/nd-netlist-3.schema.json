@@ -19,6 +19,25 @@
     "formatVersion": {
       "const": 3
     },
+    "file": {
+      "description": "When the file was last saved (UTC) and its revision: one more on every save. Optional; added 2026-11-28.",
+      "type": "object",
+      "required": [
+        "revision",
+        "modified"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "modified": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$"
+        }
+      }
+    },
     "sheet": {
       "type": "object",
       "required": [

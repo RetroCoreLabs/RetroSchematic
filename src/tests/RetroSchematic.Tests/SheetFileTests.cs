@@ -87,6 +87,9 @@ namespace RetroSchematic.Tests
         {
             n.Sources = null;
             n.Photos = null;
+            // every save raises the file stamp on purpose (FORMAT.md, "File stamp"); the stamp
+            // itself is checked in FileStampTests
+            n.File = null;
             return NetlistReader.Write(n);
         }
     }

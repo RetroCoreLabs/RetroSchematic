@@ -32,11 +32,6 @@ namespace RetroSchematic.Desktop.Tests
             CardLibraryWindow lib = w.OpenCardLibrary();
             Assert.That(lib.Families, Does.Contain("NORD-10").And.Contain("ND-100"), lib.Status);
 
-            // the packed .rsx file is listed too
-            bool zip = false;
-            for (int i = 0; i < lib.All.Count; i++)
-                zip |= SheetFile.IsZipPath(lib.All[i].File);
-            Assert.That(zip, Is.True);
 
             lib.PickFamily("ND-100");
             Assert.That(lib.Shown.Count, Is.EqualTo(1));

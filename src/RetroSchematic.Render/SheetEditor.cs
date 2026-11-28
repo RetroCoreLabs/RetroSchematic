@@ -639,6 +639,8 @@ namespace RetroSchematic.Render
         public void Save(string path)
         {
             SyncBack();
+            // every save raises the file's revision and sets its time (FORMAT.md, "File stamp")
+            FileStamp.Bump(Root);
             // zipped with every source page and photo inside when the path ends in .rsx, else
             // plain text with the files linked (.rsc, or an old .json kept as it is)
             Netlist written = Files.Save(path, Root, Checked, Pdf);

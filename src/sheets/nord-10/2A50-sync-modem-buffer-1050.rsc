@@ -1,6 +1,7 @@
 {
   "format": "nd-netlist",
   "formatVersion": 3,
+  "file": {"revision": 1, "modified": "2026-11-28T12:32:56Z"},
   "sheet": {
     "id": "2A50",
     "title": "SYNCHRONOUS MODEM BUFFER 1050",

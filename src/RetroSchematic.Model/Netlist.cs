@@ -146,6 +146,13 @@ namespace RetroSchematic.Model
         public int FormatVersion { get; set; }
 
         /// <summary>
+        /// When the file was last saved and how many times: the revision goes up by one on every
+        /// save (<see cref="FileStamp"/>). Null in a file written before 2026-11-28; the first
+        /// save adds it.
+        /// </summary>
+        public FileStamp? File { get; set; }
+
+        /// <summary>
         /// The drawing this file describes.
         /// </summary>
         public Sheet Sheet { get; set; } = new();
@@ -621,6 +628,37 @@ namespace RetroSchematic.Model
 
     /// <summary>
     /// The drawing's title block and where the scan is.
+    /// </summary>
+    public sealed class FileStamp
+    {
+        /// <summary>
+        /// The file's revision: 1 on the first save that stamps it, one more on every save after.
+        /// It counts saves of the file, not ND's drawing revisions (those are on the board).
+        /// </summary>
+        public int Revision { get; set; }
+
+        /// <summary>
+        /// When the file was last saved, UTC, as yyyy-MM-ddTHH:mm:ssZ.
+        /// </summary>
+        public string Modified { get; set; } = "";
+
+        /// <summary>
+        /// Raises the revision by one and sets the time to now. Every program that writes a sheet
+        /// file calls this just before writing.
+        /// </summary>
+        /// <param name="netlist">
+        /// The sheet about to be written.
+        /// </param>
+        public static void Bump(Netlist netlist)
+        {
+            netlist.File ??= new FileStamp();
+            netlist.File.Revision++;
+            netlist.File.Modified = System.DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ", System.Globalization.CultureInfo.InvariantCulture);
+        }
+    }
+
+    /// <summary>
+    /// The title block of the drawing.
     /// </summary>
     public sealed class Sheet
     {

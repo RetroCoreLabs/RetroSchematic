@@ -150,6 +150,10 @@
         <ToggleButton x:Name="TbViewOriginal" Classes="toolbar-button view-switch" Tag="original" Click="OnViewButton" Content="Original" IsEnabled="False" ToolTip.Tip="The original schematic page the sheet was read from (F6)" ToolTip.ShowOnDisabled="True"/>
         <ToggleButton x:Name="TbViewFront" Classes="toolbar-button view-switch" Tag="front" Click="OnViewButton" Content="PCB front" IsEnabled="False" ToolTip.Tip="Photo of the component side of the board (F7)" ToolTip.ShowOnDisabled="True"/>
         <ToggleButton x:Name="TbViewBack" Classes="toolbar-button view-switch" Tag="back" Click="OnViewButton" Content="PCB back" IsEnabled="False" ToolTip.Tip="Photo of the solder side of the board (F8)" ToolTip.ShowOnDisabled="True"/>
+        <!-- a divider and a label: the buttons after it are not views, they switch marks on and off on the PCB photos -->
+        <Border Classes="toolbar-divider"/>
+        <TextBlock x:Name="PhotoMarksLabel" Text="On photos:" VerticalAlignment="Center" Margin="2,0,4,0" Opacity="0.75"
+                   ToolTip.Tip="The next buttons draw marks on the PCB photos; they do not change the view"/>
         <!-- the chip grid on the photos: boxes named by position, and the board outline -->
         <ToggleButton x:Name="TbChipBoxes" Classes="toolbar-button view-switch" Click="OnToggleChipBoxes" Content="Chips" IsEnabled="False"
                       ToolTip.Tip="Draw a see-through, named box on every chip of the PCB photos (dashed: the grid cell of its position code; solid: set by hand). In edit mode drag a box to move it, a box corner to size it, Shift and a corner to turn it." ToolTip.ShowOnDisabled="True"/>

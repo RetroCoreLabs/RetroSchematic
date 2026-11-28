@@ -30,7 +30,20 @@ namespace RetroSchematic.Desktop.Tests
     public class BoardViewTests
     {
         private static readonly string Sheet2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsc");
-        private static readonly string Packed2A50 = Path.Combine(TestContext.CurrentContext.TestDirectory, "sheets", "nord-10", "2A50-sync-modem-buffer-1050.rsx");
+        // no card is stored zipped (owner rule 2026-11-28): the zip these tests need is made from
+        // the text sheet at run time, by the app's own save, with the page and photos packed in
+        private static string Packed2A50(string name)
+        {
+            string work = Path.Combine(TestContext.CurrentContext.WorkDirectory, "packed");
+            Directory.CreateDirectory(work);
+            string zip = Path.Combine(work, name + ".rsx");
+            MainWindow w = new();
+            w.Show();
+            w.OpenSheet(Sheet2A50);
+            w.Session!.SaveAs(zip);
+            w.Close();
+            return zip;
+        }
 
         [AvaloniaTest]
         public void ViewSwitcher_ShowsEachView_WithItsOwnZoom_AndF5ToF8()
@@ -88,7 +101,7 @@ namespace RetroSchematic.Desktop.Tests
         {
             MainWindow w = new();
             w.Show();
-            w.OpenSheet(Packed2A50);
+            w.OpenSheet(Packed2A50("shows"));
             Assert.That(w.Session!.Editor.Files.Holds("photos/322049-component-side-I-old.jpg"), Is.True);
             Assert.That(w.Front.Bitmap!.PixelSize, Is.EqualTo(new PixelSize(2500, 2500)));
             Assert.That(w.Original.Bitmap!.PixelSize, Is.EqualTo(new PixelSize(3507, 2496)));
@@ -231,7 +244,7 @@ namespace RetroSchematic.Desktop.Tests
             string work = Path.Combine(TestContext.CurrentContext.WorkDirectory, "boardwindow");
             Directory.CreateDirectory(work);
             string sheet = Path.Combine(work, "copy.rsx");
-            File.Copy(Packed2A50, sheet, overwrite: true);
+            File.Copy(Packed2A50("board"), sheet, overwrite: true);
             MainWindow w = new();
             w.Show();
             w.OpenSheet(sheet);

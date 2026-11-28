@@ -157,7 +157,7 @@ jobs:
         run: |
           set -e
           "$PKG/cli/retroschematic${{ matrix.exe }}" --version
-          "$PKG/cli/retroschematic${{ matrix.exe }}" check "$PKG/sheets/nord-10/2A50-sync-modem-buffer-1050.rsx"
+          "$PKG/cli/retroschematic${{ matrix.exe }}" check "$PKG/sheets/nord-10/2A50-sync-modem-buffer-1050.rsc"
 
       # Windows gets a zip; Linux and macOS get a tar.gz, which keeps the executable bits.
       - name: Windows - build the zip

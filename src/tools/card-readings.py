@@ -28,6 +28,7 @@ The reading format is described in docs/3207-readings/README.md. The checks:
     not connected); such a pin must not be in a net.
 Types with no catalogue file at all are listed, so they can be added from their datasheets.
 """
+import datetime
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -393,6 +394,11 @@ def write_sheet(files, blocks, path):
         if blk['name'] not in order:
             order.append(blk['name'])
     d['blocks'] = [byname[n] for n in order]
+    # every save raises the file's revision and sets its time (FORMAT.md, "File stamp")
+    stamp = d.get('file') or {'revision': 0}
+    stamp['revision'] = stamp.get('revision', 0) + 1
+    stamp['modified'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    d['file'] = stamp
     with open(path, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(d, f, indent=2, ensure_ascii=False)
         f.write('\n')
