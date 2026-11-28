@@ -5,6 +5,7 @@
 //
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using Avalonia.Controls;
@@ -174,6 +175,54 @@ namespace RetroSchematic.Desktop
         }
 
         private void OpenBoardWindowFromDetails() => OpenBoardWindow();
+
+        /// <summary>
+        /// Opens the Bus use window: every backplane signal of every card, and the chips that
+        /// drive and read each one.
+        /// </summary>
+        /// <returns>
+        /// The window.
+        /// </returns>
+        public BusUseWindow OpenBusUseWindow()
+        {
+            BusUseWindow w = new(this);
+            w.Show(this);
+            return w;
+        }
+
+        private void OnBusUse(object? sender, RoutedEventArgs e) => OpenBusUseWindow();
+
+        /// <summary>
+        /// Shows one chip of a bus signal: opens its card when another one is open, goes from the
+        /// top level into the blocks on its path, and picks the part.
+        /// </summary>
+        /// <param name="sheetFile">
+        /// The card's sheet file.
+        /// </param>
+        /// <param name="path">
+        /// The block instances from the top down, joined by '/' (empty on the top level).
+        /// </param>
+        /// <param name="part">
+        /// The part to pick.
+        /// </param>
+        public void ShowBusChip(string sheetFile, string path, string part)
+        {
+            if (_session == null || (sheetFile.Length > 0 && !string.Equals(Path.GetFullPath(_session.SheetPath ?? ""), Path.GetFullPath(sheetFile), StringComparison.OrdinalIgnoreCase)))
+                OpenSheet(sheetFile);
+            if (_session == null)
+                return;
+            while (_session.LevelNames().Count > 1)
+                _session.LeaveInstance();
+            if (path.Length > 0)
+            {
+                string[] steps = path.Split('/');
+                for (int i = 0; i < steps.Length; i++)
+                    _session.OpenInstance(steps[i]);
+            }
+            _session.Select("part:" + part);
+            StatusText.Text = "Bus use: part " + part + (path.Length > 0 ? " inside " + path : "") + ".";
+            ShowEditState();
+        }
 
         private void OnBoardInfo(object? sender, RoutedEventArgs e) => OpenBoardWindow();
 

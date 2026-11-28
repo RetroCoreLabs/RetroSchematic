@@ -26,6 +26,8 @@
         <MenuItem Header="Add a pa_ge..." Click="OnAddPage" x:Name="AddPageItem" IsEnabled="False"
                   ToolTip.Tip="A new, empty page at the end; chips placed while it is shown go on it"/>
         <MenuItem Header="Put the picked part on page..." Click="OnPartToPage" x:Name="PartToPageItem" IsEnabled="False"/>
+        <MenuItem Header="B_us use, all cards..." Click="OnBusUse" x:Name="BusUseItem"
+                  ToolTip.Tip="Every backplane signal of every card (ND-100 plugs, NORD-10 edge fingers), and the chips that drive and read it; saves a Markdown report"/>
         <MenuItem Header="_Board info..." Click="OnBoardInfo" x:Name="BoardInfoItem" IsEnabled="False"
                   ToolTip.Tip="The board: machine, card and part numbers, versions, size, connectors, original pages and photos"/>
         <MenuItem Header="_Import board info from the ND PCB catalogue..." Click="OnImportCatalogue" x:Name="ImportCatalogueItem" IsEnabled="False"

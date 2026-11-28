@@ -98,6 +98,12 @@ namespace RetroSchematic.Model
         /// The formulas as written in the file, one per output.
         /// </summary>
         public List<string> Formulas { get; } = new();
+
+        /// <summary>
+        /// The file the chip was read from when it is not the type's own: a 74LS240 with no file
+        /// of its own is read from 74240 (same pins and logic, other timing). Null for its own file.
+        /// </summary>
+        public string? ReadFrom { get; set; }
     }
 
     /// <summary>
@@ -218,8 +224,51 @@ namespace RetroSchematic.Model
             // a type with a path character in it is not a chip name; never read outside the folder
             if (type.Length > 0 && type.IndexOfAny(Path.GetInvalidFileNameChars()) < 0 && File.Exists(path))
                 info = Parse(File.ReadAllText(path));
+            // a 74 family part with no file of its own (74LS240, 74F04) has the pins and logic of the
+            // plain type (74240, 7404); its timing is not the same, so ReadFrom says which file it is
+            string? plain = info == null ? PlainType(type) : null;
+            if (plain != null)
+            {
+                string plainPath = Path.Combine(Folder, "chips", plain + ".json");
+                if (File.Exists(plainPath))
+                {
+                    info = Parse(File.ReadAllText(plainPath));
+                    if (info != null)
+                        info.ReadFrom = plain;
+                }
+            }
             _cache[type] = info;
             return info;
+        }
+
+        /// <summary>
+        /// The plain 74 type of a family part: 74LS240 -> 74240, 74F04 -> 7404, 74ALS00 -> 7400.
+        /// Null for anything else (a plain type, or not a 74 part).
+        /// </summary>
+        /// <param name="type">
+        /// The chip type.
+        /// </param>
+        /// <returns>
+        /// The plain type, or null.
+        /// </returns>
+        public static string? PlainType(string type)
+        {
+            if (!type.StartsWith("74", StringComparison.Ordinal))
+                return null;
+            int i = 2;
+            while (i < type.Length && char.IsAsciiLetterUpper(type[i]))
+                i++;
+            if (i == 2 || i == type.Length)
+                return null;
+            string family = type.Substring(2, i - 2);
+            if (family != "LS" && family != "S" && family != "F" && family != "ALS" && family != "AS" && family != "L" && family != "H" && family != "HC" && family != "HCT")
+                return null;
+            for (int k = i; k < type.Length; k++)
+            {
+                if (!char.IsAsciiDigit(type[k]))
+                    return null;
+            }
+            return "74" + type.Substring(i);
         }
 
         /// <summary>
